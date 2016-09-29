@@ -18,6 +18,7 @@ $ErrorActionPreference = 'Stop'
 
 $scriptPath = $MyInvocation.MyCommand.Path
 $scriptHome = Split-Path $scriptPath
+Push-Location $scriptHome
 
 $config = Get-Content $scriptHome\repo.json -Raw | ConvertFrom-Json
 Foreach($repo in $config.repo){
