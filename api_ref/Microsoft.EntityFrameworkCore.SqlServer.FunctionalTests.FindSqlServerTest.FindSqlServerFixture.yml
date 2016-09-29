@@ -6,7 +6,7 @@ items:
   parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   children:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture.#ctor
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture.CreateContext
+  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture.CreateContext(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore)
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture.CreateTestStore
   langs:
   - csharp
@@ -19,25 +19,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/FindSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: FindSqlServerFixture
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/FindSqlServerTest.cs
-    startLine: 323
+    startLine: 326
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: 'public class FindSqlServerFixture : FindTestBase<FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase'
+    content: 'public class FindSqlServerFixture : FindTestBase<SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase'
     content.vb: >-
       Public Class FindSqlServerFixture
-          Inherits FindTestBase(Of FindSqlServerTest.FindSqlServerFixture).FindFixtureBase
+          Inherits FindTestBase(Of SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture).FindFixtureBase
   inheritance:
   - System.Object
-  - Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
+  - Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
   inheritedMembers:
-  - Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.Initialize
-  - Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  - Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  - Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.CreateTestStore
+  - Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.CreateContext(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore)
+  - Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
   - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -45,8 +46,6 @@ items:
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
   modifiers.csharp:
   - public
   - class
@@ -68,10 +67,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/FindSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/FindSqlServerTest.cs
-    startLine: 327
+    startLine: 331
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -97,51 +96,56 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/FindSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CreateTestStore
-    path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/FindSqlServerTest.cs
-    startLine: 336
-  assemblies:
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
-  namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
-  syntax:
-    content: public override void CreateTestStore()
-    content.vb: Public Overrides Sub CreateTestStore
-  overridden: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.CreateTestStore
-  modifiers.csharp:
-  - public
-  - override
-  modifiers.vb:
-  - Public
-  - Overrides
-- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture.CreateContext
-  commentId: M:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture.CreateContext
-  id: CreateContext
-  parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture
-  langs:
-  - csharp
-  - vb
-  name: CreateContext()
-  nameWithType: FindSqlServerTest.FindSqlServerFixture.CreateContext()
-  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture.CreateContext()
-  type: Method
-  source:
-    remote:
-      path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/FindSqlServerTest.cs
-      branch: dev
-      repo: https://github.com/aspnet/EntityFramework
-    id: CreateContext
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/FindSqlServerTest.cs
     startLine: 346
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public override DbContext CreateContext()
-    content.vb: Public Overrides Function CreateContext As DbContext
+    content: public override SqlServerTestStore CreateTestStore()
+    content.vb: Public Overrides Function CreateTestStore As SqlServerTestStore
+    return:
+      type: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+  overridden: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.CreateTestStore
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture.CreateContext(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore)
+  commentId: M:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture.CreateContext(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore)
+  id: CreateContext(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore)
+  parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture
+  langs:
+  - csharp
+  - vb
+  name: CreateContext(SqlServerTestStore)
+  nameWithType: FindSqlServerTest.FindSqlServerFixture.CreateContext(SqlServerTestStore)
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture.CreateContext(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore)
+  type: Method
+  source:
+    remote:
+      path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/FindSqlServerTest.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: CreateContext
+    path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/FindSqlServerTest.cs
+    startLine: 360
+  assemblies:
+  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
+  namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
+  syntax:
+    content: public override DbContext CreateContext(SqlServerTestStore testStore)
+    content.vb: Public Overrides Function CreateContext(testStore As SqlServerTestStore) As DbContext
+    parameters:
+    - id: testStore
+      type: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
     return:
       type: Microsoft.EntityFrameworkCore.DbContext
-  overridden: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.CreateContext
+  overridden: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.CreateContext(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore)
   modifiers.csharp:
   - public
   - override
@@ -162,10 +166,10 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
-  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
+  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
   parent: Microsoft.EntityFrameworkCore.Specification.Tests
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase
   name: FindTestBase.FindFixtureBase<>
   nameWithType: FindTestBase.FindFixtureBase<>
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase.FindFixtureBase<>
@@ -173,7 +177,7 @@ references:
   fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase.FindFixtureBase(Of )
   name.vb: FindTestBase.FindFixtureBase(Of )
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase
     name: FindTestBase.FindFixtureBase
     nameWithType: FindTestBase.FindFixtureBase
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase.FindFixtureBase
@@ -184,7 +188,7 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase
     name: FindTestBase.FindFixtureBase
     nameWithType: FindTestBase.FindFixtureBase
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase.FindFixtureBase
@@ -194,20 +198,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.Initialize
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.Initialize
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.Initialize
-  name: Initialize()
-  nameWithType: FindTestBase<FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.Initialize()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.Initialize()
-  nameWithType.vb: FindTestBase(Of FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.Initialize()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.Initialize()
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.CreateTestStore
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.CreateTestStore
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.CreateTestStore
+  name: CreateTestStore()
+  nameWithType: FindTestBase<SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateTestStore()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateTestStore()
+  nameWithType.vb: FindTestBase(Of SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateTestStore()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateTestStore()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.Initialize
-    name: Initialize
-    nameWithType: FindTestBase<FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.Initialize
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.Initialize
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.CreateTestStore
+    name: CreateTestStore
+    nameWithType: FindTestBase<SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateTestStore
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateTestStore
   - name: (
     nameWithType: (
     fullName: (
@@ -215,30 +219,69 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.Initialize
-    name: Initialize
-    nameWithType: FindTestBase(Of FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.Initialize
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.Initialize
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.CreateTestStore
+    name: CreateTestStore
+    nameWithType: FindTestBase(Of SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateTestStore
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateTestStore
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.CreateContext(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.CreateContext(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore)
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.CreateContext(`0)
+  name: CreateContext(SqlServerTestStore)
+  nameWithType: FindTestBase<SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateContext(SqlServerTestStore)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateContext(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore)
+  nameWithType.vb: FindTestBase(Of SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateContext(SqlServerTestStore)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateContext(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.CreateContext(`0)
+    name: CreateContext
+    nameWithType: FindTestBase<SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+    name: SqlServerTestStore
+    nameWithType: SqlServerTestStore
+    fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.CreateContext(`0)
+    name: CreateContext
+    nameWithType: FindTestBase(Of SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+    name: SqlServerTestStore
+    nameWithType: SqlServerTestStore
+    fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   name: OnModelCreating(ModelBuilder)
-  nameWithType: FindTestBase<FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.OnModelCreating(ModelBuilder)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  nameWithType.vb: FindTestBase(Of FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.OnModelCreating(ModelBuilder)
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  nameWithType: FindTestBase<SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.OnModelCreating(ModelBuilder)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  nameWithType.vb: FindTestBase(Of SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.OnModelCreating(ModelBuilder)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
     name: OnModelCreating
-    nameWithType: FindTestBase<FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.OnModelCreating
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.OnModelCreating
+    nameWithType: FindTestBase<SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.OnModelCreating
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.OnModelCreating
   - name: (
     nameWithType: (
     fullName: (
@@ -250,10 +293,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
     name: OnModelCreating
-    nameWithType: FindTestBase(Of FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.OnModelCreating
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.OnModelCreating
+    nameWithType: FindTestBase(Of SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.OnModelCreating
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.OnModelCreating
   - name: (
     nameWithType: (
     fullName: (
@@ -264,20 +307,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
   name: Seed(DbContext)
-  nameWithType: FindTestBase<FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.Seed(DbContext)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
-  nameWithType.vb: FindTestBase(Of FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.Seed(DbContext)
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  nameWithType: FindTestBase<SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.Seed(DbContext)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  nameWithType.vb: FindTestBase(Of SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.Seed(DbContext)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
     name: Seed
-    nameWithType: FindTestBase<FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.Seed
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.Seed
+    nameWithType: FindTestBase<SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.Seed
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.Seed
   - name: (
     nameWithType: (
     fullName: (
@@ -289,10 +332,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
     name: Seed
-    nameWithType: FindTestBase(Of FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.Seed
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.Seed
+    nameWithType: FindTestBase(Of SqlServerTestStore, FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.Seed
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.Seed
   - name: (
     nameWithType: (
     fullName: (
@@ -582,56 +625,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<FindSqlServerTest.FindSqlServerFixture, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<FindSqlServerTest.FindSqlServerFixture, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of FindSqlServerTest.FindSqlServerFixture, TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture, TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of FindSqlServerTest.FindSqlServerFixture, TConcrete)(String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<FindSqlServerTest.FindSqlServerFixture, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<FindSqlServerTest.FindSqlServerFixture, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of FindSqlServerTest.FindSqlServerFixture, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of FindSqlServerTest.FindSqlServerFixture, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase
-  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase
+  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase
   isExternal: false
   name: FindTestBase.FindFixtureBase<>
   nameWithType: FindTestBase.FindFixtureBase<>
@@ -640,7 +641,7 @@ references:
   fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase.FindFixtureBase(Of )
   name.vb: FindTestBase.FindFixtureBase(Of )
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase
     name: FindTestBase.FindFixtureBase
     nameWithType: FindTestBase.FindFixtureBase
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase.FindFixtureBase
@@ -651,7 +652,7 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase
     name: FindTestBase.FindFixtureBase
     nameWithType: FindTestBase.FindFixtureBase
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase.FindFixtureBase
@@ -667,19 +668,19 @@ references:
   name: Microsoft.EntityFrameworkCore.Specification.Tests
   nameWithType: Microsoft.EntityFrameworkCore.Specification.Tests
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.Initialize
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.Initialize
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.CreateTestStore
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.CreateTestStore
   isExternal: false
-  name: Initialize()
-  nameWithType: FindTestBase<TFixture>.FindFixtureBase.Initialize()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TFixture>.FindFixtureBase.Initialize()
-  nameWithType.vb: FindTestBase(Of TFixture).FindFixtureBase.Initialize()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TFixture).FindFixtureBase.Initialize()
+  name: CreateTestStore()
+  nameWithType: FindTestBase<TTestStore, TFixture>.FindFixtureBase.CreateTestStore()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TTestStore, TFixture>.FindFixtureBase.CreateTestStore()
+  nameWithType.vb: FindTestBase(Of TTestStore, TFixture).FindFixtureBase.CreateTestStore()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TTestStore, TFixture).FindFixtureBase.CreateTestStore()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.Initialize
-    name: Initialize
-    nameWithType: FindTestBase<TFixture>.FindFixtureBase.Initialize
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TFixture>.FindFixtureBase.Initialize
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.CreateTestStore
+    name: CreateTestStore
+    nameWithType: FindTestBase<TTestStore, TFixture>.FindFixtureBase.CreateTestStore
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TTestStore, TFixture>.FindFixtureBase.CreateTestStore
   - name: (
     nameWithType: (
     fullName: (
@@ -687,29 +688,65 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.Initialize
-    name: Initialize
-    nameWithType: FindTestBase(Of TFixture).FindFixtureBase.Initialize
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TFixture).FindFixtureBase.Initialize
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.CreateTestStore
+    name: CreateTestStore
+    nameWithType: FindTestBase(Of TTestStore, TFixture).FindFixtureBase.CreateTestStore
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TTestStore, TFixture).FindFixtureBase.CreateTestStore
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.CreateContext(`0)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.CreateContext(`0)
+  isExternal: false
+  name: CreateContext(TTestStore)
+  nameWithType: FindTestBase<TTestStore, TFixture>.FindFixtureBase.CreateContext(TTestStore)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TTestStore, TFixture>.FindFixtureBase.CreateContext(TTestStore)
+  nameWithType.vb: FindTestBase(Of TTestStore, TFixture).FindFixtureBase.CreateContext(TTestStore)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TTestStore, TFixture).FindFixtureBase.CreateContext(TTestStore)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.CreateContext(`0)
+    name: CreateContext
+    nameWithType: FindTestBase<TTestStore, TFixture>.FindFixtureBase.CreateContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TTestStore, TFixture>.FindFixtureBase.CreateContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TTestStore
+    nameWithType: TTestStore
+    fullName: TTestStore
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.CreateContext(`0)
+    name: CreateContext
+    nameWithType: FindTestBase(Of TTestStore, TFixture).FindFixtureBase.CreateContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TTestStore, TFixture).FindFixtureBase.CreateContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TTestStore
+    nameWithType: TTestStore
+    fullName: TTestStore
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   isExternal: false
   name: OnModelCreating(ModelBuilder)
-  nameWithType: FindTestBase<TFixture>.FindFixtureBase.OnModelCreating(ModelBuilder)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TFixture>.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  nameWithType.vb: FindTestBase(Of TFixture).FindFixtureBase.OnModelCreating(ModelBuilder)
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TFixture).FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  nameWithType: FindTestBase<TTestStore, TFixture>.FindFixtureBase.OnModelCreating(ModelBuilder)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TTestStore, TFixture>.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  nameWithType.vb: FindTestBase(Of TTestStore, TFixture).FindFixtureBase.OnModelCreating(ModelBuilder)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TTestStore, TFixture).FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
     name: OnModelCreating
-    nameWithType: FindTestBase<TFixture>.FindFixtureBase.OnModelCreating
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TFixture>.FindFixtureBase.OnModelCreating
+    nameWithType: FindTestBase<TTestStore, TFixture>.FindFixtureBase.OnModelCreating
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TTestStore, TFixture>.FindFixtureBase.OnModelCreating
   - name: (
     nameWithType: (
     fullName: (
@@ -721,10 +758,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
     name: OnModelCreating
-    nameWithType: FindTestBase(Of TFixture).FindFixtureBase.OnModelCreating
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TFixture).FindFixtureBase.OnModelCreating
+    nameWithType: FindTestBase(Of TTestStore, TFixture).FindFixtureBase.OnModelCreating
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TTestStore, TFixture).FindFixtureBase.OnModelCreating
   - name: (
     nameWithType: (
     fullName: (
@@ -735,19 +772,19 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
   isExternal: false
   name: Seed(DbContext)
-  nameWithType: FindTestBase<TFixture>.FindFixtureBase.Seed(DbContext)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TFixture>.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
-  nameWithType.vb: FindTestBase(Of TFixture).FindFixtureBase.Seed(DbContext)
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TFixture).FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  nameWithType: FindTestBase<TTestStore, TFixture>.FindFixtureBase.Seed(DbContext)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TTestStore, TFixture>.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  nameWithType.vb: FindTestBase(Of TTestStore, TFixture).FindFixtureBase.Seed(DbContext)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TTestStore, TFixture).FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
     name: Seed
-    nameWithType: FindTestBase<TFixture>.FindFixtureBase.Seed
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TFixture>.FindFixtureBase.Seed
+    nameWithType: FindTestBase<TTestStore, TFixture>.FindFixtureBase.Seed
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TTestStore, TFixture>.FindFixtureBase.Seed
   - name: (
     nameWithType: (
     fullName: (
@@ -759,10 +796,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`2.FindFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
     name: Seed
-    nameWithType: FindTestBase(Of TFixture).FindFixtureBase.Seed
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TFixture).FindFixtureBase.Seed
+    nameWithType: FindTestBase(Of TTestStore, TFixture).FindFixtureBase.Seed
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TTestStore, TFixture).FindFixtureBase.Seed
   - name: (
     nameWithType: (
     fullName: (
@@ -773,164 +810,19 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+  commentId: T:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+  parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
   isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
+  name: SqlServerTestStore
+  nameWithType: SqlServerTestStore
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
+  commentId: N:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
   isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.CreateTestStore
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.CreateTestStore
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.CreateTestStore
-  name: CreateTestStore()
-  nameWithType: FindTestBase<FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateTestStore()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateTestStore()
-  nameWithType.vb: FindTestBase(Of FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateTestStore()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateTestStore()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.CreateTestStore
-    name: CreateTestStore
-    nameWithType: FindTestBase<FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateTestStore
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateTestStore
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.CreateTestStore
-    name: CreateTestStore
-    nameWithType: FindTestBase(Of FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateTestStore
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateTestStore
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.CreateTestStore
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.CreateTestStore
-  isExternal: false
-  name: CreateTestStore()
-  nameWithType: FindTestBase<TFixture>.FindFixtureBase.CreateTestStore()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TFixture>.FindFixtureBase.CreateTestStore()
-  nameWithType.vb: FindTestBase(Of TFixture).FindFixtureBase.CreateTestStore()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TFixture).FindFixtureBase.CreateTestStore()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.CreateTestStore
-    name: CreateTestStore
-    nameWithType: FindTestBase<TFixture>.FindFixtureBase.CreateTestStore
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TFixture>.FindFixtureBase.CreateTestStore
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.CreateTestStore
-    name: CreateTestStore
-    nameWithType: FindTestBase(Of TFixture).FindFixtureBase.CreateTestStore
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TFixture).FindFixtureBase.CreateTestStore
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.CreateContext
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase.CreateContext
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture}.FindFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.CreateContext
-  name: CreateContext()
-  nameWithType: FindTestBase<FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateContext()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateContext()
-  nameWithType.vb: FindTestBase(Of FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateContext()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateContext()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.CreateContext
-    name: CreateContext
-    nameWithType: FindTestBase<FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateContext
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture>.FindFixtureBase.CreateContext
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.CreateContext
-    name: CreateContext
-    nameWithType: FindTestBase(Of FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateContext
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.FindSqlServerTest.FindSqlServerFixture).FindFixtureBase.CreateContext
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
+  name: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
+  nameWithType: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
 - uid: Microsoft.EntityFrameworkCore.DbContext
   commentId: T:Microsoft.EntityFrameworkCore.DbContext
   parent: Microsoft.EntityFrameworkCore
@@ -938,36 +830,6 @@ references:
   name: DbContext
   nameWithType: DbContext
   fullName: Microsoft.EntityFrameworkCore.DbContext
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.CreateContext
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.CreateContext
-  isExternal: false
-  name: CreateContext()
-  nameWithType: FindTestBase<TFixture>.FindFixtureBase.CreateContext()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TFixture>.FindFixtureBase.CreateContext()
-  nameWithType.vb: FindTestBase(Of TFixture).FindFixtureBase.CreateContext()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TFixture).FindFixtureBase.CreateContext()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.CreateContext
-    name: CreateContext
-    nameWithType: FindTestBase<TFixture>.FindFixtureBase.CreateContext
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase<TFixture>.FindFixtureBase.CreateContext
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase`1.FindFixtureBase.CreateContext
-    name: CreateContext
-    nameWithType: FindTestBase(Of TFixture).FindFixtureBase.CreateContext
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FindTestBase(Of TFixture).FindFixtureBase.CreateContext
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: Microsoft.EntityFrameworkCore
   commentId: N:Microsoft.EntityFrameworkCore
   isExternal: false

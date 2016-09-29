@@ -5,7 +5,7 @@ items:
   id: ConditionalTestFramework
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit
   children:
-  - Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework.#ctor(IMessageSink)
+  - Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework.#ctor(Xunit.Abstractions.IMessageSink)
   - Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework.CreateExecutor(System.Reflection.AssemblyName)
   langs:
   - csharp
@@ -18,7 +18,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/TestUtilities/Xunit/ConditionalTestFramework.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: ConditionalTestFramework
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/TestUtilities/Xunit/ConditionalTestFramework.cs
     startLine: 11
@@ -26,36 +26,62 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit
   syntax:
-    content: 'public class ConditionalTestFramework : XunitTestFramework'
+    content: 'public class ConditionalTestFramework : XunitTestFramework, ITestFramework, IDisposable'
     content.vb: >-
       Public Class ConditionalTestFramework
           Inherits XunitTestFramework
+          Implements ITestFramework, IDisposable
   inheritance:
   - System.Object
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
+  - System.MarshalByRefObject
+  - Xunit.LongLivedMarshalByRefObject
+  - Xunit.Sdk.TestFramework
+  - Xunit.Sdk.XunitTestFramework
+  implements:
+  - Xunit.Abstractions.ITestFramework
+  - System.IDisposable
+  inheritedMembers:
+  - Xunit.Sdk.XunitTestFramework.CreateDiscoverer(Xunit.Abstractions.IAssemblyInfo)
+  - Xunit.Sdk.TestFramework.Dispose
+  - Xunit.Sdk.TestFramework.GetDiscoverer(Xunit.Abstractions.IAssemblyInfo)
+  - Xunit.Sdk.TestFramework.GetExecutor(System.Reflection.AssemblyName)
+  - Xunit.Sdk.TestFramework.DiagnosticMessageSink
+  - Xunit.Sdk.TestFramework.DisposalTracker
+  - Xunit.Sdk.TestFramework.SourceInformationProvider
+  - Xunit.LongLivedMarshalByRefObject.DisconnectAll
+  - Xunit.LongLivedMarshalByRefObject.InitializeLifetimeService
+  - System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+  - System.MarshalByRefObject.GetLifetimeService
+  - System.MarshalByRefObject.CreateObjRef(System.Type)
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework.#ctor(IMessageSink)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework.#ctor(IMessageSink)
-  id: '#ctor(IMessageSink)'
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework.#ctor(Xunit.Abstractions.IMessageSink)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework.#ctor(Xunit.Abstractions.IMessageSink)
+  id: '#ctor(Xunit.Abstractions.IMessageSink)'
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework
   langs:
   - csharp
   - vb
   name: ConditionalTestFramework(IMessageSink)
   nameWithType: ConditionalTestFramework.ConditionalTestFramework(IMessageSink)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework.ConditionalTestFramework(IMessageSink)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework.ConditionalTestFramework(Xunit.Abstractions.IMessageSink)
   type: Constructor
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/TestUtilities/Xunit/ConditionalTestFramework.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/TestUtilities/Xunit/ConditionalTestFramework.cs
     startLine: 13
@@ -67,7 +93,7 @@ items:
     content.vb: Public Sub New(messageSink As IMessageSink)
     parameters:
     - id: messageSink
-      type: IMessageSink
+      type: Xunit.Abstractions.IMessageSink
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -87,7 +113,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/TestUtilities/Xunit/ConditionalTestFramework.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CreateExecutor
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/TestUtilities/Xunit/ConditionalTestFramework.cs
     startLine: 22
@@ -101,7 +127,8 @@ items:
     - id: assemblyName
       type: System.Reflection.AssemblyName
     return:
-      type: ITestFrameworkExecutor
+      type: Xunit.Abstractions.ITestFrameworkExecutor
+  overridden: Xunit.Sdk.XunitTestFramework.CreateExecutor(System.Reflection.AssemblyName)
   modifiers.csharp:
   - protected
   - override
@@ -122,45 +149,674 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<ConditionalTestFramework, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<ConditionalTestFramework, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of ConditionalTestFramework, TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework, TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of ConditionalTestFramework, TConcrete)(String)
+- uid: System.MarshalByRefObject
+  commentId: T:System.MarshalByRefObject
+  parent: System
+  isExternal: true
+  name: MarshalByRefObject
+  nameWithType: MarshalByRefObject
+  fullName: System.MarshalByRefObject
+- uid: Xunit.LongLivedMarshalByRefObject
+  commentId: T:Xunit.LongLivedMarshalByRefObject
+  parent: Xunit
+  isExternal: true
+  name: LongLivedMarshalByRefObject
+  nameWithType: LongLivedMarshalByRefObject
+  fullName: Xunit.LongLivedMarshalByRefObject
+- uid: Xunit.Sdk.TestFramework
+  commentId: T:Xunit.Sdk.TestFramework
+  parent: Xunit.Sdk
+  isExternal: true
+  name: TestFramework
+  nameWithType: TestFramework
+  fullName: Xunit.Sdk.TestFramework
+- uid: Xunit.Sdk.XunitTestFramework
+  commentId: T:Xunit.Sdk.XunitTestFramework
+  parent: Xunit.Sdk
+  isExternal: true
+  name: XunitTestFramework
+  nameWithType: XunitTestFramework
+  fullName: Xunit.Sdk.XunitTestFramework
+- uid: Xunit.Abstractions.ITestFramework
+  commentId: T:Xunit.Abstractions.ITestFramework
+  parent: Xunit.Abstractions
+  isExternal: true
+  name: ITestFramework
+  nameWithType: ITestFramework
+  fullName: Xunit.Abstractions.ITestFramework
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Xunit.Sdk.XunitTestFramework.CreateDiscoverer(Xunit.Abstractions.IAssemblyInfo)
+  commentId: M:Xunit.Sdk.XunitTestFramework.CreateDiscoverer(Xunit.Abstractions.IAssemblyInfo)
+  parent: Xunit.Sdk.XunitTestFramework
+  isExternal: true
+  name: CreateDiscoverer(IAssemblyInfo)
+  nameWithType: XunitTestFramework.CreateDiscoverer(IAssemblyInfo)
+  fullName: Xunit.Sdk.XunitTestFramework.CreateDiscoverer(Xunit.Abstractions.IAssemblyInfo)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<ConditionalTestFramework, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<ConditionalTestFramework, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework, TConcrete>
+  - uid: Xunit.Sdk.XunitTestFramework.CreateDiscoverer(Xunit.Abstractions.IAssemblyInfo)
+    name: CreateDiscoverer
+    nameWithType: XunitTestFramework.CreateDiscoverer
+    fullName: Xunit.Sdk.XunitTestFramework.CreateDiscoverer
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Xunit.Abstractions.IAssemblyInfo
+    name: IAssemblyInfo
+    nameWithType: IAssemblyInfo
+    fullName: Xunit.Abstractions.IAssemblyInfo
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of ConditionalTestFramework, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of ConditionalTestFramework, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTestFramework, TConcrete)
+  - uid: Xunit.Sdk.XunitTestFramework.CreateDiscoverer(Xunit.Abstractions.IAssemblyInfo)
+    name: CreateDiscoverer
+    nameWithType: XunitTestFramework.CreateDiscoverer
+    fullName: Xunit.Sdk.XunitTestFramework.CreateDiscoverer
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Xunit.Abstractions.IAssemblyInfo
+    name: IAssemblyInfo
+    nameWithType: IAssemblyInfo
+    fullName: Xunit.Abstractions.IAssemblyInfo
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Xunit.Sdk.TestFramework.Dispose
+  commentId: M:Xunit.Sdk.TestFramework.Dispose
+  parent: Xunit.Sdk.TestFramework
+  isExternal: true
+  name: Dispose()
+  nameWithType: TestFramework.Dispose()
+  fullName: Xunit.Sdk.TestFramework.Dispose()
+  spec.csharp:
+  - uid: Xunit.Sdk.TestFramework.Dispose
+    name: Dispose
+    nameWithType: TestFramework.Dispose
+    fullName: Xunit.Sdk.TestFramework.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Xunit.Sdk.TestFramework.Dispose
+    name: Dispose
+    nameWithType: TestFramework.Dispose
+    fullName: Xunit.Sdk.TestFramework.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Xunit.Sdk.TestFramework.GetDiscoverer(Xunit.Abstractions.IAssemblyInfo)
+  commentId: M:Xunit.Sdk.TestFramework.GetDiscoverer(Xunit.Abstractions.IAssemblyInfo)
+  parent: Xunit.Sdk.TestFramework
+  isExternal: true
+  name: GetDiscoverer(IAssemblyInfo)
+  nameWithType: TestFramework.GetDiscoverer(IAssemblyInfo)
+  fullName: Xunit.Sdk.TestFramework.GetDiscoverer(Xunit.Abstractions.IAssemblyInfo)
+  spec.csharp:
+  - uid: Xunit.Sdk.TestFramework.GetDiscoverer(Xunit.Abstractions.IAssemblyInfo)
+    name: GetDiscoverer
+    nameWithType: TestFramework.GetDiscoverer
+    fullName: Xunit.Sdk.TestFramework.GetDiscoverer
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Xunit.Abstractions.IAssemblyInfo
+    name: IAssemblyInfo
+    nameWithType: IAssemblyInfo
+    fullName: Xunit.Abstractions.IAssemblyInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Xunit.Sdk.TestFramework.GetDiscoverer(Xunit.Abstractions.IAssemblyInfo)
+    name: GetDiscoverer
+    nameWithType: TestFramework.GetDiscoverer
+    fullName: Xunit.Sdk.TestFramework.GetDiscoverer
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Xunit.Abstractions.IAssemblyInfo
+    name: IAssemblyInfo
+    nameWithType: IAssemblyInfo
+    fullName: Xunit.Abstractions.IAssemblyInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Xunit.Sdk.TestFramework.GetExecutor(System.Reflection.AssemblyName)
+  commentId: M:Xunit.Sdk.TestFramework.GetExecutor(System.Reflection.AssemblyName)
+  parent: Xunit.Sdk.TestFramework
+  isExternal: true
+  name: GetExecutor(AssemblyName)
+  nameWithType: TestFramework.GetExecutor(AssemblyName)
+  fullName: Xunit.Sdk.TestFramework.GetExecutor(System.Reflection.AssemblyName)
+  spec.csharp:
+  - uid: Xunit.Sdk.TestFramework.GetExecutor(System.Reflection.AssemblyName)
+    name: GetExecutor
+    nameWithType: TestFramework.GetExecutor
+    fullName: Xunit.Sdk.TestFramework.GetExecutor
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.AssemblyName
+    name: AssemblyName
+    nameWithType: AssemblyName
+    fullName: System.Reflection.AssemblyName
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Xunit.Sdk.TestFramework.GetExecutor(System.Reflection.AssemblyName)
+    name: GetExecutor
+    nameWithType: TestFramework.GetExecutor
+    fullName: Xunit.Sdk.TestFramework.GetExecutor
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.AssemblyName
+    name: AssemblyName
+    nameWithType: AssemblyName
+    fullName: System.Reflection.AssemblyName
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Xunit.Sdk.TestFramework.DiagnosticMessageSink
+  commentId: P:Xunit.Sdk.TestFramework.DiagnosticMessageSink
+  parent: Xunit.Sdk.TestFramework
+  isExternal: true
+  name: DiagnosticMessageSink
+  nameWithType: TestFramework.DiagnosticMessageSink
+  fullName: Xunit.Sdk.TestFramework.DiagnosticMessageSink
+- uid: Xunit.Sdk.TestFramework.DisposalTracker
+  commentId: P:Xunit.Sdk.TestFramework.DisposalTracker
+  parent: Xunit.Sdk.TestFramework
+  isExternal: true
+  name: DisposalTracker
+  nameWithType: TestFramework.DisposalTracker
+  fullName: Xunit.Sdk.TestFramework.DisposalTracker
+- uid: Xunit.Sdk.TestFramework.SourceInformationProvider
+  commentId: P:Xunit.Sdk.TestFramework.SourceInformationProvider
+  parent: Xunit.Sdk.TestFramework
+  isExternal: true
+  name: SourceInformationProvider
+  nameWithType: TestFramework.SourceInformationProvider
+  fullName: Xunit.Sdk.TestFramework.SourceInformationProvider
+- uid: Xunit.LongLivedMarshalByRefObject.DisconnectAll
+  commentId: M:Xunit.LongLivedMarshalByRefObject.DisconnectAll
+  parent: Xunit.LongLivedMarshalByRefObject
+  isExternal: true
+  name: DisconnectAll()
+  nameWithType: LongLivedMarshalByRefObject.DisconnectAll()
+  fullName: Xunit.LongLivedMarshalByRefObject.DisconnectAll()
+  spec.csharp:
+  - uid: Xunit.LongLivedMarshalByRefObject.DisconnectAll
+    name: DisconnectAll
+    nameWithType: LongLivedMarshalByRefObject.DisconnectAll
+    fullName: Xunit.LongLivedMarshalByRefObject.DisconnectAll
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Xunit.LongLivedMarshalByRefObject.DisconnectAll
+    name: DisconnectAll
+    nameWithType: LongLivedMarshalByRefObject.DisconnectAll
+    fullName: Xunit.LongLivedMarshalByRefObject.DisconnectAll
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Xunit.LongLivedMarshalByRefObject.InitializeLifetimeService
+  commentId: M:Xunit.LongLivedMarshalByRefObject.InitializeLifetimeService
+  parent: Xunit.LongLivedMarshalByRefObject
+  isExternal: true
+  name: InitializeLifetimeService()
+  nameWithType: LongLivedMarshalByRefObject.InitializeLifetimeService()
+  fullName: Xunit.LongLivedMarshalByRefObject.InitializeLifetimeService()
+  spec.csharp:
+  - uid: Xunit.LongLivedMarshalByRefObject.InitializeLifetimeService
+    name: InitializeLifetimeService
+    nameWithType: LongLivedMarshalByRefObject.InitializeLifetimeService
+    fullName: Xunit.LongLivedMarshalByRefObject.InitializeLifetimeService
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Xunit.LongLivedMarshalByRefObject.InitializeLifetimeService
+    name: InitializeLifetimeService
+    nameWithType: LongLivedMarshalByRefObject.InitializeLifetimeService
+    fullName: Xunit.LongLivedMarshalByRefObject.InitializeLifetimeService
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+  commentId: M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+  parent: System.MarshalByRefObject
+  isExternal: true
+  name: MemberwiseClone(Boolean)
+  nameWithType: MarshalByRefObject.MemberwiseClone(Boolean)
+  fullName: System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+  spec.csharp:
+  - uid: System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+    name: MemberwiseClone
+    nameWithType: MarshalByRefObject.MemberwiseClone
+    fullName: System.MarshalByRefObject.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+    name: MemberwiseClone
+    nameWithType: MarshalByRefObject.MemberwiseClone
+    fullName: System.MarshalByRefObject.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.MarshalByRefObject.GetLifetimeService
+  commentId: M:System.MarshalByRefObject.GetLifetimeService
+  parent: System.MarshalByRefObject
+  isExternal: true
+  name: GetLifetimeService()
+  nameWithType: MarshalByRefObject.GetLifetimeService()
+  fullName: System.MarshalByRefObject.GetLifetimeService()
+  spec.csharp:
+  - uid: System.MarshalByRefObject.GetLifetimeService
+    name: GetLifetimeService
+    nameWithType: MarshalByRefObject.GetLifetimeService
+    fullName: System.MarshalByRefObject.GetLifetimeService
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.MarshalByRefObject.GetLifetimeService
+    name: GetLifetimeService
+    nameWithType: MarshalByRefObject.GetLifetimeService
+    fullName: System.MarshalByRefObject.GetLifetimeService
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.MarshalByRefObject.CreateObjRef(System.Type)
+  commentId: M:System.MarshalByRefObject.CreateObjRef(System.Type)
+  parent: System.MarshalByRefObject
+  isExternal: true
+  name: CreateObjRef(Type)
+  nameWithType: MarshalByRefObject.CreateObjRef(Type)
+  fullName: System.MarshalByRefObject.CreateObjRef(System.Type)
+  spec.csharp:
+  - uid: System.MarshalByRefObject.CreateObjRef(System.Type)
+    name: CreateObjRef
+    nameWithType: MarshalByRefObject.CreateObjRef
+    fullName: System.MarshalByRefObject.CreateObjRef
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.MarshalByRefObject.CreateObjRef(System.Type)
+    name: CreateObjRef
+    nameWithType: MarshalByRefObject.CreateObjRef
+    fullName: System.MarshalByRefObject.CreateObjRef
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -170,77 +826,72 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
+- uid: Xunit
+  commentId: N:Xunit
+  isExternal: false
+  name: Xunit
+  nameWithType: Xunit
+  fullName: Xunit
+- uid: Xunit.Sdk
+  commentId: N:Xunit.Sdk
+  isExternal: false
+  name: Xunit.Sdk
+  nameWithType: Xunit.Sdk
+  fullName: Xunit.Sdk
+- uid: Xunit.Abstractions
+  commentId: N:Xunit.Abstractions
+  isExternal: false
+  name: Xunit.Abstractions
+  nameWithType: Xunit.Abstractions
+  fullName: Xunit.Abstractions
+- uid: Xunit.Abstractions.IMessageSink
+  commentId: T:Xunit.Abstractions.IMessageSink
+  parent: Xunit.Abstractions
   isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
+  name: IMessageSink
+  nameWithType: IMessageSink
+  fullName: Xunit.Abstractions.IMessageSink
+- uid: Xunit.Sdk.XunitTestFramework.CreateExecutor(System.Reflection.AssemblyName)
+  commentId: M:Xunit.Sdk.XunitTestFramework.CreateExecutor(System.Reflection.AssemblyName)
+  parent: Xunit.Sdk.XunitTestFramework
+  isExternal: true
+  name: CreateExecutor(AssemblyName)
+  nameWithType: XunitTestFramework.CreateExecutor(AssemblyName)
+  fullName: Xunit.Sdk.XunitTestFramework.CreateExecutor(System.Reflection.AssemblyName)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
+  - uid: Xunit.Sdk.XunitTestFramework.CreateExecutor(System.Reflection.AssemblyName)
+    name: CreateExecutor
+    nameWithType: XunitTestFramework.CreateExecutor
+    fullName: Xunit.Sdk.XunitTestFramework.CreateExecutor
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: System.Reflection.AssemblyName
+    name: AssemblyName
+    nameWithType: AssemblyName
+    fullName: System.Reflection.AssemblyName
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
+  - uid: Xunit.Sdk.XunitTestFramework.CreateExecutor(System.Reflection.AssemblyName)
+    name: CreateExecutor
+    nameWithType: XunitTestFramework.CreateExecutor
+    fullName: Xunit.Sdk.XunitTestFramework.CreateExecutor
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: System.Reflection.AssemblyName
+    name: AssemblyName
+    nameWithType: AssemblyName
+    fullName: System.Reflection.AssemblyName
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
-- uid: IMessageSink
-  isExternal: true
-  name: IMessageSink
-  nameWithType: IMessageSink
-  fullName: IMessageSink
 - uid: System.Reflection.AssemblyName
   commentId: T:System.Reflection.AssemblyName
   parent: System.Reflection
@@ -248,12 +899,13 @@ references:
   name: AssemblyName
   nameWithType: AssemblyName
   fullName: System.Reflection.AssemblyName
-- uid: ITestFrameworkExecutor
-  commentId: '!:ITestFrameworkExecutor'
+- uid: Xunit.Abstractions.ITestFrameworkExecutor
+  commentId: T:Xunit.Abstractions.ITestFrameworkExecutor
+  parent: Xunit.Abstractions
   isExternal: true
   name: ITestFrameworkExecutor
   nameWithType: ITestFrameworkExecutor
-  fullName: ITestFrameworkExecutor
+  fullName: Xunit.Abstractions.ITestFrameworkExecutor
 - uid: System.Reflection
   commentId: N:System.Reflection
   isExternal: false

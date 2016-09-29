@@ -7,7 +7,7 @@ items:
   children:
   - Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.#ctor
   - Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.CreateContext
-  - Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
+  - Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.CreateTestStore
   langs:
   - csharp
   - vb
@@ -19,24 +19,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.InMemory.FunctionalTests/NotificationEntitiesInMemoryTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: NotificationEntitiesInMemoryFixture
     path: test/Microsoft.EntityFrameworkCore.InMemory.FunctionalTests/NotificationEntitiesInMemoryTest.cs
-    startLine: 16
+    startLine: 18
   assemblies:
   - Microsoft.EntityFrameworkCore.InMemory.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests
   syntax:
-    content: 'public class NotificationEntitiesInMemoryFixture : NotificationEntitiesTestBase<NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase'
+    content: 'public class NotificationEntitiesInMemoryFixture : NotificationEntitiesTestBase<InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase'
     content.vb: >-
       Public Class NotificationEntitiesInMemoryFixture
-          Inherits NotificationEntitiesTestBase(Of NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase
+          Inherits NotificationEntitiesTestBase(Of InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase
   inheritance:
   - System.Object
-  - Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase
+  - Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase
   inheritedMembers:
-  - Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  - Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.EnsureCreated
+  - Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.CreateContext
+  - Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.CreateTestStore
+  - Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.EnsureCreated
   - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -44,8 +46,6 @@ items:
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
   modifiers.csharp:
   - public
   - class
@@ -67,10 +67,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.InMemory.FunctionalTests/NotificationEntitiesInMemoryTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: test/Microsoft.EntityFrameworkCore.InMemory.FunctionalTests/NotificationEntitiesInMemoryTest.cs
-    startLine: 20
+    startLine: 22
   assemblies:
   - Microsoft.EntityFrameworkCore.InMemory.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests
@@ -81,6 +81,40 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.CreateTestStore
+  commentId: M:Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.CreateTestStore
+  id: CreateTestStore
+  parent: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture
+  langs:
+  - csharp
+  - vb
+  name: CreateTestStore()
+  nameWithType: NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.CreateTestStore()
+  fullName: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.CreateTestStore()
+  type: Method
+  source:
+    remote:
+      path: test/Microsoft.EntityFrameworkCore.InMemory.FunctionalTests/NotificationEntitiesInMemoryTest.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: CreateTestStore
+    path: test/Microsoft.EntityFrameworkCore.InMemory.FunctionalTests/NotificationEntitiesInMemoryTest.cs
+    startLine: 34
+  assemblies:
+  - Microsoft.EntityFrameworkCore.InMemory.FunctionalTests
+  namespace: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests
+  syntax:
+    content: public override InMemoryTestStore CreateTestStore()
+    content.vb: Public Overrides Function CreateTestStore As InMemoryTestStore
+    return:
+      type: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore
+  overridden: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.CreateTestStore
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
 - uid: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.CreateContext
   commentId: M:Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.CreateContext
   id: CreateContext
@@ -96,10 +130,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.InMemory.FunctionalTests/NotificationEntitiesInMemoryTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CreateContext
     path: test/Microsoft.EntityFrameworkCore.InMemory.FunctionalTests/NotificationEntitiesInMemoryTest.cs
-    startLine: 34
+    startLine: 37
   assemblies:
   - Microsoft.EntityFrameworkCore.InMemory.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests
@@ -108,47 +142,12 @@ items:
     content.vb: Public Overrides Function CreateContext As DbContext
     return:
       type: Microsoft.EntityFrameworkCore.DbContext
-  overridden: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.CreateContext
+  overridden: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.CreateContext
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
-  - Overrides
-- uid: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  commentId: M:Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  id: EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  parent: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture
-  langs:
-  - csharp
-  - vb
-  name: EnsureClean(DbContext)
-  nameWithType: NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.EnsureClean(DbContext)
-  fullName: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  type: Method
-  source:
-    remote:
-      path: test/Microsoft.EntityFrameworkCore.InMemory.FunctionalTests/NotificationEntitiesInMemoryTest.cs
-      branch: dev
-      repo: https://github.com/aspnet/EntityFramework
-    id: EnsureClean
-    path: test/Microsoft.EntityFrameworkCore.InMemory.FunctionalTests/NotificationEntitiesInMemoryTest.cs
-    startLine: 37
-  assemblies:
-  - Microsoft.EntityFrameworkCore.InMemory.FunctionalTests
-  namespace: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests
-  syntax:
-    content: protected override void EnsureClean(DbContext context)
-    content.vb: Protected Overrides Sub EnsureClean(context As DbContext)
-    parameters:
-    - id: context
-      type: Microsoft.EntityFrameworkCore.DbContext
-  overridden: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  modifiers.csharp:
-  - protected
-  - override
-  modifiers.vb:
-  - Protected
   - Overrides
 references:
 - uid: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests
@@ -164,10 +163,10 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase
-  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase
+  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase
   parent: Microsoft.EntityFrameworkCore.Specification.Tests
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase
   name: NotificationEntitiesTestBase.NotificationEntitiesFixtureBase<>
   nameWithType: NotificationEntitiesTestBase.NotificationEntitiesFixtureBase<>
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase.NotificationEntitiesFixtureBase<>
@@ -175,7 +174,7 @@ references:
   fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase.NotificationEntitiesFixtureBase(Of )
   name.vb: NotificationEntitiesTestBase.NotificationEntitiesFixtureBase(Of )
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase
     name: NotificationEntitiesTestBase.NotificationEntitiesFixtureBase
     nameWithType: NotificationEntitiesTestBase.NotificationEntitiesFixtureBase
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase.NotificationEntitiesFixtureBase
@@ -186,7 +185,7 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase
     name: NotificationEntitiesTestBase.NotificationEntitiesFixtureBase
     nameWithType: NotificationEntitiesTestBase.NotificationEntitiesFixtureBase
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase.NotificationEntitiesFixtureBase
@@ -196,20 +195,82 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.CreateContext
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.CreateContext
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.CreateContext
+  name: CreateContext()
+  nameWithType: NotificationEntitiesTestBase<InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.CreateContext()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.CreateContext()
+  nameWithType.vb: NotificationEntitiesTestBase(Of InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.CreateContext()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.CreateContext()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.CreateContext
+    name: CreateContext
+    nameWithType: NotificationEntitiesTestBase<InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.CreateContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.CreateContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.CreateContext
+    name: CreateContext
+    nameWithType: NotificationEntitiesTestBase(Of InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.CreateContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.CreateContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.CreateTestStore
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.CreateTestStore
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.CreateTestStore
+  name: CreateTestStore()
+  nameWithType: NotificationEntitiesTestBase<InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.CreateTestStore()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.CreateTestStore()
+  nameWithType.vb: NotificationEntitiesTestBase(Of InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.CreateTestStore()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.CreateTestStore()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.CreateTestStore
+    name: CreateTestStore
+    nameWithType: NotificationEntitiesTestBase<InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.CreateTestStore
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.CreateTestStore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.CreateTestStore
+    name: CreateTestStore
+    nameWithType: NotificationEntitiesTestBase(Of InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.CreateTestStore
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.CreateTestStore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   name: OnModelCreating(ModelBuilder)
-  nameWithType: NotificationEntitiesTestBase<NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.OnModelCreating(ModelBuilder)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  nameWithType.vb: NotificationEntitiesTestBase(Of NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.OnModelCreating(ModelBuilder)
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  nameWithType: NotificationEntitiesTestBase<InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.OnModelCreating(ModelBuilder)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  nameWithType.vb: NotificationEntitiesTestBase(Of InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.OnModelCreating(ModelBuilder)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
     name: OnModelCreating
-    nameWithType: NotificationEntitiesTestBase<NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.OnModelCreating
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.OnModelCreating
+    nameWithType: NotificationEntitiesTestBase<InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.OnModelCreating
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.OnModelCreating
   - name: (
     nameWithType: (
     fullName: (
@@ -221,10 +282,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
     name: OnModelCreating
-    nameWithType: NotificationEntitiesTestBase(Of NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.OnModelCreating
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.OnModelCreating
+    nameWithType: NotificationEntitiesTestBase(Of InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.OnModelCreating
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.OnModelCreating
   - name: (
     nameWithType: (
     fullName: (
@@ -235,20 +296,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.EnsureCreated
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.EnsureCreated
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.EnsureCreated
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.EnsureCreated
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.EnsureCreated
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore,Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.EnsureCreated
   name: EnsureCreated()
-  nameWithType: NotificationEntitiesTestBase<NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.EnsureCreated()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.EnsureCreated()
-  nameWithType.vb: NotificationEntitiesTestBase(Of NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.EnsureCreated()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.EnsureCreated()
+  nameWithType: NotificationEntitiesTestBase<InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.EnsureCreated()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.EnsureCreated()
+  nameWithType.vb: NotificationEntitiesTestBase(Of InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.EnsureCreated()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.EnsureCreated()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.EnsureCreated
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.EnsureCreated
     name: EnsureCreated
-    nameWithType: NotificationEntitiesTestBase<NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.EnsureCreated
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.EnsureCreated
+    nameWithType: NotificationEntitiesTestBase<InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.EnsureCreated
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.EnsureCreated
   - name: (
     nameWithType: (
     fullName: (
@@ -256,10 +317,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.EnsureCreated
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.EnsureCreated
     name: EnsureCreated
-    nameWithType: NotificationEntitiesTestBase(Of NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.EnsureCreated
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.EnsureCreated
+    nameWithType: NotificationEntitiesTestBase(Of InMemoryTestStore, NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.EnsureCreated
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore, Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.EnsureCreated
   - name: (
     nameWithType: (
     fullName: (
@@ -545,56 +606,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture, TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture, TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture, TConcrete)(String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase
-  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase
+  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase
   isExternal: false
   name: NotificationEntitiesTestBase.NotificationEntitiesFixtureBase<>
   nameWithType: NotificationEntitiesTestBase.NotificationEntitiesFixtureBase<>
@@ -603,7 +622,7 @@ references:
   fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase.NotificationEntitiesFixtureBase(Of )
   name.vb: NotificationEntitiesTestBase.NotificationEntitiesFixtureBase(Of )
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase
     name: NotificationEntitiesTestBase.NotificationEntitiesFixtureBase
     nameWithType: NotificationEntitiesTestBase.NotificationEntitiesFixtureBase
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase.NotificationEntitiesFixtureBase
@@ -614,7 +633,7 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase
     name: NotificationEntitiesTestBase.NotificationEntitiesFixtureBase
     nameWithType: NotificationEntitiesTestBase.NotificationEntitiesFixtureBase
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase.NotificationEntitiesFixtureBase
@@ -630,19 +649,79 @@ references:
   name: Microsoft.EntityFrameworkCore.Specification.Tests
   nameWithType: Microsoft.EntityFrameworkCore.Specification.Tests
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.CreateContext
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.CreateContext
+  isExternal: false
+  name: CreateContext()
+  nameWithType: NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.CreateContext()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.CreateContext()
+  nameWithType.vb: NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.CreateContext()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.CreateContext()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.CreateContext
+    name: CreateContext
+    nameWithType: NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.CreateContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.CreateContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.CreateContext
+    name: CreateContext
+    nameWithType: NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.CreateContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.CreateContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.CreateTestStore
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.CreateTestStore
+  isExternal: false
+  name: CreateTestStore()
+  nameWithType: NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.CreateTestStore()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.CreateTestStore()
+  nameWithType.vb: NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.CreateTestStore()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.CreateTestStore()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.CreateTestStore
+    name: CreateTestStore
+    nameWithType: NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.CreateTestStore
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.CreateTestStore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.CreateTestStore
+    name: CreateTestStore
+    nameWithType: NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.CreateTestStore
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.CreateTestStore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   isExternal: false
   name: OnModelCreating(ModelBuilder)
-  nameWithType: NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.OnModelCreating(ModelBuilder)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  nameWithType.vb: NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.OnModelCreating(ModelBuilder)
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  nameWithType: NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.OnModelCreating(ModelBuilder)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  nameWithType.vb: NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.OnModelCreating(ModelBuilder)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
     name: OnModelCreating
-    nameWithType: NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.OnModelCreating
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.OnModelCreating
+    nameWithType: NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.OnModelCreating
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.OnModelCreating
   - name: (
     nameWithType: (
     fullName: (
@@ -654,10 +733,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
     name: OnModelCreating
-    nameWithType: NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.OnModelCreating
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.OnModelCreating
+    nameWithType: NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.OnModelCreating
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.OnModelCreating
   - name: (
     nameWithType: (
     fullName: (
@@ -668,19 +747,19 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.EnsureCreated
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.EnsureCreated
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.EnsureCreated
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.EnsureCreated
   isExternal: false
   name: EnsureCreated()
-  nameWithType: NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.EnsureCreated()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.EnsureCreated()
-  nameWithType.vb: NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.EnsureCreated()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.EnsureCreated()
+  nameWithType: NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.EnsureCreated()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.EnsureCreated()
+  nameWithType.vb: NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.EnsureCreated()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.EnsureCreated()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.EnsureCreated
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.EnsureCreated
     name: EnsureCreated
-    nameWithType: NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.EnsureCreated
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.EnsureCreated
+    nameWithType: NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.EnsureCreated
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TTestStore, TFixture>.NotificationEntitiesFixtureBase.EnsureCreated
   - name: (
     nameWithType: (
     fullName: (
@@ -688,113 +767,23 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.EnsureCreated
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`2.NotificationEntitiesFixtureBase.EnsureCreated
     name: EnsureCreated
-    nameWithType: NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.EnsureCreated
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.EnsureCreated
+    nameWithType: NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.EnsureCreated
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TTestStore, TFixture).NotificationEntitiesFixtureBase.EnsureCreated
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+- uid: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore
+  commentId: T:Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore
+  parent: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests
   isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.CreateContext
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.CreateContext
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.CreateContext
-  name: CreateContext()
-  nameWithType: NotificationEntitiesTestBase<NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.CreateContext()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.CreateContext()
-  nameWithType.vb: NotificationEntitiesTestBase(Of NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.CreateContext()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.CreateContext()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.CreateContext
-    name: CreateContext
-    nameWithType: NotificationEntitiesTestBase<NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.CreateContext
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.CreateContext
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.CreateContext
-    name: CreateContext
-    nameWithType: NotificationEntitiesTestBase(Of NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.CreateContext
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.CreateContext
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
+  name: InMemoryTestStore
+  nameWithType: InMemoryTestStore
+  fullName: Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.InMemoryTestStore
 - uid: Microsoft.EntityFrameworkCore.DbContext
   commentId: T:Microsoft.EntityFrameworkCore.DbContext
   parent: Microsoft.EntityFrameworkCore
@@ -802,116 +791,9 @@ references:
   name: DbContext
   nameWithType: DbContext
   fullName: Microsoft.EntityFrameworkCore.DbContext
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.CreateContext
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.CreateContext
-  isExternal: false
-  name: CreateContext()
-  nameWithType: NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.CreateContext()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.CreateContext()
-  nameWithType.vb: NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.CreateContext()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.CreateContext()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.CreateContext
-    name: CreateContext
-    nameWithType: NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.CreateContext
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.CreateContext
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.CreateContext
-    name: CreateContext
-    nameWithType: NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.CreateContext
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.CreateContext
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: Microsoft.EntityFrameworkCore
   commentId: N:Microsoft.EntityFrameworkCore
   isExternal: false
   name: Microsoft.EntityFrameworkCore
   nameWithType: Microsoft.EntityFrameworkCore
   fullName: Microsoft.EntityFrameworkCore
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase{Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture}.NotificationEntitiesFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  name: EnsureClean(DbContext)
-  nameWithType: NotificationEntitiesTestBase<NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.EnsureClean(DbContext)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  nameWithType.vb: NotificationEntitiesTestBase(Of NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.EnsureClean(DbContext)
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-    name: EnsureClean
-    nameWithType: NotificationEntitiesTestBase<NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.EnsureClean
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture>.NotificationEntitiesFixtureBase.EnsureClean
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.EntityFrameworkCore.DbContext
-    name: DbContext
-    nameWithType: DbContext
-    fullName: Microsoft.EntityFrameworkCore.DbContext
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-    name: EnsureClean
-    nameWithType: NotificationEntitiesTestBase(Of NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.EnsureClean
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.NotificationEntitiesInMemoryTest.NotificationEntitiesInMemoryFixture).NotificationEntitiesFixtureBase.EnsureClean
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.EntityFrameworkCore.DbContext
-    name: DbContext
-    nameWithType: DbContext
-    fullName: Microsoft.EntityFrameworkCore.DbContext
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  isExternal: false
-  name: EnsureClean(DbContext)
-  nameWithType: NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.EnsureClean(DbContext)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  nameWithType.vb: NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.EnsureClean(DbContext)
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-    name: EnsureClean
-    nameWithType: NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.EnsureClean
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase<TFixture>.NotificationEntitiesFixtureBase.EnsureClean
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.EntityFrameworkCore.DbContext
-    name: DbContext
-    nameWithType: DbContext
-    fullName: Microsoft.EntityFrameworkCore.DbContext
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase`1.NotificationEntitiesFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-    name: EnsureClean
-    nameWithType: NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.EnsureClean
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NotificationEntitiesTestBase(Of TFixture).NotificationEntitiesFixtureBase.EnsureClean
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.EntityFrameworkCore.DbContext
-    name: DbContext
-    nameWithType: DbContext
-    fullName: Microsoft.EntityFrameworkCore.DbContext
-  - name: )
-    nameWithType: )
-    fullName: )

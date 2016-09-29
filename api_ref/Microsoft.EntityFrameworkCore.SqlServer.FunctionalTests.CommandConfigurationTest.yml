@@ -9,6 +9,7 @@ items:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.Constructed_select_query_CommandBuilder_throws_when_negative_CommandTimeout_is_used
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.CountLinesContaining(System.String,System.String)
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.CountSqlLinesContaining(System.String)
+  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.Dispose
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.Keys_generated_in_batches(System.Int32,System.Int32)
   langs:
   - csharp
@@ -21,7 +22,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/CommandConfigurationTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CommandConfigurationTest
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/CommandConfigurationTest.cs
     startLine: 14
@@ -29,14 +30,23 @@ items:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: 'public class CommandConfigurationTest : IClassFixture<CommandConfigurationTest.CommandConfigurationTestFixture>'
+    content: 'public class CommandConfigurationTest : IClassFixture<CommandConfigurationTest.CommandConfigurationTestFixture>, IDisposable'
     content.vb: >-
       Public Class CommandConfigurationTest
-          Inherits IClassFixture(Of CommandConfigurationTest.CommandConfigurationTestFixture)
+          Implements IClassFixture(Of CommandConfigurationTest.CommandConfigurationTestFixture), IDisposable
   inheritance:
   - System.Object
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
+  implements:
+  - Xunit.IClassFixture{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.CommandConfigurationTestFixture}
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
   modifiers.csharp:
   - public
   - class
@@ -58,10 +68,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/CommandConfigurationTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/CommandConfigurationTest.cs
-    startLine: 20
+    startLine: 19
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -75,6 +85,39 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.Dispose
+  commentId: M:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.Dispose
+  id: Dispose
+  parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: CommandConfigurationTest.Dispose()
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.Dispose()
+  type: Method
+  source:
+    remote:
+      path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/CommandConfigurationTest.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: Dispose
+    path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/CommandConfigurationTest.cs
+    startLine: 25
+  assemblies:
+  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
+  namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
+  syntax:
+    content: public virtual void Dispose()
+    content.vb: Public Overridable Sub Dispose
+  implements:
+  - System.IDisposable.Dispose
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
 - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.Constructed_select_query_CommandBuilder_throws_when_negative_CommandTimeout_is_used
   commentId: M:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.Constructed_select_query_CommandBuilder_throws_when_negative_CommandTimeout_is_used
   id: Constructed_select_query_CommandBuilder_throws_when_negative_CommandTimeout_is_used
@@ -90,16 +133,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/CommandConfigurationTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Constructed_select_query_CommandBuilder_throws_when_negative_CommandTimeout_is_used
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/CommandConfigurationTest.cs
-    startLine: 44
+    startLine: 36
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public void Constructed_select_query_CommandBuilder_throws_when_negative_CommandTimeout_is_used()
-    content.vb: Public Sub Constructed_select_query_CommandBuilder_throws_when_negative_CommandTimeout_is_used
+    content: >-
+      [Fact]
+
+      public void Constructed_select_query_CommandBuilder_throws_when_negative_CommandTimeout_is_used()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Constructed_select_query_CommandBuilder_throws_when_negative_CommandTimeout_is_used
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -119,10 +172,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/CommandConfigurationTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Keys_generated_in_batches
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/CommandConfigurationTest.cs
-    startLine: 53
+    startLine: 45
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -130,9 +183,25 @@ items:
     content: >-
       [SqlServerCondition(SqlServerCondition.SupportsSequences)]
 
+      [InlineData(new object[]{51, 6})]
+
+      [InlineData(new object[]{50, 5})]
+
+      [InlineData(new object[]{20, 2})]
+
+      [InlineData(new object[]{2, 1})]
+
       public void Keys_generated_in_batches(int count, int expected)
     content.vb: >-
       <SqlServerCondition(SqlServerCondition.SupportsSequences)>
+
+      <InlineData(New Object() {51, 6})>
+
+      <InlineData(New Object() {50, 5})>
+
+      <InlineData(New Object() {20, 2})>
+
+      <InlineData(New Object() {2, 1})>
 
       Public Sub Keys_generated_in_batches(count As Integer, expected As Integer)
     parameters:
@@ -165,10 +234,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/CommandConfigurationTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CountSqlLinesContaining
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/CommandConfigurationTest.cs
-    startLine: 81
+    startLine: 73
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -199,10 +268,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/CommandConfigurationTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CountLinesContaining
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/CommandConfigurationTest.cs
-    startLine: 84
+    startLine: 76
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -234,45 +303,331 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<CommandConfigurationTest, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<CommandConfigurationTest, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of CommandConfigurationTest, TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest, TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of CommandConfigurationTest, TConcrete)(String)
+- uid: Xunit.IClassFixture{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.CommandConfigurationTestFixture}
+  commentId: T:Xunit.IClassFixture{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.CommandConfigurationTestFixture}
+  parent: Xunit
+  definition: Xunit.IClassFixture`1
+  name: IClassFixture<CommandConfigurationTest.CommandConfigurationTestFixture>
+  nameWithType: IClassFixture<CommandConfigurationTest.CommandConfigurationTestFixture>
+  fullName: Xunit.IClassFixture<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.CommandConfigurationTestFixture>
+  nameWithType.vb: IClassFixture(Of CommandConfigurationTest.CommandConfigurationTestFixture)
+  fullname.vb: Xunit.IClassFixture(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.CommandConfigurationTestFixture)
+  name.vb: IClassFixture(Of CommandConfigurationTest.CommandConfigurationTestFixture)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<CommandConfigurationTest, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<CommandConfigurationTest, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest, TConcrete>
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.CommandConfigurationTestFixture
+    name: CommandConfigurationTest.CommandConfigurationTestFixture
+    nameWithType: CommandConfigurationTest.CommandConfigurationTestFixture
+    fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.CommandConfigurationTestFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.CommandConfigurationTestFixture
+    name: CommandConfigurationTest.CommandConfigurationTestFixture
+    nameWithType: CommandConfigurationTest.CommandConfigurationTestFixture
+    fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.CommandConfigurationTestFixture
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of CommandConfigurationTest, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of CommandConfigurationTest, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest, TConcrete)
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -282,72 +637,51 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
+- uid: Xunit.IClassFixture`1
+  commentId: T:Xunit.IClassFixture`1
   isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
+  name: IClassFixture<TFixture>
+  nameWithType: IClassFixture<TFixture>
+  fullName: Xunit.IClassFixture<TFixture>
+  nameWithType.vb: IClassFixture(Of TFixture)
+  fullname.vb: Xunit.IClassFixture(Of TFixture)
+  name.vb: IClassFixture(Of TFixture)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
     isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+- uid: Xunit
+  commentId: N:Xunit
   isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
+  name: Xunit
+  nameWithType: Xunit
+  fullName: Xunit
 - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.CommandConfigurationTestFixture
   commentId: T:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.CommandConfigurationTestFixture
   parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -355,6 +689,37 @@ references:
   name: CommandConfigurationTest.CommandConfigurationTestFixture
   nameWithType: CommandConfigurationTest.CommandConfigurationTestFixture
   fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.CommandConfigurationTest.CommandConfigurationTestFixture
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System

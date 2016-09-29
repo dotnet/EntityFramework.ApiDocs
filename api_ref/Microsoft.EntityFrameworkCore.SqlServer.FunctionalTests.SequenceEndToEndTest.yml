@@ -5,12 +5,15 @@ items:
   id: SequenceEndToEndTest
   parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   children:
+  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.#ctor
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.Can_use_explicit_values
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.Can_use_identity_with_nullable_key_end_to_end
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.Can_use_sequence_end_to_end
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.Can_use_sequence_end_to_end_async
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.Can_use_sequence_end_to_end_from_multiple_contexts_concurrently_async
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.Can_use_sequence_with_nullable_key_end_to_end
+  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.Dispose
+  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.TestStore
   langs:
   - csharp
   - vb
@@ -22,7 +25,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: SequenceEndToEndTest
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
     startLine: 13
@@ -33,13 +36,16 @@ items:
     content: >-
       [SqlServerCondition(SqlServerCondition.SupportsSequences)]
 
-      public class SequenceEndToEndTest
+      public class SequenceEndToEndTest : IDisposable
     content.vb: >-
       <SqlServerCondition(SqlServerCondition.SupportsSequences)>
 
       Public Class SequenceEndToEndTest
+          Implements IDisposable
   inheritance:
   - System.Object
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - System.Object.ToString
   - System.Object.Equals(System.Object)
@@ -48,8 +54,6 @@ items:
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
   attributes:
   - type: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerConditionAttribute
     ctor: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerConditionAttribute.#ctor(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerCondition)
@@ -77,7 +81,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_use_sequence_end_to_end
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
     startLine: 16
@@ -106,7 +110,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_use_sequence_end_to_end_async
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
     startLine: 65
@@ -137,7 +141,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_use_sequence_end_to_end_from_multiple_contexts_concurrently_async
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
     startLine: 114
@@ -168,10 +172,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_use_explicit_values
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
-    startLine: 155
+    startLine: 154
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -197,10 +201,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_use_sequence_with_nullable_key_end_to_end
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
-    startLine: 243
+    startLine: 242
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -226,16 +230,110 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_use_identity_with_nullable_key_end_to_end
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
-    startLine: 271
+    startLine: 270
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
     content: public void Can_use_identity_with_nullable_key_end_to_end()
     content.vb: Public Sub Can_use_identity_with_nullable_key_end_to_end
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.#ctor
+  commentId: M:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.#ctor
+  id: '#ctor'
+  parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest
+  langs:
+  - csharp
+  - vb
+  name: SequenceEndToEndTest()
+  nameWithType: SequenceEndToEndTest.SequenceEndToEndTest()
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.SequenceEndToEndTest()
+  type: Constructor
+  source:
+    remote:
+      path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: .ctor
+    path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
+    startLine: 355
+  assemblies:
+  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
+  namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
+  syntax:
+    content: public SequenceEndToEndTest()
+    content.vb: Public Sub New
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.TestStore
+  commentId: P:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.TestStore
+  id: TestStore
+  parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest
+  langs:
+  - csharp
+  - vb
+  name: TestStore
+  nameWithType: SequenceEndToEndTest.TestStore
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.TestStore
+  type: Property
+  source:
+    remote:
+      path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: TestStore
+    path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
+    startLine: 360
+  assemblies:
+  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
+  namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
+  syntax:
+    content: protected SqlServerTestStore TestStore { get; }
+    content.vb: Protected ReadOnly Property TestStore As SqlServerTestStore
+    parameters: []
+    return:
+      type: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.Dispose
+  commentId: M:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.Dispose
+  id: Dispose
+  parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: SequenceEndToEndTest.Dispose()
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.Dispose()
+  type: Method
+  source:
+    remote:
+      path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: Dispose
+    path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/SequenceEndToEndTest.cs
+    startLine: 362
+  assemblies:
+  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
+  namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose
+  implements:
+  - System.IDisposable.Dispose
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -254,6 +352,13 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
@@ -533,120 +638,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<SequenceEndToEndTest, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<SequenceEndToEndTest, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of SequenceEndToEndTest, TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest, TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of SequenceEndToEndTest, TConcrete)(String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<SequenceEndToEndTest, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<SequenceEndToEndTest, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of SequenceEndToEndTest, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of SequenceEndToEndTest, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SequenceEndToEndTest, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
 - uid: System.Threading.Tasks.Task
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
@@ -660,3 +657,47 @@ references:
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+  commentId: T:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+  parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
+  isExternal: false
+  name: SqlServerTestStore
+  nameWithType: SqlServerTestStore
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
+  commentId: N:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
+  nameWithType: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )

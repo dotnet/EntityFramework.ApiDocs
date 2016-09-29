@@ -35,7 +35,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CSharpHelperTest
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 11
@@ -55,8 +55,6 @@ items:
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design.CSharpHelperTest.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
   modifiers.csharp:
   - public
   - class
@@ -78,7 +76,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 13
@@ -86,13 +84,115 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works(object value, string expected)
-    content.vb: Public Sub Literal_works(value As Object, expected As String)
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{"single-line string with \"", "\"single-line string with \\\"\""})]
+
+      [InlineData(new object[]{true, "true"})]
+
+      [InlineData(new object[]{false, "false"})]
+
+      [InlineData(new object[]{(byte)42, "(byte)42"})]
+
+      [InlineData(new object[]{'A', "'A'"})]
+
+      [InlineData(new object[]{'\'', "'\\''"})]
+
+      [InlineData(new object[]{4.2, "4.2"})]
+
+      [InlineData(new object[]{-1.7976931348623157E+308, "-1.7976931348623157E+308"})]
+
+      [InlineData(new object[]{1.7976931348623157E+308, "1.7976931348623157E+308"})]
+
+      [InlineData(new object[]{4.2F, "4.2f"})]
+
+      [InlineData(new object[]{-3.402823E+38F, "-3.402823E+38f"})]
+
+      [InlineData(new object[]{3.402823E+38F, "3.402823E+38f"})]
+
+      [InlineData(new object[]{42, "42"})]
+
+      [InlineData(new object[]{42L, "42L"})]
+
+      [InlineData(new object[]{9000000000000000000L, "9000000000000000000L"})]
+
+      [InlineData(new object[]{(sbyte)42, "(sbyte)42"})]
+
+      [InlineData(new object[]{(short)42, "(short)42"})]
+
+      [InlineData(new object[]{42U, "42u"})]
+
+      [InlineData(new object[]{42UL, "42ul"})]
+
+      [InlineData(new object[]{18000000000000000000UL, "18000000000000000000ul"})]
+
+      [InlineData(new object[]{(ushort)42, "(ushort)42"})]
+
+      [InlineData(new object[]{"", "\"\""})]
+
+      [InlineData(new object[]{CSharpHelperTest.SomeEnum.Default, "CSharpHelperTest.SomeEnum.Default"})]
+
+      public void Literal_works(object value, string expected)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {"single-line string with """, """single-line string with \"""""})>
+
+      <InlineData(New Object() {True, "true"})>
+
+      <InlineData(New Object() {False, "false"})>
+
+      <InlineData(New Object() {CType(42, Byte), "(byte)42"})>
+
+      <InlineData(New Object() {"A"c, "'A'"})>
+
+      <InlineData(New Object() {"'"c, "'\''"})>
+
+      <InlineData(New Object() {4.2, "4.2"})>
+
+      <InlineData(New Object() {-1.7976931348623157E+308, "-1.7976931348623157E+308"})>
+
+      <InlineData(New Object() {1.7976931348623157E+308, "1.7976931348623157E+308"})>
+
+      <InlineData(New Object() {4.2F, "4.2f"})>
+
+      <InlineData(New Object() {-3.402823E+38F, "-3.402823E+38f"})>
+
+      <InlineData(New Object() {3.402823E+38F, "3.402823E+38f"})>
+
+      <InlineData(New Object() {42, "42"})>
+
+      <InlineData(New Object() {42L, "42L"})>
+
+      <InlineData(New Object() {9000000000000000000L, "9000000000000000000L"})>
+
+      <InlineData(New Object() {CType(42, SByte), "(sbyte)42"})>
+
+      <InlineData(New Object() {CType(42, Short), "(short)42"})>
+
+      <InlineData(New Object() {42UI, "42u"})>
+
+      <InlineData(New Object() {42UL, "42ul"})>
+
+      <InlineData(New Object() {18000000000000000000UL, "18000000000000000000ul"})>
+
+      <InlineData(New Object() {CType(42, UShort), "(ushort)42"})>
+
+      <InlineData(New Object() {"", """"""})>
+
+      <InlineData(New Object() {CSharpHelperTest.SomeEnum.Default, "CSharpHelperTest.SomeEnum.Default"})>
+
+      Public Sub Literal_works(value As Object, expected As String)
     parameters:
     - id: value
       type: System.Object
     - id: expected
       type: System.String
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -112,7 +212,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works_when_empty_ByteArray
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 89
@@ -120,8 +220,18 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works_when_empty_ByteArray()
-    content.vb: Public Sub Literal_works_when_empty_ByteArray
+    content: >-
+      [Fact]
+
+      public void Literal_works_when_empty_ByteArray()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Literal_works_when_empty_ByteArray
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -141,7 +251,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works_when_single_ByteArray
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 95
@@ -149,8 +259,18 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works_when_single_ByteArray()
-    content.vb: Public Sub Literal_works_when_single_ByteArray
+    content: >-
+      [Fact]
+
+      public void Literal_works_when_single_ByteArray()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Literal_works_when_single_ByteArray
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -170,7 +290,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works_when_many_ByteArray
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 101
@@ -178,8 +298,18 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works_when_many_ByteArray()
-    content.vb: Public Sub Literal_works_when_many_ByteArray
+    content: >-
+      [Fact]
+
+      public void Literal_works_when_many_ByteArray()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Literal_works_when_many_ByteArray
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -199,7 +329,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works_when_multiline_string
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 107
@@ -207,8 +337,18 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works_when_multiline_string()
-    content.vb: Public Sub Literal_works_when_multiline_string
+    content: >-
+      [Fact]
+
+      public void Literal_works_when_multiline_string()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Literal_works_when_multiline_string
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -228,7 +368,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works_when_DateTime
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 113
@@ -236,8 +376,27 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works_when_DateTime()
-    content.vb: Public Sub Literal_works_when_DateTime
+    content: >-
+      [Fact]
+
+      [UseCulture("de-DE")]
+
+      public void Literal_works_when_DateTime()
+    content.vb: >-
+      <Fact>
+
+      <UseCulture("de-DE")>
+
+      Public Sub Literal_works_when_DateTime
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+  - type: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.UseCultureAttribute
+    ctor: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.UseCultureAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: de-DE
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -257,7 +416,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works_when_DateTimeOffset
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 120
@@ -265,8 +424,27 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works_when_DateTimeOffset()
-    content.vb: Public Sub Literal_works_when_DateTimeOffset
+    content: >-
+      [Fact]
+
+      [UseCulture("de-DE")]
+
+      public void Literal_works_when_DateTimeOffset()
+    content.vb: >-
+      <Fact>
+
+      <UseCulture("de-DE")>
+
+      Public Sub Literal_works_when_DateTimeOffset
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+  - type: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.UseCultureAttribute
+    ctor: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.UseCultureAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: de-DE
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -286,7 +464,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works_when_decimal
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 127
@@ -294,8 +472,18 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works_when_decimal()
-    content.vb: Public Sub Literal_works_when_decimal
+    content: >-
+      [Fact]
+
+      public void Literal_works_when_decimal()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Literal_works_when_decimal
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -315,7 +503,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works_when_decimal_max_value
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 133
@@ -323,8 +511,18 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works_when_decimal_max_value()
-    content.vb: Public Sub Literal_works_when_decimal_max_value
+    content: >-
+      [Fact]
+
+      public void Literal_works_when_decimal_max_value()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Literal_works_when_decimal_max_value
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -344,7 +542,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works_when_decimal_min_value
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 139
@@ -352,8 +550,18 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works_when_decimal_min_value()
-    content.vb: Public Sub Literal_works_when_decimal_min_value
+    content: >-
+      [Fact]
+
+      public void Literal_works_when_decimal_min_value()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Literal_works_when_decimal_min_value
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -373,7 +581,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works_when_Guid
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 145
@@ -381,8 +589,18 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works_when_Guid()
-    content.vb: Public Sub Literal_works_when_Guid
+    content: >-
+      [Fact]
+
+      public void Literal_works_when_Guid()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Literal_works_when_Guid
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -402,7 +620,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works_when_TimeSpan
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 151
@@ -410,8 +628,18 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works_when_TimeSpan()
-    content.vb: Public Sub Literal_works_when_TimeSpan
+    content: >-
+      [Fact]
+
+      public void Literal_works_when_TimeSpan()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Literal_works_when_TimeSpan
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -431,7 +659,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works_when_NullableInt
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 157
@@ -439,8 +667,18 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works_when_NullableInt()
-    content.vb: Public Sub Literal_works_when_NullableInt
+    content: >-
+      [Fact]
+
+      public void Literal_works_when_NullableInt()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Literal_works_when_NullableInt
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -460,7 +698,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works_when_single_StringArray
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 163
@@ -468,8 +706,18 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works_when_single_StringArray()
-    content.vb: Public Sub Literal_works_when_single_StringArray
+    content: >-
+      [Fact]
+
+      public void Literal_works_when_single_StringArray()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Literal_works_when_single_StringArray
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -489,7 +737,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Literal_works_when_many_StringArray
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 170
@@ -497,8 +745,18 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Literal_works_when_many_StringArray()
-    content.vb: Public Sub Literal_works_when_many_StringArray
+    content: >-
+      [Fact]
+
+      public void Literal_works_when_many_StringArray()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Literal_works_when_many_StringArray
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -518,7 +776,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: UnknownLiteral_throws_when_unknown
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 177
@@ -526,8 +784,18 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void UnknownLiteral_throws_when_unknown()
-    content.vb: Public Sub UnknownLiteral_throws_when_unknown
+    content: >-
+      [Fact]
+
+      public void UnknownLiteral_throws_when_unknown()
+    content.vb: >-
+      <Fact>
+
+      Public Sub UnknownLiteral_throws_when_unknown
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -547,7 +815,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Reference_works
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 185
@@ -555,13 +823,67 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Reference_works(Type type, string expected)
-    content.vb: Public Sub Reference_works(type As Type, expected As String)
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{typeof (int), "int"})]
+
+      [InlineData(new object[]{typeof (int ? ), "int?"})]
+
+      [InlineData(new object[]{typeof (int[]), "int[]"})]
+
+      [InlineData(new object[]{typeof (int[, ]), "int[,]"})]
+
+      [InlineData(new object[]{typeof (int[][]), "int[][]"})]
+
+      [InlineData(new object[]{typeof (Generic<int>), "Generic<int>"})]
+
+      [InlineData(new object[]{typeof (CSharpHelperTest.Nested), "CSharpHelperTest.Nested"})]
+
+      [InlineData(new object[]{typeof (Generic<Generic<int>>), "Generic<Generic<int>>"})]
+
+      [InlineData(new object[]{typeof (MultiGeneric<int, int>), "MultiGeneric<int, int>"})]
+
+      [InlineData(new object[]{typeof (CSharpHelperTest.NestedGeneric<int>), "CSharpHelperTest.NestedGeneric<int>"})]
+
+      [InlineData(new object[]{typeof (CSharpHelperTest.Nested.DoubleNested), "CSharpHelperTest.Nested.DoubleNested"})]
+
+      public void Reference_works(Type type, string expected)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {GetType(Integer), "int"})>
+
+      <InlineData(New Object() {GetType(Integer?), "int?"})>
+
+      <InlineData(New Object() {GetType(Integer()), "int[]"})>
+
+      <InlineData(New Object() {GetType(Integer(,)), "int[,]"})>
+
+      <InlineData(New Object() {GetType(Integer()()), "int[][]"})>
+
+      <InlineData(New Object() {GetType(Generic(Of Integer)), "Generic<int>"})>
+
+      <InlineData(New Object() {GetType(CSharpHelperTest.Nested), "CSharpHelperTest.Nested"})>
+
+      <InlineData(New Object() {GetType(Generic(Of Generic(Of Integer))), "Generic<Generic<int>>"})>
+
+      <InlineData(New Object() {GetType(MultiGeneric(Of Integer, Integer)), "MultiGeneric<int, int>"})>
+
+      <InlineData(New Object() {GetType(CSharpHelperTest.NestedGeneric(Of Integer)), "CSharpHelperTest.NestedGeneric<int>"})>
+
+      <InlineData(New Object() {GetType(CSharpHelperTest.Nested.DoubleNested), "CSharpHelperTest.Nested.DoubleNested"})>
+
+      Public Sub Reference_works(type As Type, expected As String)
     parameters:
     - id: type
       type: System.Type
     - id: expected
       type: System.String
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -581,7 +903,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Identifier_works
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 216
@@ -589,13 +911,55 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Identifier_works(string input, string expected)
-    content.vb: Public Sub Identifier_works(input As String, expected As String)
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{"dash-er", "dasher"})]
+
+      [InlineData(new object[]{"params", "@params"})]
+
+      [InlineData(new object[]{"true", "@true"})]
+
+      [InlineData(new object[]{"yield", "yield"})]
+
+      [InlineData(new object[]{"spac ed", "spaced"})]
+
+      [InlineData(new object[]{"1nders", "_1nders"})]
+
+      [InlineData(new object[]{"name.space", "@namespace"})]
+
+      [InlineData(new object[]{"$", "_"})]
+
+      public void Identifier_works(string input, string expected)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {"dash-er", "dasher"})>
+
+      <InlineData(New Object() {"params", "@params"})>
+
+      <InlineData(New Object() {"true", "@true"})>
+
+      <InlineData(New Object() {"yield", "yield"})>
+
+      <InlineData(New Object() {"spac ed", "spaced"})>
+
+      <InlineData(New Object() {"1nders", "_1nders"})>
+
+      <InlineData(New Object() {"name.space", "@namespace"})>
+
+      <InlineData(New Object() {"$", "_"})>
+
+      Public Sub Identifier_works(input As String, expected As String)
     parameters:
     - id: input
       type: System.String
     - id: expected
       type: System.String
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -615,7 +979,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Namespace_works
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Migrations/Design/CSharpHelperTest.cs
     startLine: 230
@@ -623,13 +987,51 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design
   syntax:
-    content: public void Namespace_works(string[] input, string excepted)
-    content.vb: Public Sub Namespace_works(input As String(), excepted As String)
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{new string[]{"WebApplication1", "Migration"}, "WebApplication1.Migration"})]
+
+      [InlineData(new object[]{new string[]{"WebApplication1.Migration"}, "WebApplication1.Migration"})]
+
+      [InlineData(new object[]{new string[]{"ef-xplat.namespace"}, "efxplat.@namespace"})]
+
+      [InlineData(new object[]{new string[]{"#", "$"}, "_._"})]
+
+      [InlineData(new object[]{new string[]{""}, "_"})]
+
+      [InlineData(new object[]{new string[]{}, "_"})]
+
+      [InlineData(new object[]{new string[]{null}, "_"})]
+
+      public void Namespace_works(string[] input, string excepted)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {New String() {"WebApplication1", "Migration"}, "WebApplication1.Migration"})>
+
+      <InlineData(New Object() {New String() {"WebApplication1.Migration"}, "WebApplication1.Migration"})>
+
+      <InlineData(New Object() {New String() {"ef-xplat.namespace"}, "efxplat.@namespace"})>
+
+      <InlineData(New Object() {New String() {"#", "$"}, "_._"})>
+
+      <InlineData(New Object() {New String() {""}, "_"})>
+
+      <InlineData(New Object() {New String() {}, "_"})>
+
+      <InlineData(New Object() {New String() {Nothing}, "_"})>
+
+      Public Sub Namespace_works(input As String(), excepted As String)
     parameters:
     - id: input
       type: System.String[]
     - id: excepted
       type: System.String
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   nameWithType.vb: CSharpHelperTest.Namespace_works(String(), String)
   modifiers.csharp:
   - public
@@ -930,120 +1332,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design.CSharpHelperTest.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<CSharpHelperTest, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<CSharpHelperTest, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design.CSharpHelperTest, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of CSharpHelperTest, TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design.CSharpHelperTest, TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of CSharpHelperTest, TConcrete)(String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<CSharpHelperTest, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<CSharpHelperTest, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design.CSharpHelperTest, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of CSharpHelperTest, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of CSharpHelperTest, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Design.Tests.Migrations.Design.CSharpHelperTest, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
 - uid: System.String
   commentId: T:System.String
   parent: System

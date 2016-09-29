@@ -6,7 +6,7 @@ items:
   parent: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   children:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture.#ctor
-  - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture.CreateContext
+  - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture.CreateContext(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore)
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture.CreateTestStore
   langs:
   - csharp
@@ -19,26 +19,27 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/LoadSqliteTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: LoadSqliteFixture
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/LoadSqliteTest.cs
-    startLine: 17
+    startLine: 16
   assemblies:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   syntax:
-    content: 'public class LoadSqliteFixture : LoadTestBase<LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase'
+    content: 'public class LoadSqliteFixture : LoadTestBase<SqliteTestStore, LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase'
     content.vb: >-
       Public Class LoadSqliteFixture
-          Inherits LoadTestBase(Of LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase
+          Inherits LoadTestBase(Of SqliteTestStore, LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase
   inheritance:
   - System.Object
-  - Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
+  - Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
   inheritedMembers:
-  - Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.Initialize
-  - Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  - Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateFullGraph
-  - Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  - Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateTestStore
+  - Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateContext(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore)
+  - Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateFullGraph
+  - Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
   - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -46,8 +47,6 @@ items:
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
   modifiers.csharp:
   - public
   - class
@@ -69,7 +68,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/LoadSqliteTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/LoadSqliteTest.cs
     startLine: 21
@@ -98,51 +97,56 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/LoadSqliteTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CreateTestStore
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/LoadSqliteTest.cs
-    startLine: 29
+    startLine: 34
   assemblies:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   syntax:
-    content: public override void CreateTestStore()
-    content.vb: Public Overrides Sub CreateTestStore
-  overridden: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateTestStore
+    content: public override SqliteTestStore CreateTestStore()
+    content.vb: Public Overrides Function CreateTestStore As SqliteTestStore
+    return:
+      type: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore
+  overridden: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateTestStore
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture.CreateContext
-  commentId: M:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture.CreateContext
-  id: CreateContext
+- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture.CreateContext(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore)
+  commentId: M:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture.CreateContext(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore)
+  id: CreateContext(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore)
   parent: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture
   langs:
   - csharp
   - vb
-  name: CreateContext()
-  nameWithType: LoadSqliteTest.LoadSqliteFixture.CreateContext()
-  fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture.CreateContext()
+  name: CreateContext(SqliteTestStore)
+  nameWithType: LoadSqliteTest.LoadSqliteFixture.CreateContext(SqliteTestStore)
+  fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture.CreateContext(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore)
   type: Method
   source:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/LoadSqliteTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CreateContext
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/LoadSqliteTest.cs
-    startLine: 38
+    startLine: 46
   assemblies:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   syntax:
-    content: public override DbContext CreateContext()
-    content.vb: Public Overrides Function CreateContext As DbContext
+    content: public override DbContext CreateContext(SqliteTestStore testStore)
+    content.vb: Public Overrides Function CreateContext(testStore As SqliteTestStore) As DbContext
+    parameters:
+    - id: testStore
+      type: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore
     return:
       type: Microsoft.EntityFrameworkCore.DbContext
-  overridden: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateContext
+  overridden: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateContext(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore)
   modifiers.csharp:
   - public
   - override
@@ -163,10 +167,10 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
-  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
+  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
   parent: Microsoft.EntityFrameworkCore.Specification.Tests
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase
   name: LoadTestBase.LoadFixtureBase<>
   nameWithType: LoadTestBase.LoadFixtureBase<>
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase.LoadFixtureBase<>
@@ -174,7 +178,7 @@ references:
   fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase.LoadFixtureBase(Of )
   name.vb: LoadTestBase.LoadFixtureBase(Of )
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase
     name: LoadTestBase.LoadFixtureBase
     nameWithType: LoadTestBase.LoadFixtureBase
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase.LoadFixtureBase
@@ -185,7 +189,7 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase
     name: LoadTestBase.LoadFixtureBase
     nameWithType: LoadTestBase.LoadFixtureBase
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase.LoadFixtureBase
@@ -195,20 +199,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.Initialize
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.Initialize
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.Initialize
-  name: Initialize()
-  nameWithType: LoadTestBase<LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.Initialize()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.Initialize()
-  nameWithType.vb: LoadTestBase(Of LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.Initialize()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.Initialize()
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateTestStore
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateTestStore
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateTestStore
+  name: CreateTestStore()
+  nameWithType: LoadTestBase<SqliteTestStore, LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateTestStore()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateTestStore()
+  nameWithType.vb: LoadTestBase(Of SqliteTestStore, LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateTestStore()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateTestStore()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.Initialize
-    name: Initialize
-    nameWithType: LoadTestBase<LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.Initialize
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.Initialize
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateTestStore
+    name: CreateTestStore
+    nameWithType: LoadTestBase<SqliteTestStore, LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateTestStore
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateTestStore
   - name: (
     nameWithType: (
     fullName: (
@@ -216,30 +220,69 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.Initialize
-    name: Initialize
-    nameWithType: LoadTestBase(Of LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.Initialize
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.Initialize
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateTestStore
+    name: CreateTestStore
+    nameWithType: LoadTestBase(Of SqliteTestStore, LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateTestStore
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateTestStore
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateContext(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateContext(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore)
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateContext(`0)
+  name: CreateContext(SqliteTestStore)
+  nameWithType: LoadTestBase<SqliteTestStore, LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateContext(SqliteTestStore)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateContext(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore)
+  nameWithType.vb: LoadTestBase(Of SqliteTestStore, LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateContext(SqliteTestStore)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateContext(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateContext(`0)
+    name: CreateContext
+    nameWithType: LoadTestBase<SqliteTestStore, LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore
+    name: SqliteTestStore
+    nameWithType: SqliteTestStore
+    fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateContext(`0)
+    name: CreateContext
+    nameWithType: LoadTestBase(Of SqliteTestStore, LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore
+    name: SqliteTestStore
+    nameWithType: SqliteTestStore
+    fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   name: OnModelCreating(ModelBuilder)
-  nameWithType: LoadTestBase<LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.OnModelCreating(ModelBuilder)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  nameWithType.vb: LoadTestBase(Of LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.OnModelCreating(ModelBuilder)
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  nameWithType: LoadTestBase<SqliteTestStore, LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.OnModelCreating(ModelBuilder)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  nameWithType.vb: LoadTestBase(Of SqliteTestStore, LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.OnModelCreating(ModelBuilder)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
     name: OnModelCreating
-    nameWithType: LoadTestBase<LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.OnModelCreating
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.OnModelCreating
+    nameWithType: LoadTestBase<SqliteTestStore, LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.OnModelCreating
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.OnModelCreating
   - name: (
     nameWithType: (
     fullName: (
@@ -251,10 +294,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
     name: OnModelCreating
-    nameWithType: LoadTestBase(Of LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.OnModelCreating
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.OnModelCreating
+    nameWithType: LoadTestBase(Of SqliteTestStore, LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.OnModelCreating
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.OnModelCreating
   - name: (
     nameWithType: (
     fullName: (
@@ -265,20 +308,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateFullGraph
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateFullGraph
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateFullGraph
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateFullGraph
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateFullGraph
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateFullGraph
   name: CreateFullGraph()
-  nameWithType: LoadTestBase<LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateFullGraph()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateFullGraph()
-  nameWithType.vb: LoadTestBase(Of LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateFullGraph()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateFullGraph()
+  nameWithType: LoadTestBase<SqliteTestStore, LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateFullGraph()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateFullGraph()
+  nameWithType.vb: LoadTestBase(Of SqliteTestStore, LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateFullGraph()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateFullGraph()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateFullGraph
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateFullGraph
     name: CreateFullGraph
-    nameWithType: LoadTestBase<LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateFullGraph
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateFullGraph
+    nameWithType: LoadTestBase<SqliteTestStore, LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateFullGraph
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateFullGraph
   - name: (
     nameWithType: (
     fullName: (
@@ -286,30 +329,30 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateFullGraph
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateFullGraph
     name: CreateFullGraph
-    nameWithType: LoadTestBase(Of LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateFullGraph
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateFullGraph
+    nameWithType: LoadTestBase(Of SqliteTestStore, LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateFullGraph
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateFullGraph
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
   name: Seed(DbContext)
-  nameWithType: LoadTestBase<LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.Seed(DbContext)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
-  nameWithType.vb: LoadTestBase(Of LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.Seed(DbContext)
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  nameWithType: LoadTestBase<SqliteTestStore, LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.Seed(DbContext)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  nameWithType.vb: LoadTestBase(Of SqliteTestStore, LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.Seed(DbContext)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
     name: Seed
-    nameWithType: LoadTestBase<LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.Seed
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.Seed
+    nameWithType: LoadTestBase<SqliteTestStore, LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.Seed
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.Seed
   - name: (
     nameWithType: (
     fullName: (
@@ -321,10 +364,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
     name: Seed
-    nameWithType: LoadTestBase(Of LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.Seed
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.Seed
+    nameWithType: LoadTestBase(Of SqliteTestStore, LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.Seed
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.Seed
   - name: (
     nameWithType: (
     fullName: (
@@ -614,56 +657,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<LoadSqliteTest.LoadSqliteFixture, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<LoadSqliteTest.LoadSqliteFixture, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of LoadSqliteTest.LoadSqliteFixture, TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture, TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of LoadSqliteTest.LoadSqliteFixture, TConcrete)(String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<LoadSqliteTest.LoadSqliteFixture, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<LoadSqliteTest.LoadSqliteFixture, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of LoadSqliteTest.LoadSqliteFixture, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of LoadSqliteTest.LoadSqliteFixture, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase
-  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase
+  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase
   isExternal: false
   name: LoadTestBase.LoadFixtureBase<>
   nameWithType: LoadTestBase.LoadFixtureBase<>
@@ -672,7 +673,7 @@ references:
   fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase.LoadFixtureBase(Of )
   name.vb: LoadTestBase.LoadFixtureBase(Of )
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase
     name: LoadTestBase.LoadFixtureBase
     nameWithType: LoadTestBase.LoadFixtureBase
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase.LoadFixtureBase
@@ -683,7 +684,7 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase
     name: LoadTestBase.LoadFixtureBase
     nameWithType: LoadTestBase.LoadFixtureBase
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase.LoadFixtureBase
@@ -699,19 +700,19 @@ references:
   name: Microsoft.EntityFrameworkCore.Specification.Tests
   nameWithType: Microsoft.EntityFrameworkCore.Specification.Tests
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.Initialize
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.Initialize
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateTestStore
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateTestStore
   isExternal: false
-  name: Initialize()
-  nameWithType: LoadTestBase<TFixture>.LoadFixtureBase.Initialize()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TFixture>.LoadFixtureBase.Initialize()
-  nameWithType.vb: LoadTestBase(Of TFixture).LoadFixtureBase.Initialize()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TFixture).LoadFixtureBase.Initialize()
+  name: CreateTestStore()
+  nameWithType: LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.CreateTestStore()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.CreateTestStore()
+  nameWithType.vb: LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.CreateTestStore()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.CreateTestStore()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.Initialize
-    name: Initialize
-    nameWithType: LoadTestBase<TFixture>.LoadFixtureBase.Initialize
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TFixture>.LoadFixtureBase.Initialize
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateTestStore
+    name: CreateTestStore
+    nameWithType: LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.CreateTestStore
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.CreateTestStore
   - name: (
     nameWithType: (
     fullName: (
@@ -719,29 +720,65 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.Initialize
-    name: Initialize
-    nameWithType: LoadTestBase(Of TFixture).LoadFixtureBase.Initialize
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TFixture).LoadFixtureBase.Initialize
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateTestStore
+    name: CreateTestStore
+    nameWithType: LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.CreateTestStore
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.CreateTestStore
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateContext(`0)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateContext(`0)
+  isExternal: false
+  name: CreateContext(TTestStore)
+  nameWithType: LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.CreateContext(TTestStore)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.CreateContext(TTestStore)
+  nameWithType.vb: LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.CreateContext(TTestStore)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.CreateContext(TTestStore)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateContext(`0)
+    name: CreateContext
+    nameWithType: LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.CreateContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.CreateContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TTestStore
+    nameWithType: TTestStore
+    fullName: TTestStore
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateContext(`0)
+    name: CreateContext
+    nameWithType: LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.CreateContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.CreateContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TTestStore
+    nameWithType: TTestStore
+    fullName: TTestStore
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   isExternal: false
   name: OnModelCreating(ModelBuilder)
-  nameWithType: LoadTestBase<TFixture>.LoadFixtureBase.OnModelCreating(ModelBuilder)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TFixture>.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
-  nameWithType.vb: LoadTestBase(Of TFixture).LoadFixtureBase.OnModelCreating(ModelBuilder)
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TFixture).LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  nameWithType: LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.OnModelCreating(ModelBuilder)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  nameWithType.vb: LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.OnModelCreating(ModelBuilder)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
     name: OnModelCreating
-    nameWithType: LoadTestBase<TFixture>.LoadFixtureBase.OnModelCreating
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TFixture>.LoadFixtureBase.OnModelCreating
+    nameWithType: LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.OnModelCreating
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.OnModelCreating
   - name: (
     nameWithType: (
     fullName: (
@@ -753,10 +790,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
     name: OnModelCreating
-    nameWithType: LoadTestBase(Of TFixture).LoadFixtureBase.OnModelCreating
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TFixture).LoadFixtureBase.OnModelCreating
+    nameWithType: LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.OnModelCreating
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.OnModelCreating
   - name: (
     nameWithType: (
     fullName: (
@@ -767,19 +804,19 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateFullGraph
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateFullGraph
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateFullGraph
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateFullGraph
   isExternal: false
   name: CreateFullGraph()
-  nameWithType: LoadTestBase<TFixture>.LoadFixtureBase.CreateFullGraph()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TFixture>.LoadFixtureBase.CreateFullGraph()
-  nameWithType.vb: LoadTestBase(Of TFixture).LoadFixtureBase.CreateFullGraph()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TFixture).LoadFixtureBase.CreateFullGraph()
+  nameWithType: LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.CreateFullGraph()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.CreateFullGraph()
+  nameWithType.vb: LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.CreateFullGraph()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.CreateFullGraph()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateFullGraph
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateFullGraph
     name: CreateFullGraph
-    nameWithType: LoadTestBase<TFixture>.LoadFixtureBase.CreateFullGraph
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TFixture>.LoadFixtureBase.CreateFullGraph
+    nameWithType: LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.CreateFullGraph
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.CreateFullGraph
   - name: (
     nameWithType: (
     fullName: (
@@ -787,29 +824,29 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateFullGraph
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.CreateFullGraph
     name: CreateFullGraph
-    nameWithType: LoadTestBase(Of TFixture).LoadFixtureBase.CreateFullGraph
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TFixture).LoadFixtureBase.CreateFullGraph
+    nameWithType: LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.CreateFullGraph
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.CreateFullGraph
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
   isExternal: false
   name: Seed(DbContext)
-  nameWithType: LoadTestBase<TFixture>.LoadFixtureBase.Seed(DbContext)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TFixture>.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
-  nameWithType.vb: LoadTestBase(Of TFixture).LoadFixtureBase.Seed(DbContext)
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TFixture).LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  nameWithType: LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.Seed(DbContext)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  nameWithType.vb: LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.Seed(DbContext)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
     name: Seed
-    nameWithType: LoadTestBase<TFixture>.LoadFixtureBase.Seed
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TFixture>.LoadFixtureBase.Seed
+    nameWithType: LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.Seed
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TTestStore, TFixture>.LoadFixtureBase.Seed
   - name: (
     nameWithType: (
     fullName: (
@@ -821,10 +858,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`2.LoadFixtureBase.Seed(Microsoft.EntityFrameworkCore.DbContext)
     name: Seed
-    nameWithType: LoadTestBase(Of TFixture).LoadFixtureBase.Seed
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TFixture).LoadFixtureBase.Seed
+    nameWithType: LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.Seed
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TTestStore, TFixture).LoadFixtureBase.Seed
   - name: (
     nameWithType: (
     fullName: (
@@ -835,164 +872,13 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore
+  commentId: T:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore
+  parent: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateTestStore
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateTestStore
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateTestStore
-  name: CreateTestStore()
-  nameWithType: LoadTestBase<LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateTestStore()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateTestStore()
-  nameWithType.vb: LoadTestBase(Of LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateTestStore()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateTestStore()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateTestStore
-    name: CreateTestStore
-    nameWithType: LoadTestBase<LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateTestStore
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateTestStore
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateTestStore
-    name: CreateTestStore
-    nameWithType: LoadTestBase(Of LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateTestStore
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateTestStore
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateTestStore
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateTestStore
-  isExternal: false
-  name: CreateTestStore()
-  nameWithType: LoadTestBase<TFixture>.LoadFixtureBase.CreateTestStore()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TFixture>.LoadFixtureBase.CreateTestStore()
-  nameWithType.vb: LoadTestBase(Of TFixture).LoadFixtureBase.CreateTestStore()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TFixture).LoadFixtureBase.CreateTestStore()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateTestStore
-    name: CreateTestStore
-    nameWithType: LoadTestBase<TFixture>.LoadFixtureBase.CreateTestStore
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TFixture>.LoadFixtureBase.CreateTestStore
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateTestStore
-    name: CreateTestStore
-    nameWithType: LoadTestBase(Of TFixture).LoadFixtureBase.CreateTestStore
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TFixture).LoadFixtureBase.CreateTestStore
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateContext
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase.CreateContext
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture}.LoadFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateContext
-  name: CreateContext()
-  nameWithType: LoadTestBase<LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateContext()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateContext()
-  nameWithType.vb: LoadTestBase(Of LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateContext()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateContext()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateContext
-    name: CreateContext
-    nameWithType: LoadTestBase<LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateContext
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture>.LoadFixtureBase.CreateContext
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateContext
-    name: CreateContext
-    nameWithType: LoadTestBase(Of LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateContext
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.LoadSqliteTest.LoadSqliteFixture).LoadFixtureBase.CreateContext
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
+  name: SqliteTestStore
+  nameWithType: SqliteTestStore
+  fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore
 - uid: Microsoft.EntityFrameworkCore.DbContext
   commentId: T:Microsoft.EntityFrameworkCore.DbContext
   parent: Microsoft.EntityFrameworkCore
@@ -1000,36 +886,6 @@ references:
   name: DbContext
   nameWithType: DbContext
   fullName: Microsoft.EntityFrameworkCore.DbContext
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateContext
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateContext
-  isExternal: false
-  name: CreateContext()
-  nameWithType: LoadTestBase<TFixture>.LoadFixtureBase.CreateContext()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TFixture>.LoadFixtureBase.CreateContext()
-  nameWithType.vb: LoadTestBase(Of TFixture).LoadFixtureBase.CreateContext()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TFixture).LoadFixtureBase.CreateContext()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateContext
-    name: CreateContext
-    nameWithType: LoadTestBase<TFixture>.LoadFixtureBase.CreateContext
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase<TFixture>.LoadFixtureBase.CreateContext
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase`1.LoadFixtureBase.CreateContext
-    name: CreateContext
-    nameWithType: LoadTestBase(Of TFixture).LoadFixtureBase.CreateContext
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.LoadTestBase(Of TFixture).LoadFixtureBase.CreateContext
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: Microsoft.EntityFrameworkCore
   commentId: N:Microsoft.EntityFrameworkCore
   isExternal: false

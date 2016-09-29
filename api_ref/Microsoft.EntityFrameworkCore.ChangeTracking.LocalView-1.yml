@@ -14,9 +14,9 @@ items:
   - Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.Count
   - Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.GetEnumerator
   - Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.IsReadOnly
-  - Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnCollectionChanged(NotifyCollectionChangedEventArgs)
-  - Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnPropertyChanged(PropertyChangedEventArgs)
-  - Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnPropertyChanging(PropertyChangingEventArgs)
+  - Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
+  - Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
+  - Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
   - Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.PropertyChanged
   - Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.PropertyChanging
   - Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.Remove(`0)
@@ -33,14 +33,14 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: LocalView
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 41
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n<p>\n    A collection that stays in sync with entities of a given type being tracked by\n    a <xref href=\"Microsoft.EntityFrameworkCore.DbContext\" data-throw-if-not-resolved=\"false\"></xref>. Call <xref href=\"Microsoft.EntityFrameworkCore.DbSet%601.Local\" data-throw-if-not-resolved=\"false\"></xref> to obtain a\n    local view.\n</p>\n<p>\n    This local view will stay in sync as entities are added or removed from the context. Likewise, entities\n    added to or removed from the local view will automatically be added to or removed\n    from the context.\n</p>\n<p>\n    Adding an entity to this collection will cause it to be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref>\n    state by the context unless it is already being tracked.\n</p>\n<p>\n    Removing an entity from this collection will cause it to be marked as <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref>,\n    unless it was previously in the Added state, in which case it will be detached from the context.\n</p>\n<p>\n    The collection implements <see cref=\"!:INotifyCollectionChanged\"></see>,\n<see cref=\"!:INotifyPropertyChanging\"></see>, and <see cref=\"!:INotifyPropertyChanging\"></see> such that\nnotifications are generated when an entity starts being tracked by the context or is\nmarked as <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Detached\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n"
+  summary: "\n<p>\n    A collection that stays in sync with entities of a given type being tracked by\n    a <xref href=\"Microsoft.EntityFrameworkCore.DbContext\" data-throw-if-not-resolved=\"false\"></xref>. Call <xref href=\"Microsoft.EntityFrameworkCore.DbSet%601.Local\" data-throw-if-not-resolved=\"false\"></xref> to obtain a\n    local view.\n</p>\n<p>\n    This local view will stay in sync as entities are added or removed from the context. Likewise, entities\n    added to or removed from the local view will automatically be added to or removed\n    from the context.\n</p>\n<p>\n    Adding an entity to this collection will cause it to be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref>\n    state by the context unless it is already being tracked.\n</p>\n<p>\n    Removing an entity from this collection will cause it to be marked as <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref>,\n    unless it was previously in the Added state, in which case it will be detached from the context.\n</p>\n<p>\n    The collection implements <xref href=\"System.Collections.Specialized.INotifyCollectionChanged\" data-throw-if-not-resolved=\"false\"></xref>,\n<xref href=\"System.ComponentModel.INotifyPropertyChanging\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.ComponentModel.INotifyPropertyChanging\" data-throw-if-not-resolved=\"false\"></xref> such that\nnotifications are generated when an entity starts being tracked by the context or is\nmarked as <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Detached\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n"
   example: []
   syntax:
     content: 'public class LocalView<TEntity> : ICollection<TEntity>, IEnumerable<TEntity>, IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged, INotifyPropertyChanging where TEntity : class'
@@ -56,6 +56,9 @@ items:
   - System.Collections.Generic.ICollection{{TEntity}}
   - System.Collections.Generic.IEnumerable{{TEntity}}
   - System.Collections.IEnumerable
+  - System.Collections.Specialized.INotifyCollectionChanged
+  - System.ComponentModel.INotifyPropertyChanged
+  - System.ComponentModel.INotifyPropertyChanging
   inheritedMembers:
   - System.Object.ToString
   - System.Object.Equals(System.Object)
@@ -72,7 +75,6 @@ items:
   - System.Collections.Generic.IEnumerable{System.Object}.Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.Join(System.String)
   - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.StructuralSequenceEqual``1(System.Collections.Generic.IEnumerable{{TEntity}})
   - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.StartsWith``1(System.Collections.Generic.IEnumerable{{TEntity}})
-  - Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
   nameWithType.vb: LocalView(Of TEntity)
   modifiers.csharp:
   - public
@@ -97,7 +99,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 54
@@ -134,7 +136,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: GetEnumerator
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 68
@@ -175,7 +177,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: System.Collections.IEnumerable.GetEnumerator
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 79
@@ -210,7 +212,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 92
@@ -251,7 +253,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Clear
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 125
@@ -288,7 +290,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Contains
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 141
@@ -332,7 +334,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CopyTo
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 154
@@ -377,7 +379,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Remove
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 182
@@ -421,7 +423,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Count
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 243
@@ -463,7 +465,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: IsReadOnly
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 248
@@ -505,7 +507,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: PropertyChanged
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 253
@@ -518,7 +520,9 @@ items:
     content: public virtual event PropertyChangedEventHandler PropertyChanged
     content.vb: Public Overridable Event PropertyChanged As PropertyChangedEventHandler
     return:
-      type: PropertyChangedEventHandler
+      type: System.ComponentModel.PropertyChangedEventHandler
+  implements:
+  - System.ComponentModel.INotifyPropertyChanged.PropertyChanged
   nameWithType.vb: LocalView(Of TEntity).PropertyChanged
   modifiers.csharp:
   - public
@@ -542,7 +546,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: PropertyChanging
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 258
@@ -555,7 +559,9 @@ items:
     content: public virtual event PropertyChangingEventHandler PropertyChanging
     content.vb: Public Overridable Event PropertyChanging As PropertyChangingEventHandler
     return:
-      type: PropertyChangingEventHandler
+      type: System.ComponentModel.PropertyChangingEventHandler
+  implements:
+  - System.ComponentModel.INotifyPropertyChanging.PropertyChanging
   nameWithType.vb: LocalView(Of TEntity).PropertyChanging
   modifiers.csharp:
   - public
@@ -579,7 +585,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CollectionChanged
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 265
@@ -592,7 +598,9 @@ items:
     content: public virtual event NotifyCollectionChangedEventHandler CollectionChanged
     content.vb: Public Overridable Event CollectionChanged As NotifyCollectionChangedEventHandler
     return:
-      type: NotifyCollectionChangedEventHandler
+      type: System.Collections.Specialized.NotifyCollectionChangedEventHandler
+  implements:
+  - System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged
   nameWithType.vb: LocalView(Of TEntity).CollectionChanged
   modifiers.csharp:
   - public
@@ -601,22 +609,22 @@ items:
   - Public
   - Overridable
   fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView(Of TEntity).CollectionChanged
-- uid: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnPropertyChanged(PropertyChangedEventArgs)
-  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnPropertyChanged(PropertyChangedEventArgs)
-  id: OnPropertyChanged(PropertyChangedEventArgs)
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
+  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
+  id: OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
   parent: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1
   langs:
   - csharp
   - vb
   name: OnPropertyChanged(PropertyChangedEventArgs)
   nameWithType: LocalView<TEntity>.OnPropertyChanged(PropertyChangedEventArgs)
-  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView<TEntity>.OnPropertyChanged(PropertyChangedEventArgs)
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView<TEntity>.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
   type: Method
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: OnPropertyChanged
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 271
@@ -630,7 +638,7 @@ items:
     content.vb: Protected Overridable Sub OnPropertyChanged(e As PropertyChangedEventArgs)
     parameters:
     - id: e
-      type: PropertyChangedEventArgs
+      type: System.ComponentModel.PropertyChangedEventArgs
       description: 'Details of the property that changed. '
   nameWithType.vb: LocalView(Of TEntity).OnPropertyChanged(PropertyChangedEventArgs)
   modifiers.csharp:
@@ -639,23 +647,23 @@ items:
   modifiers.vb:
   - Protected
   - Overridable
-  fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView(Of TEntity).OnPropertyChanged(PropertyChangedEventArgs)
-- uid: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnPropertyChanging(PropertyChangingEventArgs)
-  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnPropertyChanging(PropertyChangingEventArgs)
-  id: OnPropertyChanging(PropertyChangingEventArgs)
+  fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView(Of TEntity).OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
+  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
+  id: OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
   parent: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1
   langs:
   - csharp
   - vb
   name: OnPropertyChanging(PropertyChangingEventArgs)
   nameWithType: LocalView<TEntity>.OnPropertyChanging(PropertyChangingEventArgs)
-  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView<TEntity>.OnPropertyChanging(PropertyChangingEventArgs)
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView<TEntity>.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
   type: Method
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: OnPropertyChanging
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 278
@@ -669,7 +677,7 @@ items:
     content.vb: Protected Overridable Sub OnPropertyChanging(e As PropertyChangingEventArgs)
     parameters:
     - id: e
-      type: PropertyChangingEventArgs
+      type: System.ComponentModel.PropertyChangingEventArgs
       description: 'Details of the property that is changing. '
   nameWithType.vb: LocalView(Of TEntity).OnPropertyChanging(PropertyChangingEventArgs)
   modifiers.csharp:
@@ -678,23 +686,23 @@ items:
   modifiers.vb:
   - Protected
   - Overridable
-  fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView(Of TEntity).OnPropertyChanging(PropertyChangingEventArgs)
-- uid: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnCollectionChanged(NotifyCollectionChangedEventArgs)
-  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnCollectionChanged(NotifyCollectionChangedEventArgs)
-  id: OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView(Of TEntity).OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
+  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
+  id: OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   parent: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1
   langs:
   - csharp
   - vb
   name: OnCollectionChanged(NotifyCollectionChangedEventArgs)
   nameWithType: LocalView<TEntity>.OnCollectionChanged(NotifyCollectionChangedEventArgs)
-  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView<TEntity>.OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView<TEntity>.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   type: Method
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: OnCollectionChanged
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 285
@@ -708,7 +716,7 @@ items:
     content.vb: Protected Overridable Sub OnCollectionChanged(e As NotifyCollectionChangedEventArgs)
     parameters:
     - id: e
-      type: NotifyCollectionChangedEventArgs
+      type: System.Collections.Specialized.NotifyCollectionChangedEventArgs
       description: 'Details of the change. '
   nameWithType.vb: LocalView(Of TEntity).OnCollectionChanged(NotifyCollectionChangedEventArgs)
   modifiers.csharp:
@@ -717,7 +725,7 @@ items:
   modifiers.vb:
   - Protected
   - Overridable
-  fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView(Of TEntity).OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView(Of TEntity).OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.ToBindingList
   commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.ToBindingList
   id: ToBindingList
@@ -733,20 +741,20 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: ToBindingList
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/LocalView.cs
     startLine: 300
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Returns an <see cref=\"!:BindingList&lt;T&gt;\"></see> implementation that stays in sync with this collection.\n"
+  summary: "\n    Returns an <xref href=\"System.ComponentModel.BindingList%601\" data-throw-if-not-resolved=\"false\"></xref> implementation that stays in sync with this collection.\n"
   example: []
   syntax:
     content: public virtual BindingList<TEntity> ToBindingList()
     content.vb: Public Overridable Function ToBindingList As BindingList(Of TEntity)
     return:
-      type: BindingList{{TEntity}}
+      type: System.ComponentModel.BindingList{{TEntity}}
       description: 'The binding list. '
   nameWithType.vb: LocalView(Of TEntity).ToBindingList()
   modifiers.csharp:
@@ -776,6 +784,20 @@ references:
   commentId: F:Microsoft.EntityFrameworkCore.EntityState.Added
 - uid: Microsoft.EntityFrameworkCore.EntityState.Deleted
   commentId: F:Microsoft.EntityFrameworkCore.EntityState.Deleted
+- uid: System.Collections.Specialized.INotifyCollectionChanged
+  commentId: T:System.Collections.Specialized.INotifyCollectionChanged
+  parent: System.Collections.Specialized
+  isExternal: true
+  name: INotifyCollectionChanged
+  nameWithType: INotifyCollectionChanged
+  fullName: System.Collections.Specialized.INotifyCollectionChanged
+- uid: System.ComponentModel.INotifyPropertyChanging
+  commentId: T:System.ComponentModel.INotifyPropertyChanging
+  parent: System.ComponentModel
+  isExternal: true
+  name: INotifyPropertyChanging
+  nameWithType: INotifyPropertyChanging
+  fullName: System.ComponentModel.INotifyPropertyChanging
 - uid: Microsoft.EntityFrameworkCore.EntityState.Detached
   commentId: F:Microsoft.EntityFrameworkCore.EntityState.Detached
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking
@@ -878,6 +900,13 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: System.ComponentModel.INotifyPropertyChanged
+  commentId: T:System.ComponentModel.INotifyPropertyChanged
+  parent: System.ComponentModel
+  isExternal: true
+  name: INotifyPropertyChanged
+  nameWithType: INotifyPropertyChanged
+  fullName: System.ComponentModel.INotifyPropertyChanged
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
@@ -1572,54 +1601,24 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<LocalView<TEntity>, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<LocalView<TEntity>, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.ChangeTracking.LocalView<TEntity>, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of LocalView(Of TEntity), TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.ChangeTracking.LocalView(Of TEntity), TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of LocalView(Of TEntity), TConcrete)(String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<LocalView<TEntity>, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<LocalView<TEntity>, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.ChangeTracking.LocalView<TEntity>, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of LocalView(Of TEntity), TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of LocalView(Of TEntity), TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.ChangeTracking.LocalView(Of TEntity), TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: Microsoft.EntityFrameworkCore
   commentId: N:Microsoft.EntityFrameworkCore
   isExternal: false
   name: Microsoft.EntityFrameworkCore
   nameWithType: Microsoft.EntityFrameworkCore
   fullName: Microsoft.EntityFrameworkCore
+- uid: System.Collections.Specialized
+  commentId: N:System.Collections.Specialized
+  isExternal: false
+  name: System.Collections.Specialized
+  nameWithType: System.Collections.Specialized
+  fullName: System.Collections.Specialized
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: false
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
 - uid: System
   commentId: N:System
   isExternal: false
@@ -2377,66 +2376,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests
   commentId: N:Microsoft.EntityFrameworkCore.Specification.Tests
   isExternal: false
@@ -2449,12 +2388,6 @@ references:
   name: Microsoft.EntityFrameworkCore.Internal
   nameWithType: Microsoft.EntityFrameworkCore.Internal
   fullName: Microsoft.EntityFrameworkCore.Internal
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
 - uid: Microsoft.EntityFrameworkCore.DbSet{{TEntity}}
   commentId: T:Microsoft.EntityFrameworkCore.DbSet{``0}
   parent: Microsoft.EntityFrameworkCore
@@ -3213,116 +3146,151 @@ references:
   fullname.vb: System.Collections.Generic.ICollection(Of T).IsReadOnly
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.Count
   commentId: P:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.Count
-- uid: PropertyChangedEventHandler
+- uid: System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+  commentId: E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+  parent: System.ComponentModel.INotifyPropertyChanged
+  isExternal: true
+  name: PropertyChanged
+  nameWithType: INotifyPropertyChanged.PropertyChanged
+  fullName: System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+- uid: System.ComponentModel.PropertyChangedEventHandler
+  commentId: T:System.ComponentModel.PropertyChangedEventHandler
+  parent: System.ComponentModel
   isExternal: true
   name: PropertyChangedEventHandler
   nameWithType: PropertyChangedEventHandler
-  fullName: PropertyChangedEventHandler
-- uid: PropertyChangingEventHandler
+  fullName: System.ComponentModel.PropertyChangedEventHandler
+- uid: System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+  commentId: E:System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+  parent: System.ComponentModel.INotifyPropertyChanging
+  isExternal: true
+  name: PropertyChanging
+  nameWithType: INotifyPropertyChanging.PropertyChanging
+  fullName: System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+- uid: System.ComponentModel.PropertyChangingEventHandler
+  commentId: T:System.ComponentModel.PropertyChangingEventHandler
+  parent: System.ComponentModel
   isExternal: true
   name: PropertyChangingEventHandler
   nameWithType: PropertyChangingEventHandler
-  fullName: PropertyChangingEventHandler
-- uid: NotifyCollectionChangedEventHandler
+  fullName: System.ComponentModel.PropertyChangingEventHandler
+- uid: System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged
+  commentId: E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged
+  parent: System.Collections.Specialized.INotifyCollectionChanged
+  isExternal: true
+  name: CollectionChanged
+  nameWithType: INotifyCollectionChanged.CollectionChanged
+  fullName: System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged
+- uid: System.Collections.Specialized.NotifyCollectionChangedEventHandler
+  commentId: T:System.Collections.Specialized.NotifyCollectionChangedEventHandler
+  parent: System.Collections.Specialized
   isExternal: true
   name: NotifyCollectionChangedEventHandler
   nameWithType: NotifyCollectionChangedEventHandler
-  fullName: NotifyCollectionChangedEventHandler
+  fullName: System.Collections.Specialized.NotifyCollectionChangedEventHandler
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.PropertyChanged
   commentId: E:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.PropertyChanged
-- uid: PropertyChangedEventArgs
+- uid: System.ComponentModel.PropertyChangedEventArgs
+  commentId: T:System.ComponentModel.PropertyChangedEventArgs
+  parent: System.ComponentModel
   isExternal: true
   name: PropertyChangedEventArgs
   nameWithType: PropertyChangedEventArgs
-  fullName: PropertyChangedEventArgs
+  fullName: System.ComponentModel.PropertyChangedEventArgs
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.PropertyChanging
   commentId: E:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.PropertyChanging
-- uid: PropertyChangingEventArgs
+- uid: System.ComponentModel.PropertyChangingEventArgs
+  commentId: T:System.ComponentModel.PropertyChangingEventArgs
+  parent: System.ComponentModel
   isExternal: true
   name: PropertyChangingEventArgs
   nameWithType: PropertyChangingEventArgs
-  fullName: PropertyChangingEventArgs
+  fullName: System.ComponentModel.PropertyChangingEventArgs
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.CollectionChanged
   commentId: E:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.CollectionChanged
-- uid: NotifyCollectionChangedEventArgs
+- uid: System.Collections.Specialized.NotifyCollectionChangedEventArgs
+  commentId: T:System.Collections.Specialized.NotifyCollectionChangedEventArgs
+  parent: System.Collections.Specialized
   isExternal: true
   name: NotifyCollectionChangedEventArgs
   nameWithType: NotifyCollectionChangedEventArgs
-  fullName: NotifyCollectionChangedEventArgs
-- uid: BindingList{{TEntity}}
-  commentId: '!:BindingList{`0}'
-  definition: BindingList`1
-  name: BindingList<TEntity>
-  nameWithType: BindingList<TEntity>
-  fullName: BindingList<TEntity>
-  nameWithType.vb: BindingList(Of TEntity)
-  fullname.vb: BindingList(Of TEntity)
-  name.vb: BindingList(Of TEntity)
+  fullName: System.Collections.Specialized.NotifyCollectionChangedEventArgs
+- uid: System.ComponentModel.BindingList`1
+  commentId: T:System.ComponentModel.BindingList`1
+  isExternal: true
+  name: BindingList<T>
+  nameWithType: BindingList<T>
+  fullName: System.ComponentModel.BindingList<T>
+  nameWithType.vb: BindingList(Of T)
+  fullname.vb: System.ComponentModel.BindingList(Of T)
+  name.vb: BindingList(Of T)
   spec.csharp:
-  - uid: BindingList`1
+  - uid: System.ComponentModel.BindingList`1
     name: BindingList
     nameWithType: BindingList
-    fullName: BindingList
+    fullName: System.ComponentModel.BindingList
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: TEntity
-    nameWithType: TEntity
-    fullName: TEntity
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: BindingList`1
+  - uid: System.ComponentModel.BindingList`1
     name: BindingList
     nameWithType: BindingList
-    fullName: BindingList
+    fullName: System.ComponentModel.BindingList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: TEntity
-    nameWithType: TEntity
-    fullName: TEntity
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
-- uid: BindingList`1
-  isExternal: true
-  name: BindingList<>
-  nameWithType: BindingList<>
-  fullName: BindingList<>
-  nameWithType.vb: BindingList(Of )
-  fullname.vb: BindingList(Of )
-  name.vb: BindingList(Of )
+- uid: System.ComponentModel.BindingList{{TEntity}}
+  commentId: T:System.ComponentModel.BindingList{`0}
+  parent: System.ComponentModel
+  definition: System.ComponentModel.BindingList`1
+  name: BindingList<TEntity>
+  nameWithType: BindingList<TEntity>
+  fullName: System.ComponentModel.BindingList<TEntity>
+  nameWithType.vb: BindingList(Of TEntity)
+  fullname.vb: System.ComponentModel.BindingList(Of TEntity)
+  name.vb: BindingList(Of TEntity)
   spec.csharp:
-  - uid: BindingList`1
+  - uid: System.ComponentModel.BindingList`1
     name: BindingList
     nameWithType: BindingList
-    fullName: BindingList
+    fullName: System.ComponentModel.BindingList
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: TEntity
+    nameWithType: TEntity
+    fullName: TEntity
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: BindingList`1
+  - uid: System.ComponentModel.BindingList`1
     name: BindingList
     nameWithType: BindingList
-    fullName: BindingList
+    fullName: System.ComponentModel.BindingList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: TEntity
+    nameWithType: TEntity
+    fullName: TEntity
   - name: )
     nameWithType: )
     fullName: )

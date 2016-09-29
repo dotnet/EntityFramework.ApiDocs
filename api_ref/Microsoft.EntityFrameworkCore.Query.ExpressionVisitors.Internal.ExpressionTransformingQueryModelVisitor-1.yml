@@ -7,15 +7,15 @@ items:
   children:
   - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.#ctor(`0)
   - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.TransformingVisitor
-  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitAdditionalFromClause(AdditionalFromClause,QueryModel,System.Int32)
-  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitJoinClause(JoinClause,QueryModel,GroupJoinClause)
-  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitJoinClause(JoinClause,QueryModel,System.Int32)
-  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitMainFromClause(MainFromClause,QueryModel)
-  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitOrderByClause(OrderByClause,QueryModel,System.Int32)
-  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitOrdering(Ordering,QueryModel,OrderByClause,System.Int32)
-  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitResultOperator(ResultOperatorBase,QueryModel,System.Int32)
-  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitSelectClause(SelectClause,QueryModel)
-  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitWhereClause(WhereClause,QueryModel,System.Int32)
+  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel,System.Int32)
+  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.GroupJoinClause)
+  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,System.Int32)
+  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause,Remotion.Linq.QueryModel,System.Int32)
+  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitOrdering(Remotion.Linq.Clauses.Ordering,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause,System.Int32)
+  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase,Remotion.Linq.QueryModel,System.Int32)
+  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitSelectClause(Remotion.Linq.Clauses.SelectClause,Remotion.Linq.QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitWhereClause(Remotion.Linq.Clauses.WhereClause,Remotion.Linq.QueryModel,System.Int32)
   langs:
   - csharp
   - vb
@@ -27,7 +27,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: ExpressionTransformingQueryModelVisitor
     path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
     startLine: 15
@@ -37,16 +37,31 @@ items:
   summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
-    content: 'public class ExpressionTransformingQueryModelVisitor<TVisitor> : QueryModelVisitorBase where TVisitor : RelinqExpressionVisitor'
+    content: 'public class ExpressionTransformingQueryModelVisitor<TVisitor> : QueryModelVisitorBase, IQueryModelVisitor where TVisitor : RelinqExpressionVisitor'
     content.vb: >-
       Public Class ExpressionTransformingQueryModelVisitor(Of TVisitor As RelinqExpressionVisitor)
           Inherits QueryModelVisitorBase
+          Implements IQueryModelVisitor
     typeParameters:
     - id: TVisitor
   inheritance:
   - System.Object
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
+  - Remotion.Linq.QueryModelVisitorBase
+  implements:
+  - Remotion.Linq.IQueryModelVisitor
+  inheritedMembers:
+  - Remotion.Linq.QueryModelVisitorBase.VisitQueryModel(Remotion.Linq.QueryModel)
+  - Remotion.Linq.QueryModelVisitorBase.VisitGroupJoinClause(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel,System.Int32)
+  - Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.IBodyClause},Remotion.Linq.QueryModel)
+  - Remotion.Linq.QueryModelVisitorBase.VisitOrderings(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.Ordering},Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause)
+  - Remotion.Linq.QueryModelVisitorBase.VisitResultOperators(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.ResultOperatorBase},Remotion.Linq.QueryModel)
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
   nameWithType.vb: ExpressionTransformingQueryModelVisitor(Of TVisitor)
   modifiers.csharp:
   - public
@@ -71,7 +86,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: TransformingVisitor
     path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
     startLine: 22
@@ -111,7 +126,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
     startLine: 28
@@ -132,22 +147,22 @@ items:
   modifiers.vb:
   - Public
   fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).ExpressionTransformingQueryModelVisitor(TVisitor)
-- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitMainFromClause(MainFromClause,QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitMainFromClause(MainFromClause,QueryModel)
-  id: VisitMainFromClause(MainFromClause,QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
+  id: VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1
   langs:
   - csharp
   - vb
   name: VisitMainFromClause(MainFromClause, QueryModel)
   nameWithType: ExpressionTransformingQueryModelVisitor<TVisitor>.VisitMainFromClause(MainFromClause, QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitMainFromClause(MainFromClause, QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause, Remotion.Linq.QueryModel)
   type: Method
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: VisitMainFromClause
     path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
     startLine: 39
@@ -161,9 +176,10 @@ items:
     content.vb: Public Overrides Sub VisitMainFromClause(fromClause As MainFromClause, queryModel As QueryModel)
     parameters:
     - id: fromClause
-      type: MainFromClause
+      type: Remotion.Linq.Clauses.MainFromClause
     - id: queryModel
-      type: QueryModel
+      type: Remotion.Linq.QueryModel
+  overridden: Remotion.Linq.QueryModelVisitorBase.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
   nameWithType.vb: ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitMainFromClause(MainFromClause, QueryModel)
   modifiers.csharp:
   - public
@@ -171,23 +187,23 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitMainFromClause(MainFromClause, QueryModel)
-- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitAdditionalFromClause(AdditionalFromClause,QueryModel,System.Int32)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitAdditionalFromClause(AdditionalFromClause,QueryModel,System.Int32)
-  id: VisitAdditionalFromClause(AdditionalFromClause,QueryModel,System.Int32)
+  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause, Remotion.Linq.QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel,System.Int32)
+  id: VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel,System.Int32)
   parent: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1
   langs:
   - csharp
   - vb
   name: VisitAdditionalFromClause(AdditionalFromClause, QueryModel, Int32)
   nameWithType: ExpressionTransformingQueryModelVisitor<TVisitor>.VisitAdditionalFromClause(AdditionalFromClause, QueryModel, Int32)
-  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitAdditionalFromClause(AdditionalFromClause, QueryModel, System.Int32)
+  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause, Remotion.Linq.QueryModel, System.Int32)
   type: Method
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: VisitAdditionalFromClause
     path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
     startLine: 46
@@ -201,11 +217,12 @@ items:
     content.vb: Public Overrides Sub VisitAdditionalFromClause(fromClause As AdditionalFromClause, queryModel As QueryModel, index As Integer)
     parameters:
     - id: fromClause
-      type: AdditionalFromClause
+      type: Remotion.Linq.Clauses.AdditionalFromClause
     - id: queryModel
-      type: QueryModel
+      type: Remotion.Linq.QueryModel
     - id: index
       type: System.Int32
+  overridden: Remotion.Linq.QueryModelVisitorBase.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel,System.Int32)
   nameWithType.vb: ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitAdditionalFromClause(AdditionalFromClause, QueryModel, Int32)
   modifiers.csharp:
   - public
@@ -213,23 +230,23 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitAdditionalFromClause(AdditionalFromClause, QueryModel, System.Int32)
-- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitJoinClause(JoinClause,QueryModel,System.Int32)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitJoinClause(JoinClause,QueryModel,System.Int32)
-  id: VisitJoinClause(JoinClause,QueryModel,System.Int32)
+  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause, Remotion.Linq.QueryModel, System.Int32)
+- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,System.Int32)
+  id: VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,System.Int32)
   parent: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1
   langs:
   - csharp
   - vb
   name: VisitJoinClause(JoinClause, QueryModel, Int32)
   nameWithType: ExpressionTransformingQueryModelVisitor<TVisitor>.VisitJoinClause(JoinClause, QueryModel, Int32)
-  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitJoinClause(JoinClause, QueryModel, System.Int32)
+  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitJoinClause(Remotion.Linq.Clauses.JoinClause, Remotion.Linq.QueryModel, System.Int32)
   type: Method
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: VisitJoinClause
     path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
     startLine: 53
@@ -243,11 +260,12 @@ items:
     content.vb: Public Overrides Sub VisitJoinClause(joinClause As JoinClause, queryModel As QueryModel, index As Integer)
     parameters:
     - id: joinClause
-      type: JoinClause
+      type: Remotion.Linq.Clauses.JoinClause
     - id: queryModel
-      type: QueryModel
+      type: Remotion.Linq.QueryModel
     - id: index
       type: System.Int32
+  overridden: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,System.Int32)
   nameWithType.vb: ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitJoinClause(JoinClause, QueryModel, Int32)
   modifiers.csharp:
   - public
@@ -255,23 +273,23 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitJoinClause(JoinClause, QueryModel, System.Int32)
-- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitJoinClause(JoinClause,QueryModel,GroupJoinClause)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitJoinClause(JoinClause,QueryModel,GroupJoinClause)
-  id: VisitJoinClause(JoinClause,QueryModel,GroupJoinClause)
+  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitJoinClause(Remotion.Linq.Clauses.JoinClause, Remotion.Linq.QueryModel, System.Int32)
+- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.GroupJoinClause)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.GroupJoinClause)
+  id: VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.GroupJoinClause)
   parent: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1
   langs:
   - csharp
   - vb
   name: VisitJoinClause(JoinClause, QueryModel, GroupJoinClause)
   nameWithType: ExpressionTransformingQueryModelVisitor<TVisitor>.VisitJoinClause(JoinClause, QueryModel, GroupJoinClause)
-  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitJoinClause(JoinClause, QueryModel, GroupJoinClause)
+  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitJoinClause(Remotion.Linq.Clauses.JoinClause, Remotion.Linq.QueryModel, Remotion.Linq.Clauses.GroupJoinClause)
   type: Method
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: VisitJoinClause
     path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
     startLine: 60
@@ -285,11 +303,12 @@ items:
     content.vb: Public Overrides Sub VisitJoinClause(joinClause As JoinClause, queryModel As QueryModel, groupJoinClause As GroupJoinClause)
     parameters:
     - id: joinClause
-      type: JoinClause
+      type: Remotion.Linq.Clauses.JoinClause
     - id: queryModel
-      type: QueryModel
+      type: Remotion.Linq.QueryModel
     - id: groupJoinClause
-      type: GroupJoinClause
+      type: Remotion.Linq.Clauses.GroupJoinClause
+  overridden: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.GroupJoinClause)
   nameWithType.vb: ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitJoinClause(JoinClause, QueryModel, GroupJoinClause)
   modifiers.csharp:
   - public
@@ -297,23 +316,23 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitJoinClause(JoinClause, QueryModel, GroupJoinClause)
-- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitWhereClause(WhereClause,QueryModel,System.Int32)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitWhereClause(WhereClause,QueryModel,System.Int32)
-  id: VisitWhereClause(WhereClause,QueryModel,System.Int32)
+  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitJoinClause(Remotion.Linq.Clauses.JoinClause, Remotion.Linq.QueryModel, Remotion.Linq.Clauses.GroupJoinClause)
+- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitWhereClause(Remotion.Linq.Clauses.WhereClause,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitWhereClause(Remotion.Linq.Clauses.WhereClause,Remotion.Linq.QueryModel,System.Int32)
+  id: VisitWhereClause(Remotion.Linq.Clauses.WhereClause,Remotion.Linq.QueryModel,System.Int32)
   parent: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1
   langs:
   - csharp
   - vb
   name: VisitWhereClause(WhereClause, QueryModel, Int32)
   nameWithType: ExpressionTransformingQueryModelVisitor<TVisitor>.VisitWhereClause(WhereClause, QueryModel, Int32)
-  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitWhereClause(WhereClause, QueryModel, System.Int32)
+  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitWhereClause(Remotion.Linq.Clauses.WhereClause, Remotion.Linq.QueryModel, System.Int32)
   type: Method
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: VisitWhereClause
     path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
     startLine: 67
@@ -327,11 +346,12 @@ items:
     content.vb: Public Overrides Sub VisitWhereClause(whereClause As WhereClause, queryModel As QueryModel, index As Integer)
     parameters:
     - id: whereClause
-      type: WhereClause
+      type: Remotion.Linq.Clauses.WhereClause
     - id: queryModel
-      type: QueryModel
+      type: Remotion.Linq.QueryModel
     - id: index
       type: System.Int32
+  overridden: Remotion.Linq.QueryModelVisitorBase.VisitWhereClause(Remotion.Linq.Clauses.WhereClause,Remotion.Linq.QueryModel,System.Int32)
   nameWithType.vb: ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitWhereClause(WhereClause, QueryModel, Int32)
   modifiers.csharp:
   - public
@@ -339,23 +359,23 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitWhereClause(WhereClause, QueryModel, System.Int32)
-- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitOrderByClause(OrderByClause,QueryModel,System.Int32)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitOrderByClause(OrderByClause,QueryModel,System.Int32)
-  id: VisitOrderByClause(OrderByClause,QueryModel,System.Int32)
+  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitWhereClause(Remotion.Linq.Clauses.WhereClause, Remotion.Linq.QueryModel, System.Int32)
+- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause,Remotion.Linq.QueryModel,System.Int32)
+  id: VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause,Remotion.Linq.QueryModel,System.Int32)
   parent: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1
   langs:
   - csharp
   - vb
   name: VisitOrderByClause(OrderByClause, QueryModel, Int32)
   nameWithType: ExpressionTransformingQueryModelVisitor<TVisitor>.VisitOrderByClause(OrderByClause, QueryModel, Int32)
-  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitOrderByClause(OrderByClause, QueryModel, System.Int32)
+  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause, Remotion.Linq.QueryModel, System.Int32)
   type: Method
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: VisitOrderByClause
     path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
     startLine: 74
@@ -369,11 +389,12 @@ items:
     content.vb: Public Overrides Sub VisitOrderByClause(orderByClause As OrderByClause, queryModel As QueryModel, index As Integer)
     parameters:
     - id: orderByClause
-      type: OrderByClause
+      type: Remotion.Linq.Clauses.OrderByClause
     - id: queryModel
-      type: QueryModel
+      type: Remotion.Linq.QueryModel
     - id: index
       type: System.Int32
+  overridden: Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause,Remotion.Linq.QueryModel,System.Int32)
   nameWithType.vb: ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitOrderByClause(OrderByClause, QueryModel, Int32)
   modifiers.csharp:
   - public
@@ -381,23 +402,23 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitOrderByClause(OrderByClause, QueryModel, System.Int32)
-- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitOrdering(Ordering,QueryModel,OrderByClause,System.Int32)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitOrdering(Ordering,QueryModel,OrderByClause,System.Int32)
-  id: VisitOrdering(Ordering,QueryModel,OrderByClause,System.Int32)
+  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause, Remotion.Linq.QueryModel, System.Int32)
+- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitOrdering(Remotion.Linq.Clauses.Ordering,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause,System.Int32)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitOrdering(Remotion.Linq.Clauses.Ordering,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause,System.Int32)
+  id: VisitOrdering(Remotion.Linq.Clauses.Ordering,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause,System.Int32)
   parent: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1
   langs:
   - csharp
   - vb
   name: VisitOrdering(Ordering, QueryModel, OrderByClause, Int32)
   nameWithType: ExpressionTransformingQueryModelVisitor<TVisitor>.VisitOrdering(Ordering, QueryModel, OrderByClause, Int32)
-  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitOrdering(Ordering, QueryModel, OrderByClause, System.Int32)
+  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitOrdering(Remotion.Linq.Clauses.Ordering, Remotion.Linq.QueryModel, Remotion.Linq.Clauses.OrderByClause, System.Int32)
   type: Method
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: VisitOrdering
     path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
     startLine: 81
@@ -411,13 +432,14 @@ items:
     content.vb: Public Overrides Sub VisitOrdering(ordering As Ordering, queryModel As QueryModel, orderByClause As OrderByClause, index As Integer)
     parameters:
     - id: ordering
-      type: Ordering
+      type: Remotion.Linq.Clauses.Ordering
     - id: queryModel
-      type: QueryModel
+      type: Remotion.Linq.QueryModel
     - id: orderByClause
-      type: OrderByClause
+      type: Remotion.Linq.Clauses.OrderByClause
     - id: index
       type: System.Int32
+  overridden: Remotion.Linq.QueryModelVisitorBase.VisitOrdering(Remotion.Linq.Clauses.Ordering,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause,System.Int32)
   nameWithType.vb: ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitOrdering(Ordering, QueryModel, OrderByClause, Int32)
   modifiers.csharp:
   - public
@@ -425,23 +447,23 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitOrdering(Ordering, QueryModel, OrderByClause, System.Int32)
-- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitSelectClause(SelectClause,QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitSelectClause(SelectClause,QueryModel)
-  id: VisitSelectClause(SelectClause,QueryModel)
+  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitOrdering(Remotion.Linq.Clauses.Ordering, Remotion.Linq.QueryModel, Remotion.Linq.Clauses.OrderByClause, System.Int32)
+- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitSelectClause(Remotion.Linq.Clauses.SelectClause,Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitSelectClause(Remotion.Linq.Clauses.SelectClause,Remotion.Linq.QueryModel)
+  id: VisitSelectClause(Remotion.Linq.Clauses.SelectClause,Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1
   langs:
   - csharp
   - vb
   name: VisitSelectClause(SelectClause, QueryModel)
   nameWithType: ExpressionTransformingQueryModelVisitor<TVisitor>.VisitSelectClause(SelectClause, QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitSelectClause(SelectClause, QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitSelectClause(Remotion.Linq.Clauses.SelectClause, Remotion.Linq.QueryModel)
   type: Method
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: VisitSelectClause
     path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
     startLine: 88
@@ -455,9 +477,10 @@ items:
     content.vb: Public Overrides Sub VisitSelectClause(selectClause As SelectClause, queryModel As QueryModel)
     parameters:
     - id: selectClause
-      type: SelectClause
+      type: Remotion.Linq.Clauses.SelectClause
     - id: queryModel
-      type: QueryModel
+      type: Remotion.Linq.QueryModel
+  overridden: Remotion.Linq.QueryModelVisitorBase.VisitSelectClause(Remotion.Linq.Clauses.SelectClause,Remotion.Linq.QueryModel)
   nameWithType.vb: ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitSelectClause(SelectClause, QueryModel)
   modifiers.csharp:
   - public
@@ -465,23 +488,23 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitSelectClause(SelectClause, QueryModel)
-- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitResultOperator(ResultOperatorBase,QueryModel,System.Int32)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitResultOperator(ResultOperatorBase,QueryModel,System.Int32)
-  id: VisitResultOperator(ResultOperatorBase,QueryModel,System.Int32)
+  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitSelectClause(Remotion.Linq.Clauses.SelectClause, Remotion.Linq.QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase,Remotion.Linq.QueryModel,System.Int32)
+  id: VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase,Remotion.Linq.QueryModel,System.Int32)
   parent: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1
   langs:
   - csharp
   - vb
   name: VisitResultOperator(ResultOperatorBase, QueryModel, Int32)
   nameWithType: ExpressionTransformingQueryModelVisitor<TVisitor>.VisitResultOperator(ResultOperatorBase, QueryModel, Int32)
-  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitResultOperator(ResultOperatorBase, QueryModel, System.Int32)
+  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase, Remotion.Linq.QueryModel, System.Int32)
   type: Method
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: VisitResultOperator
     path: src/Microsoft.EntityFrameworkCore/Query/ExpressionVisitors/Internal/ExpressionTransformingQueryModelVisitor.cs
     startLine: 95
@@ -495,11 +518,12 @@ items:
     content.vb: Public Overrides Sub VisitResultOperator(resultOperator As ResultOperatorBase, queryModel As QueryModel, index As Integer)
     parameters:
     - id: resultOperator
-      type: ResultOperatorBase
+      type: Remotion.Linq.Clauses.ResultOperatorBase
     - id: queryModel
-      type: QueryModel
+      type: Remotion.Linq.QueryModel
     - id: index
       type: System.Int32
+  overridden: Remotion.Linq.QueryModelVisitorBase.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase,Remotion.Linq.QueryModel,System.Int32)
   nameWithType.vb: ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitResultOperator(ResultOperatorBase, QueryModel, Int32)
   modifiers.csharp:
   - public
@@ -507,7 +531,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitResultOperator(ResultOperatorBase, QueryModel, System.Int32)
+  fullName.vb: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor).VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase, Remotion.Linq.QueryModel, System.Int32)
 references:
 - uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal
   commentId: N:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal
@@ -522,45 +546,672 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor`1.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<ExpressionTransformingQueryModelVisitor<TVisitor>, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<ExpressionTransformingQueryModelVisitor<TVisitor>, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of ExpressionTransformingQueryModelVisitor(Of TVisitor), TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor), TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of ExpressionTransformingQueryModelVisitor(Of TVisitor), TConcrete)(String)
+- uid: Remotion.Linq.QueryModelVisitorBase
+  commentId: T:Remotion.Linq.QueryModelVisitorBase
+  parent: Remotion.Linq
+  isExternal: true
+  name: QueryModelVisitorBase
+  nameWithType: QueryModelVisitorBase
+  fullName: Remotion.Linq.QueryModelVisitorBase
+- uid: Remotion.Linq.IQueryModelVisitor
+  commentId: T:Remotion.Linq.IQueryModelVisitor
+  parent: Remotion.Linq
+  isExternal: true
+  name: IQueryModelVisitor
+  nameWithType: IQueryModelVisitor
+  fullName: Remotion.Linq.IQueryModelVisitor
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitQueryModel(Remotion.Linq.QueryModel)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitQueryModel(Remotion.Linq.QueryModel)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitQueryModel(QueryModel)
+  nameWithType: QueryModelVisitorBase.VisitQueryModel(QueryModel)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitQueryModel(Remotion.Linq.QueryModel)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<ExpressionTransformingQueryModelVisitor<TVisitor>, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<ExpressionTransformingQueryModelVisitor<TVisitor>, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor<TVisitor>, TConcrete>
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitQueryModel(Remotion.Linq.QueryModel)
+    name: VisitQueryModel
+    nameWithType: QueryModelVisitorBase.VisitQueryModel
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitQueryModel
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of ExpressionTransformingQueryModelVisitor(Of TVisitor), TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of ExpressionTransformingQueryModelVisitor(Of TVisitor), TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ExpressionTransformingQueryModelVisitor(Of TVisitor), TConcrete)
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitQueryModel(Remotion.Linq.QueryModel)
+    name: VisitQueryModel
+    nameWithType: QueryModelVisitorBase.VisitQueryModel
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitQueryModel
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitGroupJoinClause(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitGroupJoinClause(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel,System.Int32)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitGroupJoinClause(GroupJoinClause, QueryModel, Int32)
+  nameWithType: QueryModelVisitorBase.VisitGroupJoinClause(GroupJoinClause, QueryModel, Int32)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitGroupJoinClause(Remotion.Linq.Clauses.GroupJoinClause, Remotion.Linq.QueryModel, System.Int32)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitGroupJoinClause(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel,System.Int32)
+    name: VisitGroupJoinClause
+    nameWithType: QueryModelVisitorBase.VisitGroupJoinClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitGroupJoinClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.GroupJoinClause
+    name: GroupJoinClause
+    nameWithType: GroupJoinClause
+    fullName: Remotion.Linq.Clauses.GroupJoinClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitGroupJoinClause(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel,System.Int32)
+    name: VisitGroupJoinClause
+    nameWithType: QueryModelVisitorBase.VisitGroupJoinClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitGroupJoinClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.GroupJoinClause
+    name: GroupJoinClause
+    nameWithType: GroupJoinClause
+    fullName: Remotion.Linq.Clauses.GroupJoinClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.IBodyClause},Remotion.Linq.QueryModel)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.IBodyClause},Remotion.Linq.QueryModel)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitBodyClauses(ObservableCollection<IBodyClause>, QueryModel)
+  nameWithType: QueryModelVisitorBase.VisitBodyClauses(ObservableCollection<IBodyClause>, QueryModel)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses(System.Collections.ObjectModel.ObservableCollection<Remotion.Linq.Clauses.IBodyClause>, Remotion.Linq.QueryModel)
+  nameWithType.vb: QueryModelVisitorBase.VisitBodyClauses(ObservableCollection(Of IBodyClause), QueryModel)
+  fullname.vb: Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses(System.Collections.ObjectModel.ObservableCollection(Of Remotion.Linq.Clauses.IBodyClause), Remotion.Linq.QueryModel)
+  name.vb: VisitBodyClauses(ObservableCollection(Of IBodyClause), QueryModel)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.IBodyClause},Remotion.Linq.QueryModel)
+    name: VisitBodyClauses
+    nameWithType: QueryModelVisitorBase.VisitBodyClauses
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    nameWithType: ObservableCollection
+    fullName: System.Collections.ObjectModel.ObservableCollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Remotion.Linq.Clauses.IBodyClause
+    name: IBodyClause
+    nameWithType: IBodyClause
+    fullName: Remotion.Linq.Clauses.IBodyClause
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.IBodyClause},Remotion.Linq.QueryModel)
+    name: VisitBodyClauses
+    nameWithType: QueryModelVisitorBase.VisitBodyClauses
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    nameWithType: ObservableCollection
+    fullName: System.Collections.ObjectModel.ObservableCollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Remotion.Linq.Clauses.IBodyClause
+    name: IBodyClause
+    nameWithType: IBodyClause
+    fullName: Remotion.Linq.Clauses.IBodyClause
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitOrderings(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.Ordering},Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitOrderings(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.Ordering},Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitOrderings(ObservableCollection<Ordering>, QueryModel, OrderByClause)
+  nameWithType: QueryModelVisitorBase.VisitOrderings(ObservableCollection<Ordering>, QueryModel, OrderByClause)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrderings(System.Collections.ObjectModel.ObservableCollection<Remotion.Linq.Clauses.Ordering>, Remotion.Linq.QueryModel, Remotion.Linq.Clauses.OrderByClause)
+  nameWithType.vb: QueryModelVisitorBase.VisitOrderings(ObservableCollection(Of Ordering), QueryModel, OrderByClause)
+  fullname.vb: Remotion.Linq.QueryModelVisitorBase.VisitOrderings(System.Collections.ObjectModel.ObservableCollection(Of Remotion.Linq.Clauses.Ordering), Remotion.Linq.QueryModel, Remotion.Linq.Clauses.OrderByClause)
+  name.vb: VisitOrderings(ObservableCollection(Of Ordering), QueryModel, OrderByClause)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitOrderings(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.Ordering},Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause)
+    name: VisitOrderings
+    nameWithType: QueryModelVisitorBase.VisitOrderings
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrderings
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    nameWithType: ObservableCollection
+    fullName: System.Collections.ObjectModel.ObservableCollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Remotion.Linq.Clauses.Ordering
+    name: Ordering
+    nameWithType: Ordering
+    fullName: Remotion.Linq.Clauses.Ordering
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.Clauses.OrderByClause
+    name: OrderByClause
+    nameWithType: OrderByClause
+    fullName: Remotion.Linq.Clauses.OrderByClause
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitOrderings(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.Ordering},Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause)
+    name: VisitOrderings
+    nameWithType: QueryModelVisitorBase.VisitOrderings
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrderings
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    nameWithType: ObservableCollection
+    fullName: System.Collections.ObjectModel.ObservableCollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Remotion.Linq.Clauses.Ordering
+    name: Ordering
+    nameWithType: Ordering
+    fullName: Remotion.Linq.Clauses.Ordering
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.Clauses.OrderByClause
+    name: OrderByClause
+    nameWithType: OrderByClause
+    fullName: Remotion.Linq.Clauses.OrderByClause
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitResultOperators(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.ResultOperatorBase},Remotion.Linq.QueryModel)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitResultOperators(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.ResultOperatorBase},Remotion.Linq.QueryModel)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitResultOperators(ObservableCollection<ResultOperatorBase>, QueryModel)
+  nameWithType: QueryModelVisitorBase.VisitResultOperators(ObservableCollection<ResultOperatorBase>, QueryModel)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitResultOperators(System.Collections.ObjectModel.ObservableCollection<Remotion.Linq.Clauses.ResultOperatorBase>, Remotion.Linq.QueryModel)
+  nameWithType.vb: QueryModelVisitorBase.VisitResultOperators(ObservableCollection(Of ResultOperatorBase), QueryModel)
+  fullname.vb: Remotion.Linq.QueryModelVisitorBase.VisitResultOperators(System.Collections.ObjectModel.ObservableCollection(Of Remotion.Linq.Clauses.ResultOperatorBase), Remotion.Linq.QueryModel)
+  name.vb: VisitResultOperators(ObservableCollection(Of ResultOperatorBase), QueryModel)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitResultOperators(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.ResultOperatorBase},Remotion.Linq.QueryModel)
+    name: VisitResultOperators
+    nameWithType: QueryModelVisitorBase.VisitResultOperators
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitResultOperators
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    nameWithType: ObservableCollection
+    fullName: System.Collections.ObjectModel.ObservableCollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Remotion.Linq.Clauses.ResultOperatorBase
+    name: ResultOperatorBase
+    nameWithType: ResultOperatorBase
+    fullName: Remotion.Linq.Clauses.ResultOperatorBase
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitResultOperators(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.ResultOperatorBase},Remotion.Linq.QueryModel)
+    name: VisitResultOperators
+    nameWithType: QueryModelVisitorBase.VisitResultOperators
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitResultOperators
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    nameWithType: ObservableCollection
+    fullName: System.Collections.ObjectModel.ObservableCollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Remotion.Linq.Clauses.ResultOperatorBase
+    name: ResultOperatorBase
+    nameWithType: ResultOperatorBase
+    fullName: Remotion.Linq.Clauses.ResultOperatorBase
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -570,72 +1221,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+- uid: Remotion.Linq
+  commentId: N:Remotion.Linq
   isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
+  name: Remotion.Linq
+  nameWithType: Remotion.Linq
+  fullName: Remotion.Linq
 - uid: '{TVisitor}'
   commentId: '!:TVisitor'
   definition: TVisitor
@@ -647,21 +1238,163 @@ references:
   name: TVisitor
   nameWithType: TVisitor
   fullName: TVisitor
-- uid: MainFromClause
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitMainFromClause(MainFromClause, QueryModel)
+  nameWithType: QueryModelVisitorBase.VisitMainFromClause(MainFromClause, QueryModel)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause, Remotion.Linq.QueryModel)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
+    name: VisitMainFromClause
+    nameWithType: QueryModelVisitorBase.VisitMainFromClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitMainFromClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.MainFromClause
+    name: MainFromClause
+    nameWithType: MainFromClause
+    fullName: Remotion.Linq.Clauses.MainFromClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
+    name: VisitMainFromClause
+    nameWithType: QueryModelVisitorBase.VisitMainFromClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitMainFromClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.MainFromClause
+    name: MainFromClause
+    nameWithType: MainFromClause
+    fullName: Remotion.Linq.Clauses.MainFromClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.Clauses.MainFromClause
+  commentId: T:Remotion.Linq.Clauses.MainFromClause
+  parent: Remotion.Linq.Clauses
   isExternal: true
   name: MainFromClause
   nameWithType: MainFromClause
-  fullName: MainFromClause
-- uid: QueryModel
+  fullName: Remotion.Linq.Clauses.MainFromClause
+- uid: Remotion.Linq.QueryModel
+  commentId: T:Remotion.Linq.QueryModel
+  parent: Remotion.Linq
   isExternal: true
   name: QueryModel
   nameWithType: QueryModel
-  fullName: QueryModel
-- uid: AdditionalFromClause
+  fullName: Remotion.Linq.QueryModel
+- uid: Remotion.Linq.Clauses
+  commentId: N:Remotion.Linq.Clauses
+  isExternal: false
+  name: Remotion.Linq.Clauses
+  nameWithType: Remotion.Linq.Clauses
+  fullName: Remotion.Linq.Clauses
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel,System.Int32)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitAdditionalFromClause(AdditionalFromClause, QueryModel, Int32)
+  nameWithType: QueryModelVisitorBase.VisitAdditionalFromClause(AdditionalFromClause, QueryModel, Int32)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause, Remotion.Linq.QueryModel, System.Int32)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel,System.Int32)
+    name: VisitAdditionalFromClause
+    nameWithType: QueryModelVisitorBase.VisitAdditionalFromClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitAdditionalFromClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.AdditionalFromClause
+    name: AdditionalFromClause
+    nameWithType: AdditionalFromClause
+    fullName: Remotion.Linq.Clauses.AdditionalFromClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel,System.Int32)
+    name: VisitAdditionalFromClause
+    nameWithType: QueryModelVisitorBase.VisitAdditionalFromClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitAdditionalFromClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.AdditionalFromClause
+    name: AdditionalFromClause
+    nameWithType: AdditionalFromClause
+    fullName: Remotion.Linq.Clauses.AdditionalFromClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.Clauses.AdditionalFromClause
+  commentId: T:Remotion.Linq.Clauses.AdditionalFromClause
+  parent: Remotion.Linq.Clauses
   isExternal: true
   name: AdditionalFromClause
   nameWithType: AdditionalFromClause
-  fullName: AdditionalFromClause
+  fullName: Remotion.Linq.Clauses.AdditionalFromClause
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -669,38 +1402,563 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: JoinClause
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,System.Int32)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitJoinClause(JoinClause, QueryModel, Int32)
+  nameWithType: QueryModelVisitorBase.VisitJoinClause(JoinClause, QueryModel, Int32)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause, Remotion.Linq.QueryModel, System.Int32)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,System.Int32)
+    name: VisitJoinClause
+    nameWithType: QueryModelVisitorBase.VisitJoinClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.JoinClause
+    name: JoinClause
+    nameWithType: JoinClause
+    fullName: Remotion.Linq.Clauses.JoinClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,System.Int32)
+    name: VisitJoinClause
+    nameWithType: QueryModelVisitorBase.VisitJoinClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.JoinClause
+    name: JoinClause
+    nameWithType: JoinClause
+    fullName: Remotion.Linq.Clauses.JoinClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.Clauses.JoinClause
+  commentId: T:Remotion.Linq.Clauses.JoinClause
+  parent: Remotion.Linq.Clauses
   isExternal: true
   name: JoinClause
   nameWithType: JoinClause
-  fullName: JoinClause
-- uid: GroupJoinClause
+  fullName: Remotion.Linq.Clauses.JoinClause
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.GroupJoinClause)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.GroupJoinClause)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitJoinClause(JoinClause, QueryModel, GroupJoinClause)
+  nameWithType: QueryModelVisitorBase.VisitJoinClause(JoinClause, QueryModel, GroupJoinClause)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause, Remotion.Linq.QueryModel, Remotion.Linq.Clauses.GroupJoinClause)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.GroupJoinClause)
+    name: VisitJoinClause
+    nameWithType: QueryModelVisitorBase.VisitJoinClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.JoinClause
+    name: JoinClause
+    nameWithType: JoinClause
+    fullName: Remotion.Linq.Clauses.JoinClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.Clauses.GroupJoinClause
+    name: GroupJoinClause
+    nameWithType: GroupJoinClause
+    fullName: Remotion.Linq.Clauses.GroupJoinClause
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.GroupJoinClause)
+    name: VisitJoinClause
+    nameWithType: QueryModelVisitorBase.VisitJoinClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.JoinClause
+    name: JoinClause
+    nameWithType: JoinClause
+    fullName: Remotion.Linq.Clauses.JoinClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.Clauses.GroupJoinClause
+    name: GroupJoinClause
+    nameWithType: GroupJoinClause
+    fullName: Remotion.Linq.Clauses.GroupJoinClause
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.Clauses.GroupJoinClause
+  commentId: T:Remotion.Linq.Clauses.GroupJoinClause
+  parent: Remotion.Linq.Clauses
   isExternal: true
   name: GroupJoinClause
   nameWithType: GroupJoinClause
-  fullName: GroupJoinClause
-- uid: WhereClause
+  fullName: Remotion.Linq.Clauses.GroupJoinClause
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitWhereClause(Remotion.Linq.Clauses.WhereClause,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitWhereClause(Remotion.Linq.Clauses.WhereClause,Remotion.Linq.QueryModel,System.Int32)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitWhereClause(WhereClause, QueryModel, Int32)
+  nameWithType: QueryModelVisitorBase.VisitWhereClause(WhereClause, QueryModel, Int32)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitWhereClause(Remotion.Linq.Clauses.WhereClause, Remotion.Linq.QueryModel, System.Int32)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitWhereClause(Remotion.Linq.Clauses.WhereClause,Remotion.Linq.QueryModel,System.Int32)
+    name: VisitWhereClause
+    nameWithType: QueryModelVisitorBase.VisitWhereClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitWhereClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.WhereClause
+    name: WhereClause
+    nameWithType: WhereClause
+    fullName: Remotion.Linq.Clauses.WhereClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitWhereClause(Remotion.Linq.Clauses.WhereClause,Remotion.Linq.QueryModel,System.Int32)
+    name: VisitWhereClause
+    nameWithType: QueryModelVisitorBase.VisitWhereClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitWhereClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.WhereClause
+    name: WhereClause
+    nameWithType: WhereClause
+    fullName: Remotion.Linq.Clauses.WhereClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.Clauses.WhereClause
+  commentId: T:Remotion.Linq.Clauses.WhereClause
+  parent: Remotion.Linq.Clauses
   isExternal: true
   name: WhereClause
   nameWithType: WhereClause
-  fullName: WhereClause
-- uid: OrderByClause
+  fullName: Remotion.Linq.Clauses.WhereClause
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause,Remotion.Linq.QueryModel,System.Int32)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitOrderByClause(OrderByClause, QueryModel, Int32)
+  nameWithType: QueryModelVisitorBase.VisitOrderByClause(OrderByClause, QueryModel, Int32)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause, Remotion.Linq.QueryModel, System.Int32)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause,Remotion.Linq.QueryModel,System.Int32)
+    name: VisitOrderByClause
+    nameWithType: QueryModelVisitorBase.VisitOrderByClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.OrderByClause
+    name: OrderByClause
+    nameWithType: OrderByClause
+    fullName: Remotion.Linq.Clauses.OrderByClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause,Remotion.Linq.QueryModel,System.Int32)
+    name: VisitOrderByClause
+    nameWithType: QueryModelVisitorBase.VisitOrderByClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.OrderByClause
+    name: OrderByClause
+    nameWithType: OrderByClause
+    fullName: Remotion.Linq.Clauses.OrderByClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.Clauses.OrderByClause
+  commentId: T:Remotion.Linq.Clauses.OrderByClause
+  parent: Remotion.Linq.Clauses
   isExternal: true
   name: OrderByClause
   nameWithType: OrderByClause
-  fullName: OrderByClause
-- uid: Ordering
+  fullName: Remotion.Linq.Clauses.OrderByClause
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitOrdering(Remotion.Linq.Clauses.Ordering,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause,System.Int32)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitOrdering(Remotion.Linq.Clauses.Ordering,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause,System.Int32)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitOrdering(Ordering, QueryModel, OrderByClause, Int32)
+  nameWithType: QueryModelVisitorBase.VisitOrdering(Ordering, QueryModel, OrderByClause, Int32)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrdering(Remotion.Linq.Clauses.Ordering, Remotion.Linq.QueryModel, Remotion.Linq.Clauses.OrderByClause, System.Int32)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitOrdering(Remotion.Linq.Clauses.Ordering,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause,System.Int32)
+    name: VisitOrdering
+    nameWithType: QueryModelVisitorBase.VisitOrdering
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrdering
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.Ordering
+    name: Ordering
+    nameWithType: Ordering
+    fullName: Remotion.Linq.Clauses.Ordering
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.Clauses.OrderByClause
+    name: OrderByClause
+    nameWithType: OrderByClause
+    fullName: Remotion.Linq.Clauses.OrderByClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitOrdering(Remotion.Linq.Clauses.Ordering,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause,System.Int32)
+    name: VisitOrdering
+    nameWithType: QueryModelVisitorBase.VisitOrdering
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrdering
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.Ordering
+    name: Ordering
+    nameWithType: Ordering
+    fullName: Remotion.Linq.Clauses.Ordering
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.Clauses.OrderByClause
+    name: OrderByClause
+    nameWithType: OrderByClause
+    fullName: Remotion.Linq.Clauses.OrderByClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.Clauses.Ordering
+  commentId: T:Remotion.Linq.Clauses.Ordering
+  parent: Remotion.Linq.Clauses
   isExternal: true
   name: Ordering
   nameWithType: Ordering
-  fullName: Ordering
-- uid: SelectClause
+  fullName: Remotion.Linq.Clauses.Ordering
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitSelectClause(Remotion.Linq.Clauses.SelectClause,Remotion.Linq.QueryModel)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitSelectClause(Remotion.Linq.Clauses.SelectClause,Remotion.Linq.QueryModel)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitSelectClause(SelectClause, QueryModel)
+  nameWithType: QueryModelVisitorBase.VisitSelectClause(SelectClause, QueryModel)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitSelectClause(Remotion.Linq.Clauses.SelectClause, Remotion.Linq.QueryModel)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitSelectClause(Remotion.Linq.Clauses.SelectClause,Remotion.Linq.QueryModel)
+    name: VisitSelectClause
+    nameWithType: QueryModelVisitorBase.VisitSelectClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitSelectClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.SelectClause
+    name: SelectClause
+    nameWithType: SelectClause
+    fullName: Remotion.Linq.Clauses.SelectClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitSelectClause(Remotion.Linq.Clauses.SelectClause,Remotion.Linq.QueryModel)
+    name: VisitSelectClause
+    nameWithType: QueryModelVisitorBase.VisitSelectClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitSelectClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.SelectClause
+    name: SelectClause
+    nameWithType: SelectClause
+    fullName: Remotion.Linq.Clauses.SelectClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.Clauses.SelectClause
+  commentId: T:Remotion.Linq.Clauses.SelectClause
+  parent: Remotion.Linq.Clauses
   isExternal: true
   name: SelectClause
   nameWithType: SelectClause
-  fullName: SelectClause
-- uid: ResultOperatorBase
+  fullName: Remotion.Linq.Clauses.SelectClause
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase,Remotion.Linq.QueryModel,System.Int32)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitResultOperator(ResultOperatorBase, QueryModel, Int32)
+  nameWithType: QueryModelVisitorBase.VisitResultOperator(ResultOperatorBase, QueryModel, Int32)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase, Remotion.Linq.QueryModel, System.Int32)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase,Remotion.Linq.QueryModel,System.Int32)
+    name: VisitResultOperator
+    nameWithType: QueryModelVisitorBase.VisitResultOperator
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitResultOperator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.ResultOperatorBase
+    name: ResultOperatorBase
+    nameWithType: ResultOperatorBase
+    fullName: Remotion.Linq.Clauses.ResultOperatorBase
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase,Remotion.Linq.QueryModel,System.Int32)
+    name: VisitResultOperator
+    nameWithType: QueryModelVisitorBase.VisitResultOperator
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitResultOperator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.ResultOperatorBase
+    name: ResultOperatorBase
+    nameWithType: ResultOperatorBase
+    fullName: Remotion.Linq.Clauses.ResultOperatorBase
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.Clauses.ResultOperatorBase
+  commentId: T:Remotion.Linq.Clauses.ResultOperatorBase
+  parent: Remotion.Linq.Clauses
   isExternal: true
   name: ResultOperatorBase
   nameWithType: ResultOperatorBase
-  fullName: ResultOperatorBase
+  fullName: Remotion.Linq.Clauses.ResultOperatorBase

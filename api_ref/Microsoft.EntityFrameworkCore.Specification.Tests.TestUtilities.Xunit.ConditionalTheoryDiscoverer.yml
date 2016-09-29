@@ -5,9 +5,9 @@ items:
   id: ConditionalTheoryDiscoverer
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit
   children:
-  - Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.#ctor(IMessageSink)
-  - Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForDataRow(ITestFrameworkDiscoveryOptions,ITestMethod,IAttributeInfo,System.Object[])
-  - Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForTheory(ITestFrameworkDiscoveryOptions,ITestMethod,IAttributeInfo)
+  - Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.#ctor(Xunit.Abstractions.IMessageSink)
+  - Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.Object[])
+  - Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForTheory(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo)
   langs:
   - csharp
   - vb
@@ -19,7 +19,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/TestUtilities/Xunit/ConditionalTheoryDiscoverer.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: ConditionalTheoryDiscoverer
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/TestUtilities/Xunit/ConditionalTheoryDiscoverer.cs
     startLine: 8
@@ -27,36 +27,49 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit
   syntax:
-    content: 'public class ConditionalTheoryDiscoverer : TheoryDiscoverer'
+    content: 'public class ConditionalTheoryDiscoverer : TheoryDiscoverer, IXunitTestCaseDiscoverer'
     content.vb: >-
       Public Class ConditionalTheoryDiscoverer
           Inherits TheoryDiscoverer
+          Implements IXunitTestCaseDiscoverer
   inheritance:
   - System.Object
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
+  - Xunit.Sdk.TheoryDiscoverer
+  implements:
+  - Xunit.Sdk.IXunitTestCaseDiscoverer
+  inheritedMembers:
+  - Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkip(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.String)
+  - Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkippedDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.Object[],System.String)
+  - Xunit.Sdk.TheoryDiscoverer.Discover(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo)
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.#ctor(IMessageSink)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.#ctor(IMessageSink)
-  id: '#ctor(IMessageSink)'
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.#ctor(Xunit.Abstractions.IMessageSink)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.#ctor(Xunit.Abstractions.IMessageSink)
+  id: '#ctor(Xunit.Abstractions.IMessageSink)'
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer
   langs:
   - csharp
   - vb
   name: ConditionalTheoryDiscoverer(IMessageSink)
   nameWithType: ConditionalTheoryDiscoverer.ConditionalTheoryDiscoverer(IMessageSink)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.ConditionalTheoryDiscoverer(IMessageSink)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.ConditionalTheoryDiscoverer(Xunit.Abstractions.IMessageSink)
   type: Constructor
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/TestUtilities/Xunit/ConditionalTheoryDiscoverer.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/TestUtilities/Xunit/ConditionalTheoryDiscoverer.cs
     startLine: 12
@@ -68,27 +81,27 @@ items:
     content.vb: Public Sub New(diagnosticMessageSink As IMessageSink)
     parameters:
     - id: diagnosticMessageSink
-      type: IMessageSink
+      type: Xunit.Abstractions.IMessageSink
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForDataRow(ITestFrameworkDiscoveryOptions,ITestMethod,IAttributeInfo,System.Object[])
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForDataRow(ITestFrameworkDiscoveryOptions,ITestMethod,IAttributeInfo,System.Object[])
-  id: CreateTestCaseForDataRow(ITestFrameworkDiscoveryOptions,ITestMethod,IAttributeInfo,System.Object[])
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.Object[])
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.Object[])
+  id: CreateTestCaseForDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.Object[])
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer
   langs:
   - csharp
   - vb
   name: CreateTestCaseForDataRow(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, Object[])
   nameWithType: ConditionalTheoryDiscoverer.CreateTestCaseForDataRow(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, Object[])
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForDataRow(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, System.Object[])
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions, Xunit.Abstractions.ITestMethod, Xunit.Abstractions.IAttributeInfo, System.Object[])
   type: Method
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/TestUtilities/Xunit/ConditionalTheoryDiscoverer.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CreateTestCaseForDataRow
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/TestUtilities/Xunit/ConditionalTheoryDiscoverer.cs
     startLine: 18
@@ -100,15 +113,16 @@ items:
     content.vb: Protected Overrides Function CreateTestCaseForDataRow(discoveryOptions As ITestFrameworkDiscoveryOptions, testMethod As ITestMethod, theoryAttribute As IAttributeInfo, dataRow As Object()) As IXunitTestCase
     parameters:
     - id: discoveryOptions
-      type: ITestFrameworkDiscoveryOptions
+      type: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
     - id: testMethod
-      type: ITestMethod
+      type: Xunit.Abstractions.ITestMethod
     - id: theoryAttribute
-      type: IAttributeInfo
+      type: Xunit.Abstractions.IAttributeInfo
     - id: dataRow
       type: System.Object[]
     return:
-      type: IXunitTestCase
+      type: Xunit.Sdk.IXunitTestCase
+  overridden: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.Object[])
   nameWithType.vb: ConditionalTheoryDiscoverer.CreateTestCaseForDataRow(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, Object())
   modifiers.csharp:
   - protected
@@ -116,24 +130,24 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
-  fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForDataRow(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, System.Object())
+  fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions, Xunit.Abstractions.ITestMethod, Xunit.Abstractions.IAttributeInfo, System.Object())
   name.vb: CreateTestCaseForDataRow(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, Object())
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForTheory(ITestFrameworkDiscoveryOptions,ITestMethod,IAttributeInfo)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForTheory(ITestFrameworkDiscoveryOptions,ITestMethod,IAttributeInfo)
-  id: CreateTestCaseForTheory(ITestFrameworkDiscoveryOptions,ITestMethod,IAttributeInfo)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForTheory(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForTheory(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo)
+  id: CreateTestCaseForTheory(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo)
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer
   langs:
   - csharp
   - vb
   name: CreateTestCaseForTheory(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo)
   nameWithType: ConditionalTheoryDiscoverer.CreateTestCaseForTheory(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForTheory(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.CreateTestCaseForTheory(Xunit.Abstractions.ITestFrameworkDiscoveryOptions, Xunit.Abstractions.ITestMethod, Xunit.Abstractions.IAttributeInfo)
   type: Method
   source:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/TestUtilities/Xunit/ConditionalTheoryDiscoverer.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CreateTestCaseForTheory
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/TestUtilities/Xunit/ConditionalTheoryDiscoverer.cs
     startLine: 21
@@ -145,13 +159,14 @@ items:
     content.vb: Protected Overrides Function CreateTestCaseForTheory(discoveryOptions As ITestFrameworkDiscoveryOptions, testMethod As ITestMethod, theoryAttribute As IAttributeInfo) As IXunitTestCase
     parameters:
     - id: discoveryOptions
-      type: ITestFrameworkDiscoveryOptions
+      type: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
     - id: testMethod
-      type: ITestMethod
+      type: Xunit.Abstractions.ITestMethod
     - id: theoryAttribute
-      type: IAttributeInfo
+      type: Xunit.Abstractions.IAttributeInfo
     return:
-      type: IXunitTestCase
+      type: Xunit.Sdk.IXunitTestCase
+  overridden: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForTheory(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo)
   modifiers.csharp:
   - protected
   - override
@@ -172,24 +187,60 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<ConditionalTheoryDiscoverer, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<ConditionalTheoryDiscoverer, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of ConditionalTheoryDiscoverer, TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer, TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of ConditionalTheoryDiscoverer, TConcrete)(String)
+- uid: Xunit.Sdk.TheoryDiscoverer
+  commentId: T:Xunit.Sdk.TheoryDiscoverer
+  parent: Xunit.Sdk
+  isExternal: true
+  name: TheoryDiscoverer
+  nameWithType: TheoryDiscoverer
+  fullName: Xunit.Sdk.TheoryDiscoverer
+- uid: Xunit.Sdk.IXunitTestCaseDiscoverer
+  commentId: T:Xunit.Sdk.IXunitTestCaseDiscoverer
+  parent: Xunit.Sdk
+  isExternal: true
+  name: IXunitTestCaseDiscoverer
+  nameWithType: IXunitTestCaseDiscoverer
+  fullName: Xunit.Sdk.IXunitTestCaseDiscoverer
+- uid: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkip(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.String)
+  commentId: M:Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkip(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.String)
+  parent: Xunit.Sdk.TheoryDiscoverer
+  isExternal: true
+  name: CreateTestCaseForSkip(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, String)
+  nameWithType: TheoryDiscoverer.CreateTestCaseForSkip(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, String)
+  fullName: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkip(Xunit.Abstractions.ITestFrameworkDiscoveryOptions, Xunit.Abstractions.ITestMethod, Xunit.Abstractions.IAttributeInfo, System.String)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<ConditionalTheoryDiscoverer, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<ConditionalTheoryDiscoverer, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer, TConcrete>
+  - uid: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkip(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.String)
+    name: CreateTestCaseForSkip
+    nameWithType: TheoryDiscoverer.CreateTestCaseForSkip
+    fullName: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkip
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
+  - uid: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    name: ITestFrameworkDiscoveryOptions
+    nameWithType: ITestFrameworkDiscoveryOptions
+    fullName: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.ITestMethod
+    name: ITestMethod
+    nameWithType: ITestMethod
+    fullName: Xunit.Abstractions.ITestMethod
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.IAttributeInfo
+    name: IAttributeInfo
+    nameWithType: IAttributeInfo
+    fullName: Xunit.Abstractions.IAttributeInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
   - uid: System.String
     name: String
     nameWithType: String
@@ -199,18 +250,509 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of ConditionalTheoryDiscoverer, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of ConditionalTheoryDiscoverer, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit.ConditionalTheoryDiscoverer, TConcrete)
+  - uid: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkip(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.String)
+    name: CreateTestCaseForSkip
+    nameWithType: TheoryDiscoverer.CreateTestCaseForSkip
+    fullName: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkip
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
+  - uid: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    name: ITestFrameworkDiscoveryOptions
+    nameWithType: ITestFrameworkDiscoveryOptions
+    fullName: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.ITestMethod
+    name: ITestMethod
+    nameWithType: ITestMethod
+    fullName: Xunit.Abstractions.ITestMethod
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.IAttributeInfo
+    name: IAttributeInfo
+    nameWithType: IAttributeInfo
+    fullName: Xunit.Abstractions.IAttributeInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkippedDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.Object[],System.String)
+  commentId: M:Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkippedDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.Object[],System.String)
+  parent: Xunit.Sdk.TheoryDiscoverer
+  isExternal: true
+  name: CreateTestCaseForSkippedDataRow(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, Object[], String)
+  nameWithType: TheoryDiscoverer.CreateTestCaseForSkippedDataRow(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, Object[], String)
+  fullName: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkippedDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions, Xunit.Abstractions.ITestMethod, Xunit.Abstractions.IAttributeInfo, System.Object[], System.String)
+  nameWithType.vb: TheoryDiscoverer.CreateTestCaseForSkippedDataRow(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, Object(), String)
+  fullname.vb: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkippedDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions, Xunit.Abstractions.ITestMethod, Xunit.Abstractions.IAttributeInfo, System.Object(), System.String)
+  name.vb: CreateTestCaseForSkippedDataRow(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, Object(), String)
+  spec.csharp:
+  - uid: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkippedDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.Object[],System.String)
+    name: CreateTestCaseForSkippedDataRow
+    nameWithType: TheoryDiscoverer.CreateTestCaseForSkippedDataRow
+    fullName: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkippedDataRow
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    name: ITestFrameworkDiscoveryOptions
+    nameWithType: ITestFrameworkDiscoveryOptions
+    fullName: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.ITestMethod
+    name: ITestMethod
+    nameWithType: ITestMethod
+    fullName: Xunit.Abstractions.ITestMethod
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.IAttributeInfo
+    name: IAttributeInfo
+    nameWithType: IAttributeInfo
+    fullName: Xunit.Abstractions.IAttributeInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkippedDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.Object[],System.String)
+    name: CreateTestCaseForSkippedDataRow
+    nameWithType: TheoryDiscoverer.CreateTestCaseForSkippedDataRow
+    fullName: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForSkippedDataRow
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    name: ITestFrameworkDiscoveryOptions
+    nameWithType: ITestFrameworkDiscoveryOptions
+    fullName: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.ITestMethod
+    name: ITestMethod
+    nameWithType: ITestMethod
+    fullName: Xunit.Abstractions.ITestMethod
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.IAttributeInfo
+    name: IAttributeInfo
+    nameWithType: IAttributeInfo
+    fullName: Xunit.Abstractions.IAttributeInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Xunit.Sdk.TheoryDiscoverer.Discover(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo)
+  commentId: M:Xunit.Sdk.TheoryDiscoverer.Discover(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo)
+  parent: Xunit.Sdk.TheoryDiscoverer
+  isExternal: true
+  name: Discover(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo)
+  nameWithType: TheoryDiscoverer.Discover(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo)
+  fullName: Xunit.Sdk.TheoryDiscoverer.Discover(Xunit.Abstractions.ITestFrameworkDiscoveryOptions, Xunit.Abstractions.ITestMethod, Xunit.Abstractions.IAttributeInfo)
+  spec.csharp:
+  - uid: Xunit.Sdk.TheoryDiscoverer.Discover(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo)
+    name: Discover
+    nameWithType: TheoryDiscoverer.Discover
+    fullName: Xunit.Sdk.TheoryDiscoverer.Discover
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    name: ITestFrameworkDiscoveryOptions
+    nameWithType: ITestFrameworkDiscoveryOptions
+    fullName: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.ITestMethod
+    name: ITestMethod
+    nameWithType: ITestMethod
+    fullName: Xunit.Abstractions.ITestMethod
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.IAttributeInfo
+    name: IAttributeInfo
+    nameWithType: IAttributeInfo
+    fullName: Xunit.Abstractions.IAttributeInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Xunit.Sdk.TheoryDiscoverer.Discover(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo)
+    name: Discover
+    nameWithType: TheoryDiscoverer.Discover
+    fullName: Xunit.Sdk.TheoryDiscoverer.Discover
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    name: ITestFrameworkDiscoveryOptions
+    nameWithType: ITestFrameworkDiscoveryOptions
+    fullName: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.ITestMethod
+    name: ITestMethod
+    nameWithType: ITestMethod
+    fullName: Xunit.Abstractions.ITestMethod
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.IAttributeInfo
+    name: IAttributeInfo
+    nameWithType: IAttributeInfo
+    fullName: Xunit.Abstractions.IAttributeInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -220,92 +762,144 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
+- uid: Xunit.Sdk
+  commentId: N:Xunit.Sdk
+  isExternal: false
+  name: Xunit.Sdk
+  nameWithType: Xunit.Sdk
+  fullName: Xunit.Sdk
+- uid: Xunit.Abstractions.IMessageSink
+  commentId: T:Xunit.Abstractions.IMessageSink
+  parent: Xunit.Abstractions
   isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
+  name: IMessageSink
+  nameWithType: IMessageSink
+  fullName: Xunit.Abstractions.IMessageSink
+- uid: Xunit.Abstractions
+  commentId: N:Xunit.Abstractions
+  isExternal: false
+  name: Xunit.Abstractions
+  nameWithType: Xunit.Abstractions
+  fullName: Xunit.Abstractions
+- uid: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.Object[])
+  commentId: M:Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.Object[])
+  parent: Xunit.Sdk.TheoryDiscoverer
+  isExternal: true
+  name: CreateTestCaseForDataRow(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, Object[])
+  nameWithType: TheoryDiscoverer.CreateTestCaseForDataRow(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, Object[])
+  fullName: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions, Xunit.Abstractions.ITestMethod, Xunit.Abstractions.IAttributeInfo, System.Object[])
+  nameWithType.vb: TheoryDiscoverer.CreateTestCaseForDataRow(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, Object())
+  fullname.vb: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions, Xunit.Abstractions.ITestMethod, Xunit.Abstractions.IAttributeInfo, System.Object())
+  name.vb: CreateTestCaseForDataRow(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo, Object())
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
+  - uid: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.Object[])
+    name: CreateTestCaseForDataRow
+    nameWithType: TheoryDiscoverer.CreateTestCaseForDataRow
+    fullName: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForDataRow
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
+  - uid: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    name: ITestFrameworkDiscoveryOptions
+    nameWithType: ITestFrameworkDiscoveryOptions
+    fullName: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Xunit.Abstractions.ITestMethod
+    name: ITestMethod
+    nameWithType: ITestMethod
+    fullName: Xunit.Abstractions.ITestMethod
     isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.IAttributeInfo
+    name: IAttributeInfo
+    nameWithType: IAttributeInfo
+    fullName: Xunit.Abstractions.IAttributeInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
+  - uid: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForDataRow(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo,System.Object[])
+    name: CreateTestCaseForDataRow
+    nameWithType: TheoryDiscoverer.CreateTestCaseForDataRow
+    fullName: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForDataRow
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
+  - uid: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    name: ITestFrameworkDiscoveryOptions
+    nameWithType: ITestFrameworkDiscoveryOptions
+    fullName: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Xunit.Abstractions.ITestMethod
+    name: ITestMethod
+    nameWithType: ITestMethod
+    fullName: Xunit.Abstractions.ITestMethod
     isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.IAttributeInfo
+    name: IAttributeInfo
+    nameWithType: IAttributeInfo
+    fullName: Xunit.Abstractions.IAttributeInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
-- uid: IMessageSink
-  isExternal: true
-  name: IMessageSink
-  nameWithType: IMessageSink
-  fullName: IMessageSink
-- uid: ITestFrameworkDiscoveryOptions
+- uid: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+  commentId: T:Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+  parent: Xunit.Abstractions
   isExternal: true
   name: ITestFrameworkDiscoveryOptions
   nameWithType: ITestFrameworkDiscoveryOptions
-  fullName: ITestFrameworkDiscoveryOptions
-- uid: ITestMethod
+  fullName: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+- uid: Xunit.Abstractions.ITestMethod
+  commentId: T:Xunit.Abstractions.ITestMethod
+  parent: Xunit.Abstractions
   isExternal: true
   name: ITestMethod
   nameWithType: ITestMethod
-  fullName: ITestMethod
-- uid: IAttributeInfo
+  fullName: Xunit.Abstractions.ITestMethod
+- uid: Xunit.Abstractions.IAttributeInfo
+  commentId: T:Xunit.Abstractions.IAttributeInfo
+  parent: Xunit.Abstractions
   isExternal: true
   name: IAttributeInfo
   nameWithType: IAttributeInfo
-  fullName: IAttributeInfo
+  fullName: Xunit.Abstractions.IAttributeInfo
 - uid: System.Object[]
   name: Object[]
   nameWithType: Object[]
@@ -331,8 +925,83 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: IXunitTestCase
+- uid: Xunit.Sdk.IXunitTestCase
+  commentId: T:Xunit.Sdk.IXunitTestCase
+  parent: Xunit.Sdk
   isExternal: true
   name: IXunitTestCase
   nameWithType: IXunitTestCase
-  fullName: IXunitTestCase
+  fullName: Xunit.Sdk.IXunitTestCase
+- uid: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForTheory(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo)
+  commentId: M:Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForTheory(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo)
+  parent: Xunit.Sdk.TheoryDiscoverer
+  isExternal: true
+  name: CreateTestCaseForTheory(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo)
+  nameWithType: TheoryDiscoverer.CreateTestCaseForTheory(ITestFrameworkDiscoveryOptions, ITestMethod, IAttributeInfo)
+  fullName: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForTheory(Xunit.Abstractions.ITestFrameworkDiscoveryOptions, Xunit.Abstractions.ITestMethod, Xunit.Abstractions.IAttributeInfo)
+  spec.csharp:
+  - uid: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForTheory(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo)
+    name: CreateTestCaseForTheory
+    nameWithType: TheoryDiscoverer.CreateTestCaseForTheory
+    fullName: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForTheory
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    name: ITestFrameworkDiscoveryOptions
+    nameWithType: ITestFrameworkDiscoveryOptions
+    fullName: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.ITestMethod
+    name: ITestMethod
+    nameWithType: ITestMethod
+    fullName: Xunit.Abstractions.ITestMethod
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.IAttributeInfo
+    name: IAttributeInfo
+    nameWithType: IAttributeInfo
+    fullName: Xunit.Abstractions.IAttributeInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForTheory(Xunit.Abstractions.ITestFrameworkDiscoveryOptions,Xunit.Abstractions.ITestMethod,Xunit.Abstractions.IAttributeInfo)
+    name: CreateTestCaseForTheory
+    nameWithType: TheoryDiscoverer.CreateTestCaseForTheory
+    fullName: Xunit.Sdk.TheoryDiscoverer.CreateTestCaseForTheory
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    name: ITestFrameworkDiscoveryOptions
+    nameWithType: ITestFrameworkDiscoveryOptions
+    fullName: Xunit.Abstractions.ITestFrameworkDiscoveryOptions
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.ITestMethod
+    name: ITestMethod
+    nameWithType: ITestMethod
+    fullName: Xunit.Abstractions.ITestMethod
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Xunit.Abstractions.IAttributeInfo
+    name: IAttributeInfo
+    nameWithType: IAttributeInfo
+    fullName: Xunit.Abstractions.IAttributeInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )

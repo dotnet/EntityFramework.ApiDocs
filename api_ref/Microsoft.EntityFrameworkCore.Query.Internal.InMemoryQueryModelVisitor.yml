@@ -21,7 +21,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.InMemory/Query/Internal/InMemoryQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: InMemoryQueryModelVisitor
     path: src/Microsoft.EntityFrameworkCore.InMemory/Query/Internal/InMemoryQueryModelVisitor.cs
     startLine: 24
@@ -31,13 +31,17 @@ items:
   summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
-    content: 'public class InMemoryQueryModelVisitor : EntityQueryModelVisitor'
+    content: 'public class InMemoryQueryModelVisitor : EntityQueryModelVisitor, IQueryModelVisitor'
     content.vb: >-
       Public Class InMemoryQueryModelVisitor
           Inherits EntityQueryModelVisitor
+          Implements IQueryModelVisitor
   inheritance:
   - System.Object
+  - Remotion.Linq.QueryModelVisitorBase
   - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
+  implements:
+  - Remotion.Linq.IQueryModelVisitor
   inheritedMembers:
   - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.QueryContextParameter
   - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IsPropertyMethod(System.Reflection.MethodInfo)
@@ -46,42 +50,52 @@ items:
   - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CurrentParameter
   - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.QueryCompilationContext
   - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.LinqOperatorProvider
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor``1(QueryModel)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor``1(QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor``1(Remotion.Linq.QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor``1(Remotion.Linq.QueryModel)
   - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.InterceptExceptions
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ExtractQueryAnnotations(QueryModel)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.OptimizeQueryModel(QueryModel)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.SingleResultToSequence(QueryModel,System.Type)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(QueryModel)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(QueryModel,System.Collections.Generic.IReadOnlyCollection{Microsoft.EntityFrameworkCore.Query.IncludeSpecification})
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults``1(QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ExtractQueryAnnotations(Remotion.Linq.QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.OptimizeQueryModel(Remotion.Linq.QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.SingleResultToSequence(Remotion.Linq.QueryModel,System.Type)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Remotion.Linq.QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Remotion.Linq.QueryModel,System.Collections.Generic.IReadOnlyCollection{Microsoft.EntityFrameworkCore.Query.IncludeSpecification})
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults``1(Remotion.Linq.QueryModel)
   - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateExecutorLambda``1
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitQueryModel(QueryModel)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitMainFromClause(MainFromClause,QueryModel)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileMainFromClauseExpression(MainFromClause,QueryModel)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitAdditionalFromClause(AdditionalFromClause,QueryModel,System.Int32)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileAdditionalFromClauseExpression(AdditionalFromClause,QueryModel)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitJoinClause(JoinClause,QueryModel,System.Int32)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression(JoinClause,QueryModel)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitGroupJoinClause(GroupJoinClause,QueryModel,System.Int32)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression(GroupJoinClause,QueryModel)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitWhereClause(WhereClause,QueryModel,System.Int32)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitOrdering(Ordering,QueryModel,OrderByClause,System.Int32)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitSelectClause(SelectClause,QueryModel)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitResultOperator(ResultOperatorBase,QueryModel,System.Int32)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ReplaceClauseReferences(System.Linq.Expressions.Expression,IQuerySource,System.Boolean)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.AddOrUpdateMapping(IQuerySource,System.Linq.Expressions.Expression)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitQueryModel(Remotion.Linq.QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileMainFromClauseExpression(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel,System.Int32)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileAdditionalFromClauseExpression(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,System.Int32)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitGroupJoinClause(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel,System.Int32)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitWhereClause(Remotion.Linq.Clauses.WhereClause,Remotion.Linq.QueryModel,System.Int32)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitOrdering(Remotion.Linq.Clauses.Ordering,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause,System.Int32)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitSelectClause(Remotion.Linq.Clauses.SelectClause,Remotion.Linq.QueryModel)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase,Remotion.Linq.QueryModel,System.Int32)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ReplaceClauseReferences(System.Linq.Expressions.Expression,Remotion.Linq.Clauses.IQuerySource,System.Boolean)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.AddOrUpdateMapping(Remotion.Linq.Clauses.IQuerySource,System.Linq.Expressions.Expression)
   - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallToValueBuffer(System.Linq.Expressions.MethodCallExpression,System.Linq.Expressions.Expression)
   - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberToValueBuffer(System.Linq.Expressions.MemberExpression,System.Linq.Expressions.Expression)
   - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindReadValueMethod(System.Type,System.Linq.Expressions.Expression,System.Int32)
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},IQuerySource,{TResult}})
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(System.Linq.Expressions.MemberExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource})
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,{TResult}})
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,{TResult}})
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,{TResult}})
-  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(System.Linq.Expressions.MethodCallExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource})
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitor.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},Remotion.Linq.Clauses.IQuerySource,{TResult}})
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(System.Linq.Expressions.MemberExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource})
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,{TResult}})
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,{TResult}})
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,{TResult}})
+  - Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(System.Linq.Expressions.MethodCallExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource})
+  - Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.GroupJoinClause)
+  - Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause,Remotion.Linq.QueryModel,System.Int32)
+  - Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.IBodyClause},Remotion.Linq.QueryModel)
+  - Remotion.Linq.QueryModelVisitorBase.VisitOrderings(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.Ordering},Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause)
+  - Remotion.Linq.QueryModelVisitorBase.VisitResultOperators(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.ResultOperatorBase},Remotion.Linq.QueryModel)
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
   modifiers.csharp:
   - public
   - class
@@ -103,7 +117,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.InMemory/Query/Internal/InMemoryQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore.InMemory/Query/Internal/InMemoryQueryModelVisitor.cs
     startLine: 32
@@ -167,7 +181,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.InMemory/Query/Internal/InMemoryQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: IncludeNavigations
     path: src/Microsoft.EntityFrameworkCore.InMemory/Query/Internal/InMemoryQueryModelVisitor.cs
     startLine: 75
@@ -210,7 +224,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.InMemory/Query/Internal/InMemoryQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: EntityQueryMethodInfo
     path: src/Microsoft.EntityFrameworkCore.InMemory/Query/Internal/InMemoryQueryModelVisitor.cs
     startLine: 348
@@ -247,7 +261,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.InMemory/Query/Internal/InMemoryQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: OfTypeMethodInfo
     path: src/Microsoft.EntityFrameworkCore.InMemory/Query/Internal/InMemoryQueryModelVisitor.cs
     startLine: 356
@@ -284,7 +298,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.InMemory/Query/Internal/InMemoryQueryModelVisitor.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: ProjectionQueryMethodInfo
     path: src/Microsoft.EntityFrameworkCore.InMemory/Query/Internal/InMemoryQueryModelVisitor.cs
     startLine: 392
@@ -320,6 +334,13 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: Remotion.Linq.QueryModelVisitorBase
+  commentId: T:Remotion.Linq.QueryModelVisitorBase
+  parent: Remotion.Linq
+  isExternal: true
+  name: QueryModelVisitorBase
+  nameWithType: QueryModelVisitorBase
+  fullName: Remotion.Linq.QueryModelVisitorBase
 - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   commentId: T:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   parent: Microsoft.EntityFrameworkCore.Query
@@ -327,6 +348,13 @@ references:
   name: EntityQueryModelVisitor
   nameWithType: EntityQueryModelVisitor
   fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
+- uid: Remotion.Linq.IQueryModelVisitor
+  commentId: T:Remotion.Linq.IQueryModelVisitor
+  parent: Remotion.Linq
+  isExternal: true
+  name: IQueryModelVisitor
+  nameWithType: IQueryModelVisitor
+  fullName: Remotion.Linq.IQueryModelVisitor
 - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.QueryContextParameter
   commentId: F:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.QueryContextParameter
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
@@ -454,86 +482,86 @@ references:
   name: LinqOperatorProvider
   nameWithType: EntityQueryModelVisitor.LinqOperatorProvider
   fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.LinqOperatorProvider
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor``1(QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor``1(QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor``1(Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor``1(Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: CreateQueryExecutor<TResult>(QueryModel)
   nameWithType: EntityQueryModelVisitor.CreateQueryExecutor<TResult>(QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor<TResult>(QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor<TResult>(Remotion.Linq.QueryModel)
   nameWithType.vb: EntityQueryModelVisitor.CreateQueryExecutor(Of TResult)(QueryModel)
-  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor(Of TResult)(QueryModel)
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor(Of TResult)(Remotion.Linq.QueryModel)
   name.vb: CreateQueryExecutor(Of TResult)(QueryModel)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor``1(QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor``1(Remotion.Linq.QueryModel)
     name: CreateQueryExecutor<TResult>
     nameWithType: EntityQueryModelVisitor.CreateQueryExecutor<TResult>
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor<TResult>
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor``1(QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor``1(Remotion.Linq.QueryModel)
     name: CreateQueryExecutor(Of TResult)
     nameWithType: EntityQueryModelVisitor.CreateQueryExecutor(Of TResult)
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateQueryExecutor(Of TResult)
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor``1(QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor``1(QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor``1(Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor``1(Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: CreateAsyncQueryExecutor<TResult>(QueryModel)
   nameWithType: EntityQueryModelVisitor.CreateAsyncQueryExecutor<TResult>(QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor<TResult>(QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor<TResult>(Remotion.Linq.QueryModel)
   nameWithType.vb: EntityQueryModelVisitor.CreateAsyncQueryExecutor(Of TResult)(QueryModel)
-  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor(Of TResult)(QueryModel)
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor(Of TResult)(Remotion.Linq.QueryModel)
   name.vb: CreateAsyncQueryExecutor(Of TResult)(QueryModel)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor``1(QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor``1(Remotion.Linq.QueryModel)
     name: CreateAsyncQueryExecutor<TResult>
     nameWithType: EntityQueryModelVisitor.CreateAsyncQueryExecutor<TResult>
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor<TResult>
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor``1(QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor``1(Remotion.Linq.QueryModel)
     name: CreateAsyncQueryExecutor(Of TResult)
     nameWithType: EntityQueryModelVisitor.CreateAsyncQueryExecutor(Of TResult)
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CreateAsyncQueryExecutor(Of TResult)
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
@@ -567,103 +595,103 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ExtractQueryAnnotations(QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ExtractQueryAnnotations(QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ExtractQueryAnnotations(Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ExtractQueryAnnotations(Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: ExtractQueryAnnotations(QueryModel)
   nameWithType: EntityQueryModelVisitor.ExtractQueryAnnotations(QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ExtractQueryAnnotations(QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ExtractQueryAnnotations(Remotion.Linq.QueryModel)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ExtractQueryAnnotations(QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ExtractQueryAnnotations(Remotion.Linq.QueryModel)
     name: ExtractQueryAnnotations
     nameWithType: EntityQueryModelVisitor.ExtractQueryAnnotations
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ExtractQueryAnnotations
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ExtractQueryAnnotations(QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ExtractQueryAnnotations(Remotion.Linq.QueryModel)
     name: ExtractQueryAnnotations
     nameWithType: EntityQueryModelVisitor.ExtractQueryAnnotations
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ExtractQueryAnnotations
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.OptimizeQueryModel(QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.OptimizeQueryModel(QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.OptimizeQueryModel(Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.OptimizeQueryModel(Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: OptimizeQueryModel(QueryModel)
   nameWithType: EntityQueryModelVisitor.OptimizeQueryModel(QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.OptimizeQueryModel(QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.OptimizeQueryModel(Remotion.Linq.QueryModel)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.OptimizeQueryModel(QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.OptimizeQueryModel(Remotion.Linq.QueryModel)
     name: OptimizeQueryModel
     nameWithType: EntityQueryModelVisitor.OptimizeQueryModel
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.OptimizeQueryModel
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.OptimizeQueryModel(QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.OptimizeQueryModel(Remotion.Linq.QueryModel)
     name: OptimizeQueryModel
     nameWithType: EntityQueryModelVisitor.OptimizeQueryModel
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.OptimizeQueryModel
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.SingleResultToSequence(QueryModel,System.Type)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.SingleResultToSequence(QueryModel,System.Type)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.SingleResultToSequence(Remotion.Linq.QueryModel,System.Type)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.SingleResultToSequence(Remotion.Linq.QueryModel,System.Type)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: SingleResultToSequence(QueryModel, Type)
   nameWithType: EntityQueryModelVisitor.SingleResultToSequence(QueryModel, Type)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.SingleResultToSequence(QueryModel, System.Type)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.SingleResultToSequence(Remotion.Linq.QueryModel, System.Type)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.SingleResultToSequence(QueryModel,System.Type)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.SingleResultToSequence(Remotion.Linq.QueryModel,System.Type)
     name: SingleResultToSequence
     nameWithType: EntityQueryModelVisitor.SingleResultToSequence
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.SingleResultToSequence
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -677,17 +705,17 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.SingleResultToSequence(QueryModel,System.Type)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.SingleResultToSequence(Remotion.Linq.QueryModel,System.Type)
     name: SingleResultToSequence
     nameWithType: EntityQueryModelVisitor.SingleResultToSequence
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.SingleResultToSequence
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -700,67 +728,67 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: IncludeNavigations(QueryModel)
   nameWithType: EntityQueryModelVisitor.IncludeNavigations(QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Remotion.Linq.QueryModel)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Remotion.Linq.QueryModel)
     name: IncludeNavigations
     nameWithType: EntityQueryModelVisitor.IncludeNavigations
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Remotion.Linq.QueryModel)
     name: IncludeNavigations
     nameWithType: EntityQueryModelVisitor.IncludeNavigations
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(QueryModel,System.Collections.Generic.IReadOnlyCollection{Microsoft.EntityFrameworkCore.Query.IncludeSpecification})
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(QueryModel,System.Collections.Generic.IReadOnlyCollection{Microsoft.EntityFrameworkCore.Query.IncludeSpecification})
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Remotion.Linq.QueryModel,System.Collections.Generic.IReadOnlyCollection{Microsoft.EntityFrameworkCore.Query.IncludeSpecification})
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Remotion.Linq.QueryModel,System.Collections.Generic.IReadOnlyCollection{Microsoft.EntityFrameworkCore.Query.IncludeSpecification})
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: IncludeNavigations(QueryModel, IReadOnlyCollection<IncludeSpecification>)
   nameWithType: EntityQueryModelVisitor.IncludeNavigations(QueryModel, IReadOnlyCollection<IncludeSpecification>)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(QueryModel, System.Collections.Generic.IReadOnlyCollection<Microsoft.EntityFrameworkCore.Query.IncludeSpecification>)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Remotion.Linq.QueryModel, System.Collections.Generic.IReadOnlyCollection<Microsoft.EntityFrameworkCore.Query.IncludeSpecification>)
   nameWithType.vb: EntityQueryModelVisitor.IncludeNavigations(QueryModel, IReadOnlyCollection(Of IncludeSpecification))
-  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(QueryModel, System.Collections.Generic.IReadOnlyCollection(Of Microsoft.EntityFrameworkCore.Query.IncludeSpecification))
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Remotion.Linq.QueryModel, System.Collections.Generic.IReadOnlyCollection(Of Microsoft.EntityFrameworkCore.Query.IncludeSpecification))
   name.vb: IncludeNavigations(QueryModel, IReadOnlyCollection(Of IncludeSpecification))
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(QueryModel,System.Collections.Generic.IReadOnlyCollection{Microsoft.EntityFrameworkCore.Query.IncludeSpecification})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Remotion.Linq.QueryModel,System.Collections.Generic.IReadOnlyCollection{Microsoft.EntityFrameworkCore.Query.IncludeSpecification})
     name: IncludeNavigations
     nameWithType: EntityQueryModelVisitor.IncludeNavigations
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -784,17 +812,17 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(QueryModel,System.Collections.Generic.IReadOnlyCollection{Microsoft.EntityFrameworkCore.Query.IncludeSpecification})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Remotion.Linq.QueryModel,System.Collections.Generic.IReadOnlyCollection{Microsoft.EntityFrameworkCore.Query.IncludeSpecification})
     name: IncludeNavigations
     nameWithType: EntityQueryModelVisitor.IncludeNavigations
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -817,44 +845,44 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults``1(QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults``1(QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults``1(Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults``1(Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: TrackEntitiesInResults<TResult>(QueryModel)
   nameWithType: EntityQueryModelVisitor.TrackEntitiesInResults<TResult>(QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults<TResult>(QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults<TResult>(Remotion.Linq.QueryModel)
   nameWithType.vb: EntityQueryModelVisitor.TrackEntitiesInResults(Of TResult)(QueryModel)
-  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults(Of TResult)(QueryModel)
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults(Of TResult)(Remotion.Linq.QueryModel)
   name.vb: TrackEntitiesInResults(Of TResult)(QueryModel)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults``1(QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults``1(Remotion.Linq.QueryModel)
     name: TrackEntitiesInResults<TResult>
     nameWithType: EntityQueryModelVisitor.TrackEntitiesInResults<TResult>
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults<TResult>
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults``1(QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults``1(Remotion.Linq.QueryModel)
     name: TrackEntitiesInResults(Of TResult)
     nameWithType: EntityQueryModelVisitor.TrackEntitiesInResults(Of TResult)
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.TrackEntitiesInResults(Of TResult)
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
@@ -891,182 +919,182 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitQueryModel(QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitQueryModel(QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitQueryModel(Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitQueryModel(Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: VisitQueryModel(QueryModel)
   nameWithType: EntityQueryModelVisitor.VisitQueryModel(QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitQueryModel(QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitQueryModel(Remotion.Linq.QueryModel)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitQueryModel(QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitQueryModel(Remotion.Linq.QueryModel)
     name: VisitQueryModel
     nameWithType: EntityQueryModelVisitor.VisitQueryModel
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitQueryModel
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitQueryModel(QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitQueryModel(Remotion.Linq.QueryModel)
     name: VisitQueryModel
     nameWithType: EntityQueryModelVisitor.VisitQueryModel
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitQueryModel
   - name: (
     nameWithType: (
     fullName: (
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitMainFromClause(MainFromClause,QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitMainFromClause(MainFromClause,QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: VisitMainFromClause(MainFromClause, QueryModel)
   nameWithType: EntityQueryModelVisitor.VisitMainFromClause(MainFromClause, QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitMainFromClause(MainFromClause, QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause, Remotion.Linq.QueryModel)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitMainFromClause(MainFromClause,QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
     name: VisitMainFromClause
     nameWithType: EntityQueryModelVisitor.VisitMainFromClause
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitMainFromClause
   - name: (
     nameWithType: (
     fullName: (
-  - uid: MainFromClause
+  - uid: Remotion.Linq.Clauses.MainFromClause
     name: MainFromClause
     nameWithType: MainFromClause
-    fullName: MainFromClause
+    fullName: Remotion.Linq.Clauses.MainFromClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitMainFromClause(MainFromClause,QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitMainFromClause(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
     name: VisitMainFromClause
     nameWithType: EntityQueryModelVisitor.VisitMainFromClause
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitMainFromClause
   - name: (
     nameWithType: (
     fullName: (
-  - uid: MainFromClause
+  - uid: Remotion.Linq.Clauses.MainFromClause
     name: MainFromClause
     nameWithType: MainFromClause
-    fullName: MainFromClause
+    fullName: Remotion.Linq.Clauses.MainFromClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileMainFromClauseExpression(MainFromClause,QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileMainFromClauseExpression(MainFromClause,QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileMainFromClauseExpression(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileMainFromClauseExpression(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: CompileMainFromClauseExpression(MainFromClause, QueryModel)
   nameWithType: EntityQueryModelVisitor.CompileMainFromClauseExpression(MainFromClause, QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileMainFromClauseExpression(MainFromClause, QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileMainFromClauseExpression(Remotion.Linq.Clauses.MainFromClause, Remotion.Linq.QueryModel)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileMainFromClauseExpression(MainFromClause,QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileMainFromClauseExpression(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
     name: CompileMainFromClauseExpression
     nameWithType: EntityQueryModelVisitor.CompileMainFromClauseExpression
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileMainFromClauseExpression
   - name: (
     nameWithType: (
     fullName: (
-  - uid: MainFromClause
+  - uid: Remotion.Linq.Clauses.MainFromClause
     name: MainFromClause
     nameWithType: MainFromClause
-    fullName: MainFromClause
+    fullName: Remotion.Linq.Clauses.MainFromClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileMainFromClauseExpression(MainFromClause,QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileMainFromClauseExpression(Remotion.Linq.Clauses.MainFromClause,Remotion.Linq.QueryModel)
     name: CompileMainFromClauseExpression
     nameWithType: EntityQueryModelVisitor.CompileMainFromClauseExpression
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileMainFromClauseExpression
   - name: (
     nameWithType: (
     fullName: (
-  - uid: MainFromClause
+  - uid: Remotion.Linq.Clauses.MainFromClause
     name: MainFromClause
     nameWithType: MainFromClause
-    fullName: MainFromClause
+    fullName: Remotion.Linq.Clauses.MainFromClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitAdditionalFromClause(AdditionalFromClause,QueryModel,System.Int32)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitAdditionalFromClause(AdditionalFromClause,QueryModel,System.Int32)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel,System.Int32)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: VisitAdditionalFromClause(AdditionalFromClause, QueryModel, Int32)
   nameWithType: EntityQueryModelVisitor.VisitAdditionalFromClause(AdditionalFromClause, QueryModel, Int32)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitAdditionalFromClause(AdditionalFromClause, QueryModel, System.Int32)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause, Remotion.Linq.QueryModel, System.Int32)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitAdditionalFromClause(AdditionalFromClause,QueryModel,System.Int32)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel,System.Int32)
     name: VisitAdditionalFromClause
     nameWithType: EntityQueryModelVisitor.VisitAdditionalFromClause
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitAdditionalFromClause
   - name: (
     nameWithType: (
     fullName: (
-  - uid: AdditionalFromClause
+  - uid: Remotion.Linq.Clauses.AdditionalFromClause
     name: AdditionalFromClause
     nameWithType: AdditionalFromClause
-    fullName: AdditionalFromClause
+    fullName: Remotion.Linq.Clauses.AdditionalFromClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1080,25 +1108,25 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitAdditionalFromClause(AdditionalFromClause,QueryModel,System.Int32)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitAdditionalFromClause(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel,System.Int32)
     name: VisitAdditionalFromClause
     nameWithType: EntityQueryModelVisitor.VisitAdditionalFromClause
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitAdditionalFromClause
   - name: (
     nameWithType: (
     fullName: (
-  - uid: AdditionalFromClause
+  - uid: Remotion.Linq.Clauses.AdditionalFromClause
     name: AdditionalFromClause
     nameWithType: AdditionalFromClause
-    fullName: AdditionalFromClause
+    fullName: Remotion.Linq.Clauses.AdditionalFromClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1111,88 +1139,88 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileAdditionalFromClauseExpression(AdditionalFromClause,QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileAdditionalFromClauseExpression(AdditionalFromClause,QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileAdditionalFromClauseExpression(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileAdditionalFromClauseExpression(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: CompileAdditionalFromClauseExpression(AdditionalFromClause, QueryModel)
   nameWithType: EntityQueryModelVisitor.CompileAdditionalFromClauseExpression(AdditionalFromClause, QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileAdditionalFromClauseExpression(AdditionalFromClause, QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileAdditionalFromClauseExpression(Remotion.Linq.Clauses.AdditionalFromClause, Remotion.Linq.QueryModel)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileAdditionalFromClauseExpression(AdditionalFromClause,QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileAdditionalFromClauseExpression(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel)
     name: CompileAdditionalFromClauseExpression
     nameWithType: EntityQueryModelVisitor.CompileAdditionalFromClauseExpression
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileAdditionalFromClauseExpression
   - name: (
     nameWithType: (
     fullName: (
-  - uid: AdditionalFromClause
+  - uid: Remotion.Linq.Clauses.AdditionalFromClause
     name: AdditionalFromClause
     nameWithType: AdditionalFromClause
-    fullName: AdditionalFromClause
+    fullName: Remotion.Linq.Clauses.AdditionalFromClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileAdditionalFromClauseExpression(AdditionalFromClause,QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileAdditionalFromClauseExpression(Remotion.Linq.Clauses.AdditionalFromClause,Remotion.Linq.QueryModel)
     name: CompileAdditionalFromClauseExpression
     nameWithType: EntityQueryModelVisitor.CompileAdditionalFromClauseExpression
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileAdditionalFromClauseExpression
   - name: (
     nameWithType: (
     fullName: (
-  - uid: AdditionalFromClause
+  - uid: Remotion.Linq.Clauses.AdditionalFromClause
     name: AdditionalFromClause
     nameWithType: AdditionalFromClause
-    fullName: AdditionalFromClause
+    fullName: Remotion.Linq.Clauses.AdditionalFromClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitJoinClause(JoinClause,QueryModel,System.Int32)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitJoinClause(JoinClause,QueryModel,System.Int32)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,System.Int32)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: VisitJoinClause(JoinClause, QueryModel, Int32)
   nameWithType: EntityQueryModelVisitor.VisitJoinClause(JoinClause, QueryModel, Int32)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitJoinClause(JoinClause, QueryModel, System.Int32)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitJoinClause(Remotion.Linq.Clauses.JoinClause, Remotion.Linq.QueryModel, System.Int32)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitJoinClause(JoinClause,QueryModel,System.Int32)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,System.Int32)
     name: VisitJoinClause
     nameWithType: EntityQueryModelVisitor.VisitJoinClause
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitJoinClause
   - name: (
     nameWithType: (
     fullName: (
-  - uid: JoinClause
+  - uid: Remotion.Linq.Clauses.JoinClause
     name: JoinClause
     nameWithType: JoinClause
-    fullName: JoinClause
+    fullName: Remotion.Linq.Clauses.JoinClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1206,25 +1234,25 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitJoinClause(JoinClause,QueryModel,System.Int32)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,System.Int32)
     name: VisitJoinClause
     nameWithType: EntityQueryModelVisitor.VisitJoinClause
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitJoinClause
   - name: (
     nameWithType: (
     fullName: (
-  - uid: JoinClause
+  - uid: Remotion.Linq.Clauses.JoinClause
     name: JoinClause
     nameWithType: JoinClause
-    fullName: JoinClause
+    fullName: Remotion.Linq.Clauses.JoinClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1237,88 +1265,88 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression(JoinClause,QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression(JoinClause,QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: CompileJoinClauseInnerSequenceExpression(JoinClause, QueryModel)
   nameWithType: EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression(JoinClause, QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression(JoinClause, QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression(Remotion.Linq.Clauses.JoinClause, Remotion.Linq.QueryModel)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression(JoinClause,QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel)
     name: CompileJoinClauseInnerSequenceExpression
     nameWithType: EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression
   - name: (
     nameWithType: (
     fullName: (
-  - uid: JoinClause
+  - uid: Remotion.Linq.Clauses.JoinClause
     name: JoinClause
     nameWithType: JoinClause
-    fullName: JoinClause
+    fullName: Remotion.Linq.Clauses.JoinClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression(JoinClause,QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel)
     name: CompileJoinClauseInnerSequenceExpression
     nameWithType: EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileJoinClauseInnerSequenceExpression
   - name: (
     nameWithType: (
     fullName: (
-  - uid: JoinClause
+  - uid: Remotion.Linq.Clauses.JoinClause
     name: JoinClause
     nameWithType: JoinClause
-    fullName: JoinClause
+    fullName: Remotion.Linq.Clauses.JoinClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitGroupJoinClause(GroupJoinClause,QueryModel,System.Int32)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitGroupJoinClause(GroupJoinClause,QueryModel,System.Int32)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitGroupJoinClause(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitGroupJoinClause(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel,System.Int32)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: VisitGroupJoinClause(GroupJoinClause, QueryModel, Int32)
   nameWithType: EntityQueryModelVisitor.VisitGroupJoinClause(GroupJoinClause, QueryModel, Int32)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitGroupJoinClause(GroupJoinClause, QueryModel, System.Int32)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitGroupJoinClause(Remotion.Linq.Clauses.GroupJoinClause, Remotion.Linq.QueryModel, System.Int32)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitGroupJoinClause(GroupJoinClause,QueryModel,System.Int32)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitGroupJoinClause(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel,System.Int32)
     name: VisitGroupJoinClause
     nameWithType: EntityQueryModelVisitor.VisitGroupJoinClause
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitGroupJoinClause
   - name: (
     nameWithType: (
     fullName: (
-  - uid: GroupJoinClause
+  - uid: Remotion.Linq.Clauses.GroupJoinClause
     name: GroupJoinClause
     nameWithType: GroupJoinClause
-    fullName: GroupJoinClause
+    fullName: Remotion.Linq.Clauses.GroupJoinClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1332,25 +1360,25 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitGroupJoinClause(GroupJoinClause,QueryModel,System.Int32)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitGroupJoinClause(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel,System.Int32)
     name: VisitGroupJoinClause
     nameWithType: EntityQueryModelVisitor.VisitGroupJoinClause
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitGroupJoinClause
   - name: (
     nameWithType: (
     fullName: (
-  - uid: GroupJoinClause
+  - uid: Remotion.Linq.Clauses.GroupJoinClause
     name: GroupJoinClause
     nameWithType: GroupJoinClause
-    fullName: GroupJoinClause
+    fullName: Remotion.Linq.Clauses.GroupJoinClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1363,88 +1391,88 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression(GroupJoinClause,QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression(GroupJoinClause,QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: CompileGroupJoinInnerSequenceExpression(GroupJoinClause, QueryModel)
   nameWithType: EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression(GroupJoinClause, QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression(GroupJoinClause, QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression(Remotion.Linq.Clauses.GroupJoinClause, Remotion.Linq.QueryModel)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression(GroupJoinClause,QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel)
     name: CompileGroupJoinInnerSequenceExpression
     nameWithType: EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression
   - name: (
     nameWithType: (
     fullName: (
-  - uid: GroupJoinClause
+  - uid: Remotion.Linq.Clauses.GroupJoinClause
     name: GroupJoinClause
     nameWithType: GroupJoinClause
-    fullName: GroupJoinClause
+    fullName: Remotion.Linq.Clauses.GroupJoinClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression(GroupJoinClause,QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression(Remotion.Linq.Clauses.GroupJoinClause,Remotion.Linq.QueryModel)
     name: CompileGroupJoinInnerSequenceExpression
     nameWithType: EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.CompileGroupJoinInnerSequenceExpression
   - name: (
     nameWithType: (
     fullName: (
-  - uid: GroupJoinClause
+  - uid: Remotion.Linq.Clauses.GroupJoinClause
     name: GroupJoinClause
     nameWithType: GroupJoinClause
-    fullName: GroupJoinClause
+    fullName: Remotion.Linq.Clauses.GroupJoinClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitWhereClause(WhereClause,QueryModel,System.Int32)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitWhereClause(WhereClause,QueryModel,System.Int32)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitWhereClause(Remotion.Linq.Clauses.WhereClause,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitWhereClause(Remotion.Linq.Clauses.WhereClause,Remotion.Linq.QueryModel,System.Int32)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: VisitWhereClause(WhereClause, QueryModel, Int32)
   nameWithType: EntityQueryModelVisitor.VisitWhereClause(WhereClause, QueryModel, Int32)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitWhereClause(WhereClause, QueryModel, System.Int32)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitWhereClause(Remotion.Linq.Clauses.WhereClause, Remotion.Linq.QueryModel, System.Int32)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitWhereClause(WhereClause,QueryModel,System.Int32)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitWhereClause(Remotion.Linq.Clauses.WhereClause,Remotion.Linq.QueryModel,System.Int32)
     name: VisitWhereClause
     nameWithType: EntityQueryModelVisitor.VisitWhereClause
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitWhereClause
   - name: (
     nameWithType: (
     fullName: (
-  - uid: WhereClause
+  - uid: Remotion.Linq.Clauses.WhereClause
     name: WhereClause
     nameWithType: WhereClause
-    fullName: WhereClause
+    fullName: Remotion.Linq.Clauses.WhereClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1458,25 +1486,25 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitWhereClause(WhereClause,QueryModel,System.Int32)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitWhereClause(Remotion.Linq.Clauses.WhereClause,Remotion.Linq.QueryModel,System.Int32)
     name: VisitWhereClause
     nameWithType: EntityQueryModelVisitor.VisitWhereClause
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitWhereClause
   - name: (
     nameWithType: (
     fullName: (
-  - uid: WhereClause
+  - uid: Remotion.Linq.Clauses.WhereClause
     name: WhereClause
     nameWithType: WhereClause
-    fullName: WhereClause
+    fullName: Remotion.Linq.Clauses.WhereClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1489,41 +1517,41 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitOrdering(Ordering,QueryModel,OrderByClause,System.Int32)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitOrdering(Ordering,QueryModel,OrderByClause,System.Int32)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitOrdering(Remotion.Linq.Clauses.Ordering,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause,System.Int32)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitOrdering(Remotion.Linq.Clauses.Ordering,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause,System.Int32)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: VisitOrdering(Ordering, QueryModel, OrderByClause, Int32)
   nameWithType: EntityQueryModelVisitor.VisitOrdering(Ordering, QueryModel, OrderByClause, Int32)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitOrdering(Ordering, QueryModel, OrderByClause, System.Int32)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitOrdering(Remotion.Linq.Clauses.Ordering, Remotion.Linq.QueryModel, Remotion.Linq.Clauses.OrderByClause, System.Int32)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitOrdering(Ordering,QueryModel,OrderByClause,System.Int32)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitOrdering(Remotion.Linq.Clauses.Ordering,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause,System.Int32)
     name: VisitOrdering
     nameWithType: EntityQueryModelVisitor.VisitOrdering
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitOrdering
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Ordering
+  - uid: Remotion.Linq.Clauses.Ordering
     name: Ordering
     nameWithType: Ordering
-    fullName: Ordering
+    fullName: Remotion.Linq.Clauses.Ordering
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: OrderByClause
+  - uid: Remotion.Linq.Clauses.OrderByClause
     name: OrderByClause
     nameWithType: OrderByClause
-    fullName: OrderByClause
+    fullName: Remotion.Linq.Clauses.OrderByClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1537,33 +1565,33 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitOrdering(Ordering,QueryModel,OrderByClause,System.Int32)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitOrdering(Remotion.Linq.Clauses.Ordering,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause,System.Int32)
     name: VisitOrdering
     nameWithType: EntityQueryModelVisitor.VisitOrdering
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitOrdering
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Ordering
+  - uid: Remotion.Linq.Clauses.Ordering
     name: Ordering
     nameWithType: Ordering
-    fullName: Ordering
+    fullName: Remotion.Linq.Clauses.Ordering
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: OrderByClause
+  - uid: Remotion.Linq.Clauses.OrderByClause
     name: OrderByClause
     nameWithType: OrderByClause
-    fullName: OrderByClause
+    fullName: Remotion.Linq.Clauses.OrderByClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1576,88 +1604,88 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitSelectClause(SelectClause,QueryModel)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitSelectClause(SelectClause,QueryModel)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitSelectClause(Remotion.Linq.Clauses.SelectClause,Remotion.Linq.QueryModel)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitSelectClause(Remotion.Linq.Clauses.SelectClause,Remotion.Linq.QueryModel)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: VisitSelectClause(SelectClause, QueryModel)
   nameWithType: EntityQueryModelVisitor.VisitSelectClause(SelectClause, QueryModel)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitSelectClause(SelectClause, QueryModel)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitSelectClause(Remotion.Linq.Clauses.SelectClause, Remotion.Linq.QueryModel)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitSelectClause(SelectClause,QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitSelectClause(Remotion.Linq.Clauses.SelectClause,Remotion.Linq.QueryModel)
     name: VisitSelectClause
     nameWithType: EntityQueryModelVisitor.VisitSelectClause
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitSelectClause
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SelectClause
+  - uid: Remotion.Linq.Clauses.SelectClause
     name: SelectClause
     nameWithType: SelectClause
-    fullName: SelectClause
+    fullName: Remotion.Linq.Clauses.SelectClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitSelectClause(SelectClause,QueryModel)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitSelectClause(Remotion.Linq.Clauses.SelectClause,Remotion.Linq.QueryModel)
     name: VisitSelectClause
     nameWithType: EntityQueryModelVisitor.VisitSelectClause
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitSelectClause
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SelectClause
+  - uid: Remotion.Linq.Clauses.SelectClause
     name: SelectClause
     nameWithType: SelectClause
-    fullName: SelectClause
+    fullName: Remotion.Linq.Clauses.SelectClause
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitResultOperator(ResultOperatorBase,QueryModel,System.Int32)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitResultOperator(ResultOperatorBase,QueryModel,System.Int32)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase,Remotion.Linq.QueryModel,System.Int32)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: VisitResultOperator(ResultOperatorBase, QueryModel, Int32)
   nameWithType: EntityQueryModelVisitor.VisitResultOperator(ResultOperatorBase, QueryModel, Int32)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitResultOperator(ResultOperatorBase, QueryModel, System.Int32)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase, Remotion.Linq.QueryModel, System.Int32)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitResultOperator(ResultOperatorBase,QueryModel,System.Int32)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase,Remotion.Linq.QueryModel,System.Int32)
     name: VisitResultOperator
     nameWithType: EntityQueryModelVisitor.VisitResultOperator
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitResultOperator
   - name: (
     nameWithType: (
     fullName: (
-  - uid: ResultOperatorBase
+  - uid: Remotion.Linq.Clauses.ResultOperatorBase
     name: ResultOperatorBase
     nameWithType: ResultOperatorBase
-    fullName: ResultOperatorBase
+    fullName: Remotion.Linq.Clauses.ResultOperatorBase
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1671,25 +1699,25 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitResultOperator(ResultOperatorBase,QueryModel,System.Int32)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitResultOperator(Remotion.Linq.Clauses.ResultOperatorBase,Remotion.Linq.QueryModel,System.Int32)
     name: VisitResultOperator
     nameWithType: EntityQueryModelVisitor.VisitResultOperator
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.VisitResultOperator
   - name: (
     nameWithType: (
     fullName: (
-  - uid: ResultOperatorBase
+  - uid: Remotion.Linq.Clauses.ResultOperatorBase
     name: ResultOperatorBase
     nameWithType: ResultOperatorBase
-    fullName: ResultOperatorBase
+    fullName: Remotion.Linq.Clauses.ResultOperatorBase
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: QueryModel
+  - uid: Remotion.Linq.QueryModel
     name: QueryModel
     nameWithType: QueryModel
-    fullName: QueryModel
+    fullName: Remotion.Linq.QueryModel
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1702,15 +1730,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ReplaceClauseReferences(System.Linq.Expressions.Expression,IQuerySource,System.Boolean)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ReplaceClauseReferences(System.Linq.Expressions.Expression,IQuerySource,System.Boolean)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ReplaceClauseReferences(System.Linq.Expressions.Expression,Remotion.Linq.Clauses.IQuerySource,System.Boolean)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ReplaceClauseReferences(System.Linq.Expressions.Expression,Remotion.Linq.Clauses.IQuerySource,System.Boolean)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: ReplaceClauseReferences(Expression, IQuerySource, Boolean)
   nameWithType: EntityQueryModelVisitor.ReplaceClauseReferences(Expression, IQuerySource, Boolean)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ReplaceClauseReferences(System.Linq.Expressions.Expression, IQuerySource, System.Boolean)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ReplaceClauseReferences(System.Linq.Expressions.Expression, Remotion.Linq.Clauses.IQuerySource, System.Boolean)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ReplaceClauseReferences(System.Linq.Expressions.Expression,IQuerySource,System.Boolean)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ReplaceClauseReferences(System.Linq.Expressions.Expression,Remotion.Linq.Clauses.IQuerySource,System.Boolean)
     name: ReplaceClauseReferences
     nameWithType: EntityQueryModelVisitor.ReplaceClauseReferences
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ReplaceClauseReferences
@@ -1725,10 +1753,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1742,7 +1770,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ReplaceClauseReferences(System.Linq.Expressions.Expression,IQuerySource,System.Boolean)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ReplaceClauseReferences(System.Linq.Expressions.Expression,Remotion.Linq.Clauses.IQuerySource,System.Boolean)
     name: ReplaceClauseReferences
     nameWithType: EntityQueryModelVisitor.ReplaceClauseReferences
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.ReplaceClauseReferences
@@ -1757,10 +1785,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1773,25 +1801,25 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.AddOrUpdateMapping(IQuerySource,System.Linq.Expressions.Expression)
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.AddOrUpdateMapping(IQuerySource,System.Linq.Expressions.Expression)
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.AddOrUpdateMapping(Remotion.Linq.Clauses.IQuerySource,System.Linq.Expressions.Expression)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.AddOrUpdateMapping(Remotion.Linq.Clauses.IQuerySource,System.Linq.Expressions.Expression)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: AddOrUpdateMapping(IQuerySource, Expression)
   nameWithType: EntityQueryModelVisitor.AddOrUpdateMapping(IQuerySource, Expression)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.AddOrUpdateMapping(IQuerySource, System.Linq.Expressions.Expression)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.AddOrUpdateMapping(Remotion.Linq.Clauses.IQuerySource, System.Linq.Expressions.Expression)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.AddOrUpdateMapping(IQuerySource,System.Linq.Expressions.Expression)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.AddOrUpdateMapping(Remotion.Linq.Clauses.IQuerySource,System.Linq.Expressions.Expression)
     name: AddOrUpdateMapping
     nameWithType: EntityQueryModelVisitor.AddOrUpdateMapping
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.AddOrUpdateMapping
   - name: (
     nameWithType: (
     fullName: (
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -1805,17 +1833,17 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.AddOrUpdateMapping(IQuerySource,System.Linq.Expressions.Expression)
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.AddOrUpdateMapping(Remotion.Linq.Clauses.IQuerySource,System.Linq.Expressions.Expression)
     name: AddOrUpdateMapping
     nameWithType: EntityQueryModelVisitor.AddOrUpdateMapping
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.AddOrUpdateMapping
   - name: (
     nameWithType: (
     fullName: (
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2009,18 +2037,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},IQuerySource,{TResult}})
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},IQuerySource,``0})
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},Remotion.Linq.Clauses.IQuerySource,{TResult}})
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},Remotion.Linq.Clauses.IQuerySource,``0})
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
-  definition: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},IQuerySource,``0})
+  definition: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},Remotion.Linq.Clauses.IQuerySource,``0})
   name: BindNavigationPathPropertyExpression<TResult>(Expression, Func<IEnumerable<IPropertyBase>, IQuerySource, TResult>)
   nameWithType: EntityQueryModelVisitor.BindNavigationPathPropertyExpression<TResult>(Expression, Func<IEnumerable<IPropertyBase>, IQuerySource, TResult>)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression<TResult>(System.Linq.Expressions.Expression, System.Func<System.Collections.Generic.IEnumerable<Microsoft.EntityFrameworkCore.Metadata.IPropertyBase>, IQuerySource, TResult>)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression<TResult>(System.Linq.Expressions.Expression, System.Func<System.Collections.Generic.IEnumerable<Microsoft.EntityFrameworkCore.Metadata.IPropertyBase>, Remotion.Linq.Clauses.IQuerySource, TResult>)
   nameWithType.vb: EntityQueryModelVisitor.BindNavigationPathPropertyExpression(Of TResult)(Expression, Func(Of IEnumerable(Of IPropertyBase), IQuerySource, TResult))
-  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression(Of TResult)(System.Linq.Expressions.Expression, System.Func(Of System.Collections.Generic.IEnumerable(Of Microsoft.EntityFrameworkCore.Metadata.IPropertyBase), IQuerySource, TResult))
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression(Of TResult)(System.Linq.Expressions.Expression, System.Func(Of System.Collections.Generic.IEnumerable(Of Microsoft.EntityFrameworkCore.Metadata.IPropertyBase), Remotion.Linq.Clauses.IQuerySource, TResult))
   name.vb: BindNavigationPathPropertyExpression(Of TResult)(Expression, Func(Of IEnumerable(Of IPropertyBase), IQuerySource, TResult))
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindNavigationPathPropertyExpression<TResult>
     nameWithType: EntityQueryModelVisitor.BindNavigationPathPropertyExpression<TResult>
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression<TResult>
@@ -2061,10 +2089,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2079,7 +2107,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindNavigationPathPropertyExpression(Of TResult)
     nameWithType: EntityQueryModelVisitor.BindNavigationPathPropertyExpression(Of TResult)
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression(Of TResult)
@@ -2120,10 +2148,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2137,18 +2165,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(System.Linq.Expressions.MemberExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource})
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(System.Linq.Expressions.MemberExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource})
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(System.Linq.Expressions.MemberExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource})
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(System.Linq.Expressions.MemberExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource})
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: BindMemberExpression(MemberExpression, Action<IProperty, IQuerySource>)
   nameWithType: EntityQueryModelVisitor.BindMemberExpression(MemberExpression, Action<IProperty, IQuerySource>)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(System.Linq.Expressions.MemberExpression, System.Action<Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource>)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(System.Linq.Expressions.MemberExpression, System.Action<Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource>)
   nameWithType.vb: EntityQueryModelVisitor.BindMemberExpression(MemberExpression, Action(Of IProperty, IQuerySource))
-  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(System.Linq.Expressions.MemberExpression, System.Action(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource))
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(System.Linq.Expressions.MemberExpression, System.Action(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource))
   name.vb: BindMemberExpression(MemberExpression, Action(Of IProperty, IQuerySource))
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(System.Linq.Expressions.MemberExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(System.Linq.Expressions.MemberExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource})
     name: BindMemberExpression
     nameWithType: EntityQueryModelVisitor.BindMemberExpression
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression
@@ -2178,10 +2206,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: '>'
     nameWithType: '>'
@@ -2190,7 +2218,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(System.Linq.Expressions.MemberExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(System.Linq.Expressions.MemberExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource})
     name: BindMemberExpression
     nameWithType: EntityQueryModelVisitor.BindMemberExpression
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression
@@ -2220,10 +2248,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: )
     nameWithType: )
@@ -2231,18 +2259,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,{TResult}})
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,{TResult}})
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
-  definition: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  definition: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
   name: BindMemberExpression<TResult>(MemberExpression, IQuerySource, Func<IProperty, IQuerySource, TResult>)
   nameWithType: EntityQueryModelVisitor.BindMemberExpression<TResult>(MemberExpression, IQuerySource, Func<IProperty, IQuerySource, TResult>)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression<TResult>(System.Linq.Expressions.MemberExpression, IQuerySource, System.Func<Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource, TResult>)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression<TResult>(System.Linq.Expressions.MemberExpression, Remotion.Linq.Clauses.IQuerySource, System.Func<Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource, TResult>)
   nameWithType.vb: EntityQueryModelVisitor.BindMemberExpression(Of TResult)(MemberExpression, IQuerySource, Func(Of IProperty, IQuerySource, TResult))
-  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(Of TResult)(System.Linq.Expressions.MemberExpression, IQuerySource, System.Func(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource, TResult))
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(Of TResult)(System.Linq.Expressions.MemberExpression, Remotion.Linq.Clauses.IQuerySource, System.Func(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource, TResult))
   name.vb: BindMemberExpression(Of TResult)(MemberExpression, IQuerySource, Func(Of IProperty, IQuerySource, TResult))
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindMemberExpression<TResult>
     nameWithType: EntityQueryModelVisitor.BindMemberExpression<TResult>
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression<TResult>
@@ -2257,10 +2285,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2280,10 +2308,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2298,7 +2326,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindMemberExpression(Of TResult)
     nameWithType: EntityQueryModelVisitor.BindMemberExpression(Of TResult)
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(Of TResult)
@@ -2313,10 +2341,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2336,10 +2364,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2353,18 +2381,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,{TResult}})
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,{TResult}})
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
-  definition: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  definition: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
   name: BindMethodCallExpression<TResult>(MethodCallExpression, IQuerySource, Func<IProperty, IQuerySource, TResult>)
   nameWithType: EntityQueryModelVisitor.BindMethodCallExpression<TResult>(MethodCallExpression, IQuerySource, Func<IProperty, IQuerySource, TResult>)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression<TResult>(System.Linq.Expressions.MethodCallExpression, IQuerySource, System.Func<Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource, TResult>)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression<TResult>(System.Linq.Expressions.MethodCallExpression, Remotion.Linq.Clauses.IQuerySource, System.Func<Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource, TResult>)
   nameWithType.vb: EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)(MethodCallExpression, IQuerySource, Func(Of IProperty, IQuerySource, TResult))
-  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)(System.Linq.Expressions.MethodCallExpression, IQuerySource, System.Func(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource, TResult))
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)(System.Linq.Expressions.MethodCallExpression, Remotion.Linq.Clauses.IQuerySource, System.Func(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource, TResult))
   name.vb: BindMethodCallExpression(Of TResult)(MethodCallExpression, IQuerySource, Func(Of IProperty, IQuerySource, TResult))
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindMethodCallExpression<TResult>
     nameWithType: EntityQueryModelVisitor.BindMethodCallExpression<TResult>
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression<TResult>
@@ -2379,10 +2407,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2402,10 +2430,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2420,7 +2448,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindMethodCallExpression(Of TResult)
     nameWithType: EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)
@@ -2435,10 +2463,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2458,10 +2486,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2475,18 +2503,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,{TResult}})
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,{TResult}})
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
-  definition: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  definition: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
   name: BindMethodCallExpression<TResult>(MethodCallExpression, Func<IProperty, IQuerySource, TResult>)
   nameWithType: EntityQueryModelVisitor.BindMethodCallExpression<TResult>(MethodCallExpression, Func<IProperty, IQuerySource, TResult>)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression<TResult>(System.Linq.Expressions.MethodCallExpression, System.Func<Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource, TResult>)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression<TResult>(System.Linq.Expressions.MethodCallExpression, System.Func<Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource, TResult>)
   nameWithType.vb: EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)(MethodCallExpression, Func(Of IProperty, IQuerySource, TResult))
-  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)(System.Linq.Expressions.MethodCallExpression, System.Func(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource, TResult))
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)(System.Linq.Expressions.MethodCallExpression, System.Func(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource, TResult))
   name.vb: BindMethodCallExpression(Of TResult)(MethodCallExpression, Func(Of IProperty, IQuerySource, TResult))
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindMethodCallExpression<TResult>
     nameWithType: EntityQueryModelVisitor.BindMethodCallExpression<TResult>
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression<TResult>
@@ -2516,10 +2544,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2534,7 +2562,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindMethodCallExpression(Of TResult)
     nameWithType: EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)
@@ -2564,10 +2592,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2581,18 +2609,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(System.Linq.Expressions.MethodCallExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource})
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(System.Linq.Expressions.MethodCallExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource})
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(System.Linq.Expressions.MethodCallExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource})
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(System.Linq.Expressions.MethodCallExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource})
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor
   isExternal: true
   name: BindMethodCallExpression(MethodCallExpression, Action<IProperty, IQuerySource>)
   nameWithType: EntityQueryModelVisitor.BindMethodCallExpression(MethodCallExpression, Action<IProperty, IQuerySource>)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(System.Linq.Expressions.MethodCallExpression, System.Action<Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource>)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(System.Linq.Expressions.MethodCallExpression, System.Action<Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource>)
   nameWithType.vb: EntityQueryModelVisitor.BindMethodCallExpression(MethodCallExpression, Action(Of IProperty, IQuerySource))
-  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(System.Linq.Expressions.MethodCallExpression, System.Action(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource))
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(System.Linq.Expressions.MethodCallExpression, System.Action(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource))
   name.vb: BindMethodCallExpression(MethodCallExpression, Action(Of IProperty, IQuerySource))
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(System.Linq.Expressions.MethodCallExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(System.Linq.Expressions.MethodCallExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource})
     name: BindMethodCallExpression
     nameWithType: EntityQueryModelVisitor.BindMethodCallExpression
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression
@@ -2622,10 +2650,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: '>'
     nameWithType: '>'
@@ -2634,7 +2662,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(System.Linq.Expressions.MethodCallExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(System.Linq.Expressions.MethodCallExpression,System.Action{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource})
     name: BindMethodCallExpression
     nameWithType: EntityQueryModelVisitor.BindMethodCallExpression
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression
@@ -2664,10 +2692,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: )
     nameWithType: )
@@ -2675,45 +2703,690 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitor.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<InMemoryQueryModelVisitor, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<InMemoryQueryModelVisitor, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitor, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of InMemoryQueryModelVisitor, TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitor, TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of InMemoryQueryModelVisitor, TConcrete)(String)
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.GroupJoinClause)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.GroupJoinClause)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitJoinClause(JoinClause, QueryModel, GroupJoinClause)
+  nameWithType: QueryModelVisitorBase.VisitJoinClause(JoinClause, QueryModel, GroupJoinClause)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause, Remotion.Linq.QueryModel, Remotion.Linq.Clauses.GroupJoinClause)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<InMemoryQueryModelVisitor, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<InMemoryQueryModelVisitor, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitor, TConcrete>
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.GroupJoinClause)
+    name: VisitJoinClause
+    nameWithType: QueryModelVisitorBase.VisitJoinClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Remotion.Linq.Clauses.JoinClause
+    name: JoinClause
+    nameWithType: JoinClause
+    fullName: Remotion.Linq.Clauses.JoinClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.Clauses.GroupJoinClause
+    name: GroupJoinClause
+    nameWithType: GroupJoinClause
+    fullName: Remotion.Linq.Clauses.GroupJoinClause
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of InMemoryQueryModelVisitor, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of InMemoryQueryModelVisitor, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitor, TConcrete)
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause(Remotion.Linq.Clauses.JoinClause,Remotion.Linq.QueryModel,Remotion.Linq.Clauses.GroupJoinClause)
+    name: VisitJoinClause
+    nameWithType: QueryModelVisitorBase.VisitJoinClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitJoinClause
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Remotion.Linq.Clauses.JoinClause
+    name: JoinClause
+    nameWithType: JoinClause
+    fullName: Remotion.Linq.Clauses.JoinClause
     isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.Clauses.GroupJoinClause
+    name: GroupJoinClause
+    nameWithType: GroupJoinClause
+    fullName: Remotion.Linq.Clauses.GroupJoinClause
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause,Remotion.Linq.QueryModel,System.Int32)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause,Remotion.Linq.QueryModel,System.Int32)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitOrderByClause(OrderByClause, QueryModel, Int32)
+  nameWithType: QueryModelVisitorBase.VisitOrderByClause(OrderByClause, QueryModel, Int32)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause, Remotion.Linq.QueryModel, System.Int32)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause,Remotion.Linq.QueryModel,System.Int32)
+    name: VisitOrderByClause
+    nameWithType: QueryModelVisitorBase.VisitOrderByClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.OrderByClause
+    name: OrderByClause
+    nameWithType: OrderByClause
+    fullName: Remotion.Linq.Clauses.OrderByClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause(Remotion.Linq.Clauses.OrderByClause,Remotion.Linq.QueryModel,System.Int32)
+    name: VisitOrderByClause
+    nameWithType: QueryModelVisitorBase.VisitOrderByClause
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrderByClause
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Remotion.Linq.Clauses.OrderByClause
+    name: OrderByClause
+    nameWithType: OrderByClause
+    fullName: Remotion.Linq.Clauses.OrderByClause
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.IBodyClause},Remotion.Linq.QueryModel)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.IBodyClause},Remotion.Linq.QueryModel)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitBodyClauses(ObservableCollection<IBodyClause>, QueryModel)
+  nameWithType: QueryModelVisitorBase.VisitBodyClauses(ObservableCollection<IBodyClause>, QueryModel)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses(System.Collections.ObjectModel.ObservableCollection<Remotion.Linq.Clauses.IBodyClause>, Remotion.Linq.QueryModel)
+  nameWithType.vb: QueryModelVisitorBase.VisitBodyClauses(ObservableCollection(Of IBodyClause), QueryModel)
+  fullname.vb: Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses(System.Collections.ObjectModel.ObservableCollection(Of Remotion.Linq.Clauses.IBodyClause), Remotion.Linq.QueryModel)
+  name.vb: VisitBodyClauses(ObservableCollection(Of IBodyClause), QueryModel)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.IBodyClause},Remotion.Linq.QueryModel)
+    name: VisitBodyClauses
+    nameWithType: QueryModelVisitorBase.VisitBodyClauses
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    nameWithType: ObservableCollection
+    fullName: System.Collections.ObjectModel.ObservableCollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Remotion.Linq.Clauses.IBodyClause
+    name: IBodyClause
+    nameWithType: IBodyClause
+    fullName: Remotion.Linq.Clauses.IBodyClause
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.IBodyClause},Remotion.Linq.QueryModel)
+    name: VisitBodyClauses
+    nameWithType: QueryModelVisitorBase.VisitBodyClauses
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitBodyClauses
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    nameWithType: ObservableCollection
+    fullName: System.Collections.ObjectModel.ObservableCollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Remotion.Linq.Clauses.IBodyClause
+    name: IBodyClause
+    nameWithType: IBodyClause
+    fullName: Remotion.Linq.Clauses.IBodyClause
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitOrderings(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.Ordering},Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitOrderings(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.Ordering},Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitOrderings(ObservableCollection<Ordering>, QueryModel, OrderByClause)
+  nameWithType: QueryModelVisitorBase.VisitOrderings(ObservableCollection<Ordering>, QueryModel, OrderByClause)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrderings(System.Collections.ObjectModel.ObservableCollection<Remotion.Linq.Clauses.Ordering>, Remotion.Linq.QueryModel, Remotion.Linq.Clauses.OrderByClause)
+  nameWithType.vb: QueryModelVisitorBase.VisitOrderings(ObservableCollection(Of Ordering), QueryModel, OrderByClause)
+  fullname.vb: Remotion.Linq.QueryModelVisitorBase.VisitOrderings(System.Collections.ObjectModel.ObservableCollection(Of Remotion.Linq.Clauses.Ordering), Remotion.Linq.QueryModel, Remotion.Linq.Clauses.OrderByClause)
+  name.vb: VisitOrderings(ObservableCollection(Of Ordering), QueryModel, OrderByClause)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitOrderings(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.Ordering},Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause)
+    name: VisitOrderings
+    nameWithType: QueryModelVisitorBase.VisitOrderings
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrderings
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    nameWithType: ObservableCollection
+    fullName: System.Collections.ObjectModel.ObservableCollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Remotion.Linq.Clauses.Ordering
+    name: Ordering
+    nameWithType: Ordering
+    fullName: Remotion.Linq.Clauses.Ordering
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.Clauses.OrderByClause
+    name: OrderByClause
+    nameWithType: OrderByClause
+    fullName: Remotion.Linq.Clauses.OrderByClause
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitOrderings(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.Ordering},Remotion.Linq.QueryModel,Remotion.Linq.Clauses.OrderByClause)
+    name: VisitOrderings
+    nameWithType: QueryModelVisitorBase.VisitOrderings
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitOrderings
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    nameWithType: ObservableCollection
+    fullName: System.Collections.ObjectModel.ObservableCollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Remotion.Linq.Clauses.Ordering
+    name: Ordering
+    nameWithType: Ordering
+    fullName: Remotion.Linq.Clauses.Ordering
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.Clauses.OrderByClause
+    name: OrderByClause
+    nameWithType: OrderByClause
+    fullName: Remotion.Linq.Clauses.OrderByClause
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Remotion.Linq.QueryModelVisitorBase.VisitResultOperators(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.ResultOperatorBase},Remotion.Linq.QueryModel)
+  commentId: M:Remotion.Linq.QueryModelVisitorBase.VisitResultOperators(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.ResultOperatorBase},Remotion.Linq.QueryModel)
+  parent: Remotion.Linq.QueryModelVisitorBase
+  isExternal: true
+  name: VisitResultOperators(ObservableCollection<ResultOperatorBase>, QueryModel)
+  nameWithType: QueryModelVisitorBase.VisitResultOperators(ObservableCollection<ResultOperatorBase>, QueryModel)
+  fullName: Remotion.Linq.QueryModelVisitorBase.VisitResultOperators(System.Collections.ObjectModel.ObservableCollection<Remotion.Linq.Clauses.ResultOperatorBase>, Remotion.Linq.QueryModel)
+  nameWithType.vb: QueryModelVisitorBase.VisitResultOperators(ObservableCollection(Of ResultOperatorBase), QueryModel)
+  fullname.vb: Remotion.Linq.QueryModelVisitorBase.VisitResultOperators(System.Collections.ObjectModel.ObservableCollection(Of Remotion.Linq.Clauses.ResultOperatorBase), Remotion.Linq.QueryModel)
+  name.vb: VisitResultOperators(ObservableCollection(Of ResultOperatorBase), QueryModel)
+  spec.csharp:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitResultOperators(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.ResultOperatorBase},Remotion.Linq.QueryModel)
+    name: VisitResultOperators
+    nameWithType: QueryModelVisitorBase.VisitResultOperators
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitResultOperators
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    nameWithType: ObservableCollection
+    fullName: System.Collections.ObjectModel.ObservableCollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Remotion.Linq.Clauses.ResultOperatorBase
+    name: ResultOperatorBase
+    nameWithType: ResultOperatorBase
+    fullName: Remotion.Linq.Clauses.ResultOperatorBase
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Remotion.Linq.QueryModelVisitorBase.VisitResultOperators(System.Collections.ObjectModel.ObservableCollection{Remotion.Linq.Clauses.ResultOperatorBase},Remotion.Linq.QueryModel)
+    name: VisitResultOperators
+    nameWithType: QueryModelVisitorBase.VisitResultOperators
+    fullName: Remotion.Linq.QueryModelVisitorBase.VisitResultOperators
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    nameWithType: ObservableCollection
+    fullName: System.Collections.ObjectModel.ObservableCollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Remotion.Linq.Clauses.ResultOperatorBase
+    name: ResultOperatorBase
+    nameWithType: ResultOperatorBase
+    fullName: Remotion.Linq.Clauses.ResultOperatorBase
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Remotion.Linq.QueryModel
+    name: QueryModel
+    nameWithType: QueryModel
+    fullName: Remotion.Linq.QueryModel
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -2723,23 +3396,29 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Remotion.Linq
+  commentId: N:Remotion.Linq
+  isExternal: false
+  name: Remotion.Linq
+  nameWithType: Remotion.Linq
+  fullName: Remotion.Linq
 - uid: Microsoft.EntityFrameworkCore.Query
   commentId: N:Microsoft.EntityFrameworkCore.Query
   isExternal: false
   name: Microsoft.EntityFrameworkCore.Query
   nameWithType: Microsoft.EntityFrameworkCore.Query
   fullName: Microsoft.EntityFrameworkCore.Query
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},IQuerySource,``0})
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},IQuerySource,``0})
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},Remotion.Linq.Clauses.IQuerySource,``0})
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},Remotion.Linq.Clauses.IQuerySource,``0})
   isExternal: true
   name: BindNavigationPathPropertyExpression<TResult>(Expression, Func<IEnumerable<IPropertyBase>, IQuerySource, TResult>)
   nameWithType: EntityQueryModelVisitor.BindNavigationPathPropertyExpression<TResult>(Expression, Func<IEnumerable<IPropertyBase>, IQuerySource, TResult>)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression<TResult>(System.Linq.Expressions.Expression, System.Func<System.Collections.Generic.IEnumerable<Microsoft.EntityFrameworkCore.Metadata.IPropertyBase>, IQuerySource, TResult>)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression<TResult>(System.Linq.Expressions.Expression, System.Func<System.Collections.Generic.IEnumerable<Microsoft.EntityFrameworkCore.Metadata.IPropertyBase>, Remotion.Linq.Clauses.IQuerySource, TResult>)
   nameWithType.vb: EntityQueryModelVisitor.BindNavigationPathPropertyExpression(Of TResult)(Expression, Func(Of IEnumerable(Of IPropertyBase), IQuerySource, TResult))
-  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression(Of TResult)(System.Linq.Expressions.Expression, System.Func(Of System.Collections.Generic.IEnumerable(Of Microsoft.EntityFrameworkCore.Metadata.IPropertyBase), IQuerySource, TResult))
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression(Of TResult)(System.Linq.Expressions.Expression, System.Func(Of System.Collections.Generic.IEnumerable(Of Microsoft.EntityFrameworkCore.Metadata.IPropertyBase), Remotion.Linq.Clauses.IQuerySource, TResult))
   name.vb: BindNavigationPathPropertyExpression(Of TResult)(Expression, Func(Of IEnumerable(Of IPropertyBase), IQuerySource, TResult))
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindNavigationPathPropertyExpression<TResult>
     nameWithType: EntityQueryModelVisitor.BindNavigationPathPropertyExpression<TResult>
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression<TResult>
@@ -2780,10 +3459,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2798,7 +3477,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression``1(System.Linq.Expressions.Expression,System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IPropertyBase},Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindNavigationPathPropertyExpression(Of TResult)
     nameWithType: EntityQueryModelVisitor.BindNavigationPathPropertyExpression(Of TResult)
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindNavigationPathPropertyExpression(Of TResult)
@@ -2839,10 +3518,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2856,17 +3535,17 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
   isExternal: true
   name: BindMemberExpression<TResult>(MemberExpression, IQuerySource, Func<IProperty, IQuerySource, TResult>)
   nameWithType: EntityQueryModelVisitor.BindMemberExpression<TResult>(MemberExpression, IQuerySource, Func<IProperty, IQuerySource, TResult>)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression<TResult>(System.Linq.Expressions.MemberExpression, IQuerySource, System.Func<Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource, TResult>)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression<TResult>(System.Linq.Expressions.MemberExpression, Remotion.Linq.Clauses.IQuerySource, System.Func<Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource, TResult>)
   nameWithType.vb: EntityQueryModelVisitor.BindMemberExpression(Of TResult)(MemberExpression, IQuerySource, Func(Of IProperty, IQuerySource, TResult))
-  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(Of TResult)(System.Linq.Expressions.MemberExpression, IQuerySource, System.Func(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource, TResult))
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(Of TResult)(System.Linq.Expressions.MemberExpression, Remotion.Linq.Clauses.IQuerySource, System.Func(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource, TResult))
   name.vb: BindMemberExpression(Of TResult)(MemberExpression, IQuerySource, Func(Of IProperty, IQuerySource, TResult))
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindMemberExpression<TResult>
     nameWithType: EntityQueryModelVisitor.BindMemberExpression<TResult>
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression<TResult>
@@ -2881,10 +3560,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2904,10 +3583,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2922,7 +3601,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression``1(System.Linq.Expressions.MemberExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindMemberExpression(Of TResult)
     nameWithType: EntityQueryModelVisitor.BindMemberExpression(Of TResult)
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMemberExpression(Of TResult)
@@ -2937,10 +3616,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2960,10 +3639,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -2977,17 +3656,17 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
   isExternal: true
   name: BindMethodCallExpression<TResult>(MethodCallExpression, IQuerySource, Func<IProperty, IQuerySource, TResult>)
   nameWithType: EntityQueryModelVisitor.BindMethodCallExpression<TResult>(MethodCallExpression, IQuerySource, Func<IProperty, IQuerySource, TResult>)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression<TResult>(System.Linq.Expressions.MethodCallExpression, IQuerySource, System.Func<Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource, TResult>)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression<TResult>(System.Linq.Expressions.MethodCallExpression, Remotion.Linq.Clauses.IQuerySource, System.Func<Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource, TResult>)
   nameWithType.vb: EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)(MethodCallExpression, IQuerySource, Func(Of IProperty, IQuerySource, TResult))
-  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)(System.Linq.Expressions.MethodCallExpression, IQuerySource, System.Func(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource, TResult))
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)(System.Linq.Expressions.MethodCallExpression, Remotion.Linq.Clauses.IQuerySource, System.Func(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource, TResult))
   name.vb: BindMethodCallExpression(Of TResult)(MethodCallExpression, IQuerySource, Func(Of IProperty, IQuerySource, TResult))
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindMethodCallExpression<TResult>
     nameWithType: EntityQueryModelVisitor.BindMethodCallExpression<TResult>
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression<TResult>
@@ -3002,10 +3681,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -3025,10 +3704,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -3043,7 +3722,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,Remotion.Linq.Clauses.IQuerySource,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindMethodCallExpression(Of TResult)
     nameWithType: EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)
@@ -3058,10 +3737,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -3081,10 +3760,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -3098,17 +3777,17 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
-  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+- uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
+  commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
   isExternal: true
   name: BindMethodCallExpression<TResult>(MethodCallExpression, Func<IProperty, IQuerySource, TResult>)
   nameWithType: EntityQueryModelVisitor.BindMethodCallExpression<TResult>(MethodCallExpression, Func<IProperty, IQuerySource, TResult>)
-  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression<TResult>(System.Linq.Expressions.MethodCallExpression, System.Func<Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource, TResult>)
+  fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression<TResult>(System.Linq.Expressions.MethodCallExpression, System.Func<Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource, TResult>)
   nameWithType.vb: EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)(MethodCallExpression, Func(Of IProperty, IQuerySource, TResult))
-  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)(System.Linq.Expressions.MethodCallExpression, System.Func(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, IQuerySource, TResult))
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)(System.Linq.Expressions.MethodCallExpression, System.Func(Of Microsoft.EntityFrameworkCore.Metadata.IProperty, Remotion.Linq.Clauses.IQuerySource, TResult))
   name.vb: BindMethodCallExpression(Of TResult)(MethodCallExpression, Func(Of IProperty, IQuerySource, TResult))
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindMethodCallExpression<TResult>
     nameWithType: EntityQueryModelVisitor.BindMethodCallExpression<TResult>
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression<TResult>
@@ -3138,10 +3817,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -3156,7 +3835,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,IQuerySource,``0})
+  - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression``1(System.Linq.Expressions.MethodCallExpression,System.Func{Microsoft.EntityFrameworkCore.Metadata.IProperty,Remotion.Linq.Clauses.IQuerySource,``0})
     name: BindMethodCallExpression(Of TResult)
     nameWithType: EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)
     fullName: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.BindMethodCallExpression(Of TResult)
@@ -3186,10 +3865,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: IQuerySource
+  - uid: Remotion.Linq.Clauses.IQuerySource
     name: IQuerySource
     nameWithType: IQuerySource
-    fullName: IQuerySource
+    fullName: Remotion.Linq.Clauses.IQuerySource
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -3203,72 +3882,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
 - uid: Microsoft.EntityFrameworkCore.Query.Internal.IQueryOptimizer
   commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.IQueryOptimizer
   parent: Microsoft.EntityFrameworkCore.Query.Internal
@@ -3393,6 +4006,12 @@ references:
   name: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
   nameWithType: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
   fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
+- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
+  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.Metadata.Internal
+  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
 - uid: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Microsoft.EntityFrameworkCore.Query.IncludeSpecification,System.Type,System.Linq.Expressions.Expression,System.Boolean)
   commentId: M:Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor.IncludeNavigations(Microsoft.EntityFrameworkCore.Query.IncludeSpecification,System.Type,System.Linq.Expressions.Expression,System.Boolean)
   parent: Microsoft.EntityFrameworkCore.Query.EntityQueryModelVisitor

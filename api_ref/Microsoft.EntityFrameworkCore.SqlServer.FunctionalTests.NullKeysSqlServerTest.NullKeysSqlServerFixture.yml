@@ -7,7 +7,7 @@ items:
   children:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture.#ctor
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture.CreateContext
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
+  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture.Dispose
   langs:
   - csharp
   - vb
@@ -19,21 +19,24 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/NullKeysSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: NullKeysSqlServerFixture
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/NullKeysSqlServerTest.cs
-    startLine: 16
+    startLine: 17
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: 'public class NullKeysSqlServerFixture : NullKeysTestBase<NullKeysSqlServerTest.NullKeysSqlServerFixture>.NullKeysFixtureBase'
+    content: 'public class NullKeysSqlServerFixture : NullKeysTestBase<NullKeysSqlServerTest.NullKeysSqlServerFixture>.NullKeysFixtureBase, IDisposable'
     content.vb: >-
       Public Class NullKeysSqlServerFixture
           Inherits NullKeysTestBase(Of NullKeysSqlServerTest.NullKeysSqlServerFixture).NullKeysFixtureBase
+          Implements IDisposable
   inheritance:
   - System.Object
   - Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture}.NullKeysFixtureBase
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture}.NullKeysFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   - Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture}.NullKeysFixtureBase.EnsureCreated
@@ -44,8 +47,6 @@ items:
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
   modifiers.csharp:
   - public
   - class
@@ -67,10 +68,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/NullKeysSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/NullKeysSqlServerTest.cs
-    startLine: 20
+    startLine: 22
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -96,10 +97,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/NullKeysSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CreateContext
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/NullKeysSqlServerTest.cs
-    startLine: 33
+    startLine: 38
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -115,41 +116,37 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  commentId: M:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  id: EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture.Dispose
+  commentId: M:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture.Dispose
+  id: Dispose
   parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture
   langs:
   - csharp
   - vb
-  name: EnsureClean(DbContext)
-  nameWithType: NullKeysSqlServerTest.NullKeysSqlServerFixture.EnsureClean(DbContext)
-  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
+  name: Dispose()
+  nameWithType: NullKeysSqlServerTest.NullKeysSqlServerFixture.Dispose()
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture.Dispose()
   type: Method
   source:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/NullKeysSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
-    id: EnsureClean
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: Dispose
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/NullKeysSqlServerTest.cs
-    startLine: 36
+    startLine: 41
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: protected override void EnsureClean(DbContext context)
-    content.vb: Protected Overrides Sub EnsureClean(context As DbContext)
-    parameters:
-    - id: context
-      type: Microsoft.EntityFrameworkCore.DbContext
-  overridden: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture}.NullKeysFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
+    content: public void Dispose()
+    content.vb: Public Sub Dispose
+  implements:
+  - System.IDisposable.Dispose
   modifiers.csharp:
-  - protected
-  - override
+  - public
   modifiers.vb:
-  - Protected
-  - Overrides
+  - Public
 references:
 - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   commentId: N:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -196,6 +193,13 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture}.NullKeysFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture}.NullKeysFixtureBase.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture}.NullKeysFixtureBase
@@ -545,48 +549,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<NullKeysSqlServerTest.NullKeysSqlServerFixture, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<NullKeysSqlServerTest.NullKeysSqlServerFixture, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of NullKeysSqlServerTest.NullKeysSqlServerFixture, TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture, TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of NullKeysSqlServerTest.NullKeysSqlServerFixture, TConcrete)(String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<NullKeysSqlServerTest.NullKeysSqlServerFixture, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<NullKeysSqlServerTest.NullKeysSqlServerFixture, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of NullKeysSqlServerTest.NullKeysSqlServerFixture, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of NullKeysSqlServerTest.NullKeysSqlServerFixture, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
@@ -698,72 +660,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture}.NullKeysFixtureBase.CreateContext
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture}.NullKeysFixtureBase.CreateContext
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture}.NullKeysFixtureBase
@@ -838,80 +734,34 @@ references:
   name: Microsoft.EntityFrameworkCore
   nameWithType: Microsoft.EntityFrameworkCore
   fullName: Microsoft.EntityFrameworkCore
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture}.NullKeysFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture}.NullKeysFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture}.NullKeysFixtureBase
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase`1.NullKeysFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  name: EnsureClean(DbContext)
-  nameWithType: NullKeysTestBase<NullKeysSqlServerTest.NullKeysSqlServerFixture>.NullKeysFixtureBase.EnsureClean(DbContext)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture>.NullKeysFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  nameWithType.vb: NullKeysTestBase(Of NullKeysSqlServerTest.NullKeysSqlServerFixture).NullKeysFixtureBase.EnsureClean(DbContext)
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture).NullKeysFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase`1.NullKeysFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-    name: EnsureClean
-    nameWithType: NullKeysTestBase<NullKeysSqlServerTest.NullKeysSqlServerFixture>.NullKeysFixtureBase.EnsureClean
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture>.NullKeysFixtureBase.EnsureClean
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Microsoft.EntityFrameworkCore.DbContext
-    name: DbContext
-    nameWithType: DbContext
-    fullName: Microsoft.EntityFrameworkCore.DbContext
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase`1.NullKeysFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-    name: EnsureClean
-    nameWithType: NullKeysTestBase(Of NullKeysSqlServerTest.NullKeysSqlServerFixture).NullKeysFixtureBase.EnsureClean
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.NullKeysSqlServerTest.NullKeysSqlServerFixture).NullKeysFixtureBase.EnsureClean
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Microsoft.EntityFrameworkCore.DbContext
-    name: DbContext
-    nameWithType: DbContext
-    fullName: Microsoft.EntityFrameworkCore.DbContext
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase`1.NullKeysFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase`1.NullKeysFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  isExternal: false
-  name: EnsureClean(DbContext)
-  nameWithType: NullKeysTestBase<TFixture>.NullKeysFixtureBase.EnsureClean(DbContext)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase<TFixture>.NullKeysFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  nameWithType.vb: NullKeysTestBase(Of TFixture).NullKeysFixtureBase.EnsureClean(DbContext)
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase(Of TFixture).NullKeysFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase`1.NullKeysFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-    name: EnsureClean
-    nameWithType: NullKeysTestBase<TFixture>.NullKeysFixtureBase.EnsureClean
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase<TFixture>.NullKeysFixtureBase.EnsureClean
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.EntityFrameworkCore.DbContext
-    name: DbContext
-    nameWithType: DbContext
-    fullName: Microsoft.EntityFrameworkCore.DbContext
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase`1.NullKeysFixtureBase.EnsureClean(Microsoft.EntityFrameworkCore.DbContext)
-    name: EnsureClean
-    nameWithType: NullKeysTestBase(Of TFixture).NullKeysFixtureBase.EnsureClean
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullKeysTestBase(Of TFixture).NullKeysFixtureBase.EnsureClean
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.EntityFrameworkCore.DbContext
-    name: DbContext
-    nameWithType: DbContext
-    fullName: Microsoft.EntityFrameworkCore.DbContext
   - name: )
     nameWithType: )
     fullName: )

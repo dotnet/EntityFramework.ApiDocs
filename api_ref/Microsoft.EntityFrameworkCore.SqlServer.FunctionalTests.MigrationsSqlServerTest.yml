@@ -30,22 +30,31 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: MigrationsSqlServerTest
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 12
+    startLine: 13
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: 'public class MigrationsSqlServerTest : MigrationsTestBase<MigrationsSqlServerFixture>'
+    content: >-
+      [SqlServerCondition(SqlServerCondition.IsNotSqlAzure)]
+
+      public class MigrationsSqlServerTest : MigrationsTestBase<MigrationsSqlServerFixture>, IClassFixture<MigrationsSqlServerFixture>
     content.vb: >-
+      <SqlServerCondition(SqlServerCondition.IsNotSqlAzure)>
+
       Public Class MigrationsSqlServerTest
           Inherits MigrationsTestBase(Of MigrationsSqlServerFixture)
+          Implements IClassFixture(Of MigrationsSqlServerFixture)
   inheritance:
   - System.Object
   - Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}
+  implements:
+  - Xunit.IClassFixture{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}
   inheritedMembers:
+  - Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}.Fixture
   - Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}.Sql
   - Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}.ActiveProvider
   - Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}.Can_apply_all_migrations
@@ -59,8 +68,19 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}.AssertFirstMigration(System.Data.Common.DbConnection)
   - Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}.BuildSecondMigration(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
   - Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}.AssertSecondMigration(System.Data.Common.DbConnection)
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerTest.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  attributes:
+  - type: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerConditionAttribute
+    ctor: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerConditionAttribute.#ctor(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerCondition)
+    arguments:
+    - type: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerCondition
+      value: 8
   modifiers.csharp:
   - public
   - class
@@ -82,10 +102,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 17
+    startLine: 19
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -114,10 +134,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_generate_migration_from_initial_database_to_initial
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 22
+    startLine: 24
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -146,10 +166,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_generate_no_migration_script
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 42
+    startLine: 44
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -178,10 +198,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_generate_up_scripts
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 62
+    startLine: 64
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -210,10 +230,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_generate_one_up_script
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 116
+    startLine: 118
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -242,10 +262,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_generate_up_script_using_names
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 134
+    startLine: 136
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -274,10 +294,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_generate_idempotent_up_scripts
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 152
+    startLine: 154
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -306,10 +326,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_generate_down_scripts
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 227
+    startLine: 229
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -338,10 +358,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_generate_idempotent_down_scripts
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 254
+    startLine: 256
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -370,10 +390,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_generate_one_down_script
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 293
+    startLine: 295
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -402,10 +422,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_generate_down_script_using_names
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 311
+    startLine: 313
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -434,10 +454,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_get_active_provider
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 329
+    startLine: 331
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -466,10 +486,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: AssertFirstMigrationAsync
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 336
+    startLine: 338
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -503,10 +523,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: AssertSecondMigrationAsync
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/MigrationsSqlServerTest.cs
-    startLine: 349
+    startLine: 351
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -579,6 +599,57 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Xunit.IClassFixture{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}
+  commentId: T:Xunit.IClassFixture{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}
+  parent: Xunit
+  definition: Xunit.IClassFixture`1
+  name: IClassFixture<MigrationsSqlServerFixture>
+  nameWithType: IClassFixture<MigrationsSqlServerFixture>
+  fullName: Xunit.IClassFixture<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture>
+  nameWithType.vb: IClassFixture(Of MigrationsSqlServerFixture)
+  fullname.vb: Xunit.IClassFixture(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture)
+  name.vb: IClassFixture(Of MigrationsSqlServerFixture)
+  spec.csharp:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture
+    name: MigrationsSqlServerFixture
+    nameWithType: MigrationsSqlServerFixture
+    fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture
+    name: MigrationsSqlServerFixture
+    nameWithType: MigrationsSqlServerFixture
+    fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}.Fixture
+  commentId: P:Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}.Fixture
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase`1.Fixture
+  name: Fixture
+  nameWithType: MigrationsTestBase<MigrationsSqlServerFixture>.Fixture
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture>.Fixture
+  nameWithType.vb: MigrationsTestBase(Of MigrationsSqlServerFixture).Fixture
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture).Fixture
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}.Sql
   commentId: P:Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}.Sql
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture}
@@ -1021,45 +1092,282 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerTest.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<MigrationsSqlServerTest, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<MigrationsSqlServerTest, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerTest, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of MigrationsSqlServerTest, TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerTest, TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of MigrationsSqlServerTest, TConcrete)(String)
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<MigrationsSqlServerTest, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<MigrationsSqlServerTest, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerTest, TConcrete>
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of MigrationsSqlServerTest, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of MigrationsSqlServerTest, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerTest, TConcrete)
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -1112,6 +1420,59 @@ references:
   name: Microsoft.EntityFrameworkCore.Specification.Tests
   nameWithType: Microsoft.EntityFrameworkCore.Specification.Tests
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests
+- uid: Xunit.IClassFixture`1
+  commentId: T:Xunit.IClassFixture`1
+  isExternal: true
+  name: IClassFixture<TFixture>
+  nameWithType: IClassFixture<TFixture>
+  fullName: Xunit.IClassFixture<TFixture>
+  nameWithType.vb: IClassFixture(Of TFixture)
+  fullname.vb: Xunit.IClassFixture(Of TFixture)
+  name.vb: IClassFixture(Of TFixture)
+  spec.csharp:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Xunit
+  commentId: N:Xunit
+  isExternal: false
+  name: Xunit
+  nameWithType: Xunit
+  fullName: Xunit
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase`1.Fixture
+  commentId: P:Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase`1.Fixture
+  isExternal: false
+  name: Fixture
+  nameWithType: MigrationsTestBase<TFixture>.Fixture
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase<TFixture>.Fixture
+  nameWithType.vb: MigrationsTestBase(Of TFixture).Fixture
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase(Of TFixture).Fixture
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase`1.Sql
   commentId: P:Microsoft.EntityFrameworkCore.Specification.Tests.MigrationsTestBase`1.Sql
   isExternal: false
@@ -1541,72 +1902,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
 - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture
   commentId: T:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.MigrationsSqlServerFixture
   parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests

@@ -17,7 +17,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/UpdatesSqliteTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: UpdatesSqliteTest
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/UpdatesSqliteTest.cs
     startLine: 7
@@ -25,18 +25,20 @@ items:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   syntax:
-    content: 'public class UpdatesSqliteTest : UpdatesRelationalTestBase<UpdatesSqliteFixture, SqliteTestStore>, IDisposable'
+    content: 'public class UpdatesSqliteTest : UpdatesRelationalTestBase<UpdatesSqliteFixture, SqliteTestStore>, IClassFixture<UpdatesSqliteFixture>, IDisposable'
     content.vb: >-
       Public Class UpdatesSqliteTest
           Inherits UpdatesRelationalTestBase(Of UpdatesSqliteFixture, SqliteTestStore)
-          Implements IDisposable
+          Implements IClassFixture(Of UpdatesSqliteFixture), IDisposable
   inheritance:
   - System.Object
   - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}
   - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}
   implements:
+  - Xunit.IClassFixture{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture}
   - System.IDisposable
   inheritedMembers:
+  - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
   - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.UpdateConcurrencyMessage
   - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.Save_partial_update
   - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.Save_partial_update_on_missing_record_throws
@@ -46,12 +48,19 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.SaveChanges_false_processes_all_tracked_entities_without_calling_AcceptAllChanges
   - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.SaveChangesAsync_processes_all_tracked_entities
   - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.SaveChangesAsync_false_processes_all_tracked_entities_without_calling_AcceptAllChanges
+  - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext})
+  - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.ExecuteWithStrategyInTransactionAsync(System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task},System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task})
   - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.CreateContext
   - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.Fixture
   - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.TestStore
   - Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.Dispose
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteTest.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
   modifiers.csharp:
   - public
   - class
@@ -73,7 +82,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/UpdatesSqliteTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/UpdatesSqliteTest.cs
     startLine: 9
@@ -212,6 +221,48 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Xunit.IClassFixture{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture}
+  commentId: T:Xunit.IClassFixture{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture}
+  parent: Xunit
+  definition: Xunit.IClassFixture`1
+  name: IClassFixture<UpdatesSqliteFixture>
+  nameWithType: IClassFixture<UpdatesSqliteFixture>
+  fullName: Xunit.IClassFixture<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture>
+  nameWithType.vb: IClassFixture(Of UpdatesSqliteFixture)
+  fullname.vb: Xunit.IClassFixture(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture)
+  name.vb: IClassFixture(Of UpdatesSqliteFixture)
+  spec.csharp:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture
+    name: UpdatesSqliteFixture
+    nameWithType: UpdatesSqliteFixture
+    fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture
+    name: UpdatesSqliteFixture
+    nameWithType: UpdatesSqliteFixture
+    fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.IDisposable
   commentId: T:System.IDisposable
   parent: System
@@ -219,6 +270,59 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  name: UseTransaction(DatabaseFacade, IDbContextTransaction)
+  nameWithType: UpdatesRelationalTestBase<UpdatesSqliteFixture, SqliteTestStore>.UseTransaction(DatabaseFacade, IDbContextTransaction)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore>.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade, Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  nameWithType.vb: UpdatesRelationalTestBase(Of UpdatesSqliteFixture, SqliteTestStore).UseTransaction(DatabaseFacade, IDbContextTransaction)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore).UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade, Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+    name: UseTransaction
+    nameWithType: UpdatesRelationalTestBase<UpdatesSqliteFixture, SqliteTestStore>.UseTransaction
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore>.UseTransaction
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+    name: DatabaseFacade
+    nameWithType: DatabaseFacade
+    fullName: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+    name: IDbContextTransaction
+    nameWithType: IDbContextTransaction
+    fullName: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+    name: UseTransaction
+    nameWithType: UpdatesRelationalTestBase(Of UpdatesSqliteFixture, SqliteTestStore).UseTransaction
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore).UseTransaction
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+    name: DatabaseFacade
+    nameWithType: DatabaseFacade
+    fullName: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+    name: IDbContextTransaction
+    nameWithType: IDbContextTransaction
+    fullName: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.UpdateConcurrencyMessage
   commentId: P:Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.UpdateConcurrencyMessage
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}
@@ -476,6 +580,234 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext})
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext})
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext})
+  name: ExecuteWithStrategyInTransaction(Action<UpdatesContext>, Action<UpdatesContext>)
+  nameWithType: UpdatesTestBase<UpdatesSqliteFixture, SqliteTestStore>.ExecuteWithStrategyInTransaction(Action<UpdatesContext>, Action<UpdatesContext>)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore>.ExecuteWithStrategyInTransaction(System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext>, System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext>)
+  nameWithType.vb: UpdatesTestBase(Of UpdatesSqliteFixture, SqliteTestStore).ExecuteWithStrategyInTransaction(Action(Of UpdatesContext), Action(Of UpdatesContext))
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore).ExecuteWithStrategyInTransaction(System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext), System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext))
+  name.vb: ExecuteWithStrategyInTransaction(Action(Of UpdatesContext), Action(Of UpdatesContext))
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext})
+    name: ExecuteWithStrategyInTransaction
+    nameWithType: UpdatesTestBase<UpdatesSqliteFixture, SqliteTestStore>.ExecuteWithStrategyInTransaction
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore>.ExecuteWithStrategyInTransaction
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext})
+    name: ExecuteWithStrategyInTransaction
+    nameWithType: UpdatesTestBase(Of UpdatesSqliteFixture, SqliteTestStore).ExecuteWithStrategyInTransaction
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore).ExecuteWithStrategyInTransaction
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.ExecuteWithStrategyInTransactionAsync(System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task},System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task})
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.ExecuteWithStrategyInTransactionAsync(System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task},System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task})
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.ExecuteWithStrategyInTransactionAsync(System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task},System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task})
+  name: ExecuteWithStrategyInTransactionAsync(Func<UpdatesContext, Task>, Func<UpdatesContext, Task>)
+  nameWithType: UpdatesTestBase<UpdatesSqliteFixture, SqliteTestStore>.ExecuteWithStrategyInTransactionAsync(Func<UpdatesContext, Task>, Func<UpdatesContext, Task>)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore>.ExecuteWithStrategyInTransactionAsync(System.Func<Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext, System.Threading.Tasks.Task>, System.Func<Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext, System.Threading.Tasks.Task>)
+  nameWithType.vb: UpdatesTestBase(Of UpdatesSqliteFixture, SqliteTestStore).ExecuteWithStrategyInTransactionAsync(Func(Of UpdatesContext, Task), Func(Of UpdatesContext, Task))
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore).ExecuteWithStrategyInTransactionAsync(System.Func(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext, System.Threading.Tasks.Task), System.Func(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext, System.Threading.Tasks.Task))
+  name.vb: ExecuteWithStrategyInTransactionAsync(Func(Of UpdatesContext, Task), Func(Of UpdatesContext, Task))
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.ExecuteWithStrategyInTransactionAsync(System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task},System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task})
+    name: ExecuteWithStrategyInTransactionAsync
+    nameWithType: UpdatesTestBase<UpdatesSqliteFixture, SqliteTestStore>.ExecuteWithStrategyInTransactionAsync
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore>.ExecuteWithStrategyInTransactionAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.ExecuteWithStrategyInTransactionAsync(System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task},System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task})
+    name: ExecuteWithStrategyInTransactionAsync
+    nameWithType: UpdatesTestBase(Of UpdatesSqliteFixture, SqliteTestStore).ExecuteWithStrategyInTransactionAsync
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture, Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore).ExecuteWithStrategyInTransactionAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.CreateContext
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}.CreateContext
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture,Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.SqliteTestStore}
@@ -556,45 +888,282 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteTest.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<UpdatesSqliteTest, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<UpdatesSqliteTest, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteTest, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of UpdatesSqliteTest, TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteTest, TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of UpdatesSqliteTest, TConcrete)(String)
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<UpdatesSqliteTest, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<UpdatesSqliteTest, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteTest, TConcrete>
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of UpdatesSqliteTest, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of UpdatesSqliteTest, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteTest, TConcrete)
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -705,6 +1274,103 @@ references:
   - name: TTestStore
     nameWithType: TTestStore
     fullName: TTestStore
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Xunit.IClassFixture`1
+  commentId: T:Xunit.IClassFixture`1
+  isExternal: true
+  name: IClassFixture<TFixture>
+  nameWithType: IClassFixture<TFixture>
+  fullName: Xunit.IClassFixture<TFixture>
+  nameWithType.vb: IClassFixture(Of TFixture)
+  fullname.vb: Xunit.IClassFixture(Of TFixture)
+  name.vb: IClassFixture(Of TFixture)
+  spec.csharp:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Xunit
+  commentId: N:Xunit
+  isExternal: false
+  name: Xunit
+  nameWithType: Xunit
+  fullName: Xunit
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  isExternal: false
+  name: UseTransaction(DatabaseFacade, IDbContextTransaction)
+  nameWithType: UpdatesRelationalTestBase<TFixture, TTestStore>.UseTransaction(DatabaseFacade, IDbContextTransaction)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase<TFixture, TTestStore>.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade, Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  nameWithType.vb: UpdatesRelationalTestBase(Of TFixture, TTestStore).UseTransaction(DatabaseFacade, IDbContextTransaction)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase(Of TFixture, TTestStore).UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade, Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+    name: UseTransaction
+    nameWithType: UpdatesRelationalTestBase<TFixture, TTestStore>.UseTransaction
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase<TFixture, TTestStore>.UseTransaction
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+    name: DatabaseFacade
+    nameWithType: DatabaseFacade
+    fullName: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+    name: IDbContextTransaction
+    nameWithType: IDbContextTransaction
+    fullName: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+    name: UseTransaction
+    nameWithType: UpdatesRelationalTestBase(Of TFixture, TTestStore).UseTransaction
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesRelationalTestBase(Of TFixture, TTestStore).UseTransaction
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+    name: DatabaseFacade
+    nameWithType: DatabaseFacade
+    fullName: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+    name: IDbContextTransaction
+    nameWithType: IDbContextTransaction
+    fullName: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
   - name: )
     nameWithType: )
     fullName: )
@@ -956,6 +1622,232 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext})
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext})
+  isExternal: true
+  name: ExecuteWithStrategyInTransaction(Action<UpdatesContext>, Action<UpdatesContext>)
+  nameWithType: UpdatesTestBase<TFixture, TTestStore>.ExecuteWithStrategyInTransaction(Action<UpdatesContext>, Action<UpdatesContext>)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase<TFixture, TTestStore>.ExecuteWithStrategyInTransaction(System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext>, System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext>)
+  nameWithType.vb: UpdatesTestBase(Of TFixture, TTestStore).ExecuteWithStrategyInTransaction(Action(Of UpdatesContext), Action(Of UpdatesContext))
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase(Of TFixture, TTestStore).ExecuteWithStrategyInTransaction(System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext), System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext))
+  name.vb: ExecuteWithStrategyInTransaction(Action(Of UpdatesContext), Action(Of UpdatesContext))
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext})
+    name: ExecuteWithStrategyInTransaction
+    nameWithType: UpdatesTestBase<TFixture, TTestStore>.ExecuteWithStrategyInTransaction
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase<TFixture, TTestStore>.ExecuteWithStrategyInTransaction
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext})
+    name: ExecuteWithStrategyInTransaction
+    nameWithType: UpdatesTestBase(Of TFixture, TTestStore).ExecuteWithStrategyInTransaction
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase(Of TFixture, TTestStore).ExecuteWithStrategyInTransaction
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.ExecuteWithStrategyInTransactionAsync(System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task},System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task})
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.ExecuteWithStrategyInTransactionAsync(System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task},System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task})
+  isExternal: true
+  name: ExecuteWithStrategyInTransactionAsync(Func<UpdatesContext, Task>, Func<UpdatesContext, Task>)
+  nameWithType: UpdatesTestBase<TFixture, TTestStore>.ExecuteWithStrategyInTransactionAsync(Func<UpdatesContext, Task>, Func<UpdatesContext, Task>)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase<TFixture, TTestStore>.ExecuteWithStrategyInTransactionAsync(System.Func<Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext, System.Threading.Tasks.Task>, System.Func<Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext, System.Threading.Tasks.Task>)
+  nameWithType.vb: UpdatesTestBase(Of TFixture, TTestStore).ExecuteWithStrategyInTransactionAsync(Func(Of UpdatesContext, Task), Func(Of UpdatesContext, Task))
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase(Of TFixture, TTestStore).ExecuteWithStrategyInTransactionAsync(System.Func(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext, System.Threading.Tasks.Task), System.Func(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext, System.Threading.Tasks.Task))
+  name.vb: ExecuteWithStrategyInTransactionAsync(Func(Of UpdatesContext, Task), Func(Of UpdatesContext, Task))
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.ExecuteWithStrategyInTransactionAsync(System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task},System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task})
+    name: ExecuteWithStrategyInTransactionAsync
+    nameWithType: UpdatesTestBase<TFixture, TTestStore>.ExecuteWithStrategyInTransactionAsync
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase<TFixture, TTestStore>.ExecuteWithStrategyInTransactionAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.ExecuteWithStrategyInTransactionAsync(System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task},System.Func{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext,System.Threading.Tasks.Task})
+    name: ExecuteWithStrategyInTransactionAsync
+    nameWithType: UpdatesTestBase(Of TFixture, TTestStore).ExecuteWithStrategyInTransactionAsync
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase(Of TFixture, TTestStore).ExecuteWithStrategyInTransactionAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+    name: UpdatesContext
+    nameWithType: UpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.UpdatesModel.UpdatesContext
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.CreateContext
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.UpdatesTestBase`2.CreateContext
   isExternal: false
@@ -1032,72 +1924,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
 - uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture
   commentId: T:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.UpdatesSqliteFixture
   parent: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests

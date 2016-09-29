@@ -84,6 +84,7 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase`2.Update_write_only_props
   - Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase`2.Update_write_only_props_with_named_fields
   - Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase`2.Update``1(System.String)
+  - Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
   langs:
   - csharp
   - vb
@@ -95,10 +96,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: FieldMappingTestBase
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 13
+    startLine: 15
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -106,17 +107,23 @@ items:
     content: 'public abstract class FieldMappingTestBase<TTestStore, TFixture> : IClassFixture<TFixture>, IDisposable where TTestStore : TestStore where TFixture : FieldMappingTestBase<TTestStore, TFixture>.FieldMappingFixtureBase, new ()'
     content.vb: >-
       Public MustInherit Class FieldMappingTestBase(Of TTestStore As TestStore, TFixture As {FieldMappingTestBase(Of TTestStore, TFixture).FieldMappingFixtureBase, New})
-          Inherits IClassFixture(Of TFixture)
-          Implements IDisposable
+          Implements IClassFixture(Of TFixture), IDisposable
     typeParameters:
     - id: TTestStore
     - id: TFixture
   inheritance:
   - System.Object
   implements:
+  - Xunit.IClassFixture{{TFixture}}
   - System.IDisposable
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase`2.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture)
   modifiers.csharp:
   - public
@@ -143,10 +150,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 17
+    startLine: 19
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -177,16 +184,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_collection_auto_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 23
+    startLine: 25
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_collection_auto_props()
-    content.vb: Public Overridable Sub Include_collection_auto_props
+    content: >-
+      [Fact]
+
+      public virtual void Include_collection_auto_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_collection_auto_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_collection_auto_props()
   modifiers.csharp:
   - public
@@ -210,16 +227,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_reference_auto_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 32
+    startLine: 34
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_reference_auto_props()
-    content.vb: Public Overridable Sub Include_reference_auto_props
+    content: >-
+      [Fact]
+
+      public virtual void Include_reference_auto_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_reference_auto_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_reference_auto_props()
   modifiers.csharp:
   - public
@@ -243,16 +270,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_collection_auto_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 41
+    startLine: 43
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_collection_auto_props()
-    content.vb: Public Overridable Sub Load_collection_auto_props
+    content: >-
+      [Fact]
+
+      public virtual void Load_collection_auto_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_collection_auto_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_collection_auto_props()
   modifiers.csharp:
   - public
@@ -276,16 +313,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_reference_auto_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 45
+    startLine: 47
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_reference_auto_props()
-    content.vb: Public Overridable Sub Load_reference_auto_props
+    content: >-
+      [Fact]
+
+      public virtual void Load_reference_auto_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_reference_auto_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_reference_auto_props()
   modifiers.csharp:
   - public
@@ -309,16 +356,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_constant_auto_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 49
+    startLine: 51
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_constant_auto_props()
-    content.vb: Public Overridable Sub Query_with_conditional_constant_auto_props
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_constant_auto_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_constant_auto_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_constant_auto_props()
   modifiers.csharp:
   - public
@@ -342,16 +399,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_param_auto_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 53
+    startLine: 55
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_param_auto_props()
-    content.vb: Public Overridable Sub Query_with_conditional_param_auto_props
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_param_auto_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_param_auto_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_param_auto_props()
   modifiers.csharp:
   - public
@@ -375,16 +442,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Projection_auto_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 57
+    startLine: 59
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Projection_auto_props()
-    content.vb: Public Overridable Sub Projection_auto_props
+    content: >-
+      [Fact]
+
+      public virtual void Projection_auto_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Projection_auto_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Projection_auto_props()
   modifiers.csharp:
   - public
@@ -408,16 +485,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Update_auto_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 61
+    startLine: 63
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Update_auto_props()
-    content.vb: Public Overridable Sub Update_auto_props
+    content: >-
+      [Fact]
+
+      public virtual void Update_auto_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Update_auto_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Update_auto_props()
   modifiers.csharp:
   - public
@@ -441,16 +528,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_collection_full_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 65
+    startLine: 67
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_collection_full_props()
-    content.vb: Public Overridable Sub Include_collection_full_props
+    content: >-
+      [Fact]
+
+      public virtual void Include_collection_full_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_collection_full_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_collection_full_props()
   modifiers.csharp:
   - public
@@ -474,16 +571,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_reference_full_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 74
+    startLine: 76
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_reference_full_props()
-    content.vb: Public Overridable Sub Include_reference_full_props
+    content: >-
+      [Fact]
+
+      public virtual void Include_reference_full_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_reference_full_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_reference_full_props()
   modifiers.csharp:
   - public
@@ -507,16 +614,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_collection_full_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 83
+    startLine: 85
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_collection_full_props()
-    content.vb: Public Overridable Sub Load_collection_full_props
+    content: >-
+      [Fact]
+
+      public virtual void Load_collection_full_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_collection_full_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_collection_full_props()
   modifiers.csharp:
   - public
@@ -540,16 +657,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_reference_full_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 87
+    startLine: 89
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_reference_full_props()
-    content.vb: Public Overridable Sub Load_reference_full_props
+    content: >-
+      [Fact]
+
+      public virtual void Load_reference_full_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_reference_full_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_reference_full_props()
   modifiers.csharp:
   - public
@@ -573,16 +700,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_constant_full_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 91
+    startLine: 93
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_constant_full_props()
-    content.vb: Public Overridable Sub Query_with_conditional_constant_full_props
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_constant_full_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_constant_full_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_constant_full_props()
   modifiers.csharp:
   - public
@@ -606,16 +743,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_param_full_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 95
+    startLine: 97
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_param_full_props()
-    content.vb: Public Overridable Sub Query_with_conditional_param_full_props
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_param_full_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_param_full_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_param_full_props()
   modifiers.csharp:
   - public
@@ -639,16 +786,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Projection_full_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 99
+    startLine: 101
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Projection_full_props()
-    content.vb: Public Overridable Sub Projection_full_props
+    content: >-
+      [Fact]
+
+      public virtual void Projection_full_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Projection_full_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Projection_full_props()
   modifiers.csharp:
   - public
@@ -672,16 +829,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Update_full_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 103
+    startLine: 105
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Update_full_props()
-    content.vb: Public Overridable Sub Update_full_props
+    content: >-
+      [Fact]
+
+      public virtual void Update_full_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Update_full_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Update_full_props()
   modifiers.csharp:
   - public
@@ -705,16 +872,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_collection_full_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 107
+    startLine: 109
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_collection_full_props_with_named_fields()
-    content.vb: Public Overridable Sub Include_collection_full_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Include_collection_full_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_collection_full_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_collection_full_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -738,16 +915,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_reference_full_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 116
+    startLine: 118
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_reference_full_props_with_named_fields()
-    content.vb: Public Overridable Sub Include_reference_full_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Include_reference_full_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_reference_full_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_reference_full_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -771,16 +958,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_collection_full_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 125
+    startLine: 127
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_collection_full_props_with_named_fields()
-    content.vb: Public Overridable Sub Load_collection_full_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Load_collection_full_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_collection_full_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_collection_full_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -804,16 +1001,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_reference_full_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 129
+    startLine: 131
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_reference_full_props_with_named_fields()
-    content.vb: Public Overridable Sub Load_reference_full_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Load_reference_full_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_reference_full_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_reference_full_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -837,16 +1044,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_constant_full_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 133
+    startLine: 135
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_constant_full_props_with_named_fields()
-    content.vb: Public Overridable Sub Query_with_conditional_constant_full_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_constant_full_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_constant_full_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_constant_full_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -870,16 +1087,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_param_full_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 137
+    startLine: 139
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_param_full_props_with_named_fields()
-    content.vb: Public Overridable Sub Query_with_conditional_param_full_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_param_full_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_param_full_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_param_full_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -903,16 +1130,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Projection_full_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 141
+    startLine: 143
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Projection_full_props_with_named_fields()
-    content.vb: Public Overridable Sub Projection_full_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Projection_full_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Projection_full_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Projection_full_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -936,16 +1173,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Update_full_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 145
+    startLine: 147
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Update_full_props_with_named_fields()
-    content.vb: Public Overridable Sub Update_full_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Update_full_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Update_full_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Update_full_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -969,16 +1216,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_collection_read_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 149
+    startLine: 151
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_collection_read_only_props()
-    content.vb: Public Overridable Sub Include_collection_read_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Include_collection_read_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_collection_read_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_collection_read_only_props()
   modifiers.csharp:
   - public
@@ -1002,16 +1259,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_reference_read_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 158
+    startLine: 160
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_reference_read_only_props()
-    content.vb: Public Overridable Sub Include_reference_read_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Include_reference_read_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_reference_read_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_reference_read_only_props()
   modifiers.csharp:
   - public
@@ -1035,16 +1302,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_collection_read_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 167
+    startLine: 169
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_collection_read_only_props()
-    content.vb: Public Overridable Sub Load_collection_read_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Load_collection_read_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_collection_read_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_collection_read_only_props()
   modifiers.csharp:
   - public
@@ -1068,16 +1345,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_reference_read_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 171
+    startLine: 173
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_reference_read_only_props()
-    content.vb: Public Overridable Sub Load_reference_read_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Load_reference_read_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_reference_read_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_reference_read_only_props()
   modifiers.csharp:
   - public
@@ -1101,16 +1388,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_constant_read_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 175
+    startLine: 177
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_constant_read_only_props()
-    content.vb: Public Overridable Sub Query_with_conditional_constant_read_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_constant_read_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_constant_read_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_constant_read_only_props()
   modifiers.csharp:
   - public
@@ -1134,16 +1431,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_param_read_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 179
+    startLine: 181
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_param_read_only_props()
-    content.vb: Public Overridable Sub Query_with_conditional_param_read_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_param_read_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_param_read_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_param_read_only_props()
   modifiers.csharp:
   - public
@@ -1167,16 +1474,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Projection_read_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 183
+    startLine: 185
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Projection_read_only_props()
-    content.vb: Public Overridable Sub Projection_read_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Projection_read_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Projection_read_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Projection_read_only_props()
   modifiers.csharp:
   - public
@@ -1200,16 +1517,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Update_read_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 187
+    startLine: 189
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Update_read_only_props()
-    content.vb: Public Overridable Sub Update_read_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Update_read_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Update_read_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Update_read_only_props()
   modifiers.csharp:
   - public
@@ -1233,16 +1560,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_collection_read_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 191
+    startLine: 193
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_collection_read_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Include_collection_read_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Include_collection_read_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_collection_read_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_collection_read_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1266,16 +1603,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_reference_read_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 200
+    startLine: 202
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_reference_read_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Include_reference_read_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Include_reference_read_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_reference_read_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_reference_read_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1299,16 +1646,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_collection_read_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 209
+    startLine: 211
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_collection_read_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Load_collection_read_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Load_collection_read_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_collection_read_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_collection_read_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1332,16 +1689,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_reference_read_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 213
+    startLine: 215
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_reference_read_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Load_reference_read_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Load_reference_read_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_reference_read_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_reference_read_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1365,16 +1732,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_constant_read_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 217
+    startLine: 219
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_constant_read_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Query_with_conditional_constant_read_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_constant_read_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_constant_read_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_constant_read_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1398,16 +1775,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_param_read_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 221
+    startLine: 223
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_param_read_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Query_with_conditional_param_read_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_param_read_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_param_read_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_param_read_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1431,16 +1818,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Projection_read_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 225
+    startLine: 227
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Projection_read_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Projection_read_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Projection_read_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Projection_read_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Projection_read_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1464,16 +1861,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Update_read_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 229
+    startLine: 231
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Update_read_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Update_read_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Update_read_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Update_read_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Update_read_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1497,16 +1904,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_collection_write_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 233
+    startLine: 235
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_collection_write_only_props()
-    content.vb: Public Overridable Sub Include_collection_write_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Include_collection_write_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_collection_write_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_collection_write_only_props()
   modifiers.csharp:
   - public
@@ -1530,16 +1947,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_reference_write_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 242
+    startLine: 244
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_reference_write_only_props()
-    content.vb: Public Overridable Sub Include_reference_write_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Include_reference_write_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_reference_write_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_reference_write_only_props()
   modifiers.csharp:
   - public
@@ -1563,16 +1990,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_collection_write_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 251
+    startLine: 253
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_collection_write_only_props()
-    content.vb: Public Overridable Sub Load_collection_write_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Load_collection_write_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_collection_write_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_collection_write_only_props()
   modifiers.csharp:
   - public
@@ -1596,16 +2033,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_reference_write_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 255
+    startLine: 257
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_reference_write_only_props()
-    content.vb: Public Overridable Sub Load_reference_write_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Load_reference_write_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_reference_write_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_reference_write_only_props()
   modifiers.csharp:
   - public
@@ -1629,16 +2076,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_constant_write_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 259
+    startLine: 261
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_constant_write_only_props()
-    content.vb: Public Overridable Sub Query_with_conditional_constant_write_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_constant_write_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_constant_write_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_constant_write_only_props()
   modifiers.csharp:
   - public
@@ -1662,16 +2119,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_param_write_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 263
+    startLine: 265
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_param_write_only_props()
-    content.vb: Public Overridable Sub Query_with_conditional_param_write_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_param_write_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_param_write_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_param_write_only_props()
   modifiers.csharp:
   - public
@@ -1695,16 +2162,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Projection_write_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 267
+    startLine: 269
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Projection_write_only_props()
-    content.vb: Public Overridable Sub Projection_write_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Projection_write_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Projection_write_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Projection_write_only_props()
   modifiers.csharp:
   - public
@@ -1728,16 +2205,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Update_write_only_props
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 271
+    startLine: 273
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Update_write_only_props()
-    content.vb: Public Overridable Sub Update_write_only_props
+    content: >-
+      [Fact]
+
+      public virtual void Update_write_only_props()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Update_write_only_props
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Update_write_only_props()
   modifiers.csharp:
   - public
@@ -1761,16 +2248,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_collection_write_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 275
+    startLine: 277
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_collection_write_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Include_collection_write_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Include_collection_write_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_collection_write_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_collection_write_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1794,16 +2291,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_reference_write_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 284
+    startLine: 286
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_reference_write_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Include_reference_write_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Include_reference_write_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_reference_write_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_reference_write_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1827,16 +2334,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_collection_write_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 293
+    startLine: 295
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_collection_write_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Load_collection_write_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Load_collection_write_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_collection_write_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_collection_write_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1860,16 +2377,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_reference_write_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 297
+    startLine: 299
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_reference_write_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Load_reference_write_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Load_reference_write_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_reference_write_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_reference_write_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1893,16 +2420,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_constant_write_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 301
+    startLine: 303
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_constant_write_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Query_with_conditional_constant_write_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_constant_write_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_constant_write_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_constant_write_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1926,16 +2463,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_param_write_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 305
+    startLine: 307
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_param_write_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Query_with_conditional_param_write_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_param_write_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_param_write_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_param_write_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1959,16 +2506,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Projection_write_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 309
+    startLine: 311
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Projection_write_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Projection_write_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Projection_write_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Projection_write_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Projection_write_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -1992,16 +2549,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Update_write_only_props_with_named_fields
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 313
+    startLine: 315
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Update_write_only_props_with_named_fields()
-    content.vb: Public Overridable Sub Update_write_only_props_with_named_fields
+    content: >-
+      [Fact]
+
+      public virtual void Update_write_only_props_with_named_fields()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Update_write_only_props_with_named_fields
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Update_write_only_props_with_named_fields()
   modifiers.csharp:
   - public
@@ -2025,16 +2592,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_collection_fields_only
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 317
+    startLine: 319
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_collection_fields_only()
-    content.vb: Public Overridable Sub Include_collection_fields_only
+    content: >-
+      [Fact]
+
+      public virtual void Include_collection_fields_only()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_collection_fields_only
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_collection_fields_only()
   modifiers.csharp:
   - public
@@ -2058,16 +2635,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Include_reference_fields_only
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 326
+    startLine: 328
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Include_reference_fields_only()
-    content.vb: Public Overridable Sub Include_reference_fields_only
+    content: >-
+      [Fact]
+
+      public virtual void Include_reference_fields_only()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Include_reference_fields_only
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Include_reference_fields_only()
   modifiers.csharp:
   - public
@@ -2091,16 +2678,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_collection_fields_only
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 335
+    startLine: 337
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_collection_fields_only()
-    content.vb: Public Overridable Sub Load_collection_fields_only
+    content: >-
+      [Fact]
+
+      public virtual void Load_collection_fields_only()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_collection_fields_only
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_collection_fields_only()
   modifiers.csharp:
   - public
@@ -2124,16 +2721,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_reference_fields_only
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 339
+    startLine: 341
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Load_reference_fields_only()
-    content.vb: Public Overridable Sub Load_reference_fields_only
+    content: >-
+      [Fact]
+
+      public virtual void Load_reference_fields_only()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Load_reference_fields_only
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Load_reference_fields_only()
   modifiers.csharp:
   - public
@@ -2157,16 +2764,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_constant_fields_only
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 343
+    startLine: 345
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_constant_fields_only()
-    content.vb: Public Overridable Sub Query_with_conditional_constant_fields_only
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_constant_fields_only()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_constant_fields_only
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_constant_fields_only()
   modifiers.csharp:
   - public
@@ -2190,16 +2807,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_param_fields_only
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 347
+    startLine: 349
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Query_with_conditional_param_fields_only()
-    content.vb: Public Overridable Sub Query_with_conditional_param_fields_only
+    content: >-
+      [Fact]
+
+      public virtual void Query_with_conditional_param_fields_only()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Query_with_conditional_param_fields_only
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Query_with_conditional_param_fields_only()
   modifiers.csharp:
   - public
@@ -2223,16 +2850,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Projection_fields_only
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 351
+    startLine: 353
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Projection_fields_only()
-    content.vb: Public Overridable Sub Projection_fields_only
+    content: >-
+      [Fact]
+
+      public virtual void Projection_fields_only()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Projection_fields_only
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Projection_fields_only()
   modifiers.csharp:
   - public
@@ -2256,16 +2893,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Update_fields_only
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 355
+    startLine: 357
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Update_fields_only()
-    content.vb: Public Overridable Sub Update_fields_only
+    content: >-
+      [Fact]
+
+      public virtual void Update_fields_only()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Update_fields_only
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).Update_fields_only()
   modifiers.csharp:
   - public
@@ -2289,10 +2936,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_collection
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 359
+    startLine: 361
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2328,10 +2975,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Load_reference
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 375
+    startLine: 377
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2367,10 +3014,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_constant
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 391
+    startLine: 393
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2406,10 +3053,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Query_with_conditional_param
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 410
+    startLine: 412
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2445,10 +3092,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Projection
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 426
+    startLine: 428
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2486,10 +3133,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Update
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 447
+    startLine: 449
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2510,6 +3157,44 @@ items:
   - Overridable
   fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase(Of TTestStore, TFixture).Update(Of TBlog)(System.String)
   name.vb: Update(Of TBlog)(String)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  id: UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase`2
+  langs:
+  - csharp
+  - vb
+  name: UseTransaction(DatabaseFacade, IDbContextTransaction)
+  nameWithType: FieldMappingTestBase<TTestStore, TFixture>.UseTransaction(DatabaseFacade, IDbContextTransaction)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase<TTestStore, TFixture>.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade, Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: UseTransaction
+    path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
+    startLine: 489
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Specification.Tests
+  namespace: Microsoft.EntityFrameworkCore.Specification.Tests
+  syntax:
+    content: protected virtual void UseTransaction(DatabaseFacade facade, IDbContextTransaction transaction)
+    content.vb: Protected Overridable Sub UseTransaction(facade As DatabaseFacade, transaction As IDbContextTransaction)
+    parameters:
+    - id: facade
+      type: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+    - id: transaction
+      type: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+  nameWithType.vb: FieldMappingTestBase(Of TTestStore, TFixture).UseTransaction(DatabaseFacade, IDbContextTransaction)
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+  fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase(Of TTestStore, TFixture).UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade, Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase`2.AssertGraph(System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase{`0,`1}.IBlogAccesor},System.String)
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase`2.AssertGraph(System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase{`0,`1}.IBlogAccesor},System.String)
   id: AssertGraph(System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase{`0,`1}.IBlogAccesor},System.String)
@@ -2525,10 +3210,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: AssertGraph
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 486
+    startLine: 493
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2562,10 +3247,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: AssertGraph
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 512
+    startLine: 519
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2597,10 +3282,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CreateBlogAndPosts
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 1233
+    startLine: 1240
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2636,10 +3321,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CreatePostsAndBlog
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 1247
+    startLine: 1254
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2675,10 +3360,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CreateContext
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 1272
+    startLine: 1279
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2708,10 +3393,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Dispose
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 1275
+    startLine: 1282
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2741,10 +3426,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Fixture
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 1277
+    startLine: 1284
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2777,10 +3462,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: TestStore
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/FieldMappingTestBase.cs
-    startLine: 1279
+    startLine: 1286
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2812,6 +3497,46 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: Xunit.IClassFixture{{TFixture}}
+  commentId: T:Xunit.IClassFixture{`0}
+  parent: Xunit
+  definition: Xunit.IClassFixture`1
+  name: IClassFixture<TFixture>
+  nameWithType: IClassFixture<TFixture>
+  fullName: Xunit.IClassFixture<TFixture>
+  nameWithType.vb: IClassFixture(Of TFixture)
+  fullname.vb: Xunit.IClassFixture(Of TFixture)
+  name.vb: IClassFixture(Of TFixture)
+  spec.csharp:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.IDisposable
   commentId: T:System.IDisposable
   parent: System
@@ -2819,45 +3544,282 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase`2.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<FieldMappingTestBase<TTestStore, TFixture>, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<FieldMappingTestBase<TTestStore, TFixture>, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase<TTestStore, TFixture>, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of FieldMappingTestBase(Of TTestStore, TFixture), TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase(Of TTestStore, TFixture), TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of FieldMappingTestBase(Of TTestStore, TFixture), TConcrete)(String)
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<FieldMappingTestBase<TTestStore, TFixture>, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<FieldMappingTestBase<TTestStore, TFixture>, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase<TTestStore, TFixture>, TConcrete>
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of FieldMappingTestBase(Of TTestStore, TFixture), TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of FieldMappingTestBase(Of TTestStore, TFixture), TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase(Of TTestStore, TFixture), TConcrete)
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -2867,72 +3829,51 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
+- uid: Xunit.IClassFixture`1
+  commentId: T:Xunit.IClassFixture`1
   isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
+  name: IClassFixture<TFixture>
+  nameWithType: IClassFixture<TFixture>
+  fullName: Xunit.IClassFixture<TFixture>
+  nameWithType.vb: IClassFixture(Of TFixture)
+  fullname.vb: Xunit.IClassFixture(Of TFixture)
+  name.vb: IClassFixture(Of TFixture)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
     isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+- uid: Xunit
+  commentId: N:Xunit
   isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
+  name: Xunit
+  nameWithType: Xunit
+  fullName: Xunit
 - uid: '{TFixture}'
   commentId: '!:TFixture'
   definition: TFixture
@@ -2951,6 +3892,32 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+  commentId: T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+  parent: Microsoft.EntityFrameworkCore.Infrastructure
+  isExternal: false
+  name: DatabaseFacade
+  nameWithType: DatabaseFacade
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+- uid: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+  commentId: T:Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+  parent: Microsoft.EntityFrameworkCore.Storage
+  isExternal: false
+  name: IDbContextTransaction
+  nameWithType: IDbContextTransaction
+  fullName: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+- uid: Microsoft.EntityFrameworkCore.Infrastructure
+  commentId: N:Microsoft.EntityFrameworkCore.Infrastructure
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.Infrastructure
+  nameWithType: Microsoft.EntityFrameworkCore.Infrastructure
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure
+- uid: Microsoft.EntityFrameworkCore.Storage
+  commentId: N:Microsoft.EntityFrameworkCore.Storage
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.Storage
+  nameWithType: Microsoft.EntityFrameworkCore.Storage
+  fullName: Microsoft.EntityFrameworkCore.Storage
 - uid: System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase`2.IBlogAccesor}
   commentId: T:System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Specification.Tests.FieldMappingTestBase`2.IBlogAccesor}
   parent: System.Collections.Generic

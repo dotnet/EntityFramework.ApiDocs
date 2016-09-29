@@ -8,6 +8,8 @@ items:
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1.#ctor
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1.#ctor(System.Collections.Generic.IEnumerable{`0})
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1.#ctor(System.Collections.Generic.List{`0})
+  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1.System#ComponentModel#IListSource#ContainsListCollection
+  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1.System#ComponentModel#IListSource#GetList
   langs:
   - csharp
   - vb
@@ -19,21 +21,21 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/ObservableHashSetListSource.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: ObservableHashSetListSource
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/ObservableHashSetListSource.cs
     startLine: 26
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n<p>\n    Extends <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601\" data-throw-if-not-resolved=\"false\"></xref> and adds an explicit implementation of <see cref=\"!:IListSource\"></see>.\n</p>\n<p>\n    The method <see cref=\"!:IListSource.GetList\"></see> is implemented to return an <see cref=\"!:IBindingList\"></see>\n    implementation that stays in sync with the ObservableHashSet.\n</p>\n<p>\n    This class can be used to implement navigation properties on entities for use in Windows Forms data binding.\n    For WPF data binding use an ObservableHashSet rather than an instance of this class.\n</p>\n"
+  summary: "\n<p>\n    Extends <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601\" data-throw-if-not-resolved=\"false\"></xref> and adds an explicit implementation of <xref href=\"System.ComponentModel.IListSource\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n<p>\n    The method <xref href=\"System.ComponentModel.IListSource.GetList\" data-throw-if-not-resolved=\"false\"></xref> is implemented to return an <xref href=\"System.ComponentModel.IBindingList\" data-throw-if-not-resolved=\"false\"></xref>\n    implementation that stays in sync with the ObservableHashSet.\n</p>\n<p>\n    This class can be used to implement navigation properties on entities for use in Windows Forms data binding.\n    For WPF data binding use an ObservableHashSet rather than an instance of this class.\n</p>\n"
   example: []
   syntax:
-    content: 'public class ObservableHashSetListSource<T> : ObservableHashSet<T>, IReadOnlyCollection<T>, IEnumerable<T>, IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged, INotifyPropertyChanging, IListSource where T : class'
+    content: 'public class ObservableHashSetListSource<T> : ObservableHashSet<T>, ISet<T>, ICollection<T>, IReadOnlyCollection<T>, IEnumerable<T>, IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged, INotifyPropertyChanging, IListSource where T : class'
     content.vb: >-
       Public Class ObservableHashSetListSource(Of T As Class)
           Inherits ObservableHashSet(Of T)
-          Implements IReadOnlyCollection(Of T), IEnumerable(Of T), IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged, INotifyPropertyChanging, IListSource
+          Implements ISet(Of T), ICollection(Of T), IReadOnlyCollection(Of T), IEnumerable(Of T), IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged, INotifyPropertyChanging, IListSource
     typeParameters:
     - id: T
       description: ''
@@ -41,9 +43,15 @@ items:
   - System.Object
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}
   implements:
+  - System.Collections.Generic.ISet{{T}}
+  - System.Collections.Generic.ICollection{{T}}
   - System.Collections.Generic.IReadOnlyCollection{{T}}
   - System.Collections.Generic.IEnumerable{{T}}
   - System.Collections.IEnumerable
+  - System.Collections.Specialized.INotifyCollectionChanged
+  - System.ComponentModel.INotifyPropertyChanged
+  - System.ComponentModel.INotifyPropertyChanging
+  - System.ComponentModel.IListSource
   inheritedMembers:
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.PropertyChanged
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.PropertyChanging
@@ -74,10 +82,17 @@ items:
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.RemoveWhere(System.Predicate{{T}})
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.Comparer
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.TrimExcess
-  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.OnPropertyChanged(PropertyChangedEventArgs)
-  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.OnPropertyChanging(PropertyChangingEventArgs)
-  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
+  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
+  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.ToBindingList
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
   extensionMethods:
   - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
   - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Action{{T}})
@@ -86,7 +101,6 @@ items:
   - System.Collections.Generic.IEnumerable{System.Object}.Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.Join(System.String)
   - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.StructuralSequenceEqual``1(System.Collections.Generic.IEnumerable{{T}})
   - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.StartsWith``1(System.Collections.Generic.IEnumerable{{T}})
-  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
   nameWithType.vb: ObservableHashSetListSource(Of T)
   modifiers.csharp:
   - public
@@ -111,7 +125,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/ObservableHashSetListSource.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/ObservableHashSetListSource.cs
     startLine: 34
@@ -144,7 +158,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/ObservableHashSetListSource.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/ObservableHashSetListSource.cs
     startLine: 43
@@ -182,7 +196,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore/ChangeTracking/ObservableHashSetListSource.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore/ChangeTracking/ObservableHashSetListSource.cs
     startLine: 53
@@ -205,6 +219,82 @@ items:
   - Public
   fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource(Of T).ObservableHashSetListSource(System.Collections.Generic.List(Of T))
   name.vb: ObservableHashSetListSource(List(Of T))
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1.System#ComponentModel#IListSource#ContainsListCollection
+  commentId: P:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1.System#ComponentModel#IListSource#ContainsListCollection
+  id: System#ComponentModel#IListSource#ContainsListCollection
+  isEii: true
+  parent: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1
+  langs:
+  - csharp
+  - vb
+  name: IListSource.ContainsListCollection
+  nameWithType: ObservableHashSetListSource<T>.IListSource.ContainsListCollection
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource<T>.System.ComponentModel.IListSource.ContainsListCollection
+  type: Property
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore/ChangeTracking/ObservableHashSetListSource.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: System.ComponentModel.IListSource.ContainsListCollection
+    path: src/Microsoft.EntityFrameworkCore/ChangeTracking/ObservableHashSetListSource.cs
+    startLine: 61
+  assemblies:
+  - Microsoft.EntityFrameworkCore
+  namespace: Microsoft.EntityFrameworkCore.ChangeTracking
+  summary: "\n    Always false because there is never a contained collection.\n"
+  example: []
+  syntax:
+    content: bool IListSource.ContainsListCollection { get; }
+    content.vb: ReadOnly WriteOnly Property System.ComponentModel.IListSource.ContainsListCollection As Boolean Implements IListSource.ContainsListCollection
+    parameters: []
+    return:
+      type: System.Boolean
+  implements:
+  - System.ComponentModel.IListSource.ContainsListCollection
+  nameWithType.vb: ObservableHashSetListSource(Of T).System.ComponentModel.IListSource.ContainsListCollection
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+  fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource(Of T).System.ComponentModel.IListSource.ContainsListCollection
+  name.vb: System.ComponentModel.IListSource.ContainsListCollection
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1.System#ComponentModel#IListSource#GetList
+  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1.System#ComponentModel#IListSource#GetList
+  id: System#ComponentModel#IListSource#GetList
+  isEii: true
+  parent: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1
+  langs:
+  - csharp
+  - vb
+  name: IListSource.GetList()
+  nameWithType: ObservableHashSetListSource<T>.IListSource.GetList()
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource<T>.System.ComponentModel.IListSource.GetList()
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore/ChangeTracking/ObservableHashSetListSource.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: System.ComponentModel.IListSource.GetList
+    path: src/Microsoft.EntityFrameworkCore/ChangeTracking/ObservableHashSetListSource.cs
+    startLine: 71
+  assemblies:
+  - Microsoft.EntityFrameworkCore
+  namespace: Microsoft.EntityFrameworkCore.ChangeTracking
+  summary: "\n    Returns an <xref href=\"System.ComponentModel.IBindingList\" data-throw-if-not-resolved=\"false\"></xref> implementation that stays in sync with\n    this <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601\" data-throw-if-not-resolved=\"false\"></xref>. The returned list is cached on this object\n    such that the same list is returned each time this method is called.\n"
+  example: []
+  syntax:
+    content: IList IListSource.GetList()
+    content.vb: Function System.ComponentModel.IListSource.GetList As IList Implements IListSource.GetList
+    return:
+      type: System.Collections.IList
+      description: "\n    An <xref href=\"System.ComponentModel.IBindingList\" data-throw-if-not-resolved=\"false\"></xref> in sync with the ObservableHashSet.\n"
+  implements:
+  - System.ComponentModel.IListSource.GetList
+  nameWithType.vb: ObservableHashSetListSource(Of T).System.ComponentModel.IListSource.GetList()
+  fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource(Of T).System.ComponentModel.IListSource.GetList()
+  name.vb: System.ComponentModel.IListSource.GetList()
 references:
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1
   commentId: T:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1
@@ -243,6 +333,51 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.ComponentModel.IListSource
+  commentId: T:System.ComponentModel.IListSource
+  parent: System.ComponentModel
+  isExternal: true
+  name: IListSource
+  nameWithType: IListSource
+  fullName: System.ComponentModel.IListSource
+- uid: System.ComponentModel.IListSource.GetList
+  commentId: M:System.ComponentModel.IListSource.GetList
+  parent: System.ComponentModel.IListSource
+  isExternal: true
+  name: GetList()
+  nameWithType: IListSource.GetList()
+  fullName: System.ComponentModel.IListSource.GetList()
+  spec.csharp:
+  - uid: System.ComponentModel.IListSource.GetList
+    name: GetList
+    nameWithType: IListSource.GetList
+    fullName: System.ComponentModel.IListSource.GetList
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ComponentModel.IListSource.GetList
+    name: GetList
+    nameWithType: IListSource.GetList
+    fullName: System.ComponentModel.IListSource.GetList
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ComponentModel.IBindingList
+  commentId: T:System.ComponentModel.IBindingList
+  parent: System.ComponentModel
+  isExternal: true
+  name: IBindingList
+  nameWithType: IBindingList
+  fullName: System.ComponentModel.IBindingList
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking
   commentId: N:Microsoft.EntityFrameworkCore.ChangeTracking
   isExternal: false
@@ -285,6 +420,86 @@ references:
     name: ObservableHashSet
     nameWithType: ObservableHashSet
     fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.ISet{{T}}
+  commentId: T:System.Collections.Generic.ISet{`0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ISet`1
+  name: ISet<T>
+  nameWithType: ISet<T>
+  fullName: System.Collections.Generic.ISet<T>
+  nameWithType.vb: ISet(Of T)
+  fullname.vb: System.Collections.Generic.ISet(Of T)
+  name.vb: ISet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    nameWithType: ISet
+    fullName: System.Collections.Generic.ISet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    nameWithType: ISet
+    fullName: System.Collections.Generic.ISet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.ICollection{{T}}
+  commentId: T:System.Collections.Generic.ICollection{`0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ICollection`1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullname.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: System.Collections.Generic.ICollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: System.Collections.Generic.ICollection
+    isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -381,6 +596,27 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: System.Collections.Specialized.INotifyCollectionChanged
+  commentId: T:System.Collections.Specialized.INotifyCollectionChanged
+  parent: System.Collections.Specialized
+  isExternal: true
+  name: INotifyCollectionChanged
+  nameWithType: INotifyCollectionChanged
+  fullName: System.Collections.Specialized.INotifyCollectionChanged
+- uid: System.ComponentModel.INotifyPropertyChanged
+  commentId: T:System.ComponentModel.INotifyPropertyChanged
+  parent: System.ComponentModel
+  isExternal: true
+  name: INotifyPropertyChanged
+  nameWithType: INotifyPropertyChanged
+  fullName: System.ComponentModel.INotifyPropertyChanged
+- uid: System.ComponentModel.INotifyPropertyChanging
+  commentId: T:System.ComponentModel.INotifyPropertyChanging
+  parent: System.ComponentModel
+  isExternal: true
+  name: INotifyPropertyChanging
+  nameWithType: INotifyPropertyChanging
+  fullName: System.ComponentModel.INotifyPropertyChanging
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.PropertyChanged
   commentId: E:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{`0}.PropertyChanged
   parent: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}
@@ -1581,125 +1817,125 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.OnPropertyChanged(PropertyChangedEventArgs)
-  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{`0}.OnPropertyChanged(PropertyChangedEventArgs)
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
+  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{`0}.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
   parent: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}
-  definition: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(PropertyChangedEventArgs)
+  definition: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
   name: OnPropertyChanged(PropertyChangedEventArgs)
   nameWithType: ObservableHashSet<T>.OnPropertyChanged(PropertyChangedEventArgs)
-  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanged(PropertyChangedEventArgs)
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
   nameWithType.vb: ObservableHashSet(Of T).OnPropertyChanged(PropertyChangedEventArgs)
-  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanged(PropertyChangedEventArgs)
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(PropertyChangedEventArgs)
+  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
     name: OnPropertyChanged
     nameWithType: ObservableHashSet<T>.OnPropertyChanged
     fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanged
   - name: (
     nameWithType: (
     fullName: (
-  - uid: PropertyChangedEventArgs
+  - uid: System.ComponentModel.PropertyChangedEventArgs
     name: PropertyChangedEventArgs
     nameWithType: PropertyChangedEventArgs
-    fullName: PropertyChangedEventArgs
+    fullName: System.ComponentModel.PropertyChangedEventArgs
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(PropertyChangedEventArgs)
+  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
     name: OnPropertyChanged
     nameWithType: ObservableHashSet(Of T).OnPropertyChanged
     fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanged
   - name: (
     nameWithType: (
     fullName: (
-  - uid: PropertyChangedEventArgs
+  - uid: System.ComponentModel.PropertyChangedEventArgs
     name: PropertyChangedEventArgs
     nameWithType: PropertyChangedEventArgs
-    fullName: PropertyChangedEventArgs
+    fullName: System.ComponentModel.PropertyChangedEventArgs
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.OnPropertyChanging(PropertyChangingEventArgs)
-  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{`0}.OnPropertyChanging(PropertyChangingEventArgs)
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
+  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{`0}.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
   parent: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}
-  definition: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(PropertyChangingEventArgs)
+  definition: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
   name: OnPropertyChanging(PropertyChangingEventArgs)
   nameWithType: ObservableHashSet<T>.OnPropertyChanging(PropertyChangingEventArgs)
-  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanging(PropertyChangingEventArgs)
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
   nameWithType.vb: ObservableHashSet(Of T).OnPropertyChanging(PropertyChangingEventArgs)
-  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanging(PropertyChangingEventArgs)
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(PropertyChangingEventArgs)
+  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
     name: OnPropertyChanging
     nameWithType: ObservableHashSet<T>.OnPropertyChanging
     fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanging
   - name: (
     nameWithType: (
     fullName: (
-  - uid: PropertyChangingEventArgs
+  - uid: System.ComponentModel.PropertyChangingEventArgs
     name: PropertyChangingEventArgs
     nameWithType: PropertyChangingEventArgs
-    fullName: PropertyChangingEventArgs
+    fullName: System.ComponentModel.PropertyChangingEventArgs
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(PropertyChangingEventArgs)
+  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
     name: OnPropertyChanging
     nameWithType: ObservableHashSet(Of T).OnPropertyChanging
     fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanging
   - name: (
     nameWithType: (
     fullName: (
-  - uid: PropertyChangingEventArgs
+  - uid: System.ComponentModel.PropertyChangingEventArgs
     name: PropertyChangingEventArgs
     nameWithType: PropertyChangingEventArgs
-    fullName: PropertyChangingEventArgs
+    fullName: System.ComponentModel.PropertyChangingEventArgs
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.OnCollectionChanged(NotifyCollectionChangedEventArgs)
-  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{`0}.OnCollectionChanged(NotifyCollectionChangedEventArgs)
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
+  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{`0}.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   parent: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet{{T}}
-  definition: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  definition: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   name: OnCollectionChanged(NotifyCollectionChangedEventArgs)
   nameWithType: ObservableHashSet<T>.OnCollectionChanged(NotifyCollectionChangedEventArgs)
-  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   nameWithType.vb: ObservableHashSet(Of T).OnCollectionChanged(NotifyCollectionChangedEventArgs)
-  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
     name: OnCollectionChanged
     nameWithType: ObservableHashSet<T>.OnCollectionChanged
     fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnCollectionChanged
   - name: (
     nameWithType: (
     fullName: (
-  - uid: NotifyCollectionChangedEventArgs
+  - uid: System.Collections.Specialized.NotifyCollectionChangedEventArgs
     name: NotifyCollectionChangedEventArgs
     nameWithType: NotifyCollectionChangedEventArgs
-    fullName: NotifyCollectionChangedEventArgs
+    fullName: System.Collections.Specialized.NotifyCollectionChangedEventArgs
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
     name: OnCollectionChanged
     nameWithType: ObservableHashSet(Of T).OnCollectionChanged
     fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnCollectionChanged
   - name: (
     nameWithType: (
     fullName: (
-  - uid: NotifyCollectionChangedEventArgs
+  - uid: System.Collections.Specialized.NotifyCollectionChangedEventArgs
     name: NotifyCollectionChangedEventArgs
     nameWithType: NotifyCollectionChangedEventArgs
-    fullName: NotifyCollectionChangedEventArgs
+    fullName: System.Collections.Specialized.NotifyCollectionChangedEventArgs
     isExternal: true
   - name: )
     nameWithType: )
@@ -1729,6 +1965,285 @@ references:
     name: ToBindingList
     nameWithType: ObservableHashSet(Of T).ToBindingList
     fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).ToBindingList
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
@@ -2150,54 +2665,102 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<ObservableHashSetListSource<T>, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<ObservableHashSetListSource<T>, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource<T>, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of ObservableHashSetListSource(Of T), TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource(Of T), TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of ObservableHashSetListSource(Of T), TConcrete)(String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<ObservableHashSetListSource<T>, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<ObservableHashSetListSource<T>, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource<T>, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of ObservableHashSetListSource(Of T), TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of ObservableHashSetListSource(Of T), TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource(Of T), TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: false
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
 - uid: System
   commentId: N:System
   isExternal: false
   name: System
   nameWithType: System
   fullName: System
+- uid: System.Collections.Generic.ISet`1
+  commentId: T:System.Collections.Generic.ISet`1
+  isExternal: true
+  name: ISet<T>
+  nameWithType: ISet<T>
+  fullName: System.Collections.Generic.ISet<T>
+  nameWithType.vb: ISet(Of T)
+  fullname.vb: System.Collections.Generic.ISet(Of T)
+  name.vb: ISet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    nameWithType: ISet
+    fullName: System.Collections.Generic.ISet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    nameWithType: ISet
+    fullName: System.Collections.Generic.ISet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Collections.Generic.ICollection`1
+  commentId: T:System.Collections.Generic.ICollection`1
+  isExternal: true
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullname.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: System.Collections.Generic.ICollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: System.Collections.Generic.ICollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Collections.Generic.IReadOnlyCollection`1
   commentId: T:System.Collections.Generic.IReadOnlyCollection`1
   isExternal: true
@@ -2237,12 +2800,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: false
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
 - uid: System.Collections.Generic.IEnumerable`1
   commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
@@ -2288,6 +2845,12 @@ references:
   name: System.Collections
   nameWithType: System.Collections
   fullName: System.Collections
+- uid: System.Collections.Specialized
+  commentId: N:System.Collections.Specialized
+  isExternal: false
+  name: System.Collections.Specialized
+  nameWithType: System.Collections.Specialized
+  fullName: System.Collections.Specialized
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.PropertyChanged
   commentId: E:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.PropertyChanged
   isExternal: false
@@ -3459,122 +4022,122 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(PropertyChangedEventArgs)
-  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(PropertyChangedEventArgs)
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
+  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
   isExternal: true
   name: OnPropertyChanged(PropertyChangedEventArgs)
   nameWithType: ObservableHashSet<T>.OnPropertyChanged(PropertyChangedEventArgs)
-  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanged(PropertyChangedEventArgs)
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
   nameWithType.vb: ObservableHashSet(Of T).OnPropertyChanged(PropertyChangedEventArgs)
-  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanged(PropertyChangedEventArgs)
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(PropertyChangedEventArgs)
+  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
     name: OnPropertyChanged
     nameWithType: ObservableHashSet<T>.OnPropertyChanged
     fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanged
   - name: (
     nameWithType: (
     fullName: (
-  - uid: PropertyChangedEventArgs
+  - uid: System.ComponentModel.PropertyChangedEventArgs
     name: PropertyChangedEventArgs
     nameWithType: PropertyChangedEventArgs
-    fullName: PropertyChangedEventArgs
+    fullName: System.ComponentModel.PropertyChangedEventArgs
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(PropertyChangedEventArgs)
+  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
     name: OnPropertyChanged
     nameWithType: ObservableHashSet(Of T).OnPropertyChanged
     fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanged
   - name: (
     nameWithType: (
     fullName: (
-  - uid: PropertyChangedEventArgs
+  - uid: System.ComponentModel.PropertyChangedEventArgs
     name: PropertyChangedEventArgs
     nameWithType: PropertyChangedEventArgs
-    fullName: PropertyChangedEventArgs
+    fullName: System.ComponentModel.PropertyChangedEventArgs
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(PropertyChangingEventArgs)
-  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(PropertyChangingEventArgs)
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
+  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
   isExternal: true
   name: OnPropertyChanging(PropertyChangingEventArgs)
   nameWithType: ObservableHashSet<T>.OnPropertyChanging(PropertyChangingEventArgs)
-  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanging(PropertyChangingEventArgs)
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
   nameWithType.vb: ObservableHashSet(Of T).OnPropertyChanging(PropertyChangingEventArgs)
-  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanging(PropertyChangingEventArgs)
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(PropertyChangingEventArgs)
+  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
     name: OnPropertyChanging
     nameWithType: ObservableHashSet<T>.OnPropertyChanging
     fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanging
   - name: (
     nameWithType: (
     fullName: (
-  - uid: PropertyChangingEventArgs
+  - uid: System.ComponentModel.PropertyChangingEventArgs
     name: PropertyChangingEventArgs
     nameWithType: PropertyChangingEventArgs
-    fullName: PropertyChangingEventArgs
+    fullName: System.ComponentModel.PropertyChangingEventArgs
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(PropertyChangingEventArgs)
+  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
     name: OnPropertyChanging
     nameWithType: ObservableHashSet(Of T).OnPropertyChanging
     fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanging
   - name: (
     nameWithType: (
     fullName: (
-  - uid: PropertyChangingEventArgs
+  - uid: System.ComponentModel.PropertyChangingEventArgs
     name: PropertyChangingEventArgs
     nameWithType: PropertyChangingEventArgs
-    fullName: PropertyChangingEventArgs
+    fullName: System.ComponentModel.PropertyChangingEventArgs
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(NotifyCollectionChangedEventArgs)
-  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(NotifyCollectionChangedEventArgs)
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
+  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   isExternal: true
   name: OnCollectionChanged(NotifyCollectionChangedEventArgs)
   nameWithType: ObservableHashSet<T>.OnCollectionChanged(NotifyCollectionChangedEventArgs)
-  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   nameWithType.vb: ObservableHashSet(Of T).OnCollectionChanged(NotifyCollectionChangedEventArgs)
-  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
     name: OnCollectionChanged
     nameWithType: ObservableHashSet<T>.OnCollectionChanged
     fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnCollectionChanged
   - name: (
     nameWithType: (
     fullName: (
-  - uid: NotifyCollectionChangedEventArgs
+  - uid: System.Collections.Specialized.NotifyCollectionChangedEventArgs
     name: NotifyCollectionChangedEventArgs
     nameWithType: NotifyCollectionChangedEventArgs
-    fullName: NotifyCollectionChangedEventArgs
+    fullName: System.Collections.Specialized.NotifyCollectionChangedEventArgs
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
     name: OnCollectionChanged
     nameWithType: ObservableHashSet(Of T).OnCollectionChanged
     fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnCollectionChanged
   - name: (
     nameWithType: (
     fullName: (
-  - uid: NotifyCollectionChangedEventArgs
+  - uid: System.Collections.Specialized.NotifyCollectionChangedEventArgs
     name: NotifyCollectionChangedEventArgs
     nameWithType: NotifyCollectionChangedEventArgs
-    fullName: NotifyCollectionChangedEventArgs
+    fullName: System.Collections.Specialized.NotifyCollectionChangedEventArgs
     isExternal: true
   - name: )
     nameWithType: )
@@ -4270,66 +4833,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests
   commentId: N:Microsoft.EntityFrameworkCore.Specification.Tests
   isExternal: false
@@ -4342,12 +4845,6 @@ references:
   name: Microsoft.EntityFrameworkCore.Internal
   nameWithType: Microsoft.EntityFrameworkCore.Internal
   fullName: Microsoft.EntityFrameworkCore.Internal
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1
   commentId: T:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSetListSource`1
   isExternal: false
@@ -4464,3 +4961,24 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.ComponentModel.IListSource.ContainsListCollection
+  commentId: P:System.ComponentModel.IListSource.ContainsListCollection
+  parent: System.ComponentModel.IListSource
+  isExternal: true
+  name: ContainsListCollection
+  nameWithType: IListSource.ContainsListCollection
+  fullName: System.ComponentModel.IListSource.ContainsListCollection
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Collections.IList
+  commentId: T:System.Collections.IList
+  parent: System.Collections
+  isExternal: true
+  name: IList
+  nameWithType: IList
+  fullName: System.Collections.IList

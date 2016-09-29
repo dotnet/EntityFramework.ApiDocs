@@ -8,6 +8,7 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.#ctor(`1)
   - Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.CreateContext
   - Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.Dispose
+  - Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext})
   - Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.Fixture
   - Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.IsTheRoot
   - Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.LoadOptionalAkGraph(Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext)
@@ -84,6 +85,7 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.Sever_required_one_to_one(Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.ChangeMechanism)
   - Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.Sever_required_one_to_one_with_alternate_key(Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.ChangeMechanism)
   - Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.TestStore
+  - Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
   langs:
   - csharp
   - vb
@@ -95,10 +97,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: GraphUpdatesTestBase
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 18
+    startLine: 19
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -106,17 +108,23 @@ items:
     content: 'public abstract class GraphUpdatesTestBase<TTestStore, TFixture> : IClassFixture<TFixture>, IDisposable where TTestStore : TestStore where TFixture : GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesFixtureBase, new ()'
     content.vb: >-
       Public MustInherit Class GraphUpdatesTestBase(Of TTestStore As TestStore, TFixture As {GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesFixtureBase, New})
-          Inherits IClassFixture(Of TFixture)
-          Implements IDisposable
+          Implements IClassFixture(Of TFixture), IDisposable
     typeParameters:
     - id: TTestStore
     - id: TFixture
   inheritance:
   - System.Object
   implements:
+  - Xunit.IClassFixture{{TFixture}}
   - System.IDisposable
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
   nameWithType.vb: GraphUpdatesTestBase(Of TTestStore, TFixture)
   modifiers.csharp:
   - public
@@ -143,10 +151,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 22
+    startLine: 23
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -177,10 +185,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Optional_One_to_one_relationships_are_one_to_one
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 28
+    startLine: 29
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -210,10 +218,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_One_to_one_relationships_are_one_to_one
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 41
+    startLine: 42
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -243,10 +251,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Optional_One_to_one_with_AK_relationships_are_one_to_one
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 54
+    startLine: 55
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -276,10 +284,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_One_to_one_with_AK_relationships_are_one_to_one
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 67
+    startLine: 68
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -309,16 +317,74 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_optional_many_to_one_dependents
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 80
+    startLine: 81
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Save_optional_many_to_one_dependents(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
-    content.vb: Public Overridable Sub Save_optional_many_to_one_dependents(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
+    content: >-
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{4, false})]
+
+      [InlineData(new object[]{4, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      [InlineData(new object[]{6, false})]
+
+      [InlineData(new object[]{6, true})]
+
+      [InlineData(new object[]{5, false})]
+
+      [InlineData(new object[]{5, true})]
+
+      [InlineData(new object[]{7, false})]
+
+      [InlineData(new object[]{7, true})]
+
+      public virtual void Save_optional_many_to_one_dependents(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
+    content.vb: >-
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {4, False})>
+
+      <InlineData(New Object() {4, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      <InlineData(New Object() {6, False})>
+
+      <InlineData(New Object() {6, True})>
+
+      <InlineData(New Object() {5, False})>
+
+      <InlineData(New Object() {5, True})>
+
+      <InlineData(New Object() {7, False})>
+
+      <InlineData(New Object() {7, True})>
+
+      Public Overridable Sub Save_optional_many_to_one_dependents(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -348,7 +414,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_required_many_to_one_dependents
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
     startLine: 212
@@ -356,8 +422,66 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Save_required_many_to_one_dependents(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
-    content.vb: Public Overridable Sub Save_required_many_to_one_dependents(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
+    content: >-
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{4, false})]
+
+      [InlineData(new object[]{4, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      [InlineData(new object[]{6, false})]
+
+      [InlineData(new object[]{6, true})]
+
+      [InlineData(new object[]{5, false})]
+
+      [InlineData(new object[]{5, true})]
+
+      [InlineData(new object[]{7, false})]
+
+      [InlineData(new object[]{7, true})]
+
+      public virtual void Save_required_many_to_one_dependents(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
+    content.vb: >-
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {4, False})>
+
+      <InlineData(New Object() {4, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      <InlineData(New Object() {6, False})>
+
+      <InlineData(New Object() {6, True})>
+
+      <InlineData(New Object() {5, False})>
+
+      <InlineData(New Object() {5, True})>
+
+      <InlineData(New Object() {7, False})>
+
+      <InlineData(New Object() {7, True})>
+
+      Public Overridable Sub Save_required_many_to_one_dependents(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -387,16 +511,46 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_removed_optional_many_to_one_dependents
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 346
+    startLine: 345
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Save_removed_optional_many_to_one_dependents(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
-    content.vb: Public Overridable Sub Save_removed_optional_many_to_one_dependents(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
+    content: >-
+      [InlineData(new object[]{2})]
+
+      [InlineData(new object[]{1})]
+
+      [InlineData(new object[]{4})]
+
+      [InlineData(new object[]{3})]
+
+      [InlineData(new object[]{6})]
+
+      [InlineData(new object[]{5})]
+
+      [InlineData(new object[]{7})]
+
+      public virtual void Save_removed_optional_many_to_one_dependents(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
+    content.vb: >-
+      <InlineData(New Object() {2})>
+
+      <InlineData(New Object() {1})>
+
+      <InlineData(New Object() {4})>
+
+      <InlineData(New Object() {3})>
+
+      <InlineData(New Object() {6})>
+
+      <InlineData(New Object() {5})>
+
+      <InlineData(New Object() {7})>
+
+      Public Overridable Sub Save_removed_optional_many_to_one_dependents(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -424,16 +578,46 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_removed_required_many_to_one_dependents
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 410
+    startLine: 409
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Save_removed_required_many_to_one_dependents(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
-    content.vb: Public Overridable Sub Save_removed_required_many_to_one_dependents(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
+    content: >-
+      [InlineData(new object[]{2})]
+
+      [InlineData(new object[]{1})]
+
+      [InlineData(new object[]{4})]
+
+      [InlineData(new object[]{3})]
+
+      [InlineData(new object[]{6})]
+
+      [InlineData(new object[]{5})]
+
+      [InlineData(new object[]{7})]
+
+      public virtual void Save_removed_required_many_to_one_dependents(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
+    content.vb: >-
+      <InlineData(New Object() {2})>
+
+      <InlineData(New Object() {1})>
+
+      <InlineData(New Object() {4})>
+
+      <InlineData(New Object() {3})>
+
+      <InlineData(New Object() {6})>
+
+      <InlineData(New Object() {5})>
+
+      <InlineData(New Object() {7})>
+
+      Public Overridable Sub Save_removed_required_many_to_one_dependents(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -461,16 +645,74 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_changed_optional_one_to_one
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 476
+    startLine: 475
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Save_changed_optional_one_to_one(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
-    content.vb: Public Overridable Sub Save_changed_optional_one_to_one(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
+    content: >-
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{4, false})]
+
+      [InlineData(new object[]{4, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      [InlineData(new object[]{6, false})]
+
+      [InlineData(new object[]{6, true})]
+
+      [InlineData(new object[]{5, false})]
+
+      [InlineData(new object[]{5, true})]
+
+      [InlineData(new object[]{7, false})]
+
+      [InlineData(new object[]{7, true})]
+
+      public virtual void Save_changed_optional_one_to_one(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
+    content.vb: >-
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {4, False})>
+
+      <InlineData(New Object() {4, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      <InlineData(New Object() {6, False})>
+
+      <InlineData(New Object() {6, True})>
+
+      <InlineData(New Object() {5, False})>
+
+      <InlineData(New Object() {5, True})>
+
+      <InlineData(New Object() {7, False})>
+
+      <InlineData(New Object() {7, True})>
+
+      Public Overridable Sub Save_changed_optional_one_to_one(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -500,16 +742,46 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_required_one_to_one_changed_by_reference
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 629
+    startLine: 627
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Save_required_one_to_one_changed_by_reference(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
-    content.vb: Public Overridable Sub Save_required_one_to_one_changed_by_reference(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
+    content: >-
+      [InlineData(new object[]{1})]
+
+      [InlineData(new object[]{2})]
+
+      [InlineData(new object[]{4})]
+
+      [InlineData(new object[]{3})]
+
+      [InlineData(new object[]{6})]
+
+      [InlineData(new object[]{5})]
+
+      [InlineData(new object[]{7})]
+
+      public virtual void Save_required_one_to_one_changed_by_reference(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
+    content.vb: >-
+      <InlineData(New Object() {1})>
+
+      <InlineData(New Object() {2})>
+
+      <InlineData(New Object() {4})>
+
+      <InlineData(New Object() {3})>
+
+      <InlineData(New Object() {6})>
+
+      <InlineData(New Object() {5})>
+
+      <InlineData(New Object() {7})>
+
+      Public Overridable Sub Save_required_one_to_one_changed_by_reference(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -537,16 +809,74 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_required_non_PK_one_to_one_changed_by_reference
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 718
+    startLine: 715
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Save_required_non_PK_one_to_one_changed_by_reference(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
-    content.vb: Public Overridable Sub Save_required_non_PK_one_to_one_changed_by_reference(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
+    content: >-
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{4, false})]
+
+      [InlineData(new object[]{4, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      [InlineData(new object[]{6, false})]
+
+      [InlineData(new object[]{6, true})]
+
+      [InlineData(new object[]{5, false})]
+
+      [InlineData(new object[]{5, true})]
+
+      [InlineData(new object[]{7, false})]
+
+      [InlineData(new object[]{7, true})]
+
+      public virtual void Save_required_non_PK_one_to_one_changed_by_reference(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
+    content.vb: >-
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {4, False})>
+
+      <InlineData(New Object() {4, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      <InlineData(New Object() {6, False})>
+
+      <InlineData(New Object() {6, True})>
+
+      <InlineData(New Object() {5, False})>
+
+      <InlineData(New Object() {5, True})>
+
+      <InlineData(New Object() {7, False})>
+
+      <InlineData(New Object() {7, True})>
+
+      Public Overridable Sub Save_required_non_PK_one_to_one_changed_by_reference(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -576,16 +906,46 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Sever_optional_one_to_one
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 865
+    startLine: 861
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Sever_optional_one_to_one(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
-    content.vb: Public Overridable Sub Sever_optional_one_to_one(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
+    content: >-
+      [InlineData(new object[]{1})]
+
+      [InlineData(new object[]{2})]
+
+      [InlineData(new object[]{4})]
+
+      [InlineData(new object[]{3})]
+
+      [InlineData(new object[]{6})]
+
+      [InlineData(new object[]{5})]
+
+      [InlineData(new object[]{7})]
+
+      public virtual void Sever_optional_one_to_one(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
+    content.vb: >-
+      <InlineData(New Object() {1})>
+
+      <InlineData(New Object() {2})>
+
+      <InlineData(New Object() {4})>
+
+      <InlineData(New Object() {3})>
+
+      <InlineData(New Object() {6})>
+
+      <InlineData(New Object() {5})>
+
+      <InlineData(New Object() {7})>
+
+      Public Overridable Sub Sever_optional_one_to_one(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -613,16 +973,30 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Sever_required_one_to_one
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 931
+    startLine: 927
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Sever_required_one_to_one(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
-    content.vb: Public Overridable Sub Sever_required_one_to_one(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
+    content: >-
+      [InlineData(new object[]{1})]
+
+      [InlineData(new object[]{2})]
+
+      [InlineData(new object[]{3})]
+
+      public virtual void Sever_required_one_to_one(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
+    content.vb: >-
+      <InlineData(New Object() {1})>
+
+      <InlineData(New Object() {2})>
+
+      <InlineData(New Object() {3})>
+
+      Public Overridable Sub Sever_required_one_to_one(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -650,16 +1024,30 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Sever_required_non_PK_one_to_one
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 987
+    startLine: 983
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Sever_required_non_PK_one_to_one(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
-    content.vb: Public Overridable Sub Sever_required_non_PK_one_to_one(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
+    content: >-
+      [InlineData(new object[]{1})]
+
+      [InlineData(new object[]{2})]
+
+      [InlineData(new object[]{3})]
+
+      public virtual void Sever_required_non_PK_one_to_one(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
+    content.vb: >-
+      <InlineData(New Object() {1})>
+
+      <InlineData(New Object() {2})>
+
+      <InlineData(New Object() {3})>
+
+      Public Overridable Sub Sever_required_non_PK_one_to_one(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -687,16 +1075,74 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Reparent_optional_one_to_one
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 1043
+    startLine: 1039
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Reparent_optional_one_to_one(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingRoot)
-    content.vb: Public Overridable Sub Reparent_optional_one_to_one(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingRoot As Boolean)
+    content: >-
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{4, false})]
+
+      [InlineData(new object[]{4, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      [InlineData(new object[]{6, false})]
+
+      [InlineData(new object[]{6, true})]
+
+      [InlineData(new object[]{5, false})]
+
+      [InlineData(new object[]{5, true})]
+
+      [InlineData(new object[]{7, false})]
+
+      [InlineData(new object[]{7, true})]
+
+      public virtual void Reparent_optional_one_to_one(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingRoot)
+    content.vb: >-
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {4, False})>
+
+      <InlineData(New Object() {4, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      <InlineData(New Object() {6, False})>
+
+      <InlineData(New Object() {6, True})>
+
+      <InlineData(New Object() {5, False})>
+
+      <InlineData(New Object() {5, True})>
+
+      <InlineData(New Object() {7, False})>
+
+      <InlineData(New Object() {7, True})>
+
+      Public Overridable Sub Reparent_optional_one_to_one(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingRoot As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -726,16 +1172,74 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Reparent_required_one_to_one
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 1130
+    startLine: 1125
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Reparent_required_one_to_one(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingRoot)
-    content.vb: Public Overridable Sub Reparent_required_one_to_one(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingRoot As Boolean)
+    content: >-
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{4, false})]
+
+      [InlineData(new object[]{4, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      [InlineData(new object[]{6, false})]
+
+      [InlineData(new object[]{6, true})]
+
+      [InlineData(new object[]{5, false})]
+
+      [InlineData(new object[]{5, true})]
+
+      [InlineData(new object[]{7, false})]
+
+      [InlineData(new object[]{7, true})]
+
+      public virtual void Reparent_required_one_to_one(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingRoot)
+    content.vb: >-
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {4, False})>
+
+      <InlineData(New Object() {4, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      <InlineData(New Object() {6, False})>
+
+      <InlineData(New Object() {6, True})>
+
+      <InlineData(New Object() {5, False})>
+
+      <InlineData(New Object() {5, True})>
+
+      <InlineData(New Object() {7, False})>
+
+      <InlineData(New Object() {7, True})>
+
+      Public Overridable Sub Reparent_required_one_to_one(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingRoot As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -765,16 +1269,74 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Reparent_required_non_PK_one_to_one
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 1191
+    startLine: 1186
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Reparent_required_non_PK_one_to_one(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingRoot)
-    content.vb: Public Overridable Sub Reparent_required_non_PK_one_to_one(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingRoot As Boolean)
+    content: >-
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{4, false})]
+
+      [InlineData(new object[]{4, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      [InlineData(new object[]{6, false})]
+
+      [InlineData(new object[]{6, true})]
+
+      [InlineData(new object[]{5, false})]
+
+      [InlineData(new object[]{5, true})]
+
+      [InlineData(new object[]{7, false})]
+
+      [InlineData(new object[]{7, true})]
+
+      public virtual void Reparent_required_non_PK_one_to_one(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingRoot)
+    content.vb: >-
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {4, False})>
+
+      <InlineData(New Object() {4, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      <InlineData(New Object() {6, False})>
+
+      <InlineData(New Object() {6, True})>
+
+      <InlineData(New Object() {5, False})>
+
+      <InlineData(New Object() {5, True})>
+
+      <InlineData(New Object() {7, False})>
+
+      <InlineData(New Object() {7, True})>
+
+      Public Overridable Sub Reparent_required_non_PK_one_to_one(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingRoot As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -804,16 +1366,74 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_optional_many_to_one_dependents_with_alternate_key
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 1278
+    startLine: 1272
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Save_optional_many_to_one_dependents_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
-    content.vb: Public Overridable Sub Save_optional_many_to_one_dependents_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
+    content: >-
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{4, false})]
+
+      [InlineData(new object[]{4, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      [InlineData(new object[]{6, false})]
+
+      [InlineData(new object[]{6, true})]
+
+      [InlineData(new object[]{5, false})]
+
+      [InlineData(new object[]{5, true})]
+
+      [InlineData(new object[]{7, false})]
+
+      [InlineData(new object[]{7, true})]
+
+      public virtual void Save_optional_many_to_one_dependents_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
+    content.vb: >-
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {4, False})>
+
+      <InlineData(New Object() {4, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      <InlineData(New Object() {6, False})>
+
+      <InlineData(New Object() {6, True})>
+
+      <InlineData(New Object() {5, False})>
+
+      <InlineData(New Object() {5, True})>
+
+      <InlineData(New Object() {7, False})>
+
+      <InlineData(New Object() {7, True})>
+
+      Public Overridable Sub Save_optional_many_to_one_dependents_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -843,16 +1463,74 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_required_many_to_one_dependents_with_alternate_key
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 1430
+    startLine: 1423
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Save_required_many_to_one_dependents_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
-    content.vb: Public Overridable Sub Save_required_many_to_one_dependents_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
+    content: >-
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{4, false})]
+
+      [InlineData(new object[]{4, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      [InlineData(new object[]{6, false})]
+
+      [InlineData(new object[]{6, true})]
+
+      [InlineData(new object[]{5, false})]
+
+      [InlineData(new object[]{5, true})]
+
+      [InlineData(new object[]{7, false})]
+
+      [InlineData(new object[]{7, true})]
+
+      public virtual void Save_required_many_to_one_dependents_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
+    content.vb: >-
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {4, False})>
+
+      <InlineData(New Object() {4, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      <InlineData(New Object() {6, False})>
+
+      <InlineData(New Object() {6, True})>
+
+      <InlineData(New Object() {5, False})>
+
+      <InlineData(New Object() {5, True})>
+
+      <InlineData(New Object() {7, False})>
+
+      <InlineData(New Object() {7, True})>
+
+      Public Overridable Sub Save_required_many_to_one_dependents_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -882,16 +1560,46 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_removed_optional_many_to_one_dependents_with_alternate_key
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 1584
+    startLine: 1576
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Save_removed_optional_many_to_one_dependents_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
-    content.vb: Public Overridable Sub Save_removed_optional_many_to_one_dependents_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
+    content: >-
+      [InlineData(new object[]{2})]
+
+      [InlineData(new object[]{1})]
+
+      [InlineData(new object[]{4})]
+
+      [InlineData(new object[]{3})]
+
+      [InlineData(new object[]{6})]
+
+      [InlineData(new object[]{5})]
+
+      [InlineData(new object[]{7})]
+
+      public virtual void Save_removed_optional_many_to_one_dependents_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
+    content.vb: >-
+      <InlineData(New Object() {2})>
+
+      <InlineData(New Object() {1})>
+
+      <InlineData(New Object() {4})>
+
+      <InlineData(New Object() {3})>
+
+      <InlineData(New Object() {6})>
+
+      <InlineData(New Object() {5})>
+
+      <InlineData(New Object() {7})>
+
+      Public Overridable Sub Save_removed_optional_many_to_one_dependents_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -919,16 +1627,30 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_removed_required_many_to_one_dependents_with_alternate_key
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 1657
+    startLine: 1649
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Save_removed_required_many_to_one_dependents_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
-    content.vb: Public Overridable Sub Save_removed_required_many_to_one_dependents_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
+    content: >-
+      [InlineData(new object[]{2})]
+
+      [InlineData(new object[]{1})]
+
+      [InlineData(new object[]{3})]
+
+      public virtual void Save_removed_required_many_to_one_dependents_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
+    content.vb: >-
+      <InlineData(New Object() {2})>
+
+      <InlineData(New Object() {1})>
+
+      <InlineData(New Object() {3})>
+
+      Public Overridable Sub Save_removed_required_many_to_one_dependents_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -956,16 +1678,74 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_changed_optional_one_to_one_with_alternate_key
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 1729
+    startLine: 1721
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Save_changed_optional_one_to_one_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
-    content.vb: Public Overridable Sub Save_changed_optional_one_to_one_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
+    content: >-
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{4, false})]
+
+      [InlineData(new object[]{4, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      [InlineData(new object[]{6, false})]
+
+      [InlineData(new object[]{6, true})]
+
+      [InlineData(new object[]{5, false})]
+
+      [InlineData(new object[]{5, true})]
+
+      [InlineData(new object[]{7, false})]
+
+      [InlineData(new object[]{7, true})]
+
+      public virtual void Save_changed_optional_one_to_one_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
+    content.vb: >-
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {4, False})>
+
+      <InlineData(New Object() {4, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      <InlineData(New Object() {6, False})>
+
+      <InlineData(New Object() {6, True})>
+
+      <InlineData(New Object() {5, False})>
+
+      <InlineData(New Object() {5, True})>
+
+      <InlineData(New Object() {7, False})>
+
+      <InlineData(New Object() {7, True})>
+
+      Public Overridable Sub Save_changed_optional_one_to_one_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -995,10 +1775,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_changed_optional_one_to_one_with_alternate_key_in_store
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 1896
+    startLine: 1887
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1028,16 +1808,42 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_required_one_to_one_changed_by_reference_with_alternate_key
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 2052
+    startLine: 2044
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Save_required_one_to_one_changed_by_reference_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
-    content.vb: Public Overridable Sub Save_required_one_to_one_changed_by_reference_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
+    content: >-
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      public virtual void Save_required_one_to_one_changed_by_reference_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
+    content.vb: >-
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      Public Overridable Sub Save_required_one_to_one_changed_by_reference_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -1067,16 +1873,74 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Save_required_non_PK_one_to_one_changed_by_reference_with_alternate_key
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 2153
+    startLine: 2144
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Save_required_non_PK_one_to_one_changed_by_reference_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
-    content.vb: Public Overridable Sub Save_required_non_PK_one_to_one_changed_by_reference_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
+    content: >-
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{4, false})]
+
+      [InlineData(new object[]{4, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      [InlineData(new object[]{6, false})]
+
+      [InlineData(new object[]{6, true})]
+
+      [InlineData(new object[]{5, false})]
+
+      [InlineData(new object[]{5, true})]
+
+      [InlineData(new object[]{7, false})]
+
+      [InlineData(new object[]{7, true})]
+
+      public virtual void Save_required_non_PK_one_to_one_changed_by_reference_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingEntities)
+    content.vb: >-
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {4, False})>
+
+      <InlineData(New Object() {4, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      <InlineData(New Object() {6, False})>
+
+      <InlineData(New Object() {6, True})>
+
+      <InlineData(New Object() {5, False})>
+
+      <InlineData(New Object() {5, True})>
+
+      <InlineData(New Object() {7, False})>
+
+      <InlineData(New Object() {7, True})>
+
+      Public Overridable Sub Save_required_non_PK_one_to_one_changed_by_reference_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingEntities As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -1106,16 +1970,46 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Sever_optional_one_to_one_with_alternate_key
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 2301
+    startLine: 2291
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Sever_optional_one_to_one_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
-    content.vb: Public Overridable Sub Sever_optional_one_to_one_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
+    content: >-
+      [InlineData(new object[]{1})]
+
+      [InlineData(new object[]{2})]
+
+      [InlineData(new object[]{4})]
+
+      [InlineData(new object[]{3})]
+
+      [InlineData(new object[]{6})]
+
+      [InlineData(new object[]{5})]
+
+      [InlineData(new object[]{7})]
+
+      public virtual void Sever_optional_one_to_one_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
+    content.vb: >-
+      <InlineData(New Object() {1})>
+
+      <InlineData(New Object() {2})>
+
+      <InlineData(New Object() {4})>
+
+      <InlineData(New Object() {3})>
+
+      <InlineData(New Object() {6})>
+
+      <InlineData(New Object() {5})>
+
+      <InlineData(New Object() {7})>
+
+      Public Overridable Sub Sever_optional_one_to_one_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -1143,16 +2037,30 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Sever_required_one_to_one_with_alternate_key
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 2376
+    startLine: 2366
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Sever_required_one_to_one_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
-    content.vb: Public Overridable Sub Sever_required_one_to_one_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
+    content: >-
+      [InlineData(new object[]{1})]
+
+      [InlineData(new object[]{2})]
+
+      [InlineData(new object[]{3})]
+
+      public virtual void Sever_required_one_to_one_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
+    content.vb: >-
+      <InlineData(New Object() {1})>
+
+      <InlineData(New Object() {2})>
+
+      <InlineData(New Object() {3})>
+
+      Public Overridable Sub Sever_required_one_to_one_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -1180,16 +2088,30 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Sever_required_non_PK_one_to_one_with_alternate_key
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 2438
+    startLine: 2428
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Sever_required_non_PK_one_to_one_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
-    content.vb: Public Overridable Sub Sever_required_non_PK_one_to_one_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
+    content: >-
+      [InlineData(new object[]{1})]
+
+      [InlineData(new object[]{2})]
+
+      [InlineData(new object[]{3})]
+
+      public virtual void Sever_required_non_PK_one_to_one_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism)
+    content.vb: >-
+      <InlineData(New Object() {1})>
+
+      <InlineData(New Object() {2})>
+
+      <InlineData(New Object() {3})>
+
+      Public Overridable Sub Sever_required_non_PK_one_to_one_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -1217,16 +2139,74 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Reparent_optional_one_to_one_with_alternate_key
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 2494
+    startLine: 2484
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Reparent_optional_one_to_one_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingRoot)
-    content.vb: Public Overridable Sub Reparent_optional_one_to_one_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingRoot As Boolean)
+    content: >-
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{4, false})]
+
+      [InlineData(new object[]{4, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      [InlineData(new object[]{6, false})]
+
+      [InlineData(new object[]{6, true})]
+
+      [InlineData(new object[]{5, false})]
+
+      [InlineData(new object[]{5, true})]
+
+      [InlineData(new object[]{7, false})]
+
+      [InlineData(new object[]{7, true})]
+
+      public virtual void Reparent_optional_one_to_one_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingRoot)
+    content.vb: >-
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {4, False})>
+
+      <InlineData(New Object() {4, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      <InlineData(New Object() {6, False})>
+
+      <InlineData(New Object() {6, True})>
+
+      <InlineData(New Object() {5, False})>
+
+      <InlineData(New Object() {5, True})>
+
+      <InlineData(New Object() {7, False})>
+
+      <InlineData(New Object() {7, True})>
+
+      Public Overridable Sub Reparent_optional_one_to_one_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingRoot As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -1256,16 +2236,74 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Reparent_required_one_to_one_with_alternate_key
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 2590
+    startLine: 2579
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Reparent_required_one_to_one_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingRoot)
-    content.vb: Public Overridable Sub Reparent_required_one_to_one_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingRoot As Boolean)
+    content: >-
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{4, false})]
+
+      [InlineData(new object[]{4, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      [InlineData(new object[]{6, false})]
+
+      [InlineData(new object[]{6, true})]
+
+      [InlineData(new object[]{5, false})]
+
+      [InlineData(new object[]{5, true})]
+
+      [InlineData(new object[]{7, false})]
+
+      [InlineData(new object[]{7, true})]
+
+      public virtual void Reparent_required_one_to_one_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingRoot)
+    content.vb: >-
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {4, False})>
+
+      <InlineData(New Object() {4, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      <InlineData(New Object() {6, False})>
+
+      <InlineData(New Object() {6, True})>
+
+      <InlineData(New Object() {5, False})>
+
+      <InlineData(New Object() {5, True})>
+
+      <InlineData(New Object() {7, False})>
+
+      <InlineData(New Object() {7, True})>
+
+      Public Overridable Sub Reparent_required_one_to_one_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingRoot As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -1295,16 +2333,74 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Reparent_required_non_PK_one_to_one_with_alternate_key
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 2686
+    startLine: 2674
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Reparent_required_non_PK_one_to_one_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingRoot)
-    content.vb: Public Overridable Sub Reparent_required_non_PK_one_to_one_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingRoot As Boolean)
+    content: >-
+      [InlineData(new object[]{1, false})]
+
+      [InlineData(new object[]{1, true})]
+
+      [InlineData(new object[]{2, false})]
+
+      [InlineData(new object[]{2, true})]
+
+      [InlineData(new object[]{4, false})]
+
+      [InlineData(new object[]{4, true})]
+
+      [InlineData(new object[]{3, false})]
+
+      [InlineData(new object[]{3, true})]
+
+      [InlineData(new object[]{6, false})]
+
+      [InlineData(new object[]{6, true})]
+
+      [InlineData(new object[]{5, false})]
+
+      [InlineData(new object[]{5, true})]
+
+      [InlineData(new object[]{7, false})]
+
+      [InlineData(new object[]{7, true})]
+
+      public virtual void Reparent_required_non_PK_one_to_one_with_alternate_key(GraphUpdatesTestBase<TTestStore, TFixture>.ChangeMechanism changeMechanism, bool useExistingRoot)
+    content.vb: >-
+      <InlineData(New Object() {1, False})>
+
+      <InlineData(New Object() {1, True})>
+
+      <InlineData(New Object() {2, False})>
+
+      <InlineData(New Object() {2, True})>
+
+      <InlineData(New Object() {4, False})>
+
+      <InlineData(New Object() {4, True})>
+
+      <InlineData(New Object() {3, False})>
+
+      <InlineData(New Object() {3, True})>
+
+      <InlineData(New Object() {6, False})>
+
+      <InlineData(New Object() {6, True})>
+
+      <InlineData(New Object() {5, False})>
+
+      <InlineData(New Object() {5, True})>
+
+      <InlineData(New Object() {7, False})>
+
+      <InlineData(New Object() {7, True})>
+
+      Public Overridable Sub Reparent_required_non_PK_one_to_one_with_alternate_key(changeMechanism As GraphUpdatesTestBase(Of TTestStore, TFixture).ChangeMechanism, useExistingRoot As Boolean)
     parameters:
     - id: changeMechanism
       type: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ChangeMechanism
@@ -1334,10 +2430,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_many_to_one_dependents_are_cascade_deleted
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 2773
+    startLine: 2760
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1367,10 +2463,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Optional_many_to_one_dependents_are_orphaned
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 2823
+    startLine: 2810
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1400,10 +2496,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Optional_one_to_one_are_orphaned
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 2873
+    startLine: 2860
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1433,10 +2529,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_one_to_one_are_cascade_deleted
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 2917
+    startLine: 2904
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1466,10 +2562,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_non_PK_one_to_one_are_cascade_deleted
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 2961
+    startLine: 2948
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1499,10 +2595,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Optional_many_to_one_dependents_with_alternate_key_are_orphaned
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3005
+    startLine: 2992
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1532,10 +2628,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_many_to_one_dependents_with_alternate_key_are_cascade_deleted
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3055
+    startLine: 3042
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1565,10 +2661,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Optional_one_to_one_with_alternate_key_are_orphaned
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3111
+    startLine: 3098
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1598,10 +2694,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_one_to_one_with_alternate_key_are_cascade_deleted
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3161
+    startLine: 3148
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1631,10 +2727,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_non_PK_one_to_one_with_alternate_key_are_cascade_deleted
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3211
+    startLine: 3198
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1664,10 +2760,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_many_to_one_dependents_are_cascade_deleted_in_store
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3255
+    startLine: 3242
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1697,10 +2793,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_one_to_one_are_cascade_deleted_in_store
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3308
+    startLine: 3294
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1730,10 +2826,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_non_PK_one_to_one_are_cascade_deleted_in_store
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3355
+    startLine: 3341
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1763,10 +2859,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_many_to_one_dependents_with_alternate_key_are_cascade_deleted_in_store
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3402
+    startLine: 3388
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1796,10 +2892,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_one_to_one_with_alternate_key_are_cascade_deleted_in_store
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3458
+    startLine: 3444
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1829,10 +2925,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_non_PK_one_to_one_with_alternate_key_are_cascade_deleted_in_store
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3509
+    startLine: 3495
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1862,10 +2958,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Optional_many_to_one_dependents_are_orphaned_in_store
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3556
+    startLine: 3542
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1895,10 +2991,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Optional_one_to_one_are_orphaned_in_store
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3615
+    startLine: 3601
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1928,10 +3024,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Optional_many_to_one_dependents_with_alternate_key_are_orphaned_in_store
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3662
+    startLine: 3648
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1961,10 +3057,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Optional_one_to_one_with_alternate_key_are_orphaned_in_store
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3737
+    startLine: 3723
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1994,10 +3090,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_many_to_one_dependents_are_cascade_deleted_starting_detached
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3792
+    startLine: 3778
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2027,10 +3123,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Optional_many_to_one_dependents_are_orphaned_starting_detached
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3843
+    startLine: 3829
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2060,10 +3156,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Optional_one_to_one_are_orphaned_starting_detached
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3894
+    startLine: 3880
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2093,10 +3189,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_one_to_one_are_cascade_deleted_starting_detached
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3940
+    startLine: 3923
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2126,10 +3222,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_non_PK_one_to_one_are_cascade_deleted_starting_detached
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 3989
+    startLine: 3965
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2159,10 +3255,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Optional_many_to_one_dependents_with_alternate_key_are_orphaned_starting_detached
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4035
+    startLine: 4008
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2192,10 +3288,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_many_to_one_dependents_with_alternate_key_are_cascade_deleted_starting_detached
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4093
+    startLine: 4066
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2225,10 +3321,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Optional_one_to_one_with_alternate_key_are_orphaned_starting_detached
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4150
+    startLine: 4123
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2258,10 +3354,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_one_to_one_with_alternate_key_are_cascade_deleted_starting_detached
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4202
+    startLine: 4172
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2291,10 +3387,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_non_PK_one_to_one_with_alternate_key_are_cascade_deleted_starting_detached
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4254
+    startLine: 4221
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2324,10 +3420,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_many_to_one_dependents_are_cascade_detached_when_Added
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4300
+    startLine: 4264
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2357,10 +3453,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_one_to_one_are_cascade_detached_when_Added
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4361
+    startLine: 4325
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2390,10 +3486,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_non_PK_one_to_one_are_cascade_detached_when_Added
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4408
+    startLine: 4372
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2423,10 +3519,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_many_to_one_dependents_with_alternate_key_are_cascade_detached_when_Added
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4455
+    startLine: 4419
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2456,10 +3552,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_one_to_one_with_alternate_key_are_cascade_detached_when_Added
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4529
+    startLine: 4493
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2489,10 +3585,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Required_non_PK_one_to_one_with_alternate_key_are_cascade_detached_when_Added
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4584
+    startLine: 4548
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2522,10 +3618,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: IsTheRoot
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4643
+    startLine: 4607
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2558,10 +3654,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: LoadRequiredGraph
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4645
+    startLine: 4609
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2595,10 +3691,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: LoadOptionalGraph
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4651
+    startLine: 4615
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2632,10 +3728,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: LoadRequiredNonPkGraph
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4659
+    startLine: 4623
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2669,10 +3765,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: LoadRequiredAkGraph
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4669
+    startLine: 4633
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2706,10 +3802,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: LoadOptionalAkGraph
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4677
+    startLine: 4641
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2743,10 +3839,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: LoadRequiredNonPkAkGraph
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 4687
+    startLine: 4651
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2780,10 +3876,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CreateContext
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 6486
+    startLine: 6450
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2798,6 +3894,87 @@ items:
   modifiers.vb:
   - Protected
   fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase(Of TTestStore, TFixture).CreateContext()
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext})
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext})
+  id: ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase{`0,`1}.GraphUpdatesContext})
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2
+  langs:
+  - csharp
+  - vb
+  name: ExecuteWithStrategyInTransaction(Action<GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext>, Action<GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext>, Action<GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext>, Action<GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext>)
+  nameWithType: GraphUpdatesTestBase<TTestStore, TFixture>.ExecuteWithStrategyInTransaction(Action<GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext>, Action<GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext>, Action<GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext>, Action<GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext>)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase<TTestStore, TFixture>.ExecuteWithStrategyInTransaction(System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext>, System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext>, System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext>, System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext>)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: ExecuteWithStrategyInTransaction
+    path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
+    startLine: 6453
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Specification.Tests
+  namespace: Microsoft.EntityFrameworkCore.Specification.Tests
+  syntax:
+    content: protected virtual void ExecuteWithStrategyInTransaction(Action<GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext> testOperation, Action<GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext> nestedTestOperation1 = null, Action<GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext> nestedTestOperation2 = null, Action<GraphUpdatesTestBase<TTestStore, TFixture>.GraphUpdatesContext> nestedTestOperation3 = null)
+    content.vb: Protected Overridable Sub ExecuteWithStrategyInTransaction(testOperation As Action(Of GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext), nestedTestOperation1 As Action(Of GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext) = Nothing, nestedTestOperation2 As Action(Of GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext) = Nothing, nestedTestOperation3 As Action(Of GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext) = Nothing)
+    parameters:
+    - id: testOperation
+      type: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.GraphUpdatesContext}
+    - id: nestedTestOperation1
+      type: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.GraphUpdatesContext}
+    - id: nestedTestOperation2
+      type: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.GraphUpdatesContext}
+    - id: nestedTestOperation3
+      type: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.GraphUpdatesContext}
+  nameWithType.vb: GraphUpdatesTestBase(Of TTestStore, TFixture).ExecuteWithStrategyInTransaction(Action(Of GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext), Action(Of GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext), Action(Of GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext), Action(Of GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext))
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+  fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase(Of TTestStore, TFixture).ExecuteWithStrategyInTransaction(System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext), System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext), System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext), System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext))
+  name.vb: ExecuteWithStrategyInTransaction(Action(Of GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext), Action(Of GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext), Action(Of GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext), Action(Of GraphUpdatesTestBase(Of TTestStore, TFixture).GraphUpdatesContext))
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  id: UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2
+  langs:
+  - csharp
+  - vb
+  name: UseTransaction(DatabaseFacade, IDbContextTransaction)
+  nameWithType: GraphUpdatesTestBase<TTestStore, TFixture>.UseTransaction(DatabaseFacade, IDbContextTransaction)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase<TTestStore, TFixture>.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade, Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: UseTransaction
+    path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
+    startLine: 6461
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Specification.Tests
+  namespace: Microsoft.EntityFrameworkCore.Specification.Tests
+  syntax:
+    content: protected virtual void UseTransaction(DatabaseFacade facade, IDbContextTransaction transaction)
+    content.vb: Protected Overridable Sub UseTransaction(facade As DatabaseFacade, transaction As IDbContextTransaction)
+    parameters:
+    - id: facade
+      type: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+    - id: transaction
+      type: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+  nameWithType.vb: GraphUpdatesTestBase(Of TTestStore, TFixture).UseTransaction(DatabaseFacade, IDbContextTransaction)
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+  fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase(Of TTestStore, TFixture).UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade, Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.Dispose
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.Dispose
   id: Dispose
@@ -2813,10 +3990,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Dispose
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 6489
+    startLine: 6465
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2846,10 +4023,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Fixture
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 6492
+    startLine: 6468
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2882,10 +4059,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: TestStore
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/GraphUpdatesTestBase.cs
-    startLine: 6494
+    startLine: 6470
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2917,6 +4094,46 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: Xunit.IClassFixture{{TFixture}}
+  commentId: T:Xunit.IClassFixture{`0}
+  parent: Xunit
+  definition: Xunit.IClassFixture`1
+  name: IClassFixture<TFixture>
+  nameWithType: IClassFixture<TFixture>
+  fullName: Xunit.IClassFixture<TFixture>
+  nameWithType.vb: IClassFixture(Of TFixture)
+  fullname.vb: Xunit.IClassFixture(Of TFixture)
+  name.vb: IClassFixture(Of TFixture)
+  spec.csharp:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.IDisposable
   commentId: T:System.IDisposable
   parent: System
@@ -2924,45 +4141,282 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<GraphUpdatesTestBase<TTestStore, TFixture>, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<GraphUpdatesTestBase<TTestStore, TFixture>, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase<TTestStore, TFixture>, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of GraphUpdatesTestBase(Of TTestStore, TFixture), TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase(Of TTestStore, TFixture), TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of GraphUpdatesTestBase(Of TTestStore, TFixture), TConcrete)(String)
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<GraphUpdatesTestBase<TTestStore, TFixture>, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<GraphUpdatesTestBase<TTestStore, TFixture>, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase<TTestStore, TFixture>, TConcrete>
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of GraphUpdatesTestBase(Of TTestStore, TFixture), TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of GraphUpdatesTestBase(Of TTestStore, TFixture), TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase(Of TTestStore, TFixture), TConcrete)
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -2972,72 +4426,51 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
+- uid: Xunit.IClassFixture`1
+  commentId: T:Xunit.IClassFixture`1
   isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
+  name: IClassFixture<TFixture>
+  nameWithType: IClassFixture<TFixture>
+  fullName: Xunit.IClassFixture<TFixture>
+  nameWithType.vb: IClassFixture(Of TFixture)
+  fullname.vb: Xunit.IClassFixture(Of TFixture)
+  name.vb: IClassFixture(Of TFixture)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
     isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+- uid: Xunit
+  commentId: N:Xunit
   isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
+  name: Xunit
+  nameWithType: Xunit
+  fullName: Xunit
 - uid: '{TFixture}'
   commentId: '!:TFixture'
   definition: TFixture
@@ -3289,6 +4722,125 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.GraphUpdatesContext}
+  commentId: T:System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.GraphUpdatesContext}
+  parent: System
+  definition: System.Action`1
+  name: Action<GraphUpdatesTestBase.GraphUpdatesContext<>>
+  nameWithType: Action<GraphUpdatesTestBase.GraphUpdatesContext<>>
+  fullName: System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase.GraphUpdatesContext<>>
+  nameWithType.vb: Action(Of GraphUpdatesTestBase.GraphUpdatesContext(Of ))
+  fullname.vb: System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase.GraphUpdatesContext(Of ))
+  name.vb: Action(Of GraphUpdatesTestBase.GraphUpdatesContext(Of ))
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.GraphUpdatesContext
+    name: GraphUpdatesTestBase.GraphUpdatesContext
+    nameWithType: GraphUpdatesTestBase.GraphUpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase.GraphUpdatesContext
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase`2.GraphUpdatesContext
+    name: GraphUpdatesTestBase.GraphUpdatesContext
+    nameWithType: GraphUpdatesTestBase.GraphUpdatesContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.GraphUpdatesTestBase.GraphUpdatesContext
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullname.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+  commentId: T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+  parent: Microsoft.EntityFrameworkCore.Infrastructure
+  isExternal: false
+  name: DatabaseFacade
+  nameWithType: DatabaseFacade
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+- uid: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+  commentId: T:Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+  parent: Microsoft.EntityFrameworkCore.Storage
+  isExternal: false
+  name: IDbContextTransaction
+  nameWithType: IDbContextTransaction
+  fullName: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+- uid: Microsoft.EntityFrameworkCore.Infrastructure
+  commentId: N:Microsoft.EntityFrameworkCore.Infrastructure
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.Infrastructure
+  nameWithType: Microsoft.EntityFrameworkCore.Infrastructure
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure
+- uid: Microsoft.EntityFrameworkCore.Storage
+  commentId: N:Microsoft.EntityFrameworkCore.Storage
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.Storage
+  nameWithType: Microsoft.EntityFrameworkCore.Storage
+  fullName: Microsoft.EntityFrameworkCore.Storage
 - uid: System.IDisposable.Dispose
   commentId: M:System.IDisposable.Dispose
   parent: System.IDisposable

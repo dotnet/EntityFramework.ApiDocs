@@ -5,8 +5,6 @@ items:
   id: BatchingTest
   parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   children:
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest.#ctor
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest.Dispose
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest.Inserts_and_updates_are_batched_correctly
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest.Inserts_are_batched_correctly(System.Boolean,System.Boolean,System.Boolean)
   langs:
@@ -20,7 +18,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BatchingTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: BatchingTest
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BatchingTest.cs
     startLine: 12
@@ -28,14 +26,10 @@ items:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: 'public class BatchingTest : IDisposable'
-    content.vb: >-
-      Public Class BatchingTest
-          Implements IDisposable
+    content: public class BatchingTest
+    content.vb: Public Class BatchingTest
   inheritance:
   - System.Object
-  implements:
-  - System.IDisposable
   inheritedMembers:
   - System.Object.ToString
   - System.Object.Equals(System.Object)
@@ -44,8 +38,6 @@ items:
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
   modifiers.csharp:
   - public
   - class
@@ -67,16 +59,54 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BatchingTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Inserts_are_batched_correctly
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BatchingTest.cs
-    startLine: 14
+    startLine: 16
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public void Inserts_are_batched_correctly(bool clientPk, bool clientFk, bool clientOrder)
-    content.vb: Public Sub Inserts_are_batched_correctly(clientPk As Boolean, clientFk As Boolean, clientOrder As Boolean)
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{true, true, true})]
+
+      [InlineData(new object[]{false, true, true})]
+
+      [InlineData(new object[]{true, false, true})]
+
+      [InlineData(new object[]{false, false, true})]
+
+      [InlineData(new object[]{true, true, false})]
+
+      [InlineData(new object[]{false, true, false})]
+
+      [InlineData(new object[]{true, false, false})]
+
+      [InlineData(new object[]{false, false, false})]
+
+      public void Inserts_are_batched_correctly(bool clientPk, bool clientFk, bool clientOrder)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {True, True, True})>
+
+      <InlineData(New Object() {False, True, True})>
+
+      <InlineData(New Object() {True, False, True})>
+
+      <InlineData(New Object() {False, False, True})>
+
+      <InlineData(New Object() {True, True, False})>
+
+      <InlineData(New Object() {False, True, False})>
+
+      <InlineData(New Object() {True, False, False})>
+
+      <InlineData(New Object() {False, False, False})>
+
+      Public Sub Inserts_are_batched_correctly(clientPk As Boolean, clientFk As Boolean, clientOrder As Boolean)
     parameters:
     - id: clientPk
       type: System.Boolean
@@ -84,6 +114,10 @@ items:
       type: System.Boolean
     - id: clientOrder
       type: System.Boolean
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -103,76 +137,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BatchingTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Inserts_and_updates_are_batched_correctly
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BatchingTest.cs
-    startLine: 66
+    startLine: 76
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public void Inserts_and_updates_are_batched_correctly()
-    content.vb: Public Sub Inserts_and_updates_are_batched_correctly
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest.#ctor
-  commentId: M:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest.#ctor
-  id: '#ctor'
-  parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest
-  langs:
-  - csharp
-  - vb
-  name: BatchingTest()
-  nameWithType: BatchingTest.BatchingTest()
-  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest.BatchingTest()
-  type: Constructor
-  source:
-    remote:
-      path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BatchingTest.cs
-      branch: dev
-      repo: https://github.com/aspnet/EntityFramework
-    id: .ctor
-    path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BatchingTest.cs
-    startLine: 187
-  assemblies:
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
-  namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
-  syntax:
-    content: public BatchingTest()
-    content.vb: Public Sub New
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest.Dispose
-  commentId: M:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest.Dispose
-  id: Dispose
-  parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest
-  langs:
-  - csharp
-  - vb
-  name: Dispose()
-  nameWithType: BatchingTest.Dispose()
-  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest.Dispose()
-  type: Method
-  source:
-    remote:
-      path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BatchingTest.cs
-      branch: dev
-      repo: https://github.com/aspnet/EntityFramework
-    id: Dispose
-    path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BatchingTest.cs
-    startLine: 195
-  assemblies:
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
-  namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
-  syntax:
-    content: public void Dispose()
-    content.vb: Public Sub Dispose
-  implements:
-  - System.IDisposable.Dispose
+    content: >-
+      [Fact]
+
+      public void Inserts_and_updates_are_batched_correctly()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Inserts_and_updates_are_batched_correctly
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -191,13 +175,6 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: System.IDisposable
-  commentId: T:System.IDisposable
-  parent: System
-  isExternal: true
-  name: IDisposable
-  nameWithType: IDisposable
-  fullName: System.IDisposable
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
@@ -477,120 +454,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<BatchingTest, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<BatchingTest, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of BatchingTest, TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest, TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of BatchingTest, TConcrete)(String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<BatchingTest, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<BatchingTest, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of BatchingTest, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of BatchingTest, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BatchingTest, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -598,34 +467,3 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: System.IDisposable.Dispose
-  commentId: M:System.IDisposable.Dispose
-  parent: System.IDisposable
-  isExternal: true
-  name: Dispose()
-  nameWithType: IDisposable.Dispose()
-  fullName: System.IDisposable.Dispose()
-  spec.csharp:
-  - uid: System.IDisposable.Dispose
-    name: Dispose
-    nameWithType: IDisposable.Dispose
-    fullName: System.IDisposable.Dispose
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.IDisposable.Dispose
-    name: Dispose
-    nameWithType: IDisposable.Dispose
-    fullName: System.IDisposable.Dispose
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )

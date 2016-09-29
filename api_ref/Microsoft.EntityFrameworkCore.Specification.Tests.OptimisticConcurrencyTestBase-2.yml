@@ -24,6 +24,7 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.ClientPodiums
   - Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.Concurrency_issue_where_a_complex_type_nested_member_is_the_concurrency_token_can_be_handled
   - Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.Concurrency_issue_where_the_FK_is_the_concurrency_token_can_be_handled
+  - Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.ConcurrencyTestAsync(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context,Microsoft.EntityFrameworkCore.DbUpdateException},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context})
   - Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.CreateF1Context
   - Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.Deleting_the_same_entity_twice_results_in_DbUpdateConcurrencyException
   - Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.Deleting_then_updating_the_same_entity_results_in_DbUpdateConcurrencyException
@@ -43,6 +44,7 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.Two_concurrency_issues_in_one_to_one_related_entities_can_be_handled_by_dealing_with_dependent_first
   - Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.Updating_then_deleting_the_same_entity_results_in_DbUpdateConcurrencyException
   - Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.Updating_then_deleting_the_same_entity_results_in_DbUpdateConcurrencyException_which_can_be_resolved_with_store_values
+  - Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
   langs:
   - csharp
   - vb
@@ -54,10 +56,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: OptimisticConcurrencyTestBase
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 12
+    startLine: 14
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -65,17 +67,23 @@ items:
     content: 'public abstract class OptimisticConcurrencyTestBase<TTestStore, TFixture> : IClassFixture<TFixture>, IDisposable where TTestStore : TestStore where TFixture : F1FixtureBase<TTestStore>, new ()'
     content.vb: >-
       Public MustInherit Class OptimisticConcurrencyTestBase(Of TTestStore As TestStore, TFixture As {F1FixtureBase(Of TTestStore), New})
-          Inherits IClassFixture(Of TFixture)
-          Implements IDisposable
+          Implements IClassFixture(Of TFixture), IDisposable
     typeParameters:
     - id: TTestStore
     - id: TFixture
   inheritance:
   - System.Object
   implements:
+  - Xunit.IClassFixture{{TFixture}}
   - System.IDisposable
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture)
   modifiers.csharp:
   - public
@@ -102,16 +110,26 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Nullable_client_side_concurrency_token_can_be_used
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 16
+    startLine: 18
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual void Nullable_client_side_concurrency_token_can_be_used()
-    content.vb: Public Overridable Sub Nullable_client_side_concurrency_token_can_be_used
+    content: >-
+      [Fact]
+
+      public virtual void Nullable_client_side_concurrency_token_can_be_used()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Nullable_client_side_concurrency_token_can_be_used
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Nullable_client_side_concurrency_token_can_be_used()
   modifiers.csharp:
   - public
@@ -135,18 +153,28 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Simple_concurrency_exception_can_be_resolved_with_client_values
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 44
+    startLine: 53
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Simple_concurrency_exception_can_be_resolved_with_client_values()
-    content.vb: Public Overridable Function Simple_concurrency_exception_can_be_resolved_with_client_values As Task
+    content: >-
+      [Fact]
+
+      public virtual Task Simple_concurrency_exception_can_be_resolved_with_client_values()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Function Simple_concurrency_exception_can_be_resolved_with_client_values As Task
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Simple_concurrency_exception_can_be_resolved_with_client_values()
   modifiers.csharp:
   - public
@@ -170,18 +198,28 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Simple_concurrency_exception_can_be_resolved_with_store_values
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 56
+    startLine: 65
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Simple_concurrency_exception_can_be_resolved_with_store_values()
-    content.vb: Public Overridable Function Simple_concurrency_exception_can_be_resolved_with_store_values As Task
+    content: >-
+      [Fact]
+
+      public virtual Task Simple_concurrency_exception_can_be_resolved_with_store_values()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Function Simple_concurrency_exception_can_be_resolved_with_store_values As Task
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Simple_concurrency_exception_can_be_resolved_with_store_values()
   modifiers.csharp:
   - public
@@ -205,18 +243,28 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Simple_concurrency_exception_can_be_resolved_with_new_values
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 70
+    startLine: 79
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Simple_concurrency_exception_can_be_resolved_with_new_values()
-    content.vb: Public Overridable Function Simple_concurrency_exception_can_be_resolved_with_new_values As Task
+    content: >-
+      [Fact]
+
+      public virtual Task Simple_concurrency_exception_can_be_resolved_with_new_values()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Function Simple_concurrency_exception_can_be_resolved_with_new_values As Task
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Simple_concurrency_exception_can_be_resolved_with_new_values()
   modifiers.csharp:
   - public
@@ -240,18 +288,28 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Simple_concurrency_exception_can_be_resolved_with_store_values_using_equivalent_of_accept_changes
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 83
+    startLine: 92
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Simple_concurrency_exception_can_be_resolved_with_store_values_using_equivalent_of_accept_changes()
-    content.vb: Public Overridable Function Simple_concurrency_exception_can_be_resolved_with_store_values_using_equivalent_of_accept_changes As Task
+    content: >-
+      [Fact]
+
+      public virtual Task Simple_concurrency_exception_can_be_resolved_with_store_values_using_equivalent_of_accept_changes()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Function Simple_concurrency_exception_can_be_resolved_with_store_values_using_equivalent_of_accept_changes As Task
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Simple_concurrency_exception_can_be_resolved_with_store_values_using_equivalent_of_accept_changes()
   modifiers.csharp:
   - public
@@ -275,18 +333,28 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Simple_concurrency_exception_can_be_resolved_with_store_values_using_Reload
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 97
+    startLine: 106
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Simple_concurrency_exception_can_be_resolved_with_store_values_using_Reload()
-    content.vb: Public Overridable Function Simple_concurrency_exception_can_be_resolved_with_store_values_using_Reload As Task
+    content: >-
+      [Fact]
+
+      public virtual Task Simple_concurrency_exception_can_be_resolved_with_store_values_using_Reload()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Function Simple_concurrency_exception_can_be_resolved_with_store_values_using_Reload As Task
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Simple_concurrency_exception_can_be_resolved_with_store_values_using_Reload()
   modifiers.csharp:
   - public
@@ -310,10 +378,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Two_concurrency_issues_in_one_to_one_related_entities_can_be_handled_by_dealing_with_dependent_first
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 105
+    startLine: 114
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -345,10 +413,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Two_concurrency_issues_in_one_to_many_related_entities_can_be_handled_by_dealing_with_dependent_first
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 148
+    startLine: 158
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -380,18 +448,28 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Concurrency_issue_where_the_FK_is_the_concurrency_token_can_be_handled
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 192
+    startLine: 201
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Concurrency_issue_where_the_FK_is_the_concurrency_token_can_be_handled()
-    content.vb: Public Overridable Function Concurrency_issue_where_the_FK_is_the_concurrency_token_can_be_handled As Task
+    content: >-
+      [Fact]
+
+      public virtual Task Concurrency_issue_where_the_FK_is_the_concurrency_token_can_be_handled()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Function Concurrency_issue_where_the_FK_is_the_concurrency_token_can_be_handled As Task
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Concurrency_issue_where_the_FK_is_the_concurrency_token_can_be_handled()
   modifiers.csharp:
   - public
@@ -415,18 +493,28 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Change_in_independent_association_results_in_independent_association_exception
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 219
+    startLine: 229
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Change_in_independent_association_results_in_independent_association_exception()
-    content.vb: Public Overridable Function Change_in_independent_association_results_in_independent_association_exception As Task
+    content: >-
+      [Fact]
+
+      public virtual Task Change_in_independent_association_results_in_independent_association_exception()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Function Change_in_independent_association_results_in_independent_association_exception As Task
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Change_in_independent_association_results_in_independent_association_exception()
   modifiers.csharp:
   - public
@@ -450,18 +538,28 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Change_in_independent_association_after_change_in_different_concurrency_token_results_in_independent_association_exception
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 233
+    startLine: 243
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Change_in_independent_association_after_change_in_different_concurrency_token_results_in_independent_association_exception()
-    content.vb: Public Overridable Function Change_in_independent_association_after_change_in_different_concurrency_token_results_in_independent_association_exception As Task
+    content: >-
+      [Fact]
+
+      public virtual Task Change_in_independent_association_after_change_in_different_concurrency_token_results_in_independent_association_exception()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Function Change_in_independent_association_after_change_in_different_concurrency_token_results_in_independent_association_exception As Task
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Change_in_independent_association_after_change_in_different_concurrency_token_results_in_independent_association_exception()
   modifiers.csharp:
   - public
@@ -485,10 +583,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Attempting_to_delete_same_relationship_twice_for_many_to_many_results_in_independent_association_exception
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 253
+    startLine: 263
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -520,10 +618,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Attempting_to_add_same_relationship_twice_for_many_to_many_results_in_independent_association_exception
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 270
+    startLine: 280
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -555,10 +653,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Concurrency_issue_where_a_complex_type_nested_member_is_the_concurrency_token_can_be_handled
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 291
+    startLine: 301
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -590,18 +688,28 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Adding_the_same_entity_twice_results_in_DbUpdateException
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 311
+    startLine: 321
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Adding_the_same_entity_twice_results_in_DbUpdateException()
-    content.vb: Public Overridable Function Adding_the_same_entity_twice_results_in_DbUpdateException As Task
+    content: >-
+      [Fact]
+
+      public virtual Task Adding_the_same_entity_twice_results_in_DbUpdateException()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Function Adding_the_same_entity_twice_results_in_DbUpdateException As Task
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Adding_the_same_entity_twice_results_in_DbUpdateException()
   modifiers.csharp:
   - public
@@ -625,18 +733,28 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Deleting_the_same_entity_twice_results_in_DbUpdateConcurrencyException
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 331
+    startLine: 341
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Deleting_the_same_entity_twice_results_in_DbUpdateConcurrencyException()
-    content.vb: Public Overridable Function Deleting_the_same_entity_twice_results_in_DbUpdateConcurrencyException As Task
+    content: >-
+      [Fact]
+
+      public virtual Task Deleting_the_same_entity_twice_results_in_DbUpdateConcurrencyException()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Function Deleting_the_same_entity_twice_results_in_DbUpdateConcurrencyException As Task
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Deleting_the_same_entity_twice_results_in_DbUpdateConcurrencyException()
   modifiers.csharp:
   - public
@@ -660,18 +778,28 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Updating_then_deleting_the_same_entity_results_in_DbUpdateConcurrencyException
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 347
+    startLine: 357
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Updating_then_deleting_the_same_entity_results_in_DbUpdateConcurrencyException()
-    content.vb: Public Overridable Function Updating_then_deleting_the_same_entity_results_in_DbUpdateConcurrencyException As Task
+    content: >-
+      [Fact]
+
+      public virtual Task Updating_then_deleting_the_same_entity_results_in_DbUpdateConcurrencyException()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Function Updating_then_deleting_the_same_entity_results_in_DbUpdateConcurrencyException As Task
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Updating_then_deleting_the_same_entity_results_in_DbUpdateConcurrencyException()
   modifiers.csharp:
   - public
@@ -695,18 +823,28 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Updating_then_deleting_the_same_entity_results_in_DbUpdateConcurrencyException_which_can_be_resolved_with_store_values
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 364
+    startLine: 374
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Updating_then_deleting_the_same_entity_results_in_DbUpdateConcurrencyException_which_can_be_resolved_with_store_values()
-    content.vb: Public Overridable Function Updating_then_deleting_the_same_entity_results_in_DbUpdateConcurrencyException_which_can_be_resolved_with_store_values As Task
+    content: >-
+      [Fact]
+
+      public virtual Task Updating_then_deleting_the_same_entity_results_in_DbUpdateConcurrencyException_which_can_be_resolved_with_store_values()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Function Updating_then_deleting_the_same_entity_results_in_DbUpdateConcurrencyException_which_can_be_resolved_with_store_values As Task
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Updating_then_deleting_the_same_entity_results_in_DbUpdateConcurrencyException_which_can_be_resolved_with_store_values()
   modifiers.csharp:
   - public
@@ -730,18 +868,28 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Deleting_then_updating_the_same_entity_results_in_DbUpdateConcurrencyException
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 386
+    startLine: 396
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Deleting_then_updating_the_same_entity_results_in_DbUpdateConcurrencyException()
-    content.vb: Public Overridable Function Deleting_then_updating_the_same_entity_results_in_DbUpdateConcurrencyException As Task
+    content: >-
+      [Fact]
+
+      public virtual Task Deleting_then_updating_the_same_entity_results_in_DbUpdateConcurrencyException()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Function Deleting_then_updating_the_same_entity_results_in_DbUpdateConcurrencyException As Task
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Deleting_then_updating_the_same_entity_results_in_DbUpdateConcurrencyException()
   modifiers.csharp:
   - public
@@ -765,18 +913,28 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Deleting_then_updating_the_same_entity_results_in_DbUpdateConcurrencyException_which_can_be_resolved_with_store_values
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 403
+    startLine: 413
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Deleting_then_updating_the_same_entity_results_in_DbUpdateConcurrencyException_which_can_be_resolved_with_store_values()
-    content.vb: Public Overridable Function Deleting_then_updating_the_same_entity_results_in_DbUpdateConcurrencyException_which_can_be_resolved_with_store_values As Task
+    content: >-
+      [Fact]
+
+      public virtual Task Deleting_then_updating_the_same_entity_results_in_DbUpdateConcurrencyException_which_can_be_resolved_with_store_values()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Function Deleting_then_updating_the_same_entity_results_in_DbUpdateConcurrencyException_which_can_be_resolved_with_store_values As Task
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Deleting_then_updating_the_same_entity_results_in_DbUpdateConcurrencyException_which_can_be_resolved_with_store_values()
   modifiers.csharp:
   - public
@@ -800,21 +958,39 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Calling_Reload_on_an__Added_entity_that_is_not_in_database_is_no_op
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 426
+    startLine: 436
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Calling_Reload_on_an__Added_entity_that_is_not_in_database_is_no_op(bool async)
-    content.vb: Public Overridable Function Calling_Reload_on_an__Added_entity_that_is_not_in_database_is_no_op(async As Boolean) As Task
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{false})]
+
+      [InlineData(new object[]{true})]
+
+      public virtual Task Calling_Reload_on_an__Added_entity_that_is_not_in_database_is_no_op(bool async)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {False})>
+
+      <InlineData(New Object() {True})>
+
+      Public Overridable Function Calling_Reload_on_an__Added_entity_that_is_not_in_database_is_no_op(async As Boolean) As Task
     parameters:
     - id: async
       type: System.Boolean
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Calling_Reload_on_an__Added_entity_that_is_not_in_database_is_no_op(Boolean)
   modifiers.csharp:
   - public
@@ -838,21 +1014,39 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Calling_Reload_on_an_Unchanged_entity_that_is_not_in_database_detaches_it
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 453
+    startLine: 469
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Calling_Reload_on_an_Unchanged_entity_that_is_not_in_database_detaches_it(bool async)
-    content.vb: Public Overridable Function Calling_Reload_on_an_Unchanged_entity_that_is_not_in_database_detaches_it(async As Boolean) As Task
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{false})]
+
+      [InlineData(new object[]{true})]
+
+      public virtual Task Calling_Reload_on_an_Unchanged_entity_that_is_not_in_database_detaches_it(bool async)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {False})>
+
+      <InlineData(New Object() {True})>
+
+      Public Overridable Function Calling_Reload_on_an_Unchanged_entity_that_is_not_in_database_detaches_it(async As Boolean) As Task
     parameters:
     - id: async
       type: System.Boolean
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Calling_Reload_on_an_Unchanged_entity_that_is_not_in_database_detaches_it(Boolean)
   modifiers.csharp:
   - public
@@ -876,21 +1070,39 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Calling_Reload_on_a_Modified_entity_that_is_not_in_database_detaches_it
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 459
+    startLine: 475
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Calling_Reload_on_a_Modified_entity_that_is_not_in_database_detaches_it(bool async)
-    content.vb: Public Overridable Function Calling_Reload_on_a_Modified_entity_that_is_not_in_database_detaches_it(async As Boolean) As Task
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{false})]
+
+      [InlineData(new object[]{true})]
+
+      public virtual Task Calling_Reload_on_a_Modified_entity_that_is_not_in_database_detaches_it(bool async)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {False})>
+
+      <InlineData(New Object() {True})>
+
+      Public Overridable Function Calling_Reload_on_a_Modified_entity_that_is_not_in_database_detaches_it(async As Boolean) As Task
     parameters:
     - id: async
       type: System.Boolean
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Calling_Reload_on_a_Modified_entity_that_is_not_in_database_detaches_it(Boolean)
   modifiers.csharp:
   - public
@@ -914,21 +1126,39 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Calling_Reload_on_a_Deleted_entity_that_is_not_in_database_detaches_it
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 465
+    startLine: 481
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Calling_Reload_on_a_Deleted_entity_that_is_not_in_database_detaches_it(bool async)
-    content.vb: Public Overridable Function Calling_Reload_on_a_Deleted_entity_that_is_not_in_database_detaches_it(async As Boolean) As Task
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{false})]
+
+      [InlineData(new object[]{true})]
+
+      public virtual Task Calling_Reload_on_a_Deleted_entity_that_is_not_in_database_detaches_it(bool async)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {False})>
+
+      <InlineData(New Object() {True})>
+
+      Public Overridable Function Calling_Reload_on_a_Deleted_entity_that_is_not_in_database_detaches_it(async As Boolean) As Task
     parameters:
     - id: async
       type: System.Boolean
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Calling_Reload_on_a_Deleted_entity_that_is_not_in_database_detaches_it(Boolean)
   modifiers.csharp:
   - public
@@ -952,21 +1182,39 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Calling_Reload_on_a_Detached_entity_that_is_not_in_database_detaches_it
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 471
+    startLine: 487
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Calling_Reload_on_a_Detached_entity_that_is_not_in_database_detaches_it(bool async)
-    content.vb: Public Overridable Function Calling_Reload_on_a_Detached_entity_that_is_not_in_database_detaches_it(async As Boolean) As Task
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{false})]
+
+      [InlineData(new object[]{true})]
+
+      public virtual Task Calling_Reload_on_a_Detached_entity_that_is_not_in_database_detaches_it(bool async)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {False})>
+
+      <InlineData(New Object() {True})>
+
+      Public Overridable Function Calling_Reload_on_a_Detached_entity_that_is_not_in_database_detaches_it(async As Boolean) As Task
     parameters:
     - id: async
       type: System.Boolean
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Calling_Reload_on_a_Detached_entity_that_is_not_in_database_detaches_it(Boolean)
   modifiers.csharp:
   - public
@@ -990,21 +1238,39 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Calling_Reload_on_an_Unchanged_entity_makes_the_entity_unchanged
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 504
+    startLine: 526
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Calling_Reload_on_an_Unchanged_entity_makes_the_entity_unchanged(bool async)
-    content.vb: Public Overridable Function Calling_Reload_on_an_Unchanged_entity_makes_the_entity_unchanged(async As Boolean) As Task
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{false})]
+
+      [InlineData(new object[]{true})]
+
+      public virtual Task Calling_Reload_on_an_Unchanged_entity_makes_the_entity_unchanged(bool async)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {False})>
+
+      <InlineData(New Object() {True})>
+
+      Public Overridable Function Calling_Reload_on_an_Unchanged_entity_makes_the_entity_unchanged(async As Boolean) As Task
     parameters:
     - id: async
       type: System.Boolean
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Calling_Reload_on_an_Unchanged_entity_makes_the_entity_unchanged(Boolean)
   modifiers.csharp:
   - public
@@ -1028,21 +1294,39 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Calling_Reload_on_a_Modified_entity_makes_the_entity_unchanged
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 510
+    startLine: 532
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Calling_Reload_on_a_Modified_entity_makes_the_entity_unchanged(bool async)
-    content.vb: Public Overridable Function Calling_Reload_on_a_Modified_entity_makes_the_entity_unchanged(async As Boolean) As Task
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{false})]
+
+      [InlineData(new object[]{true})]
+
+      public virtual Task Calling_Reload_on_a_Modified_entity_makes_the_entity_unchanged(bool async)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {False})>
+
+      <InlineData(New Object() {True})>
+
+      Public Overridable Function Calling_Reload_on_a_Modified_entity_makes_the_entity_unchanged(async As Boolean) As Task
     parameters:
     - id: async
       type: System.Boolean
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Calling_Reload_on_a_Modified_entity_makes_the_entity_unchanged(Boolean)
   modifiers.csharp:
   - public
@@ -1066,21 +1350,39 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Calling_Reload_on_a_Deleted_entity_makes_the_entity_unchanged
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 516
+    startLine: 538
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Calling_Reload_on_a_Deleted_entity_makes_the_entity_unchanged(bool async)
-    content.vb: Public Overridable Function Calling_Reload_on_a_Deleted_entity_makes_the_entity_unchanged(async As Boolean) As Task
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{false})]
+
+      [InlineData(new object[]{true})]
+
+      public virtual Task Calling_Reload_on_a_Deleted_entity_makes_the_entity_unchanged(bool async)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {False})>
+
+      <InlineData(New Object() {True})>
+
+      Public Overridable Function Calling_Reload_on_a_Deleted_entity_makes_the_entity_unchanged(async As Boolean) As Task
     parameters:
     - id: async
       type: System.Boolean
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Calling_Reload_on_a_Deleted_entity_makes_the_entity_unchanged(Boolean)
   modifiers.csharp:
   - public
@@ -1104,21 +1406,39 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Calling_Reload_on_an_Added_entity_that_was_saved_elsewhere_makes_the_entity_unchanged
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 522
+    startLine: 544
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Calling_Reload_on_an_Added_entity_that_was_saved_elsewhere_makes_the_entity_unchanged(bool async)
-    content.vb: Public Overridable Function Calling_Reload_on_an_Added_entity_that_was_saved_elsewhere_makes_the_entity_unchanged(async As Boolean) As Task
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{false})]
+
+      [InlineData(new object[]{true})]
+
+      public virtual Task Calling_Reload_on_an_Added_entity_that_was_saved_elsewhere_makes_the_entity_unchanged(bool async)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {False})>
+
+      <InlineData(New Object() {True})>
+
+      Public Overridable Function Calling_Reload_on_an_Added_entity_that_was_saved_elsewhere_makes_the_entity_unchanged(async As Boolean) As Task
     parameters:
     - id: async
       type: System.Boolean
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Calling_Reload_on_an_Added_entity_that_was_saved_elsewhere_makes_the_entity_unchanged(Boolean)
   modifiers.csharp:
   - public
@@ -1142,21 +1462,39 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Calling_Reload_on_a_Detached_entity_makes_the_entity_unchanged
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 528
+    startLine: 550
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public virtual Task Calling_Reload_on_a_Detached_entity_makes_the_entity_unchanged(bool async)
-    content.vb: Public Overridable Function Calling_Reload_on_a_Detached_entity_makes_the_entity_unchanged(async As Boolean) As Task
+    content: >-
+      [Theory]
+
+      [InlineData(new object[]{false})]
+
+      [InlineData(new object[]{true})]
+
+      public virtual Task Calling_Reload_on_a_Detached_entity_makes_the_entity_unchanged(bool async)
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() {False})>
+
+      <InlineData(New Object() {True})>
+
+      Public Overridable Function Calling_Reload_on_a_Detached_entity_makes_the_entity_unchanged(async As Boolean) As Task
     parameters:
     - id: async
       type: System.Boolean
     return:
       type: System.Threading.Tasks.Task
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
   nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).Calling_Reload_on_a_Detached_entity_makes_the_entity_unchanged(Boolean)
   modifiers.csharp:
   - public
@@ -1180,10 +1518,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: StorePodiums
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 563
+    startLine: 591
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1215,10 +1553,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: ClientPodiums
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 564
+    startLine: 592
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1250,10 +1588,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: ResolveConcurrencyTokens
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 566
+    startLine: 594
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1286,10 +1624,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CreateF1Context
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 571
+    startLine: 599
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1319,10 +1657,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 573
+    startLine: 601
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1353,10 +1691,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Dispose
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 580
+    startLine: 608
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1386,10 +1724,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Fixture
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 582
+    startLine: 610
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1422,10 +1760,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: TestStore
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
-    startLine: 584
+    startLine: 612
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1443,6 +1781,91 @@ items:
   - Protected
   - ReadOnly
   fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase(Of TTestStore, TFixture).TestStore
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.ConcurrencyTestAsync(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context,Microsoft.EntityFrameworkCore.DbUpdateException},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context})
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.ConcurrencyTestAsync(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context,Microsoft.EntityFrameworkCore.DbUpdateException},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context})
+  id: ConcurrencyTestAsync(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context,Microsoft.EntityFrameworkCore.DbUpdateException},System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context})
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2
+  langs:
+  - csharp
+  - vb
+  name: ConcurrencyTestAsync(Action<F1Context>, Action<F1Context>, Action<F1Context, DbUpdateException>, Action<F1Context>)
+  nameWithType: OptimisticConcurrencyTestBase<TTestStore, TFixture>.ConcurrencyTestAsync(Action<F1Context>, Action<F1Context>, Action<F1Context, DbUpdateException>, Action<F1Context>)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase<TTestStore, TFixture>.ConcurrencyTestAsync(System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context>, System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context>, System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context, Microsoft.EntityFrameworkCore.DbUpdateException>, System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context>)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: ConcurrencyTestAsync
+    path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
+    startLine: 648
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Specification.Tests
+  namespace: Microsoft.EntityFrameworkCore.Specification.Tests
+  summary: "\n    Runs the two actions with two different contexts and calling\n    SaveChanges such that storeChange will succeed and the store will reflect this change, and\n    then clientChange will result in a concurrency exception.\n    After the exception is caught the resolver action is called, after which SaveChanges is called\n    again.  Finally, a new context is created and the validator is called so that the state of\n    the database at the end of the process can be validated.\n"
+  example: []
+  syntax:
+    content: protected virtual Task ConcurrencyTestAsync(Action<F1Context> storeChange, Action<F1Context> clientChange, Action<F1Context, DbUpdateException> resolver, Action<F1Context> validator)
+    content.vb: Protected Overridable Function ConcurrencyTestAsync(storeChange As Action(Of F1Context), clientChange As Action(Of F1Context), resolver As Action(Of F1Context, DbUpdateException), validator As Action(Of F1Context)) As Task
+    parameters:
+    - id: storeChange
+      type: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context}
+    - id: clientChange
+      type: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context}
+    - id: resolver
+      type: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context,Microsoft.EntityFrameworkCore.DbUpdateException}
+    - id: validator
+      type: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context}
+    return:
+      type: System.Threading.Tasks.Task
+  nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).ConcurrencyTestAsync(Action(Of F1Context), Action(Of F1Context), Action(Of F1Context, DbUpdateException), Action(Of F1Context))
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+  fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase(Of TTestStore, TFixture).ConcurrencyTestAsync(System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context), System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context), System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context, Microsoft.EntityFrameworkCore.DbUpdateException), System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context))
+  name.vb: ConcurrencyTestAsync(Action(Of F1Context), Action(Of F1Context), Action(Of F1Context, DbUpdateException), Action(Of F1Context))
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  id: UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2
+  langs:
+  - csharp
+  - vb
+  name: UseTransaction(DatabaseFacade, IDbContextTransaction)
+  nameWithType: OptimisticConcurrencyTestBase<TTestStore, TFixture>.UseTransaction(DatabaseFacade, IDbContextTransaction)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase<TTestStore, TFixture>.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade, Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: UseTransaction
+    path: src/Microsoft.EntityFrameworkCore.Specification.Tests/OptimisticConcurrencyTestBase.cs
+    startLine: 686
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Specification.Tests
+  namespace: Microsoft.EntityFrameworkCore.Specification.Tests
+  syntax:
+    content: protected virtual void UseTransaction(DatabaseFacade facade, IDbContextTransaction transaction)
+    content.vb: Protected Overridable Sub UseTransaction(facade As DatabaseFacade, transaction As IDbContextTransaction)
+    parameters:
+    - id: facade
+      type: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+    - id: transaction
+      type: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+  nameWithType.vb: OptimisticConcurrencyTestBase(Of TTestStore, TFixture).UseTransaction(DatabaseFacade, IDbContextTransaction)
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+  fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase(Of TTestStore, TFixture).UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade, Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
 references:
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests
   commentId: N:Microsoft.EntityFrameworkCore.Specification.Tests
@@ -1457,6 +1880,46 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: Xunit.IClassFixture{{TFixture}}
+  commentId: T:Xunit.IClassFixture{`0}
+  parent: Xunit
+  definition: Xunit.IClassFixture`1
+  name: IClassFixture<TFixture>
+  nameWithType: IClassFixture<TFixture>
+  fullName: Xunit.IClassFixture<TFixture>
+  nameWithType.vb: IClassFixture(Of TFixture)
+  fullname.vb: Xunit.IClassFixture(Of TFixture)
+  name.vb: IClassFixture(Of TFixture)
+  spec.csharp:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.IDisposable
   commentId: T:System.IDisposable
   parent: System
@@ -1464,45 +1927,282 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase`2.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<OptimisticConcurrencyTestBase<TTestStore, TFixture>, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<OptimisticConcurrencyTestBase<TTestStore, TFixture>, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase<TTestStore, TFixture>, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of OptimisticConcurrencyTestBase(Of TTestStore, TFixture), TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase(Of TTestStore, TFixture), TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of OptimisticConcurrencyTestBase(Of TTestStore, TFixture), TConcrete)(String)
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<OptimisticConcurrencyTestBase<TTestStore, TFixture>, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<OptimisticConcurrencyTestBase<TTestStore, TFixture>, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase<TTestStore, TFixture>, TConcrete>
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of OptimisticConcurrencyTestBase(Of TTestStore, TFixture), TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of OptimisticConcurrencyTestBase(Of TTestStore, TFixture), TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Specification.Tests.OptimisticConcurrencyTestBase(Of TTestStore, TFixture), TConcrete)
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -1512,72 +2212,51 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
+- uid: Xunit.IClassFixture`1
+  commentId: T:Xunit.IClassFixture`1
   isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
+  name: IClassFixture<TFixture>
+  nameWithType: IClassFixture<TFixture>
+  fullName: Xunit.IClassFixture<TFixture>
+  nameWithType.vb: IClassFixture(Of TFixture)
+  fullname.vb: Xunit.IClassFixture(Of TFixture)
+  name.vb: IClassFixture(Of TFixture)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
     isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+- uid: Xunit
+  commentId: N:Xunit
   isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
+  name: Xunit
+  nameWithType: Xunit
+  fullName: Xunit
 - uid: System.Threading.Tasks.Task
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
@@ -1684,3 +2363,217 @@ references:
   name: TTestStore
   nameWithType: TTestStore
   fullName: TTestStore
+- uid: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context}
+  commentId: T:System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context}
+  parent: System
+  definition: System.Action`1
+  name: Action<F1Context>
+  nameWithType: Action<F1Context>
+  fullName: System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context>
+  nameWithType.vb: Action(Of F1Context)
+  fullname.vb: System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context)
+  name.vb: Action(Of F1Context)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context
+    name: F1Context
+    nameWithType: F1Context
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context
+    name: F1Context
+    nameWithType: F1Context
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context,Microsoft.EntityFrameworkCore.DbUpdateException}
+  commentId: T:System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context,Microsoft.EntityFrameworkCore.DbUpdateException}
+  parent: System
+  definition: System.Action`2
+  name: Action<F1Context, DbUpdateException>
+  nameWithType: Action<F1Context, DbUpdateException>
+  fullName: System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context, Microsoft.EntityFrameworkCore.DbUpdateException>
+  nameWithType.vb: Action(Of F1Context, DbUpdateException)
+  fullname.vb: System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context, Microsoft.EntityFrameworkCore.DbUpdateException)
+  name.vb: Action(Of F1Context, DbUpdateException)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context
+    name: F1Context
+    nameWithType: F1Context
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.EntityFrameworkCore.DbUpdateException
+    name: DbUpdateException
+    nameWithType: DbUpdateException
+    fullName: Microsoft.EntityFrameworkCore.DbUpdateException
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context
+    name: F1Context
+    nameWithType: F1Context
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.ConcurrencyModel.F1Context
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.EntityFrameworkCore.DbUpdateException
+    name: DbUpdateException
+    nameWithType: DbUpdateException
+    fullName: Microsoft.EntityFrameworkCore.DbUpdateException
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullname.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`2
+  commentId: T:System.Action`2
+  isExternal: true
+  name: Action<T1, T2>
+  nameWithType: Action<T1, T2>
+  fullName: System.Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
+  fullname.vb: System.Action(Of T1, T2)
+  name.vb: Action(Of T1, T2)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+  commentId: T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+  parent: Microsoft.EntityFrameworkCore.Infrastructure
+  isExternal: false
+  name: DatabaseFacade
+  nameWithType: DatabaseFacade
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+- uid: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+  commentId: T:Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+  parent: Microsoft.EntityFrameworkCore.Storage
+  isExternal: false
+  name: IDbContextTransaction
+  nameWithType: IDbContextTransaction
+  fullName: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+- uid: Microsoft.EntityFrameworkCore.Infrastructure
+  commentId: N:Microsoft.EntityFrameworkCore.Infrastructure
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.Infrastructure
+  nameWithType: Microsoft.EntityFrameworkCore.Infrastructure
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure
+- uid: Microsoft.EntityFrameworkCore.Storage
+  commentId: N:Microsoft.EntityFrameworkCore.Storage
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.Storage
+  nameWithType: Microsoft.EntityFrameworkCore.Storage
+  fullName: Microsoft.EntityFrameworkCore.Storage

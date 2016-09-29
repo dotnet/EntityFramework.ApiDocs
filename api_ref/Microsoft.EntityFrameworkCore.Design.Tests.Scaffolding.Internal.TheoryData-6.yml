@@ -17,7 +17,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Scaffolding/Internal/ReverseEngineeringGeneratorTests.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: TheoryData
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Scaffolding/Internal/ReverseEngineeringGeneratorTests.cs
     startLine: 59
@@ -25,10 +25,11 @@ items:
   - Microsoft.EntityFrameworkCore.Design.Tests
   namespace: Microsoft.EntityFrameworkCore.Design.Tests.Scaffolding.Internal
   syntax:
-    content: 'public class TheoryData<T1, T2, T3, T4, T5, T6> : TheoryData'
+    content: 'public class TheoryData<T1, T2, T3, T4, T5, T6> : TheoryData, IEnumerable<object[]>, IEnumerable'
     content.vb: >-
       Public Class TheoryData(Of T1, T2, T3, T4, T5, T6)
           Inherits TheoryData
+          Implements IEnumerable(Of Object()), IEnumerable
     typeParameters:
     - id: T1
     - id: T2
@@ -38,8 +39,24 @@ items:
     - id: T6
   inheritance:
   - System.Object
+  - Xunit.TheoryData
+  implements:
+  - System.Collections.Generic.IEnumerable{System.Object[]}
+  - System.Collections.IEnumerable
+  inheritedMembers:
+  - Xunit.TheoryData.AddRow(System.Object[])
+  - Xunit.TheoryData.GetEnumerator
+  - Xunit.TheoryData.System#Collections#IEnumerable#GetEnumerator
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
   extensionMethods:
-  - Microsoft.EntityFrameworkCore.Design.Tests.Scaffolding.Internal.TheoryData`6.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
+  - System.Collections.Generic.IEnumerable{System.Object[]}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
+  - System.Collections.Generic.IEnumerable{System.Object[]}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Action{System.Object[]})
   nameWithType.vb: TheoryData(Of T1, T2, T3, T4, T5, T6)
   modifiers.csharp:
   - public
@@ -64,7 +81,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Design.Tests/Scaffolding/Internal/ReverseEngineeringGeneratorTests.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add
     path: test/Microsoft.EntityFrameworkCore.Design.Tests/Scaffolding/Internal/ReverseEngineeringGeneratorTests.cs
     startLine: 61
@@ -107,45 +124,562 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Microsoft.EntityFrameworkCore.Design.Tests.Scaffolding.Internal.TheoryData`6.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<TheoryData<T1, T2, T3, T4, T5, T6>, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TheoryData<T1, T2, T3, T4, T5, T6>, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Design.Tests.Scaffolding.Internal.TheoryData<T1, T2, T3, T4, T5, T6>, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TheoryData(Of T1, T2, T3, T4, T5, T6), TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Design.Tests.Scaffolding.Internal.TheoryData(Of T1, T2, T3, T4, T5, T6), TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of TheoryData(Of T1, T2, T3, T4, T5, T6), TConcrete)(String)
+- uid: Xunit.TheoryData
+  commentId: T:Xunit.TheoryData
+  parent: Xunit
+  isExternal: true
+  name: TheoryData
+  nameWithType: TheoryData
+  fullName: Xunit.TheoryData
+- uid: System.Collections.Generic.IEnumerable{System.Object[]}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Object[]}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Object[]>
+  nameWithType: IEnumerable<Object[]>
+  fullName: System.Collections.Generic.IEnumerable<System.Object[]>
+  nameWithType.vb: IEnumerable(Of Object())
+  fullname.vb: System.Collections.Generic.IEnumerable(Of System.Object())
+  name.vb: IEnumerable(Of Object())
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<TheoryData<T1, T2, T3, T4, T5, T6>, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TheoryData<T1, T2, T3, T4, T5, T6>, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Design.Tests.Scaffolding.Internal.TheoryData<T1, T2, T3, T4, T5, T6>, TConcrete>
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: Xunit.TheoryData.AddRow(System.Object[])
+  commentId: M:Xunit.TheoryData.AddRow(System.Object[])
+  parent: Xunit.TheoryData
+  isExternal: true
+  name: AddRow(Object[])
+  nameWithType: TheoryData.AddRow(Object[])
+  fullName: Xunit.TheoryData.AddRow(System.Object[])
+  nameWithType.vb: TheoryData.AddRow(Object())
+  fullname.vb: Xunit.TheoryData.AddRow(System.Object())
+  name.vb: AddRow(Object())
+  spec.csharp:
+  - uid: Xunit.TheoryData.AddRow(System.Object[])
+    name: AddRow
+    nameWithType: TheoryData.AddRow
+    fullName: Xunit.TheoryData.AddRow
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Xunit.TheoryData.AddRow(System.Object[])
+    name: AddRow
+    nameWithType: TheoryData.AddRow
+    fullName: Xunit.TheoryData.AddRow
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Xunit.TheoryData.GetEnumerator
+  commentId: M:Xunit.TheoryData.GetEnumerator
+  parent: Xunit.TheoryData
+  isExternal: true
+  name: GetEnumerator()
+  nameWithType: TheoryData.GetEnumerator()
+  fullName: Xunit.TheoryData.GetEnumerator()
+  spec.csharp:
+  - uid: Xunit.TheoryData.GetEnumerator
+    name: GetEnumerator
+    nameWithType: TheoryData.GetEnumerator
+    fullName: Xunit.TheoryData.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Xunit.TheoryData.GetEnumerator
+    name: GetEnumerator
+    nameWithType: TheoryData.GetEnumerator
+    fullName: Xunit.TheoryData.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Xunit.TheoryData.System#Collections#IEnumerable#GetEnumerator
+  commentId: M:Xunit.TheoryData.System#Collections#IEnumerable#GetEnumerator
+  parent: Xunit.TheoryData
+  isExternal: true
+  name: IEnumerable.GetEnumerator()
+  nameWithType: TheoryData.IEnumerable.GetEnumerator()
+  fullName: Xunit.TheoryData.System.Collections.IEnumerable.GetEnumerator()
+  nameWithType.vb: TheoryData.System.Collections.IEnumerable.GetEnumerator()
+  name.vb: System.Collections.IEnumerable.GetEnumerator()
+  spec.csharp:
+  - uid: Xunit.TheoryData.System#Collections#IEnumerable#GetEnumerator
+    name: IEnumerable.GetEnumerator
+    nameWithType: TheoryData.IEnumerable.GetEnumerator
+    fullName: Xunit.TheoryData.System.Collections.IEnumerable.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Xunit.TheoryData.System#Collections#IEnumerable#GetEnumerator
+    name: System.Collections.IEnumerable.GetEnumerator
+    nameWithType: TheoryData.System.Collections.IEnumerable.GetEnumerator
+    fullName: Xunit.TheoryData.System.Collections.IEnumerable.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of TheoryData(Of T1, T2, T3, T4, T5, T6), TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TheoryData(Of T1, T2, T3, T4, T5, T6), TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Design.Tests.Scaffolding.Internal.TheoryData(Of T1, T2, T3, T4, T5, T6), TConcrete)
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{System.Object[]}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
+  name: NullChecked<Object[]>()
+  nameWithType: Extensions.NullChecked<Object[]>()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked<System.Object[]>()
+  nameWithType.vb: Extensions.NullChecked(Of Object())()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked(Of System.Object())()
+  name.vb: NullChecked(Of Object())()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
+    name: NullChecked<Object[]>
+    nameWithType: Extensions.NullChecked<Object[]>
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked<System.Object[]>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
+    name: NullChecked(Of Object())
+    nameWithType: Extensions.NullChecked(Of Object())
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked(Of System.Object())
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{System.Object[]}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Action{System.Object[]})
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
+  name: ForEach<Object[]>(Action<Object[]>)
+  nameWithType: Extensions.ForEach<Object[]>(Action<Object[]>)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach<System.Object[]>(System.Action<System.Object[]>)
+  nameWithType.vb: Extensions.ForEach(Of Object())(Action(Of Object()))
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach(Of System.Object())(System.Action(Of System.Object()))
+  name.vb: ForEach(Of Object())(Action(Of Object()))
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Action{``0})
+    name: ForEach<Object[]>
+    nameWithType: Extensions.ForEach<Object[]>
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach<System.Object[]>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Action{``0})
+    name: ForEach(Of Object())
+    nameWithType: Extensions.ForEach(Of Object())
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach(Of System.Object())
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -155,72 +689,228 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
+- uid: Xunit
+  commentId: N:Xunit
+  isExternal: false
+  name: Xunit
+  nameWithType: Xunit
+  fullName: Xunit
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullname.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: false
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
+  isExternal: true
+  name: NullChecked<T>(IEnumerable<T>)
+  nameWithType: Extensions.NullChecked<T>(IEnumerable<T>)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked<T>(System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: Extensions.NullChecked(Of T)(IEnumerable(Of T))
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked(Of T)(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: NullChecked(Of T)(IEnumerable(Of T))
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
+    name: NullChecked<T>
+    nameWithType: Extensions.NullChecked<T>
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked<T>
   - name: (
     nameWithType: (
     fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
+    name: NullChecked(Of T)
+    nameWithType: Extensions.NullChecked(Of T)
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked(Of T)
   - name: (
     nameWithType: (
     fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
+  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests
   isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
+  name: Extensions
+  nameWithType: Extensions
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
+  isExternal: true
+  name: ForEach<T>(IEnumerable<T>, Action<T>)
+  nameWithType: Extensions.ForEach<T>(IEnumerable<T>, Action<T>)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach<T>(System.Collections.Generic.IEnumerable<T>, System.Action<T>)
+  nameWithType.vb: Extensions.ForEach(Of T)(IEnumerable(Of T), Action(Of T))
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach(Of T)(System.Collections.Generic.IEnumerable(Of T), System.Action(Of T))
+  name.vb: ForEach(Of T)(IEnumerable(Of T), Action(Of T))
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
+    name: ForEach<T>
+    nameWithType: Extensions.ForEach<T>
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
+    name: ForEach(Of T)
+    nameWithType: Extensions.ForEach(Of T)
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests
+  commentId: N:Microsoft.EntityFrameworkCore.Specification.Tests
   isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
+  name: Microsoft.EntityFrameworkCore.Specification.Tests
+  nameWithType: Microsoft.EntityFrameworkCore.Specification.Tests
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests
 - uid: '{T1}'
   commentId: '!:T1'
   definition: T1

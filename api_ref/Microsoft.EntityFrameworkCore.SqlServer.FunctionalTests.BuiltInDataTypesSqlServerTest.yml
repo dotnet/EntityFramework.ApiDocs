@@ -51,21 +51,29 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: BuiltInDataTypesSqlServerTest
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 15
+    startLine: 17
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: 'public class BuiltInDataTypesSqlServerTest : BuiltInDataTypesTestBase<BuiltInDataTypesSqlServerFixture>'
+    content: >-
+      [SqlServerCondition(SqlServerCondition.IsNotSqlAzure)]
+
+      public class BuiltInDataTypesSqlServerTest : BuiltInDataTypesTestBase<BuiltInDataTypesSqlServerFixture>, IClassFixture<BuiltInDataTypesSqlServerFixture>
     content.vb: >-
+      <SqlServerCondition(SqlServerCondition.IsNotSqlAzure)>
+
       Public Class BuiltInDataTypesSqlServerTest
           Inherits BuiltInDataTypesTestBase(Of BuiltInDataTypesSqlServerFixture)
+          Implements IClassFixture(Of BuiltInDataTypesSqlServerFixture)
   inheritance:
   - System.Object
   - Microsoft.EntityFrameworkCore.Specification.Tests.BuiltInDataTypesTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture}
+  implements:
+  - Xunit.IClassFixture{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture}
   inheritedMembers:
   - Microsoft.EntityFrameworkCore.Specification.Tests.BuiltInDataTypesTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture}.Fixture
   - Microsoft.EntityFrameworkCore.Specification.Tests.BuiltInDataTypesTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture}.CreateContext
@@ -82,8 +90,19 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.BuiltInDataTypesTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture}.Can_insert_and_read_back_with_null_string_foreign_key
   - Microsoft.EntityFrameworkCore.Specification.Tests.BuiltInDataTypesTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture}.Can_insert_and_read_back_all_nullable_data_types_with_values_set_to_null
   - Microsoft.EntityFrameworkCore.Specification.Tests.BuiltInDataTypesTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture}.Can_insert_and_read_back_all_nullable_data_types_with_values_set_to_non_null
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerTest.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  attributes:
+  - type: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerConditionAttribute
+    ctor: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerConditionAttribute.#ctor(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerCondition)
+    arguments:
+    - type: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerCondition
+      value: 8
   modifiers.csharp:
   - public
   - class
@@ -105,10 +124,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 17
+    startLine: 20
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -137,16 +156,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_perform_query_with_ansi_strings
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 22
+    startLine: 25
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_perform_query_with_ansi_strings()
-    content.vb: Public Overridable Sub Can_perform_query_with_ansi_strings
+    content: >-
+      [Fact]
+
+      public virtual void Can_perform_query_with_ansi_strings()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_perform_query_with_ansi_strings
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -168,16 +197,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Sql_translation_uses_type_mapper_when_constant
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 28
+    startLine: 31
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public void Sql_translation_uses_type_mapper_when_constant()
-    content.vb: Public Sub Sql_translation_uses_type_mapper_when_constant
+    content: >-
+      [Fact]
+
+      public void Sql_translation_uses_type_mapper_when_constant()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Sql_translation_uses_type_mapper_when_constant
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -197,16 +236,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Sql_translation_uses_type_mapper_when_parameter
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 48
+    startLine: 51
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public void Sql_translation_uses_type_mapper_when_parameter()
-    content.vb: Public Sub Sql_translation_uses_type_mapper_when_parameter
+    content: >-
+      [Fact]
+
+      public void Sql_translation_uses_type_mapper_when_parameter()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Sql_translation_uses_type_mapper_when_parameter
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -226,16 +275,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_query_using_any_mapped_data_type
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 72
+    startLine: 75
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_query_using_any_mapped_data_type()
-    content.vb: Public Overridable Sub Can_query_using_any_mapped_data_type
+    content: >-
+      [Fact]
+
+      public virtual void Can_query_using_any_mapped_data_type()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_query_using_any_mapped_data_type
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -257,16 +316,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_query_using_any_mapped_data_types_with_nulls
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 199
+    startLine: 202
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_query_using_any_mapped_data_types_with_nulls()
-    content.vb: Public Overridable Sub Can_query_using_any_mapped_data_types_with_nulls
+    content: >-
+      [Fact]
+
+      public virtual void Can_query_using_any_mapped_data_types_with_nulls()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_query_using_any_mapped_data_types_with_nulls
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -288,16 +357,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 307
+    startLine: 310
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -319,16 +398,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_nullable_data_types
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 433
+    startLine: 436
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_nullable_data_types()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_nullable_data_types
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_nullable_data_types()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_nullable_data_types
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -350,16 +439,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_set_to_null
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 553
+    startLine: 556
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_set_to_null()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_set_to_null
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_set_to_null()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_set_to_null
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -381,16 +480,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_sized_data_types
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 638
+    startLine: 641
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_sized_data_types()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_sized_data_types
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_sized_data_types()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_sized_data_types
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -412,16 +521,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 710
+    startLine: 713
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -443,16 +562,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_with_scale
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 763
+    startLine: 766
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_with_scale()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_scale
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_with_scale()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_scale
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -474,16 +603,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 817
+    startLine: 820
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -505,16 +644,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_with_identity
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 859
+    startLine: 862
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_with_identity()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_identity
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_with_identity()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_identity
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -536,16 +685,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_nullable_data_types_with_identity
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 979
+    startLine: 982
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_nullable_data_types_with_identity()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_nullable_data_types_with_identity
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_nullable_data_types_with_identity()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_nullable_data_types_with_identity
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -567,16 +726,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_set_to_null_with_identity
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1099
+    startLine: 1102
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_set_to_null_with_identity()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_set_to_null_with_identity
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_set_to_null_with_identity()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_set_to_null_with_identity
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -598,16 +767,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_sized_data_types_with_identity
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1185
+    startLine: 1188
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_sized_data_types_with_identity()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_sized_data_types_with_identity
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_sized_data_types_with_identity()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_sized_data_types_with_identity
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -629,16 +808,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_with_identity
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1257
+    startLine: 1260
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_with_identity()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_with_identity
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_with_identity()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_with_identity
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -660,16 +849,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_with_scale_with_identity
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1310
+    startLine: 1313
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_with_scale_with_identity()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_scale_with_identity
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_with_scale_with_identity()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_scale_with_identity
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -691,16 +890,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_with_identity
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1364
+    startLine: 1367
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_with_identity()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_with_identity
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_with_identity()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_with_identity
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -722,16 +931,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_in_batch
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1408
+    startLine: 1411
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_in_batch()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_in_batch
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_in_batch()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_in_batch
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -753,16 +972,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_nullable_data_types_in_batch
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1428
+    startLine: 1431
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_nullable_data_types_in_batch()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_nullable_data_types_in_batch
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_nullable_data_types_in_batch()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_nullable_data_types_in_batch
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -784,16 +1013,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_set_to_null_in_batch
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1448
+    startLine: 1451
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_set_to_null_in_batch()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_set_to_null_in_batch
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_set_to_null_in_batch()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_set_to_null_in_batch
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -815,16 +1054,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_sized_data_types_in_batch
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1468
+    startLine: 1471
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_sized_data_types_in_batch()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_sized_data_types_in_batch
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_sized_data_types_in_batch()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_sized_data_types_in_batch
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -846,16 +1095,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_in_batch
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1488
+    startLine: 1491
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_in_batch()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_in_batch
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_in_batch()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_in_batch
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -877,16 +1136,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_with_scale_in_batch
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1508
+    startLine: 1511
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_with_scale_in_batch()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_scale_in_batch
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_with_scale_in_batch()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_scale_in_batch
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -908,16 +1177,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_in_batch
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1528
+    startLine: 1531
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_in_batch()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_in_batch
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_in_batch()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_in_batch
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -939,16 +1218,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_with_identity_in_batch
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1548
+    startLine: 1551
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_with_identity_in_batch()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_identity_in_batch
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_with_identity_in_batch()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_identity_in_batch
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -970,16 +1259,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_nullable_data_types_with_identity_in_batch
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1568
+    startLine: 1571
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_nullable_data_types_with_identity_in_batch()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_nullable_data_types_with_identity_in_batch
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_nullable_data_types_with_identity_in_batch()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_nullable_data_types_with_identity_in_batch
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -1001,16 +1300,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_set_to_null_with_identity_in_batch
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1588
+    startLine: 1591
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_set_to_null_with_identity_in_batch()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_set_to_null_with_identity_in_batch
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_set_to_null_with_identity_in_batch()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_set_to_null_with_identity_in_batch
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -1032,16 +1341,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_sized_data_types_with_identity_in_batch
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1608
+    startLine: 1611
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_sized_data_types_with_identity_in_batch()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_sized_data_types_with_identity_in_batch
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_sized_data_types_with_identity_in_batch()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_sized_data_types_with_identity_in_batch
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -1063,16 +1382,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_with_identity_in_batch
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1628
+    startLine: 1631
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_with_identity_in_batch()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_with_identity_in_batch
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_with_identity_in_batch()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_nulls_for_all_mapped_sized_data_types_with_identity_in_batch
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -1094,16 +1423,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_with_scale_with_identity_in_batch
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1648
+    startLine: 1651
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_with_scale_with_identity_in_batch()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_scale_with_identity_in_batch
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_with_scale_with_identity_in_batch()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_scale_with_identity_in_batch
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -1125,16 +1464,26 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_with_identity_in_batch
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1668
+    startLine: 1671
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: public virtual void Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_with_identity_in_batch()
-    content.vb: Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_with_identity_in_batch
+    content: >-
+      [Fact]
+
+      public virtual void Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_with_identity_in_batch()
+    content.vb: >-
+      <Fact>
+
+      Public Overridable Sub Can_insert_and_read_back_all_mapped_data_types_with_precision_and_scale_with_identity_in_batch
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - virtual
@@ -1156,10 +1505,10 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Columns_have_expected_data_types
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/BuiltInDataTypesSqlServerTest.cs
-    startLine: 1691
+    startLine: 1694
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -1216,6 +1565,48 @@ references:
     name: BuiltInDataTypesTestBase
     nameWithType: BuiltInDataTypesTestBase
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.BuiltInDataTypesTestBase
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture
+    name: BuiltInDataTypesSqlServerFixture
+    nameWithType: BuiltInDataTypesSqlServerFixture
+    fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Xunit.IClassFixture{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture}
+  commentId: T:Xunit.IClassFixture{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture}
+  parent: Xunit
+  definition: Xunit.IClassFixture`1
+  name: IClassFixture<BuiltInDataTypesSqlServerFixture>
+  nameWithType: IClassFixture<BuiltInDataTypesSqlServerFixture>
+  fullName: Xunit.IClassFixture<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture>
+  nameWithType.vb: IClassFixture(Of BuiltInDataTypesSqlServerFixture)
+  fullname.vb: Xunit.IClassFixture(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture)
+  name.vb: IClassFixture(Of BuiltInDataTypesSqlServerFixture)
+  spec.csharp:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture
+    name: BuiltInDataTypesSqlServerFixture
+    nameWithType: BuiltInDataTypesSqlServerFixture
+    fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -1679,45 +2070,282 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerTest.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<BuiltInDataTypesSqlServerTest, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<BuiltInDataTypesSqlServerTest, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerTest, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of BuiltInDataTypesSqlServerTest, TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerTest, TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of BuiltInDataTypesSqlServerTest, TConcrete)(String)
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<BuiltInDataTypesSqlServerTest, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<BuiltInDataTypesSqlServerTest, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerTest, TConcrete>
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of BuiltInDataTypesSqlServerTest, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of BuiltInDataTypesSqlServerTest, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerTest, TConcrete)
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -1770,6 +2398,51 @@ references:
   name: Microsoft.EntityFrameworkCore.Specification.Tests
   nameWithType: Microsoft.EntityFrameworkCore.Specification.Tests
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests
+- uid: Xunit.IClassFixture`1
+  commentId: T:Xunit.IClassFixture`1
+  isExternal: true
+  name: IClassFixture<TFixture>
+  nameWithType: IClassFixture<TFixture>
+  fullName: Xunit.IClassFixture<TFixture>
+  nameWithType.vb: IClassFixture(Of TFixture)
+  fullname.vb: Xunit.IClassFixture(Of TFixture)
+  name.vb: IClassFixture(Of TFixture)
+  spec.csharp:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Xunit
+  commentId: N:Xunit
+  isExternal: false
+  name: Xunit
+  nameWithType: Xunit
+  fullName: Xunit
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.BuiltInDataTypesTestBase`1.Fixture
   commentId: P:Microsoft.EntityFrameworkCore.Specification.Tests.BuiltInDataTypesTestBase`1.Fixture
   isExternal: false
@@ -2208,72 +2881,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
 - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture
   commentId: T:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.BuiltInDataTypesSqlServerFixture
   parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests

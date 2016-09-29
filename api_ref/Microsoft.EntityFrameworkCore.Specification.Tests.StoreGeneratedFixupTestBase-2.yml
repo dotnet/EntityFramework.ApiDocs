@@ -125,6 +125,7 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.CreateContext
   - Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.Dispose
   - Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.EnforcesFKs
+  - Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase{`0,`1}.StoreGeneratedFixupContext})
   - Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.Fixture
   - Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.Guid77
   - Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.Guid78
@@ -142,7 +143,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: StoreGeneratedFixupTestBase
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 11
@@ -153,17 +154,23 @@ items:
     content: 'public abstract class StoreGeneratedFixupTestBase<TTestStore, TFixture> : IClassFixture<TFixture>, IDisposable where TTestStore : TestStore where TFixture : StoreGeneratedFixupTestBase<TTestStore, TFixture>.StoreGeneratedFixupFixtureBase, new ()'
     content.vb: >-
       Public MustInherit Class StoreGeneratedFixupTestBase(Of TTestStore As TestStore, TFixture As {StoreGeneratedFixupTestBase(Of TTestStore, TFixture).StoreGeneratedFixupFixtureBase, New})
-          Inherits IClassFixture(Of TFixture)
-          Implements IDisposable
+          Implements IClassFixture(Of TFixture), IDisposable
     typeParameters:
     - id: TTestStore
     - id: TFixture
   inheritance:
   - System.Object
   implements:
+  - Xunit.IClassFixture{{TFixture}}
   - System.IDisposable
-  extensionMethods:
-  - Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture)
   modifiers.csharp:
   - public
@@ -190,7 +197,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Guid77
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 15
@@ -227,7 +234,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Guid78
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 16
@@ -264,7 +271,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 18
@@ -298,7 +305,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_many_FK_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 24
@@ -306,8 +313,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_many_FK_set_both_navs_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_many_FK_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_many_FK_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_many_FK_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_many_FK_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -329,7 +346,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_many_FK_not_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 42
@@ -337,8 +354,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_many_FK_not_set_both_navs_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_many_FK_not_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_many_FK_not_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_many_FK_not_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_many_FK_not_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -360,7 +387,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_many_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 60
@@ -368,8 +395,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_many_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_many_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_many_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_many_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_many_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -391,7 +428,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_many_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 77
@@ -399,8 +436,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_many_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_many_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_many_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_many_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_many_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -422,7 +469,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_many_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 95
@@ -430,8 +477,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_many_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_many_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_many_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_many_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_many_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -453,7 +510,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_many_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 112
@@ -461,8 +518,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_many_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_many_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_many_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_many_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_many_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -484,7 +551,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_many_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 130
@@ -492,8 +559,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_many_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_many_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_many_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_many_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_many_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -515,7 +592,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_many_FK_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 147
@@ -523,8 +600,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_many_FK_set_both_navs_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_many_FK_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_many_FK_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_many_FK_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_many_FK_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -546,7 +633,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_many_FK_not_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 165
@@ -554,8 +641,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_many_FK_not_set_both_navs_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_many_FK_not_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_many_FK_not_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_many_FK_not_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_many_FK_not_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -577,7 +674,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_many_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 183
@@ -585,8 +682,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_many_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_many_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_many_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_many_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_many_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -608,7 +715,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_many_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 200
@@ -616,8 +723,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_many_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_many_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_many_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_many_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_many_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -639,7 +756,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_many_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 218
@@ -647,8 +764,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_many_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_many_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_many_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_many_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_many_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -670,7 +797,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_many_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 235
@@ -678,8 +805,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_many_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_many_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_many_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_many_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_many_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -701,7 +838,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_many_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 253
@@ -709,8 +846,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_many_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_many_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_many_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_many_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_many_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -732,7 +879,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_many_prin_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 299
@@ -740,8 +887,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_many_prin_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_many_prin_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_many_prin_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_many_prin_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_many_prin_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -763,7 +920,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_many_prin_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 316
@@ -771,8 +928,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_many_prin_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_many_prin_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_many_prin_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_many_prin_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_many_prin_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -794,7 +961,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_many_prin_uni_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 333
@@ -802,8 +969,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_many_prin_uni_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_many_prin_uni_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_many_prin_uni_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_many_prin_uni_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_many_prin_uni_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -825,7 +1002,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_many_prin_uni_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 351
@@ -833,8 +1010,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_many_prin_uni_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_many_prin_uni_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_many_prin_uni_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_many_prin_uni_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_many_prin_uni_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -856,7 +1043,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_many_prin_uni_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 369
@@ -864,8 +1051,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_many_prin_uni_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_many_prin_uni_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_many_prin_uni_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_many_prin_uni_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_many_prin_uni_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -887,7 +1084,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_many_prin_uni_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 387
@@ -895,8 +1092,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_many_prin_uni_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_many_prin_uni_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_many_prin_uni_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_many_prin_uni_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_many_prin_uni_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -918,7 +1125,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_many_dep_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 432
@@ -926,8 +1133,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_many_dep_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_many_dep_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_many_dep_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_many_dep_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_many_dep_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -949,7 +1166,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_many_dep_uni_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 449
@@ -957,8 +1174,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_many_dep_uni_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_many_dep_uni_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_many_dep_uni_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_many_dep_uni_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_many_dep_uni_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -980,7 +1207,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_many_dep_uni_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 466
@@ -988,8 +1215,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_many_dep_uni_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_many_dep_uni_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_many_dep_uni_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_many_dep_uni_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_many_dep_uni_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -1011,7 +1248,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_many_dep_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 483
@@ -1019,8 +1256,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_many_dep_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_many_dep_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_many_dep_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_many_dep_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_many_dep_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -1042,7 +1289,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_many_dep_uni_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 500
@@ -1050,8 +1297,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_many_dep_uni_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_many_dep_uni_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_many_dep_uni_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_many_dep_uni_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_many_dep_uni_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -1073,7 +1330,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_many_dep_uni_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 517
@@ -1081,8 +1338,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_many_dep_uni_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_many_dep_uni_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_many_dep_uni_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_many_dep_uni_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_many_dep_uni_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -1104,7 +1371,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_many_no_navs_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 561
@@ -1112,8 +1379,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_many_no_navs_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_many_no_navs_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_many_no_navs_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_many_no_navs_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_many_no_navs_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -1135,7 +1412,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_many_no_navs_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 578
@@ -1143,8 +1420,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_many_no_navs_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_many_no_navs_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_many_no_navs_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_many_no_navs_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_many_no_navs_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -1166,7 +1453,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_one_FK_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 620
@@ -1174,8 +1461,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_one_FK_set_both_navs_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_one_FK_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_one_FK_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_one_FK_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_one_FK_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -1197,7 +1494,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_one_FK_not_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 638
@@ -1205,8 +1502,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_one_FK_not_set_both_navs_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_one_FK_not_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_one_FK_not_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_one_FK_not_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_one_FK_not_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -1228,7 +1535,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_one_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 656
@@ -1236,8 +1543,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_one_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_one_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_one_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_one_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_one_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -1259,7 +1576,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_one_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 673
@@ -1267,8 +1584,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_one_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_one_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_one_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_one_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_one_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -1290,7 +1617,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_one_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 691
@@ -1298,8 +1625,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_one_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_one_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_one_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_one_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_one_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -1321,7 +1658,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_one_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 708
@@ -1329,8 +1666,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_one_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_one_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_one_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_one_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_one_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -1352,7 +1699,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_one_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 726
@@ -1360,8 +1707,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_one_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_one_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_one_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_one_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_one_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -1383,7 +1740,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_one_FK_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 743
@@ -1391,8 +1748,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_one_FK_set_both_navs_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_one_FK_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_one_FK_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_one_FK_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_one_FK_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -1414,7 +1781,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_one_FK_not_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 761
@@ -1422,8 +1789,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_one_FK_not_set_both_navs_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_one_FK_not_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_one_FK_not_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_one_FK_not_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_one_FK_not_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -1445,7 +1822,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_one_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 779
@@ -1453,8 +1830,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_one_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_one_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_one_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_one_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_one_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -1476,7 +1863,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_one_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 796
@@ -1484,8 +1871,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_one_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_one_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_one_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_one_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_one_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -1507,7 +1904,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_one_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 814
@@ -1515,8 +1912,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_one_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_one_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_one_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_one_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_one_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -1538,7 +1945,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_one_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 831
@@ -1546,8 +1953,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_one_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_one_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_one_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_one_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_one_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -1569,7 +1986,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_one_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 849
@@ -1577,8 +1994,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_one_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_one_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_one_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_one_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_one_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -1600,7 +2027,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_one_prin_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 895
@@ -1608,8 +2035,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_one_prin_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_one_prin_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_one_prin_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_one_prin_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_one_prin_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -1631,7 +2068,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_one_prin_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 912
@@ -1639,8 +2076,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_one_prin_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_one_prin_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_one_prin_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_one_prin_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_one_prin_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -1662,7 +2109,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_one_prin_uni_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 929
@@ -1670,8 +2117,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_one_prin_uni_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_one_prin_uni_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_one_prin_uni_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_one_prin_uni_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_one_prin_uni_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -1693,7 +2150,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_one_prin_uni_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 947
@@ -1701,8 +2158,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_one_prin_uni_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_one_prin_uni_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_one_prin_uni_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_one_prin_uni_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_one_prin_uni_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -1724,7 +2191,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_one_prin_uni_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 965
@@ -1732,8 +2199,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_one_prin_uni_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_one_prin_uni_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_one_prin_uni_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_one_prin_uni_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_one_prin_uni_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -1755,7 +2232,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_one_prin_uni_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 983
@@ -1763,8 +2240,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_one_prin_uni_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_one_prin_uni_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_one_prin_uni_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_one_prin_uni_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_one_prin_uni_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -1786,7 +2273,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_one_dep_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1028
@@ -1794,8 +2281,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_one_dep_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_one_dep_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_one_dep_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_one_dep_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_one_dep_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -1817,7 +2314,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_one_dep_uni_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1045
@@ -1825,8 +2322,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_one_dep_uni_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_one_dep_uni_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_one_dep_uni_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_one_dep_uni_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_one_dep_uni_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -1848,7 +2355,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_one_dep_uni_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1062
@@ -1856,8 +2363,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_one_dep_uni_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_one_dep_uni_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_one_dep_uni_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_one_dep_uni_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_one_dep_uni_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -1879,7 +2396,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_one_dep_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1079
@@ -1887,8 +2404,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_one_dep_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_one_dep_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_one_dep_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_one_dep_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_one_dep_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -1910,7 +2437,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_one_dep_uni_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1096
@@ -1918,8 +2445,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_one_dep_uni_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_one_dep_uni_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_one_dep_uni_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_one_dep_uni_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_one_dep_uni_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -1941,7 +2478,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_one_dep_uni_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1113
@@ -1949,8 +2486,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_one_dep_uni_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_one_dep_uni_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_one_dep_uni_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_one_dep_uni_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_one_dep_uni_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -1972,7 +2519,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_then_principal_one_to_one_no_navs_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1157
@@ -1980,8 +2527,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_then_principal_one_to_one_no_navs_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_then_principal_one_to_one_no_navs_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_then_principal_one_to_one_no_navs_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_then_principal_one_to_one_no_navs_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_then_principal_one_to_one_no_navs_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -2003,7 +2560,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_then_dependent_one_to_one_no_navs_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1174
@@ -2011,8 +2568,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_then_dependent_one_to_one_no_navs_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_then_dependent_one_to_one_no_navs_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_then_dependent_one_to_one_no_navs_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_then_dependent_one_to_one_no_navs_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_then_dependent_one_to_one_no_navs_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -2034,7 +2601,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_many_FK_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1216
@@ -2042,8 +2609,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_many_FK_set_both_navs_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_many_FK_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_many_FK_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_many_FK_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_many_FK_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -2065,7 +2642,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_many_FK_not_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1263
@@ -2073,8 +2650,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_many_FK_not_set_both_navs_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_many_FK_not_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_many_FK_not_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_many_FK_not_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_many_FK_not_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -2096,7 +2683,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_many_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1308
@@ -2104,8 +2691,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_many_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_many_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_many_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_many_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_many_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -2127,7 +2724,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_many_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1360
@@ -2135,8 +2732,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_many_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_many_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_many_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_many_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_many_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -2158,7 +2765,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_many_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1413
@@ -2166,8 +2773,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_many_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_many_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_many_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_many_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_many_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -2189,7 +2806,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_many_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1459
@@ -2197,8 +2814,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_many_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_many_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_many_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_many_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_many_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -2220,7 +2847,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_many_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1508
@@ -2228,8 +2855,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_many_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_many_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_many_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_many_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_many_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -2251,7 +2888,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_many_FK_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1552
@@ -2259,8 +2896,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_many_FK_set_both_navs_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_many_FK_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_many_FK_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_many_FK_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_many_FK_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -2282,7 +2929,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_many_FK_not_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1599
@@ -2290,8 +2937,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_many_FK_not_set_both_navs_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_many_FK_not_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_many_FK_not_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_many_FK_not_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_many_FK_not_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -2313,7 +2970,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_many_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1644
@@ -2321,8 +2978,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_many_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_many_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_many_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_many_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_many_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -2344,7 +3011,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_many_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1687
@@ -2352,8 +3019,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_many_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_many_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_many_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_many_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_many_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -2375,7 +3052,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_many_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1733
@@ -2383,8 +3060,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_many_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_many_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_many_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_many_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_many_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -2406,7 +3093,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_many_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1777
@@ -2414,8 +3101,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_many_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_many_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_many_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_many_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_many_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -2437,7 +3134,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_many_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1823
@@ -2445,8 +3142,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_many_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_many_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_many_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_many_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_many_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -2468,7 +3175,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_many_prin_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1865
@@ -2476,8 +3183,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_many_prin_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_many_prin_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_many_prin_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_many_prin_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_many_prin_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -2499,7 +3216,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_many_prin_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1915
@@ -2507,8 +3224,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_many_prin_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_many_prin_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_many_prin_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_many_prin_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_many_prin_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -2530,7 +3257,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_many_prin_uni_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 1956
@@ -2538,8 +3265,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_many_prin_uni_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_many_prin_uni_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_many_prin_uni_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_many_prin_uni_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_many_prin_uni_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -2561,7 +3298,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_many_prin_uni_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2007
@@ -2569,8 +3306,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_many_prin_uni_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_many_prin_uni_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_many_prin_uni_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_many_prin_uni_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_many_prin_uni_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -2592,7 +3339,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_many_prin_uni_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2054
@@ -2600,8 +3347,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_many_prin_uni_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_many_prin_uni_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_many_prin_uni_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_many_prin_uni_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_many_prin_uni_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -2623,7 +3380,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_many_prin_uni_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2098
@@ -2631,8 +3388,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_many_prin_uni_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_many_prin_uni_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_many_prin_uni_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_many_prin_uni_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_many_prin_uni_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -2654,7 +3421,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_many_dep_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2140
@@ -2662,8 +3429,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_many_dep_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_many_dep_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_many_dep_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_many_dep_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_many_dep_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -2685,7 +3462,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_many_dep_uni_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2190
@@ -2693,8 +3470,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_many_dep_uni_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_many_dep_uni_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_many_dep_uni_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_many_dep_uni_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_many_dep_uni_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -2716,7 +3503,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_many_dep_uni_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2234
@@ -2724,8 +3511,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_many_dep_uni_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_many_dep_uni_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_many_dep_uni_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_many_dep_uni_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_many_dep_uni_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -2747,7 +3544,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_many_dep_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2276
@@ -2755,8 +3552,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_many_dep_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_many_dep_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_many_dep_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_many_dep_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_many_dep_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -2778,7 +3585,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_many_dep_uni_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2317
@@ -2786,8 +3593,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_many_dep_uni_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_many_dep_uni_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_many_dep_uni_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_many_dep_uni_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_many_dep_uni_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -2809,7 +3626,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_many_dep_uni_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2359
@@ -2817,8 +3634,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_many_dep_uni_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_many_dep_uni_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_many_dep_uni_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_many_dep_uni_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_many_dep_uni_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -2840,7 +3667,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_many_no_navs_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2399
@@ -2848,8 +3675,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_many_no_navs_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_many_no_navs_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_many_no_navs_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_many_no_navs_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_many_no_navs_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -2871,7 +3708,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_many_no_navs_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2447
@@ -2879,8 +3716,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_many_no_navs_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_many_no_navs_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_many_no_navs_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_many_no_navs_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_many_no_navs_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -2902,7 +3749,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_one_FK_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2486
@@ -2910,8 +3757,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_one_FK_set_both_navs_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_one_FK_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_one_FK_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_one_FK_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_one_FK_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -2933,7 +3790,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_one_FK_not_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2533
@@ -2941,8 +3798,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_one_FK_not_set_both_navs_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_one_FK_not_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_one_FK_not_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_one_FK_not_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_one_FK_not_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -2964,7 +3831,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_one_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2578
@@ -2972,8 +3839,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_one_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_one_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_one_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_one_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_one_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -2995,7 +3872,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_one_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2630
@@ -3003,8 +3880,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_one_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_one_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_one_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_one_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_one_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -3026,7 +3913,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_one_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2683
@@ -3034,8 +3921,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_one_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_one_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_one_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_one_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_one_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -3057,7 +3954,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_one_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2729
@@ -3065,8 +3962,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_one_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_one_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_one_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_one_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_one_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -3088,7 +3995,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_one_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2778
@@ -3096,8 +4003,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_one_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_one_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_one_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_one_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_one_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -3119,7 +4036,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_one_FK_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2822
@@ -3127,8 +4044,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_one_FK_set_both_navs_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_one_FK_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_one_FK_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_one_FK_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_one_FK_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -3150,7 +4077,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_one_FK_not_set_both_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2869
@@ -3158,8 +4085,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_one_FK_not_set_both_navs_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_one_FK_not_set_both_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_one_FK_not_set_both_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_one_FK_not_set_both_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_one_FK_not_set_both_navs_set()
   modifiers.csharp:
   - public
@@ -3181,7 +4118,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_one_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2914
@@ -3189,8 +4126,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_one_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_one_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_one_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_one_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_one_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -3212,7 +4159,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_one_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 2957
@@ -3220,8 +4167,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_one_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_one_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_one_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_one_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_one_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -3243,7 +4200,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_one_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3003
@@ -3251,8 +4208,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_one_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_one_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_one_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_one_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_one_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -3274,7 +4241,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_one_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3047
@@ -3282,8 +4249,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_one_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_one_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_one_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_one_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_one_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -3305,7 +4282,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_one_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3091
@@ -3313,8 +4290,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_one_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_one_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_one_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_one_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_one_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -3336,7 +4323,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_one_prin_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3133
@@ -3344,8 +4331,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_one_prin_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_one_prin_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_one_prin_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_one_prin_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_one_prin_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -3367,7 +4364,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_one_prin_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3183
@@ -3375,8 +4372,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_one_prin_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_one_prin_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_one_prin_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_one_prin_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_one_prin_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -3398,7 +4405,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_one_prin_uni_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3224
@@ -3406,8 +4413,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_one_prin_uni_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_one_prin_uni_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_one_prin_uni_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_one_prin_uni_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_one_prin_uni_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -3429,7 +4446,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_one_prin_uni_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3275
@@ -3437,8 +4454,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_one_prin_uni_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_one_prin_uni_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_one_prin_uni_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_one_prin_uni_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_one_prin_uni_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -3460,7 +4487,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_one_prin_uni_FK_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3322
@@ -3468,8 +4495,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_one_prin_uni_FK_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_one_prin_uni_FK_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_one_prin_uni_FK_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_one_prin_uni_FK_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_one_prin_uni_FK_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -3491,7 +4528,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_one_prin_uni_FK_not_set_principal_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3366
@@ -3499,8 +4536,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_one_prin_uni_FK_not_set_principal_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_one_prin_uni_FK_not_set_principal_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_one_prin_uni_FK_not_set_principal_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_one_prin_uni_FK_not_set_principal_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_one_prin_uni_FK_not_set_principal_nav_set()
   modifiers.csharp:
   - public
@@ -3522,7 +4569,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_one_dep_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3408
@@ -3530,8 +4577,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_one_dep_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_one_dep_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_one_dep_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_one_dep_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_one_dep_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -3553,7 +4610,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_one_dep_uni_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3458
@@ -3561,8 +4618,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_one_dep_uni_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_one_dep_uni_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_one_dep_uni_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_one_dep_uni_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_one_dep_uni_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -3584,7 +4651,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_one_dep_uni_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3502
@@ -3592,8 +4659,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_one_dep_uni_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_one_dep_uni_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_one_dep_uni_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_one_dep_uni_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_one_dep_uni_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -3615,7 +4692,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_one_dep_uni_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3544
@@ -3623,8 +4700,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_one_dep_uni_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_one_dep_uni_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_one_dep_uni_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_one_dep_uni_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_one_dep_uni_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -3646,7 +4733,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_one_dep_uni_FK_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3585
@@ -3654,8 +4741,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_one_dep_uni_FK_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_one_dep_uni_FK_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_one_dep_uni_FK_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_one_dep_uni_FK_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_one_dep_uni_FK_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -3677,7 +4774,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_one_dep_uni_FK_not_set_dependent_nav_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3627
@@ -3685,8 +4782,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_one_dep_uni_FK_not_set_dependent_nav_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_one_dep_uni_FK_not_set_dependent_nav_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_one_dep_uni_FK_not_set_dependent_nav_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_one_dep_uni_FK_not_set_dependent_nav_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_one_dep_uni_FK_not_set_dependent_nav_set()
   modifiers.csharp:
   - public
@@ -3708,7 +4815,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_dependent_but_not_principal_one_to_one_no_navs_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3667
@@ -3716,8 +4823,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_dependent_but_not_principal_one_to_one_no_navs_FK_set_no_navs_set()
-    content.vb: Public Sub Add_dependent_but_not_principal_one_to_one_no_navs_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_dependent_but_not_principal_one_to_one_no_navs_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_dependent_but_not_principal_one_to_one_no_navs_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_dependent_but_not_principal_one_to_one_no_navs_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -3739,7 +4856,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_principal_but_not_dependent_one_to_one_no_navs_FK_set_no_navs_set
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3715
@@ -3747,8 +4864,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_principal_but_not_dependent_one_to_one_no_navs_FK_set_no_navs_set()
-    content.vb: Public Sub Add_principal_but_not_dependent_one_to_one_no_navs_FK_set_no_navs_set
+    content: >-
+      [Fact]
+
+      public void Add_principal_but_not_dependent_one_to_one_no_navs_FK_set_no_navs_set()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_principal_but_not_dependent_one_to_one_no_navs_FK_set_no_navs_set
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_principal_but_not_dependent_one_to_one_no_navs_FK_set_no_navs_set()
   modifiers.csharp:
   - public
@@ -3770,7 +4897,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_overlapping_graph_from_level
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3754
@@ -3778,8 +4905,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_overlapping_graph_from_level()
-    content.vb: Public Sub Add_overlapping_graph_from_level
+    content: >-
+      [Fact]
+
+      public void Add_overlapping_graph_from_level()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_overlapping_graph_from_level
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_overlapping_graph_from_level()
   modifiers.csharp:
   - public
@@ -3801,7 +4938,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_overlapping_graph_from_game
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3772
@@ -3809,8 +4946,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_overlapping_graph_from_game()
-    content.vb: Public Sub Add_overlapping_graph_from_game
+    content: >-
+      [Fact]
+
+      public void Add_overlapping_graph_from_game()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_overlapping_graph_from_game
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_overlapping_graph_from_game()
   modifiers.csharp:
   - public
@@ -3832,7 +4979,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Add_overlapping_graph_from_item
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 3791
@@ -3840,8 +4987,18 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: public void Add_overlapping_graph_from_item()
-    content.vb: Public Sub Add_overlapping_graph_from_item
+    content: >-
+      [Fact]
+
+      public void Add_overlapping_graph_from_item()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Add_overlapping_graph_from_item
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
   nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).Add_overlapping_graph_from_item()
   modifiers.csharp:
   - public
@@ -3863,7 +5020,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: AssertFixup
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 4033
@@ -3899,7 +5056,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: EnforcesFKs
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 4044
@@ -3937,7 +5094,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: MarkIdsTemporary
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 4046
@@ -3978,7 +5135,7 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: MarkIdsTemporary
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
     startLine: 4050
@@ -4006,6 +5163,43 @@ items:
   - Overridable
   fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase(Of TTestStore, TFixture).MarkIdsTemporary(Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase(Of TTestStore, TFixture).StoreGeneratedFixupContext, System.Object, System.Object, System.Object)
   name.vb: MarkIdsTemporary(StoreGeneratedFixupTestBase(Of TTestStore, TFixture).StoreGeneratedFixupContext, Object, Object, Object)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase{`0,`1}.StoreGeneratedFixupContext})
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase{`0,`1}.StoreGeneratedFixupContext})
+  id: ExecuteWithStrategyInTransaction(System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase{`0,`1}.StoreGeneratedFixupContext})
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2
+  langs:
+  - csharp
+  - vb
+  name: ExecuteWithStrategyInTransaction(Action<StoreGeneratedFixupTestBase<TTestStore, TFixture>.StoreGeneratedFixupContext>)
+  nameWithType: StoreGeneratedFixupTestBase<TTestStore, TFixture>.ExecuteWithStrategyInTransaction(Action<StoreGeneratedFixupTestBase<TTestStore, TFixture>.StoreGeneratedFixupContext>)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase<TTestStore, TFixture>.ExecuteWithStrategyInTransaction(System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase<TTestStore, TFixture>.StoreGeneratedFixupContext>)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: ExecuteWithStrategyInTransaction
+    path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
+    startLine: 4067
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Specification.Tests
+  namespace: Microsoft.EntityFrameworkCore.Specification.Tests
+  syntax:
+    content: protected virtual void ExecuteWithStrategyInTransaction(Action<StoreGeneratedFixupTestBase<TTestStore, TFixture>.StoreGeneratedFixupContext> testOperation)
+    content.vb: Protected Overridable Sub ExecuteWithStrategyInTransaction(testOperation As Action(Of StoreGeneratedFixupTestBase(Of TTestStore, TFixture).StoreGeneratedFixupContext))
+    parameters:
+    - id: testOperation
+      type: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.StoreGeneratedFixupContext}
+  nameWithType.vb: StoreGeneratedFixupTestBase(Of TTestStore, TFixture).ExecuteWithStrategyInTransaction(Action(Of StoreGeneratedFixupTestBase(Of TTestStore, TFixture).StoreGeneratedFixupContext))
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+  fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase(Of TTestStore, TFixture).ExecuteWithStrategyInTransaction(System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase(Of TTestStore, TFixture).StoreGeneratedFixupContext))
+  name.vb: ExecuteWithStrategyInTransaction(Action(Of StoreGeneratedFixupTestBase(Of TTestStore, TFixture).StoreGeneratedFixupContext))
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.CreateContext
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.CreateContext
   id: CreateContext
@@ -4021,10 +5215,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: CreateContext
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
-    startLine: 4067
+    startLine: 4070
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -4054,10 +5248,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Dispose
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
-    startLine: 4070
+    startLine: 4073
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -4087,10 +5281,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: Fixture
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
-    startLine: 4072
+    startLine: 4075
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -4123,10 +5317,10 @@ items:
     remote:
       path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: TestStore
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/StoreGeneratedFixupTestBase.cs
-    startLine: 4074
+    startLine: 4077
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -4158,6 +5352,46 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: Xunit.IClassFixture{{TFixture}}
+  commentId: T:Xunit.IClassFixture{`0}
+  parent: Xunit
+  definition: Xunit.IClassFixture`1
+  name: IClassFixture<TFixture>
+  nameWithType: IClassFixture<TFixture>
+  fullName: Xunit.IClassFixture<TFixture>
+  nameWithType.vb: IClassFixture(Of TFixture)
+  fullname.vb: Xunit.IClassFixture(Of TFixture)
+  name.vb: IClassFixture(Of TFixture)
+  spec.csharp:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.IDisposable
   commentId: T:System.IDisposable
   parent: System
@@ -4165,45 +5399,282 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<StoreGeneratedFixupTestBase<TTestStore, TFixture>, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<StoreGeneratedFixupTestBase<TTestStore, TFixture>, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase<TTestStore, TFixture>, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of StoreGeneratedFixupTestBase(Of TTestStore, TFixture), TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase(Of TTestStore, TFixture), TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of StoreGeneratedFixupTestBase(Of TTestStore, TFixture), TConcrete)(String)
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<StoreGeneratedFixupTestBase<TTestStore, TFixture>, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<StoreGeneratedFixupTestBase<TTestStore, TFixture>, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase<TTestStore, TFixture>, TConcrete>
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of StoreGeneratedFixupTestBase(Of TTestStore, TFixture), TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of StoreGeneratedFixupTestBase(Of TTestStore, TFixture), TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase(Of TTestStore, TFixture), TConcrete)
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -4213,72 +5684,51 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
+- uid: Xunit.IClassFixture`1
+  commentId: T:Xunit.IClassFixture`1
   isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
+  name: IClassFixture<TFixture>
+  nameWithType: IClassFixture<TFixture>
+  fullName: Xunit.IClassFixture<TFixture>
+  nameWithType.vb: IClassFixture(Of TFixture)
+  fullname.vb: Xunit.IClassFixture(Of TFixture)
+  name.vb: IClassFixture(Of TFixture)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: Xunit.IClassFixture`1
+    name: IClassFixture
+    nameWithType: IClassFixture
+    fullName: Xunit.IClassFixture
     isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFixture
+    nameWithType: TFixture
+    fullName: TFixture
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+- uid: Xunit
+  commentId: N:Xunit
   isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
+  name: Xunit
+  nameWithType: Xunit
+  fullName: Xunit
 - uid: System.Guid
   commentId: T:System.Guid
   parent: System
@@ -4353,6 +5803,99 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.StoreGeneratedFixupContext}
+  commentId: T:System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.StoreGeneratedFixupContext}
+  parent: System
+  definition: System.Action`1
+  name: Action<StoreGeneratedFixupTestBase.StoreGeneratedFixupContext<>>
+  nameWithType: Action<StoreGeneratedFixupTestBase.StoreGeneratedFixupContext<>>
+  fullName: System.Action<Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase.StoreGeneratedFixupContext<>>
+  nameWithType.vb: Action(Of StoreGeneratedFixupTestBase.StoreGeneratedFixupContext(Of ))
+  fullname.vb: System.Action(Of Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase.StoreGeneratedFixupContext(Of ))
+  name.vb: Action(Of StoreGeneratedFixupTestBase.StoreGeneratedFixupContext(Of ))
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.StoreGeneratedFixupContext
+    name: StoreGeneratedFixupTestBase.StoreGeneratedFixupContext
+    nameWithType: StoreGeneratedFixupTestBase.StoreGeneratedFixupContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase.StoreGeneratedFixupContext
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase`2.StoreGeneratedFixupContext
+    name: StoreGeneratedFixupTestBase.StoreGeneratedFixupContext
+    nameWithType: StoreGeneratedFixupTestBase.StoreGeneratedFixupContext
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.StoreGeneratedFixupTestBase.StoreGeneratedFixupContext
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullname.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )

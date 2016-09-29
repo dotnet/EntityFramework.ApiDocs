@@ -16,7 +16,7 @@ items:
     remote:
       path: test/Microsoft.EntityFrameworkCore.Tests/EntitySetFinderTest.cs
       branch: dev
-      repo: https://github.com/aspnet/EntityFramework
+      repo: https://github.com/aspnet/EntityFramework.git
     id: NotANormalSet
     path: test/Microsoft.EntityFrameworkCore.Tests/EntitySetFinderTest.cs
     startLine: 75
@@ -24,11 +24,11 @@ items:
   - Microsoft.EntityFrameworkCore.Tests
   namespace: Microsoft.EntityFrameworkCore.Tests
   syntax:
-    content: 'public class NotANormalSet<TEntity> : DbSet<TEntity>, IQueryable<TEntity>, IEnumerable<TEntity>, IQueryable, IEnumerable, IAsyncEnumerableAccessor<TEntity>, IInfrastructure<IServiceProvider> where TEntity : class'
+    content: 'public class NotANormalSet<TEntity> : DbSet<TEntity>, IQueryable<TEntity>, IEnumerable<TEntity>, IQueryable, IEnumerable, IAsyncEnumerableAccessor<TEntity>, IInfrastructure<IServiceProvider>, IListSource where TEntity : class'
     content.vb: >-
       Public Class NotANormalSet(Of TEntity As Class)
           Inherits DbSet(Of TEntity)
-          Implements IQueryable(Of TEntity), IEnumerable(Of TEntity), IQueryable, IEnumerable, IAsyncEnumerableAccessor(Of TEntity), IInfrastructure(Of IServiceProvider)
+          Implements IQueryable(Of TEntity), IEnumerable(Of TEntity), IQueryable, IEnumerable, IAsyncEnumerableAccessor(Of TEntity), IInfrastructure(Of IServiceProvider), IListSource
     typeParameters:
     - id: TEntity
   inheritance:
@@ -41,6 +41,7 @@ items:
   - System.Collections.IEnumerable
   - Microsoft.EntityFrameworkCore.Query.Internal.IAsyncEnumerableAccessor{{TEntity}}
   - Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure{System.IServiceProvider}
+  - System.ComponentModel.IListSource
   inheritedMembers:
   - Microsoft.EntityFrameworkCore.DbSet{{TEntity}}.Local
   - Microsoft.EntityFrameworkCore.DbSet{{TEntity}}.Find(System.Object[])
@@ -68,6 +69,15 @@ items:
   - Microsoft.EntityFrameworkCore.DbSet{{TEntity}}.System#Linq#IQueryable#Expression
   - Microsoft.EntityFrameworkCore.DbSet{{TEntity}}.System#Linq#IQueryable#Provider
   - Microsoft.EntityFrameworkCore.DbSet{{TEntity}}.Microsoft#EntityFrameworkCore#Infrastructure#IInfrastructure{System#IServiceProvider}#Instance
+  - Microsoft.EntityFrameworkCore.DbSet{{TEntity}}.System#ComponentModel#IListSource#GetList
+  - Microsoft.EntityFrameworkCore.DbSet{{TEntity}}.System#ComponentModel#IListSource#ContainsListCollection
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
   extensionMethods:
   - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
   - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Action{{TEntity}})
@@ -135,7 +145,6 @@ items:
   - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.StructuralSequenceEqual``1(System.Collections.Generic.IEnumerable{{TEntity}})
   - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.StartsWith``1(System.Collections.Generic.IEnumerable{{TEntity}})
   - System.Linq.IQueryable{`0}.Microsoft.EntityFrameworkCore.Extensions.Internal.QueryableExtensions.AsAsyncEnumerable``1
-  - Microsoft.EntityFrameworkCore.Tests.DbSetFinderTest.NotANormalSet`1.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
   nameWithType.vb: DbSetFinderTest.NotANormalSet(Of TEntity)
   modifiers.csharp:
   - public
@@ -371,6 +380,13 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.ComponentModel.IListSource
+  commentId: T:System.ComponentModel.IListSource
+  parent: System.ComponentModel
+  isExternal: true
+  name: IListSource
+  nameWithType: IListSource
+  fullName: System.ComponentModel.IListSource
 - uid: Microsoft.EntityFrameworkCore.DbSet{{TEntity}}.Local
   commentId: P:Microsoft.EntityFrameworkCore.DbSet{`0}.Local
   parent: Microsoft.EntityFrameworkCore.DbSet{{TEntity}}
@@ -1391,6 +1407,327 @@ references:
   nameWithType.vb: DbSet(Of TEntity).Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.Instance
   fullname.vb: Microsoft.EntityFrameworkCore.DbSet(Of TEntity).Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.Instance
   name.vb: Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.Instance
+- uid: Microsoft.EntityFrameworkCore.DbSet{{TEntity}}.System#ComponentModel#IListSource#GetList
+  commentId: M:Microsoft.EntityFrameworkCore.DbSet{`0}.System#ComponentModel#IListSource#GetList
+  parent: Microsoft.EntityFrameworkCore.DbSet{{TEntity}}
+  definition: Microsoft.EntityFrameworkCore.DbSet`1.System#ComponentModel#IListSource#GetList
+  name: IListSource.GetList()
+  nameWithType: DbSet<TEntity>.IListSource.GetList()
+  fullName: Microsoft.EntityFrameworkCore.DbSet<TEntity>.System.ComponentModel.IListSource.GetList()
+  nameWithType.vb: DbSet(Of TEntity).System.ComponentModel.IListSource.GetList()
+  fullname.vb: Microsoft.EntityFrameworkCore.DbSet(Of TEntity).System.ComponentModel.IListSource.GetList()
+  name.vb: System.ComponentModel.IListSource.GetList()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.DbSet`1.System#ComponentModel#IListSource#GetList
+    name: IListSource.GetList
+    nameWithType: DbSet<TEntity>.IListSource.GetList
+    fullName: Microsoft.EntityFrameworkCore.DbSet<TEntity>.System.ComponentModel.IListSource.GetList
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.DbSet`1.System#ComponentModel#IListSource#GetList
+    name: System.ComponentModel.IListSource.GetList
+    nameWithType: DbSet(Of TEntity).System.ComponentModel.IListSource.GetList
+    fullName: Microsoft.EntityFrameworkCore.DbSet(Of TEntity).System.ComponentModel.IListSource.GetList
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.DbSet{{TEntity}}.System#ComponentModel#IListSource#ContainsListCollection
+  commentId: P:Microsoft.EntityFrameworkCore.DbSet{`0}.System#ComponentModel#IListSource#ContainsListCollection
+  parent: Microsoft.EntityFrameworkCore.DbSet{{TEntity}}
+  definition: Microsoft.EntityFrameworkCore.DbSet`1.System#ComponentModel#IListSource#ContainsListCollection
+  name: IListSource.ContainsListCollection
+  nameWithType: DbSet<TEntity>.IListSource.ContainsListCollection
+  fullName: Microsoft.EntityFrameworkCore.DbSet<TEntity>.System.ComponentModel.IListSource.ContainsListCollection
+  nameWithType.vb: DbSet(Of TEntity).System.ComponentModel.IListSource.ContainsListCollection
+  fullname.vb: Microsoft.EntityFrameworkCore.DbSet(Of TEntity).System.ComponentModel.IListSource.ContainsListCollection
+  name.vb: System.ComponentModel.IListSource.ContainsListCollection
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
@@ -7224,48 +7561,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Tests.DbSetFinderTest.NotANormalSet`1.Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  name: AsConcreteMetadataType<DbSetFinderTest.NotANormalSet<TEntity>, TConcrete>(String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<DbSetFinderTest.NotANormalSet<TEntity>, TConcrete>(String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Tests.DbSetFinderTest.NotANormalSet<TEntity>, TConcrete>(System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of DbSetFinderTest.NotANormalSet(Of TEntity), TConcrete)(String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Tests.DbSetFinderTest.NotANormalSet(Of TEntity), TConcrete)(System.String)
-  name.vb: AsConcreteMetadataType(Of DbSetFinderTest.NotANormalSet(Of TEntity), TConcrete)(String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType<DbSetFinderTest.NotANormalSet<TEntity>, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<DbSetFinderTest.NotANormalSet<TEntity>, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<Microsoft.EntityFrameworkCore.Tests.DbSetFinderTest.NotANormalSet<TEntity>, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(System.String)
-    name: AsConcreteMetadataType(Of DbSetFinderTest.NotANormalSet(Of TEntity), TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of DbSetFinderTest.NotANormalSet(Of TEntity), TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of Microsoft.EntityFrameworkCore.Tests.DbSetFinderTest.NotANormalSet(Of TEntity), TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
@@ -7497,6 +7792,12 @@ references:
   name: Microsoft.EntityFrameworkCore.Infrastructure
   nameWithType: Microsoft.EntityFrameworkCore.Infrastructure
   fullName: Microsoft.EntityFrameworkCore.Infrastructure
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: false
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
 - uid: Microsoft.EntityFrameworkCore.DbSet`1.Local
   commentId: P:Microsoft.EntityFrameworkCore.DbSet`1.Local
   isExternal: false
@@ -8491,6 +8792,46 @@ references:
   nameWithType.vb: DbSet(Of TEntity).Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.Instance
   fullname.vb: Microsoft.EntityFrameworkCore.DbSet(Of TEntity).Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.Instance
   name.vb: Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.Instance
+- uid: Microsoft.EntityFrameworkCore.DbSet`1.System#ComponentModel#IListSource#GetList
+  commentId: M:Microsoft.EntityFrameworkCore.DbSet`1.System#ComponentModel#IListSource#GetList
+  isExternal: false
+  name: IListSource.GetList()
+  nameWithType: DbSet<TEntity>.IListSource.GetList()
+  fullName: Microsoft.EntityFrameworkCore.DbSet<TEntity>.System.ComponentModel.IListSource.GetList()
+  nameWithType.vb: DbSet(Of TEntity).System.ComponentModel.IListSource.GetList()
+  fullname.vb: Microsoft.EntityFrameworkCore.DbSet(Of TEntity).System.ComponentModel.IListSource.GetList()
+  name.vb: System.ComponentModel.IListSource.GetList()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.DbSet`1.System#ComponentModel#IListSource#GetList
+    name: IListSource.GetList
+    nameWithType: DbSet<TEntity>.IListSource.GetList
+    fullName: Microsoft.EntityFrameworkCore.DbSet<TEntity>.System.ComponentModel.IListSource.GetList
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.DbSet`1.System#ComponentModel#IListSource#GetList
+    name: System.ComponentModel.IListSource.GetList
+    nameWithType: DbSet(Of TEntity).System.ComponentModel.IListSource.GetList
+    fullName: Microsoft.EntityFrameworkCore.DbSet(Of TEntity).System.ComponentModel.IListSource.GetList
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.DbSet`1.System#ComponentModel#IListSource#ContainsListCollection
+  commentId: P:Microsoft.EntityFrameworkCore.DbSet`1.System#ComponentModel#IListSource#ContainsListCollection
+  isExternal: false
+  name: IListSource.ContainsListCollection
+  nameWithType: DbSet<TEntity>.IListSource.ContainsListCollection
+  fullName: Microsoft.EntityFrameworkCore.DbSet<TEntity>.System.ComponentModel.IListSource.ContainsListCollection
+  nameWithType.vb: DbSet(Of TEntity).System.ComponentModel.IListSource.ContainsListCollection
+  fullname.vb: Microsoft.EntityFrameworkCore.DbSet(Of TEntity).System.ComponentModel.IListSource.ContainsListCollection
+  name.vb: System.ComponentModel.IListSource.ContainsListCollection
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
   isExternal: true
@@ -16514,66 +16855,6 @@ references:
   name: QueryableExtensions
   nameWithType: QueryableExtensions
   fullName: Microsoft.EntityFrameworkCore.Extensions.Internal.QueryableExtensions
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-  isExternal: true
-  name: AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, String)
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>(TInterface, System.String)
-  nameWithType.vb: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, System.String)
-  name.vb: AsConcreteMetadataType(Of TInterface, TConcrete)(TInterface, String)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType<TInterface, TConcrete>
-    nameWithType: MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType<TInterface, TConcrete>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType``2(``0,System.String)
-    name: AsConcreteMetadataType(Of TInterface, TConcrete)
-    nameWithType: MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions.AsConcreteMetadataType(Of TInterface, TConcrete)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TInterface
-    nameWithType: TInterface
-    fullName: TInterface
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: MetadataExtensions
-  nameWithType: MetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.MetadataExtensions
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests
   commentId: N:Microsoft.EntityFrameworkCore.Specification.Tests
   isExternal: false
@@ -16592,9 +16873,3 @@ references:
   name: Microsoft.EntityFrameworkCore.Extensions.Internal
   nameWithType: Microsoft.EntityFrameworkCore.Extensions.Internal
   fullName: Microsoft.EntityFrameworkCore.Extensions.Internal
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
