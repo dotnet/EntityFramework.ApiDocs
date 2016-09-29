@@ -1,0 +1,818 @@
+### YamlMime:ManagedReference
+items:
+- uid: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions
+  commentId: T:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions
+  id: EntityFrameworkServiceCollectionExtensions
+  parent: Microsoft.Extensions.DependencyInjection
+  children:
+  - Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext``1(IServiceCollection,ServiceLifetime)
+  - Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext``1(IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},ServiceLifetime)
+  - Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext``1(IServiceCollection,System.Action{System.IServiceProvider,Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},ServiceLifetime)
+  langs:
+  - csharp
+  - vb
+  name: EntityFrameworkServiceCollectionExtensions
+  nameWithType: EntityFrameworkServiceCollectionExtensions
+  fullName: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions
+  type: Class
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore/EntityFrameworkServiceCollectionExtensions.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework
+    id: EntityFrameworkServiceCollectionExtensions
+    path: src/Microsoft.EntityFrameworkCore/EntityFrameworkServiceCollectionExtensions.cs
+    startLine: 18
+  assemblies:
+  - Microsoft.EntityFrameworkCore
+  namespace: Microsoft.Extensions.DependencyInjection
+  summary: "\n    Extension methods for setting up Entity Framework related services in an <see cref=\"!:IServiceCollection\"></see>.\n"
+  example: []
+  syntax:
+    content: public static class EntityFrameworkServiceCollectionExtensions
+    content.vb: Public Module EntityFrameworkServiceCollectionExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext``1(IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},ServiceLifetime)
+  commentId: M:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext``1(IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},ServiceLifetime)
+  id: AddDbContext``1(IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},ServiceLifetime)
+  isExtensionMethod: true
+  parent: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddDbContext<TContext>(IServiceCollection, Action<DbContextOptionsBuilder>, ServiceLifetime)
+  nameWithType: EntityFrameworkServiceCollectionExtensions.AddDbContext<TContext>(IServiceCollection, Action<DbContextOptionsBuilder>, ServiceLifetime)
+  fullName: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext<TContext>(IServiceCollection, System.Action<Microsoft.EntityFrameworkCore.DbContextOptionsBuilder>, ServiceLifetime)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore/EntityFrameworkServiceCollectionExtensions.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework
+    id: AddDbContext
+    path: src/Microsoft.EntityFrameworkCore/EntityFrameworkServiceCollectionExtensions.cs
+    startLine: 57
+  assemblies:
+  - Microsoft.EntityFrameworkCore
+  namespace: Microsoft.Extensions.DependencyInjection
+  summary: "\n    Registers the given context as a service in the <see cref=\"!:IServiceCollection\"></see>.\n    You use this method when using dependency injection in your application, such as with ASP.NET.\n    For more information on setting up dependency injection, see http://go.microsoft.com/fwlink/?LinkId=526890.\n"
+  example:
+  - "\n<pre><code>    public void ConfigureServices(IServiceCollection services) \n    {\n        var connectionString = \"connection string to database\";\n\n        services.AddDbContext&lt;MyContext&gt;(options =&gt; options.UseSqlServer(connectionString)); \n    }</code></pre>\n"
+  syntax:
+    content: 'public static IServiceCollection AddDbContext<TContext>(this IServiceCollection serviceCollection, Action<DbContextOptionsBuilder> optionsAction = null, ServiceLifetime contextLifetime = null)where TContext : DbContext'
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AddDbContext(Of TContext As DbContext)(serviceCollection As IServiceCollection, optionsAction As Action(Of DbContextOptionsBuilder) = Nothing, contextLifetime As ServiceLifetime = Nothing) As IServiceCollection
+    parameters:
+    - id: serviceCollection
+      type: IServiceCollection
+      description: 'The <see cref="!:IServiceCollection"></see> to add services to. '
+    - id: optionsAction
+      type: System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder}
+      description: "\n<p>\n    An optional action to configure the <xref href=\"Microsoft.EntityFrameworkCore.DbContextOptions\" data-throw-if-not-resolved=\"false\"></xref> for the context. This provides an\n    alternative to performing configuration of the context by overriding the\n<xref href=\"Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)\" data-throw-if-not-resolved=\"false\"></xref> method in your derived context.\n</p>\n<p>\n    If an action is supplied here, the <xref href=\"Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)\" data-throw-if-not-resolved=\"false\"></xref> method will still be run if it has\n    been overridden on the derived context. <xref href=\"Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)\" data-throw-if-not-resolved=\"false\"></xref> configuration will be applied\n    in addition to configuration performed here.\n</p>\n<p>\n    In order for the options to be passed into your context, you need to expose a constructor on your context that takes\n<xref href=\"Microsoft.EntityFrameworkCore.DbContextOptions%601\" data-throw-if-not-resolved=\"false\"></xref> and passes it to the base constructor of <xref href=\"Microsoft.EntityFrameworkCore.DbContext\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n"
+    - id: contextLifetime
+      type: ServiceLifetime
+      description: 'The lifetime with which to register the DbContext service in the container. '
+    typeParameters:
+    - id: TContext
+      description: 'The type of context to be registered. '
+    return:
+      type: IServiceCollection
+      description: "\n    The same service collection so that multiple calls can be chained.\n"
+  nameWithType.vb: EntityFrameworkServiceCollectionExtensions.AddDbContext(Of TContext)(IServiceCollection, Action(Of DbContextOptionsBuilder), ServiceLifetime)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext(Of TContext)(IServiceCollection, System.Action(Of Microsoft.EntityFrameworkCore.DbContextOptionsBuilder), ServiceLifetime)
+  name.vb: AddDbContext(Of TContext)(IServiceCollection, Action(Of DbContextOptionsBuilder), ServiceLifetime)
+- uid: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext``1(IServiceCollection,ServiceLifetime)
+  commentId: M:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext``1(IServiceCollection,ServiceLifetime)
+  id: AddDbContext``1(IServiceCollection,ServiceLifetime)
+  isExtensionMethod: true
+  parent: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddDbContext<TContext>(IServiceCollection, ServiceLifetime)
+  nameWithType: EntityFrameworkServiceCollectionExtensions.AddDbContext<TContext>(IServiceCollection, ServiceLifetime)
+  fullName: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext<TContext>(IServiceCollection, ServiceLifetime)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore/EntityFrameworkServiceCollectionExtensions.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework
+    id: AddDbContext
+    path: src/Microsoft.EntityFrameworkCore/EntityFrameworkServiceCollectionExtensions.cs
+    startLine: 86
+  assemblies:
+  - Microsoft.EntityFrameworkCore
+  namespace: Microsoft.Extensions.DependencyInjection
+  summary: "\n    Registers the given context as a service in the <see cref=\"!:IServiceCollection\"></see>.\n    You use this method when using dependency injection in your application, such as with ASP.NET.\n    For more information on setting up dependency injection, see http://go.microsoft.com/fwlink/?LinkId=526890.\n"
+  example:
+  - "\n<pre><code>    public void ConfigureServices(IServiceCollection services) \n    {\n        var connectionString = \"connection string to database\";\n\n        services.AddDbContext&lt;MyContext&gt;(ServiceLifetime.Scoped); \n    }</code></pre>\n"
+  syntax:
+    content: 'public static IServiceCollection AddDbContext<TContext>(this IServiceCollection serviceCollection, ServiceLifetime contextLifetime)where TContext : DbContext'
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AddDbContext(Of TContext As DbContext)(serviceCollection As IServiceCollection, contextLifetime As ServiceLifetime) As IServiceCollection
+    parameters:
+    - id: serviceCollection
+      type: IServiceCollection
+      description: 'The <see cref="!:IServiceCollection"></see> to add services to. '
+    - id: contextLifetime
+      type: ServiceLifetime
+      description: 'The lifetime with which to register the DbContext service in the container. '
+    typeParameters:
+    - id: TContext
+      description: 'The type of context to be registered. '
+    return:
+      type: IServiceCollection
+      description: "\n    The same service collection so that multiple calls can be chained.\n"
+  nameWithType.vb: EntityFrameworkServiceCollectionExtensions.AddDbContext(Of TContext)(IServiceCollection, ServiceLifetime)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext(Of TContext)(IServiceCollection, ServiceLifetime)
+  name.vb: AddDbContext(Of TContext)(IServiceCollection, ServiceLifetime)
+- uid: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext``1(IServiceCollection,System.Action{System.IServiceProvider,Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},ServiceLifetime)
+  commentId: M:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext``1(IServiceCollection,System.Action{System.IServiceProvider,Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},ServiceLifetime)
+  id: AddDbContext``1(IServiceCollection,System.Action{System.IServiceProvider,Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},ServiceLifetime)
+  isExtensionMethod: true
+  parent: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddDbContext<TContext>(IServiceCollection, Action<IServiceProvider, DbContextOptionsBuilder>, ServiceLifetime)
+  nameWithType: EntityFrameworkServiceCollectionExtensions.AddDbContext<TContext>(IServiceCollection, Action<IServiceProvider, DbContextOptionsBuilder>, ServiceLifetime)
+  fullName: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext<TContext>(IServiceCollection, System.Action<System.IServiceProvider, Microsoft.EntityFrameworkCore.DbContextOptionsBuilder>, ServiceLifetime)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore/EntityFrameworkServiceCollectionExtensions.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework
+    id: AddDbContext
+    path: src/Microsoft.EntityFrameworkCore/EntityFrameworkServiceCollectionExtensions.cs
+    startLine: 141
+  assemblies:
+  - Microsoft.EntityFrameworkCore
+  namespace: Microsoft.Extensions.DependencyInjection
+  summary: "\n<p>\n    Registers the given context as a service in the <see cref=\"!:IServiceCollection\"></see>.\n    You use this method when using dependency injection in your application, such as with ASP.NET.\n    For more information on setting up dependency injection, see http://go.microsoft.com/fwlink/?LinkId=526890.\n</p>\n<p>\n    This overload has an <em>optionsAction</em> that provides the applications <xref href=\"System.IServiceProvider\" data-throw-if-not-resolved=\"false\"></xref>.\n    This is useful if you want to setup Entity Framework to resolve its internal services from the primary application service provider.\n    By default, we recommend using the other overload, which allows Entity Framework to create and maintain its own <xref href=\"System.IServiceProvider\" data-throw-if-not-resolved=\"false\"></xref>\n    for internal Entity Framework services.\n</p>\n"
+  example:
+  - "\n<pre><code>    public void ConfigureServices(IServiceCollection services) \n    {\n        var connectionString = \"connection string to database\";\n\n        services\n            .AddEntityFrameworkSqlServer()\n            .AddDbContext&lt;MyContext&gt;((serviceProvider, options) =&gt; \n                options.UseSqlServer(connectionString)\n                       .UseInternalServiceProvider(serviceProvider)); \n    }</code></pre>\n"
+  syntax:
+    content: 'public static IServiceCollection AddDbContext<TContext>(this IServiceCollection serviceCollection, Action<IServiceProvider, DbContextOptionsBuilder> optionsAction, ServiceLifetime contextLifetime = null)where TContext : DbContext'
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AddDbContext(Of TContext As DbContext)(serviceCollection As IServiceCollection, optionsAction As Action(Of IServiceProvider, DbContextOptionsBuilder), contextLifetime As ServiceLifetime = Nothing) As IServiceCollection
+    parameters:
+    - id: serviceCollection
+      type: IServiceCollection
+      description: 'The <see cref="!:IServiceCollection"></see> to add services to. '
+    - id: optionsAction
+      type: System.Action{System.IServiceProvider,Microsoft.EntityFrameworkCore.DbContextOptionsBuilder}
+      description: "\n<p>\n    An optional action to configure the <xref href=\"Microsoft.EntityFrameworkCore.DbContextOptions\" data-throw-if-not-resolved=\"false\"></xref> for the context. This provides an\n    alternative to performing configuration of the context by overriding the\n<xref href=\"Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)\" data-throw-if-not-resolved=\"false\"></xref> method in your derived context.\n</p>\n<p>\n    If an action is supplied here, the <xref href=\"Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)\" data-throw-if-not-resolved=\"false\"></xref> method will still be run if it has\n    been overridden on the derived context. <xref href=\"Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)\" data-throw-if-not-resolved=\"false\"></xref> configuration will be applied\n    in addition to configuration performed here.\n</p>\n<p>\n    In order for the options to be passed into your context, you need to expose a constructor on your context that takes\n<xref href=\"Microsoft.EntityFrameworkCore.DbContextOptions%601\" data-throw-if-not-resolved=\"false\"></xref> and passes it to the base constructor of <xref href=\"Microsoft.EntityFrameworkCore.DbContext\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n"
+    - id: contextLifetime
+      type: ServiceLifetime
+      description: 'The lifetime with which to register the DbContext service in the container. '
+    typeParameters:
+    - id: TContext
+      description: 'The type of context to be registered. '
+    return:
+      type: IServiceCollection
+      description: "\n    The same service collection so that multiple calls can be chained.\n"
+  nameWithType.vb: EntityFrameworkServiceCollectionExtensions.AddDbContext(Of TContext)(IServiceCollection, Action(Of IServiceProvider, DbContextOptionsBuilder), ServiceLifetime)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext(Of TContext)(IServiceCollection, System.Action(Of System.IServiceProvider, Microsoft.EntityFrameworkCore.DbContextOptionsBuilder), ServiceLifetime)
+  name.vb: AddDbContext(Of TContext)(IServiceCollection, Action(Of IServiceProvider, DbContextOptionsBuilder), ServiceLifetime)
+references:
+- uid: Microsoft.Extensions.DependencyInjection
+  commentId: N:Microsoft.Extensions.DependencyInjection
+  isExternal: false
+  name: Microsoft.Extensions.DependencyInjection
+  nameWithType: Microsoft.Extensions.DependencyInjection
+  fullName: Microsoft.Extensions.DependencyInjection
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Microsoft.EntityFrameworkCore.DbContextOptions
+  commentId: T:Microsoft.EntityFrameworkCore.DbContextOptions
+  parent: Microsoft.EntityFrameworkCore
+  isExternal: false
+  name: DbContextOptions
+  nameWithType: DbContextOptions
+  fullName: Microsoft.EntityFrameworkCore.DbContextOptions
+- uid: Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)
+  commentId: M:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)
+  parent: Microsoft.EntityFrameworkCore.DbContext
+  isExternal: false
+  name: OnConfiguring(DbContextOptionsBuilder)
+  nameWithType: DbContext.OnConfiguring(DbContextOptionsBuilder)
+  fullName: Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)
+    name: OnConfiguring
+    nameWithType: DbContext.OnConfiguring
+    fullName: Microsoft.EntityFrameworkCore.DbContext.OnConfiguring
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder
+    name: DbContextOptionsBuilder
+    nameWithType: DbContextOptionsBuilder
+    fullName: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)
+    name: OnConfiguring
+    nameWithType: DbContext.OnConfiguring
+    fullName: Microsoft.EntityFrameworkCore.DbContext.OnConfiguring
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder
+    name: DbContextOptionsBuilder
+    nameWithType: DbContextOptionsBuilder
+    fullName: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.DbContextOptions`1
+  commentId: T:Microsoft.EntityFrameworkCore.DbContextOptions`1
+  isExternal: false
+  name: DbContextOptions<TContext>
+  nameWithType: DbContextOptions<TContext>
+  fullName: Microsoft.EntityFrameworkCore.DbContextOptions<TContext>
+  nameWithType.vb: DbContextOptions(Of TContext)
+  fullname.vb: Microsoft.EntityFrameworkCore.DbContextOptions(Of TContext)
+  name.vb: DbContextOptions(Of TContext)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.DbContextOptions`1
+    name: DbContextOptions
+    nameWithType: DbContextOptions
+    fullName: Microsoft.EntityFrameworkCore.DbContextOptions
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TContext
+    nameWithType: TContext
+    fullName: TContext
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.DbContextOptions`1
+    name: DbContextOptions
+    nameWithType: DbContextOptions
+    fullName: Microsoft.EntityFrameworkCore.DbContextOptions
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TContext
+    nameWithType: TContext
+    fullName: TContext
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.DbContext
+  commentId: T:Microsoft.EntityFrameworkCore.DbContext
+  parent: Microsoft.EntityFrameworkCore
+  isExternal: false
+  name: DbContext
+  nameWithType: DbContext
+  fullName: Microsoft.EntityFrameworkCore.DbContext
+- uid: IServiceCollection
+  isExternal: true
+  name: IServiceCollection
+  nameWithType: IServiceCollection
+  fullName: IServiceCollection
+- uid: System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder}
+  commentId: T:System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder}
+  parent: System
+  definition: System.Action`1
+  name: Action<DbContextOptionsBuilder>
+  nameWithType: Action<DbContextOptionsBuilder>
+  fullName: System.Action<Microsoft.EntityFrameworkCore.DbContextOptionsBuilder>
+  nameWithType.vb: Action(Of DbContextOptionsBuilder)
+  fullname.vb: System.Action(Of Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)
+  name.vb: Action(Of DbContextOptionsBuilder)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder
+    name: DbContextOptionsBuilder
+    nameWithType: DbContextOptionsBuilder
+    fullName: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder
+    name: DbContextOptionsBuilder
+    nameWithType: DbContextOptionsBuilder
+    fullName: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ServiceLifetime
+  isExternal: true
+  name: ServiceLifetime
+  nameWithType: ServiceLifetime
+  fullName: ServiceLifetime
+- uid: Microsoft.EntityFrameworkCore
+  commentId: N:Microsoft.EntityFrameworkCore
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore
+  nameWithType: Microsoft.EntityFrameworkCore
+  fullName: Microsoft.EntityFrameworkCore
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullname.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IServiceProvider
+  commentId: T:System.IServiceProvider
+  parent: System
+  isExternal: true
+  name: IServiceProvider
+  nameWithType: IServiceProvider
+  fullName: System.IServiceProvider
+- uid: System.Action{System.IServiceProvider,Microsoft.EntityFrameworkCore.DbContextOptionsBuilder}
+  commentId: T:System.Action{System.IServiceProvider,Microsoft.EntityFrameworkCore.DbContextOptionsBuilder}
+  parent: System
+  definition: System.Action`2
+  name: Action<IServiceProvider, DbContextOptionsBuilder>
+  nameWithType: Action<IServiceProvider, DbContextOptionsBuilder>
+  fullName: System.Action<System.IServiceProvider, Microsoft.EntityFrameworkCore.DbContextOptionsBuilder>
+  nameWithType.vb: Action(Of IServiceProvider, DbContextOptionsBuilder)
+  fullname.vb: System.Action(Of System.IServiceProvider, Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)
+  name.vb: Action(Of IServiceProvider, DbContextOptionsBuilder)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.IServiceProvider
+    name: IServiceProvider
+    nameWithType: IServiceProvider
+    fullName: System.IServiceProvider
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder
+    name: DbContextOptionsBuilder
+    nameWithType: DbContextOptionsBuilder
+    fullName: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.IServiceProvider
+    name: IServiceProvider
+    nameWithType: IServiceProvider
+    fullName: System.IServiceProvider
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder
+    name: DbContextOptionsBuilder
+    nameWithType: DbContextOptionsBuilder
+    fullName: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`2
+  commentId: T:System.Action`2
+  isExternal: true
+  name: Action<T1, T2>
+  nameWithType: Action<T1, T2>
+  fullName: System.Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
+  fullname.vb: System.Action(Of T1, T2)
+  name.vb: Action(Of T1, T2)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: )
+    nameWithType: )
+    fullName: )
