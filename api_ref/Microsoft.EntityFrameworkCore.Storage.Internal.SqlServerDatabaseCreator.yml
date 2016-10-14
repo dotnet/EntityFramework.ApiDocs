@@ -32,25 +32,27 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer
   namespace: Microsoft.EntityFrameworkCore.Storage.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
-    content: 'public class SqlServerDatabaseCreator : RelationalDatabaseCreator, IRelationalDatabaseCreator, IDatabaseCreator'
+    content: 'public class SqlServerDatabaseCreator : RelationalDatabaseCreator, IRelationalDatabaseCreator, IDatabaseCreator, IServiceInjectionSite'
     content.vb: >-
       Public Class SqlServerDatabaseCreator
           Inherits RelationalDatabaseCreator
-          Implements IRelationalDatabaseCreator, IDatabaseCreator
+          Implements IRelationalDatabaseCreator, IDatabaseCreator, IServiceInjectionSite
   inheritance:
   - System.Object
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator
   - Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator
+  - Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
   inheritedMembers:
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Model
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Connection
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.MigrationCommandExecutor
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.ExecutionStrategyFactory
+  - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices(System.IServiceProvider)
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTables
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTablesAsync(System.Threading.CancellationToken)
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.GetCreateTablesCommands
@@ -93,7 +95,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer
   namespace: Microsoft.EntityFrameworkCore.Storage.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public SqlServerDatabaseCreator(ISqlServerConnection connection, IMigrationsModelDiffer modelDiffer, IMigrationsSqlGenerator migrationsSqlGenerator, IMigrationCommandExecutor migrationCommandExecutor, IModel model, IRawSqlCommandBuilder rawSqlCommandBuilder, IExecutionStrategyFactory executionStrategyFactory)
@@ -113,6 +115,7 @@ items:
       type: Microsoft.EntityFrameworkCore.Storage.IRawSqlCommandBuilder
     - id: executionStrategyFactory
       type: Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory
+  overload: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -139,12 +142,13 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer
   namespace: Microsoft.EntityFrameworkCore.Storage.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public override void Create()
     content.vb: Public Overrides Sub Create
   overridden: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Create
+  overload: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Create*
   modifiers.csharp:
   - public
   - override
@@ -173,7 +177,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer
   namespace: Microsoft.EntityFrameworkCore.Storage.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public override Task CreateAsync(CancellationToken cancellationToken = null)
@@ -184,6 +188,7 @@ items:
     return:
       type: System.Threading.Tasks.Task
   overridden: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateAsync(System.Threading.CancellationToken)
+  overload: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.CreateAsync*
   modifiers.csharp:
   - public
   - override
@@ -212,7 +217,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer
   namespace: Microsoft.EntityFrameworkCore.Storage.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override bool HasTables()
@@ -220,6 +225,7 @@ items:
     return:
       type: System.Boolean
   overridden: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.HasTables
+  overload: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.HasTables*
   modifiers.csharp:
   - protected
   - override
@@ -248,7 +254,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer
   namespace: Microsoft.EntityFrameworkCore.Storage.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Task<bool> HasTablesAsync(CancellationToken cancellationToken = null)
@@ -259,6 +265,7 @@ items:
     return:
       type: System.Threading.Tasks.Task{System.Boolean}
   overridden: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.HasTablesAsync(System.Threading.CancellationToken)
+  overload: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.HasTablesAsync*
   modifiers.csharp:
   - protected
   - override
@@ -287,7 +294,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer
   namespace: Microsoft.EntityFrameworkCore.Storage.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public override bool Exists()
@@ -295,6 +302,7 @@ items:
     return:
       type: System.Boolean
   overridden: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Exists
+  overload: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Exists*
   modifiers.csharp:
   - public
   - override
@@ -323,7 +331,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer
   namespace: Microsoft.EntityFrameworkCore.Storage.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public override Task<bool> ExistsAsync(CancellationToken cancellationToken = null)
@@ -334,6 +342,7 @@ items:
     return:
       type: System.Threading.Tasks.Task{System.Boolean}
   overridden: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.ExistsAsync(System.Threading.CancellationToken)
+  overload: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.ExistsAsync*
   modifiers.csharp:
   - public
   - override
@@ -362,12 +371,13 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer
   namespace: Microsoft.EntityFrameworkCore.Storage.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public override void Delete()
     content.vb: Public Overrides Sub Delete
   overridden: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Delete
+  overload: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Delete*
   modifiers.csharp:
   - public
   - override
@@ -396,7 +406,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer
   namespace: Microsoft.EntityFrameworkCore.Storage.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public override Task DeleteAsync(CancellationToken cancellationToken = null)
@@ -407,6 +417,7 @@ items:
     return:
       type: System.Threading.Tasks.Task
   overridden: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.DeleteAsync(System.Threading.CancellationToken)
+  overload: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.DeleteAsync*
   modifiers.csharp:
   - public
   - override
@@ -448,6 +459,13 @@ references:
   name: IDatabaseCreator
   nameWithType: IDatabaseCreator
   fullName: Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator
+- uid: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
+  commentId: T:Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
+  parent: Microsoft.EntityFrameworkCore.Internal
+  isExternal: false
+  name: IServiceInjectionSite
+  nameWithType: IServiceInjectionSite
+  fullName: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
 - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Model
   commentId: P:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Model
   parent: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
@@ -476,6 +494,47 @@ references:
   name: ExecutionStrategyFactory
   nameWithType: RelationalDatabaseCreator.ExecutionStrategyFactory
   fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.ExecutionStrategyFactory
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices(System.IServiceProvider)
+  commentId: M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices(System.IServiceProvider)
+  parent: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
+  isExternal: true
+  name: IServiceInjectionSite.InjectServices(IServiceProvider)
+  nameWithType: RelationalDatabaseCreator.IServiceInjectionSite.InjectServices(IServiceProvider)
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(System.IServiceProvider)
+  nameWithType.vb: RelationalDatabaseCreator.Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(IServiceProvider)
+  name.vb: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(IServiceProvider)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices(System.IServiceProvider)
+    name: IServiceInjectionSite.InjectServices
+    nameWithType: RelationalDatabaseCreator.IServiceInjectionSite.InjectServices
+    fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IServiceProvider
+    name: IServiceProvider
+    nameWithType: IServiceProvider
+    fullName: System.IServiceProvider
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices(System.IServiceProvider)
+    name: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices
+    nameWithType: RelationalDatabaseCreator.Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices
+    fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IServiceProvider
+    name: IServiceProvider
+    nameWithType: IServiceProvider
+    fullName: System.IServiceProvider
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTables
   commentId: M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTables
   parent: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
@@ -1000,6 +1059,18 @@ references:
   name: Microsoft.EntityFrameworkCore.Storage
   nameWithType: Microsoft.EntityFrameworkCore.Storage
   fullName: Microsoft.EntityFrameworkCore.Storage
+- uid: Microsoft.EntityFrameworkCore.Internal
+  commentId: N:Microsoft.EntityFrameworkCore.Internal
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.Internal
+  nameWithType: Microsoft.EntityFrameworkCore.Internal
+  fullName: Microsoft.EntityFrameworkCore.Internal
+- uid: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.#ctor
+  isExternal: false
+  name: SqlServerDatabaseCreator
+  nameWithType: SqlServerDatabaseCreator.SqlServerDatabaseCreator
+  fullName: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.SqlServerDatabaseCreator
 - uid: Microsoft.EntityFrameworkCore.Storage.Internal.ISqlServerConnection
   commentId: T:Microsoft.EntityFrameworkCore.Storage.Internal.ISqlServerConnection
   parent: Microsoft.EntityFrameworkCore.Storage.Internal
@@ -1090,6 +1161,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Create*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Create
+  isExternal: false
+  name: Create
+  nameWithType: SqlServerDatabaseCreator.Create
+  fullName: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Create
 - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateAsync(System.Threading.CancellationToken)
   commentId: M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateAsync(System.Threading.CancellationToken)
   parent: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
@@ -1129,6 +1206,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.CreateAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.CreateAsync
+  isExternal: false
+  name: CreateAsync
+  nameWithType: SqlServerDatabaseCreator.CreateAsync
+  fullName: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.CreateAsync
 - uid: System.Threading.CancellationToken
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
@@ -1184,6 +1267,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.HasTables*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.HasTables
+  isExternal: false
+  name: HasTables
+  nameWithType: SqlServerDatabaseCreator.HasTables
+  fullName: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.HasTables
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -1230,6 +1319,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.HasTablesAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.HasTablesAsync
+  isExternal: false
+  name: HasTablesAsync
+  nameWithType: SqlServerDatabaseCreator.HasTablesAsync
+  fullName: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.HasTablesAsync
 - uid: System.Threading.Tasks.Task{System.Boolean}
   commentId: T:System.Threading.Tasks.Task{System.Boolean}
   parent: System.Threading.Tasks
@@ -1342,6 +1437,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Exists*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Exists
+  isExternal: false
+  name: Exists
+  nameWithType: SqlServerDatabaseCreator.Exists
+  fullName: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Exists
 - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.ExistsAsync(System.Threading.CancellationToken)
   commentId: M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.ExistsAsync(System.Threading.CancellationToken)
   parent: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
@@ -1381,6 +1482,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.ExistsAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.ExistsAsync
+  isExternal: false
+  name: ExistsAsync
+  nameWithType: SqlServerDatabaseCreator.ExistsAsync
+  fullName: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.ExistsAsync
 - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Delete
   commentId: M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Delete
   parent: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
@@ -1410,6 +1517,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Delete*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Delete
+  isExternal: false
+  name: Delete
+  nameWithType: SqlServerDatabaseCreator.Delete
+  fullName: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Delete
 - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.DeleteAsync(System.Threading.CancellationToken)
   commentId: M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.DeleteAsync(System.Threading.CancellationToken)
   parent: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
@@ -1449,3 +1562,9 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.DeleteAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.DeleteAsync
+  isExternal: false
+  name: DeleteAsync
+  nameWithType: SqlServerDatabaseCreator.DeleteAsync
+  fullName: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.DeleteAsync

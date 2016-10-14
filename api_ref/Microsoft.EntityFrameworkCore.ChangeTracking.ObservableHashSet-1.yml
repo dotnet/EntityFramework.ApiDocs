@@ -26,9 +26,9 @@ items:
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsReadOnly
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
-  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
-  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
-  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
+  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(PropertyChangedEventArgs)
+  - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(PropertyChangingEventArgs)
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.PropertyChanged
   - Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.PropertyChanging
@@ -60,41 +60,29 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    A hash set that implements the interfaces required for Entity Framework to use notification based change tracking\n    for a collection navigation property.\n"
+  summary: "\nA hash set that implements the interfaces required for Entity Framework to use notification based change tracking\nfor a collection navigation property.\n"
   example: []
   syntax:
-    content: 'public class ObservableHashSet<T> : ISet<T>, ICollection<T>, IReadOnlyCollection<T>, IEnumerable<T>, IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged, INotifyPropertyChanging'
+    content: 'public class ObservableHashSet<T> : ISet<T>, IReadOnlyCollection<T>, IEnumerable<T>, IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged, INotifyPropertyChanging'
     content.vb: >-
       Public Class ObservableHashSet(Of T)
-          Implements ISet(Of T), ICollection(Of T), IReadOnlyCollection(Of T), IEnumerable(Of T), IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged, INotifyPropertyChanging
+          Inherits ISet(Of T)
+          Implements IReadOnlyCollection(Of T), IEnumerable(Of T), IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged, INotifyPropertyChanging
     typeParameters:
     - id: T
       description: 'The type of elements in the hash set. '
   inheritance:
   - System.Object
   implements:
-  - System.Collections.Generic.ISet{{T}}
-  - System.Collections.Generic.ICollection{{T}}
   - System.Collections.Generic.IReadOnlyCollection{{T}}
   - System.Collections.Generic.IEnumerable{{T}}
   - System.Collections.IEnumerable
-  - System.Collections.Specialized.INotifyCollectionChanged
-  - System.ComponentModel.INotifyPropertyChanged
-  - System.ComponentModel.INotifyPropertyChanging
-  inheritedMembers:
-  - System.Object.ToString
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
   extensionMethods:
-  - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
-  - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Action{{T}})
   - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.OrderByOrdinal``1(System.Func{{T},System.String})
   - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.StructuralSequenceEqual``1(System.Collections.Generic.IEnumerable{{T}})
   - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.StartsWith``1(System.Collections.Generic.IEnumerable{{T}})
+  - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
+  - System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Action{{T}})
   nameWithType.vb: ObservableHashSet(Of T)
   modifiers.csharp:
   - public
@@ -126,11 +114,12 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Initializes a new instance of the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601\" data-throw-if-not-resolved=\"false\"></xref> class\n    that is empty and uses the default equality comparer for the set type.\n"
+  summary: "\nInitializes a new instance of the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601\" data-throw-if-not-resolved=\"false\"></xref> class\nthat is empty and uses the default equality comparer for the set type.\n"
   example: []
   syntax:
     content: public ObservableHashSet()
     content.vb: Public Sub New
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.#ctor*
   nameWithType.vb: ObservableHashSet(Of T).ObservableHashSet()
   modifiers.csharp:
   - public
@@ -159,7 +148,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Initializes a new instance of the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601\" data-throw-if-not-resolved=\"false\"></xref> class\n    that is empty and uses the specified equality comparer for the set type.\n"
+  summary: "\nInitializes a new instance of the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601\" data-throw-if-not-resolved=\"false\"></xref> class\nthat is empty and uses the specified equality comparer for the set type.\n"
   example: []
   syntax:
     content: public ObservableHashSet(IEqualityComparer<T> comparer)
@@ -167,7 +156,8 @@ items:
     parameters:
     - id: comparer
       type: System.Collections.Generic.IEqualityComparer{{T}}
-      description: "\n    The <xref href=\"System.Collections.Generic.IEqualityComparer%601\" data-throw-if-not-resolved=\"false\"></xref> implementation to use when\n    comparing values in the set, or null to use the default <xref href=\"System.Collections.Generic.IEqualityComparer%601\" data-throw-if-not-resolved=\"false\"></xref>\n    implementation for the set type.\n"
+      description: "\nThe <xref href=\"System.Collections.Generic.IEqualityComparer%601\" data-throw-if-not-resolved=\"false\"></xref> implementation to use when\ncomparing values in the set, or null to use the default <xref href=\"System.Collections.Generic.IEqualityComparer%601\" data-throw-if-not-resolved=\"false\"></xref>\nimplementation for the set type.\n"
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.#ctor*
   nameWithType.vb: ObservableHashSet(Of T).ObservableHashSet(IEqualityComparer(Of T))
   modifiers.csharp:
   - public
@@ -197,7 +187,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Initializes a new instance of the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601\" data-throw-if-not-resolved=\"false\"></xref> class\n    that uses the default equality comparer for the set type, contains elements copied\n    from the specified collection, and has sufficient capacity to accommodate the\n    number of elements copied.\n"
+  summary: "\nInitializes a new instance of the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601\" data-throw-if-not-resolved=\"false\"></xref> class\nthat uses the default equality comparer for the set type, contains elements copied\nfrom the specified collection, and has sufficient capacity to accommodate the\nnumber of elements copied.\n"
   example: []
   syntax:
     content: public ObservableHashSet(IEnumerable<T> collection)
@@ -206,6 +196,7 @@ items:
     - id: collection
       type: System.Collections.Generic.IEnumerable{{T}}
       description: 'The collection whose elements are copied to the new set. '
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.#ctor*
   nameWithType.vb: ObservableHashSet(Of T).ObservableHashSet(IEnumerable(Of T))
   modifiers.csharp:
   - public
@@ -235,7 +226,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Initializes a new instance of the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601\" data-throw-if-not-resolved=\"false\"></xref> class\n    that uses the specified equality comparer for the set type, contains elements\n    copied from the specified collection, and has sufficient capacity to accommodate\n    the number of elements copied.\n"
+  summary: "\nInitializes a new instance of the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601\" data-throw-if-not-resolved=\"false\"></xref> class\nthat uses the specified equality comparer for the set type, contains elements\ncopied from the specified collection, and has sufficient capacity to accommodate\nthe number of elements copied.\n"
   example: []
   syntax:
     content: public ObservableHashSet(IEnumerable<T> collection, IEqualityComparer<T> comparer)
@@ -246,7 +237,8 @@ items:
       description: 'The collection whose elements are copied to the new set. '
     - id: comparer
       type: System.Collections.Generic.IEqualityComparer{{T}}
-      description: "\n    The <xref href=\"System.Collections.Generic.IEqualityComparer%601\" data-throw-if-not-resolved=\"false\"></xref> implementation to use when\n    comparing values in the set, or null to use the default <xref href=\"System.Collections.Generic.IEqualityComparer%601\" data-throw-if-not-resolved=\"false\"></xref>\n    implementation for the set type.\n"
+      description: "\nThe <xref href=\"System.Collections.Generic.IEqualityComparer%601\" data-throw-if-not-resolved=\"false\"></xref> implementation to use when\ncomparing values in the set, or null to use the default <xref href=\"System.Collections.Generic.IEqualityComparer%601\" data-throw-if-not-resolved=\"false\"></xref>\nimplementation for the set type.\n"
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.#ctor*
   nameWithType.vb: ObservableHashSet(Of T).ObservableHashSet(IEnumerable(Of T), IEqualityComparer(Of T))
   modifiers.csharp:
   - public
@@ -276,15 +268,13 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Occurs when a property of this hash set (such as <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601.Count\" data-throw-if-not-resolved=\"false\"></xref>) changes.\n"
+  summary: "\nOccurs when a property of this hash set (such as <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601.Count\" data-throw-if-not-resolved=\"false\"></xref>) changes.\n"
   example: []
   syntax:
     content: public virtual event PropertyChangedEventHandler PropertyChanged
     content.vb: Public Overridable Event PropertyChanged As PropertyChangedEventHandler
     return:
-      type: System.ComponentModel.PropertyChangedEventHandler
-  implements:
-  - System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+      type: PropertyChangedEventHandler
   nameWithType.vb: ObservableHashSet(Of T).PropertyChanged
   modifiers.csharp:
   - public
@@ -315,15 +305,13 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Occurs when a property of this hash set (such as <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601.Count\" data-throw-if-not-resolved=\"false\"></xref>) is changing.\n"
+  summary: "\nOccurs when a property of this hash set (such as <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601.Count\" data-throw-if-not-resolved=\"false\"></xref>) is changing.\n"
   example: []
   syntax:
     content: public virtual event PropertyChangingEventHandler PropertyChanging
     content.vb: Public Overridable Event PropertyChanging As PropertyChangingEventHandler
     return:
-      type: System.ComponentModel.PropertyChangingEventHandler
-  implements:
-  - System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+      type: PropertyChangingEventHandler
   nameWithType.vb: ObservableHashSet(Of T).PropertyChanging
   modifiers.csharp:
   - public
@@ -354,15 +342,13 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Occurs when the contents of the hash set changes.\n"
+  summary: "\nOccurs when the contents of the hash set changes.\n"
   example: []
   syntax:
     content: public virtual event NotifyCollectionChangedEventHandler CollectionChanged
     content.vb: Public Overridable Event CollectionChanged As NotifyCollectionChangedEventHandler
     return:
-      type: System.Collections.Specialized.NotifyCollectionChangedEventHandler
-  implements:
-  - System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged
+      type: NotifyCollectionChangedEventHandler
   nameWithType.vb: ObservableHashSet(Of T).CollectionChanged
   modifiers.csharp:
   - public
@@ -400,8 +386,7 @@ items:
     parameters:
     - id: item
       type: '{T}'
-  implements:
-  - System.Collections.Generic.ICollection{{T}}.Add({T})
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.System#Collections#Generic#ICollection{T}#Add*
   nameWithType.vb: ObservableHashSet(Of T).System.Collections.Generic.ICollection<T>.Add(T)
   fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).System.Collections.Generic.ICollection<T>.Add(T)
   name.vb: System.Collections.Generic.ICollection<T>.Add(T)
@@ -427,13 +412,12 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Removes all elements from the hash set.\n"
+  summary: "\nRemoves all elements from the hash set.\n"
   example: []
   syntax:
     content: public virtual void Clear()
     content.vb: Public Overridable Sub Clear
-  implements:
-  - System.Collections.Generic.ICollection{{T}}.Clear
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Clear*
   nameWithType.vb: ObservableHashSet(Of T).Clear()
   modifiers.csharp:
   - public
@@ -464,7 +448,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Determines whether the hash set object contains the\n    specified element.\n"
+  summary: "\nDetermines whether the hash set object contains the\nspecified element.\n"
   example: []
   syntax:
     content: public virtual bool Contains(T item)
@@ -475,9 +459,8 @@ items:
       description: The element to locate in the hash set.
     return:
       type: System.Boolean
-      description: "\n    True if the hash set contains the specified element; otherwise, false.\n"
-  implements:
-  - System.Collections.Generic.ICollection{{T}}.Contains({T})
+      description: "\nTrue if the hash set contains the specified element; otherwise, false.\n"
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Contains*
   nameWithType.vb: ObservableHashSet(Of T).Contains(T)
   modifiers.csharp:
   - public
@@ -508,7 +491,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Copies the elements of the hash set to an array, starting at the specified array index.\n"
+  summary: "\nCopies the elements of the hash set to an array, starting at the specified array index.\n"
   example: []
   syntax:
     content: public virtual void CopyTo(T[] array, int arrayIndex)
@@ -516,12 +499,11 @@ items:
     parameters:
     - id: array
       type: '{T}[]'
-      description: "\n    The one-dimensional array that is the destination of the elements copied from\n    the hash set. The array must have zero-based indexing.\n"
+      description: "\nThe one-dimensional array that is the destination of the elements copied from\nthe hash set. The array must have zero-based indexing.\n"
     - id: arrayIndex
       type: System.Int32
       description: 'The zero-based index in array at which copying begins. '
-  implements:
-  - System.Collections.Generic.ICollection{{T}}.CopyTo({T}[],System.Int32)
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.CopyTo*
   nameWithType.vb: ObservableHashSet(Of T).CopyTo(T(), Int32)
   modifiers.csharp:
   - public
@@ -553,7 +535,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Removes the specified element from the hash set.\n"
+  summary: "\nRemoves the specified element from the hash set.\n"
   example: []
   syntax:
     content: public virtual bool Remove(T item)
@@ -564,9 +546,8 @@ items:
       description: 'The element to remove. '
     return:
       type: System.Boolean
-      description: "\n    True if the element is successfully found and removed; otherwise, false.\n"
-  implements:
-  - System.Collections.Generic.ICollection{{T}}.Remove({T})
+      description: "\nTrue if the element is successfully found and removed; otherwise, false.\n"
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Remove*
   nameWithType.vb: ObservableHashSet(Of T).Remove(T)
   modifiers.csharp:
   - public
@@ -597,7 +578,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Gets the number of elements that are contained in the hash set.\n"
+  summary: "\nGets the number of elements that are contained in the hash set.\n"
   example: []
   syntax:
     content: public virtual int Count { get; }
@@ -605,8 +586,8 @@ items:
     parameters: []
     return:
       type: System.Int32
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Count*
   implements:
-  - System.Collections.Generic.ICollection{{T}}.Count
   - System.Collections.Generic.IReadOnlyCollection{{T}}.Count
   nameWithType.vb: ObservableHashSet(Of T).Count
   modifiers.csharp:
@@ -640,7 +621,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Gets a value indicating whether the hash set is read-only.\n"
+  summary: "\nGets a value indicating whether the hash set is read-only.\n"
   example: []
   syntax:
     content: public virtual bool IsReadOnly { get; }
@@ -648,8 +629,7 @@ items:
     parameters: []
     return:
       type: System.Boolean
-  implements:
-  - System.Collections.Generic.ICollection{{T}}.IsReadOnly
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsReadOnly*
   nameWithType.vb: ObservableHashSet(Of T).IsReadOnly
   modifiers.csharp:
   - public
@@ -682,14 +662,15 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Returns an enumerator that iterates through the hash set.\n"
+  summary: "\nReturns an enumerator that iterates through the hash set.\n"
   example: []
   syntax:
     content: public virtual HashSet<T>.Enumerator GetEnumerator()
     content.vb: Public Overridable Function GetEnumerator As HashSet(Of T).Enumerator
     return:
       type: System.Collections.Generic.HashSet{{T}}.Enumerator
-      description: "\n    An enumerator for the hash set.\n"
+      description: "\nAn enumerator for the hash set.\n"
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.GetEnumerator*
   nameWithType.vb: ObservableHashSet(Of T).GetEnumerator()
   modifiers.csharp:
   - public
@@ -726,6 +707,7 @@ items:
     content.vb: Function System.Collections.Generic.IEnumerable<T>.GetEnumerator As IEnumerator(Of T) Implements IEnumerable(Of T).GetEnumerator
     return:
       type: System.Collections.Generic.IEnumerator{{T}}
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator*
   implements:
   - System.Collections.Generic.IEnumerable{{T}}.GetEnumerator
   nameWithType.vb: ObservableHashSet(Of T).System.Collections.Generic.IEnumerable<T>.GetEnumerator()
@@ -759,6 +741,7 @@ items:
     content.vb: Function System.Collections.IEnumerable.GetEnumerator As IEnumerator Implements IEnumerable.GetEnumerator
     return:
       type: System.Collections.IEnumerator
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.System#Collections#IEnumerable#GetEnumerator*
   implements:
   - System.Collections.IEnumerable.GetEnumerator
   nameWithType.vb: ObservableHashSet(Of T).System.Collections.IEnumerable.GetEnumerator()
@@ -786,7 +769,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Adds the specified element to the hash set.\n"
+  summary: "\nAdds the specified element to the hash set.\n"
   example: []
   syntax:
     content: public virtual bool Add(T item)
@@ -797,9 +780,8 @@ items:
       description: 'The element to add to the set. '
     return:
       type: System.Boolean
-      description: "\n    true if the element is added to the hash set; false if the element is already present.\n"
-  implements:
-  - System.Collections.Generic.ISet{{T}}.Add({T})
+      description: "\ntrue if the element is added to the hash set; false if the element is already present.\n"
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Add*
   nameWithType.vb: ObservableHashSet(Of T).Add(T)
   modifiers.csharp:
   - public
@@ -830,7 +812,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Modifies the hash set to contain all elements that are present in itself, the specified collection, or both.\n"
+  summary: "\nModifies the hash set to contain all elements that are present in itself, the specified collection, or both.\n"
   example: []
   syntax:
     content: public virtual void UnionWith(IEnumerable<T> other)
@@ -839,8 +821,7 @@ items:
     - id: other
       type: System.Collections.Generic.IEnumerable{{T}}
       description: 'The collection to compare to the current hash set. '
-  implements:
-  - System.Collections.Generic.ISet{{T}}.UnionWith(System.Collections.Generic.IEnumerable{{T}})
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.UnionWith*
   nameWithType.vb: ObservableHashSet(Of T).UnionWith(IEnumerable(Of T))
   modifiers.csharp:
   - public
@@ -872,7 +853,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Modifies the current hash set to contain only\n    elements that are present in that object and in the specified collection.\n"
+  summary: "\nModifies the current hash set to contain only\nelements that are present in that object and in the specified collection.\n"
   example: []
   syntax:
     content: public virtual void IntersectWith(IEnumerable<T> other)
@@ -881,8 +862,7 @@ items:
     - id: other
       type: System.Collections.Generic.IEnumerable{{T}}
       description: 'The collection to compare to the current hash set. '
-  implements:
-  - System.Collections.Generic.ISet{{T}}.IntersectWith(System.Collections.Generic.IEnumerable{{T}})
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IntersectWith*
   nameWithType.vb: ObservableHashSet(Of T).IntersectWith(IEnumerable(Of T))
   modifiers.csharp:
   - public
@@ -914,7 +894,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Removes all elements in the specified collection from the hash set.\n"
+  summary: "\nRemoves all elements in the specified collection from the hash set.\n"
   example: []
   syntax:
     content: public virtual void ExceptWith(IEnumerable<T> other)
@@ -923,8 +903,7 @@ items:
     - id: other
       type: System.Collections.Generic.IEnumerable{{T}}
       description: 'The collection of items to remove from the current hash set. '
-  implements:
-  - System.Collections.Generic.ISet{{T}}.ExceptWith(System.Collections.Generic.IEnumerable{{T}})
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.ExceptWith*
   nameWithType.vb: ObservableHashSet(Of T).ExceptWith(IEnumerable(Of T))
   modifiers.csharp:
   - public
@@ -956,7 +935,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Modifies the current hash set to contain only elements that are present either in that\n    object or in the specified collection, but not both.\n"
+  summary: "\nModifies the current hash set to contain only elements that are present either in that\nobject or in the specified collection, but not both.\n"
   example: []
   syntax:
     content: public virtual void SymmetricExceptWith(IEnumerable<T> other)
@@ -965,8 +944,7 @@ items:
     - id: other
       type: System.Collections.Generic.IEnumerable{{T}}
       description: 'The collection to compare to the current hash set. '
-  implements:
-  - System.Collections.Generic.ISet{{T}}.SymmetricExceptWith(System.Collections.Generic.IEnumerable{{T}})
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.SymmetricExceptWith*
   nameWithType.vb: ObservableHashSet(Of T).SymmetricExceptWith(IEnumerable(Of T))
   modifiers.csharp:
   - public
@@ -998,7 +976,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Determines whether the hash set is a subset of the specified collection.\n"
+  summary: "\nDetermines whether the hash set is a subset of the specified collection.\n"
   example: []
   syntax:
     content: public virtual bool IsSubsetOf(IEnumerable<T> other)
@@ -1009,9 +987,8 @@ items:
       description: 'The collection to compare to the current hash set. '
     return:
       type: System.Boolean
-      description: "\n    True if the hash set is a subset of other; otherwise, false.\n"
-  implements:
-  - System.Collections.Generic.ISet{{T}}.IsSubsetOf(System.Collections.Generic.IEnumerable{{T}})
+      description: "\nTrue if the hash set is a subset of other; otherwise, false.\n"
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsSubsetOf*
   nameWithType.vb: ObservableHashSet(Of T).IsSubsetOf(IEnumerable(Of T))
   modifiers.csharp:
   - public
@@ -1043,7 +1020,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Determines whether the hash set is a proper subset of the specified collection.\n"
+  summary: "\nDetermines whether the hash set is a proper subset of the specified collection.\n"
   example: []
   syntax:
     content: public virtual bool IsProperSubsetOf(IEnumerable<T> other)
@@ -1054,9 +1031,8 @@ items:
       description: 'The collection to compare to the current hash set. '
     return:
       type: System.Boolean
-      description: "\n    True if the hash set is a proper subset of other; otherwise, false.\n"
-  implements:
-  - System.Collections.Generic.ISet{{T}}.IsProperSubsetOf(System.Collections.Generic.IEnumerable{{T}})
+      description: "\nTrue if the hash set is a proper subset of other; otherwise, false.\n"
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsProperSubsetOf*
   nameWithType.vb: ObservableHashSet(Of T).IsProperSubsetOf(IEnumerable(Of T))
   modifiers.csharp:
   - public
@@ -1088,7 +1064,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Determines whether the hash set is a superset of the specified collection.\n"
+  summary: "\nDetermines whether the hash set is a superset of the specified collection.\n"
   example: []
   syntax:
     content: public virtual bool IsSupersetOf(IEnumerable<T> other)
@@ -1099,9 +1075,8 @@ items:
       description: 'The collection to compare to the current hash set. '
     return:
       type: System.Boolean
-      description: "\n    True if the hash set is a superset of other; otherwise, false.\n"
-  implements:
-  - System.Collections.Generic.ISet{{T}}.IsSupersetOf(System.Collections.Generic.IEnumerable{{T}})
+      description: "\nTrue if the hash set is a superset of other; otherwise, false.\n"
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsSupersetOf*
   nameWithType.vb: ObservableHashSet(Of T).IsSupersetOf(IEnumerable(Of T))
   modifiers.csharp:
   - public
@@ -1133,7 +1108,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Determines whether the hash set is a proper superset of the specified collection.\n"
+  summary: "\nDetermines whether the hash set is a proper superset of the specified collection.\n"
   example: []
   syntax:
     content: public virtual bool IsProperSupersetOf(IEnumerable<T> other)
@@ -1144,9 +1119,8 @@ items:
       description: 'The collection to compare to the current hash set. '
     return:
       type: System.Boolean
-      description: "\n    True if the hash set is a proper superset of other; otherwise, false.\n"
-  implements:
-  - System.Collections.Generic.ISet{{T}}.IsProperSupersetOf(System.Collections.Generic.IEnumerable{{T}})
+      description: "\nTrue if the hash set is a proper superset of other; otherwise, false.\n"
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsProperSupersetOf*
   nameWithType.vb: ObservableHashSet(Of T).IsProperSupersetOf(IEnumerable(Of T))
   modifiers.csharp:
   - public
@@ -1178,7 +1152,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Determines whether the current System.Collections.Generic.HashSet`1 object and a specified collection share common elements.\n"
+  summary: "\nDetermines whether the current System.Collections.Generic.HashSet`1 object and a specified collection share common elements.\n"
   example: []
   syntax:
     content: public virtual bool Overlaps(IEnumerable<T> other)
@@ -1189,9 +1163,8 @@ items:
       description: 'The collection to compare to the current hash set. '
     return:
       type: System.Boolean
-      description: "\n    True if the hash set and other share at least one common element; otherwise, false.\n"
-  implements:
-  - System.Collections.Generic.ISet{{T}}.Overlaps(System.Collections.Generic.IEnumerable{{T}})
+      description: "\nTrue if the hash set and other share at least one common element; otherwise, false.\n"
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Overlaps*
   nameWithType.vb: ObservableHashSet(Of T).Overlaps(IEnumerable(Of T))
   modifiers.csharp:
   - public
@@ -1223,7 +1196,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Determines whether the hash set and the specified collection contain the same elements.\n"
+  summary: "\nDetermines whether the hash set and the specified collection contain the same elements.\n"
   example: []
   syntax:
     content: public virtual bool SetEquals(IEnumerable<T> other)
@@ -1234,9 +1207,8 @@ items:
       description: 'The collection to compare to the current hash set. '
     return:
       type: System.Boolean
-      description: "\n    True if the hash set is equal to other; otherwise, false.\n"
-  implements:
-  - System.Collections.Generic.ISet{{T}}.SetEquals(System.Collections.Generic.IEnumerable{{T}})
+      description: "\nTrue if the hash set is equal to other; otherwise, false.\n"
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.SetEquals*
   nameWithType.vb: ObservableHashSet(Of T).SetEquals(IEnumerable(Of T))
   modifiers.csharp:
   - public
@@ -1268,7 +1240,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Copies the elements of the hash set to an array.\n"
+  summary: "\nCopies the elements of the hash set to an array.\n"
   example: []
   syntax:
     content: public virtual void CopyTo(T[] array)
@@ -1276,7 +1248,8 @@ items:
     parameters:
     - id: array
       type: '{T}[]'
-      description: "\n    The one-dimensional array that is the destination of the elements copied from\n    the hash set. The array must have zero-based indexing.\n"
+      description: "\nThe one-dimensional array that is the destination of the elements copied from\nthe hash set. The array must have zero-based indexing.\n"
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.CopyTo*
   nameWithType.vb: ObservableHashSet(Of T).CopyTo(T())
   modifiers.csharp:
   - public
@@ -1308,7 +1281,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Copies the specified number of elements of the hash set to an array, starting at the specified array index.\n"
+  summary: "\nCopies the specified number of elements of the hash set to an array, starting at the specified array index.\n"
   example: []
   syntax:
     content: public virtual void CopyTo(T[] array, int arrayIndex, int count)
@@ -1316,13 +1289,14 @@ items:
     parameters:
     - id: array
       type: '{T}[]'
-      description: "\n    The one-dimensional array that is the destination of the elements copied from\n    the hash set. The array must have zero-based indexing.\n"
+      description: "\nThe one-dimensional array that is the destination of the elements copied from\nthe hash set. The array must have zero-based indexing.\n"
     - id: arrayIndex
       type: System.Int32
       description: 'The zero-based index in array at which copying begins. '
     - id: count
       type: System.Int32
       description: 'The number of elements to copy to array. '
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.CopyTo*
   nameWithType.vb: ObservableHashSet(Of T).CopyTo(T(), Int32, Int32)
   modifiers.csharp:
   - public
@@ -1354,7 +1328,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Removes all elements that match the conditions defined by the specified predicate\n    from the hash set.\n"
+  summary: "\nRemoves all elements that match the conditions defined by the specified predicate\nfrom the hash set.\n"
   example: []
   syntax:
     content: public virtual int RemoveWhere(Predicate<T> match)
@@ -1362,10 +1336,11 @@ items:
     parameters:
     - id: match
       type: System.Predicate{{T}}
-      description: "\n    The <xref href=\"System.Predicate%601\" data-throw-if-not-resolved=\"false\"></xref> delegate that defines the conditions of the elements to remove.\n"
+      description: "\nThe <xref href=\"System.Predicate%601\" data-throw-if-not-resolved=\"false\"></xref> delegate that defines the conditions of the elements to remove.\n"
     return:
       type: System.Int32
       description: 'The number of elements that were removed from the hash set. '
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.RemoveWhere*
   nameWithType.vb: ObservableHashSet(Of T).RemoveWhere(Predicate(Of T))
   modifiers.csharp:
   - public
@@ -1397,7 +1372,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Gets the <xref href=\"System.Collections.Generic.IEqualityComparer%601\" data-throw-if-not-resolved=\"false\"></xref> object that is used to determine equality for the values in the set.\n"
+  summary: "\nGets the <xref href=\"System.Collections.Generic.IEqualityComparer%601\" data-throw-if-not-resolved=\"false\"></xref> object that is used to determine equality for the values in the set.\n"
   example: []
   syntax:
     content: public virtual IEqualityComparer<T> Comparer { get; }
@@ -1405,6 +1380,7 @@ items:
     parameters: []
     return:
       type: System.Collections.Generic.IEqualityComparer{{T}}
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Comparer*
   nameWithType.vb: ObservableHashSet(Of T).Comparer
   modifiers.csharp:
   - public
@@ -1437,11 +1413,12 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Sets the capacity of the hash set to the actual number of elements it contains, rounded up to a nearby,\n    implementation-specific value.\n"
+  summary: "\nSets the capacity of the hash set to the actual number of elements it contains, rounded up to a nearby,\nimplementation-specific value.\n"
   example: []
   syntax:
     content: public virtual void TrimExcess()
     content.vb: Public Overridable Sub TrimExcess
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.TrimExcess*
   nameWithType.vb: ObservableHashSet(Of T).TrimExcess()
   modifiers.csharp:
   - public
@@ -1450,16 +1427,16 @@ items:
   - Public
   - Overridable
   fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).TrimExcess()
-- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
-  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
-  id: OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(PropertyChangedEventArgs)
+  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged(PropertyChangedEventArgs)
+  id: OnPropertyChanged(PropertyChangedEventArgs)
   parent: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1
   langs:
   - csharp
   - vb
   name: OnPropertyChanged(PropertyChangedEventArgs)
   nameWithType: ObservableHashSet<T>.OnPropertyChanged(PropertyChangedEventArgs)
-  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanged(PropertyChangedEventArgs)
   type: Method
   source:
     remote:
@@ -1472,15 +1449,16 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Raises the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601.PropertyChanged\" data-throw-if-not-resolved=\"false\"></xref> event.\n"
+  summary: "\nRaises the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601.PropertyChanged\" data-throw-if-not-resolved=\"false\"></xref> event.\n"
   example: []
   syntax:
     content: protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
     content.vb: Protected Overridable Sub OnPropertyChanged(e As PropertyChangedEventArgs)
     parameters:
     - id: e
-      type: System.ComponentModel.PropertyChangedEventArgs
+      type: PropertyChangedEventArgs
       description: 'Details of the property that changed. '
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged*
   nameWithType.vb: ObservableHashSet(Of T).OnPropertyChanged(PropertyChangedEventArgs)
   modifiers.csharp:
   - protected
@@ -1488,17 +1466,17 @@ items:
   modifiers.vb:
   - Protected
   - Overridable
-  fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)
-- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
-  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
-  id: OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
+  fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanged(PropertyChangedEventArgs)
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(PropertyChangingEventArgs)
+  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging(PropertyChangingEventArgs)
+  id: OnPropertyChanging(PropertyChangingEventArgs)
   parent: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1
   langs:
   - csharp
   - vb
   name: OnPropertyChanging(PropertyChangingEventArgs)
   nameWithType: ObservableHashSet<T>.OnPropertyChanging(PropertyChangingEventArgs)
-  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanging(PropertyChangingEventArgs)
   type: Method
   source:
     remote:
@@ -1511,15 +1489,16 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Raises the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601.PropertyChanging\" data-throw-if-not-resolved=\"false\"></xref> event.\n"
+  summary: "\nRaises the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601.PropertyChanging\" data-throw-if-not-resolved=\"false\"></xref> event.\n"
   example: []
   syntax:
     content: protected virtual void OnPropertyChanging(PropertyChangingEventArgs e)
     content.vb: Protected Overridable Sub OnPropertyChanging(e As PropertyChangingEventArgs)
     parameters:
     - id: e
-      type: System.ComponentModel.PropertyChangingEventArgs
+      type: PropertyChangingEventArgs
       description: 'Details of the property that is changing. '
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging*
   nameWithType.vb: ObservableHashSet(Of T).OnPropertyChanging(PropertyChangingEventArgs)
   modifiers.csharp:
   - protected
@@ -1527,17 +1506,17 @@ items:
   modifiers.vb:
   - Protected
   - Overridable
-  fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanging(System.ComponentModel.PropertyChangingEventArgs)
-- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
-  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
-  id: OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
+  fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanging(PropertyChangingEventArgs)
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged(NotifyCollectionChangedEventArgs)
+  id: OnCollectionChanged(NotifyCollectionChangedEventArgs)
   parent: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1
   langs:
   - csharp
   - vb
   name: OnCollectionChanged(NotifyCollectionChangedEventArgs)
   nameWithType: ObservableHashSet<T>.OnCollectionChanged(NotifyCollectionChangedEventArgs)
-  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnCollectionChanged(NotifyCollectionChangedEventArgs)
   type: Method
   source:
     remote:
@@ -1550,15 +1529,16 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Raises the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601.CollectionChanged\" data-throw-if-not-resolved=\"false\"></xref> event.\n"
+  summary: "\nRaises the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet%601.CollectionChanged\" data-throw-if-not-resolved=\"false\"></xref> event.\n"
   example: []
   syntax:
     content: protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
     content.vb: Protected Overridable Sub OnCollectionChanged(e As NotifyCollectionChangedEventArgs)
     parameters:
     - id: e
-      type: System.Collections.Specialized.NotifyCollectionChangedEventArgs
+      type: NotifyCollectionChangedEventArgs
       description: 'Details of the change. '
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged*
   nameWithType.vb: ObservableHashSet(Of T).OnCollectionChanged(NotifyCollectionChangedEventArgs)
   modifiers.csharp:
   - protected
@@ -1566,7 +1546,7 @@ items:
   modifiers.vb:
   - Protected
   - Overridable
-  fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
+  fullName.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnCollectionChanged(NotifyCollectionChangedEventArgs)
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.ToBindingList
   commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.ToBindingList
   id: ToBindingList
@@ -1589,14 +1569,15 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Returns an <xref href=\"System.ComponentModel.BindingList%601\" data-throw-if-not-resolved=\"false\"></xref> implementation that stays in sync with this collection.\n"
+  summary: "\nReturns an <see cref=\"!:BindingList&lt;T&gt;\"></see> implementation that stays in sync with this collection.\n"
   example: []
   syntax:
     content: public virtual BindingList<T> ToBindingList()
     content.vb: Public Overridable Function ToBindingList As BindingList(Of T)
     return:
-      type: System.ComponentModel.BindingList{{T}}
+      type: BindingList{{T}}
       description: 'The binding list. '
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.ToBindingList*
   nameWithType.vb: ObservableHashSet(Of T).ToBindingList()
   modifiers.csharp:
   - public
@@ -1619,86 +1600,6 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: System.Collections.Generic.ISet{{T}}
-  commentId: T:System.Collections.Generic.ISet{`0}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.ISet`1
-  name: ISet<T>
-  nameWithType: ISet<T>
-  fullName: System.Collections.Generic.ISet<T>
-  nameWithType.vb: ISet(Of T)
-  fullname.vb: System.Collections.Generic.ISet(Of T)
-  name.vb: ISet(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1
-    name: ISet
-    nameWithType: ISet
-    fullName: System.Collections.Generic.ISet
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1
-    name: ISet
-    nameWithType: ISet
-    fullName: System.Collections.Generic.ISet
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ICollection{{T}}
-  commentId: T:System.Collections.Generic.ICollection{`0}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.ICollection`1
-  name: ICollection<T>
-  nameWithType: ICollection<T>
-  fullName: System.Collections.Generic.ICollection<T>
-  nameWithType.vb: ICollection(Of T)
-  fullname.vb: System.Collections.Generic.ICollection(Of T)
-  name.vb: ICollection(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    nameWithType: ICollection
-    fullName: System.Collections.Generic.ICollection
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    nameWithType: ICollection
-    fullName: System.Collections.Generic.ICollection
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.IReadOnlyCollection{{T}}
   commentId: T:System.Collections.Generic.IReadOnlyCollection{`0}
   parent: System.Collections.Generic
@@ -1786,398 +1687,6 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
-- uid: System.Collections.Specialized.INotifyCollectionChanged
-  commentId: T:System.Collections.Specialized.INotifyCollectionChanged
-  parent: System.Collections.Specialized
-  isExternal: true
-  name: INotifyCollectionChanged
-  nameWithType: INotifyCollectionChanged
-  fullName: System.Collections.Specialized.INotifyCollectionChanged
-- uid: System.ComponentModel.INotifyPropertyChanged
-  commentId: T:System.ComponentModel.INotifyPropertyChanged
-  parent: System.ComponentModel
-  isExternal: true
-  name: INotifyPropertyChanged
-  nameWithType: INotifyPropertyChanged
-  fullName: System.ComponentModel.INotifyPropertyChanged
-- uid: System.ComponentModel.INotifyPropertyChanging
-  commentId: T:System.ComponentModel.INotifyPropertyChanging
-  parent: System.ComponentModel
-  isExternal: true
-  name: INotifyPropertyChanging
-  nameWithType: INotifyPropertyChanging
-  fullName: System.ComponentModel.INotifyPropertyChanging
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
-  name: NullChecked<TEntity>()
-  nameWithType: Extensions.NullChecked<TEntity>()
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked<TEntity>()
-  nameWithType.vb: Extensions.NullChecked(Of TEntity)()
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked(Of TEntity)()
-  name.vb: NullChecked(Of TEntity)()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
-    name: NullChecked<TEntity>
-    nameWithType: Extensions.NullChecked<TEntity>
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked<TEntity>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
-    name: NullChecked(Of TEntity)
-    nameWithType: Extensions.NullChecked(Of TEntity)
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked(Of TEntity)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Action{{T}})
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
-  definition: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
-  name: ForEach<T>(Action<T>)
-  nameWithType: Extensions.ForEach<T>(Action<T>)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach<T>(System.Action<T>)
-  nameWithType.vb: Extensions.ForEach(Of T)(Action(Of T))
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach(Of T)(System.Action(Of T))
-  name.vb: ForEach(Of T)(Action(Of T))
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Action{``0})
-    name: ForEach<T>
-    nameWithType: Extensions.ForEach<T>
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach<T>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Action`1
-    name: Action
-    nameWithType: Action
-    fullName: System.Action
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Action{``0})
-    name: ForEach(Of T)
-    nameWithType: Extensions.ForEach(Of T)
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach(Of T)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Action`1
-    name: Action
-    nameWithType: Action
-    fullName: System.Action
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.OrderByOrdinal``1(System.Func{{T},System.String})
   commentId: M:Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.OrderByOrdinal``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})
   parent: Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions
@@ -2374,96 +1883,104 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
+  name: NullChecked<TEntity>()
+  nameWithType: Extensions.NullChecked<TEntity>()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked<TEntity>()
+  nameWithType.vb: Extensions.NullChecked(Of TEntity)()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked(Of TEntity)()
+  name.vb: NullChecked(Of TEntity)()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
+    name: NullChecked<TEntity>
+    nameWithType: Extensions.NullChecked<TEntity>
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked<TEntity>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1
+    name: NullChecked(Of TEntity)
+    nameWithType: Extensions.NullChecked(Of TEntity)
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked(Of TEntity)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{`0}.Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Action{{T}})
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
+  name: ForEach<T>(Action<T>)
+  nameWithType: Extensions.ForEach<T>(Action<T>)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach<T>(System.Action<T>)
+  nameWithType.vb: Extensions.ForEach(Of T)(Action(Of T))
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach(Of T)(System.Action(Of T))
+  name.vb: ForEach(Of T)(Action(Of T))
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Action{``0})
+    name: ForEach<T>
+    nameWithType: Extensions.ForEach<T>
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Action{``0})
+    name: ForEach(Of T)
+    nameWithType: Extensions.ForEach(Of T)
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
   name: System
   nameWithType: System
   fullName: System
-- uid: System.Collections.Generic.ISet`1
-  commentId: T:System.Collections.Generic.ISet`1
-  isExternal: true
-  name: ISet<T>
-  nameWithType: ISet<T>
-  fullName: System.Collections.Generic.ISet<T>
-  nameWithType.vb: ISet(Of T)
-  fullname.vb: System.Collections.Generic.ISet(Of T)
-  name.vb: ISet(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1
-    name: ISet
-    nameWithType: ISet
-    fullName: System.Collections.Generic.ISet
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1
-    name: ISet
-    nameWithType: ISet
-    fullName: System.Collections.Generic.ISet
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: false
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-- uid: System.Collections.Generic.ICollection`1
-  commentId: T:System.Collections.Generic.ICollection`1
-  isExternal: true
-  name: ICollection<T>
-  nameWithType: ICollection<T>
-  fullName: System.Collections.Generic.ICollection<T>
-  nameWithType.vb: ICollection(Of T)
-  fullname.vb: System.Collections.Generic.ICollection(Of T)
-  name.vb: ICollection(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    nameWithType: ICollection
-    fullName: System.Collections.Generic.ICollection
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.ICollection`1
-    name: ICollection
-    nameWithType: ICollection
-    fullName: System.Collections.Generic.ICollection
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.IReadOnlyCollection`1
   commentId: T:System.Collections.Generic.IReadOnlyCollection`1
   isExternal: true
@@ -2503,6 +2020,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: System.Collections.Generic.IEnumerable`1
   commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
@@ -2548,177 +2071,6 @@ references:
   name: System.Collections
   nameWithType: System.Collections
   fullName: System.Collections
-- uid: System.Collections.Specialized
-  commentId: N:System.Collections.Specialized
-  isExternal: false
-  name: System.Collections.Specialized
-  nameWithType: System.Collections.Specialized
-  fullName: System.Collections.Specialized
-- uid: System.ComponentModel
-  commentId: N:System.ComponentModel
-  isExternal: false
-  name: System.ComponentModel
-  nameWithType: System.ComponentModel
-  fullName: System.ComponentModel
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
-  isExternal: true
-  name: NullChecked<T>(IEnumerable<T>)
-  nameWithType: Extensions.NullChecked<T>(IEnumerable<T>)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked<T>(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: Extensions.NullChecked(Of T)(IEnumerable(Of T))
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked(Of T)(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: NullChecked(Of T)(IEnumerable(Of T))
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
-    name: NullChecked<T>
-    nameWithType: Extensions.NullChecked<T>
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked<T>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
-    name: NullChecked(Of T)
-    nameWithType: Extensions.NullChecked(Of T)
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked(Of T)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
-  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
-  parent: Microsoft.EntityFrameworkCore.Specification.Tests
-  isExternal: false
-  name: Extensions
-  nameWithType: Extensions
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
-  isExternal: true
-  name: ForEach<T>(IEnumerable<T>, Action<T>)
-  nameWithType: Extensions.ForEach<T>(IEnumerable<T>, Action<T>)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach<T>(System.Collections.Generic.IEnumerable<T>, System.Action<T>)
-  nameWithType.vb: Extensions.ForEach(Of T)(IEnumerable(Of T), Action(Of T))
-  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach(Of T)(System.Collections.Generic.IEnumerable(Of T), System.Action(Of T))
-  name.vb: ForEach(Of T)(IEnumerable(Of T), Action(Of T))
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
-    name: ForEach<T>
-    nameWithType: Extensions.ForEach<T>
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach<T>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Action`1
-    name: Action
-    nameWithType: Action
-    fullName: System.Action
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
-    name: ForEach(Of T)
-    nameWithType: Extensions.ForEach(Of T)
-    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach(Of T)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Action`1
-    name: Action
-    nameWithType: Action
-    fullName: System.Action
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.OrderByOrdinal``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})
   commentId: M:Microsoft.EntityFrameworkCore.Internal.EnumerableExtensions.OrderByOrdinal``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})
   isExternal: true
@@ -3021,18 +2373,177 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests
-  commentId: N:Microsoft.EntityFrameworkCore.Specification.Tests
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
+  isExternal: true
+  name: NullChecked<T>(IEnumerable<T>)
+  nameWithType: Extensions.NullChecked<T>(IEnumerable<T>)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked<T>(System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: Extensions.NullChecked(Of T)(IEnumerable(Of T))
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked(Of T)(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: NullChecked(Of T)(IEnumerable(Of T))
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
+    name: NullChecked<T>
+    nameWithType: Extensions.NullChecked<T>
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked``1(System.Collections.Generic.IEnumerable{``0})
+    name: NullChecked(Of T)
+    nameWithType: Extensions.NullChecked(Of T)
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.NullChecked(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
+  commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests
   isExternal: false
-  name: Microsoft.EntityFrameworkCore.Specification.Tests
-  nameWithType: Microsoft.EntityFrameworkCore.Specification.Tests
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests
+  name: Extensions
+  nameWithType: Extensions
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
+  isExternal: true
+  name: ForEach<T>(IEnumerable<T>, Action<T>)
+  nameWithType: Extensions.ForEach<T>(IEnumerable<T>, Action<T>)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach<T>(System.Collections.Generic.IEnumerable<T>, System.Action<T>)
+  nameWithType.vb: Extensions.ForEach(Of T)(IEnumerable(Of T), Action(Of T))
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach(Of T)(System.Collections.Generic.IEnumerable(Of T), System.Action(Of T))
+  name.vb: ForEach(Of T)(IEnumerable(Of T), Action(Of T))
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
+    name: ForEach<T>
+    nameWithType: Extensions.ForEach<T>
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})
+    name: ForEach(Of T)
+    nameWithType: Extensions.ForEach(Of T)
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.Extensions.ForEach(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Internal
   commentId: N:Microsoft.EntityFrameworkCore.Internal
   isExternal: false
   name: Microsoft.EntityFrameworkCore.Internal
   nameWithType: Microsoft.EntityFrameworkCore.Internal
   fullName: Microsoft.EntityFrameworkCore.Internal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests
+  commentId: N:Microsoft.EntityFrameworkCore.Specification.Tests
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.Specification.Tests
+  nameWithType: Microsoft.EntityFrameworkCore.Specification.Tests
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1
   commentId: T:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1
   isExternal: false
@@ -3070,6 +2581,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.#ctor
+  isExternal: false
+  name: ObservableHashSet
+  nameWithType: ObservableHashSet<T>.ObservableHashSet
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.ObservableHashSet
+  nameWithType.vb: ObservableHashSet(Of T).ObservableHashSet
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).ObservableHashSet
 - uid: System.Collections.Generic.IEqualityComparer`1
   commentId: T:System.Collections.Generic.IEqualityComparer`1
   isExternal: true
@@ -3157,240 +2676,57 @@ references:
   fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.Count
   nameWithType.vb: ObservableHashSet(Of T).Count
   fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).Count
-- uid: System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-  commentId: E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-  parent: System.ComponentModel.INotifyPropertyChanged
-  isExternal: true
-  name: PropertyChanged
-  nameWithType: INotifyPropertyChanged.PropertyChanged
-  fullName: System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-- uid: System.ComponentModel.PropertyChangedEventHandler
-  commentId: T:System.ComponentModel.PropertyChangedEventHandler
-  parent: System.ComponentModel
+- uid: PropertyChangedEventHandler
   isExternal: true
   name: PropertyChangedEventHandler
   nameWithType: PropertyChangedEventHandler
-  fullName: System.ComponentModel.PropertyChangedEventHandler
-- uid: System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-  commentId: E:System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-  parent: System.ComponentModel.INotifyPropertyChanging
-  isExternal: true
-  name: PropertyChanging
-  nameWithType: INotifyPropertyChanging.PropertyChanging
-  fullName: System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-- uid: System.ComponentModel.PropertyChangingEventHandler
-  commentId: T:System.ComponentModel.PropertyChangingEventHandler
-  parent: System.ComponentModel
+  fullName: PropertyChangedEventHandler
+- uid: PropertyChangingEventHandler
   isExternal: true
   name: PropertyChangingEventHandler
   nameWithType: PropertyChangingEventHandler
-  fullName: System.ComponentModel.PropertyChangingEventHandler
-- uid: System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged
-  commentId: E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged
-  parent: System.Collections.Specialized.INotifyCollectionChanged
-  isExternal: true
-  name: CollectionChanged
-  nameWithType: INotifyCollectionChanged.CollectionChanged
-  fullName: System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged
-- uid: System.Collections.Specialized.NotifyCollectionChangedEventHandler
-  commentId: T:System.Collections.Specialized.NotifyCollectionChangedEventHandler
-  parent: System.Collections.Specialized
+  fullName: PropertyChangingEventHandler
+- uid: NotifyCollectionChangedEventHandler
   isExternal: true
   name: NotifyCollectionChangedEventHandler
   nameWithType: NotifyCollectionChangedEventHandler
-  fullName: System.Collections.Specialized.NotifyCollectionChangedEventHandler
-- uid: System.Collections.Generic.ICollection{{T}}.Add({T})
-  commentId: M:System.Collections.Generic.ICollection{`0}.Add(`0)
-  parent: System.Collections.Generic.ICollection{{T}}
-  definition: System.Collections.Generic.ICollection`1.Add(`0)
-  name: Add(T)
-  nameWithType: ICollection<T>.Add(T)
-  fullName: System.Collections.Generic.ICollection<T>.Add(T)
-  nameWithType.vb: ICollection(Of T).Add(T)
-  fullname.vb: System.Collections.Generic.ICollection(Of T).Add(T)
-  spec.csharp:
-  - uid: System.Collections.Generic.ICollection`1.Add(`0)
-    name: Add
-    nameWithType: ICollection<T>.Add
-    fullName: System.Collections.Generic.ICollection<T>.Add
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ICollection`1.Add(`0)
-    name: Add
-    nameWithType: ICollection(Of T).Add
-    fullName: System.Collections.Generic.ICollection(Of T).Add
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
+  fullName: NotifyCollectionChangedEventHandler
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.System#Collections#Generic#ICollection{T}#Add*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.System#Collections#Generic#ICollection{T}#Add
+  isExternal: false
+  name: ICollection<T>.Add
+  nameWithType: ObservableHashSet<T>.ICollection<T>.Add
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.System.Collections.Generic.ICollection<T>.Add
+  nameWithType.vb: ObservableHashSet(Of T).System.Collections.Generic.ICollection<T>.Add
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).System.Collections.Generic.ICollection<T>.Add
+  name.vb: System.Collections.Generic.ICollection<T>.Add
 - uid: '{T}'
   commentId: '!:T'
   definition: T
   name: T
   nameWithType: T
   fullName: T
-- uid: System.Collections.Generic.ICollection`1.Add(`0)
-  commentId: M:System.Collections.Generic.ICollection`1.Add(`0)
-  isExternal: true
-  name: Add(T)
-  nameWithType: ICollection<T>.Add(T)
-  fullName: System.Collections.Generic.ICollection<T>.Add(T)
-  nameWithType.vb: ICollection(Of T).Add(T)
-  fullname.vb: System.Collections.Generic.ICollection(Of T).Add(T)
-  spec.csharp:
-  - uid: System.Collections.Generic.ICollection`1.Add(`0)
-    name: Add
-    nameWithType: ICollection<T>.Add
-    fullName: System.Collections.Generic.ICollection<T>.Add
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ICollection`1.Add(`0)
-    name: Add
-    nameWithType: ICollection(Of T).Add
-    fullName: System.Collections.Generic.ICollection(Of T).Add
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: T
   isExternal: false
   name: T
   nameWithType: T
   fullName: T
-- uid: System.Collections.Generic.ICollection{{T}}.Clear
-  commentId: M:System.Collections.Generic.ICollection{`0}.Clear
-  parent: System.Collections.Generic.ICollection{{T}}
-  definition: System.Collections.Generic.ICollection`1.Clear
-  name: Clear()
-  nameWithType: ICollection<T>.Clear()
-  fullName: System.Collections.Generic.ICollection<T>.Clear()
-  nameWithType.vb: ICollection(Of T).Clear()
-  fullname.vb: System.Collections.Generic.ICollection(Of T).Clear()
-  spec.csharp:
-  - uid: System.Collections.Generic.ICollection`1.Clear
-    name: Clear
-    nameWithType: ICollection<T>.Clear
-    fullName: System.Collections.Generic.ICollection<T>.Clear
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ICollection`1.Clear
-    name: Clear
-    nameWithType: ICollection(Of T).Clear
-    fullName: System.Collections.Generic.ICollection(Of T).Clear
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ICollection`1.Clear
-  commentId: M:System.Collections.Generic.ICollection`1.Clear
-  isExternal: true
-  name: Clear()
-  nameWithType: ICollection<T>.Clear()
-  fullName: System.Collections.Generic.ICollection<T>.Clear()
-  nameWithType.vb: ICollection(Of T).Clear()
-  fullname.vb: System.Collections.Generic.ICollection(Of T).Clear()
-  spec.csharp:
-  - uid: System.Collections.Generic.ICollection`1.Clear
-    name: Clear
-    nameWithType: ICollection<T>.Clear
-    fullName: System.Collections.Generic.ICollection<T>.Clear
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ICollection`1.Clear
-    name: Clear
-    nameWithType: ICollection(Of T).Clear
-    fullName: System.Collections.Generic.ICollection(Of T).Clear
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ICollection{{T}}.Contains({T})
-  commentId: M:System.Collections.Generic.ICollection{`0}.Contains(`0)
-  parent: System.Collections.Generic.ICollection{{T}}
-  definition: System.Collections.Generic.ICollection`1.Contains(`0)
-  name: Contains(T)
-  nameWithType: ICollection<T>.Contains(T)
-  fullName: System.Collections.Generic.ICollection<T>.Contains(T)
-  nameWithType.vb: ICollection(Of T).Contains(T)
-  fullname.vb: System.Collections.Generic.ICollection(Of T).Contains(T)
-  spec.csharp:
-  - uid: System.Collections.Generic.ICollection`1.Contains(`0)
-    name: Contains
-    nameWithType: ICollection<T>.Contains
-    fullName: System.Collections.Generic.ICollection<T>.Contains
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ICollection`1.Contains(`0)
-    name: Contains
-    nameWithType: ICollection(Of T).Contains
-    fullName: System.Collections.Generic.ICollection(Of T).Contains
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Clear*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Clear
+  isExternal: false
+  name: Clear
+  nameWithType: ObservableHashSet<T>.Clear
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.Clear
+  nameWithType.vb: ObservableHashSet(Of T).Clear
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).Clear
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Contains*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Contains
+  isExternal: false
+  name: Contains
+  nameWithType: ObservableHashSet<T>.Contains
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.Contains
+  nameWithType.vb: ObservableHashSet(Of T).Contains
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).Contains
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -3398,106 +2734,14 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: System.Collections.Generic.ICollection`1.Contains(`0)
-  commentId: M:System.Collections.Generic.ICollection`1.Contains(`0)
-  isExternal: true
-  name: Contains(T)
-  nameWithType: ICollection<T>.Contains(T)
-  fullName: System.Collections.Generic.ICollection<T>.Contains(T)
-  nameWithType.vb: ICollection(Of T).Contains(T)
-  fullname.vb: System.Collections.Generic.ICollection(Of T).Contains(T)
-  spec.csharp:
-  - uid: System.Collections.Generic.ICollection`1.Contains(`0)
-    name: Contains
-    nameWithType: ICollection<T>.Contains
-    fullName: System.Collections.Generic.ICollection<T>.Contains
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ICollection`1.Contains(`0)
-    name: Contains
-    nameWithType: ICollection(Of T).Contains
-    fullName: System.Collections.Generic.ICollection(Of T).Contains
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ICollection{{T}}.CopyTo({T}[],System.Int32)
-  commentId: M:System.Collections.Generic.ICollection{`0}.CopyTo(`0[],System.Int32)
-  parent: System.Collections.Generic.ICollection{{T}}
-  definition: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
-  name: CopyTo(T[], Int32)
-  nameWithType: ICollection<T>.CopyTo(T[], Int32)
-  fullName: System.Collections.Generic.ICollection<T>.CopyTo(T[], System.Int32)
-  nameWithType.vb: ICollection(Of T).CopyTo(T(), Int32)
-  fullname.vb: System.Collections.Generic.ICollection(Of T).CopyTo(T(), System.Int32)
-  name.vb: CopyTo(T(), Int32)
-  spec.csharp:
-  - uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
-    name: CopyTo
-    nameWithType: ICollection<T>.CopyTo
-    fullName: System.Collections.Generic.ICollection<T>.CopyTo
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
-    name: CopyTo
-    nameWithType: ICollection(Of T).CopyTo
-    fullName: System.Collections.Generic.ICollection(Of T).CopyTo
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.CopyTo*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.CopyTo
+  isExternal: false
+  name: CopyTo
+  nameWithType: ObservableHashSet<T>.CopyTo
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.CopyTo
+  nameWithType.vb: ObservableHashSet(Of T).CopyTo
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).CopyTo
 - uid: '{T}[]'
   name: T[]
   nameWithType: T[]
@@ -3526,153 +2770,22 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
-  commentId: M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
-  isExternal: true
-  name: CopyTo(T[], Int32)
-  nameWithType: ICollection<T>.CopyTo(T[], Int32)
-  fullName: System.Collections.Generic.ICollection<T>.CopyTo(T[], System.Int32)
-  nameWithType.vb: ICollection(Of T).CopyTo(T(), Int32)
-  fullname.vb: System.Collections.Generic.ICollection(Of T).CopyTo(T(), System.Int32)
-  name.vb: CopyTo(T(), Int32)
-  spec.csharp:
-  - uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
-    name: CopyTo
-    nameWithType: ICollection<T>.CopyTo
-    fullName: System.Collections.Generic.ICollection<T>.CopyTo
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
-    name: CopyTo
-    nameWithType: ICollection(Of T).CopyTo
-    fullName: System.Collections.Generic.ICollection(Of T).CopyTo
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ICollection{{T}}.Remove({T})
-  commentId: M:System.Collections.Generic.ICollection{`0}.Remove(`0)
-  parent: System.Collections.Generic.ICollection{{T}}
-  definition: System.Collections.Generic.ICollection`1.Remove(`0)
-  name: Remove(T)
-  nameWithType: ICollection<T>.Remove(T)
-  fullName: System.Collections.Generic.ICollection<T>.Remove(T)
-  nameWithType.vb: ICollection(Of T).Remove(T)
-  fullname.vb: System.Collections.Generic.ICollection(Of T).Remove(T)
-  spec.csharp:
-  - uid: System.Collections.Generic.ICollection`1.Remove(`0)
-    name: Remove
-    nameWithType: ICollection<T>.Remove
-    fullName: System.Collections.Generic.ICollection<T>.Remove
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ICollection`1.Remove(`0)
-    name: Remove
-    nameWithType: ICollection(Of T).Remove
-    fullName: System.Collections.Generic.ICollection(Of T).Remove
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ICollection`1.Remove(`0)
-  commentId: M:System.Collections.Generic.ICollection`1.Remove(`0)
-  isExternal: true
-  name: Remove(T)
-  nameWithType: ICollection<T>.Remove(T)
-  fullName: System.Collections.Generic.ICollection<T>.Remove(T)
-  nameWithType.vb: ICollection(Of T).Remove(T)
-  fullname.vb: System.Collections.Generic.ICollection(Of T).Remove(T)
-  spec.csharp:
-  - uid: System.Collections.Generic.ICollection`1.Remove(`0)
-    name: Remove
-    nameWithType: ICollection<T>.Remove
-    fullName: System.Collections.Generic.ICollection<T>.Remove
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ICollection`1.Remove(`0)
-    name: Remove
-    nameWithType: ICollection(Of T).Remove
-    fullName: System.Collections.Generic.ICollection(Of T).Remove
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ICollection{{T}}.Count
-  commentId: P:System.Collections.Generic.ICollection{`0}.Count
-  parent: System.Collections.Generic.ICollection{{T}}
-  definition: System.Collections.Generic.ICollection`1.Count
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Remove*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Remove
+  isExternal: false
+  name: Remove
+  nameWithType: ObservableHashSet<T>.Remove
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.Remove
+  nameWithType.vb: ObservableHashSet(Of T).Remove
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).Remove
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Count*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Count
+  isExternal: false
   name: Count
-  nameWithType: ICollection<T>.Count
-  fullName: System.Collections.Generic.ICollection<T>.Count
-  nameWithType.vb: ICollection(Of T).Count
-  fullname.vb: System.Collections.Generic.ICollection(Of T).Count
+  nameWithType: ObservableHashSet<T>.Count
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.Count
+  nameWithType.vb: ObservableHashSet(Of T).Count
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).Count
 - uid: System.Collections.Generic.IReadOnlyCollection{{T}}.Count
   commentId: P:System.Collections.Generic.IReadOnlyCollection{`0}.Count
   parent: System.Collections.Generic.IReadOnlyCollection{{T}}
@@ -3682,14 +2795,6 @@ references:
   fullName: System.Collections.Generic.IReadOnlyCollection<T>.Count
   nameWithType.vb: IReadOnlyCollection(Of T).Count
   fullname.vb: System.Collections.Generic.IReadOnlyCollection(Of T).Count
-- uid: System.Collections.Generic.ICollection`1.Count
-  commentId: P:System.Collections.Generic.ICollection`1.Count
-  isExternal: true
-  name: Count
-  nameWithType: ICollection<T>.Count
-  fullName: System.Collections.Generic.ICollection<T>.Count
-  nameWithType.vb: ICollection(Of T).Count
-  fullname.vb: System.Collections.Generic.ICollection(Of T).Count
 - uid: System.Collections.Generic.IReadOnlyCollection`1.Count
   commentId: P:System.Collections.Generic.IReadOnlyCollection`1.Count
   isExternal: true
@@ -3698,23 +2803,22 @@ references:
   fullName: System.Collections.Generic.IReadOnlyCollection<T>.Count
   nameWithType.vb: IReadOnlyCollection(Of T).Count
   fullname.vb: System.Collections.Generic.IReadOnlyCollection(Of T).Count
-- uid: System.Collections.Generic.ICollection{{T}}.IsReadOnly
-  commentId: P:System.Collections.Generic.ICollection{`0}.IsReadOnly
-  parent: System.Collections.Generic.ICollection{{T}}
-  definition: System.Collections.Generic.ICollection`1.IsReadOnly
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsReadOnly*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsReadOnly
+  isExternal: false
   name: IsReadOnly
-  nameWithType: ICollection<T>.IsReadOnly
-  fullName: System.Collections.Generic.ICollection<T>.IsReadOnly
-  nameWithType.vb: ICollection(Of T).IsReadOnly
-  fullname.vb: System.Collections.Generic.ICollection(Of T).IsReadOnly
-- uid: System.Collections.Generic.ICollection`1.IsReadOnly
-  commentId: P:System.Collections.Generic.ICollection`1.IsReadOnly
-  isExternal: true
-  name: IsReadOnly
-  nameWithType: ICollection<T>.IsReadOnly
-  fullName: System.Collections.Generic.ICollection<T>.IsReadOnly
-  nameWithType.vb: ICollection(Of T).IsReadOnly
-  fullname.vb: System.Collections.Generic.ICollection(Of T).IsReadOnly
+  nameWithType: ObservableHashSet<T>.IsReadOnly
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.IsReadOnly
+  nameWithType.vb: ObservableHashSet(Of T).IsReadOnly
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).IsReadOnly
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.GetEnumerator*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.GetEnumerator
+  isExternal: false
+  name: GetEnumerator
+  nameWithType: ObservableHashSet<T>.GetEnumerator
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.GetEnumerator
+  nameWithType.vb: ObservableHashSet(Of T).GetEnumerator
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).GetEnumerator
 - uid: System.Collections.Generic.HashSet{{T}}.Enumerator
   commentId: T:System.Collections.Generic.HashSet{`0}.Enumerator
   parent: System.Collections.Generic
@@ -3782,6 +2886,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator
+  isExternal: false
+  name: IEnumerable<T>.GetEnumerator
+  nameWithType: ObservableHashSet<T>.IEnumerable<T>.GetEnumerator
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.System.Collections.Generic.IEnumerable<T>.GetEnumerator
+  nameWithType.vb: ObservableHashSet(Of T).System.Collections.Generic.IEnumerable<T>.GetEnumerator
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).System.Collections.Generic.IEnumerable<T>.GetEnumerator
+  name.vb: System.Collections.Generic.IEnumerable<T>.GetEnumerator
 - uid: System.Collections.Generic.IEnumerable{{T}}.GetEnumerator
   commentId: M:System.Collections.Generic.IEnumerable{`0}.GetEnumerator
   parent: System.Collections.Generic.IEnumerable{{T}}
@@ -3926,6 +3039,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.System#Collections#IEnumerable#GetEnumerator*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.System#Collections#IEnumerable#GetEnumerator
+  isExternal: false
+  name: IEnumerable.GetEnumerator
+  nameWithType: ObservableHashSet<T>.IEnumerable.GetEnumerator
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.System.Collections.IEnumerable.GetEnumerator
+  nameWithType.vb: ObservableHashSet(Of T).System.Collections.IEnumerable.GetEnumerator
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).System.Collections.IEnumerable.GetEnumerator
+  name.vb: System.Collections.IEnumerable.GetEnumerator
 - uid: System.Collections.IEnumerable.GetEnumerator
   commentId: M:System.Collections.IEnumerable.GetEnumerator
   parent: System.Collections.IEnumerable
@@ -3964,1313 +3086,94 @@ references:
   name: IEnumerator
   nameWithType: IEnumerator
   fullName: System.Collections.IEnumerator
-- uid: System.Collections.Generic.ISet{{T}}.Add({T})
-  commentId: M:System.Collections.Generic.ISet{`0}.Add(`0)
-  parent: System.Collections.Generic.ISet{{T}}
-  definition: System.Collections.Generic.ISet`1.Add(`0)
-  name: Add(T)
-  nameWithType: ISet<T>.Add(T)
-  fullName: System.Collections.Generic.ISet<T>.Add(T)
-  nameWithType.vb: ISet(Of T).Add(T)
-  fullname.vb: System.Collections.Generic.ISet(Of T).Add(T)
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.Add(`0)
-    name: Add
-    nameWithType: ISet<T>.Add
-    fullName: System.Collections.Generic.ISet<T>.Add
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.Add(`0)
-    name: Add
-    nameWithType: ISet(Of T).Add
-    fullName: System.Collections.Generic.ISet(Of T).Add
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet`1.Add(`0)
-  commentId: M:System.Collections.Generic.ISet`1.Add(`0)
-  isExternal: true
-  name: Add(T)
-  nameWithType: ISet<T>.Add(T)
-  fullName: System.Collections.Generic.ISet<T>.Add(T)
-  nameWithType.vb: ISet(Of T).Add(T)
-  fullname.vb: System.Collections.Generic.ISet(Of T).Add(T)
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.Add(`0)
-    name: Add
-    nameWithType: ISet<T>.Add
-    fullName: System.Collections.Generic.ISet<T>.Add
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.Add(`0)
-    name: Add
-    nameWithType: ISet(Of T).Add
-    fullName: System.Collections.Generic.ISet(Of T).Add
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet{{T}}.UnionWith(System.Collections.Generic.IEnumerable{{T}})
-  commentId: M:System.Collections.Generic.ISet{`0}.UnionWith(System.Collections.Generic.IEnumerable{`0})
-  parent: System.Collections.Generic.ISet{{T}}
-  definition: System.Collections.Generic.ISet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
-  name: UnionWith(IEnumerable<T>)
-  nameWithType: ISet<T>.UnionWith(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.UnionWith(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).UnionWith(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).UnionWith(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: UnionWith(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
-    name: UnionWith
-    nameWithType: ISet<T>.UnionWith
-    fullName: System.Collections.Generic.ISet<T>.UnionWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
-    name: UnionWith
-    nameWithType: ISet(Of T).UnionWith
-    fullName: System.Collections.Generic.ISet(Of T).UnionWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
-  commentId: M:System.Collections.Generic.ISet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
-  isExternal: true
-  name: UnionWith(IEnumerable<T>)
-  nameWithType: ISet<T>.UnionWith(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.UnionWith(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).UnionWith(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).UnionWith(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: UnionWith(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
-    name: UnionWith
-    nameWithType: ISet<T>.UnionWith
-    fullName: System.Collections.Generic.ISet<T>.UnionWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
-    name: UnionWith
-    nameWithType: ISet(Of T).UnionWith
-    fullName: System.Collections.Generic.ISet(Of T).UnionWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet{{T}}.IntersectWith(System.Collections.Generic.IEnumerable{{T}})
-  commentId: M:System.Collections.Generic.ISet{`0}.IntersectWith(System.Collections.Generic.IEnumerable{`0})
-  parent: System.Collections.Generic.ISet{{T}}
-  definition: System.Collections.Generic.ISet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
-  name: IntersectWith(IEnumerable<T>)
-  nameWithType: ISet<T>.IntersectWith(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.IntersectWith(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).IntersectWith(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).IntersectWith(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: IntersectWith(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
-    name: IntersectWith
-    nameWithType: ISet<T>.IntersectWith
-    fullName: System.Collections.Generic.ISet<T>.IntersectWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
-    name: IntersectWith
-    nameWithType: ISet(Of T).IntersectWith
-    fullName: System.Collections.Generic.ISet(Of T).IntersectWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
-  commentId: M:System.Collections.Generic.ISet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
-  isExternal: true
-  name: IntersectWith(IEnumerable<T>)
-  nameWithType: ISet<T>.IntersectWith(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.IntersectWith(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).IntersectWith(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).IntersectWith(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: IntersectWith(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
-    name: IntersectWith
-    nameWithType: ISet<T>.IntersectWith
-    fullName: System.Collections.Generic.ISet<T>.IntersectWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
-    name: IntersectWith
-    nameWithType: ISet(Of T).IntersectWith
-    fullName: System.Collections.Generic.ISet(Of T).IntersectWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet{{T}}.ExceptWith(System.Collections.Generic.IEnumerable{{T}})
-  commentId: M:System.Collections.Generic.ISet{`0}.ExceptWith(System.Collections.Generic.IEnumerable{`0})
-  parent: System.Collections.Generic.ISet{{T}}
-  definition: System.Collections.Generic.ISet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
-  name: ExceptWith(IEnumerable<T>)
-  nameWithType: ISet<T>.ExceptWith(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.ExceptWith(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).ExceptWith(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).ExceptWith(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: ExceptWith(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
-    name: ExceptWith
-    nameWithType: ISet<T>.ExceptWith
-    fullName: System.Collections.Generic.ISet<T>.ExceptWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
-    name: ExceptWith
-    nameWithType: ISet(Of T).ExceptWith
-    fullName: System.Collections.Generic.ISet(Of T).ExceptWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
-  commentId: M:System.Collections.Generic.ISet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
-  isExternal: true
-  name: ExceptWith(IEnumerable<T>)
-  nameWithType: ISet<T>.ExceptWith(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.ExceptWith(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).ExceptWith(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).ExceptWith(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: ExceptWith(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
-    name: ExceptWith
-    nameWithType: ISet<T>.ExceptWith
-    fullName: System.Collections.Generic.ISet<T>.ExceptWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
-    name: ExceptWith
-    nameWithType: ISet(Of T).ExceptWith
-    fullName: System.Collections.Generic.ISet(Of T).ExceptWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet{{T}}.SymmetricExceptWith(System.Collections.Generic.IEnumerable{{T}})
-  commentId: M:System.Collections.Generic.ISet{`0}.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
-  parent: System.Collections.Generic.ISet{{T}}
-  definition: System.Collections.Generic.ISet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
-  name: SymmetricExceptWith(IEnumerable<T>)
-  nameWithType: ISet<T>.SymmetricExceptWith(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.SymmetricExceptWith(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).SymmetricExceptWith(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).SymmetricExceptWith(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: SymmetricExceptWith(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
-    name: SymmetricExceptWith
-    nameWithType: ISet<T>.SymmetricExceptWith
-    fullName: System.Collections.Generic.ISet<T>.SymmetricExceptWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
-    name: SymmetricExceptWith
-    nameWithType: ISet(Of T).SymmetricExceptWith
-    fullName: System.Collections.Generic.ISet(Of T).SymmetricExceptWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
-  commentId: M:System.Collections.Generic.ISet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
-  isExternal: true
-  name: SymmetricExceptWith(IEnumerable<T>)
-  nameWithType: ISet<T>.SymmetricExceptWith(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.SymmetricExceptWith(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).SymmetricExceptWith(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).SymmetricExceptWith(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: SymmetricExceptWith(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
-    name: SymmetricExceptWith
-    nameWithType: ISet<T>.SymmetricExceptWith
-    fullName: System.Collections.Generic.ISet<T>.SymmetricExceptWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
-    name: SymmetricExceptWith
-    nameWithType: ISet(Of T).SymmetricExceptWith
-    fullName: System.Collections.Generic.ISet(Of T).SymmetricExceptWith
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet{{T}}.IsSubsetOf(System.Collections.Generic.IEnumerable{{T}})
-  commentId: M:System.Collections.Generic.ISet{`0}.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
-  parent: System.Collections.Generic.ISet{{T}}
-  definition: System.Collections.Generic.ISet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
-  name: IsSubsetOf(IEnumerable<T>)
-  nameWithType: ISet<T>.IsSubsetOf(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.IsSubsetOf(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).IsSubsetOf(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).IsSubsetOf(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: IsSubsetOf(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsSubsetOf
-    nameWithType: ISet<T>.IsSubsetOf
-    fullName: System.Collections.Generic.ISet<T>.IsSubsetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsSubsetOf
-    nameWithType: ISet(Of T).IsSubsetOf
-    fullName: System.Collections.Generic.ISet(Of T).IsSubsetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
-  commentId: M:System.Collections.Generic.ISet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
-  isExternal: true
-  name: IsSubsetOf(IEnumerable<T>)
-  nameWithType: ISet<T>.IsSubsetOf(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.IsSubsetOf(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).IsSubsetOf(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).IsSubsetOf(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: IsSubsetOf(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsSubsetOf
-    nameWithType: ISet<T>.IsSubsetOf
-    fullName: System.Collections.Generic.ISet<T>.IsSubsetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsSubsetOf
-    nameWithType: ISet(Of T).IsSubsetOf
-    fullName: System.Collections.Generic.ISet(Of T).IsSubsetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet{{T}}.IsProperSubsetOf(System.Collections.Generic.IEnumerable{{T}})
-  commentId: M:System.Collections.Generic.ISet{`0}.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
-  parent: System.Collections.Generic.ISet{{T}}
-  definition: System.Collections.Generic.ISet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
-  name: IsProperSubsetOf(IEnumerable<T>)
-  nameWithType: ISet<T>.IsProperSubsetOf(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.IsProperSubsetOf(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).IsProperSubsetOf(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).IsProperSubsetOf(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: IsProperSubsetOf(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsProperSubsetOf
-    nameWithType: ISet<T>.IsProperSubsetOf
-    fullName: System.Collections.Generic.ISet<T>.IsProperSubsetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsProperSubsetOf
-    nameWithType: ISet(Of T).IsProperSubsetOf
-    fullName: System.Collections.Generic.ISet(Of T).IsProperSubsetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
-  commentId: M:System.Collections.Generic.ISet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
-  isExternal: true
-  name: IsProperSubsetOf(IEnumerable<T>)
-  nameWithType: ISet<T>.IsProperSubsetOf(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.IsProperSubsetOf(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).IsProperSubsetOf(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).IsProperSubsetOf(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: IsProperSubsetOf(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsProperSubsetOf
-    nameWithType: ISet<T>.IsProperSubsetOf
-    fullName: System.Collections.Generic.ISet<T>.IsProperSubsetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsProperSubsetOf
-    nameWithType: ISet(Of T).IsProperSubsetOf
-    fullName: System.Collections.Generic.ISet(Of T).IsProperSubsetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet{{T}}.IsSupersetOf(System.Collections.Generic.IEnumerable{{T}})
-  commentId: M:System.Collections.Generic.ISet{`0}.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
-  parent: System.Collections.Generic.ISet{{T}}
-  definition: System.Collections.Generic.ISet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
-  name: IsSupersetOf(IEnumerable<T>)
-  nameWithType: ISet<T>.IsSupersetOf(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.IsSupersetOf(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).IsSupersetOf(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).IsSupersetOf(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: IsSupersetOf(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsSupersetOf
-    nameWithType: ISet<T>.IsSupersetOf
-    fullName: System.Collections.Generic.ISet<T>.IsSupersetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsSupersetOf
-    nameWithType: ISet(Of T).IsSupersetOf
-    fullName: System.Collections.Generic.ISet(Of T).IsSupersetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
-  commentId: M:System.Collections.Generic.ISet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
-  isExternal: true
-  name: IsSupersetOf(IEnumerable<T>)
-  nameWithType: ISet<T>.IsSupersetOf(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.IsSupersetOf(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).IsSupersetOf(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).IsSupersetOf(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: IsSupersetOf(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsSupersetOf
-    nameWithType: ISet<T>.IsSupersetOf
-    fullName: System.Collections.Generic.ISet<T>.IsSupersetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsSupersetOf
-    nameWithType: ISet(Of T).IsSupersetOf
-    fullName: System.Collections.Generic.ISet(Of T).IsSupersetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet{{T}}.IsProperSupersetOf(System.Collections.Generic.IEnumerable{{T}})
-  commentId: M:System.Collections.Generic.ISet{`0}.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
-  parent: System.Collections.Generic.ISet{{T}}
-  definition: System.Collections.Generic.ISet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
-  name: IsProperSupersetOf(IEnumerable<T>)
-  nameWithType: ISet<T>.IsProperSupersetOf(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.IsProperSupersetOf(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).IsProperSupersetOf(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).IsProperSupersetOf(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: IsProperSupersetOf(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsProperSupersetOf
-    nameWithType: ISet<T>.IsProperSupersetOf
-    fullName: System.Collections.Generic.ISet<T>.IsProperSupersetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsProperSupersetOf
-    nameWithType: ISet(Of T).IsProperSupersetOf
-    fullName: System.Collections.Generic.ISet(Of T).IsProperSupersetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
-  commentId: M:System.Collections.Generic.ISet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
-  isExternal: true
-  name: IsProperSupersetOf(IEnumerable<T>)
-  nameWithType: ISet<T>.IsProperSupersetOf(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.IsProperSupersetOf(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).IsProperSupersetOf(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).IsProperSupersetOf(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: IsProperSupersetOf(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsProperSupersetOf
-    nameWithType: ISet<T>.IsProperSupersetOf
-    fullName: System.Collections.Generic.ISet<T>.IsProperSupersetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
-    name: IsProperSupersetOf
-    nameWithType: ISet(Of T).IsProperSupersetOf
-    fullName: System.Collections.Generic.ISet(Of T).IsProperSupersetOf
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet{{T}}.Overlaps(System.Collections.Generic.IEnumerable{{T}})
-  commentId: M:System.Collections.Generic.ISet{`0}.Overlaps(System.Collections.Generic.IEnumerable{`0})
-  parent: System.Collections.Generic.ISet{{T}}
-  definition: System.Collections.Generic.ISet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
-  name: Overlaps(IEnumerable<T>)
-  nameWithType: ISet<T>.Overlaps(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.Overlaps(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).Overlaps(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).Overlaps(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: Overlaps(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
-    name: Overlaps
-    nameWithType: ISet<T>.Overlaps
-    fullName: System.Collections.Generic.ISet<T>.Overlaps
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
-    name: Overlaps
-    nameWithType: ISet(Of T).Overlaps
-    fullName: System.Collections.Generic.ISet(Of T).Overlaps
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
-  commentId: M:System.Collections.Generic.ISet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
-  isExternal: true
-  name: Overlaps(IEnumerable<T>)
-  nameWithType: ISet<T>.Overlaps(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.Overlaps(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).Overlaps(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).Overlaps(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: Overlaps(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
-    name: Overlaps
-    nameWithType: ISet<T>.Overlaps
-    fullName: System.Collections.Generic.ISet<T>.Overlaps
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
-    name: Overlaps
-    nameWithType: ISet(Of T).Overlaps
-    fullName: System.Collections.Generic.ISet(Of T).Overlaps
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet{{T}}.SetEquals(System.Collections.Generic.IEnumerable{{T}})
-  commentId: M:System.Collections.Generic.ISet{`0}.SetEquals(System.Collections.Generic.IEnumerable{`0})
-  parent: System.Collections.Generic.ISet{{T}}
-  definition: System.Collections.Generic.ISet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
-  name: SetEquals(IEnumerable<T>)
-  nameWithType: ISet<T>.SetEquals(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.SetEquals(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).SetEquals(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).SetEquals(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: SetEquals(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
-    name: SetEquals
-    nameWithType: ISet<T>.SetEquals
-    fullName: System.Collections.Generic.ISet<T>.SetEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
-    name: SetEquals
-    nameWithType: ISet(Of T).SetEquals
-    fullName: System.Collections.Generic.ISet(Of T).SetEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.ISet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
-  commentId: M:System.Collections.Generic.ISet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
-  isExternal: true
-  name: SetEquals(IEnumerable<T>)
-  nameWithType: ISet<T>.SetEquals(IEnumerable<T>)
-  fullName: System.Collections.Generic.ISet<T>.SetEquals(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ISet(Of T).SetEquals(IEnumerable(Of T))
-  fullname.vb: System.Collections.Generic.ISet(Of T).SetEquals(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: SetEquals(IEnumerable(Of T))
-  spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
-    name: SetEquals
-    nameWithType: ISet<T>.SetEquals
-    fullName: System.Collections.Generic.ISet<T>.SetEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.ISet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
-    name: SetEquals
-    nameWithType: ISet(Of T).SetEquals
-    fullName: System.Collections.Generic.ISet(Of T).SetEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Add*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Add
+  isExternal: false
+  name: Add
+  nameWithType: ObservableHashSet<T>.Add
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.Add
+  nameWithType.vb: ObservableHashSet(Of T).Add
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).Add
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.UnionWith*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.UnionWith
+  isExternal: false
+  name: UnionWith
+  nameWithType: ObservableHashSet<T>.UnionWith
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.UnionWith
+  nameWithType.vb: ObservableHashSet(Of T).UnionWith
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).UnionWith
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IntersectWith*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IntersectWith
+  isExternal: false
+  name: IntersectWith
+  nameWithType: ObservableHashSet<T>.IntersectWith
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.IntersectWith
+  nameWithType.vb: ObservableHashSet(Of T).IntersectWith
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).IntersectWith
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.ExceptWith*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.ExceptWith
+  isExternal: false
+  name: ExceptWith
+  nameWithType: ObservableHashSet<T>.ExceptWith
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.ExceptWith
+  nameWithType.vb: ObservableHashSet(Of T).ExceptWith
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).ExceptWith
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.SymmetricExceptWith*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.SymmetricExceptWith
+  isExternal: false
+  name: SymmetricExceptWith
+  nameWithType: ObservableHashSet<T>.SymmetricExceptWith
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.SymmetricExceptWith
+  nameWithType.vb: ObservableHashSet(Of T).SymmetricExceptWith
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).SymmetricExceptWith
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsSubsetOf*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsSubsetOf
+  isExternal: false
+  name: IsSubsetOf
+  nameWithType: ObservableHashSet<T>.IsSubsetOf
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.IsSubsetOf
+  nameWithType.vb: ObservableHashSet(Of T).IsSubsetOf
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).IsSubsetOf
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsProperSubsetOf*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsProperSubsetOf
+  isExternal: false
+  name: IsProperSubsetOf
+  nameWithType: ObservableHashSet<T>.IsProperSubsetOf
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.IsProperSubsetOf
+  nameWithType.vb: ObservableHashSet(Of T).IsProperSubsetOf
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).IsProperSubsetOf
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsSupersetOf*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsSupersetOf
+  isExternal: false
+  name: IsSupersetOf
+  nameWithType: ObservableHashSet<T>.IsSupersetOf
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.IsSupersetOf
+  nameWithType.vb: ObservableHashSet(Of T).IsSupersetOf
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).IsSupersetOf
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsProperSupersetOf*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.IsProperSupersetOf
+  isExternal: false
+  name: IsProperSupersetOf
+  nameWithType: ObservableHashSet<T>.IsProperSupersetOf
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.IsProperSupersetOf
+  nameWithType.vb: ObservableHashSet(Of T).IsProperSupersetOf
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).IsProperSupersetOf
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Overlaps*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Overlaps
+  isExternal: false
+  name: Overlaps
+  nameWithType: ObservableHashSet<T>.Overlaps
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.Overlaps
+  nameWithType.vb: ObservableHashSet(Of T).Overlaps
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).Overlaps
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.SetEquals*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.SetEquals
+  isExternal: false
+  name: SetEquals
+  nameWithType: ObservableHashSet<T>.SetEquals
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.SetEquals
+  nameWithType.vb: ObservableHashSet(Of T).SetEquals
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).SetEquals
 - uid: System.Predicate`1
   commentId: T:System.Predicate`1
   isExternal: true
@@ -5310,6 +3213,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.RemoveWhere*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.RemoveWhere
+  isExternal: false
+  name: RemoveWhere
+  nameWithType: ObservableHashSet<T>.RemoveWhere
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.RemoveWhere
+  nameWithType.vb: ObservableHashSet(Of T).RemoveWhere
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).RemoveWhere
 - uid: System.Predicate{{T}}
   commentId: T:System.Predicate{`0}
   parent: System
@@ -5350,6 +3261,22 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Comparer*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.Comparer
+  isExternal: false
+  name: Comparer
+  nameWithType: ObservableHashSet<T>.Comparer
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.Comparer
+  nameWithType.vb: ObservableHashSet(Of T).Comparer
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).Comparer
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.TrimExcess*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.TrimExcess
+  isExternal: false
+  name: TrimExcess
+  nameWithType: ObservableHashSet<T>.TrimExcess
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.TrimExcess
+  nameWithType.vb: ObservableHashSet(Of T).TrimExcess
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).TrimExcess
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.PropertyChanged
   commentId: E:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.PropertyChanged
   isExternal: false
@@ -5358,13 +3285,19 @@ references:
   fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.PropertyChanged
   nameWithType.vb: ObservableHashSet(Of T).PropertyChanged
   fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).PropertyChanged
-- uid: System.ComponentModel.PropertyChangedEventArgs
-  commentId: T:System.ComponentModel.PropertyChangedEventArgs
-  parent: System.ComponentModel
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanged
+  isExternal: false
+  name: OnPropertyChanged
+  nameWithType: ObservableHashSet<T>.OnPropertyChanged
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanged
+  nameWithType.vb: ObservableHashSet(Of T).OnPropertyChanged
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanged
+- uid: PropertyChangedEventArgs
   isExternal: true
   name: PropertyChangedEventArgs
   nameWithType: PropertyChangedEventArgs
-  fullName: System.ComponentModel.PropertyChangedEventArgs
+  fullName: PropertyChangedEventArgs
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.PropertyChanging
   commentId: E:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.PropertyChanging
   isExternal: false
@@ -5373,13 +3306,19 @@ references:
   fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.PropertyChanging
   nameWithType.vb: ObservableHashSet(Of T).PropertyChanging
   fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).PropertyChanging
-- uid: System.ComponentModel.PropertyChangingEventArgs
-  commentId: T:System.ComponentModel.PropertyChangingEventArgs
-  parent: System.ComponentModel
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnPropertyChanging
+  isExternal: false
+  name: OnPropertyChanging
+  nameWithType: ObservableHashSet<T>.OnPropertyChanging
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnPropertyChanging
+  nameWithType.vb: ObservableHashSet(Of T).OnPropertyChanging
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnPropertyChanging
+- uid: PropertyChangingEventArgs
   isExternal: true
   name: PropertyChangingEventArgs
   nameWithType: PropertyChangingEventArgs
-  fullName: System.ComponentModel.PropertyChangingEventArgs
+  fullName: PropertyChangingEventArgs
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.CollectionChanged
   commentId: E:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.CollectionChanged
   isExternal: false
@@ -5388,27 +3327,41 @@ references:
   fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.CollectionChanged
   nameWithType.vb: ObservableHashSet(Of T).CollectionChanged
   fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).CollectionChanged
-- uid: System.Collections.Specialized.NotifyCollectionChangedEventArgs
-  commentId: T:System.Collections.Specialized.NotifyCollectionChangedEventArgs
-  parent: System.Collections.Specialized
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.OnCollectionChanged
+  isExternal: false
+  name: OnCollectionChanged
+  nameWithType: ObservableHashSet<T>.OnCollectionChanged
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.OnCollectionChanged
+  nameWithType.vb: ObservableHashSet(Of T).OnCollectionChanged
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).OnCollectionChanged
+- uid: NotifyCollectionChangedEventArgs
   isExternal: true
   name: NotifyCollectionChangedEventArgs
   nameWithType: NotifyCollectionChangedEventArgs
-  fullName: System.Collections.Specialized.NotifyCollectionChangedEventArgs
-- uid: System.ComponentModel.BindingList`1
-  commentId: T:System.ComponentModel.BindingList`1
-  isExternal: true
+  fullName: NotifyCollectionChangedEventArgs
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.ToBindingList*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1.ToBindingList
+  isExternal: false
+  name: ToBindingList
+  nameWithType: ObservableHashSet<T>.ToBindingList
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet<T>.ToBindingList
+  nameWithType.vb: ObservableHashSet(Of T).ToBindingList
+  fullname.vb: Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet(Of T).ToBindingList
+- uid: BindingList{{T}}
+  commentId: '!:BindingList{``0}'
+  definition: BindingList`1
   name: BindingList<T>
   nameWithType: BindingList<T>
-  fullName: System.ComponentModel.BindingList<T>
+  fullName: BindingList<T>
   nameWithType.vb: BindingList(Of T)
-  fullname.vb: System.ComponentModel.BindingList(Of T)
+  fullname.vb: BindingList(Of T)
   name.vb: BindingList(Of T)
   spec.csharp:
-  - uid: System.ComponentModel.BindingList`1
+  - uid: BindingList`1
     name: BindingList
     nameWithType: BindingList
-    fullName: System.ComponentModel.BindingList
+    fullName: BindingList
     isExternal: true
   - name: <
     nameWithType: <
@@ -5420,10 +3373,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.ComponentModel.BindingList`1
+  - uid: BindingList`1
     name: BindingList
     nameWithType: BindingList
-    fullName: System.ComponentModel.BindingList
+    fullName: BindingList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -5434,43 +3387,41 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.ComponentModel.BindingList{{T}}
-  commentId: T:System.ComponentModel.BindingList{``0}
-  parent: System.ComponentModel
-  definition: System.ComponentModel.BindingList`1
-  name: BindingList<T>
-  nameWithType: BindingList<T>
-  fullName: System.ComponentModel.BindingList<T>
-  nameWithType.vb: BindingList(Of T)
-  fullname.vb: System.ComponentModel.BindingList(Of T)
-  name.vb: BindingList(Of T)
+- uid: BindingList`1
+  isExternal: true
+  name: BindingList<>
+  nameWithType: BindingList<>
+  fullName: BindingList<>
+  nameWithType.vb: BindingList(Of )
+  fullname.vb: BindingList(Of )
+  name.vb: BindingList(Of )
   spec.csharp:
-  - uid: System.ComponentModel.BindingList`1
+  - uid: BindingList`1
     name: BindingList
     nameWithType: BindingList
-    fullName: System.ComponentModel.BindingList
+    fullName: BindingList
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.ComponentModel.BindingList`1
+  - uid: BindingList`1
     name: BindingList
     nameWithType: BindingList
-    fullName: System.ComponentModel.BindingList
+    fullName: BindingList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )

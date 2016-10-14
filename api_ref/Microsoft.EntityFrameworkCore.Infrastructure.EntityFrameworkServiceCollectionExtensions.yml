@@ -5,7 +5,7 @@ items:
   id: EntityFrameworkServiceCollectionExtensions
   parent: Microsoft.EntityFrameworkCore.Infrastructure
   children:
-  - Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServiceCollectionExtensions.AddEntityFramework(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  - Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServiceCollectionExtensions.AddEntityFramework(IServiceCollection)
   langs:
   - csharp
   - vb
@@ -24,7 +24,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Infrastructure
-  summary: "\n    Extension methods for setting up Entity Framework related services in an <xref href=\"Microsoft.Extensions.DependencyInjection.IServiceCollection\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  summary: "\nExtension methods for setting up Entity Framework related services in an <see cref=\"!:IServiceCollection\"></see>.\n"
   example: []
   syntax:
     content: public static class EntityFrameworkServiceCollectionExtensions
@@ -46,9 +46,9 @@ items:
   modifiers.vb:
   - Public
   - Module
-- uid: Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServiceCollectionExtensions.AddEntityFramework(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  commentId: M:Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServiceCollectionExtensions.AddEntityFramework(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  id: AddEntityFramework(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+- uid: Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServiceCollectionExtensions.AddEntityFramework(IServiceCollection)
+  commentId: M:Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServiceCollectionExtensions.AddEntityFramework(IServiceCollection)
+  id: AddEntityFramework(IServiceCollection)
   isExtensionMethod: true
   parent: Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServiceCollectionExtensions
   langs:
@@ -56,7 +56,7 @@ items:
   - vb
   name: AddEntityFramework(IServiceCollection)
   nameWithType: EntityFrameworkServiceCollectionExtensions.AddEntityFramework(IServiceCollection)
-  fullName: Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServiceCollectionExtensions.AddEntityFramework(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServiceCollectionExtensions.AddEntityFramework(IServiceCollection)
   type: Method
   source:
     remote:
@@ -69,8 +69,8 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Infrastructure
-  summary: "\n    Adds the services required by the core of Entity Framework to an <xref href=\"Microsoft.Extensions.DependencyInjection.IServiceCollection\" data-throw-if-not-resolved=\"false\"></xref>.\n    You use this method when using dependency injection in your application, such as with ASP.NET.\n    For more information on setting up dependency injection, see http://go.microsoft.com/fwlink/?LinkId=526890.\n"
-  remarks: "\n<p>\n    You only need to use this functionality when you want Entity Framework to resolve the services it uses\n    from an external <xref href=\"System.IServiceProvider\" data-throw-if-not-resolved=\"false\"></xref>. If you are not using an external\n<xref href=\"System.IServiceProvider\" data-throw-if-not-resolved=\"false\"></xref> Entity Framework will take care of creating the services it requires.\n</p>\n<p>\n    The database you are using will also define extension methods that can be called on the returned\n<xref href=\"Microsoft.Extensions.DependencyInjection.IServiceCollection\" data-throw-if-not-resolved=\"false\"></xref> to register the services required by the database.\nFor example, when using Microsoft.EntityFrameworkCore.SqlServer you would call\n<code>collection.AddEntityFrameworkSqlServer()</code>.\n</p>\n<p>\n    For derived contexts to be registered in the <xref href=\"System.IServiceProvider\" data-throw-if-not-resolved=\"false\"></xref> and resolve their services\n    from the <xref href=\"System.IServiceProvider\" data-throw-if-not-resolved=\"false\"></xref> you must chain a call to the\n<xref href=\"Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%60%601(Microsoft.Extensions.DependencyInjection.IServiceCollection%2cSystem.Action%7bMicrosoft.EntityFrameworkCore.DbContextOptionsBuilder%7d%2cMicrosoft.Extensions.DependencyInjection.ServiceLifetime)\" data-throw-if-not-resolved=\"false\"></xref>\nmethod on the returned <xref href=\"Microsoft.Extensions.DependencyInjection.IServiceCollection\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n"
+  summary: "\nAdds the services required by the core of Entity Framework to an <see cref=\"!:IServiceCollection\"></see>.\nYou use this method when using dependency injection in your application, such as with ASP.NET.\nFor more information on setting up dependency injection, see http://go.microsoft.com/fwlink/?LinkId=526890.\n"
+  remarks: "\n<p>\n    You only need to use this functionality when you want Entity Framework to resolve the services it uses\n    from an external <xref href=\"System.IServiceProvider\" data-throw-if-not-resolved=\"false\"></xref>. If you are not using an external\n<xref href=\"System.IServiceProvider\" data-throw-if-not-resolved=\"false\"></xref> Entity Framework will take care of creating the services it requires.\n</p>\n<p>\n    The database you are using will also define extension methods that can be called on the returned\n<see cref=\"!:IServiceCollection\"></see> to register the services required by the database.\nFor example, when using Microsoft.EntityFrameworkCore.SqlServer you would call\n<code>collection.AddEntityFrameworkSqlServer()</code>.\n</p>\n<p>\n    For derived contexts to be registered in the <xref href=\"System.IServiceProvider\" data-throw-if-not-resolved=\"false\"></xref> and resolve their services\n    from the <xref href=\"System.IServiceProvider\" data-throw-if-not-resolved=\"false\"></xref> you must chain a call to the\n<xref href=\"Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%60%601(IServiceCollection%2cSystem.Action%7bMicrosoft.EntityFrameworkCore.DbContextOptionsBuilder%7d%2cServiceLifetime)\" data-throw-if-not-resolved=\"false\"></xref>\nmethod on the returned <see cref=\"!:IServiceCollection\"></see>.\n</p>\n"
   example:
   - "\n<pre><code>    public void ConfigureServices(IServiceCollection services) \n    {\n        var connectionString = \"connection string to database\";\n\n        services.AddDbContext&lt;MyContext&gt;(options =&gt; options.UseSqlServer(connectionString)); \n    }</code></pre>\n"
   syntax:
@@ -81,11 +81,12 @@ items:
       Public Shared Function AddEntityFramework(serviceCollection As IServiceCollection) As IServiceCollection
     parameters:
     - id: serviceCollection
-      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
-      description: 'The <xref href="Microsoft.Extensions.DependencyInjection.IServiceCollection" data-throw-if-not-resolved="false"></xref> to add services to. '
+      type: IServiceCollection
+      description: 'The <see cref="!:IServiceCollection"></see> to add services to. '
     return:
-      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
-      description: "\n    A builder that allows further Entity Framework specific setup of the <xref href=\"Microsoft.Extensions.DependencyInjection.IServiceCollection\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+      type: IServiceCollection
+      description: "\nA builder that allows further Entity Framework specific setup of the <see cref=\"!:IServiceCollection\"></see>.\n"
+  overload: Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServiceCollectionExtensions.AddEntityFramework*
   modifiers.csharp:
   - public
   - static
@@ -93,13 +94,6 @@ items:
   - Public
   - Shared
 references:
-- uid: Microsoft.Extensions.DependencyInjection.IServiceCollection
-  commentId: T:Microsoft.Extensions.DependencyInjection.IServiceCollection
-  parent: Microsoft.Extensions.DependencyInjection
-  isExternal: true
-  name: IServiceCollection
-  nameWithType: IServiceCollection
-  fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
 - uid: Microsoft.EntityFrameworkCore.Infrastructure
   commentId: N:Microsoft.EntityFrameworkCore.Infrastructure
   isExternal: false
@@ -392,12 +386,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.Extensions.DependencyInjection
-  commentId: N:Microsoft.Extensions.DependencyInjection
-  isExternal: false
-  name: Microsoft.Extensions.DependencyInjection
-  nameWithType: Microsoft.Extensions.DependencyInjection
-  fullName: Microsoft.Extensions.DependencyInjection
 - uid: System
   commentId: N:System
   isExternal: false
@@ -411,5 +399,16 @@ references:
   name: IServiceProvider
   nameWithType: IServiceProvider
   fullName: System.IServiceProvider
-- uid: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},Microsoft.Extensions.DependencyInjection.ServiceLifetime)
-  commentId: M:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+- uid: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext``1(IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},ServiceLifetime)
+  commentId: M:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext``1(IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},ServiceLifetime)
+- uid: Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServiceCollectionExtensions.AddEntityFramework*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServiceCollectionExtensions.AddEntityFramework
+  isExternal: false
+  name: AddEntityFramework
+  nameWithType: EntityFrameworkServiceCollectionExtensions.AddEntityFramework
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServiceCollectionExtensions.AddEntityFramework
+- uid: IServiceCollection
+  isExternal: true
+  name: IServiceCollection
+  nameWithType: IServiceCollection
+  fullName: IServiceCollection

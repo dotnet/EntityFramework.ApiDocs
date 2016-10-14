@@ -19,7 +19,7 @@ items:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScalarAsync``1(System.String,System.Object[])
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScript(System.String,System.String)
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetExecutionStrategy
-  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetOrCreateShared(System.String,System.Action)
+  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetOrCreateShared(System.String,System.Action,System.Boolean)
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Name
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.OpenConnection
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.OpenConnectionAsync
@@ -104,16 +104,16 @@ items:
   modifiers.vb:
   - Public
   - Const
-- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetOrCreateShared(System.String,System.Action)
-  commentId: M:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetOrCreateShared(System.String,System.Action)
-  id: GetOrCreateShared(System.String,System.Action)
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetOrCreateShared(System.String,System.Action,System.Boolean)
+  commentId: M:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetOrCreateShared(System.String,System.Action,System.Boolean)
+  id: GetOrCreateShared(System.String,System.Action,System.Boolean)
   parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
   langs:
   - csharp
   - vb
-  name: GetOrCreateShared(String, Action)
-  nameWithType: SqlServerTestStore.GetOrCreateShared(String, Action)
-  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetOrCreateShared(System.String, System.Action)
+  name: GetOrCreateShared(String, Action, Boolean)
+  nameWithType: SqlServerTestStore.GetOrCreateShared(String, Action, Boolean)
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetOrCreateShared(System.String, System.Action, System.Boolean)
   type: Method
   source:
     remote:
@@ -127,15 +127,18 @@ items:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
   syntax:
-    content: public static SqlServerTestStore GetOrCreateShared(string name, Action initializeDatabase)
-    content.vb: Public Shared Function GetOrCreateShared(name As String, initializeDatabase As Action) As SqlServerTestStore
+    content: public static SqlServerTestStore GetOrCreateShared(string name, Action initializeDatabase, bool cleanDatabase = true)
+    content.vb: Public Shared Function GetOrCreateShared(name As String, initializeDatabase As Action, cleanDatabase As Boolean = True) As SqlServerTestStore
     parameters:
     - id: name
       type: System.String
     - id: initializeDatabase
       type: System.Action
+    - id: cleanDatabase
+      type: System.Boolean
     return:
       type: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetOrCreateShared*
   modifiers.csharp:
   - public
   - static
@@ -172,6 +175,7 @@ items:
       type: System.String
     return:
       type: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Create*
   modifiers.csharp:
   - public
   - static
@@ -210,6 +214,7 @@ items:
       type: System.Boolean
     return:
       type: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.CreateScratch*
   modifiers.csharp:
   - public
   - static
@@ -234,7 +239,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Name
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 44
+    startLine: 45
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -244,6 +249,7 @@ items:
     parameters: []
     return:
       type: System.String
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Name*
   modifiers.csharp:
   - public
   - get
@@ -268,7 +274,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ConnectionString
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 45
+    startLine: 46
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -279,6 +285,7 @@ items:
     return:
       type: System.String
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.RelationalTestStore.ConnectionString
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ConnectionString*
   modifiers.csharp:
   - public
   - override
@@ -305,7 +312,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ExecuteScript
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 113
+    startLine: 123
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -317,6 +324,7 @@ items:
       type: System.String
     - id: scriptPath
       type: System.String
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScript*
   modifiers.csharp:
   - public
   - static
@@ -341,7 +349,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: GetExecutionStrategy
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 272
+    startLine: 282
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -350,6 +358,7 @@ items:
     content.vb: Public Shared Function GetExecutionStrategy As IExecutionStrategy
     return:
       type: Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetExecutionStrategy*
   modifiers.csharp:
   - public
   - static
@@ -374,7 +383,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Connection
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 275
+    startLine: 285
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -385,6 +394,7 @@ items:
     return:
       type: System.Data.Common.DbConnection
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.RelationalTestStore.Connection
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Connection*
   modifiers.csharp:
   - public
   - override
@@ -411,7 +421,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Transaction
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 277
+    startLine: 287
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -422,6 +432,7 @@ items:
     return:
       type: System.Data.Common.DbTransaction
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.RelationalTestStore.Transaction
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Transaction*
   modifiers.csharp:
   - public
   - override
@@ -448,7 +459,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: OpenConnection
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 279
+    startLine: 289
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -456,6 +467,7 @@ items:
     content: public override void OpenConnection()
     content.vb: Public Overrides Sub OpenConnection
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.RelationalTestStore.OpenConnection
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.OpenConnection*
   modifiers.csharp:
   - public
   - override
@@ -480,7 +492,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: OpenConnectionAsync
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 284
+    startLine: 294
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -489,6 +501,7 @@ items:
     content.vb: Public Function OpenConnectionAsync As Task
     return:
       type: System.Threading.Tasks.Task
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.OpenConnectionAsync*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -511,7 +524,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ExecuteScalar
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 289
+    startLine: 299
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -527,6 +540,7 @@ items:
     - id: T
     return:
       type: '{T}'
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScalar*
   nameWithType.vb: SqlServerTestStore.ExecuteScalar(Of T)(String, Object())
   modifiers.csharp:
   - public
@@ -552,7 +566,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ExecuteScalarAsync
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 295
+    startLine: 305
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -568,6 +582,7 @@ items:
     - id: T
     return:
       type: System.Threading.Tasks.Task{{T}}
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScalarAsync*
   nameWithType.vb: SqlServerTestStore.ExecuteScalarAsync(Of T)(String, Object())
   modifiers.csharp:
   - public
@@ -593,7 +608,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ExecuteNonQuery
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 301
+    startLine: 311
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -607,6 +622,7 @@ items:
       type: System.Object[]
     return:
       type: System.Int32
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteNonQuery*
   nameWithType.vb: SqlServerTestStore.ExecuteNonQuery(String, Object())
   modifiers.csharp:
   - public
@@ -632,7 +648,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ExecuteNonQueryAsync
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 307
+    startLine: 317
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -646,6 +662,7 @@ items:
       type: System.Object[]
     return:
       type: System.Threading.Tasks.Task{System.Int32}
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteNonQueryAsync*
   nameWithType.vb: SqlServerTestStore.ExecuteNonQueryAsync(String, Object())
   modifiers.csharp:
   - public
@@ -671,7 +688,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Query
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 313
+    startLine: 323
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -687,6 +704,7 @@ items:
     - id: T
     return:
       type: System.Collections.Generic.IEnumerable{{T}}
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Query*
   nameWithType.vb: SqlServerTestStore.Query(Of T)(String, Object())
   modifiers.csharp:
   - public
@@ -712,7 +730,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: QueryAsync
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 330
+    startLine: 340
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -728,6 +746,7 @@ items:
     - id: T
     return:
       type: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{{T}}}
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.QueryAsync*
   nameWithType.vb: SqlServerTestStore.QueryAsync(Of T)(String, Object())
   modifiers.csharp:
   - public
@@ -753,7 +772,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Dispose
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 432
+    startLine: 442
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -761,6 +780,7 @@ items:
     content: public override void Dispose()
     content.vb: Public Overrides Sub Dispose
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.TestStore.Dispose
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Dispose*
   modifiers.csharp:
   - public
   - override
@@ -785,7 +805,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: CreateConnectionString
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 442
+    startLine: 452
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -797,6 +817,7 @@ items:
       type: System.String
     return:
       type: System.String
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.CreateConnectionString*
   modifiers.csharp:
   - public
   - static
@@ -821,7 +842,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: CreateConnectionString
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/Utilities/SqlServerTestStore.cs
-    startLine: 445
+    startLine: 455
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
@@ -835,6 +856,7 @@ items:
       type: System.String
     return:
       type: System.String
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.CreateConnectionString*
   modifiers.csharp:
   - public
   - static
@@ -1229,6 +1251,12 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetOrCreateShared*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetOrCreateShared
+  isExternal: false
+  name: GetOrCreateShared
+  nameWithType: SqlServerTestStore.GetOrCreateShared
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetOrCreateShared
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -1243,13 +1271,6 @@ references:
   name: Action
   nameWithType: Action
   fullName: System.Action
-- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
-  commentId: T:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
-  parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
-  isExternal: false
-  name: SqlServerTestStore
-  nameWithType: SqlServerTestStore
-  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -1257,6 +1278,31 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+  commentId: T:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+  parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities
+  isExternal: false
+  name: SqlServerTestStore
+  nameWithType: SqlServerTestStore
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Create*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Create
+  isExternal: false
+  name: Create
+  nameWithType: SqlServerTestStore.Create
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Create
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.CreateScratch*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.CreateScratch
+  isExternal: false
+  name: CreateScratch
+  nameWithType: SqlServerTestStore.CreateScratch
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.CreateScratch
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Name*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Name
+  isExternal: false
+  name: Name
+  nameWithType: SqlServerTestStore.Name
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Name
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.RelationalTestStore.ConnectionString
   commentId: P:Microsoft.EntityFrameworkCore.Specification.Tests.RelationalTestStore.ConnectionString
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.RelationalTestStore
@@ -1264,6 +1310,24 @@ references:
   name: ConnectionString
   nameWithType: RelationalTestStore.ConnectionString
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests.RelationalTestStore.ConnectionString
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ConnectionString*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ConnectionString
+  isExternal: false
+  name: ConnectionString
+  nameWithType: SqlServerTestStore.ConnectionString
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ConnectionString
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScript*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScript
+  isExternal: false
+  name: ExecuteScript
+  nameWithType: SqlServerTestStore.ExecuteScript
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScript
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetExecutionStrategy*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetExecutionStrategy
+  isExternal: false
+  name: GetExecutionStrategy
+  nameWithType: SqlServerTestStore.GetExecutionStrategy
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.GetExecutionStrategy
 - uid: Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy
   commentId: T:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy
   parent: Microsoft.EntityFrameworkCore.Storage
@@ -1284,6 +1348,12 @@ references:
   name: Connection
   nameWithType: RelationalTestStore.Connection
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests.RelationalTestStore.Connection
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Connection*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Connection
+  isExternal: false
+  name: Connection
+  nameWithType: SqlServerTestStore.Connection
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Connection
 - uid: System.Data.Common.DbConnection
   commentId: T:System.Data.Common.DbConnection
   parent: System.Data.Common
@@ -1304,6 +1374,12 @@ references:
   name: Transaction
   nameWithType: RelationalTestStore.Transaction
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests.RelationalTestStore.Transaction
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Transaction*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Transaction
+  isExternal: false
+  name: Transaction
+  nameWithType: SqlServerTestStore.Transaction
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Transaction
 - uid: System.Data.Common.DbTransaction
   commentId: T:System.Data.Common.DbTransaction
   parent: System.Data.Common
@@ -1340,6 +1416,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.OpenConnection*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.OpenConnection
+  isExternal: false
+  name: OpenConnection
+  nameWithType: SqlServerTestStore.OpenConnection
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.OpenConnection
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.OpenConnectionAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.OpenConnectionAsync
+  isExternal: false
+  name: OpenConnectionAsync
+  nameWithType: SqlServerTestStore.OpenConnectionAsync
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.OpenConnectionAsync
 - uid: System.Threading.Tasks.Task
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
@@ -1353,6 +1441,15 @@ references:
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScalar*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScalar
+  isExternal: false
+  name: ExecuteScalar<T>
+  nameWithType: SqlServerTestStore.ExecuteScalar<T>
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScalar<T>
+  nameWithType.vb: SqlServerTestStore.ExecuteScalar(Of T)
+  fullname.vb: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScalar(Of T)
+  name.vb: ExecuteScalar(Of T)
 - uid: System.Object[]
   name: Object[]
   nameWithType: Object[]
@@ -1389,6 +1486,15 @@ references:
   name: T
   nameWithType: T
   fullName: T
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScalarAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScalarAsync
+  isExternal: false
+  name: ExecuteScalarAsync<T>
+  nameWithType: SqlServerTestStore.ExecuteScalarAsync<T>
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScalarAsync<T>
+  nameWithType.vb: SqlServerTestStore.ExecuteScalarAsync(Of T)
+  fullname.vb: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteScalarAsync(Of T)
+  name.vb: ExecuteScalarAsync(Of T)
 - uid: System.Threading.Tasks.Task{{T}}
   commentId: T:System.Threading.Tasks.Task{`0}
   parent: System.Threading.Tasks
@@ -1468,6 +1574,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteNonQuery*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteNonQuery
+  isExternal: false
+  name: ExecuteNonQuery
+  nameWithType: SqlServerTestStore.ExecuteNonQuery
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteNonQuery
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteNonQueryAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteNonQueryAsync
+  isExternal: false
+  name: ExecuteNonQueryAsync
+  nameWithType: SqlServerTestStore.ExecuteNonQueryAsync
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.ExecuteNonQueryAsync
 - uid: System.Threading.Tasks.Task{System.Int32}
   commentId: T:System.Threading.Tasks.Task{System.Int32}
   parent: System.Threading.Tasks
@@ -1512,6 +1630,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Query*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Query
+  isExternal: false
+  name: Query<T>
+  nameWithType: SqlServerTestStore.Query<T>
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Query<T>
+  nameWithType.vb: SqlServerTestStore.Query(Of T)
+  fullname.vb: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Query(Of T)
+  name.vb: Query(Of T)
 - uid: System.Collections.Generic.IEnumerable{{T}}
   commentId: T:System.Collections.Generic.IEnumerable{`0}
   parent: System.Collections.Generic
@@ -1597,6 +1724,15 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.QueryAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.QueryAsync
+  isExternal: false
+  name: QueryAsync<T>
+  nameWithType: SqlServerTestStore.QueryAsync<T>
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.QueryAsync<T>
+  nameWithType.vb: SqlServerTestStore.QueryAsync(Of T)
+  fullname.vb: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.QueryAsync(Of T)
+  name.vb: QueryAsync(Of T)
 - uid: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{{T}}}
   commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{``0}}
   parent: System.Threading.Tasks
@@ -1688,3 +1824,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Dispose*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Dispose
+  isExternal: false
+  name: Dispose
+  nameWithType: SqlServerTestStore.Dispose
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.Dispose
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.CreateConnectionString*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.CreateConnectionString
+  isExternal: false
+  name: CreateConnectionString
+  nameWithType: SqlServerTestStore.CreateConnectionString
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore.CreateConnectionString

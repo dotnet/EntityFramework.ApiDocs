@@ -11,6 +11,7 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.CreateContext
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.CreateModelBuilder
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
+  - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedOption_configures_the_property_correctly
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Default_length_for_key_string_column
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Dispose
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Duplicate_column_order_is_ignored
@@ -41,6 +42,7 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_from_base_type_is_recognized_if_base_discovered_first
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_from_base_type_is_recognized_if_discovered_through_relationship
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_on_nav_prop_is_ignored
+  - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_property_is_not_used_for_FK_when_set_by_annotation
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.MaxLength_with_length_takes_precedence_over_StringLength
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Non_public_annotations_are_enabled
@@ -102,23 +104,15 @@ items:
     content: 'public abstract class DataAnnotationTestBase<TTestStore, TFixture> : IClassFixture<TFixture>, IDisposable where TTestStore : TestStore where TFixture : DataAnnotationFixtureBase<TTestStore>, new ()'
     content.vb: >-
       Public MustInherit Class DataAnnotationTestBase(Of TTestStore As TestStore, TFixture As {DataAnnotationFixtureBase(Of TTestStore), New})
-          Implements IClassFixture(Of TFixture), IDisposable
+          Inherits IClassFixture(Of TFixture)
+          Implements IDisposable
     typeParameters:
     - id: TTestStore
     - id: TFixture
   inheritance:
   - System.Object
   implements:
-  - Xunit.IClassFixture{{TFixture}}
   - System.IDisposable
-  inheritedMembers:
-  - System.Object.ToString
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture)
   modifiers.csharp:
   - public
@@ -157,6 +151,7 @@ items:
     content.vb: Protected Function CreateContext As DataAnnotationContext
     return:
       type: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationContext
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.CreateContext*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).CreateContext()
   modifiers.csharp:
   - protected
@@ -191,6 +186,7 @@ items:
     parameters:
     - id: testOperation
       type: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationContext}
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ExecuteWithStrategyInTransaction*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ExecuteWithStrategyInTransaction(Action(Of DataAnnotationContext))
   modifiers.csharp:
   - protected
@@ -230,6 +226,7 @@ items:
       type: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
     - id: transaction
       type: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.UseTransaction*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).UseTransaction(DatabaseFacade, IDbContextTransaction)
   modifiers.csharp:
   - protected
@@ -266,6 +263,7 @@ items:
     parameters:
     - id: fixture
       type: '{TFixture}'
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.#ctor*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).DataAnnotationTestBase(TFixture)
   modifiers.csharp:
   - protected
@@ -300,6 +298,7 @@ items:
     parameters: []
     return:
       type: '{TFixture}'
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Fixture*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Fixture
   modifiers.csharp:
   - protected
@@ -336,6 +335,7 @@ items:
     parameters: []
     return:
       type: '{TTestStore}'
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.TestStore*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).TestStore
   modifiers.csharp:
   - protected
@@ -369,6 +369,7 @@ items:
   syntax:
     content: public virtual void Dispose()
     content.vb: Public Overridable Sub Dispose
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Dispose*
   implements:
   - System.IDisposable.Dispose
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Dispose()
@@ -406,6 +407,7 @@ items:
     content.vb: Public Overridable Function CreateModelBuilder As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.CreateModelBuilder*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).CreateModelBuilder()
   modifiers.csharp:
   - public
@@ -442,6 +444,7 @@ items:
     parameters:
     - id: modelBuilder
       type: Microsoft.EntityFrameworkCore.ModelBuilder
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Validate*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Validate(ModelBuilder)
   modifiers.csharp:
   - protected
@@ -473,18 +476,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Explicit_configuration_on_derived_type_overrides_annotation_on_unmapped_base_type()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Explicit_configuration_on_derived_type_overrides_annotation_on_unmapped_base_type
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Explicit_configuration_on_derived_type_overrides_annotation_on_unmapped_base_type()
+    content.vb: Public Overridable Sub Explicit_configuration_on_derived_type_overrides_annotation_on_unmapped_base_type
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Explicit_configuration_on_derived_type_overrides_annotation_on_unmapped_base_type*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Explicit_configuration_on_derived_type_overrides_annotation_on_unmapped_base_type()
   modifiers.csharp:
   - public
@@ -516,18 +510,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Explicit_configuration_on_derived_type_overrides_annotation_on_mapped_base_type()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Explicit_configuration_on_derived_type_overrides_annotation_on_mapped_base_type
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Explicit_configuration_on_derived_type_overrides_annotation_on_mapped_base_type()
+    content.vb: Public Overridable Sub Explicit_configuration_on_derived_type_overrides_annotation_on_mapped_base_type
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Explicit_configuration_on_derived_type_overrides_annotation_on_mapped_base_type*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Explicit_configuration_on_derived_type_overrides_annotation_on_mapped_base_type()
   modifiers.csharp:
   - public
@@ -559,18 +544,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Explicit_configuration_on_derived_type_or_base_type_is_last_one_wins()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Explicit_configuration_on_derived_type_or_base_type_is_last_one_wins
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Explicit_configuration_on_derived_type_or_base_type_is_last_one_wins()
+    content.vb: Public Overridable Sub Explicit_configuration_on_derived_type_or_base_type_is_last_one_wins
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Explicit_configuration_on_derived_type_or_base_type_is_last_one_wins*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Explicit_configuration_on_derived_type_or_base_type_is_last_one_wins()
   modifiers.csharp:
   - public
@@ -613,6 +589,7 @@ items:
     - id: TEntity
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableProperty
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.GetProperty*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).GetProperty(Of TEntity)(ModelBuilder, String)
   modifiers.csharp:
   - protected
@@ -645,18 +622,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Duplicate_column_order_is_ignored()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Duplicate_column_order_is_ignored
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Duplicate_column_order_is_ignored()
+    content.vb: Public Overridable Sub Duplicate_column_order_is_ignored
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Duplicate_column_order_is_ignored*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Duplicate_column_order_is_ignored()
   modifiers.csharp:
   - public
@@ -688,20 +656,11 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual ModelBuilder Non_public_annotations_are_enabled()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Function Non_public_annotations_are_enabled As ModelBuilder
+    content: public virtual ModelBuilder Non_public_annotations_are_enabled()
+    content.vb: Public Overridable Function Non_public_annotations_are_enabled As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Non_public_annotations_are_enabled*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Non_public_annotations_are_enabled()
   modifiers.csharp:
   - public
@@ -733,20 +692,11 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual ModelBuilder Field_annotations_are_enabled()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Function Field_annotations_are_enabled As ModelBuilder
+    content: public virtual ModelBuilder Field_annotations_are_enabled()
+    content.vb: Public Overridable Function Field_annotations_are_enabled As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Field_annotations_are_enabled*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Field_annotations_are_enabled()
   modifiers.csharp:
   - public
@@ -778,18 +728,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMapped_should_propagate_down_inheritance_hierarchy()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMapped_should_propagate_down_inheritance_hierarchy
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMapped_should_propagate_down_inheritance_hierarchy()
+    content.vb: Public Overridable Sub NotMapped_should_propagate_down_inheritance_hierarchy
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_should_propagate_down_inheritance_hierarchy*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_should_propagate_down_inheritance_hierarchy()
   modifiers.csharp:
   - public
@@ -821,18 +762,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMapped_on_base_class_property_ignores_it()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMapped_on_base_class_property_ignores_it
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMapped_on_base_class_property_ignores_it()
+    content.vb: Public Overridable Sub NotMapped_on_base_class_property_ignores_it
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_base_class_property_ignores_it*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_base_class_property_ignores_it()
   modifiers.csharp:
   - public
@@ -864,18 +796,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMapped_on_base_class_property_and_overriden_property_ignores_them()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMapped_on_base_class_property_and_overriden_property_ignores_them
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMapped_on_base_class_property_and_overriden_property_ignores_them()
+    content.vb: Public Overridable Sub NotMapped_on_base_class_property_and_overriden_property_ignores_them
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_base_class_property_and_overriden_property_ignores_them*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_base_class_property_and_overriden_property_ignores_them()
   modifiers.csharp:
   - public
@@ -907,18 +830,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMapped_on_base_class_property_discovered_through_navigation_ignores_it()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMapped_on_base_class_property_discovered_through_navigation_ignores_it
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMapped_on_base_class_property_discovered_through_navigation_ignores_it()
+    content.vb: Public Overridable Sub NotMapped_on_base_class_property_discovered_through_navigation_ignores_it
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_base_class_property_discovered_through_navigation_ignores_it*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_base_class_property_discovered_through_navigation_ignores_it()
   modifiers.csharp:
   - public
@@ -950,18 +864,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMapped_on_overriden_mapped_base_class_property_throws()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMapped_on_overriden_mapped_base_class_property_throws
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMapped_on_overriden_mapped_base_class_property_throws()
+    content.vb: Public Overridable Sub NotMapped_on_overriden_mapped_base_class_property_throws
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_overriden_mapped_base_class_property_throws*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_overriden_mapped_base_class_property_throws()
   modifiers.csharp:
   - public
@@ -993,18 +898,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMapped_on_unmapped_derived_property_ignores_it()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMapped_on_unmapped_derived_property_ignores_it
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMapped_on_unmapped_derived_property_ignores_it()
+    content.vb: Public Overridable Sub NotMapped_on_unmapped_derived_property_ignores_it
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_unmapped_derived_property_ignores_it*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_unmapped_derived_property_ignores_it()
   modifiers.csharp:
   - public
@@ -1036,18 +932,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMapped_on_abstract_base_class_property_ignores_it()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMapped_on_abstract_base_class_property_ignores_it
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMapped_on_abstract_base_class_property_ignores_it()
+    content.vb: Public Overridable Sub NotMapped_on_abstract_base_class_property_ignores_it
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_abstract_base_class_property_ignores_it*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_abstract_base_class_property_ignores_it()
   modifiers.csharp:
   - public
@@ -1079,18 +966,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMapped_on_unmapped_base_class_property_and_overriden_property_ignores_it()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMapped_on_unmapped_base_class_property_and_overriden_property_ignores_it
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMapped_on_unmapped_base_class_property_and_overriden_property_ignores_it()
+    content.vb: Public Overridable Sub NotMapped_on_unmapped_base_class_property_and_overriden_property_ignores_it
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_unmapped_base_class_property_and_overriden_property_ignores_it*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_unmapped_base_class_property_and_overriden_property_ignores_it()
   modifiers.csharp:
   - public
@@ -1122,18 +1000,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMapped_on_unmapped_base_class_property_ignores_it()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMapped_on_unmapped_base_class_property_ignores_it
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMapped_on_unmapped_base_class_property_ignores_it()
+    content.vb: Public Overridable Sub NotMapped_on_unmapped_base_class_property_ignores_it
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_unmapped_base_class_property_ignores_it*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_unmapped_base_class_property_ignores_it()
   modifiers.csharp:
   - public
@@ -1165,18 +1034,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMapped_on_new_property_with_same_name_as_in_unmapped_base_class_ignores_it()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMapped_on_new_property_with_same_name_as_in_unmapped_base_class_ignores_it
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMapped_on_new_property_with_same_name_as_in_unmapped_base_class_ignores_it()
+    content.vb: Public Overridable Sub NotMapped_on_new_property_with_same_name_as_in_unmapped_base_class_ignores_it
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_new_property_with_same_name_as_in_unmapped_base_class_ignores_it*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_new_property_with_same_name_as_in_unmapped_base_class_ignores_it()
   modifiers.csharp:
   - public
@@ -1208,18 +1068,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void StringLength_with_value_takes_presedence_over_MaxLength()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub StringLength_with_value_takes_presedence_over_MaxLength
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void StringLength_with_value_takes_presedence_over_MaxLength()
+    content.vb: Public Overridable Sub StringLength_with_value_takes_presedence_over_MaxLength
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.StringLength_with_value_takes_presedence_over_MaxLength*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).StringLength_with_value_takes_presedence_over_MaxLength()
   modifiers.csharp:
   - public
@@ -1251,18 +1102,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void MaxLength_with_length_takes_precedence_over_StringLength()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub MaxLength_with_length_takes_precedence_over_StringLength
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void MaxLength_with_length_takes_precedence_over_StringLength()
+    content.vb: Public Overridable Sub MaxLength_with_length_takes_precedence_over_StringLength
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.MaxLength_with_length_takes_precedence_over_StringLength*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).MaxLength_with_length_takes_precedence_over_StringLength()
   modifiers.csharp:
   - public
@@ -1294,20 +1136,11 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual ModelBuilder Default_length_for_key_string_column()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Function Default_length_for_key_string_column As ModelBuilder
+    content: public virtual ModelBuilder Default_length_for_key_string_column()
+    content.vb: Public Overridable Function Default_length_for_key_string_column As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Default_length_for_key_string_column*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Default_length_for_key_string_column()
   modifiers.csharp:
   - public
@@ -1339,20 +1172,11 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual ModelBuilder Key_and_column_work_together()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Function Key_and_column_work_together As ModelBuilder
+    content: public virtual ModelBuilder Key_and_column_work_together()
+    content.vb: Public Overridable Function Key_and_column_work_together As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_and_column_work_together*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_and_column_work_together()
   modifiers.csharp:
   - public
@@ -1384,20 +1208,11 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual ModelBuilder Key_and_MaxLength_64_produce_nvarchar_64()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Function Key_and_MaxLength_64_produce_nvarchar_64 As ModelBuilder
+    content: public virtual ModelBuilder Key_and_MaxLength_64_produce_nvarchar_64()
+    content.vb: Public Overridable Function Key_and_MaxLength_64_produce_nvarchar_64 As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_and_MaxLength_64_produce_nvarchar_64*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_and_MaxLength_64_produce_nvarchar_64()
   modifiers.csharp:
   - public
@@ -1429,18 +1244,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Key_from_base_type_is_recognized()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Key_from_base_type_is_recognized
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Key_from_base_type_is_recognized()
+    content.vb: Public Overridable Sub Key_from_base_type_is_recognized
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_from_base_type_is_recognized*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_from_base_type_is_recognized()
   modifiers.csharp:
   - public
@@ -1472,18 +1278,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Key_from_base_type_is_recognized_if_base_discovered_first()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Key_from_base_type_is_recognized_if_base_discovered_first
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Key_from_base_type_is_recognized_if_base_discovered_first()
+    content.vb: Public Overridable Sub Key_from_base_type_is_recognized_if_base_discovered_first
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_from_base_type_is_recognized_if_base_discovered_first*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_from_base_type_is_recognized_if_base_discovered_first()
   modifiers.csharp:
   - public
@@ -1515,18 +1312,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Key_from_base_type_is_recognized_if_discovered_through_relationship()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Key_from_base_type_is_recognized_if_discovered_through_relationship
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Key_from_base_type_is_recognized_if_discovered_through_relationship()
+    content.vb: Public Overridable Sub Key_from_base_type_is_recognized_if_discovered_through_relationship
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_from_base_type_is_recognized_if_discovered_through_relationship*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_from_base_type_is_recognized_if_discovered_through_relationship()
   modifiers.csharp:
   - public
@@ -1558,18 +1346,9 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Key_on_nav_prop_is_ignored()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Key_on_nav_prop_is_ignored
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Key_on_nav_prop_is_ignored()
+    content.vb: Public Overridable Sub Key_on_nav_prop_is_ignored
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_on_nav_prop_is_ignored*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_on_nav_prop_is_ignored()
   modifiers.csharp:
   - public
@@ -1578,6 +1357,78 @@ items:
   - Public
   - Overridable
   fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Key_on_nav_prop_is_ignored()
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_property_is_not_used_for_FK_when_set_by_annotation
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_property_is_not_used_for_FK_when_set_by_annotation
+  id: Key_property_is_not_used_for_FK_when_set_by_annotation
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2
+  langs:
+  - csharp
+  - vb
+  name: Key_property_is_not_used_for_FK_when_set_by_annotation()
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Key_property_is_not_used_for_FK_when_set_by_annotation()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Key_property_is_not_used_for_FK_when_set_by_annotation()
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: Key_property_is_not_used_for_FK_when_set_by_annotation
+    path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
+    startLine: 708
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Specification.Tests
+  namespace: Microsoft.EntityFrameworkCore.Specification.Tests
+  syntax:
+    content: public virtual ModelBuilder Key_property_is_not_used_for_FK_when_set_by_annotation()
+    content.vb: Public Overridable Function Key_property_is_not_used_for_FK_when_set_by_annotation As ModelBuilder
+    return:
+      type: Microsoft.EntityFrameworkCore.ModelBuilder
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_property_is_not_used_for_FK_when_set_by_annotation*
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_property_is_not_used_for_FK_when_set_by_annotation()
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Key_property_is_not_used_for_FK_when_set_by_annotation()
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedOption_configures_the_property_correctly
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedOption_configures_the_property_correctly
+  id: DatabaseGeneratedOption_configures_the_property_correctly
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2
+  langs:
+  - csharp
+  - vb
+  name: DatabaseGeneratedOption_configures_the_property_correctly()
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.DatabaseGeneratedOption_configures_the_property_correctly()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.DatabaseGeneratedOption_configures_the_property_correctly()
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: DatabaseGeneratedOption_configures_the_property_correctly
+    path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
+    startLine: 754
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Specification.Tests
+  namespace: Microsoft.EntityFrameworkCore.Specification.Tests
+  syntax:
+    content: public virtual ModelBuilder DatabaseGeneratedOption_configures_the_property_correctly()
+    content.vb: Public Overridable Function DatabaseGeneratedOption_configures_the_property_correctly As ModelBuilder
+    return:
+      type: Microsoft.EntityFrameworkCore.ModelBuilder
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedOption_configures_the_property_correctly*
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).DatabaseGeneratedOption_configures_the_property_correctly()
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).DatabaseGeneratedOption_configures_the_property_correctly()
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Timestamp_takes_precedence_over_MaxLength
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Timestamp_takes_precedence_over_MaxLength
   id: Timestamp_takes_precedence_over_MaxLength
@@ -1596,25 +1447,16 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Timestamp_takes_precedence_over_MaxLength
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 708
+    startLine: 791
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual ModelBuilder Timestamp_takes_precedence_over_MaxLength()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Function Timestamp_takes_precedence_over_MaxLength As ModelBuilder
+    content: public virtual ModelBuilder Timestamp_takes_precedence_over_MaxLength()
+    content.vb: Public Overridable Function Timestamp_takes_precedence_over_MaxLength As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Timestamp_takes_precedence_over_MaxLength*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Timestamp_takes_precedence_over_MaxLength()
   modifiers.csharp:
   - public
@@ -1641,25 +1483,16 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Timestamp_takes_precedence_over_MaxLength_with_value
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 721
+    startLine: 804
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual ModelBuilder Timestamp_takes_precedence_over_MaxLength_with_value()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Function Timestamp_takes_precedence_over_MaxLength_with_value As ModelBuilder
+    content: public virtual ModelBuilder Timestamp_takes_precedence_over_MaxLength_with_value()
+    content.vb: Public Overridable Function Timestamp_takes_precedence_over_MaxLength_with_value As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Timestamp_takes_precedence_over_MaxLength_with_value*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Timestamp_takes_precedence_over_MaxLength_with_value()
   modifiers.csharp:
   - public
@@ -1686,23 +1519,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Annotation_in_derived_class_when_base_class_processed_after_derived_class
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 747
+    startLine: 830
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Annotation_in_derived_class_when_base_class_processed_after_derived_class()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Annotation_in_derived_class_when_base_class_processed_after_derived_class
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Annotation_in_derived_class_when_base_class_processed_after_derived_class()
+    content.vb: Public Overridable Sub Annotation_in_derived_class_when_base_class_processed_after_derived_class
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Annotation_in_derived_class_when_base_class_processed_after_derived_class*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Annotation_in_derived_class_when_base_class_processed_after_derived_class()
   modifiers.csharp:
   - public
@@ -1729,23 +1553,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Required_and_ForeignKey_to_Required
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 771
+    startLine: 854
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Required_and_ForeignKey_to_Required()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Required_and_ForeignKey_to_Required
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Required_and_ForeignKey_to_Required()
+    content.vb: Public Overridable Sub Required_and_ForeignKey_to_Required
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_and_ForeignKey_to_Required*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Required_and_ForeignKey_to_Required()
   modifiers.csharp:
   - public
@@ -1772,23 +1587,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Required_to_Required_and_ForeignKey
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 804
+    startLine: 887
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Required_to_Required_and_ForeignKey()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Required_to_Required_and_ForeignKey
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Required_to_Required_and_ForeignKey()
+    content.vb: Public Overridable Sub Required_to_Required_and_ForeignKey
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_to_Required_and_ForeignKey*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Required_to_Required_and_ForeignKey()
   modifiers.csharp:
   - public
@@ -1815,23 +1621,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Required_and_ForeignKey_to_Required_and_ForeignKey
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 838
+    startLine: 921
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Required_and_ForeignKey_to_Required_and_ForeignKey()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Required_and_ForeignKey_to_Required_and_ForeignKey
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Required_and_ForeignKey_to_Required_and_ForeignKey()
+    content.vb: Public Overridable Sub Required_and_ForeignKey_to_Required_and_ForeignKey
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_and_ForeignKey_to_Required_and_ForeignKey*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Required_and_ForeignKey_to_Required_and_ForeignKey()
   modifiers.csharp:
   - public
@@ -1858,23 +1655,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Required_and_ForeignKey_to_Required_and_ForeignKey_can_be_overriden
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 852
+    startLine: 935
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Required_and_ForeignKey_to_Required_and_ForeignKey_can_be_overriden()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Required_and_ForeignKey_to_Required_and_ForeignKey_can_be_overriden
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Required_and_ForeignKey_to_Required_and_ForeignKey_can_be_overriden()
+    content.vb: Public Overridable Sub Required_and_ForeignKey_to_Required_and_ForeignKey_can_be_overriden
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_and_ForeignKey_to_Required_and_ForeignKey_can_be_overriden*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Required_and_ForeignKey_to_Required_and_ForeignKey_can_be_overriden()
   modifiers.csharp:
   - public
@@ -1901,23 +1689,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ForeignKey_to_nothing
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 889
+    startLine: 972
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void ForeignKey_to_nothing()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub ForeignKey_to_nothing
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void ForeignKey_to_nothing()
+    content.vb: Public Overridable Sub ForeignKey_to_nothing
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKey_to_nothing*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKey_to_nothing()
   modifiers.csharp:
   - public
@@ -1944,23 +1723,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Required_and_ForeignKey_to_nothing
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 920
+    startLine: 1003
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Required_and_ForeignKey_to_nothing()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Required_and_ForeignKey_to_nothing
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Required_and_ForeignKey_to_nothing()
+    content.vb: Public Overridable Sub Required_and_ForeignKey_to_nothing
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_and_ForeignKey_to_nothing*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Required_and_ForeignKey_to_nothing()
   modifiers.csharp:
   - public
@@ -1987,23 +1757,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Nothing_to_ForeignKey
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 952
+    startLine: 1035
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Nothing_to_ForeignKey()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Nothing_to_ForeignKey
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Nothing_to_ForeignKey()
+    content.vb: Public Overridable Sub Nothing_to_ForeignKey
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Nothing_to_ForeignKey*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Nothing_to_ForeignKey()
   modifiers.csharp:
   - public
@@ -2030,23 +1791,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Nothing_to_Required_and_ForeignKey
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 983
+    startLine: 1066
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Nothing_to_Required_and_ForeignKey()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Nothing_to_Required_and_ForeignKey
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Nothing_to_Required_and_ForeignKey()
+    content.vb: Public Overridable Sub Nothing_to_Required_and_ForeignKey
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Nothing_to_Required_and_ForeignKey*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Nothing_to_Required_and_ForeignKey()
   modifiers.csharp:
   - public
@@ -2073,23 +1825,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ForeignKey_to_ForeignKey
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1015
+    startLine: 1098
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void ForeignKey_to_ForeignKey()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub ForeignKey_to_ForeignKey
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void ForeignKey_to_ForeignKey()
+    content.vb: Public Overridable Sub ForeignKey_to_ForeignKey
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKey_to_ForeignKey*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKey_to_ForeignKey()
   modifiers.csharp:
   - public
@@ -2116,23 +1859,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ForeignKey_to_ForeignKey_same_name
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1048
+    startLine: 1131
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void ForeignKey_to_ForeignKey_same_name()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub ForeignKey_to_ForeignKey_same_name
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void ForeignKey_to_ForeignKey_same_name()
+    content.vb: Public Overridable Sub ForeignKey_to_ForeignKey_same_name
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKey_to_ForeignKey_same_name*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKey_to_ForeignKey_same_name()
   modifiers.csharp:
   - public
@@ -2159,23 +1893,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ForeignKey_to_ForeignKey_same_name_one_shadow
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1077
+    startLine: 1160
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void ForeignKey_to_ForeignKey_same_name_one_shadow()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub ForeignKey_to_ForeignKey_same_name_one_shadow
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void ForeignKey_to_ForeignKey_same_name_one_shadow()
+    content.vb: Public Overridable Sub ForeignKey_to_ForeignKey_same_name_one_shadow
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKey_to_ForeignKey_same_name_one_shadow*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKey_to_ForeignKey_same_name_one_shadow()
   modifiers.csharp:
   - public
@@ -2202,23 +1927,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Shared_ForeignKey_to_different_principals
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1106
+    startLine: 1189
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Shared_ForeignKey_to_different_principals()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Shared_ForeignKey_to_different_principals
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Shared_ForeignKey_to_different_principals()
+    content.vb: Public Overridable Sub Shared_ForeignKey_to_different_principals
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Shared_ForeignKey_to_different_principals*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Shared_ForeignKey_to_different_principals()
   modifiers.csharp:
   - public
@@ -2245,25 +1961,16 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: TableNameAttribute_affects_table_name_in_TPH
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1146
+    startLine: 1229
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual ModelBuilder TableNameAttribute_affects_table_name_in_TPH()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Function TableNameAttribute_affects_table_name_in_TPH As ModelBuilder
+    content: public virtual ModelBuilder TableNameAttribute_affects_table_name_in_TPH()
+    content.vb: Public Overridable Function TableNameAttribute_affects_table_name_in_TPH As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.TableNameAttribute_affects_table_name_in_TPH*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).TableNameAttribute_affects_table_name_in_TPH()
   modifiers.csharp:
   - public
@@ -2290,23 +1997,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ConcurrencyCheckAttribute_throws_if_value_in_database_changed
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1171
+    startLine: 1254
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void ConcurrencyCheckAttribute_throws_if_value_in_database_changed()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub ConcurrencyCheckAttribute_throws_if_value_in_database_changed
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void ConcurrencyCheckAttribute_throws_if_value_in_database_changed()
+    content.vb: Public Overridable Sub ConcurrencyCheckAttribute_throws_if_value_in_database_changed
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ConcurrencyCheckAttribute_throws_if_value_in_database_changed*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ConcurrencyCheckAttribute_throws_if_value_in_database_changed()
   modifiers.csharp:
   - public
@@ -2333,23 +2031,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1194
+    startLine: 1277
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity()
+    content.vb: Public Overridable Sub DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity()
   modifiers.csharp:
   - public
@@ -2376,23 +2065,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1205
+    startLine: 1288
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length()
+    content.vb: Public Overridable Sub MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length()
   modifiers.csharp:
   - public
@@ -2419,23 +2099,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: NotMappedAttribute_ignores_entityType
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1224
+    startLine: 1307
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMappedAttribute_ignores_entityType()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMappedAttribute_ignores_entityType
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMappedAttribute_ignores_entityType()
+    content.vb: Public Overridable Sub NotMappedAttribute_ignores_entityType
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_ignores_entityType*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_ignores_entityType()
   modifiers.csharp:
   - public
@@ -2462,23 +2133,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: NotMappedAttribute_ignores_navigation
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1233
+    startLine: 1316
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMappedAttribute_ignores_navigation()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMappedAttribute_ignores_navigation
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMappedAttribute_ignores_navigation()
+    content.vb: Public Overridable Sub NotMappedAttribute_ignores_navigation
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_ignores_navigation*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_ignores_navigation()
   modifiers.csharp:
   - public
@@ -2505,23 +2167,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: NotMappedAttribute_ignores_property
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1242
+    startLine: 1325
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMappedAttribute_ignores_property()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMappedAttribute_ignores_property
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMappedAttribute_ignores_property()
+    content.vb: Public Overridable Sub NotMappedAttribute_ignores_property
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_ignores_property*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_ignores_property()
   modifiers.csharp:
   - public
@@ -2548,23 +2201,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: NotMappedAttribute_ignores_explicit_interface_implementation_property
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1251
+    startLine: 1334
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMappedAttribute_ignores_explicit_interface_implementation_property()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMappedAttribute_ignores_explicit_interface_implementation_property
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMappedAttribute_ignores_explicit_interface_implementation_property()
+    content.vb: Public Overridable Sub NotMappedAttribute_ignores_explicit_interface_implementation_property
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_ignores_explicit_interface_implementation_property*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_ignores_explicit_interface_implementation_property()
   modifiers.csharp:
   - public
@@ -2591,23 +2235,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: NotMappedAttribute_removes_ambiguity_in_relationship_building
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1271
+    startLine: 1354
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMappedAttribute_removes_ambiguity_in_relationship_building()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMappedAttribute_removes_ambiguity_in_relationship_building
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMappedAttribute_removes_ambiguity_in_relationship_building()
+    content.vb: Public Overridable Sub NotMappedAttribute_removes_ambiguity_in_relationship_building
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_removes_ambiguity_in_relationship_building*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_removes_ambiguity_in_relationship_building()
   modifiers.csharp:
   - public
@@ -2634,23 +2269,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: NotMappedAttribute_removes_ambiguity_in_relationship_building_with_base
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1283
+    startLine: 1366
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void NotMappedAttribute_removes_ambiguity_in_relationship_building_with_base()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub NotMappedAttribute_removes_ambiguity_in_relationship_building_with_base
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void NotMappedAttribute_removes_ambiguity_in_relationship_building_with_base()
+    content.vb: Public Overridable Sub NotMappedAttribute_removes_ambiguity_in_relationship_building_with_base
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_removes_ambiguity_in_relationship_building_with_base*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_removes_ambiguity_in_relationship_building_with_base()
   modifiers.csharp:
   - public
@@ -2677,23 +2303,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: InversePropertyAttribute_removes_ambiguity
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1305
+    startLine: 1388
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void InversePropertyAttribute_removes_ambiguity()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub InversePropertyAttribute_removes_ambiguity
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void InversePropertyAttribute_removes_ambiguity()
+    content.vb: Public Overridable Sub InversePropertyAttribute_removes_ambiguity
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_removes_ambiguity*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_removes_ambiguity()
   modifiers.csharp:
   - public
@@ -2720,23 +2337,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: InversePropertyAttribute_removes_ambiguity_with_base_type
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1320
+    startLine: 1403
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void InversePropertyAttribute_removes_ambiguity_with_base_type()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub InversePropertyAttribute_removes_ambiguity_with_base_type
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void InversePropertyAttribute_removes_ambiguity_with_base_type()
+    content.vb: Public Overridable Sub InversePropertyAttribute_removes_ambiguity_with_base_type
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_removes_ambiguity_with_base_type*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_removes_ambiguity_with_base_type()
   modifiers.csharp:
   - public
@@ -2763,23 +2371,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: InversePropertyAttribute_removes_ambiguity_with_base_type_ignored
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1340
+    startLine: 1423
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void InversePropertyAttribute_removes_ambiguity_with_base_type_ignored()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub InversePropertyAttribute_removes_ambiguity_with_base_type_ignored
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void InversePropertyAttribute_removes_ambiguity_with_base_type_ignored()
+    content.vb: Public Overridable Sub InversePropertyAttribute_removes_ambiguity_with_base_type_ignored
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_removes_ambiguity_with_base_type_ignored*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_removes_ambiguity_with_base_type_ignored()
   modifiers.csharp:
   - public
@@ -2806,23 +2405,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: InversePropertyAttribute_from_ignored_base_causes_ambiguity
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1355
+    startLine: 1438
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void InversePropertyAttribute_from_ignored_base_causes_ambiguity()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub InversePropertyAttribute_from_ignored_base_causes_ambiguity
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void InversePropertyAttribute_from_ignored_base_causes_ambiguity()
+    content.vb: Public Overridable Sub InversePropertyAttribute_from_ignored_base_causes_ambiguity
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_from_ignored_base_causes_ambiguity*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_from_ignored_base_causes_ambiguity()
   modifiers.csharp:
   - public
@@ -2849,23 +2439,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: InversePropertyAttribute_from_ignored_base_can_be_ignored_to_remove_ambiguity
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1370
+    startLine: 1453
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void InversePropertyAttribute_from_ignored_base_can_be_ignored_to_remove_ambiguity()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub InversePropertyAttribute_from_ignored_base_can_be_ignored_to_remove_ambiguity
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void InversePropertyAttribute_from_ignored_base_can_be_ignored_to_remove_ambiguity()
+    content.vb: Public Overridable Sub InversePropertyAttribute_from_ignored_base_can_be_ignored_to_remove_ambiguity
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_from_ignored_base_can_be_ignored_to_remove_ambiguity*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_from_ignored_base_can_be_ignored_to_remove_ambiguity()
   modifiers.csharp:
   - public
@@ -2892,23 +2473,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ForeignKeyAttribute_creates_two_relationships_if_applied_on_property_on_both_side
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1440
+    startLine: 1523
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void ForeignKeyAttribute_creates_two_relationships_if_applied_on_property_on_both_side()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub ForeignKeyAttribute_creates_two_relationships_if_applied_on_property_on_both_side
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void ForeignKeyAttribute_creates_two_relationships_if_applied_on_property_on_both_side()
+    content.vb: Public Overridable Sub ForeignKeyAttribute_creates_two_relationships_if_applied_on_property_on_both_side
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_creates_two_relationships_if_applied_on_property_on_both_side*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_creates_two_relationships_if_applied_on_property_on_both_side()
   modifiers.csharp:
   - public
@@ -2935,23 +2507,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigations_on_both_side_and_values_do_not_match
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1454
+    startLine: 1537
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigations_on_both_side_and_values_do_not_match()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigations_on_both_side_and_values_do_not_match
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigations_on_both_side_and_values_do_not_match()
+    content.vb: Public Overridable Sub ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigations_on_both_side_and_values_do_not_match
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigations_on_both_side_and_values_do_not_match*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigations_on_both_side_and_values_do_not_match()
   modifiers.csharp:
   - public
@@ -2978,23 +2541,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigation_and_property_on_different_side_and_values_do_not_match
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1468
+    startLine: 1551
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigation_and_property_on_different_side_and_values_do_not_match()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigation_and_property_on_different_side_and_values_do_not_match
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigation_and_property_on_different_side_and_values_do_not_match()
+    content.vb: Public Overridable Sub ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigation_and_property_on_different_side_and_values_do_not_match
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigation_and_property_on_different_side_and_values_do_not_match*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigation_and_property_on_different_side_and_values_do_not_match()
   modifiers.csharp:
   - public
@@ -3021,23 +2575,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ForeignKeyAttribute_throws_if_applied_on_property_on_both_side_but_navigations_are_connected_by_inverse_property
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1533
+    startLine: 1616
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void ForeignKeyAttribute_throws_if_applied_on_property_on_both_side_but_navigations_are_connected_by_inverse_property()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub ForeignKeyAttribute_throws_if_applied_on_property_on_both_side_but_navigations_are_connected_by_inverse_property
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void ForeignKeyAttribute_throws_if_applied_on_property_on_both_side_but_navigations_are_connected_by_inverse_property()
+    content.vb: Public Overridable Sub ForeignKeyAttribute_throws_if_applied_on_property_on_both_side_but_navigations_are_connected_by_inverse_property
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_throws_if_applied_on_property_on_both_side_but_navigations_are_connected_by_inverse_property*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_throws_if_applied_on_property_on_both_side_but_navigations_are_connected_by_inverse_property()
   modifiers.csharp:
   - public
@@ -3064,23 +2609,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ForeignKeyAttribute_throws_if_applied_on_both_navigations_connected_by_inverse_property_but_values_do_not_match
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1542
+    startLine: 1625
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void ForeignKeyAttribute_throws_if_applied_on_both_navigations_connected_by_inverse_property_but_values_do_not_match()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub ForeignKeyAttribute_throws_if_applied_on_both_navigations_connected_by_inverse_property_but_values_do_not_match
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void ForeignKeyAttribute_throws_if_applied_on_both_navigations_connected_by_inverse_property_but_values_do_not_match()
+    content.vb: Public Overridable Sub ForeignKeyAttribute_throws_if_applied_on_both_navigations_connected_by_inverse_property_but_values_do_not_match
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_throws_if_applied_on_both_navigations_connected_by_inverse_property_but_values_do_not_match*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_throws_if_applied_on_both_navigations_connected_by_inverse_property_but_values_do_not_match()
   modifiers.csharp:
   - public
@@ -3107,23 +2643,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: RequiredAttribute_for_navigation_throws_while_inserting_null_value
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1589
+    startLine: 1672
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void RequiredAttribute_for_navigation_throws_while_inserting_null_value()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub RequiredAttribute_for_navigation_throws_while_inserting_null_value
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void RequiredAttribute_for_navigation_throws_while_inserting_null_value()
+    content.vb: Public Overridable Sub RequiredAttribute_for_navigation_throws_while_inserting_null_value
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.RequiredAttribute_for_navigation_throws_while_inserting_null_value*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).RequiredAttribute_for_navigation_throws_while_inserting_null_value()
   modifiers.csharp:
   - public
@@ -3150,23 +2677,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: RequiredAttribute_does_nothing_when_specified_on_nav_to_dependent_per_convention
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1608
+    startLine: 1691
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void RequiredAttribute_does_nothing_when_specified_on_nav_to_dependent_per_convention()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub RequiredAttribute_does_nothing_when_specified_on_nav_to_dependent_per_convention
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void RequiredAttribute_does_nothing_when_specified_on_nav_to_dependent_per_convention()
+    content.vb: Public Overridable Sub RequiredAttribute_does_nothing_when_specified_on_nav_to_dependent_per_convention
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.RequiredAttribute_does_nothing_when_specified_on_nav_to_dependent_per_convention*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).RequiredAttribute_does_nothing_when_specified_on_nav_to_dependent_per_convention()
   modifiers.csharp:
   - public
@@ -3193,23 +2711,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: RequiredAttribute_for_property_throws_while_inserting_null_value
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1620
+    startLine: 1703
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void RequiredAttribute_for_property_throws_while_inserting_null_value()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub RequiredAttribute_for_property_throws_while_inserting_null_value
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void RequiredAttribute_for_property_throws_while_inserting_null_value()
+    content.vb: Public Overridable Sub RequiredAttribute_for_property_throws_while_inserting_null_value
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.RequiredAttribute_for_property_throws_while_inserting_null_value*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).RequiredAttribute_for_property_throws_while_inserting_null_value()
   modifiers.csharp:
   - public
@@ -3236,23 +2745,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1639
+    startLine: 1722
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void StringLengthAttribute_throws_while_inserting_value_longer_than_max_length()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void StringLengthAttribute_throws_while_inserting_value_longer_than_max_length()
+    content.vb: Public Overridable Sub StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.StringLengthAttribute_throws_while_inserting_value_longer_than_max_length*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).StringLengthAttribute_throws_while_inserting_value_longer_than_max_length()
   modifiers.csharp:
   - public
@@ -3279,23 +2779,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: TimestampAttribute_throws_if_value_in_database_changed
     path: src/Microsoft.EntityFrameworkCore.Specification.Tests/DataAnnotationTestBase.cs
-    startLine: 1658
+    startLine: 1741
   assemblies:
   - Microsoft.EntityFrameworkCore.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void TimestampAttribute_throws_if_value_in_database_changed()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub TimestampAttribute_throws_if_value_in_database_changed
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void TimestampAttribute_throws_if_value_in_database_changed()
+    content.vb: Public Overridable Sub TimestampAttribute_throws_if_value_in_database_changed
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.TimestampAttribute_throws_if_value_in_database_changed*
   nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).TimestampAttribute_throws_if_value_in_database_changed()
   modifiers.csharp:
   - public
@@ -3318,46 +2809,6 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Xunit.IClassFixture{{TFixture}}
-  commentId: T:Xunit.IClassFixture{`0}
-  parent: Xunit
-  definition: Xunit.IClassFixture`1
-  name: IClassFixture<TFixture>
-  nameWithType: IClassFixture<TFixture>
-  fullName: Xunit.IClassFixture<TFixture>
-  nameWithType.vb: IClassFixture(Of TFixture)
-  fullname.vb: Xunit.IClassFixture(Of TFixture)
-  name.vb: IClassFixture(Of TFixture)
-  spec.csharp:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TFixture
-    nameWithType: TFixture
-    fullName: TFixture
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TFixture
-    nameWithType: TFixture
-    fullName: TFixture
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.IDisposable
   commentId: T:System.IDisposable
   parent: System
@@ -3365,336 +2816,20 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
   name: System
   nameWithType: System
   fullName: System
-- uid: Xunit.IClassFixture`1
-  commentId: T:Xunit.IClassFixture`1
-  isExternal: true
-  name: IClassFixture<TFixture>
-  nameWithType: IClassFixture<TFixture>
-  fullName: Xunit.IClassFixture<TFixture>
-  nameWithType.vb: IClassFixture(Of TFixture)
-  fullname.vb: Xunit.IClassFixture(Of TFixture)
-  name.vb: IClassFixture(Of TFixture)
-  spec.csharp:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TFixture
-    nameWithType: TFixture
-    fullName: TFixture
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TFixture
-    nameWithType: TFixture
-    fullName: TFixture
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Xunit
-  commentId: N:Xunit
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.CreateContext*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.CreateContext
   isExternal: false
-  name: Xunit
-  nameWithType: Xunit
-  fullName: Xunit
+  name: CreateContext
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.CreateContext
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.CreateContext
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).CreateContext
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).CreateContext
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationContext
   commentId: T:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationContext
   parent: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -3702,6 +2837,14 @@ references:
   name: DataAnnotationContext
   nameWithType: DataAnnotationContext
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationContext
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ExecuteWithStrategyInTransaction*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ExecuteWithStrategyInTransaction
+  isExternal: false
+  name: ExecuteWithStrategyInTransaction
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.ExecuteWithStrategyInTransaction
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.ExecuteWithStrategyInTransaction
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ExecuteWithStrategyInTransaction
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).ExecuteWithStrategyInTransaction
 - uid: System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationContext}
   commentId: T:System.Action{Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationContext}
   parent: System
@@ -3783,6 +2926,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.UseTransaction*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.UseTransaction
+  isExternal: false
+  name: UseTransaction
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.UseTransaction
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.UseTransaction
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).UseTransaction
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).UseTransaction
 - uid: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
   commentId: T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
   parent: Microsoft.EntityFrameworkCore.Infrastructure
@@ -3809,6 +2960,14 @@ references:
   name: Microsoft.EntityFrameworkCore.Storage
   nameWithType: Microsoft.EntityFrameworkCore.Storage
   fullName: Microsoft.EntityFrameworkCore.Storage
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.#ctor
+  isExternal: false
+  name: DataAnnotationTestBase
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.DataAnnotationTestBase
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.DataAnnotationTestBase
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).DataAnnotationTestBase
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).DataAnnotationTestBase
 - uid: '{TFixture}'
   commentId: '!:TFixture'
   definition: TFixture
@@ -3820,6 +2979,22 @@ references:
   name: TFixture
   nameWithType: TFixture
   fullName: TFixture
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Fixture*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Fixture
+  isExternal: false
+  name: Fixture
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Fixture
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Fixture
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Fixture
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Fixture
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.TestStore*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.TestStore
+  isExternal: false
+  name: TestStore
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.TestStore
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.TestStore
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).TestStore
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).TestStore
 - uid: '{TTestStore}'
   commentId: '!:TTestStore'
   definition: TTestStore
@@ -3831,6 +3006,14 @@ references:
   name: TTestStore
   nameWithType: TTestStore
   fullName: TTestStore
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Dispose*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Dispose
+  isExternal: false
+  name: Dispose
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Dispose
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Dispose
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Dispose
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Dispose
 - uid: System.IDisposable.Dispose
   commentId: M:System.IDisposable.Dispose
   parent: System.IDisposable
@@ -3862,6 +3045,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.CreateModelBuilder*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.CreateModelBuilder
+  isExternal: false
+  name: CreateModelBuilder
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.CreateModelBuilder
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.CreateModelBuilder
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).CreateModelBuilder
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).CreateModelBuilder
 - uid: Microsoft.EntityFrameworkCore.ModelBuilder
   commentId: T:Microsoft.EntityFrameworkCore.ModelBuilder
   parent: Microsoft.EntityFrameworkCore
@@ -3875,6 +3066,47 @@ references:
   name: Microsoft.EntityFrameworkCore
   nameWithType: Microsoft.EntityFrameworkCore
   fullName: Microsoft.EntityFrameworkCore
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Validate*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Validate
+  isExternal: false
+  name: Validate
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Validate
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Validate
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Validate
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Validate
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Explicit_configuration_on_derived_type_overrides_annotation_on_unmapped_base_type*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Explicit_configuration_on_derived_type_overrides_annotation_on_unmapped_base_type
+  isExternal: false
+  name: Explicit_configuration_on_derived_type_overrides_annotation_on_unmapped_base_type
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Explicit_configuration_on_derived_type_overrides_annotation_on_unmapped_base_type
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Explicit_configuration_on_derived_type_overrides_annotation_on_unmapped_base_type
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Explicit_configuration_on_derived_type_overrides_annotation_on_unmapped_base_type
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Explicit_configuration_on_derived_type_overrides_annotation_on_unmapped_base_type
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Explicit_configuration_on_derived_type_overrides_annotation_on_mapped_base_type*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Explicit_configuration_on_derived_type_overrides_annotation_on_mapped_base_type
+  isExternal: false
+  name: Explicit_configuration_on_derived_type_overrides_annotation_on_mapped_base_type
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Explicit_configuration_on_derived_type_overrides_annotation_on_mapped_base_type
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Explicit_configuration_on_derived_type_overrides_annotation_on_mapped_base_type
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Explicit_configuration_on_derived_type_overrides_annotation_on_mapped_base_type
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Explicit_configuration_on_derived_type_overrides_annotation_on_mapped_base_type
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Explicit_configuration_on_derived_type_or_base_type_is_last_one_wins*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Explicit_configuration_on_derived_type_or_base_type_is_last_one_wins
+  isExternal: false
+  name: Explicit_configuration_on_derived_type_or_base_type_is_last_one_wins
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Explicit_configuration_on_derived_type_or_base_type_is_last_one_wins
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Explicit_configuration_on_derived_type_or_base_type_is_last_one_wins
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Explicit_configuration_on_derived_type_or_base_type_is_last_one_wins
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Explicit_configuration_on_derived_type_or_base_type_is_last_one_wins
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.GetProperty*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.GetProperty
+  isExternal: false
+  name: GetProperty<TEntity>
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.GetProperty<TEntity>
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.GetProperty<TEntity>
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).GetProperty(Of TEntity)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).GetProperty(Of TEntity)
+  name.vb: GetProperty(Of TEntity)
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -3895,3 +3127,515 @@ references:
   name: Microsoft.EntityFrameworkCore.Metadata
   nameWithType: Microsoft.EntityFrameworkCore.Metadata
   fullName: Microsoft.EntityFrameworkCore.Metadata
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Duplicate_column_order_is_ignored*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Duplicate_column_order_is_ignored
+  isExternal: false
+  name: Duplicate_column_order_is_ignored
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Duplicate_column_order_is_ignored
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Duplicate_column_order_is_ignored
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Duplicate_column_order_is_ignored
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Duplicate_column_order_is_ignored
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Non_public_annotations_are_enabled*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Non_public_annotations_are_enabled
+  isExternal: false
+  name: Non_public_annotations_are_enabled
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Non_public_annotations_are_enabled
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Non_public_annotations_are_enabled
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Non_public_annotations_are_enabled
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Non_public_annotations_are_enabled
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Field_annotations_are_enabled*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Field_annotations_are_enabled
+  isExternal: false
+  name: Field_annotations_are_enabled
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Field_annotations_are_enabled
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Field_annotations_are_enabled
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Field_annotations_are_enabled
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Field_annotations_are_enabled
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_should_propagate_down_inheritance_hierarchy*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_should_propagate_down_inheritance_hierarchy
+  isExternal: false
+  name: NotMapped_should_propagate_down_inheritance_hierarchy
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_should_propagate_down_inheritance_hierarchy
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_should_propagate_down_inheritance_hierarchy
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_should_propagate_down_inheritance_hierarchy
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_should_propagate_down_inheritance_hierarchy
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_base_class_property_ignores_it*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_base_class_property_ignores_it
+  isExternal: false
+  name: NotMapped_on_base_class_property_ignores_it
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_base_class_property_ignores_it
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_base_class_property_ignores_it
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_base_class_property_ignores_it
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_base_class_property_ignores_it
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_base_class_property_and_overriden_property_ignores_them*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_base_class_property_and_overriden_property_ignores_them
+  isExternal: false
+  name: NotMapped_on_base_class_property_and_overriden_property_ignores_them
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_base_class_property_and_overriden_property_ignores_them
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_base_class_property_and_overriden_property_ignores_them
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_base_class_property_and_overriden_property_ignores_them
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_base_class_property_and_overriden_property_ignores_them
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_base_class_property_discovered_through_navigation_ignores_it*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_base_class_property_discovered_through_navigation_ignores_it
+  isExternal: false
+  name: NotMapped_on_base_class_property_discovered_through_navigation_ignores_it
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_base_class_property_discovered_through_navigation_ignores_it
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_base_class_property_discovered_through_navigation_ignores_it
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_base_class_property_discovered_through_navigation_ignores_it
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_base_class_property_discovered_through_navigation_ignores_it
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_overriden_mapped_base_class_property_throws*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_overriden_mapped_base_class_property_throws
+  isExternal: false
+  name: NotMapped_on_overriden_mapped_base_class_property_throws
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_overriden_mapped_base_class_property_throws
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_overriden_mapped_base_class_property_throws
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_overriden_mapped_base_class_property_throws
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_overriden_mapped_base_class_property_throws
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_unmapped_derived_property_ignores_it*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_unmapped_derived_property_ignores_it
+  isExternal: false
+  name: NotMapped_on_unmapped_derived_property_ignores_it
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_unmapped_derived_property_ignores_it
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_unmapped_derived_property_ignores_it
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_unmapped_derived_property_ignores_it
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_unmapped_derived_property_ignores_it
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_abstract_base_class_property_ignores_it*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_abstract_base_class_property_ignores_it
+  isExternal: false
+  name: NotMapped_on_abstract_base_class_property_ignores_it
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_abstract_base_class_property_ignores_it
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_abstract_base_class_property_ignores_it
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_abstract_base_class_property_ignores_it
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_abstract_base_class_property_ignores_it
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_unmapped_base_class_property_and_overriden_property_ignores_it*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_unmapped_base_class_property_and_overriden_property_ignores_it
+  isExternal: false
+  name: NotMapped_on_unmapped_base_class_property_and_overriden_property_ignores_it
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_unmapped_base_class_property_and_overriden_property_ignores_it
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_unmapped_base_class_property_and_overriden_property_ignores_it
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_unmapped_base_class_property_and_overriden_property_ignores_it
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_unmapped_base_class_property_and_overriden_property_ignores_it
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_unmapped_base_class_property_ignores_it*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_unmapped_base_class_property_ignores_it
+  isExternal: false
+  name: NotMapped_on_unmapped_base_class_property_ignores_it
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_unmapped_base_class_property_ignores_it
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_unmapped_base_class_property_ignores_it
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_unmapped_base_class_property_ignores_it
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_unmapped_base_class_property_ignores_it
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_new_property_with_same_name_as_in_unmapped_base_class_ignores_it*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMapped_on_new_property_with_same_name_as_in_unmapped_base_class_ignores_it
+  isExternal: false
+  name: NotMapped_on_new_property_with_same_name_as_in_unmapped_base_class_ignores_it
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_new_property_with_same_name_as_in_unmapped_base_class_ignores_it
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMapped_on_new_property_with_same_name_as_in_unmapped_base_class_ignores_it
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_new_property_with_same_name_as_in_unmapped_base_class_ignores_it
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMapped_on_new_property_with_same_name_as_in_unmapped_base_class_ignores_it
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.StringLength_with_value_takes_presedence_over_MaxLength*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.StringLength_with_value_takes_presedence_over_MaxLength
+  isExternal: false
+  name: StringLength_with_value_takes_presedence_over_MaxLength
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.StringLength_with_value_takes_presedence_over_MaxLength
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.StringLength_with_value_takes_presedence_over_MaxLength
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).StringLength_with_value_takes_presedence_over_MaxLength
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).StringLength_with_value_takes_presedence_over_MaxLength
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.MaxLength_with_length_takes_precedence_over_StringLength*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.MaxLength_with_length_takes_precedence_over_StringLength
+  isExternal: false
+  name: MaxLength_with_length_takes_precedence_over_StringLength
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.MaxLength_with_length_takes_precedence_over_StringLength
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.MaxLength_with_length_takes_precedence_over_StringLength
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).MaxLength_with_length_takes_precedence_over_StringLength
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).MaxLength_with_length_takes_precedence_over_StringLength
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Default_length_for_key_string_column*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Default_length_for_key_string_column
+  isExternal: false
+  name: Default_length_for_key_string_column
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Default_length_for_key_string_column
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Default_length_for_key_string_column
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Default_length_for_key_string_column
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Default_length_for_key_string_column
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_and_column_work_together*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_and_column_work_together
+  isExternal: false
+  name: Key_and_column_work_together
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Key_and_column_work_together
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Key_and_column_work_together
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_and_column_work_together
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Key_and_column_work_together
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_and_MaxLength_64_produce_nvarchar_64*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_and_MaxLength_64_produce_nvarchar_64
+  isExternal: false
+  name: Key_and_MaxLength_64_produce_nvarchar_64
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Key_and_MaxLength_64_produce_nvarchar_64
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Key_and_MaxLength_64_produce_nvarchar_64
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_and_MaxLength_64_produce_nvarchar_64
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Key_and_MaxLength_64_produce_nvarchar_64
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_from_base_type_is_recognized*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_from_base_type_is_recognized
+  isExternal: false
+  name: Key_from_base_type_is_recognized
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Key_from_base_type_is_recognized
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Key_from_base_type_is_recognized
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_from_base_type_is_recognized
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Key_from_base_type_is_recognized
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_from_base_type_is_recognized_if_base_discovered_first*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_from_base_type_is_recognized_if_base_discovered_first
+  isExternal: false
+  name: Key_from_base_type_is_recognized_if_base_discovered_first
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Key_from_base_type_is_recognized_if_base_discovered_first
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Key_from_base_type_is_recognized_if_base_discovered_first
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_from_base_type_is_recognized_if_base_discovered_first
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Key_from_base_type_is_recognized_if_base_discovered_first
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_from_base_type_is_recognized_if_discovered_through_relationship*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_from_base_type_is_recognized_if_discovered_through_relationship
+  isExternal: false
+  name: Key_from_base_type_is_recognized_if_discovered_through_relationship
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Key_from_base_type_is_recognized_if_discovered_through_relationship
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Key_from_base_type_is_recognized_if_discovered_through_relationship
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_from_base_type_is_recognized_if_discovered_through_relationship
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Key_from_base_type_is_recognized_if_discovered_through_relationship
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_on_nav_prop_is_ignored*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_on_nav_prop_is_ignored
+  isExternal: false
+  name: Key_on_nav_prop_is_ignored
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Key_on_nav_prop_is_ignored
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Key_on_nav_prop_is_ignored
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_on_nav_prop_is_ignored
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Key_on_nav_prop_is_ignored
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_property_is_not_used_for_FK_when_set_by_annotation*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_property_is_not_used_for_FK_when_set_by_annotation
+  isExternal: false
+  name: Key_property_is_not_used_for_FK_when_set_by_annotation
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Key_property_is_not_used_for_FK_when_set_by_annotation
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Key_property_is_not_used_for_FK_when_set_by_annotation
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_property_is_not_used_for_FK_when_set_by_annotation
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Key_property_is_not_used_for_FK_when_set_by_annotation
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedOption_configures_the_property_correctly*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedOption_configures_the_property_correctly
+  isExternal: false
+  name: DatabaseGeneratedOption_configures_the_property_correctly
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.DatabaseGeneratedOption_configures_the_property_correctly
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.DatabaseGeneratedOption_configures_the_property_correctly
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).DatabaseGeneratedOption_configures_the_property_correctly
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).DatabaseGeneratedOption_configures_the_property_correctly
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Timestamp_takes_precedence_over_MaxLength*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Timestamp_takes_precedence_over_MaxLength
+  isExternal: false
+  name: Timestamp_takes_precedence_over_MaxLength
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Timestamp_takes_precedence_over_MaxLength
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Timestamp_takes_precedence_over_MaxLength
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Timestamp_takes_precedence_over_MaxLength
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Timestamp_takes_precedence_over_MaxLength
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Timestamp_takes_precedence_over_MaxLength_with_value*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Timestamp_takes_precedence_over_MaxLength_with_value
+  isExternal: false
+  name: Timestamp_takes_precedence_over_MaxLength_with_value
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Timestamp_takes_precedence_over_MaxLength_with_value
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Timestamp_takes_precedence_over_MaxLength_with_value
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Timestamp_takes_precedence_over_MaxLength_with_value
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Timestamp_takes_precedence_over_MaxLength_with_value
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Annotation_in_derived_class_when_base_class_processed_after_derived_class*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Annotation_in_derived_class_when_base_class_processed_after_derived_class
+  isExternal: false
+  name: Annotation_in_derived_class_when_base_class_processed_after_derived_class
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Annotation_in_derived_class_when_base_class_processed_after_derived_class
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Annotation_in_derived_class_when_base_class_processed_after_derived_class
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Annotation_in_derived_class_when_base_class_processed_after_derived_class
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Annotation_in_derived_class_when_base_class_processed_after_derived_class
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_and_ForeignKey_to_Required*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_and_ForeignKey_to_Required
+  isExternal: false
+  name: Required_and_ForeignKey_to_Required
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Required_and_ForeignKey_to_Required
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Required_and_ForeignKey_to_Required
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Required_and_ForeignKey_to_Required
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Required_and_ForeignKey_to_Required
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_to_Required_and_ForeignKey*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_to_Required_and_ForeignKey
+  isExternal: false
+  name: Required_to_Required_and_ForeignKey
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Required_to_Required_and_ForeignKey
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Required_to_Required_and_ForeignKey
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Required_to_Required_and_ForeignKey
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Required_to_Required_and_ForeignKey
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_and_ForeignKey_to_Required_and_ForeignKey*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_and_ForeignKey_to_Required_and_ForeignKey
+  isExternal: false
+  name: Required_and_ForeignKey_to_Required_and_ForeignKey
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Required_and_ForeignKey_to_Required_and_ForeignKey
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Required_and_ForeignKey_to_Required_and_ForeignKey
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Required_and_ForeignKey_to_Required_and_ForeignKey
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Required_and_ForeignKey_to_Required_and_ForeignKey
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_and_ForeignKey_to_Required_and_ForeignKey_can_be_overriden*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_and_ForeignKey_to_Required_and_ForeignKey_can_be_overriden
+  isExternal: false
+  name: Required_and_ForeignKey_to_Required_and_ForeignKey_can_be_overriden
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Required_and_ForeignKey_to_Required_and_ForeignKey_can_be_overriden
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Required_and_ForeignKey_to_Required_and_ForeignKey_can_be_overriden
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Required_and_ForeignKey_to_Required_and_ForeignKey_can_be_overriden
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Required_and_ForeignKey_to_Required_and_ForeignKey_can_be_overriden
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKey_to_nothing*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKey_to_nothing
+  isExternal: false
+  name: ForeignKey_to_nothing
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.ForeignKey_to_nothing
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.ForeignKey_to_nothing
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKey_to_nothing
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKey_to_nothing
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_and_ForeignKey_to_nothing*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Required_and_ForeignKey_to_nothing
+  isExternal: false
+  name: Required_and_ForeignKey_to_nothing
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Required_and_ForeignKey_to_nothing
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Required_and_ForeignKey_to_nothing
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Required_and_ForeignKey_to_nothing
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Required_and_ForeignKey_to_nothing
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Nothing_to_ForeignKey*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Nothing_to_ForeignKey
+  isExternal: false
+  name: Nothing_to_ForeignKey
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Nothing_to_ForeignKey
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Nothing_to_ForeignKey
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Nothing_to_ForeignKey
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Nothing_to_ForeignKey
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Nothing_to_Required_and_ForeignKey*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Nothing_to_Required_and_ForeignKey
+  isExternal: false
+  name: Nothing_to_Required_and_ForeignKey
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Nothing_to_Required_and_ForeignKey
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Nothing_to_Required_and_ForeignKey
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Nothing_to_Required_and_ForeignKey
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Nothing_to_Required_and_ForeignKey
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKey_to_ForeignKey*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKey_to_ForeignKey
+  isExternal: false
+  name: ForeignKey_to_ForeignKey
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.ForeignKey_to_ForeignKey
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.ForeignKey_to_ForeignKey
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKey_to_ForeignKey
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKey_to_ForeignKey
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKey_to_ForeignKey_same_name*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKey_to_ForeignKey_same_name
+  isExternal: false
+  name: ForeignKey_to_ForeignKey_same_name
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.ForeignKey_to_ForeignKey_same_name
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.ForeignKey_to_ForeignKey_same_name
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKey_to_ForeignKey_same_name
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKey_to_ForeignKey_same_name
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKey_to_ForeignKey_same_name_one_shadow*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKey_to_ForeignKey_same_name_one_shadow
+  isExternal: false
+  name: ForeignKey_to_ForeignKey_same_name_one_shadow
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.ForeignKey_to_ForeignKey_same_name_one_shadow
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.ForeignKey_to_ForeignKey_same_name_one_shadow
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKey_to_ForeignKey_same_name_one_shadow
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKey_to_ForeignKey_same_name_one_shadow
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Shared_ForeignKey_to_different_principals*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Shared_ForeignKey_to_different_principals
+  isExternal: false
+  name: Shared_ForeignKey_to_different_principals
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Shared_ForeignKey_to_different_principals
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Shared_ForeignKey_to_different_principals
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Shared_ForeignKey_to_different_principals
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Shared_ForeignKey_to_different_principals
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.TableNameAttribute_affects_table_name_in_TPH*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.TableNameAttribute_affects_table_name_in_TPH
+  isExternal: false
+  name: TableNameAttribute_affects_table_name_in_TPH
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.TableNameAttribute_affects_table_name_in_TPH
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.TableNameAttribute_affects_table_name_in_TPH
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).TableNameAttribute_affects_table_name_in_TPH
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).TableNameAttribute_affects_table_name_in_TPH
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ConcurrencyCheckAttribute_throws_if_value_in_database_changed*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ConcurrencyCheckAttribute_throws_if_value_in_database_changed
+  isExternal: false
+  name: ConcurrencyCheckAttribute_throws_if_value_in_database_changed
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.ConcurrencyCheckAttribute_throws_if_value_in_database_changed
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.ConcurrencyCheckAttribute_throws_if_value_in_database_changed
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ConcurrencyCheckAttribute_throws_if_value_in_database_changed
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).ConcurrencyCheckAttribute_throws_if_value_in_database_changed
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
+  isExternal: false
+  name: DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  isExternal: false
+  name: MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_ignores_entityType*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_ignores_entityType
+  isExternal: false
+  name: NotMappedAttribute_ignores_entityType
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMappedAttribute_ignores_entityType
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMappedAttribute_ignores_entityType
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_ignores_entityType
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_ignores_entityType
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_ignores_navigation*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_ignores_navigation
+  isExternal: false
+  name: NotMappedAttribute_ignores_navigation
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMappedAttribute_ignores_navigation
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMappedAttribute_ignores_navigation
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_ignores_navigation
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_ignores_navigation
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_ignores_property*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_ignores_property
+  isExternal: false
+  name: NotMappedAttribute_ignores_property
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMappedAttribute_ignores_property
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMappedAttribute_ignores_property
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_ignores_property
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_ignores_property
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_ignores_explicit_interface_implementation_property*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_ignores_explicit_interface_implementation_property
+  isExternal: false
+  name: NotMappedAttribute_ignores_explicit_interface_implementation_property
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMappedAttribute_ignores_explicit_interface_implementation_property
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMappedAttribute_ignores_explicit_interface_implementation_property
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_ignores_explicit_interface_implementation_property
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_ignores_explicit_interface_implementation_property
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_removes_ambiguity_in_relationship_building*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_removes_ambiguity_in_relationship_building
+  isExternal: false
+  name: NotMappedAttribute_removes_ambiguity_in_relationship_building
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMappedAttribute_removes_ambiguity_in_relationship_building
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMappedAttribute_removes_ambiguity_in_relationship_building
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_removes_ambiguity_in_relationship_building
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_removes_ambiguity_in_relationship_building
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_removes_ambiguity_in_relationship_building_with_base*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.NotMappedAttribute_removes_ambiguity_in_relationship_building_with_base
+  isExternal: false
+  name: NotMappedAttribute_removes_ambiguity_in_relationship_building_with_base
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.NotMappedAttribute_removes_ambiguity_in_relationship_building_with_base
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.NotMappedAttribute_removes_ambiguity_in_relationship_building_with_base
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_removes_ambiguity_in_relationship_building_with_base
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).NotMappedAttribute_removes_ambiguity_in_relationship_building_with_base
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_removes_ambiguity*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_removes_ambiguity
+  isExternal: false
+  name: InversePropertyAttribute_removes_ambiguity
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.InversePropertyAttribute_removes_ambiguity
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.InversePropertyAttribute_removes_ambiguity
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_removes_ambiguity
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_removes_ambiguity
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_removes_ambiguity_with_base_type*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_removes_ambiguity_with_base_type
+  isExternal: false
+  name: InversePropertyAttribute_removes_ambiguity_with_base_type
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.InversePropertyAttribute_removes_ambiguity_with_base_type
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.InversePropertyAttribute_removes_ambiguity_with_base_type
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_removes_ambiguity_with_base_type
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_removes_ambiguity_with_base_type
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_removes_ambiguity_with_base_type_ignored*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_removes_ambiguity_with_base_type_ignored
+  isExternal: false
+  name: InversePropertyAttribute_removes_ambiguity_with_base_type_ignored
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.InversePropertyAttribute_removes_ambiguity_with_base_type_ignored
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.InversePropertyAttribute_removes_ambiguity_with_base_type_ignored
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_removes_ambiguity_with_base_type_ignored
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_removes_ambiguity_with_base_type_ignored
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_from_ignored_base_causes_ambiguity*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_from_ignored_base_causes_ambiguity
+  isExternal: false
+  name: InversePropertyAttribute_from_ignored_base_causes_ambiguity
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.InversePropertyAttribute_from_ignored_base_causes_ambiguity
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.InversePropertyAttribute_from_ignored_base_causes_ambiguity
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_from_ignored_base_causes_ambiguity
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_from_ignored_base_causes_ambiguity
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_from_ignored_base_can_be_ignored_to_remove_ambiguity*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.InversePropertyAttribute_from_ignored_base_can_be_ignored_to_remove_ambiguity
+  isExternal: false
+  name: InversePropertyAttribute_from_ignored_base_can_be_ignored_to_remove_ambiguity
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.InversePropertyAttribute_from_ignored_base_can_be_ignored_to_remove_ambiguity
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.InversePropertyAttribute_from_ignored_base_can_be_ignored_to_remove_ambiguity
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_from_ignored_base_can_be_ignored_to_remove_ambiguity
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).InversePropertyAttribute_from_ignored_base_can_be_ignored_to_remove_ambiguity
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_creates_two_relationships_if_applied_on_property_on_both_side*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_creates_two_relationships_if_applied_on_property_on_both_side
+  isExternal: false
+  name: ForeignKeyAttribute_creates_two_relationships_if_applied_on_property_on_both_side
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.ForeignKeyAttribute_creates_two_relationships_if_applied_on_property_on_both_side
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.ForeignKeyAttribute_creates_two_relationships_if_applied_on_property_on_both_side
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_creates_two_relationships_if_applied_on_property_on_both_side
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_creates_two_relationships_if_applied_on_property_on_both_side
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigations_on_both_side_and_values_do_not_match*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigations_on_both_side_and_values_do_not_match
+  isExternal: false
+  name: ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigations_on_both_side_and_values_do_not_match
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigations_on_both_side_and_values_do_not_match
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigations_on_both_side_and_values_do_not_match
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigations_on_both_side_and_values_do_not_match
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigations_on_both_side_and_values_do_not_match
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigation_and_property_on_different_side_and_values_do_not_match*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigation_and_property_on_different_side_and_values_do_not_match
+  isExternal: false
+  name: ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigation_and_property_on_different_side_and_values_do_not_match
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigation_and_property_on_different_side_and_values_do_not_match
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigation_and_property_on_different_side_and_values_do_not_match
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigation_and_property_on_different_side_and_values_do_not_match
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_creates_two_relationships_if_applied_on_navigation_and_property_on_different_side_and_values_do_not_match
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_throws_if_applied_on_property_on_both_side_but_navigations_are_connected_by_inverse_property*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_throws_if_applied_on_property_on_both_side_but_navigations_are_connected_by_inverse_property
+  isExternal: false
+  name: ForeignKeyAttribute_throws_if_applied_on_property_on_both_side_but_navigations_are_connected_by_inverse_property
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.ForeignKeyAttribute_throws_if_applied_on_property_on_both_side_but_navigations_are_connected_by_inverse_property
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.ForeignKeyAttribute_throws_if_applied_on_property_on_both_side_but_navigations_are_connected_by_inverse_property
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_throws_if_applied_on_property_on_both_side_but_navigations_are_connected_by_inverse_property
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_throws_if_applied_on_property_on_both_side_but_navigations_are_connected_by_inverse_property
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_throws_if_applied_on_both_navigations_connected_by_inverse_property_but_values_do_not_match*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ForeignKeyAttribute_throws_if_applied_on_both_navigations_connected_by_inverse_property_but_values_do_not_match
+  isExternal: false
+  name: ForeignKeyAttribute_throws_if_applied_on_both_navigations_connected_by_inverse_property_but_values_do_not_match
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.ForeignKeyAttribute_throws_if_applied_on_both_navigations_connected_by_inverse_property_but_values_do_not_match
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.ForeignKeyAttribute_throws_if_applied_on_both_navigations_connected_by_inverse_property_but_values_do_not_match
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_throws_if_applied_on_both_navigations_connected_by_inverse_property_but_values_do_not_match
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).ForeignKeyAttribute_throws_if_applied_on_both_navigations_connected_by_inverse_property_but_values_do_not_match
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.RequiredAttribute_for_navigation_throws_while_inserting_null_value*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.RequiredAttribute_for_navigation_throws_while_inserting_null_value
+  isExternal: false
+  name: RequiredAttribute_for_navigation_throws_while_inserting_null_value
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.RequiredAttribute_for_navigation_throws_while_inserting_null_value
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.RequiredAttribute_for_navigation_throws_while_inserting_null_value
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).RequiredAttribute_for_navigation_throws_while_inserting_null_value
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).RequiredAttribute_for_navigation_throws_while_inserting_null_value
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.RequiredAttribute_does_nothing_when_specified_on_nav_to_dependent_per_convention*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.RequiredAttribute_does_nothing_when_specified_on_nav_to_dependent_per_convention
+  isExternal: false
+  name: RequiredAttribute_does_nothing_when_specified_on_nav_to_dependent_per_convention
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.RequiredAttribute_does_nothing_when_specified_on_nav_to_dependent_per_convention
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.RequiredAttribute_does_nothing_when_specified_on_nav_to_dependent_per_convention
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).RequiredAttribute_does_nothing_when_specified_on_nav_to_dependent_per_convention
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).RequiredAttribute_does_nothing_when_specified_on_nav_to_dependent_per_convention
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.RequiredAttribute_for_property_throws_while_inserting_null_value*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.RequiredAttribute_for_property_throws_while_inserting_null_value
+  isExternal: false
+  name: RequiredAttribute_for_property_throws_while_inserting_null_value
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.RequiredAttribute_for_property_throws_while_inserting_null_value
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.RequiredAttribute_for_property_throws_while_inserting_null_value
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).RequiredAttribute_for_property_throws_while_inserting_null_value
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).RequiredAttribute_for_property_throws_while_inserting_null_value
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.StringLengthAttribute_throws_while_inserting_value_longer_than_max_length*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  isExternal: false
+  name: StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.TimestampAttribute_throws_if_value_in_database_changed*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.TimestampAttribute_throws_if_value_in_database_changed
+  isExternal: false
+  name: TimestampAttribute_throws_if_value_in_database_changed
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.TimestampAttribute_throws_if_value_in_database_changed
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.TimestampAttribute_throws_if_value_in_database_changed
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).TimestampAttribute_throws_if_value_in_database_changed
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).TimestampAttribute_throws_if_value_in_database_changed

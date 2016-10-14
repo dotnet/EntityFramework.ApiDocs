@@ -5,7 +5,7 @@ items:
   id: MigrationsOperations
   parent: Microsoft.EntityFrameworkCore.Design
   children:
-  - Microsoft.EntityFrameworkCore.Design.MigrationsOperations.#ctor(Microsoft.Extensions.Logging.ILoggerProvider,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String,System.String,System.String)
+  - Microsoft.EntityFrameworkCore.Design.MigrationsOperations.#ctor(Microsoft.EntityFrameworkCore.Design.IOperationReporter,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String,System.String,System.String)
   - Microsoft.EntityFrameworkCore.Design.MigrationsOperations.AddMigration(System.String,System.String,System.String)
   - Microsoft.EntityFrameworkCore.Design.MigrationsOperations.GetMigrations(System.String)
   - Microsoft.EntityFrameworkCore.Design.MigrationsOperations.RemoveMigration(System.String,System.Boolean)
@@ -25,7 +25,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: MigrationsOperations
     path: src/Microsoft.EntityFrameworkCore.Design/Design/MigrationsOperations.cs
-    startLine: 21
+    startLine: 20
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design
@@ -48,16 +48,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.#ctor(Microsoft.Extensions.Logging.ILoggerProvider,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String,System.String,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Design.MigrationsOperations.#ctor(Microsoft.Extensions.Logging.ILoggerProvider,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String,System.String,System.String)
-  id: '#ctor(Microsoft.Extensions.Logging.ILoggerProvider,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String,System.String,System.String)'
+- uid: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.#ctor(Microsoft.EntityFrameworkCore.Design.IOperationReporter,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String,System.String,System.String)
+  commentId: M:Microsoft.EntityFrameworkCore.Design.MigrationsOperations.#ctor(Microsoft.EntityFrameworkCore.Design.IOperationReporter,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String,System.String,System.String)
+  id: '#ctor(Microsoft.EntityFrameworkCore.Design.IOperationReporter,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String,System.String,System.String)'
   parent: Microsoft.EntityFrameworkCore.Design.MigrationsOperations
   langs:
   - csharp
   - vb
-  name: MigrationsOperations(ILoggerProvider, Assembly, Assembly, String, String, String, String)
-  nameWithType: MigrationsOperations.MigrationsOperations(ILoggerProvider, Assembly, Assembly, String, String, String, String)
-  fullName: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.MigrationsOperations(Microsoft.Extensions.Logging.ILoggerProvider, System.Reflection.Assembly, System.Reflection.Assembly, System.String, System.String, System.String, System.String)
+  name: MigrationsOperations(IOperationReporter, Assembly, Assembly, String, String, String, String)
+  nameWithType: MigrationsOperations.MigrationsOperations(IOperationReporter, Assembly, Assembly, String, String, String, String)
+  fullName: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.MigrationsOperations(Microsoft.EntityFrameworkCore.Design.IOperationReporter, System.Reflection.Assembly, System.Reflection.Assembly, System.String, System.String, System.String, System.String)
   type: Constructor
   source:
     remote:
@@ -66,16 +66,16 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore.Design/Design/MigrationsOperations.cs
-    startLine: 30
+    startLine: 29
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design
   syntax:
-    content: public MigrationsOperations(ILoggerProvider loggerProvider, Assembly assembly, Assembly startupAssembly, string environment, string projectDir, string contentRootPath, string rootNamespace)
-    content.vb: Public Sub New(loggerProvider As ILoggerProvider, assembly As Assembly, startupAssembly As Assembly, environment As String, projectDir As String, contentRootPath As String, rootNamespace As String)
+    content: public MigrationsOperations(IOperationReporter reporter, Assembly assembly, Assembly startupAssembly, string environment, string projectDir, string contentRootPath, string rootNamespace)
+    content.vb: Public Sub New(reporter As IOperationReporter, assembly As Assembly, startupAssembly As Assembly, environment As String, projectDir As String, contentRootPath As String, rootNamespace As String)
     parameters:
-    - id: loggerProvider
-      type: Microsoft.Extensions.Logging.ILoggerProvider
+    - id: reporter
+      type: Microsoft.EntityFrameworkCore.Design.IOperationReporter
     - id: assembly
       type: System.Reflection.Assembly
     - id: startupAssembly
@@ -88,6 +88,7 @@ items:
       type: System.String
     - id: rootNamespace
       type: System.String
+  overload: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -110,7 +111,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: AddMigration
     path: src/Microsoft.EntityFrameworkCore.Design/Design/MigrationsOperations.cs
-    startLine: 64
+    startLine: 60
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design
@@ -126,6 +127,7 @@ items:
       type: System.String
     return:
       type: Microsoft.EntityFrameworkCore.Migrations.Design.MigrationFiles
+  overload: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.AddMigration*
   modifiers.csharp:
   - public
   - virtual
@@ -150,7 +152,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: GetMigrations
     path: src/Microsoft.EntityFrameworkCore.Design/Design/MigrationsOperations.cs
-    startLine: 104
+    startLine: 101
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design
@@ -162,6 +164,7 @@ items:
       type: System.String
     return:
       type: System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Design.MigrationInfo}
+  overload: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.GetMigrations*
   modifiers.csharp:
   - public
   - virtual
@@ -186,7 +189,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ScriptMigration
     path: src/Microsoft.EntityFrameworkCore.Design/Design/MigrationsOperations.cs
-    startLine: 120
+    startLine: 117
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design
@@ -204,6 +207,7 @@ items:
       type: System.String
     return:
       type: System.String
+  overload: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.ScriptMigration*
   modifiers.csharp:
   - public
   - virtual
@@ -228,7 +232,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: UpdateDatabase
     path: src/Microsoft.EntityFrameworkCore.Design/Design/MigrationsOperations.cs
-    startLine: 137
+    startLine: 134
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design
@@ -240,6 +244,7 @@ items:
       type: System.String
     - id: contextType
       type: System.String
+  overload: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.UpdateDatabase*
   modifiers.csharp:
   - public
   - virtual
@@ -264,7 +269,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: RemoveMigration
     path: src/Microsoft.EntityFrameworkCore.Design/Design/MigrationsOperations.cs
-    startLine: 154
+    startLine: 151
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design
@@ -278,6 +283,7 @@ items:
       type: System.Boolean
     return:
       type: Microsoft.EntityFrameworkCore.Migrations.Design.MigrationFiles
+  overload: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.RemoveMigration*
   modifiers.csharp:
   - public
   - virtual
@@ -583,13 +589,19 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.Extensions.Logging.ILoggerProvider
-  commentId: T:Microsoft.Extensions.Logging.ILoggerProvider
-  parent: Microsoft.Extensions.Logging
-  isExternal: true
-  name: ILoggerProvider
-  nameWithType: ILoggerProvider
-  fullName: Microsoft.Extensions.Logging.ILoggerProvider
+- uid: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.MigrationsOperations.#ctor
+  isExternal: false
+  name: MigrationsOperations
+  nameWithType: MigrationsOperations.MigrationsOperations
+  fullName: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.MigrationsOperations
+- uid: Microsoft.EntityFrameworkCore.Design.IOperationReporter
+  commentId: T:Microsoft.EntityFrameworkCore.Design.IOperationReporter
+  parent: Microsoft.EntityFrameworkCore.Design
+  isExternal: false
+  name: IOperationReporter
+  nameWithType: IOperationReporter
+  fullName: Microsoft.EntityFrameworkCore.Design.IOperationReporter
 - uid: System.Reflection.Assembly
   commentId: T:System.Reflection.Assembly
   parent: System.Reflection
@@ -604,18 +616,18 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: Microsoft.Extensions.Logging
-  commentId: N:Microsoft.Extensions.Logging
-  isExternal: false
-  name: Microsoft.Extensions.Logging
-  nameWithType: Microsoft.Extensions.Logging
-  fullName: Microsoft.Extensions.Logging
 - uid: System.Reflection
   commentId: N:System.Reflection
   isExternal: false
   name: System.Reflection
   nameWithType: System.Reflection
   fullName: System.Reflection
+- uid: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.AddMigration*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.MigrationsOperations.AddMigration
+  isExternal: false
+  name: AddMigration
+  nameWithType: MigrationsOperations.AddMigration
+  fullName: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.AddMigration
 - uid: Microsoft.EntityFrameworkCore.Migrations.Design.MigrationFiles
   commentId: T:Microsoft.EntityFrameworkCore.Migrations.Design.MigrationFiles
   parent: Microsoft.EntityFrameworkCore.Migrations.Design
@@ -629,6 +641,12 @@ references:
   name: Microsoft.EntityFrameworkCore.Migrations.Design
   nameWithType: Microsoft.EntityFrameworkCore.Migrations.Design
   fullName: Microsoft.EntityFrameworkCore.Migrations.Design
+- uid: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.GetMigrations*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.MigrationsOperations.GetMigrations
+  isExternal: false
+  name: GetMigrations
+  nameWithType: MigrationsOperations.GetMigrations
+  fullName: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.GetMigrations
 - uid: System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Design.MigrationInfo}
   commentId: T:System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Design.MigrationInfo}
   parent: System.Collections.Generic
@@ -716,6 +734,12 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+- uid: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.ScriptMigration*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.MigrationsOperations.ScriptMigration
+  isExternal: false
+  name: ScriptMigration
+  nameWithType: MigrationsOperations.ScriptMigration
+  fullName: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.ScriptMigration
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -723,3 +747,15 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.UpdateDatabase*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.MigrationsOperations.UpdateDatabase
+  isExternal: false
+  name: UpdateDatabase
+  nameWithType: MigrationsOperations.UpdateDatabase
+  fullName: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.UpdateDatabase
+- uid: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.RemoveMigration*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.MigrationsOperations.RemoveMigration
+  isExternal: false
+  name: RemoveMigration
+  nameWithType: MigrationsOperations.RemoveMigration
+  fullName: Microsoft.EntityFrameworkCore.Design.MigrationsOperations.RemoveMigration

@@ -33,7 +33,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Extension methods for <xref href=\"Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  summary: "\nExtension methods for <xref href=\"Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy\" data-throw-if-not-resolved=\"false\"></xref>\n"
   example: []
   syntax:
     content: public static class ExecutionStrategyExtensions
@@ -78,7 +78,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Executes the specified operation.\n"
+  summary: "\nExecutes the specified operation.\n"
   example: []
   syntax:
     content: public static void Execute(this IExecutionStrategy strategy, Action operation)
@@ -93,6 +93,7 @@ items:
     - id: operation
       type: System.Action
       description: A delegate representing an executable operation that doesn't return any results.
+  overload: Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute*
   modifiers.csharp:
   - public
   - static
@@ -122,7 +123,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Executes the specified operation and returns the result.\n"
+  summary: "\nExecutes the specified operation and returns the result.\n"
   example: []
   syntax:
     content: public static TResult Execute<TResult>(this IExecutionStrategy strategy, Func<TResult> operation)
@@ -136,13 +137,14 @@ items:
       description: The strategy that will be used for the execution.
     - id: operation
       type: System.Func{{TResult}}
-      description: "\n    A delegate representing an executable operation that returns the result of type <em>TResult</em>.\n"
+      description: "\nA delegate representing an executable operation that returns the result of type <em>TResult</em>.\n"
     typeParameters:
     - id: TResult
       description: The return type of <em>operation</em>.
     return:
       type: '{TResult}'
       description: The result from the operation.
+  overload: Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute*
   nameWithType.vb: ExecutionStrategyExtensions.Execute(Of TResult)(IExecutionStrategy, Func(Of TResult))
   modifiers.csharp:
   - public
@@ -175,7 +177,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Executes the specified operation.\n"
+  summary: "\nExecutes the specified operation.\n"
   example: []
   syntax:
     content: public static void Execute<TState>(this IExecutionStrategy strategy, Action<TState> operation, TState state)
@@ -196,6 +198,7 @@ items:
     typeParameters:
     - id: TState
       description: The type of the state.
+  overload: Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute*
   nameWithType.vb: ExecutionStrategyExtensions.Execute(Of TState)(IExecutionStrategy, Action(Of TState), TState)
   modifiers.csharp:
   - public
@@ -228,7 +231,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Executes the specified asynchronous operation.\n"
+  summary: "\nExecutes the specified asynchronous operation.\n"
   example: []
   syntax:
     content: public static Task ExecuteAsync(this IExecutionStrategy strategy, Func<Task> operation)
@@ -245,7 +248,8 @@ items:
       description: A function that returns a started task.
     return:
       type: System.Threading.Tasks.Task
-      description: "\n    A task that will run to completion if the original task completes successfully (either the\n    first time or after retrying transient failures). If the task fails with a non-transient error or\n    the retry limit is reached, the returned task will become faulted and the exception must be observed.\n"
+      description: "\nA task that will run to completion if the original task completes successfully (either the\nfirst time or after retrying transient failures). If the task fails with a non-transient error or\nthe retry limit is reached, the returned task will become faulted and the exception must be observed.\n"
+  overload: Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.ExecuteAsync*
   nameWithType.vb: ExecutionStrategyExtensions.ExecuteAsync(IExecutionStrategy, Func(Of Task))
   modifiers.csharp:
   - public
@@ -278,7 +282,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Executes the specified asynchronous operation.\n"
+  summary: "\nExecutes the specified asynchronous operation.\n"
   example: []
   syntax:
     content: public static Task ExecuteAsync(this IExecutionStrategy strategy, Func<CancellationToken, Task> operation, CancellationToken cancellationToken)
@@ -295,10 +299,11 @@ items:
       description: A function that returns a started task.
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "\n    A cancellation token used to cancel the retry operation, but not operations that are already in flight\n    or that already completed successfully.\n"
+      description: "\nA cancellation token used to cancel the retry operation, but not operations that are already in flight\nor that already completed successfully.\n"
     return:
       type: System.Threading.Tasks.Task
-      description: "\n    A task that will run to completion if the original task completes successfully (either the\n    first time or after retrying transient failures). If the task fails with a non-transient error or\n    the retry limit is reached, the returned task will become faulted and the exception must be observed.\n"
+      description: "\nA task that will run to completion if the original task completes successfully (either the\nfirst time or after retrying transient failures). If the task fails with a non-transient error or\nthe retry limit is reached, the returned task will become faulted and the exception must be observed.\n"
+  overload: Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.ExecuteAsync*
   nameWithType.vb: ExecutionStrategyExtensions.ExecuteAsync(IExecutionStrategy, Func(Of CancellationToken, Task), CancellationToken)
   modifiers.csharp:
   - public
@@ -331,7 +336,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Executes the specified asynchronous operation and returns the result.\n"
+  summary: "\nExecutes the specified asynchronous operation and returns the result.\n"
   example: []
   syntax:
     content: public static Task<TResult> ExecuteAsync<TResult>(this IExecutionStrategy strategy, Func<Task<TResult>> operation)
@@ -345,13 +350,14 @@ items:
       description: The strategy that will be used for the execution.
     - id: operation
       type: System.Func{System.Threading.Tasks.Task{{TResult}}}
-      description: "\n    A function that returns a started task of type <em>TResult</em>.\n"
+      description: "\nA function that returns a started task of type <em>TResult</em>.\n"
     typeParameters:
     - id: TResult
-      description: "\n    The result type of the <xref href=\"System.Threading.Tasks.Task%601\" data-throw-if-not-resolved=\"false\"></xref> returned by <em>operation</em>.\n"
+      description: "\nThe result type of the <xref href=\"System.Threading.Tasks.Task%601\" data-throw-if-not-resolved=\"false\"></xref> returned by <em>operation</em>.\n"
     return:
       type: System.Threading.Tasks.Task{{TResult}}
-      description: "\n    A task that will run to completion if the original task completes successfully (either the\n    first time or after retrying transient failures). If the task fails with a non-transient error or\n    the retry limit is reached, the returned task will become faulted and the exception must be observed.\n"
+      description: "\nA task that will run to completion if the original task completes successfully (either the\nfirst time or after retrying transient failures). If the task fails with a non-transient error or\nthe retry limit is reached, the returned task will become faulted and the exception must be observed.\n"
+  overload: Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.ExecuteAsync*
   nameWithType.vb: ExecutionStrategyExtensions.ExecuteAsync(Of TResult)(IExecutionStrategy, Func(Of Task(Of TResult)))
   modifiers.csharp:
   - public
@@ -384,7 +390,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Executes the specified asynchronous operation and returns the result.\n"
+  summary: "\nExecutes the specified asynchronous operation and returns the result.\n"
   example: []
   syntax:
     content: public static Task<TResult> ExecuteAsync<TResult>(this IExecutionStrategy strategy, Func<CancellationToken, Task<TResult>> operation, CancellationToken cancellationToken)
@@ -398,16 +404,17 @@ items:
       description: The strategy that will be used for the execution.
     - id: operation
       type: System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{{TResult}}}
-      description: "\n    A function that returns a started task of type <em>TResult</em>.\n"
+      description: "\nA function that returns a started task of type <em>TResult</em>.\n"
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "\n    A cancellation token used to cancel the retry operation, but not operations that are already in flight\n    or that already completed successfully.\n"
+      description: "\nA cancellation token used to cancel the retry operation, but not operations that are already in flight\nor that already completed successfully.\n"
     typeParameters:
     - id: TResult
-      description: "\n    The result type of the <xref href=\"System.Threading.Tasks.Task%601\" data-throw-if-not-resolved=\"false\"></xref> returned by <em>operation</em>.\n"
+      description: "\nThe result type of the <xref href=\"System.Threading.Tasks.Task%601\" data-throw-if-not-resolved=\"false\"></xref> returned by <em>operation</em>.\n"
     return:
       type: System.Threading.Tasks.Task{{TResult}}
-      description: "\n    A task that will run to completion if the original task completes successfully (either the\n    first time or after retrying transient failures). If the task fails with a non-transient error or\n    the retry limit is reached, the returned task will become faulted and the exception must be observed.\n"
+      description: "\nA task that will run to completion if the original task completes successfully (either the\nfirst time or after retrying transient failures). If the task fails with a non-transient error or\nthe retry limit is reached, the returned task will become faulted and the exception must be observed.\n"
+  overload: Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.ExecuteAsync*
   nameWithType.vb: ExecutionStrategyExtensions.ExecuteAsync(Of TResult)(IExecutionStrategy, Func(Of CancellationToken, Task(Of TResult)), CancellationToken)
   modifiers.csharp:
   - public
@@ -440,7 +447,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Executes the specified asynchronous operation.\n"
+  summary: "\nExecutes the specified asynchronous operation.\n"
   example: []
   syntax:
     content: public static Task ExecuteAsync<TState>(this IExecutionStrategy strategy, Func<TState, Task> operation, TState state)
@@ -463,7 +470,8 @@ items:
       description: The type of the state.
     return:
       type: System.Threading.Tasks.Task
-      description: "\n    A task that will run to completion if the original task completes successfully (either the\n    first time or after retrying transient failures). If the task fails with a non-transient error or\n    the retry limit is reached, the returned task will become faulted and the exception must be observed.\n"
+      description: "\nA task that will run to completion if the original task completes successfully (either the\nfirst time or after retrying transient failures). If the task fails with a non-transient error or\nthe retry limit is reached, the returned task will become faulted and the exception must be observed.\n"
+  overload: Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.ExecuteAsync*
   nameWithType.vb: ExecutionStrategyExtensions.ExecuteAsync(Of TState)(IExecutionStrategy, Func(Of TState, Task), TState)
   modifiers.csharp:
   - public
@@ -496,7 +504,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Executes the specified asynchronous operation.\n"
+  summary: "\nExecutes the specified asynchronous operation.\n"
   example: []
   syntax:
     content: public static Task ExecuteAsync<TState>(this IExecutionStrategy strategy, Func<TState, CancellationToken, Task> operation, TState state, CancellationToken cancellationToken)
@@ -516,13 +524,14 @@ items:
       description: The state that will be passed to the operation.
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "\n    A cancellation token used to cancel the retry operation, but not operations that are already in flight\n    or that already completed successfully.\n"
+      description: "\nA cancellation token used to cancel the retry operation, but not operations that are already in flight\nor that already completed successfully.\n"
     typeParameters:
     - id: TState
       description: The type of the state.
     return:
       type: System.Threading.Tasks.Task
-      description: "\n    A task that will run to completion if the original task completes successfully (either the\n    first time or after retrying transient failures). If the task fails with a non-transient error or\n    the retry limit is reached, the returned task will become faulted and the exception must be observed.\n"
+      description: "\nA task that will run to completion if the original task completes successfully (either the\nfirst time or after retrying transient failures). If the task fails with a non-transient error or\nthe retry limit is reached, the returned task will become faulted and the exception must be observed.\n"
+  overload: Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.ExecuteAsync*
   nameWithType.vb: ExecutionStrategyExtensions.ExecuteAsync(Of TState)(IExecutionStrategy, Func(Of TState, CancellationToken, Task), TState, CancellationToken)
   modifiers.csharp:
   - public
@@ -555,7 +564,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Executes the specified asynchronous operation and returns the result.\n"
+  summary: "\nExecutes the specified asynchronous operation and returns the result.\n"
   example: []
   syntax:
     content: public static Task<TResult> ExecuteAsync<TState, TResult>(this IExecutionStrategy strategy, Func<TState, Task<TResult>> operation, TState state)
@@ -569,7 +578,7 @@ items:
       description: The strategy that will be used for the execution.
     - id: operation
       type: System.Func{{TState},System.Threading.Tasks.Task{{TResult}}}
-      description: "\n    A function that returns a started task of type <em>TResult</em>.\n"
+      description: "\nA function that returns a started task of type <em>TResult</em>.\n"
     - id: state
       type: '{TState}'
       description: The state that will be passed to the operation.
@@ -577,10 +586,11 @@ items:
     - id: TState
       description: The type of the state.
     - id: TResult
-      description: "\n    The result type of the <xref href=\"System.Threading.Tasks.Task%601\" data-throw-if-not-resolved=\"false\"></xref> returned by <em>operation</em>.\n"
+      description: "\nThe result type of the <xref href=\"System.Threading.Tasks.Task%601\" data-throw-if-not-resolved=\"false\"></xref> returned by <em>operation</em>.\n"
     return:
       type: System.Threading.Tasks.Task{{TResult}}
-      description: "\n    A task that will run to completion if the original task completes successfully (either the\n    first time or after retrying transient failures). If the task fails with a non-transient error or\n    the retry limit is reached, the returned task will become faulted and the exception must be observed.\n"
+      description: "\nA task that will run to completion if the original task completes successfully (either the\nfirst time or after retrying transient failures). If the task fails with a non-transient error or\nthe retry limit is reached, the returned task will become faulted and the exception must be observed.\n"
+  overload: Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.ExecuteAsync*
   nameWithType.vb: ExecutionStrategyExtensions.ExecuteAsync(Of TState, TResult)(IExecutionStrategy, Func(Of TState, Task(Of TResult)), TState)
   modifiers.csharp:
   - public
@@ -902,6 +912,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute
+  isExternal: false
+  name: Execute
+  nameWithType: ExecutionStrategyExtensions.Execute
+  fullName: Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute
 - uid: System.Action
   commentId: T:System.Action
   parent: System
@@ -1089,6 +1105,12 @@ references:
   name: TState
   nameWithType: TState
   fullName: TState
+- uid: Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.ExecuteAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.ExecuteAsync
+  isExternal: false
+  name: ExecuteAsync
+  nameWithType: ExecutionStrategyExtensions.ExecuteAsync
+  fullName: Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.ExecuteAsync
 - uid: System.Func{System.Threading.Tasks.Task}
   commentId: T:System.Func{System.Threading.Tasks.Task}
   parent: System

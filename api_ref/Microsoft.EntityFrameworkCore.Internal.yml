@@ -38,6 +38,7 @@ items:
   - Microsoft.EntityFrameworkCore.Internal.InMemoryStrings
   - Microsoft.EntityFrameworkCore.Internal.InterceptingLogger`1
   - Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1
+  - Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
   - Microsoft.EntityFrameworkCore.Internal.LazyRef`1
   - Microsoft.EntityFrameworkCore.Internal.LoggingModelValidator
   - Microsoft.EntityFrameworkCore.Internal.ModelValidator
@@ -46,13 +47,17 @@ items:
   - Microsoft.EntityFrameworkCore.Internal.ProductInfo
   - Microsoft.EntityFrameworkCore.Internal.ReferenceEnumerableEqualityComparer`2
   - Microsoft.EntityFrameworkCore.Internal.ReferenceEqualityComparer
+  - Microsoft.EntityFrameworkCore.Internal.RelationalDesignLoggerExtensions
   - Microsoft.EntityFrameworkCore.Internal.RelationalDesignStrings
   - Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
   - Microsoft.EntityFrameworkCore.Internal.RelationalModelValidator
   - Microsoft.EntityFrameworkCore.Internal.RelationalStrings
   - Microsoft.EntityFrameworkCore.Internal.ServiceProviderCache
+  - Microsoft.EntityFrameworkCore.Internal.ServiceProviderExtensions
+  - Microsoft.EntityFrameworkCore.Internal.SqliteDesignLoggerExtensions
   - Microsoft.EntityFrameworkCore.Internal.SqliteDesignStrings
   - Microsoft.EntityFrameworkCore.Internal.SqliteStrings
+  - Microsoft.EntityFrameworkCore.Internal.SqlServerDesignLoggerExtensions
   - Microsoft.EntityFrameworkCore.Internal.SqlServerDesignStrings
   - Microsoft.EntityFrameworkCore.Internal.SqlServerStrings
   - Microsoft.EntityFrameworkCore.Internal.TypeExtensions
@@ -424,6 +429,13 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
+  commentId: T:Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
+  parent: Microsoft.EntityFrameworkCore.Internal
+  isExternal: false
+  name: IServiceInjectionSite
+  nameWithType: IServiceInjectionSite
+  fullName: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
 - uid: Microsoft.EntityFrameworkCore.Internal.LazyRef`1
   commentId: T:Microsoft.EntityFrameworkCore.Internal.LazyRef`1
   isExternal: false
@@ -530,6 +542,13 @@ references:
   name: NonCapturingLazyInitializer
   nameWithType: NonCapturingLazyInitializer
   fullName: Microsoft.EntityFrameworkCore.Internal.NonCapturingLazyInitializer
+- uid: Microsoft.EntityFrameworkCore.Internal.ServiceProviderExtensions
+  commentId: T:Microsoft.EntityFrameworkCore.Internal.ServiceProviderExtensions
+  parent: Microsoft.EntityFrameworkCore.Internal
+  isExternal: false
+  name: ServiceProviderExtensions
+  nameWithType: ServiceProviderExtensions
+  fullName: Microsoft.EntityFrameworkCore.Internal.ServiceProviderExtensions
 - uid: Microsoft.EntityFrameworkCore.Internal.ProductInfo
   commentId: T:Microsoft.EntityFrameworkCore.Internal.ProductInfo
   isExternal: false
@@ -618,12 +637,6 @@ references:
   name: CoreStrings
   nameWithType: CoreStrings
   fullName: Microsoft.EntityFrameworkCore.Internal.CoreStrings
-- uid: Microsoft.EntityFrameworkCore.Internal.InMemoryStrings
-  commentId: T:Microsoft.EntityFrameworkCore.Internal.InMemoryStrings
-  isExternal: false
-  name: InMemoryStrings
-  nameWithType: InMemoryStrings
-  fullName: Microsoft.EntityFrameworkCore.Internal.InMemoryStrings
 - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
   commentId: T:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
   parent: Microsoft.EntityFrameworkCore.Internal
@@ -643,36 +656,60 @@ references:
   name: RelationalStrings
   nameWithType: RelationalStrings
   fullName: Microsoft.EntityFrameworkCore.Internal.RelationalStrings
-- uid: Microsoft.EntityFrameworkCore.Internal.RelationalDesignStrings
-  commentId: T:Microsoft.EntityFrameworkCore.Internal.RelationalDesignStrings
-  isExternal: false
-  name: RelationalDesignStrings
-  nameWithType: RelationalDesignStrings
-  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalDesignStrings
-- uid: Microsoft.EntityFrameworkCore.Internal.SqliteStrings
-  commentId: T:Microsoft.EntityFrameworkCore.Internal.SqliteStrings
-  isExternal: false
-  name: SqliteStrings
-  nameWithType: SqliteStrings
-  fullName: Microsoft.EntityFrameworkCore.Internal.SqliteStrings
-- uid: Microsoft.EntityFrameworkCore.Internal.DesignStrings
-  commentId: T:Microsoft.EntityFrameworkCore.Internal.DesignStrings
-  isExternal: false
-  name: DesignStrings
-  nameWithType: DesignStrings
-  fullName: Microsoft.EntityFrameworkCore.Internal.DesignStrings
 - uid: Microsoft.EntityFrameworkCore.Internal.SqlServerStrings
   commentId: T:Microsoft.EntityFrameworkCore.Internal.SqlServerStrings
   isExternal: false
   name: SqlServerStrings
   nameWithType: SqlServerStrings
   fullName: Microsoft.EntityFrameworkCore.Internal.SqlServerStrings
+- uid: Microsoft.EntityFrameworkCore.Internal.RelationalDesignLoggerExtensions
+  commentId: T:Microsoft.EntityFrameworkCore.Internal.RelationalDesignLoggerExtensions
+  isExternal: false
+  name: RelationalDesignLoggerExtensions
+  nameWithType: RelationalDesignLoggerExtensions
+  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalDesignLoggerExtensions
+- uid: Microsoft.EntityFrameworkCore.Internal.RelationalDesignStrings
+  commentId: T:Microsoft.EntityFrameworkCore.Internal.RelationalDesignStrings
+  isExternal: false
+  name: RelationalDesignStrings
+  nameWithType: RelationalDesignStrings
+  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalDesignStrings
+- uid: Microsoft.EntityFrameworkCore.Internal.InMemoryStrings
+  commentId: T:Microsoft.EntityFrameworkCore.Internal.InMemoryStrings
+  isExternal: false
+  name: InMemoryStrings
+  nameWithType: InMemoryStrings
+  fullName: Microsoft.EntityFrameworkCore.Internal.InMemoryStrings
+- uid: Microsoft.EntityFrameworkCore.Internal.DesignStrings
+  commentId: T:Microsoft.EntityFrameworkCore.Internal.DesignStrings
+  isExternal: false
+  name: DesignStrings
+  nameWithType: DesignStrings
+  fullName: Microsoft.EntityFrameworkCore.Internal.DesignStrings
+- uid: Microsoft.EntityFrameworkCore.Internal.SqlServerDesignLoggerExtensions
+  commentId: T:Microsoft.EntityFrameworkCore.Internal.SqlServerDesignLoggerExtensions
+  isExternal: false
+  name: SqlServerDesignLoggerExtensions
+  nameWithType: SqlServerDesignLoggerExtensions
+  fullName: Microsoft.EntityFrameworkCore.Internal.SqlServerDesignLoggerExtensions
 - uid: Microsoft.EntityFrameworkCore.Internal.SqlServerDesignStrings
   commentId: T:Microsoft.EntityFrameworkCore.Internal.SqlServerDesignStrings
   isExternal: false
   name: SqlServerDesignStrings
   nameWithType: SqlServerDesignStrings
   fullName: Microsoft.EntityFrameworkCore.Internal.SqlServerDesignStrings
+- uid: Microsoft.EntityFrameworkCore.Internal.SqliteStrings
+  commentId: T:Microsoft.EntityFrameworkCore.Internal.SqliteStrings
+  isExternal: false
+  name: SqliteStrings
+  nameWithType: SqliteStrings
+  fullName: Microsoft.EntityFrameworkCore.Internal.SqliteStrings
+- uid: Microsoft.EntityFrameworkCore.Internal.SqliteDesignLoggerExtensions
+  commentId: T:Microsoft.EntityFrameworkCore.Internal.SqliteDesignLoggerExtensions
+  isExternal: false
+  name: SqliteDesignLoggerExtensions
+  nameWithType: SqliteDesignLoggerExtensions
+  fullName: Microsoft.EntityFrameworkCore.Internal.SqliteDesignLoggerExtensions
 - uid: Microsoft.EntityFrameworkCore.Internal.SqliteDesignStrings
   commentId: T:Microsoft.EntityFrameworkCore.Internal.SqliteDesignStrings
   isExternal: false

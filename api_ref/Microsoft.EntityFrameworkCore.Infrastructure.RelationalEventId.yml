@@ -6,15 +6,22 @@ items:
   parent: Microsoft.EntityFrameworkCore.Infrastructure
   children:
   - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.AmbientTransactionWarning
+  - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.ApplyingMigration
+  - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.ApplyingMigrationSql
   - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.BeginningTransaction
   - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.ClosingConnection
   - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.CommittingTransaction
   - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.CreatingDatabase
   - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.ExecutedCommand
+  - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.GeneratingMigrationDownScript
+  - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.GeneratingMigrationUpScript
+  - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.MigrateUsingConnection
   - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.OpeningConnection
   - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.PossibleIncorrectResultsUsingLikeOperator
   - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.PossibleUnintendedUseOfEqualsWarning
   - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.QueryClientEvaluationWarning
+  - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.RevertingMigration
+  - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.RevertingMigrationSql
   - Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.RollingbackTransaction
   langs:
   - csharp
@@ -34,7 +41,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Infrastructure
-  summary: "\n    Values that are used as the eventId when logging messages from a relational database provider via <xref href=\"Microsoft.Extensions.Logging.ILogger\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  summary: "\nValues that are used as the eventId when logging messages from a relational database provider via <see cref=\"!:ILogger\"></see>.\n"
   example: []
   syntax:
     content: public enum RelationalEventId
@@ -67,7 +74,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Infrastructure
-  summary: "\n    A command was executed against the database.\n"
+  summary: "\nA command was executed against the database.\n"
   example: []
   syntax:
     content: ExecutedCommand = 1
@@ -101,7 +108,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Infrastructure
-  summary: "\n    A database is being created.\n"
+  summary: "\nA database is being created.\n"
   example: []
   syntax:
     content: CreatingDatabase = 2
@@ -135,7 +142,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Infrastructure
-  summary: "\n    A connection is being opened.\n"
+  summary: "\nA connection is being opened.\n"
   example: []
   syntax:
     content: OpeningConnection = 3
@@ -169,7 +176,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Infrastructure
-  summary: "\n    A connection is being closed.\n"
+  summary: "\nA connection is being closed.\n"
   example: []
   syntax:
     content: ClosingConnection = 4
@@ -203,7 +210,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Infrastructure
-  summary: "\n    A transaction is beginning.\n"
+  summary: "\nA transaction is beginning.\n"
   example: []
   syntax:
     content: BeginningTransaction = 5
@@ -237,7 +244,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Infrastructure
-  summary: "\n    A transaction is being committed.\n"
+  summary: "\nA transaction is being committed.\n"
   example: []
   syntax:
     content: CommittingTransaction = 6
@@ -271,7 +278,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Infrastructure
-  summary: "\n    A transaction is being rolled back.\n"
+  summary: "\nA transaction is being rolled back.\n"
   example: []
   syntax:
     content: RollingbackTransaction = 7
@@ -305,7 +312,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Infrastructure
-  summary: "\n    A LINQ query is being executed where some of the query will be evaluated on the client\n    (i.e. part of the query can not be translated to SQL).\n"
+  summary: "\nA LINQ query is being executed where some of the query will be evaluated on the client\n(i.e. part of the query can not be translated to SQL).\n"
   example: []
   syntax:
     content: QueryClientEvaluationWarning = 8
@@ -339,7 +346,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Infrastructure
-  summary: "\n    Two entities were compared for equality in a LINQ query, which may not produce the desired result.\n"
+  summary: "\nTwo entities were compared for equality in a LINQ query, which may not produce the desired result.\n"
   example: []
   syntax:
     content: PossibleUnintendedUseOfEqualsWarning = 9
@@ -373,7 +380,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Infrastructure
-  summary: "\n    Linq translation of 'Contains', 'EndsWith' and 'StartsWith' functions may produce incorrect results \n    when searched value contains wildcard characters.\n"
+  summary: "\nLinq translation of 'Contains', 'EndsWith' and 'StartsWith' functions may produce incorrect results\nwhen searched value contains wildcard characters.\n"
   example: []
   syntax:
     content: PossibleIncorrectResultsUsingLikeOperator = 10
@@ -407,7 +414,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Infrastructure
-  summary: "\n    An ambient transaction is present, which is not fully supported by Entity Framework Core.\n"
+  summary: "\nAn ambient transaction is present, which is not fully supported by Entity Framework Core.\n"
   example: []
   syntax:
     content: AmbientTransactionWarning = 11
@@ -419,26 +426,251 @@ items:
   modifiers.vb:
   - Public
   - Const
+- uid: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.ApplyingMigration
+  commentId: F:Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.ApplyingMigration
+  id: ApplyingMigration
+  parent: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
+  langs:
+  - csharp
+  - vb
+  name: ApplyingMigration
+  nameWithType: RelationalEventId.ApplyingMigration
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.ApplyingMigration
+  type: Field
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Relational/Infrastructure/RelationalEventId.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: ApplyingMigration
+    path: src/Microsoft.EntityFrameworkCore.Relational/Infrastructure/RelationalEventId.cs
+    startLine: 72
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Relational
+  namespace: Microsoft.EntityFrameworkCore.Infrastructure
+  summary: "\nA migration is being applied to the database.\n"
+  example: []
+  syntax:
+    content: ApplyingMigration = 12
+    return:
+      type: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.GeneratingMigrationDownScript
+  commentId: F:Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.GeneratingMigrationDownScript
+  id: GeneratingMigrationDownScript
+  parent: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
+  langs:
+  - csharp
+  - vb
+  name: GeneratingMigrationDownScript
+  nameWithType: RelationalEventId.GeneratingMigrationDownScript
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.GeneratingMigrationDownScript
+  type: Field
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Relational/Infrastructure/RelationalEventId.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: GeneratingMigrationDownScript
+    path: src/Microsoft.EntityFrameworkCore.Relational/Infrastructure/RelationalEventId.cs
+    startLine: 77
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Relational
+  namespace: Microsoft.EntityFrameworkCore.Infrastructure
+  summary: "\nThe revert script is being generated for a migration.\n"
+  example: []
+  syntax:
+    content: GeneratingMigrationDownScript = 13
+    return:
+      type: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.GeneratingMigrationUpScript
+  commentId: F:Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.GeneratingMigrationUpScript
+  id: GeneratingMigrationUpScript
+  parent: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
+  langs:
+  - csharp
+  - vb
+  name: GeneratingMigrationUpScript
+  nameWithType: RelationalEventId.GeneratingMigrationUpScript
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.GeneratingMigrationUpScript
+  type: Field
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Relational/Infrastructure/RelationalEventId.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: GeneratingMigrationUpScript
+    path: src/Microsoft.EntityFrameworkCore.Relational/Infrastructure/RelationalEventId.cs
+    startLine: 82
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Relational
+  namespace: Microsoft.EntityFrameworkCore.Infrastructure
+  summary: "\nThe apply script is being generated for a migration.\n"
+  example: []
+  syntax:
+    content: GeneratingMigrationUpScript = 14
+    return:
+      type: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.MigrateUsingConnection
+  commentId: F:Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.MigrateUsingConnection
+  id: MigrateUsingConnection
+  parent: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
+  langs:
+  - csharp
+  - vb
+  name: MigrateUsingConnection
+  nameWithType: RelationalEventId.MigrateUsingConnection
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.MigrateUsingConnection
+  type: Field
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Relational/Infrastructure/RelationalEventId.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: MigrateUsingConnection
+    path: src/Microsoft.EntityFrameworkCore.Relational/Infrastructure/RelationalEventId.cs
+    startLine: 87
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Relational
+  namespace: Microsoft.EntityFrameworkCore.Infrastructure
+  summary: "\nMigrations are being applied on the database.\n"
+  example: []
+  syntax:
+    content: MigrateUsingConnection = 15
+    return:
+      type: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.RevertingMigration
+  commentId: F:Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.RevertingMigration
+  id: RevertingMigration
+  parent: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
+  langs:
+  - csharp
+  - vb
+  name: RevertingMigration
+  nameWithType: RelationalEventId.RevertingMigration
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.RevertingMigration
+  type: Field
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Relational/Infrastructure/RelationalEventId.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: RevertingMigration
+    path: src/Microsoft.EntityFrameworkCore.Relational/Infrastructure/RelationalEventId.cs
+    startLine: 92
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Relational
+  namespace: Microsoft.EntityFrameworkCore.Infrastructure
+  summary: "\nA migration is being reverted.\n"
+  example: []
+  syntax:
+    content: RevertingMigration = 16
+    return:
+      type: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.RevertingMigrationSql
+  commentId: F:Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.RevertingMigrationSql
+  id: RevertingMigrationSql
+  parent: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
+  langs:
+  - csharp
+  - vb
+  name: RevertingMigrationSql
+  nameWithType: RelationalEventId.RevertingMigrationSql
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.RevertingMigrationSql
+  type: Field
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Relational/Infrastructure/RelationalEventId.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: RevertingMigrationSql
+    path: src/Microsoft.EntityFrameworkCore.Relational/Infrastructure/RelationalEventId.cs
+    startLine: 97
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Relational
+  namespace: Microsoft.EntityFrameworkCore.Infrastructure
+  summary: "\nThe SQL for a migration being reverted.\n"
+  example: []
+  syntax:
+    content: RevertingMigrationSql = 17
+    return:
+      type: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.ApplyingMigrationSql
+  commentId: F:Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.ApplyingMigrationSql
+  id: ApplyingMigrationSql
+  parent: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
+  langs:
+  - csharp
+  - vb
+  name: ApplyingMigrationSql
+  nameWithType: RelationalEventId.ApplyingMigrationSql
+  fullName: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId.ApplyingMigrationSql
+  type: Field
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Relational/Infrastructure/RelationalEventId.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: ApplyingMigrationSql
+    path: src/Microsoft.EntityFrameworkCore.Relational/Infrastructure/RelationalEventId.cs
+    startLine: 102
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Relational
+  namespace: Microsoft.EntityFrameworkCore.Infrastructure
+  summary: "\nThe SQL for a migration being applied.\n"
+  example: []
+  syntax:
+    content: ApplyingMigrationSql = 18
+    return:
+      type: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
 references:
-- uid: Microsoft.Extensions.Logging.ILogger
-  commentId: T:Microsoft.Extensions.Logging.ILogger
-  parent: Microsoft.Extensions.Logging
-  isExternal: true
-  name: ILogger
-  nameWithType: ILogger
-  fullName: Microsoft.Extensions.Logging.ILogger
 - uid: Microsoft.EntityFrameworkCore.Infrastructure
   commentId: N:Microsoft.EntityFrameworkCore.Infrastructure
   isExternal: false
   name: Microsoft.EntityFrameworkCore.Infrastructure
   nameWithType: Microsoft.EntityFrameworkCore.Infrastructure
   fullName: Microsoft.EntityFrameworkCore.Infrastructure
-- uid: Microsoft.Extensions.Logging
-  commentId: N:Microsoft.Extensions.Logging
-  isExternal: false
-  name: Microsoft.Extensions.Logging
-  nameWithType: Microsoft.Extensions.Logging
-  fullName: Microsoft.Extensions.Logging
 - uid: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
   commentId: T:Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
   parent: Microsoft.EntityFrameworkCore.Infrastructure

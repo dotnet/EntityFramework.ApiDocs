@@ -5,9 +5,9 @@ items:
   id: TestSqlLoggerFactory
   parent: Microsoft.EntityFrameworkCore.Specification.Tests
   children:
-  - Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.AddProvider(Microsoft.Extensions.Logging.ILoggerProvider)
+  - Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.AddProvider(ILoggerProvider)
   - Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CancelQuery
-  - Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CaptureOutput(Xunit.Abstractions.ITestOutputHelper)
+  - Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CaptureOutput(ITestOutputHelper)
   - Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CommandLogData
   - Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CreateLogger(System.String)
   - Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Dispose
@@ -34,23 +34,12 @@ items:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: 'public class TestSqlLoggerFactory : ILoggerFactory, IDisposable'
+    content: 'public class TestSqlLoggerFactory : ILoggerFactory'
     content.vb: >-
       Public Class TestSqlLoggerFactory
-          Implements ILoggerFactory, IDisposable
+          Inherits ILoggerFactory
   inheritance:
   - System.Object
-  implements:
-  - Microsoft.Extensions.Logging.ILoggerFactory
-  - System.IDisposable
-  inheritedMembers:
-  - System.Object.ToString
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
   modifiers.csharp:
   - public
   - class
@@ -86,23 +75,22 @@ items:
     - id: name
       type: System.String
     return:
-      type: Microsoft.Extensions.Logging.ILogger
-  implements:
-  - Microsoft.Extensions.Logging.ILoggerFactory.CreateLogger(System.String)
+      type: ILogger
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CreateLogger*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.AddProvider(Microsoft.Extensions.Logging.ILoggerProvider)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.AddProvider(Microsoft.Extensions.Logging.ILoggerProvider)
-  id: AddProvider(Microsoft.Extensions.Logging.ILoggerProvider)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.AddProvider(ILoggerProvider)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.AddProvider(ILoggerProvider)
+  id: AddProvider(ILoggerProvider)
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory
   langs:
   - csharp
   - vb
   name: AddProvider(ILoggerProvider)
   nameWithType: TestSqlLoggerFactory.AddProvider(ILoggerProvider)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.AddProvider(Microsoft.Extensions.Logging.ILoggerProvider)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.AddProvider(ILoggerProvider)
   type: Method
   source:
     remote:
@@ -120,9 +108,8 @@ items:
     content.vb: Public Sub AddProvider(provider As ILoggerProvider)
     parameters:
     - id: provider
-      type: Microsoft.Extensions.Logging.ILoggerProvider
-  implements:
-  - Microsoft.Extensions.Logging.ILoggerFactory.AddProvider(Microsoft.Extensions.Logging.ILoggerProvider)
+      type: ILoggerProvider
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.AddProvider*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -154,6 +141,7 @@ items:
     content.vb: Public Function CancelQuery As CancellationToken
     return:
       type: System.Threading.CancellationToken
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CancelQuery*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -183,22 +171,23 @@ items:
   syntax:
     content: public static void Reset()
     content.vb: Public Shared Sub Reset
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Reset*
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CaptureOutput(Xunit.Abstractions.ITestOutputHelper)
-  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CaptureOutput(Xunit.Abstractions.ITestOutputHelper)
-  id: CaptureOutput(Xunit.Abstractions.ITestOutputHelper)
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CaptureOutput(ITestOutputHelper)
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CaptureOutput(ITestOutputHelper)
+  id: CaptureOutput(ITestOutputHelper)
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory
   langs:
   - csharp
   - vb
   name: CaptureOutput(ITestOutputHelper)
   nameWithType: TestSqlLoggerFactory.CaptureOutput(ITestOutputHelper)
-  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CaptureOutput(Xunit.Abstractions.ITestOutputHelper)
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CaptureOutput(ITestOutputHelper)
   type: Method
   source:
     remote:
@@ -216,7 +205,8 @@ items:
     content.vb: Public Shared Sub CaptureOutput(testOutputHelper As ITestOutputHelper)
     parameters:
     - id: testOutputHelper
-      type: Xunit.Abstractions.ITestOutputHelper
+      type: ITestOutputHelper
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CaptureOutput*
   modifiers.csharp:
   - public
   - static
@@ -248,8 +238,7 @@ items:
   syntax:
     content: public void Dispose()
     content.vb: Public Sub Dispose
-  implements:
-  - System.IDisposable.Dispose
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Dispose*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -282,6 +271,7 @@ items:
     parameters: []
     return:
       type: System.String
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Log*
   modifiers.csharp:
   - public
   - static
@@ -318,6 +308,7 @@ items:
     parameters: []
     return:
       type: System.String
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Sql*
   modifiers.csharp:
   - public
   - static
@@ -354,6 +345,7 @@ items:
     parameters: []
     return:
       type: System.Collections.Generic.IReadOnlyList{System.String}
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.SqlStatements*
   modifiers.csharp:
   - public
   - static
@@ -390,6 +382,7 @@ items:
     parameters: []
     return:
       type: System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Storage.DbCommandLogData}
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CommandLogData*
   modifiers.csharp:
   - public
   - static
@@ -412,352 +405,18 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Microsoft.Extensions.Logging.ILoggerFactory
-  commentId: T:Microsoft.Extensions.Logging.ILoggerFactory
-  parent: Microsoft.Extensions.Logging
-  isExternal: true
-  name: ILoggerFactory
-  nameWithType: ILoggerFactory
-  fullName: Microsoft.Extensions.Logging.ILoggerFactory
-- uid: System.IDisposable
-  commentId: T:System.IDisposable
-  parent: System
-  isExternal: true
-  name: IDisposable
-  nameWithType: IDisposable
-  fullName: System.IDisposable
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.Extensions.Logging
-  commentId: N:Microsoft.Extensions.Logging
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CreateLogger*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CreateLogger
   isExternal: false
-  name: Microsoft.Extensions.Logging
-  nameWithType: Microsoft.Extensions.Logging
-  fullName: Microsoft.Extensions.Logging
-- uid: Microsoft.Extensions.Logging.ILoggerFactory.CreateLogger(System.String)
-  commentId: M:Microsoft.Extensions.Logging.ILoggerFactory.CreateLogger(System.String)
-  parent: Microsoft.Extensions.Logging.ILoggerFactory
-  isExternal: true
-  name: CreateLogger(String)
-  nameWithType: ILoggerFactory.CreateLogger(String)
-  fullName: Microsoft.Extensions.Logging.ILoggerFactory.CreateLogger(System.String)
-  spec.csharp:
-  - uid: Microsoft.Extensions.Logging.ILoggerFactory.CreateLogger(System.String)
-    name: CreateLogger
-    nameWithType: ILoggerFactory.CreateLogger
-    fullName: Microsoft.Extensions.Logging.ILoggerFactory.CreateLogger
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.Extensions.Logging.ILoggerFactory.CreateLogger(System.String)
-    name: CreateLogger
-    nameWithType: ILoggerFactory.CreateLogger
-    fullName: Microsoft.Extensions.Logging.ILoggerFactory.CreateLogger
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+  name: CreateLogger
+  nameWithType: TestSqlLoggerFactory.CreateLogger
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CreateLogger
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -765,61 +424,28 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: Microsoft.Extensions.Logging.ILogger
-  commentId: T:Microsoft.Extensions.Logging.ILogger
-  parent: Microsoft.Extensions.Logging
+- uid: ILogger
   isExternal: true
   name: ILogger
   nameWithType: ILogger
-  fullName: Microsoft.Extensions.Logging.ILogger
-- uid: Microsoft.Extensions.Logging.ILoggerFactory.AddProvider(Microsoft.Extensions.Logging.ILoggerProvider)
-  commentId: M:Microsoft.Extensions.Logging.ILoggerFactory.AddProvider(Microsoft.Extensions.Logging.ILoggerProvider)
-  parent: Microsoft.Extensions.Logging.ILoggerFactory
-  isExternal: true
-  name: AddProvider(ILoggerProvider)
-  nameWithType: ILoggerFactory.AddProvider(ILoggerProvider)
-  fullName: Microsoft.Extensions.Logging.ILoggerFactory.AddProvider(Microsoft.Extensions.Logging.ILoggerProvider)
-  spec.csharp:
-  - uid: Microsoft.Extensions.Logging.ILoggerFactory.AddProvider(Microsoft.Extensions.Logging.ILoggerProvider)
-    name: AddProvider
-    nameWithType: ILoggerFactory.AddProvider
-    fullName: Microsoft.Extensions.Logging.ILoggerFactory.AddProvider
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.Extensions.Logging.ILoggerProvider
-    name: ILoggerProvider
-    nameWithType: ILoggerProvider
-    fullName: Microsoft.Extensions.Logging.ILoggerProvider
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.Extensions.Logging.ILoggerFactory.AddProvider(Microsoft.Extensions.Logging.ILoggerProvider)
-    name: AddProvider
-    nameWithType: ILoggerFactory.AddProvider
-    fullName: Microsoft.Extensions.Logging.ILoggerFactory.AddProvider
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.Extensions.Logging.ILoggerProvider
-    name: ILoggerProvider
-    nameWithType: ILoggerProvider
-    fullName: Microsoft.Extensions.Logging.ILoggerProvider
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.Extensions.Logging.ILoggerProvider
-  commentId: T:Microsoft.Extensions.Logging.ILoggerProvider
-  parent: Microsoft.Extensions.Logging
+  fullName: ILogger
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.AddProvider*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.AddProvider
+  isExternal: false
+  name: AddProvider
+  nameWithType: TestSqlLoggerFactory.AddProvider
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.AddProvider
+- uid: ILoggerProvider
   isExternal: true
   name: ILoggerProvider
   nameWithType: ILoggerProvider
-  fullName: Microsoft.Extensions.Logging.ILoggerProvider
+  fullName: ILoggerProvider
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CancelQuery*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CancelQuery
+  isExternal: false
+  name: CancelQuery
+  nameWithType: TestSqlLoggerFactory.CancelQuery
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CancelQuery
 - uid: System.Threading.CancellationToken
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
@@ -833,50 +459,47 @@ references:
   name: System.Threading
   nameWithType: System.Threading
   fullName: System.Threading
-- uid: Xunit.Abstractions.ITestOutputHelper
-  commentId: T:Xunit.Abstractions.ITestOutputHelper
-  parent: Xunit.Abstractions
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Reset*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Reset
+  isExternal: false
+  name: Reset
+  nameWithType: TestSqlLoggerFactory.Reset
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Reset
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CaptureOutput*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CaptureOutput
+  isExternal: false
+  name: CaptureOutput
+  nameWithType: TestSqlLoggerFactory.CaptureOutput
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CaptureOutput
+- uid: ITestOutputHelper
   isExternal: true
   name: ITestOutputHelper
   nameWithType: ITestOutputHelper
-  fullName: Xunit.Abstractions.ITestOutputHelper
-- uid: Xunit.Abstractions
-  commentId: N:Xunit.Abstractions
+  fullName: ITestOutputHelper
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Dispose*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Dispose
   isExternal: false
-  name: Xunit.Abstractions
-  nameWithType: Xunit.Abstractions
-  fullName: Xunit.Abstractions
-- uid: System.IDisposable.Dispose
-  commentId: M:System.IDisposable.Dispose
-  parent: System.IDisposable
-  isExternal: true
-  name: Dispose()
-  nameWithType: IDisposable.Dispose()
-  fullName: System.IDisposable.Dispose()
-  spec.csharp:
-  - uid: System.IDisposable.Dispose
-    name: Dispose
-    nameWithType: IDisposable.Dispose
-    fullName: System.IDisposable.Dispose
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.IDisposable.Dispose
-    name: Dispose
-    nameWithType: IDisposable.Dispose
-    fullName: System.IDisposable.Dispose
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
+  name: Dispose
+  nameWithType: TestSqlLoggerFactory.Dispose
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Dispose
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Log*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Log
+  isExternal: false
+  name: Log
+  nameWithType: TestSqlLoggerFactory.Log
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Log
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Sql*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Sql
+  isExternal: false
+  name: Sql
+  nameWithType: TestSqlLoggerFactory.Sql
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.Sql
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.SqlStatements*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.SqlStatements
+  isExternal: false
+  name: SqlStatements
+  nameWithType: TestSqlLoggerFactory.SqlStatements
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.SqlStatements
 - uid: System.Collections.Generic.IReadOnlyList{System.String}
   commentId: T:System.Collections.Generic.IReadOnlyList{System.String}
   parent: System.Collections.Generic
@@ -966,6 +589,12 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CommandLogData*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CommandLogData
+  isExternal: false
+  name: CommandLogData
+  nameWithType: TestSqlLoggerFactory.CommandLogData
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestSqlLoggerFactory.CommandLogData
 - uid: System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Storage.DbCommandLogData}
   commentId: T:System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Storage.DbCommandLogData}
   parent: System.Collections.Generic

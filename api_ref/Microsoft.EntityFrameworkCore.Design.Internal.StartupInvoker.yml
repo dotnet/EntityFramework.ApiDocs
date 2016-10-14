@@ -5,10 +5,10 @@ items:
   id: StartupInvoker
   parent: Microsoft.EntityFrameworkCore.Design.Internal
   children:
-  - Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.#ctor(Microsoft.EntityFrameworkCore.Internal.LazyRef{Microsoft.Extensions.Logging.ILogger},System.Reflection.Assembly,System.String,System.String)
-  - Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  - Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(System.Type,Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  - Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureHostServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  - Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.#ctor(Microsoft.EntityFrameworkCore.Design.IOperationReporter,System.Reflection.Assembly,System.String,System.String)
+  - Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(IServiceCollection)
+  - Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(System.Type,IServiceCollection)
+  - Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureHostServices(IServiceCollection)
   - Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureServices
   langs:
   - csharp
@@ -28,7 +28,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public class StartupInvoker
@@ -49,16 +49,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.#ctor(Microsoft.EntityFrameworkCore.Internal.LazyRef{Microsoft.Extensions.Logging.ILogger},System.Reflection.Assembly,System.String,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.#ctor(Microsoft.EntityFrameworkCore.Internal.LazyRef{Microsoft.Extensions.Logging.ILogger},System.Reflection.Assembly,System.String,System.String)
-  id: '#ctor(Microsoft.EntityFrameworkCore.Internal.LazyRef{Microsoft.Extensions.Logging.ILogger},System.Reflection.Assembly,System.String,System.String)'
+- uid: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.#ctor(Microsoft.EntityFrameworkCore.Design.IOperationReporter,System.Reflection.Assembly,System.String,System.String)
+  commentId: M:Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.#ctor(Microsoft.EntityFrameworkCore.Design.IOperationReporter,System.Reflection.Assembly,System.String,System.String)
+  id: '#ctor(Microsoft.EntityFrameworkCore.Design.IOperationReporter,System.Reflection.Assembly,System.String,System.String)'
   parent: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker
   langs:
   - csharp
   - vb
-  name: StartupInvoker(LazyRef<ILogger>, Assembly, String, String)
-  nameWithType: StartupInvoker.StartupInvoker(LazyRef<ILogger>, Assembly, String, String)
-  fullName: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.StartupInvoker(Microsoft.EntityFrameworkCore.Internal.LazyRef<Microsoft.Extensions.Logging.ILogger>, System.Reflection.Assembly, System.String, System.String)
+  name: StartupInvoker(IOperationReporter, Assembly, String, String)
+  nameWithType: StartupInvoker.StartupInvoker(IOperationReporter, Assembly, String, String)
+  fullName: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.StartupInvoker(Microsoft.EntityFrameworkCore.Design.IOperationReporter, System.Reflection.Assembly, System.String, System.String)
   type: Constructor
   source:
     remote:
@@ -67,31 +67,29 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore.Design/Design/Internal/StartupInvoker.cs
-    startLine: 31
+    startLine: 32
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
-    content: public StartupInvoker(LazyRef<ILogger> logger, Assembly startupAssembly, string environment, string contentRootPath)
-    content.vb: Public Sub New(logger As LazyRef(Of ILogger), startupAssembly As Assembly, environment As String, contentRootPath As String)
+    content: public StartupInvoker(IOperationReporter reporter, Assembly startupAssembly, string environment, string contentRootPath)
+    content.vb: Public Sub New(reporter As IOperationReporter, startupAssembly As Assembly, environment As String, contentRootPath As String)
     parameters:
-    - id: logger
-      type: Microsoft.EntityFrameworkCore.Internal.LazyRef{Microsoft.Extensions.Logging.ILogger}
+    - id: reporter
+      type: Microsoft.EntityFrameworkCore.Design.IOperationReporter
     - id: startupAssembly
       type: System.Reflection.Assembly
     - id: environment
       type: System.String
     - id: contentRootPath
       type: System.String
-  nameWithType.vb: StartupInvoker.StartupInvoker(LazyRef(Of ILogger), Assembly, String, String)
+  overload: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.StartupInvoker(Microsoft.EntityFrameworkCore.Internal.LazyRef(Of Microsoft.Extensions.Logging.ILogger), System.Reflection.Assembly, System.String, System.String)
-  name.vb: StartupInvoker(LazyRef(Of ILogger), Assembly, String, String)
 - uid: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureServices
   commentId: M:Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureServices
   id: ConfigureServices
@@ -110,33 +108,34 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ConfigureServices
     path: src/Microsoft.EntityFrameworkCore.Design/Design/Internal/StartupInvoker.cs
-    startLine: 64
+    startLine: 68
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public virtual IServiceProvider ConfigureServices()
     content.vb: Public Overridable Function ConfigureServices As IServiceProvider
     return:
       type: System.IServiceProvider
+  overload: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureServices*
   modifiers.csharp:
   - public
   - virtual
   modifiers.vb:
   - Public
   - Overridable
-- uid: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  commentId: M:Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  id: ConfigureDesignTimeServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+- uid: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(IServiceCollection)
+  commentId: M:Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(IServiceCollection)
+  id: ConfigureDesignTimeServices(IServiceCollection)
   parent: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker
   langs:
   - csharp
   - vb
   name: ConfigureDesignTimeServices(IServiceCollection)
   nameWithType: StartupInvoker.ConfigureDesignTimeServices(IServiceCollection)
-  fullName: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  fullName: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(IServiceCollection)
   type: Method
   source:
     remote:
@@ -145,36 +144,37 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ConfigureDesignTimeServices
     path: src/Microsoft.EntityFrameworkCore.Design/Design/Internal/StartupInvoker.cs
-    startLine: 79
+    startLine: 83
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public virtual IServiceCollection ConfigureDesignTimeServices(IServiceCollection services)
     content.vb: Public Overridable Function ConfigureDesignTimeServices(services As IServiceCollection) As IServiceCollection
     parameters:
     - id: services
-      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+      type: IServiceCollection
     return:
-      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+      type: IServiceCollection
+  overload: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices*
   modifiers.csharp:
   - public
   - virtual
   modifiers.vb:
   - Public
   - Overridable
-- uid: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(System.Type,Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  commentId: M:Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(System.Type,Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  id: ConfigureDesignTimeServices(System.Type,Microsoft.Extensions.DependencyInjection.IServiceCollection)
+- uid: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(System.Type,IServiceCollection)
+  commentId: M:Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(System.Type,IServiceCollection)
+  id: ConfigureDesignTimeServices(System.Type,IServiceCollection)
   parent: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker
   langs:
   - csharp
   - vb
   name: ConfigureDesignTimeServices(Type, IServiceCollection)
   nameWithType: StartupInvoker.ConfigureDesignTimeServices(Type, IServiceCollection)
-  fullName: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(System.Type, Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  fullName: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices(System.Type, IServiceCollection)
   type: Method
   source:
     remote:
@@ -183,11 +183,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ConfigureDesignTimeServices
     path: src/Microsoft.EntityFrameworkCore.Design/Design/Internal/StartupInvoker.cs
-    startLine: 86
+    startLine: 90
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public virtual IServiceCollection ConfigureDesignTimeServices(Type type, IServiceCollection services)
@@ -196,25 +196,26 @@ items:
     - id: type
       type: System.Type
     - id: services
-      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+      type: IServiceCollection
     return:
-      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+      type: IServiceCollection
+  overload: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices*
   modifiers.csharp:
   - public
   - virtual
   modifiers.vb:
   - Public
   - Overridable
-- uid: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureHostServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  commentId: M:Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureHostServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  id: ConfigureHostServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+- uid: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureHostServices(IServiceCollection)
+  commentId: M:Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureHostServices(IServiceCollection)
+  id: ConfigureHostServices(IServiceCollection)
   parent: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker
   langs:
   - csharp
   - vb
   name: ConfigureHostServices(IServiceCollection)
   nameWithType: StartupInvoker.ConfigureHostServices(IServiceCollection)
-  fullName: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureHostServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  fullName: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureHostServices(IServiceCollection)
   type: Method
   source:
     remote:
@@ -223,20 +224,21 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ConfigureHostServices
     path: src/Microsoft.EntityFrameworkCore.Design/Design/Internal/StartupInvoker.cs
-    startLine: 152
+    startLine: 156
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected virtual IServiceCollection ConfigureHostServices(IServiceCollection services)
     content.vb: Protected Overridable Function ConfigureHostServices(services As IServiceCollection) As IServiceCollection
     parameters:
     - id: services
-      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+      type: IServiceCollection
     return:
-      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+      type: IServiceCollection
+  overload: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureHostServices*
   modifiers.csharp:
   - protected
   - virtual
@@ -542,48 +544,19 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.EntityFrameworkCore.Internal.LazyRef{Microsoft.Extensions.Logging.ILogger}
-  commentId: T:Microsoft.EntityFrameworkCore.Internal.LazyRef{Microsoft.Extensions.Logging.ILogger}
-  parent: Microsoft.EntityFrameworkCore.Internal
-  definition: Microsoft.EntityFrameworkCore.Internal.LazyRef`1
-  name: LazyRef<ILogger>
-  nameWithType: LazyRef<ILogger>
-  fullName: Microsoft.EntityFrameworkCore.Internal.LazyRef<Microsoft.Extensions.Logging.ILogger>
-  nameWithType.vb: LazyRef(Of ILogger)
-  fullname.vb: Microsoft.EntityFrameworkCore.Internal.LazyRef(Of Microsoft.Extensions.Logging.ILogger)
-  name.vb: LazyRef(Of ILogger)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Internal.LazyRef`1
-    name: LazyRef
-    nameWithType: LazyRef
-    fullName: Microsoft.EntityFrameworkCore.Internal.LazyRef
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Microsoft.Extensions.Logging.ILogger
-    name: ILogger
-    nameWithType: ILogger
-    fullName: Microsoft.Extensions.Logging.ILogger
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Internal.LazyRef`1
-    name: LazyRef
-    nameWithType: LazyRef
-    fullName: Microsoft.EntityFrameworkCore.Internal.LazyRef
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Microsoft.Extensions.Logging.ILogger
-    name: ILogger
-    nameWithType: ILogger
-    fullName: Microsoft.Extensions.Logging.ILogger
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.#ctor
+  isExternal: false
+  name: StartupInvoker
+  nameWithType: StartupInvoker.StartupInvoker
+  fullName: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.StartupInvoker
+- uid: Microsoft.EntityFrameworkCore.Design.IOperationReporter
+  commentId: T:Microsoft.EntityFrameworkCore.Design.IOperationReporter
+  parent: Microsoft.EntityFrameworkCore.Design
+  isExternal: false
+  name: IOperationReporter
+  nameWithType: IOperationReporter
+  fullName: Microsoft.EntityFrameworkCore.Design.IOperationReporter
 - uid: System.Reflection.Assembly
   commentId: T:System.Reflection.Assembly
   parent: System.Reflection
@@ -598,55 +571,24 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: Microsoft.EntityFrameworkCore.Internal.LazyRef`1
-  commentId: T:Microsoft.EntityFrameworkCore.Internal.LazyRef`1
+- uid: Microsoft.EntityFrameworkCore.Design
+  commentId: N:Microsoft.EntityFrameworkCore.Design
   isExternal: false
-  name: LazyRef<T>
-  nameWithType: LazyRef<T>
-  fullName: Microsoft.EntityFrameworkCore.Internal.LazyRef<T>
-  nameWithType.vb: LazyRef(Of T)
-  fullname.vb: Microsoft.EntityFrameworkCore.Internal.LazyRef(Of T)
-  name.vb: LazyRef(Of T)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Internal.LazyRef`1
-    name: LazyRef
-    nameWithType: LazyRef
-    fullName: Microsoft.EntityFrameworkCore.Internal.LazyRef
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Internal.LazyRef`1
-    name: LazyRef
-    nameWithType: LazyRef
-    fullName: Microsoft.EntityFrameworkCore.Internal.LazyRef
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Internal
-  fullName: Microsoft.EntityFrameworkCore.Internal
+  name: Microsoft.EntityFrameworkCore.Design
+  nameWithType: Microsoft.EntityFrameworkCore.Design
+  fullName: Microsoft.EntityFrameworkCore.Design
 - uid: System.Reflection
   commentId: N:System.Reflection
   isExternal: false
   name: System.Reflection
   nameWithType: System.Reflection
   fullName: System.Reflection
+- uid: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureServices*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureServices
+  isExternal: false
+  name: ConfigureServices
+  nameWithType: StartupInvoker.ConfigureServices
+  fullName: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureServices
 - uid: System.IServiceProvider
   commentId: T:System.IServiceProvider
   parent: System
@@ -654,19 +596,17 @@ references:
   name: IServiceProvider
   nameWithType: IServiceProvider
   fullName: System.IServiceProvider
-- uid: Microsoft.Extensions.DependencyInjection.IServiceCollection
-  commentId: T:Microsoft.Extensions.DependencyInjection.IServiceCollection
-  parent: Microsoft.Extensions.DependencyInjection
+- uid: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices
+  isExternal: false
+  name: ConfigureDesignTimeServices
+  nameWithType: StartupInvoker.ConfigureDesignTimeServices
+  fullName: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureDesignTimeServices
+- uid: IServiceCollection
   isExternal: true
   name: IServiceCollection
   nameWithType: IServiceCollection
-  fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
-- uid: Microsoft.Extensions.DependencyInjection
-  commentId: N:Microsoft.Extensions.DependencyInjection
-  isExternal: false
-  name: Microsoft.Extensions.DependencyInjection
-  nameWithType: Microsoft.Extensions.DependencyInjection
-  fullName: Microsoft.Extensions.DependencyInjection
+  fullName: IServiceCollection
 - uid: System.Type
   commentId: T:System.Type
   parent: System
@@ -674,3 +614,9 @@ references:
   name: Type
   nameWithType: Type
   fullName: System.Type
+- uid: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureHostServices*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureHostServices
+  isExternal: false
+  name: ConfigureHostServices
+  nameWithType: StartupInvoker.ConfigureHostServices
+  fullName: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker.ConfigureHostServices

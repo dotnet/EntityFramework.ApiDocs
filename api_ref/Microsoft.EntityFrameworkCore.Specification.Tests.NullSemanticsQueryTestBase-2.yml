@@ -90,7 +90,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: NullSemanticsQueryTestBase
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 15
+    startLine: 14
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -98,23 +98,15 @@ items:
     content: 'public abstract class NullSemanticsQueryTestBase<TTestStore, TFixture> : IClassFixture<TFixture>, IDisposable where TTestStore : TestStore where TFixture : NullSemanticsQueryRelationalFixture<TTestStore>, new ()'
     content.vb: >-
       Public MustInherit Class NullSemanticsQueryTestBase(Of TTestStore As TestStore, TFixture As {NullSemanticsQueryRelationalFixture(Of TTestStore), New})
-          Implements IClassFixture(Of TFixture), IDisposable
+          Inherits IClassFixture(Of TFixture)
+          Implements IDisposable
     typeParameters:
     - id: TTestStore
     - id: TFixture
   inheritance:
   - System.Object
   implements:
-  - Xunit.IClassFixture{{TFixture}}
   - System.IDisposable
-  inheritedMembers:
-  - System.Object.ToString
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture)
   modifiers.csharp:
   - public
@@ -144,7 +136,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: CreateContext
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 21
+    startLine: 20
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -156,6 +148,7 @@ items:
       type: System.Boolean
     return:
       type: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.NullSemanticsModel.NullSemanticsContext
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.CreateContext*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).CreateContext(Boolean)
   modifiers.csharp:
   - protected
@@ -180,7 +173,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 24
+    startLine: 23
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -190,6 +183,7 @@ items:
     parameters:
     - id: fixture
       type: '{TFixture}'
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.#ctor*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).NullSemanticsQueryTestBase(TFixture)
   modifiers.csharp:
   - protected
@@ -214,7 +208,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Fixture
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 31
+    startLine: 30
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -224,6 +218,7 @@ items:
     parameters: []
     return:
       type: '{TFixture}'
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Fixture*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Fixture
   modifiers.csharp:
   - protected
@@ -250,7 +245,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: TestStore
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 33
+    startLine: 32
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -260,6 +255,7 @@ items:
     parameters: []
     return:
       type: '{TTestStore}'
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.TestStore*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).TestStore
   modifiers.csharp:
   - protected
@@ -286,13 +282,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Dispose
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 35
+    startLine: 34
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
     content: public void Dispose()
     content.vb: Public Sub Dispose
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Dispose*
   implements:
   - System.IDisposable.Dispose
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Dispose()
@@ -319,23 +316,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_bool_with_bool_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 37
+    startLine: 36
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_bool_with_bool_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_bool_with_bool_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_bool_with_bool_equal()
+    content.vb: Public Overridable Sub Compare_bool_with_bool_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_bool_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_bool_equal()
   modifiers.csharp:
   - public
@@ -362,23 +350,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_negated_bool_with_bool_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 46
+    startLine: 45
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_negated_bool_with_bool_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_negated_bool_with_bool_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_negated_bool_with_bool_equal()
+    content.vb: Public Overridable Sub Compare_negated_bool_with_bool_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_bool_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_bool_equal()
   modifiers.csharp:
   - public
@@ -405,23 +384,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_bool_with_negated_bool_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 55
+    startLine: 54
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_bool_with_negated_bool_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_bool_with_negated_bool_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_bool_with_negated_bool_equal()
+    content.vb: Public Overridable Sub Compare_bool_with_negated_bool_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_negated_bool_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_negated_bool_equal()
   modifiers.csharp:
   - public
@@ -448,23 +418,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_negated_bool_with_negated_bool_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 64
+    startLine: 63
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_negated_bool_with_negated_bool_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_negated_bool_with_negated_bool_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_negated_bool_with_negated_bool_equal()
+    content.vb: Public Overridable Sub Compare_negated_bool_with_negated_bool_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_negated_bool_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_negated_bool_equal()
   modifiers.csharp:
   - public
@@ -491,23 +452,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_bool_with_bool_equal_negated
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 73
+    startLine: 72
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_bool_with_bool_equal_negated()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_bool_with_bool_equal_negated
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_bool_with_bool_equal_negated()
+    content.vb: Public Overridable Sub Compare_bool_with_bool_equal_negated
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_bool_equal_negated*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_bool_equal_negated()
   modifiers.csharp:
   - public
@@ -534,23 +486,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_negated_bool_with_bool_equal_negated
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 82
+    startLine: 81
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_negated_bool_with_bool_equal_negated()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_negated_bool_with_bool_equal_negated
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_negated_bool_with_bool_equal_negated()
+    content.vb: Public Overridable Sub Compare_negated_bool_with_bool_equal_negated
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_bool_equal_negated*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_bool_equal_negated()
   modifiers.csharp:
   - public
@@ -577,23 +520,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_bool_with_negated_bool_equal_negated
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 91
+    startLine: 90
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_bool_with_negated_bool_equal_negated()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_bool_with_negated_bool_equal_negated
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_bool_with_negated_bool_equal_negated()
+    content.vb: Public Overridable Sub Compare_bool_with_negated_bool_equal_negated
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_negated_bool_equal_negated*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_negated_bool_equal_negated()
   modifiers.csharp:
   - public
@@ -620,23 +554,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_negated_bool_with_negated_bool_equal_negated
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 100
+    startLine: 99
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_negated_bool_with_negated_bool_equal_negated()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_negated_bool_with_negated_bool_equal_negated
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_negated_bool_with_negated_bool_equal_negated()
+    content.vb: Public Overridable Sub Compare_negated_bool_with_negated_bool_equal_negated
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_negated_bool_equal_negated*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_negated_bool_equal_negated()
   modifiers.csharp:
   - public
@@ -663,23 +588,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_bool_with_bool_not_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 109
+    startLine: 108
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_bool_with_bool_not_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_bool_with_bool_not_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_bool_with_bool_not_equal()
+    content.vb: Public Overridable Sub Compare_bool_with_bool_not_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_bool_not_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_bool_not_equal()
   modifiers.csharp:
   - public
@@ -706,23 +622,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_negated_bool_with_bool_not_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 118
+    startLine: 117
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_negated_bool_with_bool_not_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_negated_bool_with_bool_not_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_negated_bool_with_bool_not_equal()
+    content.vb: Public Overridable Sub Compare_negated_bool_with_bool_not_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_bool_not_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_bool_not_equal()
   modifiers.csharp:
   - public
@@ -749,23 +656,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_bool_with_negated_bool_not_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 127
+    startLine: 126
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_bool_with_negated_bool_not_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_bool_with_negated_bool_not_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_bool_with_negated_bool_not_equal()
+    content.vb: Public Overridable Sub Compare_bool_with_negated_bool_not_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_negated_bool_not_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_negated_bool_not_equal()
   modifiers.csharp:
   - public
@@ -792,23 +690,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_negated_bool_with_negated_bool_not_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 136
+    startLine: 135
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_negated_bool_with_negated_bool_not_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_negated_bool_with_negated_bool_not_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_negated_bool_with_negated_bool_not_equal()
+    content.vb: Public Overridable Sub Compare_negated_bool_with_negated_bool_not_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_negated_bool_not_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_negated_bool_not_equal()
   modifiers.csharp:
   - public
@@ -835,23 +724,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_bool_with_bool_not_equal_negated
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 145
+    startLine: 144
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_bool_with_bool_not_equal_negated()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_bool_with_bool_not_equal_negated
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_bool_with_bool_not_equal_negated()
+    content.vb: Public Overridable Sub Compare_bool_with_bool_not_equal_negated
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_bool_not_equal_negated*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_bool_not_equal_negated()
   modifiers.csharp:
   - public
@@ -878,23 +758,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_negated_bool_with_bool_not_equal_negated
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 154
+    startLine: 153
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_negated_bool_with_bool_not_equal_negated()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_negated_bool_with_bool_not_equal_negated
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_negated_bool_with_bool_not_equal_negated()
+    content.vb: Public Overridable Sub Compare_negated_bool_with_bool_not_equal_negated
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_bool_not_equal_negated*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_bool_not_equal_negated()
   modifiers.csharp:
   - public
@@ -921,23 +792,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_bool_with_negated_bool_not_equal_negated
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 163
+    startLine: 162
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_bool_with_negated_bool_not_equal_negated()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_bool_with_negated_bool_not_equal_negated
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_bool_with_negated_bool_not_equal_negated()
+    content.vb: Public Overridable Sub Compare_bool_with_negated_bool_not_equal_negated
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_negated_bool_not_equal_negated*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_negated_bool_not_equal_negated()
   modifiers.csharp:
   - public
@@ -964,23 +826,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_negated_bool_with_negated_bool_not_equal_negated
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 172
+    startLine: 171
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_negated_bool_with_negated_bool_not_equal_negated()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_negated_bool_with_negated_bool_not_equal_negated
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_negated_bool_with_negated_bool_not_equal_negated()
+    content.vb: Public Overridable Sub Compare_negated_bool_with_negated_bool_not_equal_negated
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_negated_bool_not_equal_negated*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_negated_bool_not_equal_negated()
   modifiers.csharp:
   - public
@@ -1007,23 +860,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_equals_method
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 181
+    startLine: 180
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_equals_method()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_equals_method
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_equals_method()
+    content.vb: Public Overridable Sub Compare_equals_method
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_equals_method*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_equals_method()
   modifiers.csharp:
   - public
@@ -1050,23 +894,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_equals_method_negated
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 190
+    startLine: 189
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_equals_method_negated()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_equals_method_negated
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_equals_method_negated()
+    content.vb: Public Overridable Sub Compare_equals_method_negated
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_equals_method_negated*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_equals_method_negated()
   modifiers.csharp:
   - public
@@ -1093,23 +928,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_complex_equal_equal_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 199
+    startLine: 198
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_complex_equal_equal_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_complex_equal_equal_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_complex_equal_equal_equal()
+    content.vb: Public Overridable Sub Compare_complex_equal_equal_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_equal_equal_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_equal_equal_equal()
   modifiers.csharp:
   - public
@@ -1136,23 +962,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_complex_equal_not_equal_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 207
+    startLine: 206
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_complex_equal_not_equal_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_complex_equal_not_equal_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_complex_equal_not_equal_equal()
+    content.vb: Public Overridable Sub Compare_complex_equal_not_equal_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_equal_not_equal_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_equal_not_equal_equal()
   modifiers.csharp:
   - public
@@ -1179,23 +996,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_complex_not_equal_equal_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 215
+    startLine: 214
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_complex_not_equal_equal_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_complex_not_equal_equal_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_complex_not_equal_equal_equal()
+    content.vb: Public Overridable Sub Compare_complex_not_equal_equal_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_not_equal_equal_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_not_equal_equal_equal()
   modifiers.csharp:
   - public
@@ -1222,23 +1030,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_complex_not_equal_not_equal_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 223
+    startLine: 222
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_complex_not_equal_not_equal_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_complex_not_equal_not_equal_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_complex_not_equal_not_equal_equal()
+    content.vb: Public Overridable Sub Compare_complex_not_equal_not_equal_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_not_equal_not_equal_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_not_equal_not_equal_equal()
   modifiers.csharp:
   - public
@@ -1265,23 +1064,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_complex_not_equal_equal_not_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 231
+    startLine: 230
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_complex_not_equal_equal_not_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_complex_not_equal_equal_not_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_complex_not_equal_equal_not_equal()
+    content.vb: Public Overridable Sub Compare_complex_not_equal_equal_not_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_not_equal_equal_not_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_not_equal_equal_not_equal()
   modifiers.csharp:
   - public
@@ -1308,23 +1098,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_complex_not_equal_not_equal_not_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 239
+    startLine: 238
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_complex_not_equal_not_equal_not_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_complex_not_equal_not_equal_not_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_complex_not_equal_not_equal_not_equal()
+    content.vb: Public Overridable Sub Compare_complex_not_equal_not_equal_not_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_not_equal_not_equal_not_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_not_equal_not_equal_not_equal()
   modifiers.csharp:
   - public
@@ -1351,23 +1132,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_nullable_with_null_parameter_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 247
+    startLine: 246
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_nullable_with_null_parameter_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_nullable_with_null_parameter_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_nullable_with_null_parameter_equal()
+    content.vb: Public Overridable Sub Compare_nullable_with_null_parameter_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_nullable_with_null_parameter_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_nullable_with_null_parameter_equal()
   modifiers.csharp:
   - public
@@ -1394,23 +1166,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Compare_nullable_with_non_null_parameter_not_equal
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 255
+    startLine: 254
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Compare_nullable_with_non_null_parameter_not_equal()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Compare_nullable_with_non_null_parameter_not_equal
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Compare_nullable_with_non_null_parameter_not_equal()
+    content.vb: Public Overridable Sub Compare_nullable_with_non_null_parameter_not_equal
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_nullable_with_non_null_parameter_not_equal*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_nullable_with_non_null_parameter_not_equal()
   modifiers.csharp:
   - public
@@ -1437,13 +1200,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Join_uses_database_semantics
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 263
+    startLine: 262
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
     content: public virtual void Join_uses_database_semantics()
     content.vb: Public Overridable Sub Join_uses_database_semantics
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Join_uses_database_semantics*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Join_uses_database_semantics()
   modifiers.csharp:
   - public
@@ -1470,23 +1234,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Contains_with_local_array_closure_with_null
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 276
+    startLine: 275
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Contains_with_local_array_closure_with_null()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Contains_with_local_array_closure_with_null
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Contains_with_local_array_closure_with_null()
+    content.vb: Public Overridable Sub Contains_with_local_array_closure_with_null
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Contains_with_local_array_closure_with_null*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Contains_with_local_array_closure_with_null()
   modifiers.csharp:
   - public
@@ -1513,23 +1268,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Contains_with_local_array_closure_with_multiple_nulls
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 283
+    startLine: 282
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Contains_with_local_array_closure_with_multiple_nulls()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Contains_with_local_array_closure_with_multiple_nulls
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Contains_with_local_array_closure_with_multiple_nulls()
+    content.vb: Public Overridable Sub Contains_with_local_array_closure_with_multiple_nulls
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Contains_with_local_array_closure_with_multiple_nulls*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Contains_with_local_array_closure_with_multiple_nulls()
   modifiers.csharp:
   - public
@@ -1556,23 +1302,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Contains_with_local_array_closure_false_with_null
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 290
+    startLine: 289
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Contains_with_local_array_closure_false_with_null()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Contains_with_local_array_closure_false_with_null
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Contains_with_local_array_closure_false_with_null()
+    content.vb: Public Overridable Sub Contains_with_local_array_closure_false_with_null
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Contains_with_local_array_closure_false_with_null*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Contains_with_local_array_closure_false_with_null()
   modifiers.csharp:
   - public
@@ -1599,23 +1336,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_multiple_ors_with_null
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 297
+    startLine: 296
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_multiple_ors_with_null()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_multiple_ors_with_null
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_multiple_ors_with_null()
+    content.vb: Public Overridable Sub Where_multiple_ors_with_null
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ors_with_null*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ors_with_null()
   modifiers.csharp:
   - public
@@ -1642,23 +1370,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_multiple_ands_with_null
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 303
+    startLine: 302
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_multiple_ands_with_null()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_multiple_ands_with_null
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_multiple_ands_with_null()
+    content.vb: Public Overridable Sub Where_multiple_ands_with_null
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ands_with_null*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ands_with_null()
   modifiers.csharp:
   - public
@@ -1685,23 +1404,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_multiple_ors_with_nullable_parameter
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 309
+    startLine: 308
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_multiple_ors_with_nullable_parameter()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_multiple_ors_with_nullable_parameter
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_multiple_ors_with_nullable_parameter()
+    content.vb: Public Overridable Sub Where_multiple_ors_with_nullable_parameter
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ors_with_nullable_parameter*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ors_with_nullable_parameter()
   modifiers.csharp:
   - public
@@ -1728,23 +1438,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_multiple_ands_with_nullable_parameter_and_constant
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 316
+    startLine: 315
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_multiple_ands_with_nullable_parameter_and_constant()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_multiple_ands_with_nullable_parameter_and_constant
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_multiple_ands_with_nullable_parameter_and_constant()
+    content.vb: Public Overridable Sub Where_multiple_ands_with_nullable_parameter_and_constant
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ands_with_nullable_parameter_and_constant*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ands_with_nullable_parameter_and_constant()
   modifiers.csharp:
   - public
@@ -1771,23 +1472,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_multiple_ands_with_nullable_parameter_and_constant_not_optimized
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 330
+    startLine: 329
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_multiple_ands_with_nullable_parameter_and_constant_not_optimized()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_multiple_ands_with_nullable_parameter_and_constant_not_optimized
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_multiple_ands_with_nullable_parameter_and_constant_not_optimized()
+    content.vb: Public Overridable Sub Where_multiple_ands_with_nullable_parameter_and_constant_not_optimized
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ands_with_nullable_parameter_and_constant_not_optimized*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ands_with_nullable_parameter_and_constant_not_optimized()
   modifiers.csharp:
   - public
@@ -1814,23 +1506,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_coalesce
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 346
+    startLine: 344
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_coalesce()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_coalesce
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_coalesce()
+    content.vb: Public Overridable Sub Where_coalesce
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_coalesce*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_coalesce()
   modifiers.csharp:
   - public
@@ -1857,23 +1540,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_equal_nullable_with_null_value_parameter
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 352
+    startLine: 350
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_equal_nullable_with_null_value_parameter()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_equal_nullable_with_null_value_parameter
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_equal_nullable_with_null_value_parameter()
+    content.vb: Public Overridable Sub Where_equal_nullable_with_null_value_parameter
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_nullable_with_null_value_parameter*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_nullable_with_null_value_parameter()
   modifiers.csharp:
   - public
@@ -1900,23 +1574,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_not_equal_nullable_with_null_value_parameter
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 361
+    startLine: 359
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_not_equal_nullable_with_null_value_parameter()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_not_equal_nullable_with_null_value_parameter
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_not_equal_nullable_with_null_value_parameter()
+    content.vb: Public Overridable Sub Where_not_equal_nullable_with_null_value_parameter
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_nullable_with_null_value_parameter*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_nullable_with_null_value_parameter()
   modifiers.csharp:
   - public
@@ -1943,23 +1608,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_equal_with_coalesce
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 370
+    startLine: 368
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_equal_with_coalesce()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_equal_with_coalesce
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_equal_with_coalesce()
+    content.vb: Public Overridable Sub Where_equal_with_coalesce
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_coalesce*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_coalesce()
   modifiers.csharp:
   - public
@@ -1986,23 +1642,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_not_equal_with_coalesce
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 377
+    startLine: 375
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_not_equal_with_coalesce()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_not_equal_with_coalesce
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_not_equal_with_coalesce()
+    content.vb: Public Overridable Sub Where_not_equal_with_coalesce
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_with_coalesce*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_with_coalesce()
   modifiers.csharp:
   - public
@@ -2029,23 +1676,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_equal_with_coalesce_both_sides
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 384
+    startLine: 382
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_equal_with_coalesce_both_sides()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_equal_with_coalesce_both_sides
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_equal_with_coalesce_both_sides()
+    content.vb: Public Overridable Sub Where_equal_with_coalesce_both_sides
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_coalesce_both_sides*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_coalesce_both_sides()
   modifiers.csharp:
   - public
@@ -2072,23 +1710,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_not_equal_with_coalesce_both_sides
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 391
+    startLine: 389
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_not_equal_with_coalesce_both_sides()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_not_equal_with_coalesce_both_sides
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_not_equal_with_coalesce_both_sides()
+    content.vb: Public Overridable Sub Where_not_equal_with_coalesce_both_sides
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_with_coalesce_both_sides*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_with_coalesce_both_sides()
   modifiers.csharp:
   - public
@@ -2115,23 +1744,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_equal_with_conditional
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 398
+    startLine: 396
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_equal_with_conditional()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_equal_with_conditional
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_equal_with_conditional()
+    content.vb: Public Overridable Sub Where_equal_with_conditional
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_conditional*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_conditional()
   modifiers.csharp:
   - public
@@ -2158,23 +1778,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_not_equal_with_conditional
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 407
+    startLine: 405
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_not_equal_with_conditional()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_not_equal_with_conditional
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_not_equal_with_conditional()
+    content.vb: Public Overridable Sub Where_not_equal_with_conditional
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_with_conditional*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_with_conditional()
   modifiers.csharp:
   - public
@@ -2201,23 +1812,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_equal_with_conditional_non_nullable
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 416
+    startLine: 414
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_equal_with_conditional_non_nullable()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_equal_with_conditional_non_nullable
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_equal_with_conditional_non_nullable()
+    content.vb: Public Overridable Sub Where_equal_with_conditional_non_nullable
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_conditional_non_nullable*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_conditional_non_nullable()
   modifiers.csharp:
   - public
@@ -2244,23 +1846,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_conditional_search_condition_in_result
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 425
+    startLine: 423
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_conditional_search_condition_in_result()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_conditional_search_condition_in_result
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_conditional_search_condition_in_result()
+    content.vb: Public Overridable Sub Where_conditional_search_condition_in_result
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_conditional_search_condition_in_result*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_conditional_search_condition_in_result()
   modifiers.csharp:
   - public
@@ -2287,23 +1880,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_nested_conditional_search_condition_in_result
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 438
+    startLine: 436
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_nested_conditional_search_condition_in_result()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_nested_conditional_search_condition_in_result
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_nested_conditional_search_condition_in_result()
+    content.vb: Public Overridable Sub Where_nested_conditional_search_condition_in_result
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_nested_conditional_search_condition_in_result*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_nested_conditional_search_condition_in_result()
   modifiers.csharp:
   - public
@@ -2330,23 +1914,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_equal_with_and_and_contains
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 455
+    startLine: 453
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_equal_with_and_and_contains()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_equal_with_and_and_contains
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_equal_with_and_and_contains()
+    content.vb: Public Overridable Sub Where_equal_with_and_and_contains
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_and_and_contains*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_and_and_contains()
   modifiers.csharp:
   - public
@@ -2373,7 +1948,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: AssertQuery
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 465
+    startLine: 463
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -2387,6 +1962,7 @@ items:
       type: System.Boolean
     typeParameters:
     - id: TItem
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.AssertQuery*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).AssertQuery(Of TItem)(Func(Of IQueryable(Of TItem), IQueryable(Of TItem)), Boolean)
   modifiers.csharp:
   - protected
@@ -2412,23 +1988,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_equal_using_relational_null_semantics
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 471
+    startLine: 469
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_equal_using_relational_null_semantics()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_equal_using_relational_null_semantics
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_equal_using_relational_null_semantics()
+    content.vb: Public Overridable Sub Where_equal_using_relational_null_semantics
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_using_relational_null_semantics*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_using_relational_null_semantics()
   modifiers.csharp:
   - public
@@ -2455,23 +2022,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_nullable_bool
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 482
+    startLine: 480
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_nullable_bool()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_nullable_bool
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_nullable_bool()
+    content.vb: Public Overridable Sub Where_nullable_bool
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_nullable_bool*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_nullable_bool()
   modifiers.csharp:
   - public
@@ -2498,23 +2056,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_nullable_bool_equal_with_constant
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 493
+    startLine: 491
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_nullable_bool_equal_with_constant()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_nullable_bool_equal_with_constant
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_nullable_bool_equal_with_constant()
+    content.vb: Public Overridable Sub Where_nullable_bool_equal_with_constant
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_nullable_bool_equal_with_constant*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_nullable_bool_equal_with_constant()
   modifiers.csharp:
   - public
@@ -2541,23 +2090,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_nullable_bool_with_null_check
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 504
+    startLine: 502
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_nullable_bool_with_null_check()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_nullable_bool_with_null_check
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_nullable_bool_with_null_check()
+    content.vb: Public Overridable Sub Where_nullable_bool_with_null_check
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_nullable_bool_with_null_check*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_nullable_bool_with_null_check()
   modifiers.csharp:
   - public
@@ -2584,23 +2124,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_equal_using_relational_null_semantics_with_parameter
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 515
+    startLine: 513
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_equal_using_relational_null_semantics_with_parameter()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_equal_using_relational_null_semantics_with_parameter
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_equal_using_relational_null_semantics_with_parameter()
+    content.vb: Public Overridable Sub Where_equal_using_relational_null_semantics_with_parameter
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_using_relational_null_semantics_with_parameter*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_using_relational_null_semantics_with_parameter()
   modifiers.csharp:
   - public
@@ -2627,23 +2158,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_equal_using_relational_null_semantics_complex_with_parameter
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 527
+    startLine: 525
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_equal_using_relational_null_semantics_complex_with_parameter()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_equal_using_relational_null_semantics_complex_with_parameter
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_equal_using_relational_null_semantics_complex_with_parameter()
+    content.vb: Public Overridable Sub Where_equal_using_relational_null_semantics_complex_with_parameter
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_using_relational_null_semantics_complex_with_parameter*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_using_relational_null_semantics_complex_with_parameter()
   modifiers.csharp:
   - public
@@ -2670,23 +2192,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_not_equal_using_relational_null_semantics
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 539
+    startLine: 537
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_not_equal_using_relational_null_semantics()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_not_equal_using_relational_null_semantics
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_not_equal_using_relational_null_semantics()
+    content.vb: Public Overridable Sub Where_not_equal_using_relational_null_semantics
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_using_relational_null_semantics*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_using_relational_null_semantics()
   modifiers.csharp:
   - public
@@ -2713,23 +2226,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_not_equal_using_relational_null_semantics_with_parameter
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 550
+    startLine: 548
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_not_equal_using_relational_null_semantics_with_parameter()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_not_equal_using_relational_null_semantics_with_parameter
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_not_equal_using_relational_null_semantics_with_parameter()
+    content.vb: Public Overridable Sub Where_not_equal_using_relational_null_semantics_with_parameter
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_using_relational_null_semantics_with_parameter*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_using_relational_null_semantics_with_parameter()
   modifiers.csharp:
   - public
@@ -2756,23 +2260,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_not_equal_using_relational_null_semantics_complex_with_parameter
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 562
+    startLine: 560
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_not_equal_using_relational_null_semantics_complex_with_parameter()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_not_equal_using_relational_null_semantics_complex_with_parameter
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_not_equal_using_relational_null_semantics_complex_with_parameter()
+    content.vb: Public Overridable Sub Where_not_equal_using_relational_null_semantics_complex_with_parameter
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_using_relational_null_semantics_complex_with_parameter*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_using_relational_null_semantics_complex_with_parameter()
   modifiers.csharp:
   - public
@@ -2799,23 +2294,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_comparison_null_constant_and_null_parameter
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 574
+    startLine: 572
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_comparison_null_constant_and_null_parameter()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_comparison_null_constant_and_null_parameter
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_comparison_null_constant_and_null_parameter()
+    content.vb: Public Overridable Sub Where_comparison_null_constant_and_null_parameter
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_comparison_null_constant_and_null_parameter*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_comparison_null_constant_and_null_parameter()
   modifiers.csharp:
   - public
@@ -2842,23 +2328,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_comparison_null_constant_and_nonnull_parameter
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 582
+    startLine: 580
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_comparison_null_constant_and_nonnull_parameter()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_comparison_null_constant_and_nonnull_parameter
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_comparison_null_constant_and_nonnull_parameter()
+    content.vb: Public Overridable Sub Where_comparison_null_constant_and_nonnull_parameter
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_comparison_null_constant_and_nonnull_parameter*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_comparison_null_constant_and_nonnull_parameter()
   modifiers.csharp:
   - public
@@ -2885,23 +2362,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_comparison_nonnull_constant_and_null_parameter
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 590
+    startLine: 588
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_comparison_nonnull_constant_and_null_parameter()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_comparison_nonnull_constant_and_null_parameter
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_comparison_nonnull_constant_and_null_parameter()
+    content.vb: Public Overridable Sub Where_comparison_nonnull_constant_and_null_parameter
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_comparison_nonnull_constant_and_null_parameter*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_comparison_nonnull_constant_and_null_parameter()
   modifiers.csharp:
   - public
@@ -2928,23 +2396,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Where_comparison_null_semantics_optimization_works_with_complex_predicates
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 598
+    startLine: 596
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Where_comparison_null_semantics_optimization_works_with_complex_predicates()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Where_comparison_null_semantics_optimization_works_with_complex_predicates
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Where_comparison_null_semantics_optimization_works_with_complex_predicates()
+    content.vb: Public Overridable Sub Where_comparison_null_semantics_optimization_works_with_complex_predicates
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_comparison_null_semantics_optimization_works_with_complex_predicates*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_comparison_null_semantics_optimization_works_with_complex_predicates()
   modifiers.csharp:
   - public
@@ -2971,23 +2430,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Switching_null_semantics_produces_different_cache_entry
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 605
+    startLine: 603
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Switching_null_semantics_produces_different_cache_entry()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Switching_null_semantics_produces_different_cache_entry
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Switching_null_semantics_produces_different_cache_entry()
+    content.vb: Public Overridable Sub Switching_null_semantics_produces_different_cache_entry
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Switching_null_semantics_produces_different_cache_entry*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Switching_null_semantics_produces_different_cache_entry()
   modifiers.csharp:
   - public
@@ -3014,23 +2464,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Switching_parameter_value_to_null_produces_different_cache_entry
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 631
+    startLine: 629
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void Switching_parameter_value_to_null_produces_different_cache_entry()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub Switching_parameter_value_to_null_produces_different_cache_entry
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void Switching_parameter_value_to_null_produces_different_cache_entry()
+    content.vb: Public Overridable Sub Switching_parameter_value_to_null_produces_different_cache_entry
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Switching_parameter_value_to_null_produces_different_cache_entry*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Switching_parameter_value_to_null_produces_different_cache_entry()
   modifiers.csharp:
   - public
@@ -3057,23 +2498,14 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: From_sql_composed_with_relational_null_comparison
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 651
+    startLine: 649
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
   syntax:
-    content: >-
-      [Fact]
-
-      public virtual void From_sql_composed_with_relational_null_comparison()
-    content.vb: >-
-      <Fact>
-
-      Public Overridable Sub From_sql_composed_with_relational_null_comparison
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+    content: public virtual void From_sql_composed_with_relational_null_comparison()
+    content.vb: Public Overridable Sub From_sql_composed_with_relational_null_comparison
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.From_sql_composed_with_relational_null_comparison*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).From_sql_composed_with_relational_null_comparison()
   modifiers.csharp:
   - public
@@ -3100,7 +2532,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: AssertQuery
     path: src/Microsoft.EntityFrameworkCore.Relational.Specification.Tests/NullSemanticsQueryTestBase.cs
-    startLine: 665
+    startLine: 663
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational.Specification.Tests
   namespace: Microsoft.EntityFrameworkCore.Specification.Tests
@@ -3116,6 +2548,7 @@ items:
       type: System.Boolean
     typeParameters:
     - id: TItem
+  overload: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.AssertQuery*
   nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).AssertQuery(Of TItem)(Func(Of IQueryable(Of TItem), IQueryable(Of TItem)), Func(Of IQueryable(Of TItem), IQueryable(Of TItem)), Boolean)
   modifiers.csharp:
   - protected
@@ -3137,46 +2570,6 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Xunit.IClassFixture{{TFixture}}
-  commentId: T:Xunit.IClassFixture{`0}
-  parent: Xunit
-  definition: Xunit.IClassFixture`1
-  name: IClassFixture<TFixture>
-  nameWithType: IClassFixture<TFixture>
-  fullName: Xunit.IClassFixture<TFixture>
-  nameWithType.vb: IClassFixture(Of TFixture)
-  fullname.vb: Xunit.IClassFixture(Of TFixture)
-  name.vb: IClassFixture(Of TFixture)
-  spec.csharp:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TFixture
-    nameWithType: TFixture
-    fullName: TFixture
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TFixture
-    nameWithType: TFixture
-    fullName: TFixture
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.IDisposable
   commentId: T:System.IDisposable
   parent: System
@@ -3184,336 +2577,20 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
   name: System
   nameWithType: System
   fullName: System
-- uid: Xunit.IClassFixture`1
-  commentId: T:Xunit.IClassFixture`1
-  isExternal: true
-  name: IClassFixture<TFixture>
-  nameWithType: IClassFixture<TFixture>
-  fullName: Xunit.IClassFixture<TFixture>
-  nameWithType.vb: IClassFixture(Of TFixture)
-  fullname.vb: Xunit.IClassFixture(Of TFixture)
-  name.vb: IClassFixture(Of TFixture)
-  spec.csharp:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TFixture
-    nameWithType: TFixture
-    fullName: TFixture
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TFixture
-    nameWithType: TFixture
-    fullName: TFixture
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Xunit
-  commentId: N:Xunit
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.CreateContext*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.CreateContext
   isExternal: false
-  name: Xunit
-  nameWithType: Xunit
-  fullName: Xunit
+  name: CreateContext
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.CreateContext
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.CreateContext
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).CreateContext
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).CreateContext
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -3534,6 +2611,14 @@ references:
   name: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.NullSemanticsModel
   nameWithType: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.NullSemanticsModel
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests.TestModels.NullSemanticsModel
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.#ctor
+  isExternal: false
+  name: NullSemanticsQueryTestBase
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.NullSemanticsQueryTestBase
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.NullSemanticsQueryTestBase
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).NullSemanticsQueryTestBase
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).NullSemanticsQueryTestBase
 - uid: '{TFixture}'
   commentId: '!:TFixture'
   definition: TFixture
@@ -3545,6 +2630,22 @@ references:
   name: TFixture
   nameWithType: TFixture
   fullName: TFixture
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Fixture*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Fixture
+  isExternal: false
+  name: Fixture
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Fixture
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Fixture
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Fixture
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Fixture
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.TestStore*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.TestStore
+  isExternal: false
+  name: TestStore
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.TestStore
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.TestStore
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).TestStore
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).TestStore
 - uid: '{TTestStore}'
   commentId: '!:TTestStore'
   definition: TTestStore
@@ -3556,6 +2657,14 @@ references:
   name: TTestStore
   nameWithType: TTestStore
   fullName: TTestStore
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Dispose*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Dispose
+  isExternal: false
+  name: Dispose
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Dispose
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Dispose
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Dispose
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Dispose
 - uid: System.IDisposable.Dispose
   commentId: M:System.IDisposable.Dispose
   parent: System.IDisposable
@@ -3587,6 +2696,399 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_bool_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_bool_equal
+  isExternal: false
+  name: Compare_bool_with_bool_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_bool_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_bool_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_bool_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_bool_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_bool_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_bool_equal
+  isExternal: false
+  name: Compare_negated_bool_with_bool_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_bool_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_bool_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_bool_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_bool_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_negated_bool_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_negated_bool_equal
+  isExternal: false
+  name: Compare_bool_with_negated_bool_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_negated_bool_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_negated_bool_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_negated_bool_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_negated_bool_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_negated_bool_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_negated_bool_equal
+  isExternal: false
+  name: Compare_negated_bool_with_negated_bool_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_negated_bool_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_negated_bool_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_negated_bool_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_negated_bool_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_bool_equal_negated*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_bool_equal_negated
+  isExternal: false
+  name: Compare_bool_with_bool_equal_negated
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_bool_equal_negated
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_bool_equal_negated
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_bool_equal_negated
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_bool_equal_negated
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_bool_equal_negated*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_bool_equal_negated
+  isExternal: false
+  name: Compare_negated_bool_with_bool_equal_negated
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_bool_equal_negated
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_bool_equal_negated
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_bool_equal_negated
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_bool_equal_negated
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_negated_bool_equal_negated*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_negated_bool_equal_negated
+  isExternal: false
+  name: Compare_bool_with_negated_bool_equal_negated
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_negated_bool_equal_negated
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_negated_bool_equal_negated
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_negated_bool_equal_negated
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_negated_bool_equal_negated
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_negated_bool_equal_negated*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_negated_bool_equal_negated
+  isExternal: false
+  name: Compare_negated_bool_with_negated_bool_equal_negated
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_negated_bool_equal_negated
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_negated_bool_equal_negated
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_negated_bool_equal_negated
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_negated_bool_equal_negated
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_bool_not_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_bool_not_equal
+  isExternal: false
+  name: Compare_bool_with_bool_not_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_bool_not_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_bool_not_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_bool_not_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_bool_not_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_bool_not_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_bool_not_equal
+  isExternal: false
+  name: Compare_negated_bool_with_bool_not_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_bool_not_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_bool_not_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_bool_not_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_bool_not_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_negated_bool_not_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_negated_bool_not_equal
+  isExternal: false
+  name: Compare_bool_with_negated_bool_not_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_negated_bool_not_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_negated_bool_not_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_negated_bool_not_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_negated_bool_not_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_negated_bool_not_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_negated_bool_not_equal
+  isExternal: false
+  name: Compare_negated_bool_with_negated_bool_not_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_negated_bool_not_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_negated_bool_not_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_negated_bool_not_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_negated_bool_not_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_bool_not_equal_negated*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_bool_not_equal_negated
+  isExternal: false
+  name: Compare_bool_with_bool_not_equal_negated
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_bool_not_equal_negated
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_bool_not_equal_negated
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_bool_not_equal_negated
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_bool_not_equal_negated
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_bool_not_equal_negated*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_bool_not_equal_negated
+  isExternal: false
+  name: Compare_negated_bool_with_bool_not_equal_negated
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_bool_not_equal_negated
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_bool_not_equal_negated
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_bool_not_equal_negated
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_bool_not_equal_negated
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_negated_bool_not_equal_negated*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_bool_with_negated_bool_not_equal_negated
+  isExternal: false
+  name: Compare_bool_with_negated_bool_not_equal_negated
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_negated_bool_not_equal_negated
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_bool_with_negated_bool_not_equal_negated
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_negated_bool_not_equal_negated
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_bool_with_negated_bool_not_equal_negated
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_negated_bool_not_equal_negated*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_negated_bool_with_negated_bool_not_equal_negated
+  isExternal: false
+  name: Compare_negated_bool_with_negated_bool_not_equal_negated
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_negated_bool_not_equal_negated
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_negated_bool_with_negated_bool_not_equal_negated
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_negated_bool_not_equal_negated
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_negated_bool_with_negated_bool_not_equal_negated
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_equals_method*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_equals_method
+  isExternal: false
+  name: Compare_equals_method
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_equals_method
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_equals_method
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_equals_method
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_equals_method
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_equals_method_negated*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_equals_method_negated
+  isExternal: false
+  name: Compare_equals_method_negated
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_equals_method_negated
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_equals_method_negated
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_equals_method_negated
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_equals_method_negated
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_equal_equal_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_equal_equal_equal
+  isExternal: false
+  name: Compare_complex_equal_equal_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_complex_equal_equal_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_complex_equal_equal_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_equal_equal_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_equal_equal_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_equal_not_equal_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_equal_not_equal_equal
+  isExternal: false
+  name: Compare_complex_equal_not_equal_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_complex_equal_not_equal_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_complex_equal_not_equal_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_equal_not_equal_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_equal_not_equal_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_not_equal_equal_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_not_equal_equal_equal
+  isExternal: false
+  name: Compare_complex_not_equal_equal_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_complex_not_equal_equal_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_complex_not_equal_equal_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_not_equal_equal_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_not_equal_equal_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_not_equal_not_equal_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_not_equal_not_equal_equal
+  isExternal: false
+  name: Compare_complex_not_equal_not_equal_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_complex_not_equal_not_equal_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_complex_not_equal_not_equal_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_not_equal_not_equal_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_not_equal_not_equal_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_not_equal_equal_not_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_not_equal_equal_not_equal
+  isExternal: false
+  name: Compare_complex_not_equal_equal_not_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_complex_not_equal_equal_not_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_complex_not_equal_equal_not_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_not_equal_equal_not_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_not_equal_equal_not_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_not_equal_not_equal_not_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_complex_not_equal_not_equal_not_equal
+  isExternal: false
+  name: Compare_complex_not_equal_not_equal_not_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_complex_not_equal_not_equal_not_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_complex_not_equal_not_equal_not_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_not_equal_not_equal_not_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_complex_not_equal_not_equal_not_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_nullable_with_null_parameter_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_nullable_with_null_parameter_equal
+  isExternal: false
+  name: Compare_nullable_with_null_parameter_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_nullable_with_null_parameter_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_nullable_with_null_parameter_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_nullable_with_null_parameter_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_nullable_with_null_parameter_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_nullable_with_non_null_parameter_not_equal*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Compare_nullable_with_non_null_parameter_not_equal
+  isExternal: false
+  name: Compare_nullable_with_non_null_parameter_not_equal
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_nullable_with_non_null_parameter_not_equal
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Compare_nullable_with_non_null_parameter_not_equal
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_nullable_with_non_null_parameter_not_equal
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Compare_nullable_with_non_null_parameter_not_equal
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Join_uses_database_semantics*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Join_uses_database_semantics
+  isExternal: false
+  name: Join_uses_database_semantics
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Join_uses_database_semantics
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Join_uses_database_semantics
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Join_uses_database_semantics
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Join_uses_database_semantics
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Contains_with_local_array_closure_with_null*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Contains_with_local_array_closure_with_null
+  isExternal: false
+  name: Contains_with_local_array_closure_with_null
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Contains_with_local_array_closure_with_null
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Contains_with_local_array_closure_with_null
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Contains_with_local_array_closure_with_null
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Contains_with_local_array_closure_with_null
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Contains_with_local_array_closure_with_multiple_nulls*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Contains_with_local_array_closure_with_multiple_nulls
+  isExternal: false
+  name: Contains_with_local_array_closure_with_multiple_nulls
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Contains_with_local_array_closure_with_multiple_nulls
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Contains_with_local_array_closure_with_multiple_nulls
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Contains_with_local_array_closure_with_multiple_nulls
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Contains_with_local_array_closure_with_multiple_nulls
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Contains_with_local_array_closure_false_with_null*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Contains_with_local_array_closure_false_with_null
+  isExternal: false
+  name: Contains_with_local_array_closure_false_with_null
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Contains_with_local_array_closure_false_with_null
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Contains_with_local_array_closure_false_with_null
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Contains_with_local_array_closure_false_with_null
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Contains_with_local_array_closure_false_with_null
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ors_with_null*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ors_with_null
+  isExternal: false
+  name: Where_multiple_ors_with_null
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_multiple_ors_with_null
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_multiple_ors_with_null
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ors_with_null
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ors_with_null
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ands_with_null*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ands_with_null
+  isExternal: false
+  name: Where_multiple_ands_with_null
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_multiple_ands_with_null
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_multiple_ands_with_null
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ands_with_null
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ands_with_null
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ors_with_nullable_parameter*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ors_with_nullable_parameter
+  isExternal: false
+  name: Where_multiple_ors_with_nullable_parameter
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_multiple_ors_with_nullable_parameter
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_multiple_ors_with_nullable_parameter
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ors_with_nullable_parameter
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ors_with_nullable_parameter
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ands_with_nullable_parameter_and_constant*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ands_with_nullable_parameter_and_constant
+  isExternal: false
+  name: Where_multiple_ands_with_nullable_parameter_and_constant
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_multiple_ands_with_nullable_parameter_and_constant
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_multiple_ands_with_nullable_parameter_and_constant
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ands_with_nullable_parameter_and_constant
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ands_with_nullable_parameter_and_constant
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ands_with_nullable_parameter_and_constant_not_optimized*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_multiple_ands_with_nullable_parameter_and_constant_not_optimized
+  isExternal: false
+  name: Where_multiple_ands_with_nullable_parameter_and_constant_not_optimized
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_multiple_ands_with_nullable_parameter_and_constant_not_optimized
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_multiple_ands_with_nullable_parameter_and_constant_not_optimized
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ands_with_nullable_parameter_and_constant_not_optimized
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_multiple_ands_with_nullable_parameter_and_constant_not_optimized
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_coalesce*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_coalesce
+  isExternal: false
+  name: Where_coalesce
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_coalesce
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_coalesce
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_coalesce
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_coalesce
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_nullable_with_null_value_parameter*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_nullable_with_null_value_parameter
+  isExternal: false
+  name: Where_equal_nullable_with_null_value_parameter
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_nullable_with_null_value_parameter
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_nullable_with_null_value_parameter
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_nullable_with_null_value_parameter
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_nullable_with_null_value_parameter
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_nullable_with_null_value_parameter*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_nullable_with_null_value_parameter
+  isExternal: false
+  name: Where_not_equal_nullable_with_null_value_parameter
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_not_equal_nullable_with_null_value_parameter
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_not_equal_nullable_with_null_value_parameter
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_nullable_with_null_value_parameter
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_nullable_with_null_value_parameter
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_coalesce*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_coalesce
+  isExternal: false
+  name: Where_equal_with_coalesce
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_with_coalesce
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_with_coalesce
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_coalesce
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_coalesce
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_with_coalesce*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_with_coalesce
+  isExternal: false
+  name: Where_not_equal_with_coalesce
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_not_equal_with_coalesce
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_not_equal_with_coalesce
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_with_coalesce
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_with_coalesce
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_coalesce_both_sides*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_coalesce_both_sides
+  isExternal: false
+  name: Where_equal_with_coalesce_both_sides
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_with_coalesce_both_sides
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_with_coalesce_both_sides
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_coalesce_both_sides
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_coalesce_both_sides
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_with_coalesce_both_sides*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_with_coalesce_both_sides
+  isExternal: false
+  name: Where_not_equal_with_coalesce_both_sides
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_not_equal_with_coalesce_both_sides
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_not_equal_with_coalesce_both_sides
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_with_coalesce_both_sides
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_with_coalesce_both_sides
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_conditional*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_conditional
+  isExternal: false
+  name: Where_equal_with_conditional
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_with_conditional
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_with_conditional
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_conditional
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_conditional
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_with_conditional*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_with_conditional
+  isExternal: false
+  name: Where_not_equal_with_conditional
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_not_equal_with_conditional
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_not_equal_with_conditional
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_with_conditional
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_with_conditional
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_conditional_non_nullable*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_conditional_non_nullable
+  isExternal: false
+  name: Where_equal_with_conditional_non_nullable
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_with_conditional_non_nullable
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_with_conditional_non_nullable
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_conditional_non_nullable
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_conditional_non_nullable
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_conditional_search_condition_in_result*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_conditional_search_condition_in_result
+  isExternal: false
+  name: Where_conditional_search_condition_in_result
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_conditional_search_condition_in_result
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_conditional_search_condition_in_result
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_conditional_search_condition_in_result
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_conditional_search_condition_in_result
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_nested_conditional_search_condition_in_result*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_nested_conditional_search_condition_in_result
+  isExternal: false
+  name: Where_nested_conditional_search_condition_in_result
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_nested_conditional_search_condition_in_result
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_nested_conditional_search_condition_in_result
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_nested_conditional_search_condition_in_result
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_nested_conditional_search_condition_in_result
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_and_and_contains*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_with_and_and_contains
+  isExternal: false
+  name: Where_equal_with_and_and_contains
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_with_and_and_contains
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_with_and_and_contains
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_and_and_contains
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_with_and_and_contains
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.AssertQuery*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.AssertQuery
+  isExternal: false
+  name: AssertQuery<TItem>
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.AssertQuery<TItem>
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.AssertQuery<TItem>
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).AssertQuery(Of TItem)
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).AssertQuery(Of TItem)
+  name.vb: AssertQuery(Of TItem)
 - uid: System.Func{System.Linq.IQueryable{{TItem}},System.Linq.IQueryable{{TItem}}}
   commentId: T:System.Func{System.Linq.IQueryable{``0},System.Linq.IQueryable{``0}}
   parent: System
@@ -3734,3 +3236,131 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_using_relational_null_semantics*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_using_relational_null_semantics
+  isExternal: false
+  name: Where_equal_using_relational_null_semantics
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_using_relational_null_semantics
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_using_relational_null_semantics
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_using_relational_null_semantics
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_using_relational_null_semantics
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_nullable_bool*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_nullable_bool
+  isExternal: false
+  name: Where_nullable_bool
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_nullable_bool
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_nullable_bool
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_nullable_bool
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_nullable_bool
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_nullable_bool_equal_with_constant*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_nullable_bool_equal_with_constant
+  isExternal: false
+  name: Where_nullable_bool_equal_with_constant
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_nullable_bool_equal_with_constant
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_nullable_bool_equal_with_constant
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_nullable_bool_equal_with_constant
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_nullable_bool_equal_with_constant
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_nullable_bool_with_null_check*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_nullable_bool_with_null_check
+  isExternal: false
+  name: Where_nullable_bool_with_null_check
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_nullable_bool_with_null_check
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_nullable_bool_with_null_check
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_nullable_bool_with_null_check
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_nullable_bool_with_null_check
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_using_relational_null_semantics_with_parameter*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_using_relational_null_semantics_with_parameter
+  isExternal: false
+  name: Where_equal_using_relational_null_semantics_with_parameter
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_using_relational_null_semantics_with_parameter
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_using_relational_null_semantics_with_parameter
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_using_relational_null_semantics_with_parameter
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_using_relational_null_semantics_with_parameter
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_using_relational_null_semantics_complex_with_parameter*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_equal_using_relational_null_semantics_complex_with_parameter
+  isExternal: false
+  name: Where_equal_using_relational_null_semantics_complex_with_parameter
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_using_relational_null_semantics_complex_with_parameter
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_equal_using_relational_null_semantics_complex_with_parameter
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_using_relational_null_semantics_complex_with_parameter
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_equal_using_relational_null_semantics_complex_with_parameter
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_using_relational_null_semantics*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_using_relational_null_semantics
+  isExternal: false
+  name: Where_not_equal_using_relational_null_semantics
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_not_equal_using_relational_null_semantics
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_not_equal_using_relational_null_semantics
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_using_relational_null_semantics
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_using_relational_null_semantics
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_using_relational_null_semantics_with_parameter*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_using_relational_null_semantics_with_parameter
+  isExternal: false
+  name: Where_not_equal_using_relational_null_semantics_with_parameter
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_not_equal_using_relational_null_semantics_with_parameter
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_not_equal_using_relational_null_semantics_with_parameter
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_using_relational_null_semantics_with_parameter
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_using_relational_null_semantics_with_parameter
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_using_relational_null_semantics_complex_with_parameter*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_not_equal_using_relational_null_semantics_complex_with_parameter
+  isExternal: false
+  name: Where_not_equal_using_relational_null_semantics_complex_with_parameter
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_not_equal_using_relational_null_semantics_complex_with_parameter
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_not_equal_using_relational_null_semantics_complex_with_parameter
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_using_relational_null_semantics_complex_with_parameter
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_not_equal_using_relational_null_semantics_complex_with_parameter
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_comparison_null_constant_and_null_parameter*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_comparison_null_constant_and_null_parameter
+  isExternal: false
+  name: Where_comparison_null_constant_and_null_parameter
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_comparison_null_constant_and_null_parameter
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_comparison_null_constant_and_null_parameter
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_comparison_null_constant_and_null_parameter
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_comparison_null_constant_and_null_parameter
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_comparison_null_constant_and_nonnull_parameter*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_comparison_null_constant_and_nonnull_parameter
+  isExternal: false
+  name: Where_comparison_null_constant_and_nonnull_parameter
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_comparison_null_constant_and_nonnull_parameter
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_comparison_null_constant_and_nonnull_parameter
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_comparison_null_constant_and_nonnull_parameter
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_comparison_null_constant_and_nonnull_parameter
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_comparison_nonnull_constant_and_null_parameter*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_comparison_nonnull_constant_and_null_parameter
+  isExternal: false
+  name: Where_comparison_nonnull_constant_and_null_parameter
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_comparison_nonnull_constant_and_null_parameter
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_comparison_nonnull_constant_and_null_parameter
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_comparison_nonnull_constant_and_null_parameter
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_comparison_nonnull_constant_and_null_parameter
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_comparison_null_semantics_optimization_works_with_complex_predicates*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Where_comparison_null_semantics_optimization_works_with_complex_predicates
+  isExternal: false
+  name: Where_comparison_null_semantics_optimization_works_with_complex_predicates
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_comparison_null_semantics_optimization_works_with_complex_predicates
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Where_comparison_null_semantics_optimization_works_with_complex_predicates
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_comparison_null_semantics_optimization_works_with_complex_predicates
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Where_comparison_null_semantics_optimization_works_with_complex_predicates
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Switching_null_semantics_produces_different_cache_entry*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Switching_null_semantics_produces_different_cache_entry
+  isExternal: false
+  name: Switching_null_semantics_produces_different_cache_entry
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Switching_null_semantics_produces_different_cache_entry
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Switching_null_semantics_produces_different_cache_entry
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Switching_null_semantics_produces_different_cache_entry
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Switching_null_semantics_produces_different_cache_entry
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Switching_parameter_value_to_null_produces_different_cache_entry*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.Switching_parameter_value_to_null_produces_different_cache_entry
+  isExternal: false
+  name: Switching_parameter_value_to_null_produces_different_cache_entry
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.Switching_parameter_value_to_null_produces_different_cache_entry
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.Switching_parameter_value_to_null_produces_different_cache_entry
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).Switching_parameter_value_to_null_produces_different_cache_entry
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).Switching_parameter_value_to_null_produces_different_cache_entry
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.From_sql_composed_with_relational_null_comparison*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase`2.From_sql_composed_with_relational_null_comparison
+  isExternal: false
+  name: From_sql_composed_with_relational_null_comparison
+  nameWithType: NullSemanticsQueryTestBase<TTestStore, TFixture>.From_sql_composed_with_relational_null_comparison
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase<TTestStore, TFixture>.From_sql_composed_with_relational_null_comparison
+  nameWithType.vb: NullSemanticsQueryTestBase(Of TTestStore, TFixture).From_sql_composed_with_relational_null_comparison
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.NullSemanticsQueryTestBase(Of TTestStore, TFixture).From_sql_composed_with_relational_null_comparison

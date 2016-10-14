@@ -65,7 +65,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    A DbContext instance represents a session with the database and can be used to query and save\n    instances of your entities. DbContext is a combination of the Unit Of Work and Repository patterns.\n"
+  summary: "\nA DbContext instance represents a session with the database and can be used to query and save\ninstances of your entities. DbContext is a combination of the Unit Of Work and Repository patterns.\n"
   remarks: "\n<p>\n    Typically you create a class that derives from DbContext and contains <xref href=\"Microsoft.EntityFrameworkCore.DbSet%601\" data-throw-if-not-resolved=\"false\"></xref>\n    properties for each entity in the model. If the <xref href=\"Microsoft.EntityFrameworkCore.DbSet%601\" data-throw-if-not-resolved=\"false\"></xref> properties have a public setter,\n    they are automatically initialized when the instance of the derived context is created.\n</p>\n<p>\n    Override the <xref href=\"Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)\" data-throw-if-not-resolved=\"false\"></xref> method to configure the database (and\n    other options) to be used for the context. Alternatively, if you would rather perform configuration externally\n    instead of inline in your context, you can use <xref href=\"Microsoft.EntityFrameworkCore.DbContextOptionsBuilder%601\" data-throw-if-not-resolved=\"false\"></xref>\n    (or <xref href=\"Microsoft.EntityFrameworkCore.DbContextOptionsBuilder\" data-throw-if-not-resolved=\"false\"></xref>) to externally create an instance of <xref href=\"Microsoft.EntityFrameworkCore.DbContextOptions%601\" data-throw-if-not-resolved=\"false\"></xref>\n    (or <xref href=\"Microsoft.EntityFrameworkCore.DbContextOptions\" data-throw-if-not-resolved=\"false\"></xref>) and pass it to a base constructor of <xref href=\"Microsoft.EntityFrameworkCore.DbContext\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n<p>\n    The model is discovered by running a set of conventions over the entity classes found in the\n<xref href=\"Microsoft.EntityFrameworkCore.DbSet%601\" data-throw-if-not-resolved=\"false\"></xref> properties on the derived context. To further configure the model that\nis discovered by convention, you can override the <xref href=\"Microsoft.EntityFrameworkCore.DbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)\" data-throw-if-not-resolved=\"false\"></xref> method.\n</p>\n"
   example: []
   syntax:
@@ -122,6 +122,7 @@ items:
   syntax:
     content: protected DbContext()
     content.vb: Protected Sub New
+  overload: Microsoft.EntityFrameworkCore.DbContext.#ctor*
   modifiers.csharp:
   - protected
   modifiers.vb:
@@ -157,6 +158,7 @@ items:
     - id: options
       type: Microsoft.EntityFrameworkCore.DbContextOptions
       description: The options for this context.
+  overload: Microsoft.EntityFrameworkCore.DbContext.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -192,6 +194,7 @@ items:
     parameters: []
     return:
       type: System.IServiceProvider
+  overload: Microsoft.EntityFrameworkCore.DbContext.Microsoft#EntityFrameworkCore#Infrastructure#IInfrastructure{System#IServiceProvider}#Instance*
   implements:
   - Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure{System.IServiceProvider}.Instance
   nameWithType.vb: DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.Instance
@@ -230,7 +233,8 @@ items:
     parameters:
     - id: optionsBuilder
       type: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder
-      description: "\n    A builder used to create or modify options for this context. Databases (and other extensions)\n    typically define extension methods on this object that allow you to configure the context.\n"
+      description: "\nA builder used to create or modify options for this context. Databases (and other extensions)\ntypically define extension methods on this object that allow you to configure the context.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.OnConfiguring*
   modifiers.csharp:
   - protected
   - virtual
@@ -259,8 +263,8 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Override this method to further configure the model that was discovered by convention from the entity types\n    exposed in <xref href=\"Microsoft.EntityFrameworkCore.DbSet%601\" data-throw-if-not-resolved=\"false\"></xref> properties on your derived context. The resulting model may be cached\n    and re-used for subsequent instances of your derived context.\n"
-  remarks: "\n    If a model is explicitly set on the options for this context (via <xref href=\"Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseModel(Microsoft.EntityFrameworkCore.Metadata.IModel)\" data-throw-if-not-resolved=\"false\"></xref>)\n    then this method will not be run.\n"
+  summary: "\nOverride this method to further configure the model that was discovered by convention from the entity types\nexposed in <xref href=\"Microsoft.EntityFrameworkCore.DbSet%601\" data-throw-if-not-resolved=\"false\"></xref> properties on your derived context. The resulting model may be cached\nand re-used for subsequent instances of your derived context.\n"
+  remarks: "\nIf a model is explicitly set on the options for this context (via <xref href=\"Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseModel(Microsoft.EntityFrameworkCore.Metadata.IModel)\" data-throw-if-not-resolved=\"false\"></xref>)\nthen this method will not be run.\n"
   example: []
   syntax:
     content: protected virtual void OnModelCreating(ModelBuilder modelBuilder)
@@ -268,7 +272,8 @@ items:
     parameters:
     - id: modelBuilder
       type: Microsoft.EntityFrameworkCore.ModelBuilder
-      description: "\n    The builder being used to construct the model for this context. Databases (and other extensions) typically\n    define extension methods on this object that allow you to configure aspects of the model that are specific\n    to a given database.\n"
+      description: "\nThe builder being used to construct the model for this context. Databases (and other extensions) typically\ndefine extension methods on this object that allow you to configure aspects of the model that are specific\nto a given database.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.OnModelCreating*
   modifiers.csharp:
   - protected
   - virtual
@@ -297,15 +302,16 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Saves all changes made in this context to the database.\n"
-  remarks: "\n    This method will automatically call <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges\" data-throw-if-not-resolved=\"false\"></xref> to discover any\n    changes to entity instances before saving to the underlying database. This can be disabled via\n<xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  summary: "\nSaves all changes made in this context to the database.\n"
+  remarks: "\nThis method will automatically call <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges\" data-throw-if-not-resolved=\"false\"></xref> to discover any\nchanges to entity instances before saving to the underlying database. This can be disabled via\n<xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: public virtual int SaveChanges()
     content.vb: Public Overridable Function SaveChanges As Integer
     return:
       type: System.Int32
-      description: "\n    The number of state entries written to the database.\n"
+      description: "\nThe number of state entries written to the database.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.SaveChanges*
   modifiers.csharp:
   - public
   - virtual
@@ -334,8 +340,8 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Saves all changes made in this context to the database.\n"
-  remarks: "\n    This method will automatically call <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges\" data-throw-if-not-resolved=\"false\"></xref> to discover any\n    changes to entity instances before saving to the underlying database. This can be disabled via\n<xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  summary: "\nSaves all changes made in this context to the database.\n"
+  remarks: "\nThis method will automatically call <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges\" data-throw-if-not-resolved=\"false\"></xref> to discover any\nchanges to entity instances before saving to the underlying database. This can be disabled via\n<xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: public virtual int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -343,10 +349,11 @@ items:
     parameters:
     - id: acceptAllChangesOnSuccess
       type: System.Boolean
-      description: "\n    Indicates whether <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AcceptAllChanges\" data-throw-if-not-resolved=\"false\"></xref> is called after the changes have\n    been sent successfully to the database.\n"
+      description: "\nIndicates whether <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AcceptAllChanges\" data-throw-if-not-resolved=\"false\"></xref> is called after the changes have\nbeen sent successfully to the database.\n"
     return:
       type: System.Int32
-      description: "\n    The number of state entries written to the database.\n"
+      description: "\nThe number of state entries written to the database.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.SaveChanges*
   modifiers.csharp:
   - public
   - virtual
@@ -375,7 +382,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Asynchronously saves all changes made in this context to the database.\n"
+  summary: "\nAsynchronously saves all changes made in this context to the database.\n"
   remarks: "\n<p>\n    This method will automatically call <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges\" data-throw-if-not-resolved=\"false\"></xref> to discover any\n    changes to entity instances before saving to the underlying database. This can be disabled via\n<xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n<p>\n    Multiple active operations on the same context instance are not supported.  Use 'await' to ensure\n    that any asynchronous operations have completed before calling another method on this context.\n</p>\n"
   example: []
   syntax:
@@ -387,7 +394,8 @@ items:
       description: A <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> to observe while waiting for the task to complete.
     return:
       type: System.Threading.Tasks.Task{System.Int32}
-      description: "\n    A task that represents the asynchronous save operation. The task result contains the\n    number of state entries written to the database.\n"
+      description: "\nA task that represents the asynchronous save operation. The task result contains the\nnumber of state entries written to the database.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync*
   modifiers.csharp:
   - public
   - virtual
@@ -416,7 +424,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Asynchronously saves all changes made in this context to the database.\n"
+  summary: "\nAsynchronously saves all changes made in this context to the database.\n"
   remarks: "\n<p>\n    This method will automatically call <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges\" data-throw-if-not-resolved=\"false\"></xref> to discover any\n    changes to entity instances before saving to the underlying database. This can be disabled via\n<xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n<p>\n    Multiple active operations on the same context instance are not supported.  Use 'await' to ensure\n    that any asynchronous operations have completed before calling another method on this context.\n</p>\n"
   example: []
   syntax:
@@ -425,13 +433,14 @@ items:
     parameters:
     - id: acceptAllChangesOnSuccess
       type: System.Boolean
-      description: "\n    Indicates whether <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AcceptAllChanges\" data-throw-if-not-resolved=\"false\"></xref> is called after the changes have\n    been sent successfully to the database.\n"
+      description: "\nIndicates whether <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AcceptAllChanges\" data-throw-if-not-resolved=\"false\"></xref> is called after the changes have\nbeen sent successfully to the database.\n"
     - id: cancellationToken
       type: System.Threading.CancellationToken
       description: A <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> to observe while waiting for the task to complete.
     return:
       type: System.Threading.Tasks.Task{System.Int32}
-      description: "\n    A task that represents the asynchronous save operation. The task result contains the\n    number of state entries written to the database.\n"
+      description: "\nA task that represents the asynchronous save operation. The task result contains the\nnumber of state entries written to the database.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync*
   modifiers.csharp:
   - public
   - virtual
@@ -460,11 +469,12 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Releases the allocated resources for this context.\n"
+  summary: "\nReleases the allocated resources for this context.\n"
   example: []
   syntax:
     content: public virtual void Dispose()
     content.vb: Public Overridable Sub Dispose
+  overload: Microsoft.EntityFrameworkCore.DbContext.Dispose*
   implements:
   - System.IDisposable.Dispose
   modifiers.csharp:
@@ -495,7 +505,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Gets an <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry%601\" data-throw-if-not-resolved=\"false\"></xref> for the given entity. The entry provides\n    access to change tracking information and operations for the entity.\n"
+  summary: "\nGets an <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry%601\" data-throw-if-not-resolved=\"false\"></xref> for the given entity. The entry provides\naccess to change tracking information and operations for the entity.\n"
   example: []
   syntax:
     content: 'public virtual EntityEntry<TEntity> Entry<TEntity>(TEntity entity)where TEntity : class'
@@ -510,6 +520,7 @@ items:
     return:
       type: Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry{{TEntity}}
       description: 'The entry for the given entity. '
+  overload: Microsoft.EntityFrameworkCore.DbContext.Entry*
   nameWithType.vb: DbContext.Entry(Of TEntity)(TEntity)
   modifiers.csharp:
   - public
@@ -553,6 +564,7 @@ items:
     return:
       type: Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry
       description: 'The entry for the given entity. '
+  overload: Microsoft.EntityFrameworkCore.DbContext.Entry*
   modifiers.csharp:
   - public
   - virtual
@@ -581,7 +593,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Begins tracking the given entity, and any other reachable entities that are\n    not already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state such that\n    they will be inserted into the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
+  summary: "\nBegins tracking the given entity, and any other reachable entities that are\nnot already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state such that\nthey will be inserted into the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
   example: []
   syntax:
     content: 'public virtual EntityEntry<TEntity> Add<TEntity>(TEntity entity)where TEntity : class'
@@ -595,7 +607,8 @@ items:
       description: 'The type of the entity. '
     return:
       type: Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry{{TEntity}}
-      description: "\n    The <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry%601\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\n    access to change tracking information and operations for the entity.\n"
+      description: "\nThe <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry%601\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\naccess to change tracking information and operations for the entity.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.Add*
   nameWithType.vb: DbContext.Add(Of TEntity)(TEntity)
   modifiers.csharp:
   - public
@@ -644,7 +657,8 @@ items:
       description: 'The type of the entity. '
     return:
       type: System.Threading.Tasks.Task{Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry{{TEntity}}}
-      description: "\n    A task that represents the asynchronous Add operation. The task result contains the\n<xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry%601\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides access to change tracking\ninformation and operations for the entity.\n"
+      description: "\nA task that represents the asynchronous Add operation. The task result contains the\n<xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry%601\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides access to change tracking\ninformation and operations for the entity.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.AddAsync*
   nameWithType.vb: DbContext.AddAsync(Of TEntity)(TEntity, CancellationToken)
   modifiers.csharp:
   - public
@@ -672,11 +686,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Attach
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 498
+    startLine: 509
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Begins tracking the given entity, and any other reachable entities that are\n    not already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref> state such that no\n    operation will be performed when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
+  summary: "\n<p>\n    Begins tracking the given entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref> state \n    such that no operation will be performed when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> \n    is called.\n</p>\n<p>\n    A recursive search of the navigation properties will be performed to find reachable entities\n    that are not already being tracked by the context. These entities will also begin to be tracked \n    by the context. If a reachable entity has its primary key value set\n    then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref> state. If the primary key\n    value is not set then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state. \n    An entity is considered to have its primary key value set if the primary key property is set \n    to anything other than the CLR default for the property type.\n</p>\n"
   example: []
   syntax:
     content: 'public virtual EntityEntry<TEntity> Attach<TEntity>(TEntity entity)where TEntity : class'
@@ -690,7 +704,8 @@ items:
       description: 'The type of the entity. '
     return:
       type: Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry{{TEntity}}
-      description: "\n    The <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry%601\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\n    access to change tracking information and operations for the entity.\n"
+      description: "\nThe <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry%601\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\naccess to change tracking information and operations for the entity.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.Attach*
   nameWithType.vb: DbContext.Attach(Of TEntity)(TEntity)
   modifiers.csharp:
   - public
@@ -718,11 +733,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Update
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 520
+    startLine: 538
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n<p>\n    Begins tracking the given entity, and any other reachable entities that are\n    not already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Modified\" data-throw-if-not-resolved=\"false\"></xref> state such that they will\n    be updated in the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n</p>\n<p>\n    All properties of the entity will be marked as modified. To mark only some properties as modified, use\n<xref href=\"Microsoft.EntityFrameworkCore.DbContext.Attach%60%601(%60%600)\" data-throw-if-not-resolved=\"false\"></xref> to begin tracking the entity in the\n<xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref> state and then use the returned <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry%601\" data-throw-if-not-resolved=\"false\"></xref>\nto mark the desired properties as modified.\n</p>\n"
+  summary: "\n<p>\n    Begins tracking the given entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Modified\" data-throw-if-not-resolved=\"false\"></xref> state such that it will\n    be updated in the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n</p>\n<p>\n    All properties of the entity will be marked as modified. To mark only some properties as modified, use\n<xref href=\"Microsoft.EntityFrameworkCore.DbContext.Attach%60%601(%60%600)\" data-throw-if-not-resolved=\"false\"></xref> to begin tracking the entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref>\nstate and then use the returned <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> to mark the desired properties as modified.\n</p>\n<p>\n    A recursive search of the navigation properties will be performed to find reachable entities\n    that are not already being tracked by the context. These entities will also begin to be tracked \n    by the context. If a reachable entity has its primary key value set\n    then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Modified\" data-throw-if-not-resolved=\"false\"></xref> state. If the primary key\n    value is not set then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state. \n    An entity is considered to have its primary key value set if the primary key property is set \n    to anything other than the CLR default for the property type.\n</p>\n"
   example: []
   syntax:
     content: 'public virtual EntityEntry<TEntity> Update<TEntity>(TEntity entity)where TEntity : class'
@@ -736,7 +751,8 @@ items:
       description: 'The type of the entity. '
     return:
       type: Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry{{TEntity}}
-      description: "\n    The <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry%601\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\n    access to change tracking information and operations for the entity.\n"
+      description: "\nThe <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry%601\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\naccess to change tracking information and operations for the entity.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.Update*
   nameWithType.vb: DbContext.Update(Of TEntity)(TEntity)
   modifiers.csharp:
   - public
@@ -764,11 +780,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Remove
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 545
+    startLine: 563
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Begins tracking the given entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref> state such that it will\n    be removed from the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
+  summary: "\nBegins tracking the given entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref> state such that it will\nbe removed from the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
   remarks: "\n<p>\n    If the entity is already tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state then the context will\n    stop tracking the entity (rather than marking it as <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref>) since the\n    entity was previously added to the context and does not exist in the database.\n</p>\n<p>\n    Any other reachable entities that are not already being tracked will be tracked in the same way that\n    they would be if <xref href=\"Microsoft.EntityFrameworkCore.DbContext.Attach%60%601(%60%600)\" data-throw-if-not-resolved=\"false\"></xref> was called before calling this method.\n    This allows any cascading actions to be applied when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n</p>\n"
   example: []
   syntax:
@@ -783,7 +799,8 @@ items:
       description: 'The type of the entity. '
     return:
       type: Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry{{TEntity}}
-      description: "\n    The <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry%601\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\n    access to change tracking information and operations for the entity.\n"
+      description: "\nThe <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry%601\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\naccess to change tracking information and operations for the entity.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.Remove*
   nameWithType.vb: DbContext.Remove(Of TEntity)(TEntity)
   modifiers.csharp:
   - public
@@ -811,11 +828,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Add
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 588
+    startLine: 606
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Begins tracking the given entity, and any other reachable entities that are\n    not already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state such that they will\n    be inserted into the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
+  summary: "\nBegins tracking the given entity, and any other reachable entities that are\nnot already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state such that they will\nbe inserted into the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
   example: []
   syntax:
     content: public virtual EntityEntry Add(object entity)
@@ -826,7 +843,8 @@ items:
       description: 'The entity to add. '
     return:
       type: Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry
-      description: "\n    The <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\n    access to change tracking information and operations for the entity.\n"
+      description: "\nThe <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\naccess to change tracking information and operations for the entity.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.Add*
   modifiers.csharp:
   - public
   - virtual
@@ -851,7 +869,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: AddAsync
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 610
+    startLine: 628
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
@@ -869,7 +887,8 @@ items:
       description: A <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> to observe while waiting for the task to complete.
     return:
       type: System.Threading.Tasks.Task{Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry}
-      description: "\n    A task that represents the asynchronous Add operation. The task result contains the\n<xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides access to change tracking\ninformation and operations for the entity.\n"
+      description: "\nA task that represents the asynchronous Add operation. The task result contains the\n<xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides access to change tracking\ninformation and operations for the entity.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.AddAsync*
   modifiers.csharp:
   - public
   - virtual
@@ -894,11 +913,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Attach
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 634
+    startLine: 663
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Begins tracking the given entity, and any other reachable entities that are\n    not already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref> state such that no\n    operation will be performed when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
+  summary: "\n<p>\n    Begins tracking the given entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref> state \n    such that no operation will be performed when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> \n    is called.\n</p>\n<p>\n    A recursive search of the navigation properties will be performed to find reachable entities\n    that are not already being tracked by the context. These entities will also begin to be tracked \n    by the context. If a reachable entity has its primary key value set\n    then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref> state. If the primary key\n    value is not set then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state. \n    An entity is considered to have its primary key value set if the primary key property is set \n    to anything other than the CLR default for the property type.\n</p>\n"
   example: []
   syntax:
     content: public virtual EntityEntry Attach(object entity)
@@ -909,7 +928,8 @@ items:
       description: 'The entity to attach. '
     return:
       type: Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry
-      description: "\n    The <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\n    access to change tracking information and operations for the entity.\n"
+      description: "\nThe <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\naccess to change tracking information and operations for the entity.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.Attach*
   modifiers.csharp:
   - public
   - virtual
@@ -934,11 +954,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Update
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 654
+    startLine: 691
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n<p>\n    Begins tracking the given entity, and any other reachable entities that are\n    not already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Modified\" data-throw-if-not-resolved=\"false\"></xref> state such that they will\n    be updated in the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n</p>\n<p>\n    All properties of the entity will be marked as modified. To mark only some properties as modified, use\n<xref href=\"Microsoft.EntityFrameworkCore.DbContext.Attach(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> to begin tracking the entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref>\nstate and then use the returned <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> to mark the desired properties as modified.\n</p>\n"
+  summary: "\n<p>\n    Begins tracking the given entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Modified\" data-throw-if-not-resolved=\"false\"></xref> state such that it will\n    be updated in the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n</p>\n<p>\n    All properties of the entity will be marked as modified. To mark only some properties as modified, use\n<xref href=\"Microsoft.EntityFrameworkCore.DbContext.Attach(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> to begin tracking the entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref>\nstate and then use the returned <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> to mark the desired properties as modified.\n</p>\n<p>\n    A recursive search of the navigation properties will be performed to find reachable entities\n    that are not already being tracked by the context. These entities will also begin to be tracked \n    by the context. If a reachable entity has its primary key value set\n    then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Modified\" data-throw-if-not-resolved=\"false\"></xref> state. If the primary key\n    value is not set then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state. \n    An entity is considered to have its primary key value set if the primary key property is set \n    to anything other than the CLR default for the property type.\n</p>\n"
   example: []
   syntax:
     content: public virtual EntityEntry Update(object entity)
@@ -949,7 +969,8 @@ items:
       description: 'The entity to update. '
     return:
       type: Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry
-      description: "\n    The <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\n    access to change tracking information and operations for the entity.\n"
+      description: "\nThe <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\naccess to change tracking information and operations for the entity.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.Update*
   modifiers.csharp:
   - public
   - virtual
@@ -974,11 +995,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Remove
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 678
+    startLine: 715
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Begins tracking the given entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref> state such that it will\n    be removed from the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
+  summary: "\nBegins tracking the given entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref> state such that it will\nbe removed from the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
   remarks: "\n<p>\n    If the entity is already tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state then the context will\n    stop tracking the entity (rather than marking it as <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref>) since the\n    entity was previously added to the context and does not exist in the database.\n</p>\n<p>\n    Any other reachable entities that are not already being tracked will be tracked in the same way that\n    they would be if <xref href=\"Microsoft.EntityFrameworkCore.DbContext.Attach(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> was called before calling this method.\n    This allows any cascading actions to be applied when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n</p>\n"
   example: []
   syntax:
@@ -990,7 +1011,8 @@ items:
       description: 'The entity to remove. '
     return:
       type: Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry
-      description: "\n    The <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\n    access to change tracking information and operations for the entity.\n"
+      description: "\nThe <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> for the entity. The entry provides\naccess to change tracking information and operations for the entity.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.Remove*
   modifiers.csharp:
   - public
   - virtual
@@ -1015,11 +1037,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: AddRange
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 715
+    startLine: 752
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Begins tracking the given entities, and any other reachable entities that are\n    not already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state such that they will\n    be inserted into the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
+  summary: "\nBegins tracking the given entities, and any other reachable entities that are\nnot already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state such that they will\nbe inserted into the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
   example: []
   syntax:
     content: public virtual void AddRange(params object[] entities)
@@ -1028,6 +1050,7 @@ items:
     - id: entities
       type: System.Object[]
       description: 'The entities to add. '
+  overload: Microsoft.EntityFrameworkCore.DbContext.AddRange*
   nameWithType.vb: DbContext.AddRange(Object())
   modifiers.csharp:
   - public
@@ -1055,7 +1078,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: AddRangeAsync
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 732
+    startLine: 769
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
@@ -1071,6 +1094,7 @@ items:
     return:
       type: System.Threading.Tasks.Task
       description: 'A task that represents the asynchronous operation. '
+  overload: Microsoft.EntityFrameworkCore.DbContext.AddRangeAsync*
   nameWithType.vb: DbContext.AddRangeAsync(Object())
   modifiers.csharp:
   - public
@@ -1098,11 +1122,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: AttachRange
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 741
+    startLine: 789
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Begins tracking the given entities, and any other reachable entities that are\n    not already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref> state such that no\n    operation will be performed when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
+  summary: "\n<p>\n    Begins tracking the given entities in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref> state \n    such that no operation will be performed when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> \n    is called.\n</p>\n<p>\n    A recursive search of the navigation properties will be performed to find reachable entities\n    that are not already being tracked by the context. These entities will also begin to be tracked \n    by the context. If a reachable entity has its primary key value set\n    then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref> state. If the primary key\n    value is not set then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state. \n    An entity is considered to have its primary key value set if the primary key property is set \n    to anything other than the CLR default for the property type.\n</p>\n"
   example: []
   syntax:
     content: public virtual void AttachRange(params object[] entities)
@@ -1111,6 +1135,7 @@ items:
     - id: entities
       type: System.Object[]
       description: 'The entities to attach. '
+  overload: Microsoft.EntityFrameworkCore.DbContext.AttachRange*
   nameWithType.vb: DbContext.AttachRange(Object())
   modifiers.csharp:
   - public
@@ -1138,11 +1163,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: UpdateRange
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 757
+    startLine: 813
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n<p>\n    Begins tracking the given entities, and any other reachable entities that are\n    not already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Modified\" data-throw-if-not-resolved=\"false\"></xref> state such that they will\n    be updated in the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n</p>\n<p>\n    All properties of the entities will be marked as modified. To mark only some properties as modified, use\n<xref href=\"Microsoft.EntityFrameworkCore.DbContext.Attach(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> to begin tracking each entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref>\nstate and then use the returned <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> to mark the desired properties as modified.\n</p>\n"
+  summary: "\n<p>\n    Begins tracking the given entities in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Modified\" data-throw-if-not-resolved=\"false\"></xref> state such that they will\n    be updated in the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n</p>\n<p>\n    All properties of each entity will be marked as modified. To mark only some properties as modified, use\n<xref href=\"Microsoft.EntityFrameworkCore.DbContext.Attach(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> to begin tracking each entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref>\nstate and then use the returned <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> to mark the desired properties as modified.\n</p>\n<p>\n    A recursive search of the navigation properties will be performed to find reachable entities\n    that are not already being tracked by the context. These entities will also begin to be tracked \n    by the context. If a reachable entity has its primary key value set\n    then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Modified\" data-throw-if-not-resolved=\"false\"></xref> state. If the primary key\n    value is not set then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state. \n    An entity is considered to have its primary key value set if the primary key property is set \n    to anything other than the CLR default for the property type.\n</p>\n"
   example: []
   syntax:
     content: public virtual void UpdateRange(params object[] entities)
@@ -1151,6 +1176,7 @@ items:
     - id: entities
       type: System.Object[]
       description: 'The entities to update. '
+  overload: Microsoft.EntityFrameworkCore.DbContext.UpdateRange*
   nameWithType.vb: DbContext.UpdateRange(Object())
   modifiers.csharp:
   - public
@@ -1178,11 +1204,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: RemoveRange
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 777
+    startLine: 833
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Begins tracking the given entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref> state such that it will\n    be removed from the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
+  summary: "\nBegins tracking the given entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref> state such that it will\nbe removed from the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
   remarks: "\n<p>\n    If any of the entities are already tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state then the context will\n    stop tracking those entities (rather than marking them as <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref>) since those\n    entities were previously added to the context and do not exist in the database.\n</p>\n<p>\n    Any other reachable entities that are not already being tracked will be tracked in the same way that\n    they would be if <xref href=\"Microsoft.EntityFrameworkCore.DbContext.AttachRange(System.Object%5b%5d)\" data-throw-if-not-resolved=\"false\"></xref> was called before calling this method.\n    This allows any cascading actions to be applied when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n</p>\n"
   example: []
   syntax:
@@ -1192,6 +1218,7 @@ items:
     - id: entities
       type: System.Object[]
       description: 'The entities to remove. '
+  overload: Microsoft.EntityFrameworkCore.DbContext.RemoveRange*
   nameWithType.vb: DbContext.RemoveRange(Object())
   modifiers.csharp:
   - public
@@ -1219,11 +1246,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: AddRange
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 796
+    startLine: 852
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Begins tracking the given entities, and any other reachable entities that are\n    not already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state such that they will\n    be inserted into the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
+  summary: "\nBegins tracking the given entities, and any other reachable entities that are\nnot already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state such that they will\nbe inserted into the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
   example: []
   syntax:
     content: public virtual void AddRange(IEnumerable<object> entities)
@@ -1232,6 +1259,7 @@ items:
     - id: entities
       type: System.Collections.Generic.IEnumerable{System.Object}
       description: 'The entities to add. '
+  overload: Microsoft.EntityFrameworkCore.DbContext.AddRange*
   nameWithType.vb: DbContext.AddRange(IEnumerable(Of Object))
   modifiers.csharp:
   - public
@@ -1259,7 +1287,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: AddRangeAsync
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 816
+    startLine: 872
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
@@ -1277,7 +1305,8 @@ items:
       description: A <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> to observe while waiting for the task to complete.
     return:
       type: System.Threading.Tasks.Task
-      description: "\n    A task that represents the asynchronous operation.\n"
+      description: "\nA task that represents the asynchronous operation.\n"
+  overload: Microsoft.EntityFrameworkCore.DbContext.AddRangeAsync*
   nameWithType.vb: DbContext.AddRangeAsync(IEnumerable(Of Object), CancellationToken)
   modifiers.csharp:
   - public
@@ -1305,11 +1334,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: AttachRange
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 837
+    startLine: 904
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Begins tracking the given entities, and any other reachable entities that are\n    not already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref> state such that no\n    operation will be performed when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
+  summary: "\n<p>\n    Begins tracking the given entities in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref> state \n    such that no operation will be performed when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> \n    is called.\n</p>\n<p>\n    A recursive search of the navigation properties will be performed to find reachable entities\n    that are not already being tracked by the context. These entities will also begin to be tracked \n    by the context. If a reachable entity has its primary key value set\n    then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref> state. If the primary key\n    value is not set then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state. \n    An entity is considered to have its primary key value set if the primary key property is set \n    to anything other than the CLR default for the property type.\n</p>\n"
   example: []
   syntax:
     content: public virtual void AttachRange(IEnumerable<object> entities)
@@ -1318,6 +1347,7 @@ items:
     - id: entities
       type: System.Collections.Generic.IEnumerable{System.Object}
       description: 'The entities to attach. '
+  overload: Microsoft.EntityFrameworkCore.DbContext.AttachRange*
   nameWithType.vb: DbContext.AttachRange(IEnumerable(Of Object))
   modifiers.csharp:
   - public
@@ -1345,11 +1375,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: UpdateRange
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 853
+    startLine: 928
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n<p>\n    Begins tracking the given entities, and any other reachable entities that are\n    not already being tracked, in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Modified\" data-throw-if-not-resolved=\"false\"></xref> state such that they will\n    be updated in the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n</p>\n<p>\n    All properties of the entities will be marked as modified. To mark only some properties as modified, use\n<xref href=\"Microsoft.EntityFrameworkCore.DbContext.Attach(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> to begin tracking each entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref>\nstate and then use the returned <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> to mark the desired properties as modified.\n</p>\n"
+  summary: "\n<p>\n    Begins tracking the given entities in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Modified\" data-throw-if-not-resolved=\"false\"></xref> state such that they will\n    be updated in the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n</p>\n<p>\n    All properties of each entity will be marked as modified. To mark only some properties as modified, use\n<xref href=\"Microsoft.EntityFrameworkCore.DbContext.Attach(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> to begin tracking each entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Unchanged\" data-throw-if-not-resolved=\"false\"></xref>\nstate and then use the returned <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> to mark the desired properties as modified.\n</p>\n<p>\n    A recursive search of the navigation properties will be performed to find reachable entities\n    that are not already being tracked by the context. These entities will also begin to be tracked \n    by the context. If a reachable entity has its primary key value set\n    then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Modified\" data-throw-if-not-resolved=\"false\"></xref> state. If the primary key\n    value is not set then it will be tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state. \n    An entity is considered to have its primary key value set if the primary key property is set \n    to anything other than the CLR default for the property type.\n</p>\n"
   example: []
   syntax:
     content: public virtual void UpdateRange(IEnumerable<object> entities)
@@ -1358,6 +1388,7 @@ items:
     - id: entities
       type: System.Collections.Generic.IEnumerable{System.Object}
       description: 'The entities to update. '
+  overload: Microsoft.EntityFrameworkCore.DbContext.UpdateRange*
   nameWithType.vb: DbContext.UpdateRange(IEnumerable(Of Object))
   modifiers.csharp:
   - public
@@ -1385,11 +1416,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: RemoveRange
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 873
+    startLine: 948
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Begins tracking the given entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref> state such that it will\n    be removed from the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
+  summary: "\nBegins tracking the given entity in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref> state such that it will\nbe removed from the database when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
   remarks: "\n<p>\n    If any of the entities are already tracked in the <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Added\" data-throw-if-not-resolved=\"false\"></xref> state then the context will\n    stop tracking those entities (rather than marking them as <xref href=\"Microsoft.EntityFrameworkCore.EntityState.Deleted\" data-throw-if-not-resolved=\"false\"></xref>) since those\n    entities were previously added to the context and do not exist in the database.\n</p>\n<p>\n    Any other reachable entities that are not already being tracked will be tracked in the same way that\n    they would be if <xref href=\"Microsoft.EntityFrameworkCore.DbContext.AttachRange(System.Collections.Generic.IEnumerable%7bSystem.Object%7d)\" data-throw-if-not-resolved=\"false\"></xref> was called before calling this method.\n    This allows any cascading actions to be applied when <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> is called.\n</p>\n"
   example: []
   syntax:
@@ -1399,6 +1430,7 @@ items:
     - id: entities
       type: System.Collections.Generic.IEnumerable{System.Object}
       description: 'The entities to remove. '
+  overload: Microsoft.EntityFrameworkCore.DbContext.RemoveRange*
   nameWithType.vb: DbContext.RemoveRange(IEnumerable(Of Object))
   modifiers.csharp:
   - public
@@ -1426,11 +1458,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Database
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 900
+    startLine: 975
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Provides access to database related information and operations for this context.\n"
+  summary: "\nProvides access to database related information and operations for this context.\n"
   example: []
   syntax:
     content: public virtual DatabaseFacade Database { get; }
@@ -1438,6 +1470,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+  overload: Microsoft.EntityFrameworkCore.DbContext.Database*
   modifiers.csharp:
   - public
   - virtual
@@ -1464,11 +1497,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ChangeTracker
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 905
+    startLine: 980
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Provides access to information and operations for entity instances this context is tracking.\n"
+  summary: "\nProvides access to information and operations for entity instances this context is tracking.\n"
   example: []
   syntax:
     content: public virtual ChangeTracker ChangeTracker { get; }
@@ -1476,6 +1509,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker
+  overload: Microsoft.EntityFrameworkCore.DbContext.ChangeTracker*
   modifiers.csharp:
   - public
   - virtual
@@ -1502,11 +1536,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Model
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 912
+    startLine: 987
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    The metadata about the shape of entities, the relationships between them, and how they map to the database.\n"
+  summary: "\nThe metadata about the shape of entities, the relationships between them, and how they map to the database.\n"
   example: []
   syntax:
     content: public virtual IModel Model { get; }
@@ -1514,6 +1548,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IModel
+  overload: Microsoft.EntityFrameworkCore.DbContext.Model*
   modifiers.csharp:
   - public
   - virtual
@@ -1540,11 +1575,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Set
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 921
+    startLine: 996
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Creates a <xref href=\"Microsoft.EntityFrameworkCore.DbSet%601\" data-throw-if-not-resolved=\"false\"></xref> that can be used to query and save instances of <em>TEntity</em>.\n"
+  summary: "\nCreates a <xref href=\"Microsoft.EntityFrameworkCore.DbSet%601\" data-throw-if-not-resolved=\"false\"></xref> that can be used to query and save instances of <em>TEntity</em>.\n"
   example: []
   syntax:
     content: 'public virtual DbSet<TEntity> Set<TEntity>()where TEntity : class'
@@ -1555,6 +1590,7 @@ items:
     return:
       type: Microsoft.EntityFrameworkCore.DbSet{{TEntity}}
       description: 'A set for the given entity type. '
+  overload: Microsoft.EntityFrameworkCore.DbContext.Set*
   nameWithType.vb: DbContext.Set(Of TEntity)()
   modifiers.csharp:
   - public
@@ -1582,11 +1618,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Find
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 946
+    startLine: 1021
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Finds an entity with the given primary key values. If an entity with the given primary key values\n    is being tracked by the context, then it is returned immediately without making a request to the\n    database. Otherwise, a query is made to the dataabse for an entity with the given primary key values\n    and this entity, if found, is attached to the context and returned. If no entity is found, then\n    null is returned.\n"
+  summary: "\nFinds an entity with the given primary key values. If an entity with the given primary key values\nis being tracked by the context, then it is returned immediately without making a request to the\ndatabase. Otherwise, a query is made to the dataabse for an entity with the given primary key values\nand this entity, if found, is attached to the context and returned. If no entity is found, then\nnull is returned.\n"
   example: []
   syntax:
     content: public virtual object Find(Type entityType, params object[] keyValues)
@@ -1601,6 +1637,7 @@ items:
     return:
       type: System.Object
       description: The entity found, or null.
+  overload: Microsoft.EntityFrameworkCore.DbContext.Find*
   nameWithType.vb: DbContext.Find(Type, Object())
   modifiers.csharp:
   - public
@@ -1628,11 +1665,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: FindAsync
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 959
+    startLine: 1034
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Finds an entity with the given primary key values. If an entity with the given primary key values\n    is being tracked by the context, then it is returned immediately without making a request to the\n    database. Otherwise, a query is made to the dataabse for an entity with the given primary key values\n    and this entity, if found, is attached to the context and returned. If no entity is found, then\n    null is returned.\n"
+  summary: "\nFinds an entity with the given primary key values. If an entity with the given primary key values\nis being tracked by the context, then it is returned immediately without making a request to the\ndatabase. Otherwise, a query is made to the dataabse for an entity with the given primary key values\nand this entity, if found, is attached to the context and returned. If no entity is found, then\nnull is returned.\n"
   example: []
   syntax:
     content: public virtual Task<object> FindAsync(Type entityType, params object[] keyValues)
@@ -1647,6 +1684,7 @@ items:
     return:
       type: System.Threading.Tasks.Task{System.Object}
       description: The entity found, or null.
+  overload: Microsoft.EntityFrameworkCore.DbContext.FindAsync*
   nameWithType.vb: DbContext.FindAsync(Type, Object())
   modifiers.csharp:
   - public
@@ -1674,11 +1712,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: FindAsync
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 973
+    startLine: 1048
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Finds an entity with the given primary key values. If an entity with the given primary key values\n    is being tracked by the context, then it is returned immediately without making a request to the\n    database. Otherwise, a query is made to the dataabse for an entity with the given primary key values\n    and this entity, if found, is attached to the context and returned. If no entity is found, then\n    null is returned.\n"
+  summary: "\nFinds an entity with the given primary key values. If an entity with the given primary key values\nis being tracked by the context, then it is returned immediately without making a request to the\ndatabase. Otherwise, a query is made to the dataabse for an entity with the given primary key values\nand this entity, if found, is attached to the context and returned. If no entity is found, then\nnull is returned.\n"
   example: []
   syntax:
     content: public virtual Task<object> FindAsync(Type entityType, object[] keyValues, CancellationToken cancellationToken)
@@ -1696,6 +1734,7 @@ items:
     return:
       type: System.Threading.Tasks.Task{System.Object}
       description: The entity found, or null.
+  overload: Microsoft.EntityFrameworkCore.DbContext.FindAsync*
   nameWithType.vb: DbContext.FindAsync(Type, Object(), CancellationToken)
   modifiers.csharp:
   - public
@@ -1723,11 +1762,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Find
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 986
+    startLine: 1061
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Finds an entity with the given primary key values. If an entity with the given primary key values\n    is being tracked by the context, then it is returned immediately without making a request to the\n    database. Otherwise, a query is made to the dataabse for an entity with the given primary key values\n    and this entity, if found, is attached to the context and returned. If no entity is found, then\n    null is returned.\n"
+  summary: "\nFinds an entity with the given primary key values. If an entity with the given primary key values\nis being tracked by the context, then it is returned immediately without making a request to the\ndatabase. Otherwise, a query is made to the dataabse for an entity with the given primary key values\nand this entity, if found, is attached to the context and returned. If no entity is found, then\nnull is returned.\n"
   example: []
   syntax:
     content: 'public virtual TEntity Find<TEntity>(params object[] keyValues)where TEntity : class'
@@ -1742,6 +1781,7 @@ items:
     return:
       type: '{TEntity}'
       description: The entity found, or null.
+  overload: Microsoft.EntityFrameworkCore.DbContext.Find*
   nameWithType.vb: DbContext.Find(Of TEntity)(Object())
   modifiers.csharp:
   - public
@@ -1769,11 +1809,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: FindAsync
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 999
+    startLine: 1074
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Finds an entity with the given primary key values. If an entity with the given primary key values\n    is being tracked by the context, then it is returned immediately without making a request to the\n    database. Otherwise, a query is made to the dataabse for an entity with the given primary key values\n    and this entity, if found, is attached to the context and returned. If no entity is found, then\n    null is returned.\n"
+  summary: "\nFinds an entity with the given primary key values. If an entity with the given primary key values\nis being tracked by the context, then it is returned immediately without making a request to the\ndatabase. Otherwise, a query is made to the dataabse for an entity with the given primary key values\nand this entity, if found, is attached to the context and returned. If no entity is found, then\nnull is returned.\n"
   example: []
   syntax:
     content: 'public virtual Task<TEntity> FindAsync<TEntity>(params object[] keyValues)where TEntity : class'
@@ -1788,6 +1828,7 @@ items:
     return:
       type: System.Threading.Tasks.Task{{TEntity}}
       description: The entity found, or null.
+  overload: Microsoft.EntityFrameworkCore.DbContext.FindAsync*
   nameWithType.vb: DbContext.FindAsync(Of TEntity)(Object())
   modifiers.csharp:
   - public
@@ -1815,11 +1856,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: FindAsync
     path: src/Microsoft.EntityFrameworkCore/DbContext.cs
-    startLine: 1013
+    startLine: 1088
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore
-  summary: "\n    Finds an entity with the given primary key values. If an entity with the given primary key values\n    is being tracked by the context, then it is returned immediately without making a request to the\n    database. Otherwise, a query is made to the dataabse for an entity with the given primary key values\n    and this entity, if found, is attached to the context and returned. If no entity is found, then\n    null is returned.\n"
+  summary: "\nFinds an entity with the given primary key values. If an entity with the given primary key values\nis being tracked by the context, then it is returned immediately without making a request to the\ndatabase. Otherwise, a query is made to the dataabse for an entity with the given primary key values\nand this entity, if found, is attached to the context and returned. If no entity is found, then\nnull is returned.\n"
   example: []
   syntax:
     content: 'public virtual Task<TEntity> FindAsync<TEntity>(object[] keyValues, CancellationToken cancellationToken)where TEntity : class'
@@ -1837,6 +1878,7 @@ items:
     return:
       type: System.Threading.Tasks.Task{{TEntity}}
       description: The entity found, or null.
+  overload: Microsoft.EntityFrameworkCore.DbContext.FindAsync*
   nameWithType.vb: DbContext.FindAsync(Of TEntity)(Object(), CancellationToken)
   modifiers.csharp:
   - public
@@ -2633,6 +2675,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.DbContext.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.#ctor
+  isExternal: false
+  name: DbContext
+  nameWithType: DbContext.DbContext
+  fullName: Microsoft.EntityFrameworkCore.DbContext.DbContext
 - uid: System.IServiceProvider
   commentId: T:System.IServiceProvider
   parent: System
@@ -2640,6 +2688,14 @@ references:
   name: IServiceProvider
   nameWithType: IServiceProvider
   fullName: System.IServiceProvider
+- uid: Microsoft.EntityFrameworkCore.DbContext.Microsoft#EntityFrameworkCore#Infrastructure#IInfrastructure{System#IServiceProvider}#Instance*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.Microsoft#EntityFrameworkCore#Infrastructure#IInfrastructure{System#IServiceProvider}#Instance
+  isExternal: false
+  name: IInfrastructure<IServiceProvider>.Instance
+  nameWithType: DbContext.IInfrastructure<IServiceProvider>.Instance
+  fullName: Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.Instance
+  nameWithType.vb: DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.Instance
+  name.vb: Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.Instance
 - uid: Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure{System.IServiceProvider}.Instance
   commentId: P:Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure{System.IServiceProvider}.Instance
   parent: Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure{System.IServiceProvider}
@@ -2664,8 +2720,20 @@ references:
   name: IsConfigured
   nameWithType: DbContextOptionsBuilder.IsConfigured
   fullName: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.IsConfigured
+- uid: Microsoft.EntityFrameworkCore.DbContext.OnConfiguring*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring
+  isExternal: false
+  name: OnConfiguring
+  nameWithType: DbContext.OnConfiguring
+  fullName: Microsoft.EntityFrameworkCore.DbContext.OnConfiguring
 - uid: Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseModel(Microsoft.EntityFrameworkCore.Metadata.IModel)
   commentId: M:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseModel(Microsoft.EntityFrameworkCore.Metadata.IModel)
+- uid: Microsoft.EntityFrameworkCore.DbContext.OnModelCreating*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating
+  isExternal: false
+  name: OnModelCreating
+  nameWithType: DbContext.OnModelCreating
+  fullName: Microsoft.EntityFrameworkCore.DbContext.OnModelCreating
 - uid: Microsoft.EntityFrameworkCore.ModelBuilder
   commentId: T:Microsoft.EntityFrameworkCore.ModelBuilder
   parent: Microsoft.EntityFrameworkCore
@@ -2677,6 +2745,12 @@ references:
   commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled
   commentId: P:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled
+- uid: Microsoft.EntityFrameworkCore.DbContext.SaveChanges*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.SaveChanges
+  isExternal: false
+  name: SaveChanges
+  nameWithType: DbContext.SaveChanges
+  fullName: Microsoft.EntityFrameworkCore.DbContext.SaveChanges
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -2700,6 +2774,12 @@ references:
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
+- uid: Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync
+  isExternal: false
+  name: SaveChangesAsync
+  nameWithType: DbContext.SaveChangesAsync
+  fullName: Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync
 - uid: System.Threading.Tasks.Task{System.Int32}
   commentId: T:System.Threading.Tasks.Task{System.Int32}
   parent: System.Threading.Tasks
@@ -2795,6 +2875,12 @@ references:
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+- uid: Microsoft.EntityFrameworkCore.DbContext.Dispose*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.Dispose
+  isExternal: false
+  name: Dispose
+  nameWithType: DbContext.Dispose
+  fullName: Microsoft.EntityFrameworkCore.DbContext.Dispose
 - uid: System.IDisposable.Dispose
   commentId: M:System.IDisposable.Dispose
   parent: System.IDisposable
@@ -2863,6 +2949,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.DbContext.Entry*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.Entry
+  isExternal: false
+  name: Entry<TEntity>
+  nameWithType: DbContext.Entry<TEntity>
+  fullName: Microsoft.EntityFrameworkCore.DbContext.Entry<TEntity>
+  nameWithType.vb: DbContext.Entry(Of TEntity)
+  fullname.vb: Microsoft.EntityFrameworkCore.DbContext.Entry(Of TEntity)
+  name.vb: Entry(Of TEntity)
 - uid: '{TEntity}'
   commentId: '!:TEntity'
   definition: TEntity
@@ -2963,6 +3058,24 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.DbContext.Add*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.Add
+  isExternal: false
+  name: Add<TEntity>
+  nameWithType: DbContext.Add<TEntity>
+  fullName: Microsoft.EntityFrameworkCore.DbContext.Add<TEntity>
+  nameWithType.vb: DbContext.Add(Of TEntity)
+  fullname.vb: Microsoft.EntityFrameworkCore.DbContext.Add(Of TEntity)
+  name.vb: Add(Of TEntity)
+- uid: Microsoft.EntityFrameworkCore.DbContext.AddAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.AddAsync
+  isExternal: false
+  name: AddAsync<TEntity>
+  nameWithType: DbContext.AddAsync<TEntity>
+  fullName: Microsoft.EntityFrameworkCore.DbContext.AddAsync<TEntity>
+  nameWithType.vb: DbContext.AddAsync(Of TEntity)
+  fullname.vb: Microsoft.EntityFrameworkCore.DbContext.AddAsync(Of TEntity)
+  name.vb: AddAsync(Of TEntity)
 - uid: System.Threading.Tasks.Task{Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry{{TEntity}}}
   commentId: T:System.Threading.Tasks.Task{Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry{``0}}
   parent: System.Threading.Tasks
@@ -3025,6 +3138,15 @@ references:
     fullName: )
 - uid: Microsoft.EntityFrameworkCore.EntityState.Unchanged
   commentId: F:Microsoft.EntityFrameworkCore.EntityState.Unchanged
+- uid: Microsoft.EntityFrameworkCore.DbContext.Attach*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.Attach
+  isExternal: false
+  name: Attach<TEntity>
+  nameWithType: DbContext.Attach<TEntity>
+  fullName: Microsoft.EntityFrameworkCore.DbContext.Attach<TEntity>
+  nameWithType.vb: DbContext.Attach(Of TEntity)
+  fullname.vb: Microsoft.EntityFrameworkCore.DbContext.Attach(Of TEntity)
+  name.vb: Attach(Of TEntity)
 - uid: Microsoft.EntityFrameworkCore.EntityState.Modified
   commentId: F:Microsoft.EntityFrameworkCore.EntityState.Modified
 - uid: Microsoft.EntityFrameworkCore.DbContext.Attach``1(``0)
@@ -3064,8 +3186,26 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.DbContext.Update*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.Update
+  isExternal: false
+  name: Update<TEntity>
+  nameWithType: DbContext.Update<TEntity>
+  fullName: Microsoft.EntityFrameworkCore.DbContext.Update<TEntity>
+  nameWithType.vb: DbContext.Update(Of TEntity)
+  fullname.vb: Microsoft.EntityFrameworkCore.DbContext.Update(Of TEntity)
+  name.vb: Update(Of TEntity)
 - uid: Microsoft.EntityFrameworkCore.EntityState.Deleted
   commentId: F:Microsoft.EntityFrameworkCore.EntityState.Deleted
+- uid: Microsoft.EntityFrameworkCore.DbContext.Remove*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.Remove
+  isExternal: false
+  name: Remove<TEntity>
+  nameWithType: DbContext.Remove<TEntity>
+  fullName: Microsoft.EntityFrameworkCore.DbContext.Remove<TEntity>
+  nameWithType.vb: DbContext.Remove(Of TEntity)
+  fullname.vb: Microsoft.EntityFrameworkCore.DbContext.Remove(Of TEntity)
+  name.vb: Remove(Of TEntity)
 - uid: System.Threading.Tasks.Task{Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry}
   commentId: T:System.Threading.Tasks.Task{Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry}
   parent: System.Threading.Tasks
@@ -3147,6 +3287,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.DbContext.AddRange*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.AddRange
+  isExternal: false
+  name: AddRange
+  nameWithType: DbContext.AddRange
+  fullName: Microsoft.EntityFrameworkCore.DbContext.AddRange
 - uid: System.Object[]
   name: Object[]
   nameWithType: Object[]
@@ -3172,6 +3318,12 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+- uid: Microsoft.EntityFrameworkCore.DbContext.AddRangeAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.AddRangeAsync
+  isExternal: false
+  name: AddRangeAsync
+  nameWithType: DbContext.AddRangeAsync
+  fullName: Microsoft.EntityFrameworkCore.DbContext.AddRangeAsync
 - uid: System.Threading.Tasks.Task
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
@@ -3179,6 +3331,18 @@ references:
   name: Task
   nameWithType: Task
   fullName: System.Threading.Tasks.Task
+- uid: Microsoft.EntityFrameworkCore.DbContext.AttachRange*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.AttachRange
+  isExternal: false
+  name: AttachRange
+  nameWithType: DbContext.AttachRange
+  fullName: Microsoft.EntityFrameworkCore.DbContext.AttachRange
+- uid: Microsoft.EntityFrameworkCore.DbContext.UpdateRange*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.UpdateRange
+  isExternal: false
+  name: UpdateRange
+  nameWithType: DbContext.UpdateRange
+  fullName: Microsoft.EntityFrameworkCore.DbContext.UpdateRange
 - uid: Microsoft.EntityFrameworkCore.DbContext.AttachRange(System.Object[])
   commentId: M:Microsoft.EntityFrameworkCore.DbContext.AttachRange(System.Object[])
   parent: Microsoft.EntityFrameworkCore.DbContext
@@ -3227,6 +3391,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.DbContext.RemoveRange*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.RemoveRange
+  isExternal: false
+  name: RemoveRange
+  nameWithType: DbContext.RemoveRange
+  fullName: Microsoft.EntityFrameworkCore.DbContext.RemoveRange
 - uid: System.Collections.Generic.IEnumerable{System.Object}
   commentId: T:System.Collections.Generic.IEnumerable{System.Object}
   parent: System.Collections.Generic
@@ -3380,6 +3550,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.DbContext.Database*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.Database
+  isExternal: false
+  name: Database
+  nameWithType: DbContext.Database
+  fullName: Microsoft.EntityFrameworkCore.DbContext.Database
 - uid: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
   commentId: T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
   parent: Microsoft.EntityFrameworkCore.Infrastructure
@@ -3387,6 +3563,12 @@ references:
   name: DatabaseFacade
   nameWithType: DatabaseFacade
   fullName: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
+- uid: Microsoft.EntityFrameworkCore.DbContext.ChangeTracker*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.ChangeTracker
+  isExternal: false
+  name: ChangeTracker
+  nameWithType: DbContext.ChangeTracker
+  fullName: Microsoft.EntityFrameworkCore.DbContext.ChangeTracker
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker
   commentId: T:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker
   parent: Microsoft.EntityFrameworkCore.ChangeTracking
@@ -3394,6 +3576,12 @@ references:
   name: ChangeTracker
   nameWithType: ChangeTracker
   fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker
+- uid: Microsoft.EntityFrameworkCore.DbContext.Model*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.Model
+  isExternal: false
+  name: Model
+  nameWithType: DbContext.Model
+  fullName: Microsoft.EntityFrameworkCore.DbContext.Model
 - uid: Microsoft.EntityFrameworkCore.Metadata.IModel
   commentId: T:Microsoft.EntityFrameworkCore.Metadata.IModel
   parent: Microsoft.EntityFrameworkCore.Metadata
@@ -3407,6 +3595,15 @@ references:
   name: Microsoft.EntityFrameworkCore.Metadata
   nameWithType: Microsoft.EntityFrameworkCore.Metadata
   fullName: Microsoft.EntityFrameworkCore.Metadata
+- uid: Microsoft.EntityFrameworkCore.DbContext.Set*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.Set
+  isExternal: false
+  name: Set<TEntity>
+  nameWithType: DbContext.Set<TEntity>
+  fullName: Microsoft.EntityFrameworkCore.DbContext.Set<TEntity>
+  nameWithType.vb: DbContext.Set(Of TEntity)
+  fullname.vb: Microsoft.EntityFrameworkCore.DbContext.Set(Of TEntity)
+  name.vb: Set(Of TEntity)
 - uid: Microsoft.EntityFrameworkCore.DbSet{{TEntity}}
   commentId: T:Microsoft.EntityFrameworkCore.DbSet{``0}
   parent: Microsoft.EntityFrameworkCore
@@ -3445,6 +3642,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.DbContext.Find*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.Find
+  isExternal: false
+  name: Find
+  nameWithType: DbContext.Find
+  fullName: Microsoft.EntityFrameworkCore.DbContext.Find
 - uid: System.Type
   commentId: T:System.Type
   parent: System
@@ -3452,6 +3655,12 @@ references:
   name: Type
   nameWithType: Type
   fullName: System.Type
+- uid: Microsoft.EntityFrameworkCore.DbContext.FindAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.DbContext.FindAsync
+  isExternal: false
+  name: FindAsync
+  nameWithType: DbContext.FindAsync
+  fullName: Microsoft.EntityFrameworkCore.DbContext.FindAsync
 - uid: System.Threading.Tasks.Task{System.Object}
   commentId: T:System.Threading.Tasks.Task{System.Object}
   parent: System.Threading.Tasks

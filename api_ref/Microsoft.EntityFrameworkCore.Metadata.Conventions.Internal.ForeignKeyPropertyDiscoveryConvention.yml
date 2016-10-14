@@ -5,10 +5,13 @@ items:
   id: ForeignKeyPropertyDiscoveryConvention
   parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
   children:
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder,Microsoft.EntityFrameworkCore.Metadata.Internal.Key)
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder)
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.Reflection.FieldInfo)
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder,Microsoft.EntityFrameworkCore.Metadata.Internal.Navigation)
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Microsoft#EntityFrameworkCore#Metadata#Conventions#Internal#IForeignKeyUniquenessConvention#Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
   langs:
   - csharp
   - vb
@@ -23,17 +26,17 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ForeignKeyPropertyDiscoveryConvention
     path: src/Microsoft.EntityFrameworkCore/Metadata/Conventions/Internal/ForeignKeyPropertyDiscoveryConvention.cs
-    startLine: 16
+    startLine: 15
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
-    content: 'public class ForeignKeyPropertyDiscoveryConvention : IForeignKeyConvention, INavigationConvention, IPropertyConvention, IPrincipalEndConvention, IPropertyFieldChangedConvention'
+    content: 'public class ForeignKeyPropertyDiscoveryConvention : IForeignKeyConvention, INavigationConvention, IPropertyConvention, IPrincipalEndConvention, IPropertyFieldChangedConvention, IForeignKeyUniquenessConvention, IKeyConvention, IKeyRemovedConvention'
     content.vb: >-
       Public Class ForeignKeyPropertyDiscoveryConvention
-          Implements IForeignKeyConvention, INavigationConvention, IPropertyConvention, IPrincipalEndConvention, IPropertyFieldChangedConvention
+          Implements IForeignKeyConvention, INavigationConvention, IPropertyConvention, IPrincipalEndConvention, IPropertyFieldChangedConvention, IForeignKeyUniquenessConvention, IKeyConvention, IKeyRemovedConvention
   inheritance:
   - System.Object
   implements:
@@ -42,6 +45,9 @@ items:
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPropertyConvention
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPrincipalEndConvention
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPropertyFieldChangedConvention
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyConvention
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyRemovedConvention
   inheritedMembers:
   - System.Object.ToString
   - System.Object.Equals(System.Object)
@@ -74,11 +80,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Apply
     path: src/Microsoft.EntityFrameworkCore/Metadata/Conventions/Internal/ForeignKeyPropertyDiscoveryConvention.cs
-    startLine: 23
+    startLine: 29
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public virtual InternalRelationshipBuilder Apply(InternalRelationshipBuilder relationshipBuilder)
@@ -88,6 +94,7 @@ items:
       type: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder
+  overload: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply*
   implements:
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPrincipalEndConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
@@ -115,11 +122,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Apply
     path: src/Microsoft.EntityFrameworkCore/Metadata/Conventions/Internal/ForeignKeyPropertyDiscoveryConvention.cs
-    startLine: 274
+    startLine: 281
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public virtual InternalRelationshipBuilder Apply(InternalRelationshipBuilder relationshipBuilder, Navigation navigation)
@@ -131,6 +138,7 @@ items:
       type: Microsoft.EntityFrameworkCore.Metadata.Internal.Navigation
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder
+  overload: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply*
   implements:
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.INavigationConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder,Microsoft.EntityFrameworkCore.Metadata.Internal.Navigation)
   modifiers.csharp:
@@ -157,11 +165,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Apply
     path: src/Microsoft.EntityFrameworkCore/Metadata/Conventions/Internal/ForeignKeyPropertyDiscoveryConvention.cs
-    startLine: 281
+    startLine: 288
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public virtual InternalPropertyBuilder Apply(InternalPropertyBuilder propertyBuilder)
@@ -171,6 +179,7 @@ items:
       type: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+  overload: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply*
   implements:
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPropertyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
   modifiers.csharp:
@@ -197,11 +206,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Apply
     path: src/Microsoft.EntityFrameworkCore/Metadata/Conventions/Internal/ForeignKeyPropertyDiscoveryConvention.cs
-    startLine: 310
+    startLine: 317
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public virtual bool Apply(InternalPropertyBuilder propertyBuilder, FieldInfo oldFieldInfo)
@@ -213,8 +222,129 @@ items:
       type: System.Reflection.FieldInfo
     return:
       type: System.Boolean
+  overload: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply*
   implements:
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPropertyFieldChangedConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.Reflection.FieldInfo)
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Microsoft#EntityFrameworkCore#Metadata#Conventions#Internal#IForeignKeyUniquenessConvention#Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
+  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Microsoft#EntityFrameworkCore#Metadata#Conventions#Internal#IForeignKeyUniquenessConvention#Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
+  id: Microsoft#EntityFrameworkCore#Metadata#Conventions#Internal#IForeignKeyUniquenessConvention#Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
+  isEii: true
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention
+  langs:
+  - csharp
+  - vb
+  name: IForeignKeyUniquenessConvention.Apply(InternalRelationshipBuilder)
+  nameWithType: ForeignKeyPropertyDiscoveryConvention.IForeignKeyUniquenessConvention.Apply(InternalRelationshipBuilder)
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore/Metadata/Conventions/Internal/ForeignKeyPropertyDiscoveryConvention.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply
+    path: src/Microsoft.EntityFrameworkCore/Metadata/Conventions/Internal/ForeignKeyPropertyDiscoveryConvention.cs
+    startLine: 327
+  assemblies:
+  - Microsoft.EntityFrameworkCore
+  namespace: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
+  example: []
+  syntax:
+    content: InternalRelationshipBuilder IForeignKeyUniquenessConvention.Apply(InternalRelationshipBuilder relationshipBuilder)
+    content.vb: Function Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply(relationshipBuilder As InternalRelationshipBuilder) As InternalRelationshipBuilder Implements IForeignKeyUniquenessConvention.Apply
+    parameters:
+    - id: relationshipBuilder
+      type: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder
+    return:
+      type: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder
+  overload: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Microsoft#EntityFrameworkCore#Metadata#Conventions#Internal#IForeignKeyUniquenessConvention#Apply*
+  implements:
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
+  nameWithType.vb: ForeignKeyPropertyDiscoveryConvention.Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply(InternalRelationshipBuilder)
+  name.vb: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply(InternalRelationshipBuilder)
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder)
+  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder)
+  id: Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder)
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention
+  langs:
+  - csharp
+  - vb
+  name: Apply(InternalKeyBuilder)
+  nameWithType: ForeignKeyPropertyDiscoveryConvention.Apply(InternalKeyBuilder)
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore/Metadata/Conventions/Internal/ForeignKeyPropertyDiscoveryConvention.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: Apply
+    path: src/Microsoft.EntityFrameworkCore/Metadata/Conventions/Internal/ForeignKeyPropertyDiscoveryConvention.cs
+    startLine: 334
+  assemblies:
+  - Microsoft.EntityFrameworkCore
+  namespace: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
+  example: []
+  syntax:
+    content: public virtual InternalKeyBuilder Apply(InternalKeyBuilder keyBuilder)
+    content.vb: Public Overridable Function Apply(keyBuilder As InternalKeyBuilder) As InternalKeyBuilder
+    parameters:
+    - id: keyBuilder
+      type: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder
+    return:
+      type: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder
+  overload: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply*
+  implements:
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder)
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder,Microsoft.EntityFrameworkCore.Metadata.Internal.Key)
+  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder,Microsoft.EntityFrameworkCore.Metadata.Internal.Key)
+  id: Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder,Microsoft.EntityFrameworkCore.Metadata.Internal.Key)
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention
+  langs:
+  - csharp
+  - vb
+  name: Apply(InternalEntityTypeBuilder, Key)
+  nameWithType: ForeignKeyPropertyDiscoveryConvention.Apply(InternalEntityTypeBuilder, Key)
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder, Microsoft.EntityFrameworkCore.Metadata.Internal.Key)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore/Metadata/Conventions/Internal/ForeignKeyPropertyDiscoveryConvention.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: Apply
+    path: src/Microsoft.EntityFrameworkCore/Metadata/Conventions/Internal/ForeignKeyPropertyDiscoveryConvention.cs
+    startLine: 353
+  assemblies:
+  - Microsoft.EntityFrameworkCore
+  namespace: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
+  example: []
+  syntax:
+    content: public virtual void Apply(InternalEntityTypeBuilder entityTypeBuilder, Key key)
+    content.vb: Public Overridable Sub Apply(entityTypeBuilder As InternalEntityTypeBuilder, key As Key)
+    parameters:
+    - id: entityTypeBuilder
+      type: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder
+    - id: key
+      type: Microsoft.EntityFrameworkCore.Metadata.Internal.Key
+  overload: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply*
+  implements:
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyRemovedConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder,Microsoft.EntityFrameworkCore.Metadata.Internal.Key)
   modifiers.csharp:
   - public
   - virtual
@@ -270,6 +400,27 @@ references:
   name: IPropertyFieldChangedConvention
   nameWithType: IPropertyFieldChangedConvention
   fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPropertyFieldChangedConvention
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention
+  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
+  isExternal: false
+  name: IForeignKeyUniquenessConvention
+  nameWithType: IForeignKeyUniquenessConvention
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyConvention
+  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyConvention
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
+  isExternal: false
+  name: IKeyConvention
+  nameWithType: IKeyConvention
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyConvention
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyRemovedConvention
+  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyRemovedConvention
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
+  isExternal: false
+  name: IKeyRemovedConvention
+  nameWithType: IKeyRemovedConvention
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyRemovedConvention
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
@@ -555,6 +706,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply
+  isExternal: false
+  name: Apply
+  nameWithType: ForeignKeyPropertyDiscoveryConvention.Apply
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Apply
 - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
   commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
   parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyConvention
@@ -817,3 +974,157 @@ references:
   name: System.Reflection
   nameWithType: System.Reflection
   fullName: System.Reflection
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Microsoft#EntityFrameworkCore#Metadata#Conventions#Internal#IForeignKeyUniquenessConvention#Apply*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Microsoft#EntityFrameworkCore#Metadata#Conventions#Internal#IForeignKeyUniquenessConvention#Apply
+  isExternal: false
+  name: IForeignKeyUniquenessConvention.Apply
+  nameWithType: ForeignKeyPropertyDiscoveryConvention.IForeignKeyUniquenessConvention.Apply
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ForeignKeyPropertyDiscoveryConvention.Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply
+  nameWithType.vb: ForeignKeyPropertyDiscoveryConvention.Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply
+  name.vb: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
+  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention
+  isExternal: false
+  name: Apply(InternalRelationshipBuilder)
+  nameWithType: IForeignKeyUniquenessConvention.Apply(InternalRelationshipBuilder)
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
+    name: Apply
+    nameWithType: IForeignKeyUniquenessConvention.Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder
+    name: InternalRelationshipBuilder
+    nameWithType: InternalRelationshipBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder)
+    name: Apply
+    nameWithType: IForeignKeyUniquenessConvention.Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IForeignKeyUniquenessConvention.Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder
+    name: InternalRelationshipBuilder
+    nameWithType: InternalRelationshipBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalRelationshipBuilder
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder)
+  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder)
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyConvention
+  isExternal: false
+  name: Apply(InternalKeyBuilder)
+  nameWithType: IKeyConvention.Apply(InternalKeyBuilder)
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder)
+    name: Apply
+    nameWithType: IKeyConvention.Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyConvention.Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder
+    name: InternalKeyBuilder
+    nameWithType: InternalKeyBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder)
+    name: Apply
+    nameWithType: IKeyConvention.Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyConvention.Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder
+    name: InternalKeyBuilder
+    nameWithType: InternalKeyBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder
+  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder
+  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+  isExternal: false
+  name: InternalKeyBuilder
+  nameWithType: InternalKeyBuilder
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyRemovedConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder,Microsoft.EntityFrameworkCore.Metadata.Internal.Key)
+  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyRemovedConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder,Microsoft.EntityFrameworkCore.Metadata.Internal.Key)
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyRemovedConvention
+  isExternal: false
+  name: Apply(InternalEntityTypeBuilder, Key)
+  nameWithType: IKeyRemovedConvention.Apply(InternalEntityTypeBuilder, Key)
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyRemovedConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder, Microsoft.EntityFrameworkCore.Metadata.Internal.Key)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyRemovedConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder,Microsoft.EntityFrameworkCore.Metadata.Internal.Key)
+    name: Apply
+    nameWithType: IKeyRemovedConvention.Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyRemovedConvention.Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder
+    name: InternalEntityTypeBuilder
+    nameWithType: InternalEntityTypeBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.Key
+    name: Key
+    nameWithType: Key
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.Key
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyRemovedConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder,Microsoft.EntityFrameworkCore.Metadata.Internal.Key)
+    name: Apply
+    nameWithType: IKeyRemovedConvention.Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IKeyRemovedConvention.Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder
+    name: InternalEntityTypeBuilder
+    nameWithType: InternalEntityTypeBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.Key
+    name: Key
+    nameWithType: Key
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.Key
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder
+  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder
+  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+  isExternal: false
+  name: InternalEntityTypeBuilder
+  nameWithType: InternalEntityTypeBuilder
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder
+- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.Key
+  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.Key
+  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+  isExternal: false
+  name: Key
+  nameWithType: Key
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.Key

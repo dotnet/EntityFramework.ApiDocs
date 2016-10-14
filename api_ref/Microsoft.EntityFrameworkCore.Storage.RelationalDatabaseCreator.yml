@@ -5,6 +5,7 @@ items:
   id: RelationalDatabaseCreator
   parent: Microsoft.EntityFrameworkCore.Storage
   children:
+  - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.#ctor(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer,Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator,Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor)
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.#ctor(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer,Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator,Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor,Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory)
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Connection
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Create
@@ -23,6 +24,7 @@ items:
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.GetCreateTablesCommands
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.HasTables
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.HasTablesAsync(System.Threading.CancellationToken)
+  - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices(System.IServiceProvider)
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.MigrationCommandExecutor
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Model
   langs:
@@ -39,22 +41,23 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: RelationalDatabaseCreator
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 22
+    startLine: 25
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
   summary: "\n<p>\n    Performs database/schema creation, and other related operations.\n</p>\n<p>\n    This type is typically used by database providers (and other extensions). It is generally\n    not used in application code.\n</p>\n"
   example: []
   syntax:
-    content: 'public abstract class RelationalDatabaseCreator : IRelationalDatabaseCreator, IDatabaseCreator'
+    content: 'public abstract class RelationalDatabaseCreator : IRelationalDatabaseCreator, IDatabaseCreator, IServiceInjectionSite'
     content.vb: >-
       Public MustInherit Class RelationalDatabaseCreator
-          Implements IRelationalDatabaseCreator, IDatabaseCreator
+          Implements IRelationalDatabaseCreator, IDatabaseCreator, IServiceInjectionSite
   inheritance:
   - System.Object
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator
   - Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator
+  - Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
   inheritedMembers:
   - System.Object.ToString
   - System.Object.Equals(System.Object)
@@ -71,6 +74,66 @@ items:
   - Public
   - MustInherit
   - Class
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.#ctor(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer,Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator,Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor)
+  commentId: M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.#ctor(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer,Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator,Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor)
+  id: '#ctor(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer,Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator,Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor)'
+  parent: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
+  langs:
+  - csharp
+  - vb
+  name: RelationalDatabaseCreator(IModel, IRelationalConnection, IMigrationsModelDiffer, IMigrationsSqlGenerator, IMigrationCommandExecutor)
+  nameWithType: RelationalDatabaseCreator.RelationalDatabaseCreator(IModel, IRelationalConnection, IMigrationsModelDiffer, IMigrationsSqlGenerator, IMigrationCommandExecutor)
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.RelationalDatabaseCreator(Microsoft.EntityFrameworkCore.Metadata.IModel, Microsoft.EntityFrameworkCore.Storage.IRelationalConnection, Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer, Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator, Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor)
+  type: Constructor
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: .ctor
+    path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
+    startLine: 38
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Relational
+  namespace: Microsoft.EntityFrameworkCore.Storage
+  summary: "\nInitializes a new instance of the <xref href=\"Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("Derived classes must be updated to call the new constructor with additional parameters.")]
+
+      protected RelationalDatabaseCreator(IModel model, IRelationalConnection connection, IMigrationsModelDiffer modelDiffer, IMigrationsSqlGenerator migrationsSqlGenerator, IMigrationCommandExecutor migrationCommandExecutor)
+    content.vb: >-
+      <Obsolete("Derived classes must be updated to call the new constructor with additional parameters.")>
+
+      Protected Sub New(model As IModel, connection As IRelationalConnection, modelDiffer As IMigrationsModelDiffer, migrationsSqlGenerator As IMigrationsSqlGenerator, migrationCommandExecutor As IMigrationCommandExecutor)
+    parameters:
+    - id: model
+      type: Microsoft.EntityFrameworkCore.Metadata.IModel
+      description: 'The <xref href="Microsoft.EntityFrameworkCore.Metadata.IModel" data-throw-if-not-resolved="false"></xref> for the context this creator is being used with. '
+    - id: connection
+      type: Microsoft.EntityFrameworkCore.Storage.IRelationalConnection
+      description: 'The <xref href="Microsoft.EntityFrameworkCore.Storage.IRelationalConnection" data-throw-if-not-resolved="false"></xref> to be used. '
+    - id: modelDiffer
+      type: Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer
+      description: 'The <xref href="Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer" data-throw-if-not-resolved="false"></xref> to be used. '
+    - id: migrationsSqlGenerator
+      type: Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator
+      description: 'The <xref href="Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator" data-throw-if-not-resolved="false"></xref> to be used. '
+    - id: migrationCommandExecutor
+      type: Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor
+      description: 'The <xref href="Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor" data-throw-if-not-resolved="false"></xref> to be used. '
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.#ctor*
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Derived classes must be updated to call the new constructor with additional parameters.
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
 - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.#ctor(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer,Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator,Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor,Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory)
   commentId: M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.#ctor(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer,Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator,Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor,Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory)
   id: '#ctor(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer,Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator,Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor,Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory)'
@@ -89,11 +152,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 36
+    startLine: 68
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Initializes a new instance of the <xref href=\"Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  summary: "\nInitializes a new instance of the <xref href=\"Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
   example: []
   syntax:
     content: protected RelationalDatabaseCreator(IModel model, IRelationalConnection connection, IMigrationsModelDiffer modelDiffer, IMigrationsSqlGenerator migrationsSqlGenerator, IMigrationCommandExecutor migrationCommandExecutor, IExecutionStrategyFactory executionStrategyFactory)
@@ -117,6 +180,7 @@ items:
     - id: executionStrategyFactory
       type: Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory
       description: 'The <xref href="Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory" data-throw-if-not-resolved="false"></xref> to be used. '
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.#ctor*
   modifiers.csharp:
   - protected
   modifiers.vb:
@@ -139,11 +203,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Model
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 62
+    startLine: 94
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Gets the model for the context this creator is being used with.\n"
+  summary: "\nGets the model for the context this creator is being used with.\n"
   example: []
   syntax:
     content: protected virtual IModel Model { get; }
@@ -151,6 +215,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IModel
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Model*
   modifiers.csharp:
   - protected
   - virtual
@@ -177,11 +242,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Connection
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 67
+    startLine: 99
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Gets the connection for the database.\n"
+  summary: "\nGets the connection for the database.\n"
   example: []
   syntax:
     content: protected virtual IRelationalConnection Connection { get; }
@@ -189,6 +254,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.Storage.IRelationalConnection
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Connection*
   modifiers.csharp:
   - protected
   - virtual
@@ -215,11 +281,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: MigrationCommandExecutor
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 72
+    startLine: 104
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Gets the <xref href=\"Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor\" data-throw-if-not-resolved=\"false\"></xref> to be used.\n"
+  summary: "\nGets the <xref href=\"Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor\" data-throw-if-not-resolved=\"false\"></xref> to be used.\n"
   example: []
   syntax:
     content: protected virtual IMigrationCommandExecutor MigrationCommandExecutor { get; }
@@ -227,6 +293,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.MigrationCommandExecutor*
   modifiers.csharp:
   - protected
   - virtual
@@ -253,11 +320,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ExecutionStrategyFactory
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 77
+    startLine: 109
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Gets the <xref href=\"Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory\" data-throw-if-not-resolved=\"false\"></xref> to be used.\n"
+  summary: "\nGets the <xref href=\"Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory\" data-throw-if-not-resolved=\"false\"></xref> to be used.\n"
   example: []
   syntax:
     content: protected virtual IExecutionStrategyFactory ExecutionStrategyFactory { get; }
@@ -265,6 +332,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.ExecutionStrategyFactory*
   modifiers.csharp:
   - protected
   - virtual
@@ -273,6 +341,42 @@ items:
   - Protected
   - Overridable
   - ReadOnly
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices(System.IServiceProvider)
+  commentId: M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices(System.IServiceProvider)
+  id: Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices(System.IServiceProvider)
+  isEii: true
+  parent: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
+  langs:
+  - csharp
+  - vb
+  name: IServiceInjectionSite.InjectServices(IServiceProvider)
+  nameWithType: RelationalDatabaseCreator.IServiceInjectionSite.InjectServices(IServiceProvider)
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(System.IServiceProvider)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices
+    path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
+    startLine: 115
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Relational
+  namespace: Microsoft.EntityFrameworkCore.Storage
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
+  example: []
+  syntax:
+    content: void IServiceInjectionSite.InjectServices(IServiceProvider serviceProvider)
+    content.vb: Sub Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(serviceProvider As IServiceProvider) Implements IServiceInjectionSite.InjectServices
+    parameters:
+    - id: serviceProvider
+      type: System.IServiceProvider
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices*
+  implements:
+  - Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(System.IServiceProvider)
+  nameWithType.vb: RelationalDatabaseCreator.Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(IServiceProvider)
+  name.vb: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(IServiceProvider)
 - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Exists
   commentId: M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Exists
   id: Exists
@@ -291,7 +395,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Exists
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 86
+    startLine: 125
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
@@ -303,6 +407,7 @@ items:
     return:
       type: System.Boolean
       description: "\nTrue if the database exists; otherwise false.\n"
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Exists*
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.Exists
   modifiers.csharp:
@@ -329,11 +434,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ExistsAsync
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 99
+    startLine: 138
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Asynchronously determines whether the physical database exists. No attempt is made to determine if \n    the database contains the schema for the current model.\n"
+  summary: "\nAsynchronously determines whether the physical database exists. No attempt is made to determine if\nthe database contains the schema for the current model.\n"
   example: []
   syntax:
     content: public virtual Task<bool> ExistsAsync(CancellationToken cancellationToken = null)
@@ -341,10 +446,11 @@ items:
     parameters:
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "\n    A <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> to observe while waiting for the task to complete.\n"
+      description: "\nA <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> to observe while waiting for the task to complete.\n"
     return:
       type: System.Threading.Tasks.Task{System.Boolean}
-      description: "\n    A task that represents the asynchronous operation. The task result contains \n    true if the database exists; otherwise false.\n"
+      description: "\nA task that represents the asynchronous operation. The task result contains\ntrue if the database exists; otherwise false.\n"
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.ExistsAsync*
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.ExistsAsync(System.Threading.CancellationToken)
   modifiers.csharp:
@@ -371,15 +477,16 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Create
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 109
+    startLine: 148
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Creates the physical database. Does not attempt to populate it with any schema.\n"
+  summary: "\nCreates the physical database. Does not attempt to populate it with any schema.\n"
   example: []
   syntax:
     content: public abstract void Create()
     content.vb: Public MustOverride Sub Create
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Create*
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.Create
   modifiers.csharp:
@@ -406,11 +513,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: CreateAsync
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 118
+    startLine: 157
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Asynchronously creates the physical database. Does not attempt to populate it with any schema.\n"
+  summary: "\nAsynchronously creates the physical database. Does not attempt to populate it with any schema.\n"
   example: []
   syntax:
     content: public virtual Task CreateAsync(CancellationToken cancellationToken = null)
@@ -421,7 +528,8 @@ items:
       description: A <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> to observe while waiting for the task to complete.
     return:
       type: System.Threading.Tasks.Task
-      description: "\n    A task that represents the asynchronous operation.\n"
+      description: "\nA task that represents the asynchronous operation.\n"
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateAsync*
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.CreateAsync(System.Threading.CancellationToken)
   modifiers.csharp:
@@ -448,7 +556,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Delete
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 130
+    startLine: 169
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
@@ -457,6 +565,7 @@ items:
   syntax:
     content: public abstract void Delete()
     content.vb: Public MustOverride Sub Delete
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Delete*
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.Delete
   modifiers.csharp:
@@ -483,11 +592,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: DeleteAsync
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 139
+    startLine: 178
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Asynchronously deletes the physical database.\n"
+  summary: "\nAsynchronously deletes the physical database.\n"
   example: []
   syntax:
     content: public virtual Task DeleteAsync(CancellationToken cancellationToken = null)
@@ -498,7 +607,8 @@ items:
       description: A <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> to observe while waiting for the task to complete.
     return:
       type: System.Threading.Tasks.Task
-      description: "\n    A task that represents the asynchronous operation.\n"
+      description: "\nA task that represents the asynchronous operation.\n"
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.DeleteAsync*
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.DeleteAsync(System.Threading.CancellationToken)
   modifiers.csharp:
@@ -525,15 +635,16 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: CreateTables
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 152
+    startLine: 191
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Creates all tables for the current model in the database. No attempt is made\n    to incrementally update the schema. It is assumed that none of the tables exist in the database.\n"
+  summary: "\nCreates all tables for the current model in the database. No attempt is made\nto incrementally update the schema. It is assumed that none of the tables exist in the database.\n"
   example: []
   syntax:
     content: public virtual void CreateTables()
     content.vb: Public Overridable Sub CreateTables
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTables*
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.CreateTables
   modifiers.csharp:
@@ -560,11 +671,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: CreateTablesAsync
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 163
+    startLine: 202
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Asynchronously creates all tables for the current model in the database. No attempt is made\n    to incrementally update the schema. It is assumed that none of the tables exist in the database.\n"
+  summary: "\nAsynchronously creates all tables for the current model in the database. No attempt is made\nto incrementally update the schema. It is assumed that none of the tables exist in the database.\n"
   example: []
   syntax:
     content: public virtual Task CreateTablesAsync(CancellationToken cancellationToken = null)
@@ -575,7 +686,8 @@ items:
       description: A <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> to observe while waiting for the task to complete.
     return:
       type: System.Threading.Tasks.Task
-      description: "\n    A task that represents the asynchronous operation.\n"
+      description: "\nA task that represents the asynchronous operation.\n"
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTablesAsync*
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.CreateTablesAsync(System.Threading.CancellationToken)
   modifiers.csharp:
@@ -602,11 +714,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: GetCreateTablesCommands
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 170
+    startLine: 209
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Gets the commands that will create all tables from the model.\n"
+  summary: "\nGets the commands that will create all tables from the model.\n"
   example: []
   syntax:
     content: protected virtual IReadOnlyList<MigrationCommand> GetCreateTablesCommands()
@@ -614,6 +726,7 @@ items:
     return:
       type: System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Migrations.MigrationCommand}
       description: 'The generated commands. '
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.GetCreateTablesCommands*
   modifiers.csharp:
   - protected
   - virtual
@@ -638,11 +751,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: HasTables
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 178
+    startLine: 217
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Determines whether the database contains any tables. No attempt is made to determine if\n    tables belong to the current model or not.\n"
+  summary: "\nDetermines whether the database contains any tables. No attempt is made to determine if\ntables belong to the current model or not.\n"
   example: []
   syntax:
     content: protected abstract bool HasTables()
@@ -650,6 +763,7 @@ items:
     return:
       type: System.Boolean
       description: 'A value indicating whether any tables are present in the database. '
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.HasTables*
   modifiers.csharp:
   - protected
   - abstract
@@ -674,11 +788,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: HasTablesAsync
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 189
+    startLine: 228
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Asynchronously determines whether the database contains any tables. No attempt is made to determine if\n    tables belong to the current model or not.\n"
+  summary: "\nAsynchronously determines whether the database contains any tables. No attempt is made to determine if\ntables belong to the current model or not.\n"
   example: []
   syntax:
     content: protected virtual Task<bool> HasTablesAsync(CancellationToken cancellationToken = null)
@@ -689,7 +803,8 @@ items:
       description: A <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> to observe while waiting for the task to complete.
     return:
       type: System.Threading.Tasks.Task{System.Boolean}
-      description: "\n    A task that represents the asynchronous operation. The task result contains \n    a value indicating whether any tables are present in the database. \n"
+      description: "\nA task that represents the asynchronous operation. The task result contains\na value indicating whether any tables are present in the database.\n"
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.HasTablesAsync*
   modifiers.csharp:
   - protected
   - virtual
@@ -714,7 +829,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: EnsureDeleted
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 209
+    startLine: 248
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
@@ -725,7 +840,8 @@ items:
     content.vb: Public Overridable Function EnsureDeleted As Boolean
     return:
       type: System.Boolean
-      description: "\n    True if the database is deleted, false if it did not exist.\n"
+      description: "\nTrue if the database is deleted, false if it did not exist.\n"
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureDeleted*
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureDeleted
   modifiers.csharp:
@@ -752,7 +868,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: EnsureDeletedAsync
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 234
+    startLine: 273
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
@@ -767,7 +883,8 @@ items:
       description: A <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> to observe while waiting for the task to complete.
     return:
       type: System.Threading.Tasks.Task{System.Boolean}
-      description: "\n    A task that represents the asynchronous save operation. The task result contains true if the database is deleted,\n    false if it did not exist.\n"
+      description: "\nA task that represents the asynchronous save operation. The task result contains true if the database is deleted,\nfalse if it did not exist.\n"
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureDeletedAsync*
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureDeletedAsync(System.Threading.CancellationToken)
   modifiers.csharp:
@@ -794,18 +911,19 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: EnsureCreated
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 253
+    startLine: 292
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Ensures that the database for the context exists. If it exists, no action is taken. If it does not\n    exist then the database and all its schema are created. If the database exists, then no effort is made\n    to ensure it is compatible with the model for this context.\n"
+  summary: "\nEnsures that the database for the context exists. If it exists, no action is taken. If it does not\nexist then the database and all its schema are created. If the database exists, then no effort is made\nto ensure it is compatible with the model for this context.\n"
   example: []
   syntax:
     content: public virtual bool EnsureCreated()
     content.vb: Public Overridable Function EnsureCreated As Boolean
     return:
       type: System.Boolean
-      description: "\n    True if the database is created, false if it already existed.\n"
+      description: "\nTrue if the database is created, false if it already existed.\n"
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreated*
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureCreated
   modifiers.csharp:
@@ -832,11 +950,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: EnsureCreatedAsync
     path: src/Microsoft.EntityFrameworkCore.Relational/Storage/RelationalDatabaseCreator.cs
-    startLine: 281
+    startLine: 320
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Storage
-  summary: "\n    Asynchronously ensures that the database for the context exists. If it exists, no action is taken. If it does not\n    exist then the database and all its schema are created. If the database exists, then no effort is made\n    to ensure it is compatible with the model for this context.\n"
+  summary: "\nAsynchronously ensures that the database for the context exists. If it exists, no action is taken. If it does not\nexist then the database and all its schema are created. If the database exists, then no effort is made\nto ensure it is compatible with the model for this context.\n"
   example: []
   syntax:
     content: public virtual Task<bool> EnsureCreatedAsync(CancellationToken cancellationToken = null)
@@ -847,7 +965,8 @@ items:
       description: A <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> to observe while waiting for the task to complete.
     return:
       type: System.Threading.Tasks.Task{System.Boolean}
-      description: "\n    A task that represents the asynchronous save operation. The task result contains true if the database is created,\n    false if it already existed.\n"
+      description: "\nA task that represents the asynchronous save operation. The task result contains true if the database is created,\nfalse if it already existed.\n"
+  overload: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreatedAsync*
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureCreatedAsync(System.Threading.CancellationToken)
   modifiers.csharp:
@@ -884,6 +1003,13 @@ references:
   name: IDatabaseCreator
   nameWithType: IDatabaseCreator
   fullName: Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator
+- uid: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
+  commentId: T:Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
+  parent: Microsoft.EntityFrameworkCore.Internal
+  isExternal: false
+  name: IServiceInjectionSite
+  nameWithType: IServiceInjectionSite
+  fullName: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
@@ -1169,6 +1295,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Microsoft.EntityFrameworkCore.Internal
+  commentId: N:Microsoft.EntityFrameworkCore.Internal
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.Internal
+  nameWithType: Microsoft.EntityFrameworkCore.Internal
+  fullName: Microsoft.EntityFrameworkCore.Internal
 - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
   commentId: T:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
   parent: Microsoft.EntityFrameworkCore.Storage
@@ -1211,13 +1343,12 @@ references:
   name: IMigrationCommandExecutor
   nameWithType: IMigrationCommandExecutor
   fullName: Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor
-- uid: Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory
-  commentId: T:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory
-  parent: Microsoft.EntityFrameworkCore.Storage
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.#ctor
   isExternal: false
-  name: IExecutionStrategyFactory
-  nameWithType: IExecutionStrategyFactory
-  fullName: Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory
+  name: RelationalDatabaseCreator
+  nameWithType: RelationalDatabaseCreator.RelationalDatabaseCreator
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.RelationalDatabaseCreator
 - uid: Microsoft.EntityFrameworkCore.Metadata
   commentId: N:Microsoft.EntityFrameworkCore.Metadata
   isExternal: false
@@ -1230,6 +1361,97 @@ references:
   name: Microsoft.EntityFrameworkCore.Migrations
   nameWithType: Microsoft.EntityFrameworkCore.Migrations
   fullName: Microsoft.EntityFrameworkCore.Migrations
+- uid: Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory
+  commentId: T:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory
+  parent: Microsoft.EntityFrameworkCore.Storage
+  isExternal: false
+  name: IExecutionStrategyFactory
+  nameWithType: IExecutionStrategyFactory
+  fullName: Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Model*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Model
+  isExternal: false
+  name: Model
+  nameWithType: RelationalDatabaseCreator.Model
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Model
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Connection*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Connection
+  isExternal: false
+  name: Connection
+  nameWithType: RelationalDatabaseCreator.Connection
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Connection
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.MigrationCommandExecutor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.MigrationCommandExecutor
+  isExternal: false
+  name: MigrationCommandExecutor
+  nameWithType: RelationalDatabaseCreator.MigrationCommandExecutor
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.MigrationCommandExecutor
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.ExecutionStrategyFactory*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.ExecutionStrategyFactory
+  isExternal: false
+  name: ExecutionStrategyFactory
+  nameWithType: RelationalDatabaseCreator.ExecutionStrategyFactory
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.ExecutionStrategyFactory
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices
+  isExternal: false
+  name: IServiceInjectionSite.InjectServices
+  nameWithType: RelationalDatabaseCreator.IServiceInjectionSite.InjectServices
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices
+  nameWithType.vb: RelationalDatabaseCreator.Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices
+  name.vb: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices
+- uid: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(System.IServiceProvider)
+  commentId: M:Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(System.IServiceProvider)
+  parent: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
+  isExternal: true
+  name: InjectServices(IServiceProvider)
+  nameWithType: IServiceInjectionSite.InjectServices(IServiceProvider)
+  fullName: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(System.IServiceProvider)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(System.IServiceProvider)
+    name: InjectServices
+    nameWithType: IServiceInjectionSite.InjectServices
+    fullName: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IServiceProvider
+    name: IServiceProvider
+    nameWithType: IServiceProvider
+    fullName: System.IServiceProvider
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(System.IServiceProvider)
+    name: InjectServices
+    nameWithType: IServiceInjectionSite.InjectServices
+    fullName: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IServiceProvider
+    name: IServiceProvider
+    nameWithType: IServiceProvider
+    fullName: System.IServiceProvider
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IServiceProvider
+  commentId: T:System.IServiceProvider
+  parent: System
+  isExternal: true
+  name: IServiceProvider
+  nameWithType: IServiceProvider
+  fullName: System.IServiceProvider
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Exists*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Exists
+  isExternal: false
+  name: Exists
+  nameWithType: RelationalDatabaseCreator.Exists
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Exists
 - uid: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.Exists
   commentId: M:Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.Exists
   parent: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator
@@ -1273,6 +1495,12 @@ references:
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.ExistsAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.ExistsAsync
+  isExternal: false
+  name: ExistsAsync
+  nameWithType: RelationalDatabaseCreator.ExistsAsync
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.ExistsAsync
 - uid: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.ExistsAsync(System.Threading.CancellationToken)
   commentId: M:Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.ExistsAsync(System.Threading.CancellationToken)
   parent: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator
@@ -1407,6 +1635,12 @@ references:
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Create*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Create
+  isExternal: false
+  name: Create
+  nameWithType: RelationalDatabaseCreator.Create
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Create
 - uid: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.Create
   commentId: M:Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.Create
   parent: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator
@@ -1436,6 +1670,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateAsync
+  isExternal: false
+  name: CreateAsync
+  nameWithType: RelationalDatabaseCreator.CreateAsync
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateAsync
 - uid: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.CreateAsync(System.Threading.CancellationToken)
   commentId: M:Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.CreateAsync(System.Threading.CancellationToken)
   parent: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator
@@ -1482,6 +1722,12 @@ references:
   name: Task
   nameWithType: Task
   fullName: System.Threading.Tasks.Task
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Delete*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Delete
+  isExternal: false
+  name: Delete
+  nameWithType: RelationalDatabaseCreator.Delete
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Delete
 - uid: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.Delete
   commentId: M:Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.Delete
   parent: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator
@@ -1511,6 +1757,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.DeleteAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.DeleteAsync
+  isExternal: false
+  name: DeleteAsync
+  nameWithType: RelationalDatabaseCreator.DeleteAsync
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.DeleteAsync
 - uid: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.DeleteAsync(System.Threading.CancellationToken)
   commentId: M:Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.DeleteAsync(System.Threading.CancellationToken)
   parent: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator
@@ -1550,6 +1802,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTables*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTables
+  isExternal: false
+  name: CreateTables
+  nameWithType: RelationalDatabaseCreator.CreateTables
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTables
 - uid: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.CreateTables
   commentId: M:Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.CreateTables
   parent: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator
@@ -1579,6 +1837,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTablesAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTablesAsync
+  isExternal: false
+  name: CreateTablesAsync
+  nameWithType: RelationalDatabaseCreator.CreateTablesAsync
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTablesAsync
 - uid: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.CreateTablesAsync(System.Threading.CancellationToken)
   commentId: M:Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.CreateTablesAsync(System.Threading.CancellationToken)
   parent: Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator
@@ -1618,6 +1882,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.GetCreateTablesCommands*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.GetCreateTablesCommands
+  isExternal: false
+  name: GetCreateTablesCommands
+  nameWithType: RelationalDatabaseCreator.GetCreateTablesCommands
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.GetCreateTablesCommands
 - uid: System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Migrations.MigrationCommand}
   commentId: T:System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Migrations.MigrationCommand}
   parent: System.Collections.Generic
@@ -1705,6 +1975,24 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.HasTables*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.HasTables
+  isExternal: false
+  name: HasTables
+  nameWithType: RelationalDatabaseCreator.HasTables
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.HasTables
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.HasTablesAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.HasTablesAsync
+  isExternal: false
+  name: HasTablesAsync
+  nameWithType: RelationalDatabaseCreator.HasTablesAsync
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.HasTablesAsync
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureDeleted*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureDeleted
+  isExternal: false
+  name: EnsureDeleted
+  nameWithType: RelationalDatabaseCreator.EnsureDeleted
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureDeleted
 - uid: Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureDeleted
   commentId: M:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureDeleted
   parent: Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator
@@ -1734,6 +2022,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureDeletedAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureDeletedAsync
+  isExternal: false
+  name: EnsureDeletedAsync
+  nameWithType: RelationalDatabaseCreator.EnsureDeletedAsync
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureDeletedAsync
 - uid: Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureDeletedAsync(System.Threading.CancellationToken)
   commentId: M:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureDeletedAsync(System.Threading.CancellationToken)
   parent: Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator
@@ -1773,6 +2067,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreated*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreated
+  isExternal: false
+  name: EnsureCreated
+  nameWithType: RelationalDatabaseCreator.EnsureCreated
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreated
 - uid: Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureCreated
   commentId: M:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureCreated
   parent: Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator
@@ -1802,6 +2102,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreatedAsync*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreatedAsync
+  isExternal: false
+  name: EnsureCreatedAsync
+  nameWithType: RelationalDatabaseCreator.EnsureCreatedAsync
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreatedAsync
 - uid: Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureCreatedAsync(System.Threading.CancellationToken)
   commentId: M:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureCreatedAsync(System.Threading.CancellationToken)
   parent: Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator
