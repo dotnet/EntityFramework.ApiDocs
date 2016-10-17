@@ -40,6 +40,7 @@ items:
   - Microsoft.EntityFrameworkCore.Query.Internal.IQueryAnnotationExtractor
   - Microsoft.EntityFrameworkCore.Query.Internal.IQueryBuffer
   - Microsoft.EntityFrameworkCore.Query.Internal.IQueryCompiler
+  - Microsoft.EntityFrameworkCore.Query.Internal.IQueryModelPrinter
   - Microsoft.EntityFrameworkCore.Query.Internal.IQueryOptimizer
   - Microsoft.EntityFrameworkCore.Query.Internal.IRelatedEntitiesLoader
   - Microsoft.EntityFrameworkCore.Query.Internal.IShaperCommandContextFactory
@@ -55,6 +56,7 @@ items:
   - Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler
   - Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable
   - Microsoft.EntityFrameworkCore.Query.Internal.QueryModelExtensions
+  - Microsoft.EntityFrameworkCore.Query.Internal.QueryModelPrinter
   - Microsoft.EntityFrameworkCore.Query.Internal.QueryOptimizer
   - Microsoft.EntityFrameworkCore.Query.Internal.QuerySourceExtensions
   - Microsoft.EntityFrameworkCore.Query.Internal.RelationalCompiledQueryCacheKeyGenerator
@@ -373,6 +375,13 @@ references:
   name: IQueryCompiler
   nameWithType: IQueryCompiler
   fullName: Microsoft.EntityFrameworkCore.Query.Internal.IQueryCompiler
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.IQueryModelPrinter
+  commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.IQueryModelPrinter
+  parent: Microsoft.EntityFrameworkCore.Query.Internal
+  isExternal: false
+  name: IQueryModelPrinter
+  nameWithType: IQueryModelPrinter
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.IQueryModelPrinter
 - uid: Microsoft.EntityFrameworkCore.Query.Internal.IQueryOptimizer
   commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.IQueryOptimizer
   parent: Microsoft.EntityFrameworkCore.Query.Internal
@@ -467,6 +476,12 @@ references:
   name: QueryCompiler
   nameWithType: QueryCompiler
   fullName: Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.QueryModelPrinter
+  commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.QueryModelPrinter
+  isExternal: false
+  name: QueryModelPrinter
+  nameWithType: QueryModelPrinter
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.QueryModelPrinter
 - uid: Microsoft.EntityFrameworkCore.Query.Internal.QueryOptimizer
   commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.QueryOptimizer
   isExternal: false
@@ -559,43 +574,6 @@ references:
   name: QuerySourceExtensions
   nameWithType: QuerySourceExtensions
   fullName: Microsoft.EntityFrameworkCore.Query.Internal.QuerySourceExtensions
-- uid: Microsoft.EntityFrameworkCore.Query.Internal.IMaterializerFactory
-  commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.IMaterializerFactory
-  parent: Microsoft.EntityFrameworkCore.Query.Internal
-  isExternal: false
-  name: IMaterializerFactory
-  nameWithType: IMaterializerFactory
-  fullName: Microsoft.EntityFrameworkCore.Query.Internal.IMaterializerFactory
-- uid: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryContext
-  commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryContext
-  isExternal: false
-  name: InMemoryQueryContext
-  nameWithType: InMemoryQueryContext
-  fullName: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryContext
-- uid: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryContextFactory
-  commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryContextFactory
-  isExternal: false
-  name: InMemoryQueryContextFactory
-  nameWithType: InMemoryQueryContextFactory
-  fullName: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryContextFactory
-- uid: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitor
-  commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitor
-  isExternal: false
-  name: InMemoryQueryModelVisitor
-  nameWithType: InMemoryQueryModelVisitor
-  fullName: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitor
-- uid: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitorFactory
-  commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitorFactory
-  isExternal: false
-  name: InMemoryQueryModelVisitorFactory
-  nameWithType: InMemoryQueryModelVisitorFactory
-  fullName: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitorFactory
-- uid: Microsoft.EntityFrameworkCore.Query.Internal.MaterializerFactory
-  commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.MaterializerFactory
-  isExternal: false
-  name: MaterializerFactory
-  nameWithType: MaterializerFactory
-  fullName: Microsoft.EntityFrameworkCore.Query.Internal.MaterializerFactory
 - uid: Microsoft.EntityFrameworkCore.Query.Internal.AsyncGroupJoinInclude
   commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.AsyncGroupJoinInclude
   parent: Microsoft.EntityFrameworkCore.Query.Internal
@@ -745,6 +723,43 @@ references:
   name: SqlServerQueryModelVisitorFactory
   nameWithType: SqlServerQueryModelVisitorFactory
   fullName: Microsoft.EntityFrameworkCore.Query.Internal.SqlServerQueryModelVisitorFactory
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.IMaterializerFactory
+  commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.IMaterializerFactory
+  parent: Microsoft.EntityFrameworkCore.Query.Internal
+  isExternal: false
+  name: IMaterializerFactory
+  nameWithType: IMaterializerFactory
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.IMaterializerFactory
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryContext
+  commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryContext
+  isExternal: false
+  name: InMemoryQueryContext
+  nameWithType: InMemoryQueryContext
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryContext
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryContextFactory
+  commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryContextFactory
+  isExternal: false
+  name: InMemoryQueryContextFactory
+  nameWithType: InMemoryQueryContextFactory
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryContextFactory
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitor
+  commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitor
+  isExternal: false
+  name: InMemoryQueryModelVisitor
+  nameWithType: InMemoryQueryModelVisitor
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitor
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitorFactory
+  commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitorFactory
+  isExternal: false
+  name: InMemoryQueryModelVisitorFactory
+  nameWithType: InMemoryQueryModelVisitorFactory
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.InMemoryQueryModelVisitorFactory
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.MaterializerFactory
+  commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.MaterializerFactory
+  isExternal: false
+  name: MaterializerFactory
+  nameWithType: MaterializerFactory
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.MaterializerFactory
 - uid: Microsoft.EntityFrameworkCore.Query.Internal
   commentId: N:Microsoft.EntityFrameworkCore.Query.Internal
   isExternal: false

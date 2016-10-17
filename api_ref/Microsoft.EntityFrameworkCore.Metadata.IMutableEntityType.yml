@@ -51,19 +51,16 @@ items:
       Public Interface IMutableEntityType
           Inherits IEntityType, IMutableTypeBase
   inheritedMembers:
-  - Microsoft.EntityFrameworkCore.Metadata.ITypeBase.Name
-  - Microsoft.EntityFrameworkCore.Metadata.ITypeBase.ClrType
+  - Microsoft.EntityFrameworkCore.Metadata.IEntityType.Name
+  - Microsoft.EntityFrameworkCore.Metadata.IEntityType.ClrType
   - Microsoft.EntityFrameworkCore.Metadata.IMutableAnnotatable.Item(System.String)
   - Microsoft.EntityFrameworkCore.Metadata.IMutableAnnotatable.GetAnnotations
   - Microsoft.EntityFrameworkCore.Metadata.IMutableAnnotatable.AddAnnotation(System.String,System.Object)
   - Microsoft.EntityFrameworkCore.Metadata.IMutableAnnotatable.FindAnnotation(System.String)
   - Microsoft.EntityFrameworkCore.Metadata.IMutableAnnotatable.RemoveAnnotation(System.String)
   extensionMethods:
-  - Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
-  - Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-  - Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-  - Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
-  - Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  - Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+  - Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
   - Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.EntityTypeExtensions.GetDerivedTypes
   - Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.EntityTypeExtensions.RootType
   - Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.EntityTypeExtensions.IsAssignableFrom(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
@@ -151,8 +148,11 @@ items:
   - Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.Metadata.Internal.EntityTypeExtensions.AsEntityType(System.String)
   - Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Microsoft.EntityFrameworkCore.Metadata.Internal.MutableEntityTypeExtensions.GetDeclaredForeignKeys
   - Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.CalculateIndexes(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)
-  - Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
-  - Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+  - Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
+  - Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
+  - Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
+  - Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  - Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
   modifiers.csharp:
   - public
   - interface
@@ -181,7 +181,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Gets the model this entity belongs to.\n"
+  summary: "\nGets the model this entity belongs to.\n"
   example: []
   syntax:
     content: IMutableModel Model { get; }
@@ -189,6 +189,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableModel
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Model*
   modifiers.csharp:
   - get
   modifiers.vb:
@@ -215,7 +216,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Gets or sets the base type of the entity. Returns null if this is not a derived type in an inheritance hierarchy.\n"
+  summary: "\nGets or sets the base type of the entity. Returns null if this is not a derived type in an inheritance hierarchy.\n"
   example: []
   syntax:
     content: IMutableEntityType BaseType { get; set; }
@@ -223,6 +224,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.BaseType*
   modifiers.csharp:
   - get
   - set
@@ -248,7 +250,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Sets the primary key for this entity.\n"
+  summary: "\nSets the primary key for this entity.\n"
   example: []
   syntax:
     content: IMutableKey SetPrimaryKey(IReadOnlyList<IMutableProperty> properties)
@@ -260,6 +262,7 @@ items:
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableKey
       description: 'The newly created key. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.SetPrimaryKey*
   nameWithType.vb: IMutableEntityType.SetPrimaryKey(IReadOnlyList(Of IMutableProperty))
   fullName.vb: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.SetPrimaryKey(System.Collections.Generic.IReadOnlyList(Of Microsoft.EntityFrameworkCore.Metadata.IMutableProperty))
   name.vb: SetPrimaryKey(IReadOnlyList(Of IMutableProperty))
@@ -293,6 +296,7 @@ items:
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableKey
       description: 'The primary key, or null if none is defined. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindPrimaryKey*
 - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddKey(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IMutableProperty})
   commentId: M:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddKey(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IMutableProperty})
   id: AddKey(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IMutableProperty})
@@ -315,7 +319,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Adds a new alternate key to this entity type.\n"
+  summary: "\nAdds a new alternate key to this entity type.\n"
   example: []
   syntax:
     content: IMutableKey AddKey(IReadOnlyList<IMutableProperty> properties)
@@ -327,6 +331,7 @@ items:
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableKey
       description: 'The newly created key. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddKey*
   nameWithType.vb: IMutableEntityType.AddKey(IReadOnlyList(Of IMutableProperty))
   fullName.vb: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddKey(System.Collections.Generic.IReadOnlyList(Of Microsoft.EntityFrameworkCore.Metadata.IMutableProperty))
   name.vb: AddKey(IReadOnlyList(Of IMutableProperty))
@@ -352,7 +357,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Gets the primary or alternate key that is defined on the given properties. Returns null if no key is defined\n    for the given properties.\n"
+  summary: "\nGets the primary or alternate key that is defined on the given properties. Returns null if no key is defined\nfor the given properties.\n"
   example: []
   syntax:
     content: IMutableKey FindKey(IReadOnlyList<IProperty> properties)
@@ -364,6 +369,7 @@ items:
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableKey
       description: 'The key, or null if none is defined. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindKey*
   nameWithType.vb: IMutableEntityType.FindKey(IReadOnlyList(Of IProperty))
   fullName.vb: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindKey(System.Collections.Generic.IReadOnlyList(Of Microsoft.EntityFrameworkCore.Metadata.IProperty))
   name.vb: FindKey(IReadOnlyList(Of IProperty))
@@ -389,7 +395,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Gets the primary and alternate keys for this entity.\n"
+  summary: "\nGets the primary and alternate keys for this entity.\n"
   example: []
   syntax:
     content: IEnumerable<IMutableKey> GetKeys()
@@ -397,6 +403,7 @@ items:
     return:
       type: System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IMutableKey}
       description: 'The primary and alternate keys. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetKeys*
 - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveKey(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IProperty})
   commentId: M:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveKey(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IProperty})
   id: RemoveKey(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IProperty})
@@ -419,7 +426,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Removes a primary or alternate key from this entity.\n"
+  summary: "\nRemoves a primary or alternate key from this entity.\n"
   example: []
   syntax:
     content: IMutableKey RemoveKey(IReadOnlyList<IProperty> properties)
@@ -431,6 +438,7 @@ items:
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableKey
       description: 'The key that was removed. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveKey*
   nameWithType.vb: IMutableEntityType.RemoveKey(IReadOnlyList(Of IProperty))
   fullName.vb: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveKey(System.Collections.Generic.IReadOnlyList(Of Microsoft.EntityFrameworkCore.Metadata.IProperty))
   name.vb: RemoveKey(IReadOnlyList(Of IProperty))
@@ -456,7 +464,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Adds a new relationship to this entity.\n"
+  summary: "\nAdds a new relationship to this entity.\n"
   example: []
   syntax:
     content: IMutableForeignKey AddForeignKey(IReadOnlyList<IMutableProperty> properties, IMutableKey principalKey, IMutableEntityType principalEntityType)
@@ -470,10 +478,11 @@ items:
       description: 'The primary or alternate key that is referenced. '
     - id: principalEntityType
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
-      description: "\n    The entity type that the relationship targets. This may be different from the type that <em>principalKey</em>\n    is defined on when the relationship targets a derived type in an inheritance hierarchy (since the key is defined on the\n    base type of the hierarchy).\n"
+      description: "\nThe entity type that the relationship targets. This may be different from the type that <em>principalKey</em>\nis defined on when the relationship targets a derived type in an inheritance hierarchy (since the key is defined on the\nbase type of the hierarchy).\n"
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableForeignKey
       description: 'The newly created foreign key. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddForeignKey*
   nameWithType.vb: IMutableEntityType.AddForeignKey(IReadOnlyList(Of IMutableProperty), IMutableKey, IMutableEntityType)
   fullName.vb: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddForeignKey(System.Collections.Generic.IReadOnlyList(Of Microsoft.EntityFrameworkCore.Metadata.IMutableProperty), Microsoft.EntityFrameworkCore.Metadata.IMutableKey, Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
   name.vb: AddForeignKey(IReadOnlyList(Of IMutableProperty), IMutableKey, IMutableEntityType)
@@ -499,7 +508,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Gets the foreign key for the given properties that points to a given primary or alternate key. Returns null\n    if no foreign key is found.\n"
+  summary: "\nGets the foreign key for the given properties that points to a given primary or alternate key. Returns null\nif no foreign key is found.\n"
   example: []
   syntax:
     content: IMutableForeignKey FindForeignKey(IReadOnlyList<IProperty> properties, IKey principalKey, IEntityType principalEntityType)
@@ -513,10 +522,11 @@ items:
       description: 'The primary or alternate key that is referenced. '
     - id: principalEntityType
       type: Microsoft.EntityFrameworkCore.Metadata.IEntityType
-      description: "\n    The entity type that the relationship targets. This may be different from the type that <em>principalKey</em>\n    is defined on when the relationship targets a derived type in an inheritance hierarchy (since the key is defined on the\n    base type of the hierarchy).\n"
+      description: "\nThe entity type that the relationship targets. This may be different from the type that <em>principalKey</em>\nis defined on when the relationship targets a derived type in an inheritance hierarchy (since the key is defined on the\nbase type of the hierarchy).\n"
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableForeignKey
       description: 'The foreign key, or null if none is defined. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindForeignKey*
   nameWithType.vb: IMutableEntityType.FindForeignKey(IReadOnlyList(Of IProperty), IKey, IEntityType)
   fullName.vb: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindForeignKey(System.Collections.Generic.IReadOnlyList(Of Microsoft.EntityFrameworkCore.Metadata.IProperty), Microsoft.EntityFrameworkCore.Metadata.IKey, Microsoft.EntityFrameworkCore.Metadata.IEntityType)
   name.vb: FindForeignKey(IReadOnlyList(Of IProperty), IKey, IEntityType)
@@ -542,7 +552,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Gets the foreign keys defined on this entity.\n"
+  summary: "\nGets the foreign keys defined on this entity.\n"
   example: []
   syntax:
     content: IEnumerable<IMutableForeignKey> GetForeignKeys()
@@ -550,6 +560,7 @@ items:
     return:
       type: System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IMutableForeignKey}
       description: 'The foreign keys defined on this entity. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetForeignKeys*
 - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveForeignKey(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IProperty},Microsoft.EntityFrameworkCore.Metadata.IKey,Microsoft.EntityFrameworkCore.Metadata.IEntityType)
   commentId: M:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveForeignKey(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IProperty},Microsoft.EntityFrameworkCore.Metadata.IKey,Microsoft.EntityFrameworkCore.Metadata.IEntityType)
   id: RemoveForeignKey(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IProperty},Microsoft.EntityFrameworkCore.Metadata.IKey,Microsoft.EntityFrameworkCore.Metadata.IEntityType)
@@ -572,7 +583,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Removes a relationship from this entity.\n"
+  summary: "\nRemoves a relationship from this entity.\n"
   example: []
   syntax:
     content: IMutableForeignKey RemoveForeignKey(IReadOnlyList<IProperty> properties, IKey principalKey, IEntityType principalEntityType)
@@ -586,10 +597,11 @@ items:
       description: 'The primary or alternate key that is referenced. '
     - id: principalEntityType
       type: Microsoft.EntityFrameworkCore.Metadata.IEntityType
-      description: "\n    The entity type that the relationship targets. This may be different from the type that <em>principalKey</em>\n    is defined on when the relationship targets a derived type in an inheritance hierarchy (since the key is defined on the\n    base type of the hierarchy).\n"
+      description: "\nThe entity type that the relationship targets. This may be different from the type that <em>principalKey</em>\nis defined on when the relationship targets a derived type in an inheritance hierarchy (since the key is defined on the\nbase type of the hierarchy).\n"
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableForeignKey
       description: 'The foreign key that was removed. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveForeignKey*
   nameWithType.vb: IMutableEntityType.RemoveForeignKey(IReadOnlyList(Of IProperty), IKey, IEntityType)
   fullName.vb: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveForeignKey(System.Collections.Generic.IReadOnlyList(Of Microsoft.EntityFrameworkCore.Metadata.IProperty), Microsoft.EntityFrameworkCore.Metadata.IKey, Microsoft.EntityFrameworkCore.Metadata.IEntityType)
   name.vb: RemoveForeignKey(IReadOnlyList(Of IProperty), IKey, IEntityType)
@@ -615,7 +627,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Adds an index to this entity.\n"
+  summary: "\nAdds an index to this entity.\n"
   example: []
   syntax:
     content: IMutableIndex AddIndex(IReadOnlyList<IMutableProperty> properties)
@@ -627,6 +639,7 @@ items:
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableIndex
       description: 'The newly created index. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddIndex*
   nameWithType.vb: IMutableEntityType.AddIndex(IReadOnlyList(Of IMutableProperty))
   fullName.vb: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddIndex(System.Collections.Generic.IReadOnlyList(Of Microsoft.EntityFrameworkCore.Metadata.IMutableProperty))
   name.vb: AddIndex(IReadOnlyList(Of IMutableProperty))
@@ -652,7 +665,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Gets the index defined on the given properties. Returns null if no index is defined.\n"
+  summary: "\nGets the index defined on the given properties. Returns null if no index is defined.\n"
   example: []
   syntax:
     content: IMutableIndex FindIndex(IReadOnlyList<IProperty> properties)
@@ -664,6 +677,7 @@ items:
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableIndex
       description: 'The index, or null if none is found. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindIndex*
   nameWithType.vb: IMutableEntityType.FindIndex(IReadOnlyList(Of IProperty))
   fullName.vb: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindIndex(System.Collections.Generic.IReadOnlyList(Of Microsoft.EntityFrameworkCore.Metadata.IProperty))
   name.vb: FindIndex(IReadOnlyList(Of IProperty))
@@ -689,7 +703,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Gets the indexes defined on this entity.\n"
+  summary: "\nGets the indexes defined on this entity.\n"
   example: []
   syntax:
     content: IEnumerable<IMutableIndex> GetIndexes()
@@ -697,6 +711,7 @@ items:
     return:
       type: System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IMutableIndex}
       description: 'The indexes defined on this entity. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetIndexes*
 - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveIndex(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IProperty})
   commentId: M:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveIndex(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IProperty})
   id: RemoveIndex(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IProperty})
@@ -719,7 +734,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Removes an index from this entity.\n"
+  summary: "\nRemoves an index from this entity.\n"
   example: []
   syntax:
     content: IMutableIndex RemoveIndex(IReadOnlyList<IProperty> properties)
@@ -731,6 +746,7 @@ items:
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableIndex
       description: 'The index that was removed. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveIndex*
   nameWithType.vb: IMutableEntityType.RemoveIndex(IReadOnlyList(Of IProperty))
   fullName.vb: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveIndex(System.Collections.Generic.IReadOnlyList(Of Microsoft.EntityFrameworkCore.Metadata.IProperty))
   name.vb: RemoveIndex(IReadOnlyList(Of IProperty))
@@ -756,7 +772,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Adds a property to this entity.\n"
+  summary: "\nAdds a property to this entity.\n"
   example: []
   syntax:
     content: IMutableProperty AddProperty(string name, Type propertyType)
@@ -771,6 +787,7 @@ items:
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableProperty
       description: 'The newly created property. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddProperty*
 - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindProperty(System.String)
   commentId: M:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindProperty(System.String)
   id: FindProperty(System.String)
@@ -805,6 +822,7 @@ items:
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableProperty
       description: 'The property, or null if none is found. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindProperty*
 - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetProperties
   commentId: M:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetProperties
   id: GetProperties
@@ -835,6 +853,7 @@ items:
     return:
       type: System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IMutableProperty}
       description: 'The properties defined on this entity. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetProperties*
 - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveProperty(System.String)
   commentId: M:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveProperty(System.String)
   id: RemoveProperty(System.String)
@@ -857,7 +876,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Removes a property from this entity.\n"
+  summary: "\nRemoves a property from this entity.\n"
   example: []
   syntax:
     content: IMutableProperty RemoveProperty(string name)
@@ -869,6 +888,7 @@ items:
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IMutableProperty
       description: 'The property that was removed. '
+  overload: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveProperty*
 references:
 - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableModel
   commentId: T:Microsoft.EntityFrameworkCore.Metadata.IMutableModel
@@ -890,20 +910,20 @@ references:
   name: Microsoft.EntityFrameworkCore.Metadata
   nameWithType: Microsoft.EntityFrameworkCore.Metadata
   fullName: Microsoft.EntityFrameworkCore.Metadata
-- uid: Microsoft.EntityFrameworkCore.Metadata.ITypeBase.Name
-  commentId: P:Microsoft.EntityFrameworkCore.Metadata.ITypeBase.Name
-  parent: Microsoft.EntityFrameworkCore.Metadata.ITypeBase
+- uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType.Name
+  commentId: P:Microsoft.EntityFrameworkCore.Metadata.IEntityType.Name
+  parent: Microsoft.EntityFrameworkCore.Metadata.IEntityType
   isExternal: false
   name: Name
-  nameWithType: ITypeBase.Name
-  fullName: Microsoft.EntityFrameworkCore.Metadata.ITypeBase.Name
-- uid: Microsoft.EntityFrameworkCore.Metadata.ITypeBase.ClrType
-  commentId: P:Microsoft.EntityFrameworkCore.Metadata.ITypeBase.ClrType
-  parent: Microsoft.EntityFrameworkCore.Metadata.ITypeBase
+  nameWithType: IEntityType.Name
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IEntityType.Name
+- uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType.ClrType
+  commentId: P:Microsoft.EntityFrameworkCore.Metadata.IEntityType.ClrType
+  parent: Microsoft.EntityFrameworkCore.Metadata.IEntityType
   isExternal: false
   name: ClrType
-  nameWithType: ITypeBase.ClrType
-  fullName: Microsoft.EntityFrameworkCore.Metadata.ITypeBase.ClrType
+  nameWithType: IEntityType.ClrType
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IEntityType.ClrType
 - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableAnnotatable.Item(System.String)
   commentId: P:Microsoft.EntityFrameworkCore.Metadata.IMutableAnnotatable.Item(System.String)
   parent: Microsoft.EntityFrameworkCore.Metadata.IMutableAnnotatable
@@ -1108,18 +1128,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
-  commentId: M:Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  parent: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  name: TestProvider()
-  nameWithType: TestRelationalMetadataExtensions.TestProvider()
-  fullName: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider()
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+  commentId: M:Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+  parent: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions
+  definition: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+  name: SqlServer()
+  nameWithType: SqlServerMetadataExtensions.SqlServer()
+  fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
-    name: TestProvider
-    nameWithType: TestRelationalMetadataExtensions.TestProvider
-    fullName: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
+  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+    name: SqlServer
+    nameWithType: SqlServerMetadataExtensions.SqlServer
+    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
   - name: (
     nameWithType: (
     fullName: (
@@ -1127,28 +1147,28 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
-    name: TestProvider
-    nameWithType: TestRelationalMetadataExtensions.TestProvider
-    fullName: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
+  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+    name: SqlServer
+    nameWithType: SqlServerMetadataExtensions.SqlServer
+    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-  commentId: M:Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  parent: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  name: Sqlite()
-  nameWithType: SqliteMetadataExtensions.Sqlite()
-  fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite()
+- uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+  commentId: M:Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  parent: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions
+  definition: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  name: SqlServer()
+  nameWithType: SqlServerMetadataExtensions.SqlServer()
+  fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-    name: Sqlite
-    nameWithType: SqliteMetadataExtensions.Sqlite
-    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
+  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+    name: SqlServer
+    nameWithType: SqlServerMetadataExtensions.SqlServer
+    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
   - name: (
     nameWithType: (
     fullName: (
@@ -1156,97 +1176,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-    name: Sqlite
-    nameWithType: SqliteMetadataExtensions.Sqlite
-    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-  commentId: M:Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-  parent: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-  name: Sqlite()
-  nameWithType: SqliteMetadataExtensions.Sqlite()
-  fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-    name: Sqlite
-    nameWithType: SqliteMetadataExtensions.Sqlite
-    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-    name: Sqlite
-    nameWithType: SqliteMetadataExtensions.Sqlite
-    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
-  commentId: M:Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-  parent: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-  name: Relational()
-  nameWithType: RelationalMetadataExtensions.Relational()
-  fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
-    name: Relational
-    nameWithType: RelationalMetadataExtensions.Relational
-    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
-    name: Relational
-    nameWithType: RelationalMetadataExtensions.Relational
-    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
-  commentId: M:Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  parent: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  name: Relational()
-  nameWithType: RelationalMetadataExtensions.Relational()
-  fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
-    name: Relational
-    nameWithType: RelationalMetadataExtensions.Relational
-    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
-    name: Relational
-    nameWithType: RelationalMetadataExtensions.Relational
-    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+    name: SqlServer
+    nameWithType: SqlServerMetadataExtensions.SqlServer
+    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
   - name: (
     nameWithType: (
     fullName: (
@@ -4584,18 +4517,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
-  commentId: M:Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-  parent: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-  name: SqlServer()
-  nameWithType: SqlServerMetadataExtensions.SqlServer()
-  fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer()
+- uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
+  commentId: M:Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  parent: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions
+  definition: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  name: Sqlite()
+  nameWithType: SqliteMetadataExtensions.Sqlite()
+  fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
-    name: SqlServer
-    nameWithType: SqlServerMetadataExtensions.SqlServer
-    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
+    name: Sqlite
+    nameWithType: SqliteMetadataExtensions.Sqlite
+    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
   - name: (
     nameWithType: (
     fullName: (
@@ -4603,28 +4536,28 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
-    name: SqlServer
-    nameWithType: SqlServerMetadataExtensions.SqlServer
-    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
+    name: Sqlite
+    nameWithType: SqliteMetadataExtensions.Sqlite
+    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
-  commentId: M:Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  parent: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions
-  definition: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  name: SqlServer()
-  nameWithType: SqlServerMetadataExtensions.SqlServer()
-  fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer()
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
+  commentId: M:Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+  parent: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions
+  definition: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+  name: Sqlite()
+  nameWithType: SqliteMetadataExtensions.Sqlite()
+  fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite()
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
-    name: SqlServer
-    nameWithType: SqlServerMetadataExtensions.SqlServer
-    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
+    name: Sqlite
+    nameWithType: SqliteMetadataExtensions.Sqlite
+    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
   - name: (
     nameWithType: (
     fullName: (
@@ -4632,23 +4565,103 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
-    name: SqlServer
-    nameWithType: SqlServerMetadataExtensions.SqlServer
-    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
+    name: Sqlite
+    nameWithType: SqliteMetadataExtensions.Sqlite
+    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.ITypeBase
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.ITypeBase
-  parent: Microsoft.EntityFrameworkCore.Metadata
-  isExternal: false
-  name: ITypeBase
-  nameWithType: ITypeBase
-  fullName: Microsoft.EntityFrameworkCore.Metadata.ITypeBase
+- uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
+  commentId: M:Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  parent: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions
+  definition: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  name: TestProvider()
+  nameWithType: TestRelationalMetadataExtensions.TestProvider()
+  fullName: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
+    name: TestProvider
+    nameWithType: TestRelationalMetadataExtensions.TestProvider
+    fullName: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
+    name: TestProvider
+    nameWithType: TestRelationalMetadataExtensions.TestProvider
+    fullName: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  commentId: M:Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+  parent: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions
+  definition: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+  name: Relational()
+  nameWithType: RelationalMetadataExtensions.Relational()
+  fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+    name: Relational
+    nameWithType: RelationalMetadataExtensions.Relational
+    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+    name: Relational
+    nameWithType: RelationalMetadataExtensions.Relational
+    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType.Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  commentId: M:Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  parent: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions
+  definition: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  name: Relational()
+  nameWithType: RelationalMetadataExtensions.Relational()
+  fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+    name: Relational
+    nameWithType: RelationalMetadataExtensions.Relational
+    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+    name: Relational
+    nameWithType: RelationalMetadataExtensions.Relational
+    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableAnnotatable
   commentId: T:Microsoft.EntityFrameworkCore.Metadata.IMutableAnnotatable
   parent: Microsoft.EntityFrameworkCore.Metadata
@@ -4656,182 +4669,60 @@ references:
   name: IMutableAnnotatable
   nameWithType: IMutableAnnotatable
   fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableAnnotatable
-- uid: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  commentId: M:Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+- uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+  commentId: M:Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
   isExternal: false
-  name: TestProvider(IEntityType)
-  nameWithType: TestRelationalMetadataExtensions.TestProvider(IEntityType)
-  fullName: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  name: SqlServer(IMutableEntityType)
+  nameWithType: SqlServerMetadataExtensions.SqlServer(IMutableEntityType)
+  fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-    name: TestProvider
-    nameWithType: TestRelationalMetadataExtensions.TestProvider
-    fullName: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
+  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+    name: SqlServer
+    nameWithType: SqlServerMetadataExtensions.SqlServer
+    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType
-    name: IEntityType
-    nameWithType: IEntityType
-    fullName: Microsoft.EntityFrameworkCore.Metadata.IEntityType
+  - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
+    name: IMutableEntityType
+    nameWithType: IMutableEntityType
+    fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-    name: TestProvider
-    nameWithType: TestRelationalMetadataExtensions.TestProvider
-    fullName: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
+  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+    name: SqlServer
+    nameWithType: SqlServerMetadataExtensions.SqlServer
+    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType
-    name: IEntityType
-    nameWithType: IEntityType
-    fullName: Microsoft.EntityFrameworkCore.Metadata.IEntityType
+  - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
+    name: IMutableEntityType
+    nameWithType: IMutableEntityType
+    fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions
-  parent: Microsoft.EntityFrameworkCore.Relational.Tests
-  isExternal: false
-  name: TestRelationalMetadataExtensions
-  nameWithType: TestRelationalMetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  commentId: M:Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  isExternal: false
-  name: Sqlite(IEntityType)
-  nameWithType: SqliteMetadataExtensions.Sqlite(IEntityType)
-  fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-    name: Sqlite
-    nameWithType: SqliteMetadataExtensions.Sqlite
-    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType
-    name: IEntityType
-    nameWithType: IEntityType
-    fullName: Microsoft.EntityFrameworkCore.Metadata.IEntityType
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-    name: Sqlite
-    nameWithType: SqliteMetadataExtensions.Sqlite
-    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType
-    name: IEntityType
-    nameWithType: IEntityType
-    fullName: Microsoft.EntityFrameworkCore.Metadata.IEntityType
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.SqliteMetadataExtensions
+- uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions
+  commentId: T:Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions
   parent: Microsoft.EntityFrameworkCore
   isExternal: false
-  name: SqliteMetadataExtensions
-  nameWithType: SqliteMetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-  commentId: M:Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+  name: SqlServerMetadataExtensions
+  nameWithType: SqlServerMetadataExtensions
+  fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions
+- uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  commentId: M:Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
   isExternal: false
-  name: Sqlite(IMutableEntityType)
-  nameWithType: SqliteMetadataExtensions.Sqlite(IMutableEntityType)
-  fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+  name: SqlServer(IEntityType)
+  nameWithType: SqlServerMetadataExtensions.SqlServer(IEntityType)
+  fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-    name: Sqlite
-    nameWithType: SqliteMetadataExtensions.Sqlite
-    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
-    name: IMutableEntityType
-    nameWithType: IMutableEntityType
-    fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-    name: Sqlite
-    nameWithType: SqliteMetadataExtensions.Sqlite
-    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
-    name: IMutableEntityType
-    nameWithType: IMutableEntityType
-    fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-  commentId: M:Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-  isExternal: false
-  name: Relational(IMutableEntityType)
-  nameWithType: RelationalMetadataExtensions.Relational(IMutableEntityType)
-  fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-    name: Relational
-    nameWithType: RelationalMetadataExtensions.Relational
-    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
-    name: IMutableEntityType
-    nameWithType: IMutableEntityType
-    fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-    name: Relational
-    nameWithType: RelationalMetadataExtensions.Relational
-    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
-    name: IMutableEntityType
-    nameWithType: IMutableEntityType
-    fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.RelationalMetadataExtensions
-  parent: Microsoft.EntityFrameworkCore
-  isExternal: false
-  name: RelationalMetadataExtensions
-  nameWithType: RelationalMetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  commentId: M:Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  isExternal: false
-  name: Relational(IEntityType)
-  nameWithType: RelationalMetadataExtensions.Relational(IEntityType)
-  fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-    name: Relational
-    nameWithType: RelationalMetadataExtensions.Relational
-    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+    name: SqlServer
+    nameWithType: SqlServerMetadataExtensions.SqlServer
+    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
   - name: (
     nameWithType: (
     fullName: (
@@ -4843,10 +4734,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-    name: Relational
-    nameWithType: RelationalMetadataExtensions.Relational
-    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+    name: SqlServer
+    nameWithType: SqlServerMetadataExtensions.SqlServer
+    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
   - name: (
     nameWithType: (
     fullName: (
@@ -9155,60 +9046,96 @@ references:
   name: PropertyBaseExtensions
   nameWithType: PropertyBaseExtensions
   fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions
-- uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-  commentId: M:Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+- uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  commentId: M:Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
   isExternal: false
-  name: SqlServer(IMutableEntityType)
-  nameWithType: SqlServerMetadataExtensions.SqlServer(IMutableEntityType)
-  fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+  name: Sqlite(IEntityType)
+  nameWithType: SqliteMetadataExtensions.Sqlite(IEntityType)
+  fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-    name: SqlServer
-    nameWithType: SqlServerMetadataExtensions.SqlServer
-    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+    name: Sqlite
+    nameWithType: SqliteMetadataExtensions.Sqlite
+    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
-    name: IMutableEntityType
-    nameWithType: IMutableEntityType
-    fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
+  - uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType
+    name: IEntityType
+    nameWithType: IEntityType
+    fullName: Microsoft.EntityFrameworkCore.Metadata.IEntityType
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
-    name: SqlServer
-    nameWithType: SqlServerMetadataExtensions.SqlServer
-    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+    name: Sqlite
+    nameWithType: SqliteMetadataExtensions.Sqlite
+    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
-    name: IMutableEntityType
-    nameWithType: IMutableEntityType
-    fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
+  - uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType
+    name: IEntityType
+    nameWithType: IEntityType
+    fullName: Microsoft.EntityFrameworkCore.Metadata.IEntityType
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions
+- uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions
+  commentId: T:Microsoft.EntityFrameworkCore.SqliteMetadataExtensions
   parent: Microsoft.EntityFrameworkCore
   isExternal: false
-  name: SqlServerMetadataExtensions
-  nameWithType: SqlServerMetadataExtensions
-  fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions
-- uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-  commentId: M:Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  name: SqliteMetadataExtensions
+  nameWithType: SqliteMetadataExtensions
+  fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions
+- uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+  commentId: M:Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
   isExternal: false
-  name: SqlServer(IEntityType)
-  nameWithType: SqlServerMetadataExtensions.SqlServer(IEntityType)
-  fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  name: Sqlite(IMutableEntityType)
+  nameWithType: SqliteMetadataExtensions.Sqlite(IMutableEntityType)
+  fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
   spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-    name: SqlServer
-    nameWithType: SqlServerMetadataExtensions.SqlServer
-    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+    name: Sqlite
+    nameWithType: SqliteMetadataExtensions.Sqlite
+    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
+    name: IMutableEntityType
+    nameWithType: IMutableEntityType
+    fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+    name: Sqlite
+    nameWithType: SqliteMetadataExtensions.Sqlite
+    fullName: Microsoft.EntityFrameworkCore.SqliteMetadataExtensions.Sqlite
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
+    name: IMutableEntityType
+    nameWithType: IMutableEntityType
+    fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  commentId: M:Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  isExternal: false
+  name: TestProvider(IEntityType)
+  nameWithType: TestRelationalMetadataExtensions.TestProvider(IEntityType)
+  fullName: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+    name: TestProvider
+    nameWithType: TestRelationalMetadataExtensions.TestProvider
+    fullName: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
   - name: (
     nameWithType: (
     fullName: (
@@ -9220,10 +9147,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
-    name: SqlServer
-    nameWithType: SqlServerMetadataExtensions.SqlServer
-    fullName: Microsoft.EntityFrameworkCore.SqlServerMetadataExtensions.SqlServer
+  - uid: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+    name: TestProvider
+    nameWithType: TestRelationalMetadataExtensions.TestProvider
+    fullName: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions.TestProvider
   - name: (
     nameWithType: (
     fullName: (
@@ -9234,12 +9161,92 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Relational.Tests
-  commentId: N:Microsoft.EntityFrameworkCore.Relational.Tests
+- uid: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions
+  commentId: T:Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions
+  parent: Microsoft.EntityFrameworkCore.Relational.Tests
   isExternal: false
-  name: Microsoft.EntityFrameworkCore.Relational.Tests
-  nameWithType: Microsoft.EntityFrameworkCore.Relational.Tests
-  fullName: Microsoft.EntityFrameworkCore.Relational.Tests
+  name: TestRelationalMetadataExtensions
+  nameWithType: TestRelationalMetadataExtensions
+  fullName: Microsoft.EntityFrameworkCore.Relational.Tests.TestRelationalMetadataExtensions
+- uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+  commentId: M:Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+  isExternal: false
+  name: Relational(IMutableEntityType)
+  nameWithType: RelationalMetadataExtensions.Relational(IMutableEntityType)
+  fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+    name: Relational
+    nameWithType: RelationalMetadataExtensions.Relational
+    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
+    name: IMutableEntityType
+    nameWithType: IMutableEntityType
+    fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)
+    name: Relational
+    nameWithType: RelationalMetadataExtensions.Relational
+    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
+    name: IMutableEntityType
+    nameWithType: IMutableEntityType
+    fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions
+  commentId: T:Microsoft.EntityFrameworkCore.RelationalMetadataExtensions
+  parent: Microsoft.EntityFrameworkCore
+  isExternal: false
+  name: RelationalMetadataExtensions
+  nameWithType: RelationalMetadataExtensions
+  fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions
+- uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  commentId: M:Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  isExternal: false
+  name: Relational(IEntityType)
+  nameWithType: RelationalMetadataExtensions.Relational(IEntityType)
+  fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+    name: Relational
+    nameWithType: RelationalMetadataExtensions.Relational
+    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType
+    name: IEntityType
+    nameWithType: IEntityType
+    fullName: Microsoft.EntityFrameworkCore.Metadata.IEntityType
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational(Microsoft.EntityFrameworkCore.Metadata.IEntityType)
+    name: Relational
+    nameWithType: RelationalMetadataExtensions.Relational
+    fullName: Microsoft.EntityFrameworkCore.RelationalMetadataExtensions.Relational
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType
+    name: IEntityType
+    nameWithType: IEntityType
+    fullName: Microsoft.EntityFrameworkCore.Metadata.IEntityType
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore
   commentId: N:Microsoft.EntityFrameworkCore
   isExternal: false
@@ -9258,6 +9265,24 @@ references:
   name: Microsoft.EntityFrameworkCore.Metadata.Internal
   nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
   fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
+- uid: Microsoft.EntityFrameworkCore.Relational.Tests
+  commentId: N:Microsoft.EntityFrameworkCore.Relational.Tests
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.Relational.Tests
+  nameWithType: Microsoft.EntityFrameworkCore.Relational.Tests
+  fullName: Microsoft.EntityFrameworkCore.Relational.Tests
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Model*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Model
+  isExternal: false
+  name: Model
+  nameWithType: IMutableEntityType.Model
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.Model
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.BaseType*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.BaseType
+  isExternal: false
+  name: BaseType
+  nameWithType: IMutableEntityType.BaseType
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.BaseType
 - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
   commentId: T:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
   parent: Microsoft.EntityFrameworkCore.Metadata
@@ -9265,6 +9290,12 @@ references:
   name: IMutableEntityType
   nameWithType: IMutableEntityType
   fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.SetPrimaryKey*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.SetPrimaryKey
+  isExternal: false
+  name: SetPrimaryKey
+  nameWithType: IMutableEntityType.SetPrimaryKey
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.SetPrimaryKey
 - uid: System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IMutableProperty}
   commentId: T:System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IMutableProperty}
   parent: System.Collections.Generic
@@ -9366,6 +9397,24 @@ references:
   name: DbContext
   nameWithType: DbContext
   fullName: Microsoft.EntityFrameworkCore.DbContext
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindPrimaryKey*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindPrimaryKey
+  isExternal: false
+  name: FindPrimaryKey
+  nameWithType: IMutableEntityType.FindPrimaryKey
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindPrimaryKey
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddKey*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddKey
+  isExternal: false
+  name: AddKey
+  nameWithType: IMutableEntityType.AddKey
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddKey
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindKey*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindKey
+  isExternal: false
+  name: FindKey
+  nameWithType: IMutableEntityType.FindKey
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindKey
 - uid: System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IProperty}
   commentId: T:System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IProperty}
   parent: System.Collections.Generic
@@ -9408,6 +9457,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetKeys*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetKeys
+  isExternal: false
+  name: GetKeys
+  nameWithType: IMutableEntityType.GetKeys
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetKeys
 - uid: System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IMutableKey}
   commentId: T:System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IMutableKey}
   parent: System.Collections.Generic
@@ -9489,6 +9544,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveKey*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveKey
+  isExternal: false
+  name: RemoveKey
+  nameWithType: IMutableEntityType.RemoveKey
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveKey
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddForeignKey*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddForeignKey
+  isExternal: false
+  name: AddForeignKey
+  nameWithType: IMutableEntityType.AddForeignKey
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddForeignKey
 - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableForeignKey
   commentId: T:Microsoft.EntityFrameworkCore.Metadata.IMutableForeignKey
   parent: Microsoft.EntityFrameworkCore.Metadata
@@ -9496,6 +9563,12 @@ references:
   name: IMutableForeignKey
   nameWithType: IMutableForeignKey
   fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableForeignKey
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindForeignKey*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindForeignKey
+  isExternal: false
+  name: FindForeignKey
+  nameWithType: IMutableEntityType.FindForeignKey
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindForeignKey
 - uid: Microsoft.EntityFrameworkCore.Metadata.IKey
   commentId: T:Microsoft.EntityFrameworkCore.Metadata.IKey
   parent: Microsoft.EntityFrameworkCore.Metadata
@@ -9503,6 +9576,12 @@ references:
   name: IKey
   nameWithType: IKey
   fullName: Microsoft.EntityFrameworkCore.Metadata.IKey
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetForeignKeys*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetForeignKeys
+  isExternal: false
+  name: GetForeignKeys
+  nameWithType: IMutableEntityType.GetForeignKeys
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetForeignKeys
 - uid: System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IMutableForeignKey}
   commentId: T:System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IMutableForeignKey}
   parent: System.Collections.Generic
@@ -9545,6 +9624,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveForeignKey*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveForeignKey
+  isExternal: false
+  name: RemoveForeignKey
+  nameWithType: IMutableEntityType.RemoveForeignKey
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveForeignKey
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddIndex*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddIndex
+  isExternal: false
+  name: AddIndex
+  nameWithType: IMutableEntityType.AddIndex
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddIndex
 - uid: Microsoft.EntityFrameworkCore.Metadata.IMutableIndex
   commentId: T:Microsoft.EntityFrameworkCore.Metadata.IMutableIndex
   parent: Microsoft.EntityFrameworkCore.Metadata
@@ -9552,6 +9643,18 @@ references:
   name: IMutableIndex
   nameWithType: IMutableIndex
   fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableIndex
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindIndex*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindIndex
+  isExternal: false
+  name: FindIndex
+  nameWithType: IMutableEntityType.FindIndex
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindIndex
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetIndexes*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetIndexes
+  isExternal: false
+  name: GetIndexes
+  nameWithType: IMutableEntityType.GetIndexes
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetIndexes
 - uid: System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IMutableIndex}
   commentId: T:System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IMutableIndex}
   parent: System.Collections.Generic
@@ -9594,6 +9697,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveIndex*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveIndex
+  isExternal: false
+  name: RemoveIndex
+  nameWithType: IMutableEntityType.RemoveIndex
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveIndex
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddProperty*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddProperty
+  isExternal: false
+  name: AddProperty
+  nameWithType: IMutableEntityType.AddProperty
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.AddProperty
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -9621,6 +9736,18 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindProperty*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindProperty
+  isExternal: false
+  name: FindProperty
+  nameWithType: IMutableEntityType.FindProperty
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.FindProperty
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetProperties*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetProperties
+  isExternal: false
+  name: GetProperties
+  nameWithType: IMutableEntityType.GetProperties
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.GetProperties
 - uid: System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IMutableProperty}
   commentId: T:System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Metadata.IMutableProperty}
   parent: System.Collections.Generic
@@ -9663,3 +9790,9 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveProperty*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveProperty
+  isExternal: false
+  name: RemoveProperty
+  nameWithType: IMutableEntityType.RemoveProperty
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType.RemoveProperty

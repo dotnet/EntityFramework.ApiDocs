@@ -34,7 +34,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Provides access to change tracking information and operations for entity instances the context is tracking.\n    Instances of this class are typically obtained from <xref href=\"Microsoft.EntityFrameworkCore.DbContext.ChangeTracker\" data-throw-if-not-resolved=\"false\"></xref> and it is not designed\n    to be directly constructed in your application code.\n"
+  summary: "\nProvides access to change tracking information and operations for entity instances the context is tracking.\nInstances of this class are typically obtained from <xref href=\"Microsoft.EntityFrameworkCore.DbContext.ChangeTracker\" data-throw-if-not-resolved=\"false\"></xref> and it is not designed\nto be directly constructed in your application code.\n"
   example: []
   syntax:
     content: 'public class ChangeTracker : IInfrastructure<IStateManager>'
@@ -83,7 +83,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public ChangeTracker(DbContext context)
@@ -91,6 +91,7 @@ items:
     parameters:
     - id: context
       type: Microsoft.EntityFrameworkCore.DbContext
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -125,6 +126,7 @@ items:
     parameters: []
     return:
       type: System.Boolean
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled*
   modifiers.csharp:
   - public
   - virtual
@@ -163,6 +165,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.QueryTrackingBehavior
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.QueryTrackingBehavior*
   modifiers.csharp:
   - public
   - virtual
@@ -193,7 +196,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Gets an <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> for each entity being tracked by the context.\n    The entries provide access to change tracking information and operations for each entity.\n"
+  summary: "\nGets an <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> for each entity being tracked by the context.\nThe entries provide access to change tracking information and operations for each entity.\n"
   example: []
   syntax:
     content: public virtual IEnumerable<EntityEntry> Entries()
@@ -201,6 +204,7 @@ items:
     return:
       type: System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry}
       description: 'An entry for each entity being tracked. '
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.Entries*
   modifiers.csharp:
   - public
   - virtual
@@ -229,7 +233,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Gets an <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> for all entities of a given type being tracked by the context.\n    The entries provide access to change tracking information and operations for each entity.\n"
+  summary: "\nGets an <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry\" data-throw-if-not-resolved=\"false\"></xref> for all entities of a given type being tracked by the context.\nThe entries provide access to change tracking information and operations for each entity.\n"
   example: []
   syntax:
     content: 'public virtual IEnumerable<EntityEntry<TEntity>> Entries<TEntity>()where TEntity : class'
@@ -240,6 +244,7 @@ items:
     return:
       type: System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry{{TEntity}}}
       description: 'An entry for each entity of the given type that is being tracked. '
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.Entries*
   nameWithType.vb: ChangeTracker.Entries(Of TEntity)()
   modifiers.csharp:
   - public
@@ -279,6 +284,7 @@ items:
     return:
       type: System.Boolean
       description: 'True if there are changes to save, otherwise false. '
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.HasChanges*
   modifiers.csharp:
   - public
   - virtual
@@ -316,6 +322,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IStateManager
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.Microsoft#EntityFrameworkCore#Infrastructure#IInfrastructure{Microsoft#EntityFrameworkCore#ChangeTracking#Internal#IStateManager}#Instance*
   implements:
   - Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure{Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IStateManager}.Instance
   nameWithType.vb: ChangeTracker.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IStateManager>.Instance
@@ -346,7 +353,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Gets the context this change tracker belongs to.\n"
+  summary: "\nGets the context this change tracker belongs to.\n"
   example: []
   syntax:
     content: public virtual DbContext Context { get; }
@@ -354,6 +361,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.DbContext
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.Context*
   modifiers.csharp:
   - public
   - virtual
@@ -384,11 +392,12 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Scans the tracked entity instances to detect any changes made to the instance data. <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges\" data-throw-if-not-resolved=\"false\"></xref>\n    is usually called automatically by the context when up-to-date information is required (before\n<xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> and when returning change tracking information). You typically only need to\ncall this method if you have disabled <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  summary: "\nScans the tracked entity instances to detect any changes made to the instance data. <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges\" data-throw-if-not-resolved=\"false\"></xref>\nis usually called automatically by the context when up-to-date information is required (before\n<xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref> and when returning change tracking information). You typically only need to\ncall this method if you have disabled <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: public virtual void DetectChanges()
     content.vb: Public Overridable Sub DetectChanges
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges*
   modifiers.csharp:
   - public
   - virtual
@@ -417,11 +426,12 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.ChangeTracking
-  summary: "\n    Accepts all changes made to entities in the context. It will be assumed that the tracked entities\n    represent the current state of the database. This method is typically called by <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref>\n    after changes have been successfully saved to the database.\n"
+  summary: "\nAccepts all changes made to entities in the context. It will be assumed that the tracked entities\nrepresent the current state of the database. This method is typically called by <xref href=\"Microsoft.EntityFrameworkCore.DbContext.SaveChanges\" data-throw-if-not-resolved=\"false\"></xref>\nafter changes have been successfully saved to the database.\n"
   example: []
   syntax:
     content: public virtual void AcceptAllChanges()
     content.vb: Public Overridable Sub AcceptAllChanges
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AcceptAllChanges*
   modifiers.csharp:
   - public
   - virtual
@@ -461,7 +471,8 @@ items:
       description: 'The entity to begin traversal from. '
     - id: callback
       type: System.Action{Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntryGraphNode}
-      description: "\n    An action to configure the change tracking information for each entity. For the entity to begin being tracked,\n    the <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.State\" data-throw-if-not-resolved=\"false\"></xref> must be set.\n"
+      description: "\nAn action to configure the change tracking information for each entity. For the entity to begin being tracked,\nthe <xref href=\"Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.State\" data-throw-if-not-resolved=\"false\"></xref> must be set.\n"
+  overload: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.TrackGraph*
   nameWithType.vb: ChangeTracker.TrackGraph(Object, Action(Of EntityEntryGraphNode))
   modifiers.csharp:
   - public
@@ -969,6 +980,12 @@ references:
   name: Microsoft.EntityFrameworkCore
   nameWithType: Microsoft.EntityFrameworkCore
   fullName: Microsoft.EntityFrameworkCore
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.#ctor
+  isExternal: false
+  name: ChangeTracker
+  nameWithType: ChangeTracker.ChangeTracker
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.ChangeTracker
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges
   commentId: M:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges
 - uid: Microsoft.EntityFrameworkCore.DbContext.SaveChanges
@@ -1000,6 +1017,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled
+  isExternal: false
+  name: AutoDetectChangesEnabled
+  nameWithType: ChangeTracker.AutoDetectChangesEnabled
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -1127,6 +1150,12 @@ references:
     fullName: )
 - uid: Microsoft.EntityFrameworkCore.QueryTrackingBehavior.TrackAll
   commentId: F:Microsoft.EntityFrameworkCore.QueryTrackingBehavior.TrackAll
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.QueryTrackingBehavior*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.QueryTrackingBehavior
+  isExternal: false
+  name: QueryTrackingBehavior
+  nameWithType: ChangeTracker.QueryTrackingBehavior
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.QueryTrackingBehavior
 - uid: Microsoft.EntityFrameworkCore.QueryTrackingBehavior
   commentId: T:Microsoft.EntityFrameworkCore.QueryTrackingBehavior
   parent: Microsoft.EntityFrameworkCore
@@ -1141,6 +1170,12 @@ references:
   name: EntityEntry
   nameWithType: EntityEntry
   fullName: Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.Entries*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.Entries
+  isExternal: false
+  name: Entries
+  nameWithType: ChangeTracker.Entries
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.Entries
 - uid: System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry}
   commentId: T:System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry}
   parent: System.Collections.Generic
@@ -1329,6 +1364,20 @@ references:
     fullName: )
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled
   commentId: P:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.HasChanges*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.HasChanges
+  isExternal: false
+  name: HasChanges
+  nameWithType: ChangeTracker.HasChanges
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.HasChanges
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.Microsoft#EntityFrameworkCore#Infrastructure#IInfrastructure{Microsoft#EntityFrameworkCore#ChangeTracking#Internal#IStateManager}#Instance*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.Microsoft#EntityFrameworkCore#Infrastructure#IInfrastructure{Microsoft#EntityFrameworkCore#ChangeTracking#Internal#IStateManager}#Instance
+  isExternal: false
+  name: IInfrastructure<IStateManager>.Instance
+  nameWithType: ChangeTracker.IInfrastructure<IStateManager>.Instance
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IStateManager>.Instance
+  nameWithType.vb: ChangeTracker.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IStateManager>.Instance
+  name.vb: Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IStateManager>.Instance
 - uid: Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure{Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IStateManager}.Instance
   commentId: P:Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure{Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IStateManager}.Instance
   parent: Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure{Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IStateManager}
@@ -1359,6 +1408,24 @@ references:
   name: Microsoft.EntityFrameworkCore.ChangeTracking.Internal
   nameWithType: Microsoft.EntityFrameworkCore.ChangeTracking.Internal
   fullName: Microsoft.EntityFrameworkCore.ChangeTracking.Internal
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.Context*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.Context
+  isExternal: false
+  name: Context
+  nameWithType: ChangeTracker.Context
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.Context
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges
+  isExternal: false
+  name: DetectChanges
+  nameWithType: ChangeTracker.DetectChanges
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AcceptAllChanges*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AcceptAllChanges
+  isExternal: false
+  name: AcceptAllChanges
+  nameWithType: ChangeTracker.AcceptAllChanges
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AcceptAllChanges
 - uid: Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.State
   commentId: P:Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.State
   parent: Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry
@@ -1366,6 +1433,12 @@ references:
   name: State
   nameWithType: EntityEntry.State
   fullName: Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.State
+- uid: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.TrackGraph*
+  commentId: Overload:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.TrackGraph
+  isExternal: false
+  name: TrackGraph
+  nameWithType: ChangeTracker.TrackGraph
+  fullName: Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.TrackGraph
 - uid: System.Action{Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntryGraphNode}
   commentId: T:System.Action{Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntryGraphNode}
   parent: System

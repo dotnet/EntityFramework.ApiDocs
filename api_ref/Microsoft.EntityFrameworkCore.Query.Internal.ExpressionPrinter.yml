@@ -5,11 +5,13 @@ items:
   id: ExpressionPrinter
   parent: Microsoft.EntityFrameworkCore.Query.Internal
   children:
+  - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.#ctor
+  - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.#ctor(System.Collections.Generic.List{Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter})
   - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Append
   - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.AppendLine
-  - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.GetConstantPrinters
   - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.PostProcess(System.String)
   - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Print(System.Linq.Expressions.Expression)
+  - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.StringBuilder
   - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.TrackedQuery
   - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Visit(System.Linq.Expressions.Expression)
   - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitBinary(System.Linq.Expressions.BinaryExpression)
@@ -17,6 +19,7 @@ items:
   - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitConditional(System.Linq.Expressions.ConditionalExpression)
   - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitConstant(System.Linq.Expressions.ConstantExpression)
   - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitDefault(System.Linq.Expressions.DefaultExpression)
+  - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitExtension(System.Linq.Expressions.Expression)
   - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitGoto(System.Linq.Expressions.GotoExpression)
   - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitLabel(System.Linq.Expressions.LabelExpression)
   - Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitLambda``1(System.Linq.Expressions.Expression{``0})
@@ -42,59 +45,138 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ExpressionPrinter
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 18
+    startLine: 22
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
-    content: 'public class ExpressionPrinter : ExpressionVisitor, IExpressionPrinter'
+    content: 'public class ExpressionPrinter : ExpressionVisitorBase, IExpressionPrinter'
     content.vb: >-
       Public Class ExpressionPrinter
-          Inherits ExpressionVisitor
+          Inherits ExpressionVisitorBase
           Implements IExpressionPrinter
   inheritance:
   - System.Object
-  - System.Linq.Expressions.ExpressionVisitor
+  - Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase
   implements:
   - Microsoft.EntityFrameworkCore.Query.Internal.IExpressionPrinter
-  inheritedMembers:
-  - System.Linq.Expressions.ExpressionVisitor.Visit(System.Collections.ObjectModel.ReadOnlyCollection{System.Linq.Expressions.Expression})
-  - System.Linq.Expressions.ExpressionVisitor.Visit``1(System.Collections.ObjectModel.ReadOnlyCollection{{T}},System.Func{{T},{T}})
-  - System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1({T},System.String)
-  - System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(System.Collections.ObjectModel.ReadOnlyCollection{{T}},System.String)
-  - System.Linq.Expressions.ExpressionVisitor.VisitDebugInfo(System.Linq.Expressions.DebugInfoExpression)
-  - System.Linq.Expressions.ExpressionVisitor.VisitDynamic(System.Linq.Expressions.DynamicExpression)
-  - System.Linq.Expressions.ExpressionVisitor.VisitExtension(System.Linq.Expressions.Expression)
-  - System.Linq.Expressions.ExpressionVisitor.VisitInvocation(System.Linq.Expressions.InvocationExpression)
-  - System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
-  - System.Linq.Expressions.ExpressionVisitor.VisitLoop(System.Linq.Expressions.LoopExpression)
-  - System.Linq.Expressions.ExpressionVisitor.VisitIndex(System.Linq.Expressions.IndexExpression)
-  - System.Linq.Expressions.ExpressionVisitor.VisitRuntimeVariables(System.Linq.Expressions.RuntimeVariablesExpression)
-  - System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
-  - System.Linq.Expressions.ExpressionVisitor.VisitSwitch(System.Linq.Expressions.SwitchExpression)
-  - System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
-  - System.Linq.Expressions.ExpressionVisitor.VisitTypeBinary(System.Linq.Expressions.TypeBinaryExpression)
-  - System.Linq.Expressions.ExpressionVisitor.VisitListInit(System.Linq.Expressions.ListInitExpression)
-  - System.Linq.Expressions.ExpressionVisitor.VisitElementInit(System.Linq.Expressions.ElementInit)
-  - System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
-  - System.Linq.Expressions.ExpressionVisitor.VisitMemberAssignment(System.Linq.Expressions.MemberAssignment)
-  - System.Linq.Expressions.ExpressionVisitor.VisitMemberMemberBinding(System.Linq.Expressions.MemberMemberBinding)
-  - System.Linq.Expressions.ExpressionVisitor.VisitMemberListBinding(System.Linq.Expressions.MemberListBinding)
-  - System.Object.ToString
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.#ctor
+  commentId: M:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.#ctor
+  id: '#ctor'
+  parent: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter
+  langs:
+  - csharp
+  - vb
+  name: ExpressionPrinter()
+  nameWithType: ExpressionPrinter.ExpressionPrinter()
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.ExpressionPrinter()
+  type: Constructor
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: .ctor
+    path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
+    startLine: 53
+  assemblies:
+  - Microsoft.EntityFrameworkCore
+  namespace: Microsoft.EntityFrameworkCore.Query.Internal
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
+  example: []
+  syntax:
+    content: public ExpressionPrinter()
+    content.vb: Public Sub New
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.#ctor(System.Collections.Generic.List{Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter})
+  commentId: M:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.#ctor(System.Collections.Generic.List{Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter})
+  id: '#ctor(System.Collections.Generic.List{Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter})'
+  parent: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter
+  langs:
+  - csharp
+  - vb
+  name: ExpressionPrinter(List<ExpressionPrinter.IConstantPrinter>)
+  nameWithType: ExpressionPrinter.ExpressionPrinter(List<ExpressionPrinter.IConstantPrinter>)
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.ExpressionPrinter(System.Collections.Generic.List<Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter>)
+  type: Constructor
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: .ctor
+    path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
+    startLine: 62
+  assemblies:
+  - Microsoft.EntityFrameworkCore
+  namespace: Microsoft.EntityFrameworkCore.Query.Internal
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
+  example: []
+  syntax:
+    content: protected ExpressionPrinter(List<ExpressionPrinter.IConstantPrinter> constantPrinters)
+    content.vb: Protected Sub New(constantPrinters As List(Of ExpressionPrinter.IConstantPrinter))
+    parameters:
+    - id: constantPrinters
+      type: System.Collections.Generic.List{Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter}
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.#ctor*
+  nameWithType.vb: ExpressionPrinter.ExpressionPrinter(List(Of ExpressionPrinter.IConstantPrinter))
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.ExpressionPrinter(System.Collections.Generic.List(Of Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter))
+  name.vb: ExpressionPrinter(List(Of ExpressionPrinter.IConstantPrinter))
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.StringBuilder
+  commentId: P:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.StringBuilder
+  id: StringBuilder
+  parent: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter
+  langs:
+  - csharp
+  - vb
+  name: StringBuilder
+  nameWithType: ExpressionPrinter.StringBuilder
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.StringBuilder
+  type: Property
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: StringBuilder
+    path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
+    startLine: 81
+  assemblies:
+  - Microsoft.EntityFrameworkCore
+  namespace: Microsoft.EntityFrameworkCore.Query.Internal
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
+  example: []
+  syntax:
+    content: public virtual IndentedStringBuilder StringBuilder { get; }
+    content.vb: Public Overridable ReadOnly Property StringBuilder As IndentedStringBuilder
+    parameters: []
+    return:
+      type: Microsoft.EntityFrameworkCore.Internal.IndentedStringBuilder
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.StringBuilder*
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  modifiers.vb:
+  - Public
+  - Overridable
+  - ReadOnly
 - uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Append
   commentId: P:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Append
   id: Append
@@ -113,11 +195,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Append
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 49
+    startLine: 87
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected static Action<IndentedStringBuilder, string> Append { get; }
@@ -125,6 +207,7 @@ items:
     parameters: []
     return:
       type: System.Action{Microsoft.EntityFrameworkCore.Internal.IndentedStringBuilder,System.String}
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Append*
   modifiers.csharp:
   - protected
   - static
@@ -151,11 +234,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: AppendLine
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 58
+    startLine: 96
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected static Action<IndentedStringBuilder, string> AppendLine { get; }
@@ -163,6 +246,7 @@ items:
     parameters: []
     return:
       type: System.Action{Microsoft.EntityFrameworkCore.Internal.IndentedStringBuilder,System.String}
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.AppendLine*
   modifiers.csharp:
   - protected
   - static
@@ -189,11 +273,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Print
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 67
+    startLine: 105
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public virtual string Print(Expression expression)
@@ -203,6 +287,7 @@ items:
       type: System.Linq.Expressions.Expression
     return:
       type: System.String
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Print*
   implements:
   - Microsoft.EntityFrameworkCore.Query.Internal.IExpressionPrinter.Print(System.Linq.Expressions.Expression)
   modifiers.csharp:
@@ -210,41 +295,6 @@ items:
   - virtual
   modifiers.vb:
   - Public
-  - Overridable
-- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.GetConstantPrinters
-  commentId: M:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.GetConstantPrinters
-  id: GetConstantPrinters
-  parent: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter
-  langs:
-  - csharp
-  - vb
-  name: GetConstantPrinters()
-  nameWithType: ExpressionPrinter.GetConstantPrinters()
-  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.GetConstantPrinters()
-  type: Method
-  source:
-    remote:
-      path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-      branch: dev
-      repo: https://github.com/aspnet/EntityFramework.git
-    id: GetConstantPrinters
-    path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 87
-  assemblies:
-  - Microsoft.EntityFrameworkCore
-  namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
-  example: []
-  syntax:
-    content: protected virtual List<ExpressionPrinter.IConstantPrinter> GetConstantPrinters()
-    content.vb: Protected Overridable Function GetConstantPrinters As List(Of ExpressionPrinter.IConstantPrinter)
-    return:
-      type: System.Collections.Generic.List{Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter}
-  modifiers.csharp:
-  - protected
-  - virtual
-  modifiers.vb:
-  - Protected
   - Overridable
 - uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.TrackedQuery
   commentId: P:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.TrackedQuery
@@ -264,11 +314,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: TrackedQuery
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 99
+    startLine: 124
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public virtual bool TrackedQuery { get; }
@@ -276,6 +326,7 @@ items:
     parameters: []
     return:
       type: System.Boolean
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.TrackedQuery*
   modifiers.csharp:
   - public
   - virtual
@@ -302,11 +353,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Visit
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 105
+    startLine: 130
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public override Expression Visit(Expression node)
@@ -316,7 +367,8 @@ items:
       type: System.Linq.Expressions.Expression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.Visit(System.Linq.Expressions.Expression)
+  overridden: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.Visit(System.Linq.Expressions.Expression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Visit*
   modifiers.csharp:
   - public
   - override
@@ -341,11 +393,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitBinary
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 204
+    startLine: 233
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitBinary(BinaryExpression node)
@@ -355,7 +407,7 @@ items:
       type: System.Linq.Expressions.BinaryExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitBinary(System.Linq.Expressions.BinaryExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitBinary*
   modifiers.csharp:
   - protected
   - override
@@ -380,11 +432,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitBlock
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 238
+    startLine: 267
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitBlock(BlockExpression node)
@@ -394,7 +446,7 @@ items:
       type: System.Linq.Expressions.BlockExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitBlock(System.Linq.Expressions.BlockExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitBlock*
   modifiers.csharp:
   - protected
   - override
@@ -419,11 +471,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitConditional
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 277
+    startLine: 306
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitConditional(ConditionalExpression node)
@@ -433,7 +485,7 @@ items:
       type: System.Linq.Expressions.ConditionalExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitConditional(System.Linq.Expressions.ConditionalExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitConditional*
   modifiers.csharp:
   - protected
   - override
@@ -458,11 +510,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitConstant
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 296
+    startLine: 325
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitConstant(ConstantExpression node)
@@ -472,7 +524,7 @@ items:
       type: System.Linq.Expressions.ConstantExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitConstant(System.Linq.Expressions.ConstantExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitConstant*
   modifiers.csharp:
   - protected
   - override
@@ -497,11 +549,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitGoto
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 313
+    startLine: 342
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitGoto(GotoExpression node)
@@ -511,7 +563,7 @@ items:
       type: System.Linq.Expressions.GotoExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitGoto(System.Linq.Expressions.GotoExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitGoto*
   modifiers.csharp:
   - protected
   - override
@@ -536,11 +588,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitLabel
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 330
+    startLine: 359
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitLabel(LabelExpression node)
@@ -550,7 +602,7 @@ items:
       type: System.Linq.Expressions.LabelExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitLabel(System.Linq.Expressions.LabelExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitLabel*
   modifiers.csharp:
   - protected
   - override
@@ -575,11 +627,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitLambda
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 341
+    startLine: 370
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitLambda<T>(Expression<T> node)
@@ -591,7 +643,7 @@ items:
     - id: T
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitLambda``1(System.Linq.Expressions.Expression{{T}})
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitLambda*
   nameWithType.vb: ExpressionPrinter.VisitLambda(Of T)(Expression(Of T))
   modifiers.csharp:
   - protected
@@ -619,11 +671,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitMember
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 372
+    startLine: 401
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitMember(MemberExpression node)
@@ -633,7 +685,7 @@ items:
       type: System.Linq.Expressions.MemberExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitMember(System.Linq.Expressions.MemberExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitMember*
   modifiers.csharp:
   - protected
   - override
@@ -658,11 +710,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitMemberInit
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 393
+    startLine: 422
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitMemberInit(MemberInitExpression node)
@@ -672,7 +724,7 @@ items:
       type: System.Linq.Expressions.MemberInitExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitMemberInit(System.Linq.Expressions.MemberInitExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitMemberInit*
   modifiers.csharp:
   - protected
   - override
@@ -697,11 +749,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitMethodCall
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 426
+    startLine: 455
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitMethodCall(MethodCallExpression node)
@@ -711,7 +763,7 @@ items:
       type: System.Linq.Expressions.MethodCallExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(System.Linq.Expressions.MethodCallExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitMethodCall*
   modifiers.csharp:
   - protected
   - override
@@ -736,11 +788,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitNew
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 491
+    startLine: 526
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitNew(NewExpression node)
@@ -750,7 +802,7 @@ items:
       type: System.Linq.Expressions.NewExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitNew(System.Linq.Expressions.NewExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitNew*
   modifiers.csharp:
   - protected
   - override
@@ -775,11 +827,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitNewArray
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 516
+    startLine: 551
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitNewArray(NewArrayExpression node)
@@ -789,7 +841,7 @@ items:
       type: System.Linq.Expressions.NewArrayExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitNewArray(System.Linq.Expressions.NewArrayExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitNewArray*
   modifiers.csharp:
   - protected
   - override
@@ -814,11 +866,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitParameter
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 539
+    startLine: 574
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitParameter(ParameterExpression node)
@@ -828,7 +880,7 @@ items:
       type: System.Linq.Expressions.ParameterExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitParameter(System.Linq.Expressions.ParameterExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitParameter*
   modifiers.csharp:
   - protected
   - override
@@ -853,11 +905,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitUnary
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 557
+    startLine: 592
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitUnary(UnaryExpression node)
@@ -867,7 +919,7 @@ items:
       type: System.Linq.Expressions.UnaryExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitUnary(System.Linq.Expressions.UnaryExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitUnary*
   modifiers.csharp:
   - protected
   - override
@@ -892,11 +944,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitDefault
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 590
+    startLine: 625
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitDefault(DefaultExpression node)
@@ -906,7 +958,7 @@ items:
       type: System.Linq.Expressions.DefaultExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitDefault(System.Linq.Expressions.DefaultExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitDefault*
   modifiers.csharp:
   - protected
   - override
@@ -931,11 +983,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitTry
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 601
+    startLine: 636
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected override Expression VisitTry(TryExpression node)
@@ -945,7 +997,47 @@ items:
       type: System.Linq.Expressions.TryExpression
     return:
       type: System.Linq.Expressions.Expression
-  overridden: System.Linq.Expressions.ExpressionVisitor.VisitTry(System.Linq.Expressions.TryExpression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitTry*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitExtension(System.Linq.Expressions.Expression)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitExtension(System.Linq.Expressions.Expression)
+  id: VisitExtension(System.Linq.Expressions.Expression)
+  parent: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter
+  langs:
+  - csharp
+  - vb
+  name: VisitExtension(Expression)
+  nameWithType: ExpressionPrinter.VisitExtension(Expression)
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitExtension(System.Linq.Expressions.Expression)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: VisitExtension
+    path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
+    startLine: 653
+  assemblies:
+  - Microsoft.EntityFrameworkCore
+  namespace: Microsoft.EntityFrameworkCore.Query.Internal
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
+  example: []
+  syntax:
+    content: protected override Expression VisitExtension(Expression node)
+    content.vb: Protected Overrides Function VisitExtension(node As Expression) As Expression
+    parameters:
+    - id: node
+      type: System.Linq.Expressions.Expression
+    return:
+      type: System.Linq.Expressions.Expression
+  overridden: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.VisitExtension(System.Linq.Expressions.Expression)
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitExtension*
   modifiers.csharp:
   - protected
   - override
@@ -970,11 +1062,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: PostProcess
     path: src/Microsoft.EntityFrameworkCore/Query/Internal/ExpressionPrinter.cs
-    startLine: 618
+    startLine: 680
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Query.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used \n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: protected virtual string PostProcess(string queryPlan)
@@ -984,6 +1076,7 @@ items:
       type: System.String
     return:
       type: System.String
+  overload: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.PostProcess*
   modifiers.csharp:
   - protected
   - virtual
@@ -1004,13 +1097,13 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: System.Linq.Expressions.ExpressionVisitor
-  commentId: T:System.Linq.Expressions.ExpressionVisitor
-  parent: System.Linq.Expressions
-  isExternal: true
-  name: ExpressionVisitor
-  nameWithType: ExpressionVisitor
-  fullName: System.Linq.Expressions.ExpressionVisitor
+- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase
+  commentId: T:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase
+  parent: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
+  isExternal: false
+  name: ExpressionVisitorBase
+  nameWithType: ExpressionVisitorBase
+  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase
 - uid: Microsoft.EntityFrameworkCore.Query.Internal.IExpressionPrinter
   commentId: T:Microsoft.EntityFrameworkCore.Query.Internal.IExpressionPrinter
   parent: Microsoft.EntityFrameworkCore.Query.Internal
@@ -1018,1365 +1111,80 @@ references:
   name: IExpressionPrinter
   nameWithType: IExpressionPrinter
   fullName: Microsoft.EntityFrameworkCore.Query.Internal.IExpressionPrinter
-- uid: System.Linq.Expressions.ExpressionVisitor.Visit(System.Collections.ObjectModel.ReadOnlyCollection{System.Linq.Expressions.Expression})
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.Visit(System.Collections.ObjectModel.ReadOnlyCollection{System.Linq.Expressions.Expression})
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: Visit(ReadOnlyCollection<Expression>)
-  nameWithType: ExpressionVisitor.Visit(ReadOnlyCollection<Expression>)
-  fullName: System.Linq.Expressions.ExpressionVisitor.Visit(System.Collections.ObjectModel.ReadOnlyCollection<System.Linq.Expressions.Expression>)
-  nameWithType.vb: ExpressionVisitor.Visit(ReadOnlyCollection(Of Expression))
-  fullname.vb: System.Linq.Expressions.ExpressionVisitor.Visit(System.Collections.ObjectModel.ReadOnlyCollection(Of System.Linq.Expressions.Expression))
-  name.vb: Visit(ReadOnlyCollection(Of Expression))
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.Visit(System.Collections.ObjectModel.ReadOnlyCollection{System.Linq.Expressions.Expression})
-    name: Visit
-    nameWithType: ExpressionVisitor.Visit
-    fullName: System.Linq.Expressions.ExpressionVisitor.Visit
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
-    name: ReadOnlyCollection
-    nameWithType: ReadOnlyCollection
-    fullName: System.Collections.ObjectModel.ReadOnlyCollection
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.Linq.Expressions.Expression
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.Visit(System.Collections.ObjectModel.ReadOnlyCollection{System.Linq.Expressions.Expression})
-    name: Visit
-    nameWithType: ExpressionVisitor.Visit
-    fullName: System.Linq.Expressions.ExpressionVisitor.Visit
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
-    name: ReadOnlyCollection
-    nameWithType: ReadOnlyCollection
-    fullName: System.Collections.ObjectModel.ReadOnlyCollection
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: System.Linq.Expressions.Expression
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.Visit``1(System.Collections.ObjectModel.ReadOnlyCollection{{T}},System.Func{{T},{T}})
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.Visit``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.Func{``0,``0})
-  parent: System.Linq.Expressions.ExpressionVisitor
-  definition: System.Linq.Expressions.ExpressionVisitor.Visit``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.Func{``0,``0})
-  name: Visit<T>(ReadOnlyCollection<T>, Func<T, T>)
-  nameWithType: ExpressionVisitor.Visit<T>(ReadOnlyCollection<T>, Func<T, T>)
-  fullName: System.Linq.Expressions.ExpressionVisitor.Visit<T>(System.Collections.ObjectModel.ReadOnlyCollection<T>, System.Func<T, T>)
-  nameWithType.vb: ExpressionVisitor.Visit(Of T)(ReadOnlyCollection(Of T), Func(Of T, T))
-  fullname.vb: System.Linq.Expressions.ExpressionVisitor.Visit(Of T)(System.Collections.ObjectModel.ReadOnlyCollection(Of T), System.Func(Of T, T))
-  name.vb: Visit(Of T)(ReadOnlyCollection(Of T), Func(Of T, T))
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.Visit``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.Func{``0,``0})
-    name: Visit<T>
-    nameWithType: ExpressionVisitor.Visit<T>
-    fullName: System.Linq.Expressions.ExpressionVisitor.Visit<T>
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
-    name: ReadOnlyCollection
-    nameWithType: ReadOnlyCollection
-    fullName: System.Collections.ObjectModel.ReadOnlyCollection
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.Visit``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.Func{``0,``0})
-    name: Visit(Of T)
-    nameWithType: ExpressionVisitor.Visit(Of T)
-    fullName: System.Linq.Expressions.ExpressionVisitor.Visit(Of T)
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
-    name: ReadOnlyCollection
-    nameWithType: ReadOnlyCollection
-    fullName: System.Collections.ObjectModel.ReadOnlyCollection
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1({T},System.String)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(``0,System.String)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  definition: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(``0,System.String)
-  name: VisitAndConvert<T>(T, String)
-  nameWithType: ExpressionVisitor.VisitAndConvert<T>(T, String)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert<T>(T, System.String)
-  nameWithType.vb: ExpressionVisitor.VisitAndConvert(Of T)(T, String)
-  fullname.vb: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert(Of T)(T, System.String)
-  name.vb: VisitAndConvert(Of T)(T, String)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(``0,System.String)
-    name: VisitAndConvert<T>
-    nameWithType: ExpressionVisitor.VisitAndConvert<T>
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert<T>
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(``0,System.String)
-    name: VisitAndConvert(Of T)
-    nameWithType: ExpressionVisitor.VisitAndConvert(Of T)
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert(Of T)
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(System.Collections.ObjectModel.ReadOnlyCollection{{T}},System.String)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.String)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  definition: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.String)
-  name: VisitAndConvert<T>(ReadOnlyCollection<T>, String)
-  nameWithType: ExpressionVisitor.VisitAndConvert<T>(ReadOnlyCollection<T>, String)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert<T>(System.Collections.ObjectModel.ReadOnlyCollection<T>, System.String)
-  nameWithType.vb: ExpressionVisitor.VisitAndConvert(Of T)(ReadOnlyCollection(Of T), String)
-  fullname.vb: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert(Of T)(System.Collections.ObjectModel.ReadOnlyCollection(Of T), System.String)
-  name.vb: VisitAndConvert(Of T)(ReadOnlyCollection(Of T), String)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.String)
-    name: VisitAndConvert<T>
-    nameWithType: ExpressionVisitor.VisitAndConvert<T>
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert<T>
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
-    name: ReadOnlyCollection
-    nameWithType: ReadOnlyCollection
-    fullName: System.Collections.ObjectModel.ReadOnlyCollection
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.String)
-    name: VisitAndConvert(Of T)
-    nameWithType: ExpressionVisitor.VisitAndConvert(Of T)
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert(Of T)
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
-    name: ReadOnlyCollection
-    nameWithType: ReadOnlyCollection
-    fullName: System.Collections.ObjectModel.ReadOnlyCollection
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitDebugInfo(System.Linq.Expressions.DebugInfoExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitDebugInfo(System.Linq.Expressions.DebugInfoExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitDebugInfo(DebugInfoExpression)
-  nameWithType: ExpressionVisitor.VisitDebugInfo(DebugInfoExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitDebugInfo(System.Linq.Expressions.DebugInfoExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitDebugInfo(System.Linq.Expressions.DebugInfoExpression)
-    name: VisitDebugInfo
-    nameWithType: ExpressionVisitor.VisitDebugInfo
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitDebugInfo
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.DebugInfoExpression
-    name: DebugInfoExpression
-    nameWithType: DebugInfoExpression
-    fullName: System.Linq.Expressions.DebugInfoExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitDebugInfo(System.Linq.Expressions.DebugInfoExpression)
-    name: VisitDebugInfo
-    nameWithType: ExpressionVisitor.VisitDebugInfo
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitDebugInfo
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.DebugInfoExpression
-    name: DebugInfoExpression
-    nameWithType: DebugInfoExpression
-    fullName: System.Linq.Expressions.DebugInfoExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitDynamic(System.Linq.Expressions.DynamicExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitDynamic(System.Linq.Expressions.DynamicExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitDynamic(DynamicExpression)
-  nameWithType: ExpressionVisitor.VisitDynamic(DynamicExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitDynamic(System.Linq.Expressions.DynamicExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitDynamic(System.Linq.Expressions.DynamicExpression)
-    name: VisitDynamic
-    nameWithType: ExpressionVisitor.VisitDynamic
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitDynamic
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.DynamicExpression
-    name: DynamicExpression
-    nameWithType: DynamicExpression
-    fullName: System.Linq.Expressions.DynamicExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitDynamic(System.Linq.Expressions.DynamicExpression)
-    name: VisitDynamic
-    nameWithType: ExpressionVisitor.VisitDynamic
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitDynamic
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.DynamicExpression
-    name: DynamicExpression
-    nameWithType: DynamicExpression
-    fullName: System.Linq.Expressions.DynamicExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitExtension(System.Linq.Expressions.Expression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitExtension(System.Linq.Expressions.Expression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitExtension(Expression)
-  nameWithType: ExpressionVisitor.VisitExtension(Expression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitExtension(System.Linq.Expressions.Expression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitExtension(System.Linq.Expressions.Expression)
-    name: VisitExtension
-    nameWithType: ExpressionVisitor.VisitExtension
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitExtension
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.Expression
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitExtension(System.Linq.Expressions.Expression)
-    name: VisitExtension
-    nameWithType: ExpressionVisitor.VisitExtension
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitExtension
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.Expression
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitInvocation(System.Linq.Expressions.InvocationExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitInvocation(System.Linq.Expressions.InvocationExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitInvocation(InvocationExpression)
-  nameWithType: ExpressionVisitor.VisitInvocation(InvocationExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitInvocation(System.Linq.Expressions.InvocationExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitInvocation(System.Linq.Expressions.InvocationExpression)
-    name: VisitInvocation
-    nameWithType: ExpressionVisitor.VisitInvocation
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitInvocation
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.InvocationExpression
-    name: InvocationExpression
-    nameWithType: InvocationExpression
-    fullName: System.Linq.Expressions.InvocationExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitInvocation(System.Linq.Expressions.InvocationExpression)
-    name: VisitInvocation
-    nameWithType: ExpressionVisitor.VisitInvocation
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitInvocation
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.InvocationExpression
-    name: InvocationExpression
-    nameWithType: InvocationExpression
-    fullName: System.Linq.Expressions.InvocationExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitLabelTarget(LabelTarget)
-  nameWithType: ExpressionVisitor.VisitLabelTarget(LabelTarget)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
-    name: VisitLabelTarget
-    nameWithType: ExpressionVisitor.VisitLabelTarget
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.LabelTarget
-    name: LabelTarget
-    nameWithType: LabelTarget
-    fullName: System.Linq.Expressions.LabelTarget
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
-    name: VisitLabelTarget
-    nameWithType: ExpressionVisitor.VisitLabelTarget
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.LabelTarget
-    name: LabelTarget
-    nameWithType: LabelTarget
-    fullName: System.Linq.Expressions.LabelTarget
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitLoop(System.Linq.Expressions.LoopExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitLoop(System.Linq.Expressions.LoopExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitLoop(LoopExpression)
-  nameWithType: ExpressionVisitor.VisitLoop(LoopExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitLoop(System.Linq.Expressions.LoopExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitLoop(System.Linq.Expressions.LoopExpression)
-    name: VisitLoop
-    nameWithType: ExpressionVisitor.VisitLoop
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitLoop
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.LoopExpression
-    name: LoopExpression
-    nameWithType: LoopExpression
-    fullName: System.Linq.Expressions.LoopExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitLoop(System.Linq.Expressions.LoopExpression)
-    name: VisitLoop
-    nameWithType: ExpressionVisitor.VisitLoop
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitLoop
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.LoopExpression
-    name: LoopExpression
-    nameWithType: LoopExpression
-    fullName: System.Linq.Expressions.LoopExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitIndex(System.Linq.Expressions.IndexExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitIndex(System.Linq.Expressions.IndexExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitIndex(IndexExpression)
-  nameWithType: ExpressionVisitor.VisitIndex(IndexExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitIndex(System.Linq.Expressions.IndexExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitIndex(System.Linq.Expressions.IndexExpression)
-    name: VisitIndex
-    nameWithType: ExpressionVisitor.VisitIndex
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitIndex
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.IndexExpression
-    name: IndexExpression
-    nameWithType: IndexExpression
-    fullName: System.Linq.Expressions.IndexExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitIndex(System.Linq.Expressions.IndexExpression)
-    name: VisitIndex
-    nameWithType: ExpressionVisitor.VisitIndex
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitIndex
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.IndexExpression
-    name: IndexExpression
-    nameWithType: IndexExpression
-    fullName: System.Linq.Expressions.IndexExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitRuntimeVariables(System.Linq.Expressions.RuntimeVariablesExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitRuntimeVariables(System.Linq.Expressions.RuntimeVariablesExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitRuntimeVariables(RuntimeVariablesExpression)
-  nameWithType: ExpressionVisitor.VisitRuntimeVariables(RuntimeVariablesExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitRuntimeVariables(System.Linq.Expressions.RuntimeVariablesExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitRuntimeVariables(System.Linq.Expressions.RuntimeVariablesExpression)
-    name: VisitRuntimeVariables
-    nameWithType: ExpressionVisitor.VisitRuntimeVariables
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitRuntimeVariables
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.RuntimeVariablesExpression
-    name: RuntimeVariablesExpression
-    nameWithType: RuntimeVariablesExpression
-    fullName: System.Linq.Expressions.RuntimeVariablesExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitRuntimeVariables(System.Linq.Expressions.RuntimeVariablesExpression)
-    name: VisitRuntimeVariables
-    nameWithType: ExpressionVisitor.VisitRuntimeVariables
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitRuntimeVariables
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.RuntimeVariablesExpression
-    name: RuntimeVariablesExpression
-    nameWithType: RuntimeVariablesExpression
-    fullName: System.Linq.Expressions.RuntimeVariablesExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitSwitchCase(SwitchCase)
-  nameWithType: ExpressionVisitor.VisitSwitchCase(SwitchCase)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
-    name: VisitSwitchCase
-    nameWithType: ExpressionVisitor.VisitSwitchCase
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.SwitchCase
-    name: SwitchCase
-    nameWithType: SwitchCase
-    fullName: System.Linq.Expressions.SwitchCase
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
-    name: VisitSwitchCase
-    nameWithType: ExpressionVisitor.VisitSwitchCase
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.SwitchCase
-    name: SwitchCase
-    nameWithType: SwitchCase
-    fullName: System.Linq.Expressions.SwitchCase
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitSwitch(System.Linq.Expressions.SwitchExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitSwitch(System.Linq.Expressions.SwitchExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitSwitch(SwitchExpression)
-  nameWithType: ExpressionVisitor.VisitSwitch(SwitchExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitSwitch(System.Linq.Expressions.SwitchExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitSwitch(System.Linq.Expressions.SwitchExpression)
-    name: VisitSwitch
-    nameWithType: ExpressionVisitor.VisitSwitch
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitSwitch
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.SwitchExpression
-    name: SwitchExpression
-    nameWithType: SwitchExpression
-    fullName: System.Linq.Expressions.SwitchExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitSwitch(System.Linq.Expressions.SwitchExpression)
-    name: VisitSwitch
-    nameWithType: ExpressionVisitor.VisitSwitch
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitSwitch
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.SwitchExpression
-    name: SwitchExpression
-    nameWithType: SwitchExpression
-    fullName: System.Linq.Expressions.SwitchExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitCatchBlock(CatchBlock)
-  nameWithType: ExpressionVisitor.VisitCatchBlock(CatchBlock)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
-    name: VisitCatchBlock
-    nameWithType: ExpressionVisitor.VisitCatchBlock
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.CatchBlock
-    name: CatchBlock
-    nameWithType: CatchBlock
-    fullName: System.Linq.Expressions.CatchBlock
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
-    name: VisitCatchBlock
-    nameWithType: ExpressionVisitor.VisitCatchBlock
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.CatchBlock
-    name: CatchBlock
-    nameWithType: CatchBlock
-    fullName: System.Linq.Expressions.CatchBlock
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitTypeBinary(System.Linq.Expressions.TypeBinaryExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitTypeBinary(System.Linq.Expressions.TypeBinaryExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitTypeBinary(TypeBinaryExpression)
-  nameWithType: ExpressionVisitor.VisitTypeBinary(TypeBinaryExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitTypeBinary(System.Linq.Expressions.TypeBinaryExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitTypeBinary(System.Linq.Expressions.TypeBinaryExpression)
-    name: VisitTypeBinary
-    nameWithType: ExpressionVisitor.VisitTypeBinary
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitTypeBinary
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.TypeBinaryExpression
-    name: TypeBinaryExpression
-    nameWithType: TypeBinaryExpression
-    fullName: System.Linq.Expressions.TypeBinaryExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitTypeBinary(System.Linq.Expressions.TypeBinaryExpression)
-    name: VisitTypeBinary
-    nameWithType: ExpressionVisitor.VisitTypeBinary
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitTypeBinary
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.TypeBinaryExpression
-    name: TypeBinaryExpression
-    nameWithType: TypeBinaryExpression
-    fullName: System.Linq.Expressions.TypeBinaryExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitListInit(System.Linq.Expressions.ListInitExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitListInit(System.Linq.Expressions.ListInitExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitListInit(ListInitExpression)
-  nameWithType: ExpressionVisitor.VisitListInit(ListInitExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitListInit(System.Linq.Expressions.ListInitExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitListInit(System.Linq.Expressions.ListInitExpression)
-    name: VisitListInit
-    nameWithType: ExpressionVisitor.VisitListInit
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitListInit
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.ListInitExpression
-    name: ListInitExpression
-    nameWithType: ListInitExpression
-    fullName: System.Linq.Expressions.ListInitExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitListInit(System.Linq.Expressions.ListInitExpression)
-    name: VisitListInit
-    nameWithType: ExpressionVisitor.VisitListInit
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitListInit
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.ListInitExpression
-    name: ListInitExpression
-    nameWithType: ListInitExpression
-    fullName: System.Linq.Expressions.ListInitExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitElementInit(System.Linq.Expressions.ElementInit)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitElementInit(System.Linq.Expressions.ElementInit)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitElementInit(ElementInit)
-  nameWithType: ExpressionVisitor.VisitElementInit(ElementInit)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitElementInit(System.Linq.Expressions.ElementInit)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitElementInit(System.Linq.Expressions.ElementInit)
-    name: VisitElementInit
-    nameWithType: ExpressionVisitor.VisitElementInit
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitElementInit
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.ElementInit
-    name: ElementInit
-    nameWithType: ElementInit
-    fullName: System.Linq.Expressions.ElementInit
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitElementInit(System.Linq.Expressions.ElementInit)
-    name: VisitElementInit
-    nameWithType: ExpressionVisitor.VisitElementInit
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitElementInit
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.ElementInit
-    name: ElementInit
-    nameWithType: ElementInit
-    fullName: System.Linq.Expressions.ElementInit
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitMemberBinding(MemberBinding)
-  nameWithType: ExpressionVisitor.VisitMemberBinding(MemberBinding)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
-    name: VisitMemberBinding
-    nameWithType: ExpressionVisitor.VisitMemberBinding
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MemberBinding
-    name: MemberBinding
-    nameWithType: MemberBinding
-    fullName: System.Linq.Expressions.MemberBinding
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
-    name: VisitMemberBinding
-    nameWithType: ExpressionVisitor.VisitMemberBinding
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MemberBinding
-    name: MemberBinding
-    nameWithType: MemberBinding
-    fullName: System.Linq.Expressions.MemberBinding
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberAssignment(System.Linq.Expressions.MemberAssignment)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitMemberAssignment(System.Linq.Expressions.MemberAssignment)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitMemberAssignment(MemberAssignment)
-  nameWithType: ExpressionVisitor.VisitMemberAssignment(MemberAssignment)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberAssignment(System.Linq.Expressions.MemberAssignment)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberAssignment(System.Linq.Expressions.MemberAssignment)
-    name: VisitMemberAssignment
-    nameWithType: ExpressionVisitor.VisitMemberAssignment
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberAssignment
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MemberAssignment
-    name: MemberAssignment
-    nameWithType: MemberAssignment
-    fullName: System.Linq.Expressions.MemberAssignment
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberAssignment(System.Linq.Expressions.MemberAssignment)
-    name: VisitMemberAssignment
-    nameWithType: ExpressionVisitor.VisitMemberAssignment
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberAssignment
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MemberAssignment
-    name: MemberAssignment
-    nameWithType: MemberAssignment
-    fullName: System.Linq.Expressions.MemberAssignment
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberMemberBinding(System.Linq.Expressions.MemberMemberBinding)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitMemberMemberBinding(System.Linq.Expressions.MemberMemberBinding)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitMemberMemberBinding(MemberMemberBinding)
-  nameWithType: ExpressionVisitor.VisitMemberMemberBinding(MemberMemberBinding)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberMemberBinding(System.Linq.Expressions.MemberMemberBinding)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberMemberBinding(System.Linq.Expressions.MemberMemberBinding)
-    name: VisitMemberMemberBinding
-    nameWithType: ExpressionVisitor.VisitMemberMemberBinding
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberMemberBinding
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MemberMemberBinding
-    name: MemberMemberBinding
-    nameWithType: MemberMemberBinding
-    fullName: System.Linq.Expressions.MemberMemberBinding
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberMemberBinding(System.Linq.Expressions.MemberMemberBinding)
-    name: VisitMemberMemberBinding
-    nameWithType: ExpressionVisitor.VisitMemberMemberBinding
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberMemberBinding
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MemberMemberBinding
-    name: MemberMemberBinding
-    nameWithType: MemberMemberBinding
-    fullName: System.Linq.Expressions.MemberMemberBinding
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberListBinding(System.Linq.Expressions.MemberListBinding)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitMemberListBinding(System.Linq.Expressions.MemberListBinding)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitMemberListBinding(MemberListBinding)
-  nameWithType: ExpressionVisitor.VisitMemberListBinding(MemberListBinding)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberListBinding(System.Linq.Expressions.MemberListBinding)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberListBinding(System.Linq.Expressions.MemberListBinding)
-    name: VisitMemberListBinding
-    nameWithType: ExpressionVisitor.VisitMemberListBinding
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberListBinding
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MemberListBinding
-    name: MemberListBinding
-    nameWithType: MemberListBinding
-    fullName: System.Linq.Expressions.MemberListBinding
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberListBinding(System.Linq.Expressions.MemberListBinding)
-    name: VisitMemberListBinding
-    nameWithType: ExpressionVisitor.VisitMemberListBinding
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberListBinding
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MemberListBinding
-    name: MemberListBinding
-    nameWithType: MemberListBinding
-    fullName: System.Linq.Expressions.MemberListBinding
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
   name: System
   nameWithType: System
   fullName: System
-- uid: System.Linq.Expressions
-  commentId: N:System.Linq.Expressions
+- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
+  commentId: N:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
   isExternal: false
-  name: System.Linq.Expressions
-  nameWithType: System.Linq.Expressions
-  fullName: System.Linq.Expressions
-- uid: System.Linq.Expressions.ExpressionVisitor.Visit``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.Func{``0,``0})
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.Visit``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.Func{``0,``0})
-  isExternal: true
-  name: Visit<T>(ReadOnlyCollection<T>, Func<T, T>)
-  nameWithType: ExpressionVisitor.Visit<T>(ReadOnlyCollection<T>, Func<T, T>)
-  fullName: System.Linq.Expressions.ExpressionVisitor.Visit<T>(System.Collections.ObjectModel.ReadOnlyCollection<T>, System.Func<T, T>)
-  nameWithType.vb: ExpressionVisitor.Visit(Of T)(ReadOnlyCollection(Of T), Func(Of T, T))
-  fullname.vb: System.Linq.Expressions.ExpressionVisitor.Visit(Of T)(System.Collections.ObjectModel.ReadOnlyCollection(Of T), System.Func(Of T, T))
-  name.vb: Visit(Of T)(ReadOnlyCollection(Of T), Func(Of T, T))
+  name: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
+  nameWithType: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
+  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.#ctor
+  isExternal: false
+  name: ExpressionPrinter
+  nameWithType: ExpressionPrinter.ExpressionPrinter
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.ExpressionPrinter
+- uid: System.Collections.Generic.List{Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter}
+  commentId: T:System.Collections.Generic.List{Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<ExpressionPrinter.IConstantPrinter>
+  nameWithType: List<ExpressionPrinter.IConstantPrinter>
+  fullName: System.Collections.Generic.List<Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter>
+  nameWithType.vb: List(Of ExpressionPrinter.IConstantPrinter)
+  fullname.vb: System.Collections.Generic.List(Of Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter)
+  name.vb: List(Of ExpressionPrinter.IConstantPrinter)
   spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.Visit``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.Func{``0,``0})
-    name: Visit<T>
-    nameWithType: ExpressionVisitor.Visit<T>
-    fullName: System.Linq.Expressions.ExpressionVisitor.Visit<T>
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
     isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
-    name: ReadOnlyCollection
-    nameWithType: ReadOnlyCollection
-    fullName: System.Collections.ObjectModel.ReadOnlyCollection
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter
+    name: ExpressionPrinter.IConstantPrinter
+    nameWithType: ExpressionPrinter.IConstantPrinter
+    fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter
+    name: ExpressionPrinter.IConstantPrinter
+    nameWithType: ExpressionPrinter.IConstantPrinter
+    fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullname.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
     isExternal: true
   - name: <
     nameWithType: <
@@ -2387,45 +1195,11 @@ references:
   - name: '>'
     nameWithType: '>'
     fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.Visit``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.Func{``0,``0})
-    name: Visit(Of T)
-    nameWithType: ExpressionVisitor.Visit(Of T)
-    fullName: System.Linq.Expressions.ExpressionVisitor.Visit(Of T)
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
-    name: ReadOnlyCollection
-    nameWithType: ReadOnlyCollection
-    fullName: System.Collections.ObjectModel.ReadOnlyCollection
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -2436,164 +1210,37 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(``0,System.String)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(``0,System.String)
-  isExternal: true
-  name: VisitAndConvert<T>(T, String)
-  nameWithType: ExpressionVisitor.VisitAndConvert<T>(T, String)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert<T>(T, System.String)
-  nameWithType.vb: ExpressionVisitor.VisitAndConvert(Of T)(T, String)
-  fullname.vb: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert(Of T)(T, System.String)
-  name.vb: VisitAndConvert(Of T)(T, String)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(``0,System.String)
-    name: VisitAndConvert<T>
-    nameWithType: ExpressionVisitor.VisitAndConvert<T>
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert<T>
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(``0,System.String)
-    name: VisitAndConvert(Of T)
-    nameWithType: ExpressionVisitor.VisitAndConvert(Of T)
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert(Of T)
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.String)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.String)
-  isExternal: true
-  name: VisitAndConvert<T>(ReadOnlyCollection<T>, String)
-  nameWithType: ExpressionVisitor.VisitAndConvert<T>(ReadOnlyCollection<T>, String)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert<T>(System.Collections.ObjectModel.ReadOnlyCollection<T>, System.String)
-  nameWithType.vb: ExpressionVisitor.VisitAndConvert(Of T)(ReadOnlyCollection(Of T), String)
-  fullname.vb: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert(Of T)(System.Collections.ObjectModel.ReadOnlyCollection(Of T), System.String)
-  name.vb: VisitAndConvert(Of T)(ReadOnlyCollection(Of T), String)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.String)
-    name: VisitAndConvert<T>
-    nameWithType: ExpressionVisitor.VisitAndConvert<T>
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert<T>
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
-    name: ReadOnlyCollection
-    nameWithType: ReadOnlyCollection
-    fullName: System.Collections.ObjectModel.ReadOnlyCollection
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.String)
-    name: VisitAndConvert(Of T)
-    nameWithType: ExpressionVisitor.VisitAndConvert(Of T)
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert(Of T)
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
-    name: ReadOnlyCollection
-    nameWithType: ReadOnlyCollection
-    fullName: System.Collections.ObjectModel.ReadOnlyCollection
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.StringBuilder*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.StringBuilder
+  isExternal: false
+  name: StringBuilder
+  nameWithType: ExpressionPrinter.StringBuilder
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.StringBuilder
+- uid: Microsoft.EntityFrameworkCore.Internal.IndentedStringBuilder
+  commentId: T:Microsoft.EntityFrameworkCore.Internal.IndentedStringBuilder
+  parent: Microsoft.EntityFrameworkCore.Internal
+  isExternal: false
+  name: IndentedStringBuilder
+  nameWithType: IndentedStringBuilder
+  fullName: Microsoft.EntityFrameworkCore.Internal.IndentedStringBuilder
+- uid: Microsoft.EntityFrameworkCore.Internal
+  commentId: N:Microsoft.EntityFrameworkCore.Internal
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.Internal
+  nameWithType: Microsoft.EntityFrameworkCore.Internal
+  fullName: Microsoft.EntityFrameworkCore.Internal
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Append*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Append
+  isExternal: false
+  name: Append
+  nameWithType: ExpressionPrinter.Append
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Append
 - uid: System.Action{Microsoft.EntityFrameworkCore.Internal.IndentedStringBuilder,System.String}
   commentId: T:System.Action{Microsoft.EntityFrameworkCore.Internal.IndentedStringBuilder,System.String}
   parent: System
@@ -2703,6 +1350,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.AppendLine*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.AppendLine
+  isExternal: false
+  name: AppendLine
+  nameWithType: ExpressionPrinter.AppendLine
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.AppendLine
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Print*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Print
+  isExternal: false
+  name: Print
+  nameWithType: ExpressionPrinter.Print
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Print
 - uid: Microsoft.EntityFrameworkCore.Query.Internal.IExpressionPrinter.Print(System.Linq.Expressions.Expression)
   commentId: M:Microsoft.EntityFrameworkCore.Query.Internal.IExpressionPrinter.Print(System.Linq.Expressions.Expression)
   parent: Microsoft.EntityFrameworkCore.Query.Internal.IExpressionPrinter
@@ -2756,93 +1415,18 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: System.Collections.Generic.List{Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter}
-  commentId: T:System.Collections.Generic.List{Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.List`1
-  name: List<ExpressionPrinter.IConstantPrinter>
-  nameWithType: List<ExpressionPrinter.IConstantPrinter>
-  fullName: System.Collections.Generic.List<Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter>
-  nameWithType.vb: List(Of ExpressionPrinter.IConstantPrinter)
-  fullname.vb: System.Collections.Generic.List(Of Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter)
-  name.vb: List(Of ExpressionPrinter.IConstantPrinter)
-  spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter
-    name: ExpressionPrinter.IConstantPrinter
-    nameWithType: ExpressionPrinter.IConstantPrinter
-    fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter
-    name: ExpressionPrinter.IConstantPrinter
-    nameWithType: ExpressionPrinter.IConstantPrinter
-    fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.IConstantPrinter
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.List`1
-  commentId: T:System.Collections.Generic.List`1
-  isExternal: true
-  name: List<T>
-  nameWithType: List<T>
-  fullName: System.Collections.Generic.List<T>
-  nameWithType.vb: List(Of T)
-  fullname.vb: System.Collections.Generic.List(Of T)
-  name.vb: List(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
   isExternal: false
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.TrackedQuery*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.TrackedQuery
+  isExternal: false
+  name: TrackedQuery
+  nameWithType: ExpressionPrinter.TrackedQuery
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.TrackedQuery
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -2850,19 +1434,18 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: System.Linq.Expressions.ExpressionVisitor.Visit(System.Linq.Expressions.Expression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.Visit(System.Linq.Expressions.Expression)
-  parent: System.Linq.Expressions.ExpressionVisitor
+- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.Visit(System.Linq.Expressions.Expression)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.Visit(System.Linq.Expressions.Expression)
+  parent: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase
   isExternal: true
   name: Visit(Expression)
-  nameWithType: ExpressionVisitor.Visit(Expression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.Visit(System.Linq.Expressions.Expression)
+  nameWithType: ExpressionVisitorBase.Visit(Expression)
+  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.Visit(System.Linq.Expressions.Expression)
   spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.Visit(System.Linq.Expressions.Expression)
+  - uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.Visit(System.Linq.Expressions.Expression)
     name: Visit
-    nameWithType: ExpressionVisitor.Visit
-    fullName: System.Linq.Expressions.ExpressionVisitor.Visit
-    isExternal: true
+    nameWithType: ExpressionVisitorBase.Visit
+    fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.Visit
   - name: (
     nameWithType: (
     fullName: (
@@ -2875,11 +1458,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.Visit(System.Linq.Expressions.Expression)
+  - uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.Visit(System.Linq.Expressions.Expression)
     name: Visit
-    nameWithType: ExpressionVisitor.Visit
-    fullName: System.Linq.Expressions.ExpressionVisitor.Visit
-    isExternal: true
+    nameWithType: ExpressionVisitorBase.Visit
+    fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.Visit
   - name: (
     nameWithType: (
     fullName: (
@@ -2891,47 +1473,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitBinary(System.Linq.Expressions.BinaryExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitBinary(System.Linq.Expressions.BinaryExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitBinary(BinaryExpression)
-  nameWithType: ExpressionVisitor.VisitBinary(BinaryExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitBinary(System.Linq.Expressions.BinaryExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitBinary(System.Linq.Expressions.BinaryExpression)
-    name: VisitBinary
-    nameWithType: ExpressionVisitor.VisitBinary
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitBinary
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.BinaryExpression
-    name: BinaryExpression
-    nameWithType: BinaryExpression
-    fullName: System.Linq.Expressions.BinaryExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitBinary(System.Linq.Expressions.BinaryExpression)
-    name: VisitBinary
-    nameWithType: ExpressionVisitor.VisitBinary
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitBinary
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.BinaryExpression
-    name: BinaryExpression
-    nameWithType: BinaryExpression
-    fullName: System.Linq.Expressions.BinaryExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Visit*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Visit
+  isExternal: false
+  name: Visit
+  nameWithType: ExpressionPrinter.Visit
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.Visit
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitBinary*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitBinary
+  isExternal: false
+  name: VisitBinary
+  nameWithType: ExpressionPrinter.VisitBinary
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitBinary
 - uid: System.Linq.Expressions.BinaryExpression
   commentId: T:System.Linq.Expressions.BinaryExpression
   parent: System.Linq.Expressions
@@ -2939,47 +1492,12 @@ references:
   name: BinaryExpression
   nameWithType: BinaryExpression
   fullName: System.Linq.Expressions.BinaryExpression
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitBlock(System.Linq.Expressions.BlockExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitBlock(System.Linq.Expressions.BlockExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitBlock(BlockExpression)
-  nameWithType: ExpressionVisitor.VisitBlock(BlockExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitBlock(System.Linq.Expressions.BlockExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitBlock(System.Linq.Expressions.BlockExpression)
-    name: VisitBlock
-    nameWithType: ExpressionVisitor.VisitBlock
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitBlock
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.BlockExpression
-    name: BlockExpression
-    nameWithType: BlockExpression
-    fullName: System.Linq.Expressions.BlockExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitBlock(System.Linq.Expressions.BlockExpression)
-    name: VisitBlock
-    nameWithType: ExpressionVisitor.VisitBlock
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitBlock
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.BlockExpression
-    name: BlockExpression
-    nameWithType: BlockExpression
-    fullName: System.Linq.Expressions.BlockExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitBlock*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitBlock
+  isExternal: false
+  name: VisitBlock
+  nameWithType: ExpressionPrinter.VisitBlock
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitBlock
 - uid: System.Linq.Expressions.BlockExpression
   commentId: T:System.Linq.Expressions.BlockExpression
   parent: System.Linq.Expressions
@@ -2987,47 +1505,12 @@ references:
   name: BlockExpression
   nameWithType: BlockExpression
   fullName: System.Linq.Expressions.BlockExpression
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitConditional(System.Linq.Expressions.ConditionalExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitConditional(System.Linq.Expressions.ConditionalExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitConditional(ConditionalExpression)
-  nameWithType: ExpressionVisitor.VisitConditional(ConditionalExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitConditional(System.Linq.Expressions.ConditionalExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitConditional(System.Linq.Expressions.ConditionalExpression)
-    name: VisitConditional
-    nameWithType: ExpressionVisitor.VisitConditional
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitConditional
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.ConditionalExpression
-    name: ConditionalExpression
-    nameWithType: ConditionalExpression
-    fullName: System.Linq.Expressions.ConditionalExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitConditional(System.Linq.Expressions.ConditionalExpression)
-    name: VisitConditional
-    nameWithType: ExpressionVisitor.VisitConditional
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitConditional
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.ConditionalExpression
-    name: ConditionalExpression
-    nameWithType: ConditionalExpression
-    fullName: System.Linq.Expressions.ConditionalExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitConditional*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitConditional
+  isExternal: false
+  name: VisitConditional
+  nameWithType: ExpressionPrinter.VisitConditional
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitConditional
 - uid: System.Linq.Expressions.ConditionalExpression
   commentId: T:System.Linq.Expressions.ConditionalExpression
   parent: System.Linq.Expressions
@@ -3035,47 +1518,12 @@ references:
   name: ConditionalExpression
   nameWithType: ConditionalExpression
   fullName: System.Linq.Expressions.ConditionalExpression
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitConstant(System.Linq.Expressions.ConstantExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitConstant(System.Linq.Expressions.ConstantExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitConstant(ConstantExpression)
-  nameWithType: ExpressionVisitor.VisitConstant(ConstantExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitConstant(System.Linq.Expressions.ConstantExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitConstant(System.Linq.Expressions.ConstantExpression)
-    name: VisitConstant
-    nameWithType: ExpressionVisitor.VisitConstant
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitConstant
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.ConstantExpression
-    name: ConstantExpression
-    nameWithType: ConstantExpression
-    fullName: System.Linq.Expressions.ConstantExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitConstant(System.Linq.Expressions.ConstantExpression)
-    name: VisitConstant
-    nameWithType: ExpressionVisitor.VisitConstant
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitConstant
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.ConstantExpression
-    name: ConstantExpression
-    nameWithType: ConstantExpression
-    fullName: System.Linq.Expressions.ConstantExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitConstant*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitConstant
+  isExternal: false
+  name: VisitConstant
+  nameWithType: ExpressionPrinter.VisitConstant
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitConstant
 - uid: System.Linq.Expressions.ConstantExpression
   commentId: T:System.Linq.Expressions.ConstantExpression
   parent: System.Linq.Expressions
@@ -3083,47 +1531,12 @@ references:
   name: ConstantExpression
   nameWithType: ConstantExpression
   fullName: System.Linq.Expressions.ConstantExpression
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitGoto(System.Linq.Expressions.GotoExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitGoto(System.Linq.Expressions.GotoExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitGoto(GotoExpression)
-  nameWithType: ExpressionVisitor.VisitGoto(GotoExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitGoto(System.Linq.Expressions.GotoExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitGoto(System.Linq.Expressions.GotoExpression)
-    name: VisitGoto
-    nameWithType: ExpressionVisitor.VisitGoto
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitGoto
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.GotoExpression
-    name: GotoExpression
-    nameWithType: GotoExpression
-    fullName: System.Linq.Expressions.GotoExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitGoto(System.Linq.Expressions.GotoExpression)
-    name: VisitGoto
-    nameWithType: ExpressionVisitor.VisitGoto
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitGoto
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.GotoExpression
-    name: GotoExpression
-    nameWithType: GotoExpression
-    fullName: System.Linq.Expressions.GotoExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitGoto*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitGoto
+  isExternal: false
+  name: VisitGoto
+  nameWithType: ExpressionPrinter.VisitGoto
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitGoto
 - uid: System.Linq.Expressions.GotoExpression
   commentId: T:System.Linq.Expressions.GotoExpression
   parent: System.Linq.Expressions
@@ -3131,47 +1544,12 @@ references:
   name: GotoExpression
   nameWithType: GotoExpression
   fullName: System.Linq.Expressions.GotoExpression
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitLabel(System.Linq.Expressions.LabelExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitLabel(System.Linq.Expressions.LabelExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitLabel(LabelExpression)
-  nameWithType: ExpressionVisitor.VisitLabel(LabelExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitLabel(System.Linq.Expressions.LabelExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitLabel(System.Linq.Expressions.LabelExpression)
-    name: VisitLabel
-    nameWithType: ExpressionVisitor.VisitLabel
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitLabel
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.LabelExpression
-    name: LabelExpression
-    nameWithType: LabelExpression
-    fullName: System.Linq.Expressions.LabelExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitLabel(System.Linq.Expressions.LabelExpression)
-    name: VisitLabel
-    nameWithType: ExpressionVisitor.VisitLabel
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitLabel
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.LabelExpression
-    name: LabelExpression
-    nameWithType: LabelExpression
-    fullName: System.Linq.Expressions.LabelExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitLabel*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitLabel
+  isExternal: false
+  name: VisitLabel
+  nameWithType: ExpressionPrinter.VisitLabel
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitLabel
 - uid: System.Linq.Expressions.LabelExpression
   commentId: T:System.Linq.Expressions.LabelExpression
   parent: System.Linq.Expressions
@@ -3179,68 +1557,15 @@ references:
   name: LabelExpression
   nameWithType: LabelExpression
   fullName: System.Linq.Expressions.LabelExpression
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitLambda``1(System.Linq.Expressions.Expression{{T}})
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitLambda``1(System.Linq.Expressions.Expression{``0})
-  parent: System.Linq.Expressions.ExpressionVisitor
-  definition: System.Linq.Expressions.ExpressionVisitor.VisitLambda``1(System.Linq.Expressions.Expression{``0})
-  name: VisitLambda<T>(Expression<T>)
-  nameWithType: ExpressionVisitor.VisitLambda<T>(Expression<T>)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitLambda<T>(System.Linq.Expressions.Expression<T>)
-  nameWithType.vb: ExpressionVisitor.VisitLambda(Of T)(Expression(Of T))
-  fullname.vb: System.Linq.Expressions.ExpressionVisitor.VisitLambda(Of T)(System.Linq.Expressions.Expression(Of T))
-  name.vb: VisitLambda(Of T)(Expression(Of T))
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitLambda``1(System.Linq.Expressions.Expression{``0})
-    name: VisitLambda<T>
-    nameWithType: ExpressionVisitor.VisitLambda<T>
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitLambda<T>
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitLambda``1(System.Linq.Expressions.Expression{``0})
-    name: VisitLambda(Of T)
-    nameWithType: ExpressionVisitor.VisitLambda(Of T)
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitLambda(Of T)
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitLambda*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitLambda
+  isExternal: false
+  name: VisitLambda<T>
+  nameWithType: ExpressionPrinter.VisitLambda<T>
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitLambda<T>
+  nameWithType.vb: ExpressionPrinter.VisitLambda(Of T)
+  fullname.vb: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitLambda(Of T)
+  name.vb: VisitLambda(Of T)
 - uid: System.Linq.Expressions.Expression{{T}}
   commentId: T:System.Linq.Expressions.Expression{``0}
   parent: System.Linq.Expressions
@@ -3278,67 +1603,6 @@ references:
   - name: T
     nameWithType: T
     fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitLambda``1(System.Linq.Expressions.Expression{``0})
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitLambda``1(System.Linq.Expressions.Expression{``0})
-  isExternal: true
-  name: VisitLambda<T>(Expression<T>)
-  nameWithType: ExpressionVisitor.VisitLambda<T>(Expression<T>)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitLambda<T>(System.Linq.Expressions.Expression<T>)
-  nameWithType.vb: ExpressionVisitor.VisitLambda(Of T)(Expression(Of T))
-  fullname.vb: System.Linq.Expressions.ExpressionVisitor.VisitLambda(Of T)(System.Linq.Expressions.Expression(Of T))
-  name.vb: VisitLambda(Of T)(Expression(Of T))
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitLambda``1(System.Linq.Expressions.Expression{``0})
-    name: VisitLambda<T>
-    nameWithType: ExpressionVisitor.VisitLambda<T>
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitLambda<T>
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitLambda``1(System.Linq.Expressions.Expression{``0})
-    name: VisitLambda(Of T)
-    nameWithType: ExpressionVisitor.VisitLambda(Of T)
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitLambda(Of T)
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -3381,47 +1645,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitMember(System.Linq.Expressions.MemberExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitMember(System.Linq.Expressions.MemberExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitMember(MemberExpression)
-  nameWithType: ExpressionVisitor.VisitMember(MemberExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitMember(System.Linq.Expressions.MemberExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMember(System.Linq.Expressions.MemberExpression)
-    name: VisitMember
-    nameWithType: ExpressionVisitor.VisitMember
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMember
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MemberExpression
-    name: MemberExpression
-    nameWithType: MemberExpression
-    fullName: System.Linq.Expressions.MemberExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMember(System.Linq.Expressions.MemberExpression)
-    name: VisitMember
-    nameWithType: ExpressionVisitor.VisitMember
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMember
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MemberExpression
-    name: MemberExpression
-    nameWithType: MemberExpression
-    fullName: System.Linq.Expressions.MemberExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitMember*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitMember
+  isExternal: false
+  name: VisitMember
+  nameWithType: ExpressionPrinter.VisitMember
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitMember
 - uid: System.Linq.Expressions.MemberExpression
   commentId: T:System.Linq.Expressions.MemberExpression
   parent: System.Linq.Expressions
@@ -3429,47 +1658,12 @@ references:
   name: MemberExpression
   nameWithType: MemberExpression
   fullName: System.Linq.Expressions.MemberExpression
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberInit(System.Linq.Expressions.MemberInitExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitMemberInit(System.Linq.Expressions.MemberInitExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitMemberInit(MemberInitExpression)
-  nameWithType: ExpressionVisitor.VisitMemberInit(MemberInitExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberInit(System.Linq.Expressions.MemberInitExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberInit(System.Linq.Expressions.MemberInitExpression)
-    name: VisitMemberInit
-    nameWithType: ExpressionVisitor.VisitMemberInit
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberInit
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MemberInitExpression
-    name: MemberInitExpression
-    nameWithType: MemberInitExpression
-    fullName: System.Linq.Expressions.MemberInitExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberInit(System.Linq.Expressions.MemberInitExpression)
-    name: VisitMemberInit
-    nameWithType: ExpressionVisitor.VisitMemberInit
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberInit
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MemberInitExpression
-    name: MemberInitExpression
-    nameWithType: MemberInitExpression
-    fullName: System.Linq.Expressions.MemberInitExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitMemberInit*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitMemberInit
+  isExternal: false
+  name: VisitMemberInit
+  nameWithType: ExpressionPrinter.VisitMemberInit
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitMemberInit
 - uid: System.Linq.Expressions.MemberInitExpression
   commentId: T:System.Linq.Expressions.MemberInitExpression
   parent: System.Linq.Expressions
@@ -3477,47 +1671,12 @@ references:
   name: MemberInitExpression
   nameWithType: MemberInitExpression
   fullName: System.Linq.Expressions.MemberInitExpression
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(System.Linq.Expressions.MethodCallExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(System.Linq.Expressions.MethodCallExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitMethodCall(MethodCallExpression)
-  nameWithType: ExpressionVisitor.VisitMethodCall(MethodCallExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(System.Linq.Expressions.MethodCallExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(System.Linq.Expressions.MethodCallExpression)
-    name: VisitMethodCall
-    nameWithType: ExpressionVisitor.VisitMethodCall
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMethodCall
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MethodCallExpression
-    name: MethodCallExpression
-    nameWithType: MethodCallExpression
-    fullName: System.Linq.Expressions.MethodCallExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(System.Linq.Expressions.MethodCallExpression)
-    name: VisitMethodCall
-    nameWithType: ExpressionVisitor.VisitMethodCall
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMethodCall
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MethodCallExpression
-    name: MethodCallExpression
-    nameWithType: MethodCallExpression
-    fullName: System.Linq.Expressions.MethodCallExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitMethodCall*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitMethodCall
+  isExternal: false
+  name: VisitMethodCall
+  nameWithType: ExpressionPrinter.VisitMethodCall
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitMethodCall
 - uid: System.Linq.Expressions.MethodCallExpression
   commentId: T:System.Linq.Expressions.MethodCallExpression
   parent: System.Linq.Expressions
@@ -3525,47 +1684,12 @@ references:
   name: MethodCallExpression
   nameWithType: MethodCallExpression
   fullName: System.Linq.Expressions.MethodCallExpression
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitNew(System.Linq.Expressions.NewExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitNew(System.Linq.Expressions.NewExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitNew(NewExpression)
-  nameWithType: ExpressionVisitor.VisitNew(NewExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitNew(System.Linq.Expressions.NewExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitNew(System.Linq.Expressions.NewExpression)
-    name: VisitNew
-    nameWithType: ExpressionVisitor.VisitNew
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitNew
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.NewExpression
-    name: NewExpression
-    nameWithType: NewExpression
-    fullName: System.Linq.Expressions.NewExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitNew(System.Linq.Expressions.NewExpression)
-    name: VisitNew
-    nameWithType: ExpressionVisitor.VisitNew
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitNew
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.NewExpression
-    name: NewExpression
-    nameWithType: NewExpression
-    fullName: System.Linq.Expressions.NewExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitNew*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitNew
+  isExternal: false
+  name: VisitNew
+  nameWithType: ExpressionPrinter.VisitNew
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitNew
 - uid: System.Linq.Expressions.NewExpression
   commentId: T:System.Linq.Expressions.NewExpression
   parent: System.Linq.Expressions
@@ -3573,47 +1697,12 @@ references:
   name: NewExpression
   nameWithType: NewExpression
   fullName: System.Linq.Expressions.NewExpression
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitNewArray(System.Linq.Expressions.NewArrayExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitNewArray(System.Linq.Expressions.NewArrayExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitNewArray(NewArrayExpression)
-  nameWithType: ExpressionVisitor.VisitNewArray(NewArrayExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitNewArray(System.Linq.Expressions.NewArrayExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitNewArray(System.Linq.Expressions.NewArrayExpression)
-    name: VisitNewArray
-    nameWithType: ExpressionVisitor.VisitNewArray
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitNewArray
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.NewArrayExpression
-    name: NewArrayExpression
-    nameWithType: NewArrayExpression
-    fullName: System.Linq.Expressions.NewArrayExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitNewArray(System.Linq.Expressions.NewArrayExpression)
-    name: VisitNewArray
-    nameWithType: ExpressionVisitor.VisitNewArray
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitNewArray
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.NewArrayExpression
-    name: NewArrayExpression
-    nameWithType: NewArrayExpression
-    fullName: System.Linq.Expressions.NewArrayExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitNewArray*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitNewArray
+  isExternal: false
+  name: VisitNewArray
+  nameWithType: ExpressionPrinter.VisitNewArray
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitNewArray
 - uid: System.Linq.Expressions.NewArrayExpression
   commentId: T:System.Linq.Expressions.NewArrayExpression
   parent: System.Linq.Expressions
@@ -3621,47 +1710,12 @@ references:
   name: NewArrayExpression
   nameWithType: NewArrayExpression
   fullName: System.Linq.Expressions.NewArrayExpression
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitParameter(System.Linq.Expressions.ParameterExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitParameter(System.Linq.Expressions.ParameterExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitParameter(ParameterExpression)
-  nameWithType: ExpressionVisitor.VisitParameter(ParameterExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitParameter(System.Linq.Expressions.ParameterExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitParameter(System.Linq.Expressions.ParameterExpression)
-    name: VisitParameter
-    nameWithType: ExpressionVisitor.VisitParameter
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitParameter
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.ParameterExpression
-    name: ParameterExpression
-    nameWithType: ParameterExpression
-    fullName: System.Linq.Expressions.ParameterExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitParameter(System.Linq.Expressions.ParameterExpression)
-    name: VisitParameter
-    nameWithType: ExpressionVisitor.VisitParameter
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitParameter
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.ParameterExpression
-    name: ParameterExpression
-    nameWithType: ParameterExpression
-    fullName: System.Linq.Expressions.ParameterExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitParameter*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitParameter
+  isExternal: false
+  name: VisitParameter
+  nameWithType: ExpressionPrinter.VisitParameter
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitParameter
 - uid: System.Linq.Expressions.ParameterExpression
   commentId: T:System.Linq.Expressions.ParameterExpression
   parent: System.Linq.Expressions
@@ -3669,47 +1723,12 @@ references:
   name: ParameterExpression
   nameWithType: ParameterExpression
   fullName: System.Linq.Expressions.ParameterExpression
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitUnary(System.Linq.Expressions.UnaryExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitUnary(System.Linq.Expressions.UnaryExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitUnary(UnaryExpression)
-  nameWithType: ExpressionVisitor.VisitUnary(UnaryExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitUnary(System.Linq.Expressions.UnaryExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitUnary(System.Linq.Expressions.UnaryExpression)
-    name: VisitUnary
-    nameWithType: ExpressionVisitor.VisitUnary
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitUnary
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.UnaryExpression
-    name: UnaryExpression
-    nameWithType: UnaryExpression
-    fullName: System.Linq.Expressions.UnaryExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitUnary(System.Linq.Expressions.UnaryExpression)
-    name: VisitUnary
-    nameWithType: ExpressionVisitor.VisitUnary
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitUnary
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.UnaryExpression
-    name: UnaryExpression
-    nameWithType: UnaryExpression
-    fullName: System.Linq.Expressions.UnaryExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitUnary*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitUnary
+  isExternal: false
+  name: VisitUnary
+  nameWithType: ExpressionPrinter.VisitUnary
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitUnary
 - uid: System.Linq.Expressions.UnaryExpression
   commentId: T:System.Linq.Expressions.UnaryExpression
   parent: System.Linq.Expressions
@@ -3717,47 +1736,12 @@ references:
   name: UnaryExpression
   nameWithType: UnaryExpression
   fullName: System.Linq.Expressions.UnaryExpression
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitDefault(System.Linq.Expressions.DefaultExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitDefault(System.Linq.Expressions.DefaultExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitDefault(DefaultExpression)
-  nameWithType: ExpressionVisitor.VisitDefault(DefaultExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitDefault(System.Linq.Expressions.DefaultExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitDefault(System.Linq.Expressions.DefaultExpression)
-    name: VisitDefault
-    nameWithType: ExpressionVisitor.VisitDefault
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitDefault
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.DefaultExpression
-    name: DefaultExpression
-    nameWithType: DefaultExpression
-    fullName: System.Linq.Expressions.DefaultExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitDefault(System.Linq.Expressions.DefaultExpression)
-    name: VisitDefault
-    nameWithType: ExpressionVisitor.VisitDefault
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitDefault
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.DefaultExpression
-    name: DefaultExpression
-    nameWithType: DefaultExpression
-    fullName: System.Linq.Expressions.DefaultExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitDefault*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitDefault
+  isExternal: false
+  name: VisitDefault
+  nameWithType: ExpressionPrinter.VisitDefault
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitDefault
 - uid: System.Linq.Expressions.DefaultExpression
   commentId: T:System.Linq.Expressions.DefaultExpression
   parent: System.Linq.Expressions
@@ -3765,47 +1749,12 @@ references:
   name: DefaultExpression
   nameWithType: DefaultExpression
   fullName: System.Linq.Expressions.DefaultExpression
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitTry(System.Linq.Expressions.TryExpression)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitTry(System.Linq.Expressions.TryExpression)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitTry(TryExpression)
-  nameWithType: ExpressionVisitor.VisitTry(TryExpression)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitTry(System.Linq.Expressions.TryExpression)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitTry(System.Linq.Expressions.TryExpression)
-    name: VisitTry
-    nameWithType: ExpressionVisitor.VisitTry
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitTry
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.TryExpression
-    name: TryExpression
-    nameWithType: TryExpression
-    fullName: System.Linq.Expressions.TryExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitTry(System.Linq.Expressions.TryExpression)
-    name: VisitTry
-    nameWithType: ExpressionVisitor.VisitTry
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitTry
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.TryExpression
-    name: TryExpression
-    nameWithType: TryExpression
-    fullName: System.Linq.Expressions.TryExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitTry*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitTry
+  isExternal: false
+  name: VisitTry
+  nameWithType: ExpressionPrinter.VisitTry
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitTry
 - uid: System.Linq.Expressions.TryExpression
   commentId: T:System.Linq.Expressions.TryExpression
   parent: System.Linq.Expressions
@@ -3813,3 +1762,54 @@ references:
   name: TryExpression
   nameWithType: TryExpression
   fullName: System.Linq.Expressions.TryExpression
+- uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.VisitExtension(System.Linq.Expressions.Expression)
+  commentId: M:Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.VisitExtension(System.Linq.Expressions.Expression)
+  parent: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase
+  isExternal: true
+  name: VisitExtension(Expression)
+  nameWithType: ExpressionVisitorBase.VisitExtension(Expression)
+  fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.VisitExtension(System.Linq.Expressions.Expression)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.VisitExtension(System.Linq.Expressions.Expression)
+    name: VisitExtension
+    nameWithType: ExpressionVisitorBase.VisitExtension
+    fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.VisitExtension
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.Expression
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.VisitExtension(System.Linq.Expressions.Expression)
+    name: VisitExtension
+    nameWithType: ExpressionVisitorBase.VisitExtension
+    fullName: Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.ExpressionVisitorBase.VisitExtension
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.Expression
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitExtension*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitExtension
+  isExternal: false
+  name: VisitExtension
+  nameWithType: ExpressionPrinter.VisitExtension
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.VisitExtension
+- uid: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.PostProcess*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.PostProcess
+  isExternal: false
+  name: PostProcess
+  nameWithType: ExpressionPrinter.PostProcess
+  fullName: Microsoft.EntityFrameworkCore.Query.Internal.ExpressionPrinter.PostProcess

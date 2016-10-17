@@ -25,7 +25,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Represents a navigation property which can be used to navigate a relationship.\n"
+  summary: "\nRepresents a navigation property which can be used to navigate a relationship.\n"
   example: []
   syntax:
     content: 'public interface INavigation : IPropertyBase, IAnnotatable'
@@ -38,6 +38,7 @@ items:
   - Microsoft.EntityFrameworkCore.Metadata.IPropertyBase.ClrType
   - Microsoft.EntityFrameworkCore.Metadata.IPropertyBase.PropertyInfo
   - Microsoft.EntityFrameworkCore.Metadata.IPropertyBase.FieldInfo
+  - Microsoft.EntityFrameworkCore.Metadata.IPropertyBase.IsShadowProperty
   - Microsoft.EntityFrameworkCore.Infrastructure.IAnnotatable.Item(System.String)
   - Microsoft.EntityFrameworkCore.Infrastructure.IAnnotatable.FindAnnotation(System.String)
   - Microsoft.EntityFrameworkCore.Infrastructure.IAnnotatable.GetAnnotations
@@ -53,6 +54,7 @@ items:
   - Microsoft.EntityFrameworkCore.Metadata.INavigation.Microsoft.EntityFrameworkCore.Metadata.Internal.NavigationExtensions.GetCollectionAccessor
   - Microsoft.EntityFrameworkCore.Metadata.INavigation.Microsoft.EntityFrameworkCore.Metadata.Internal.NavigationExtensions.ToDebugString(System.Boolean,System.String)
   - Microsoft.EntityFrameworkCore.Metadata.INavigation.Microsoft.EntityFrameworkCore.Metadata.Internal.NavigationExtensions.AsNavigation(System.String)
+  - Microsoft.EntityFrameworkCore.Metadata.IPropertyBase.Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex
   - Microsoft.EntityFrameworkCore.Metadata.IPropertyBase.Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetStoreGeneratedIndex
   - Microsoft.EntityFrameworkCore.Metadata.IPropertyBase.Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetRelationshipIndex
   - Microsoft.EntityFrameworkCore.Metadata.IPropertyBase.Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetIndex
@@ -92,7 +94,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Gets the entity type that this property belongs to.\n"
+  summary: "\nGets the entity type that this property belongs to.\n"
   example: []
   syntax:
     content: IEntityType DeclaringEntityType { get; }
@@ -100,6 +102,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IEntityType
+  overload: Microsoft.EntityFrameworkCore.Metadata.INavigation.DeclaringEntityType*
   modifiers.csharp:
   - get
   modifiers.vb:
@@ -126,7 +129,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore
   namespace: Microsoft.EntityFrameworkCore.Metadata
-  summary: "\n    Gets the foreign key that defines the relationship this navigation property will navigate.\n"
+  summary: "\nGets the foreign key that defines the relationship this navigation property will navigate.\n"
   example: []
   syntax:
     content: IForeignKey ForeignKey { get; }
@@ -134,6 +137,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IForeignKey
+  overload: Microsoft.EntityFrameworkCore.Metadata.INavigation.ForeignKey*
   modifiers.csharp:
   - get
   modifiers.vb:
@@ -180,6 +184,13 @@ references:
   name: FieldInfo
   nameWithType: IPropertyBase.FieldInfo
   fullName: Microsoft.EntityFrameworkCore.Metadata.IPropertyBase.FieldInfo
+- uid: Microsoft.EntityFrameworkCore.Metadata.IPropertyBase.IsShadowProperty
+  commentId: P:Microsoft.EntityFrameworkCore.Metadata.IPropertyBase.IsShadowProperty
+  parent: Microsoft.EntityFrameworkCore.Metadata.IPropertyBase
+  isExternal: false
+  name: IsShadowProperty
+  nameWithType: IPropertyBase.IsShadowProperty
+  fullName: Microsoft.EntityFrameworkCore.Metadata.IPropertyBase.IsShadowProperty
 - uid: Microsoft.EntityFrameworkCore.Infrastructure.IAnnotatable.Item(System.String)
   commentId: P:Microsoft.EntityFrameworkCore.Infrastructure.IAnnotatable.Item(System.String)
   parent: Microsoft.EntityFrameworkCore.Infrastructure.IAnnotatable
@@ -662,6 +673,35 @@ references:
     nameWithType: String
     fullName: System.String
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.IPropertyBase.Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex
+  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)
+  parent: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions
+  definition: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)
+  name: GetShadowIndex()
+  nameWithType: PropertyBaseExtensions.GetShadowIndex()
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex
+    name: GetShadowIndex
+    nameWithType: PropertyBaseExtensions.GetShadowIndex
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex
+    name: GetShadowIndex
+    nameWithType: PropertyBaseExtensions.GetShadowIndex
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -1611,6 +1651,49 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)
+  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)
+  isExternal: false
+  name: GetShadowIndex(IPropertyBase)
+  nameWithType: PropertyBaseExtensions.GetShadowIndex(IPropertyBase)
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)
+    name: GetShadowIndex
+    nameWithType: PropertyBaseExtensions.GetShadowIndex
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.IPropertyBase
+    name: IPropertyBase
+    nameWithType: IPropertyBase
+    fullName: Microsoft.EntityFrameworkCore.Metadata.IPropertyBase
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)
+    name: GetShadowIndex
+    nameWithType: PropertyBaseExtensions.GetShadowIndex
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetShadowIndex
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.IPropertyBase
+    name: IPropertyBase
+    nameWithType: IPropertyBase
+    fullName: Microsoft.EntityFrameworkCore.Metadata.IPropertyBase
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions
+  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions
+  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+  isExternal: false
+  name: PropertyBaseExtensions
+  nameWithType: PropertyBaseExtensions
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions
 - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetStoreGeneratedIndex(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)
   commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetStoreGeneratedIndex(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)
   isExternal: false
@@ -1647,13 +1730,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions
-  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: PropertyBaseExtensions
-  nameWithType: PropertyBaseExtensions
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions
 - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetRelationshipIndex(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)
   commentId: M:Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetRelationshipIndex(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)
   isExternal: false
@@ -2158,6 +2234,12 @@ references:
   name: Microsoft.EntityFrameworkCore.Metadata.Internal
   nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
   fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
+- uid: Microsoft.EntityFrameworkCore.Metadata.INavigation.DeclaringEntityType*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.INavigation.DeclaringEntityType
+  isExternal: false
+  name: DeclaringEntityType
+  nameWithType: INavigation.DeclaringEntityType
+  fullName: Microsoft.EntityFrameworkCore.Metadata.INavigation.DeclaringEntityType
 - uid: Microsoft.EntityFrameworkCore.Metadata.IEntityType
   commentId: T:Microsoft.EntityFrameworkCore.Metadata.IEntityType
   parent: Microsoft.EntityFrameworkCore.Metadata
@@ -2165,6 +2247,12 @@ references:
   name: IEntityType
   nameWithType: IEntityType
   fullName: Microsoft.EntityFrameworkCore.Metadata.IEntityType
+- uid: Microsoft.EntityFrameworkCore.Metadata.INavigation.ForeignKey*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.INavigation.ForeignKey
+  isExternal: false
+  name: ForeignKey
+  nameWithType: INavigation.ForeignKey
+  fullName: Microsoft.EntityFrameworkCore.Metadata.INavigation.ForeignKey
 - uid: Microsoft.EntityFrameworkCore.Metadata.IForeignKey
   commentId: T:Microsoft.EntityFrameworkCore.Metadata.IForeignKey
   parent: Microsoft.EntityFrameworkCore.Metadata

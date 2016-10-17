@@ -5,7 +5,7 @@ items:
   id: QuerySqliteTest
   parent: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   children:
-  - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.#ctor(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture)
+  - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.#ctor(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture,ITestOutputHelper)
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.IsNullOrWhiteSpace_in_predicate
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.Take_Skip
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.Trim_in_predicate
@@ -28,27 +28,26 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: QuerySqliteTest
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/QuerySqliteTest.cs
-    startLine: 15
+    startLine: 13
   assemblies:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   syntax:
-    content: 'public class QuerySqliteTest : QueryTestBase<NorthwindQuerySqliteFixture>, IClassFixture<NorthwindQuerySqliteFixture>'
+    content: 'public class QuerySqliteTest : QueryTestBase<NorthwindQuerySqliteFixture>'
     content.vb: >-
       Public Class QuerySqliteTest
           Inherits QueryTestBase(Of NorthwindQuerySqliteFixture)
-          Implements IClassFixture(Of NorthwindQuerySqliteFixture)
   inheritance:
   - System.Object
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
-  implements:
-  - Xunit.IClassFixture{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
   inheritedMembers:
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Local_array
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Query_composition_against_ienumerable_set
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Entity_equality_self
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Entity_equality_local
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Entity_equality_local_inline
+  - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Entity_equality_null
+  - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Entity_equality_not_null
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Null_conditional_simple
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Null_conditional_deep
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Queryable_simple
@@ -92,6 +91,7 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.All_top_level
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.All_top_level_column
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.All_top_level_subquery
+  - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.All_top_level_subquery_ef_property
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.All_client
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.All_client_and_server_top_level
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.All_client_or_server_top_level
@@ -323,6 +323,7 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.OrderBy
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.OrderBy_true
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.OrderBy_integer
+  - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.OrderBy_parameter
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.OrderBy_anon
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.OrderBy_anon2
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.OrderBy_client_mixed
@@ -496,6 +497,7 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.GroupJoin_outer_projection_reverse2
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.GroupJoin_subquery_projection_outer_mixed
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.GroupJoin_DefaultIfEmpty
+  - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.GroupJoin_DefaultIfEmpty_multiple
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.GroupJoin_DefaultIfEmpty2
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.GroupJoin_DefaultIfEmpty3
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.GroupJoin_Where
@@ -603,35 +605,32 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Parameter_extraction_short_circuits_3
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Parameter_extraction_can_throw_exception_from_user_code
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Subquery_member_pushdown_does_not_change_original_subquery_model
+  - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Select_expression_references_are_updated_correctly_with_subquery
+  - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.DefaultIfEmpty_without_group_join
+  - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.DefaultIfEmpty_in_subquery
+  - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.DefaultIfEmpty_in_subquery_nested
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.CreateContext
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Fixture
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.AssertQuery``1(System.Func{System.Linq.IQueryable{{TItem}},System.Linq.IQueryable{System.Object}},System.Boolean,System.Int32,System.Action{System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object}})
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.AssertQuery``1(System.Func{System.Linq.IQueryable{{TItem}},System.Object},System.Boolean,System.Int32,System.Action{System.Object,System.Object})
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.AssertQuery``1(System.Func{System.Linq.IQueryable{{TItem}},System.Linq.IQueryable{System.Object}},System.Func{System.Linq.IQueryable{{TItem}},System.Linq.IQueryable{System.Object}},System.Boolean,System.Int32,System.Action{System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object}})
   - Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.ClearLog
-  - System.Object.ToString
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.#ctor(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture)
-  commentId: M:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.#ctor(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture)
-  id: '#ctor(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture)'
+- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.#ctor(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture,ITestOutputHelper)
+  commentId: M:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.#ctor(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture,ITestOutputHelper)
+  id: '#ctor(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture,ITestOutputHelper)'
   parent: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest
   langs:
   - csharp
   - vb
-  name: QuerySqliteTest(NorthwindQuerySqliteFixture)
-  nameWithType: QuerySqliteTest.QuerySqliteTest(NorthwindQuerySqliteFixture)
-  fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.QuerySqliteTest(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture)
+  name: QuerySqliteTest(NorthwindQuerySqliteFixture, ITestOutputHelper)
+  nameWithType: QuerySqliteTest.QuerySqliteTest(NorthwindQuerySqliteFixture, ITestOutputHelper)
+  fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.QuerySqliteTest(Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture, ITestOutputHelper)
   type: Constructor
   source:
     remote:
@@ -640,16 +639,19 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/QuerySqliteTest.cs
-    startLine: 17
+    startLine: 15
   assemblies:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   syntax:
-    content: public QuerySqliteTest(NorthwindQuerySqliteFixture fixture)
-    content.vb: Public Sub New(fixture As NorthwindQuerySqliteFixture)
+    content: public QuerySqliteTest(NorthwindQuerySqliteFixture fixture, ITestOutputHelper testOutputHelper)
+    content.vb: Public Sub New(fixture As NorthwindQuerySqliteFixture, testOutputHelper As ITestOutputHelper)
     parameters:
     - id: fixture
       type: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture
+    - id: testOutputHelper
+      type: ITestOutputHelper
+  overload: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -672,7 +674,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Take_Skip
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/QuerySqliteTest.cs
-    startLine: 22
+    startLine: 21
   assemblies:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
@@ -680,6 +682,7 @@ items:
     content: public override void Take_Skip()
     content.vb: Public Overrides Sub Take_Skip
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Take_Skip
+  overload: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.Take_Skip*
   modifiers.csharp:
   - public
   - override
@@ -704,7 +707,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: IsNullOrWhiteSpace_in_predicate
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/QuerySqliteTest.cs
-    startLine: 39
+    startLine: 38
   assemblies:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
@@ -712,6 +715,7 @@ items:
     content: public override void IsNullOrWhiteSpace_in_predicate()
     content.vb: Public Overrides Sub IsNullOrWhiteSpace_in_predicate
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.IsNullOrWhiteSpace_in_predicate
+  overload: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.IsNullOrWhiteSpace_in_predicate*
   modifiers.csharp:
   - public
   - override
@@ -736,7 +740,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: TrimStart_in_predicate
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/QuerySqliteTest.cs
-    startLine: 50
+    startLine: 49
   assemblies:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
@@ -744,6 +748,7 @@ items:
     content: public override void TrimStart_in_predicate()
     content.vb: Public Overrides Sub TrimStart_in_predicate
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.TrimStart_in_predicate
+  overload: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimStart_in_predicate*
   modifiers.csharp:
   - public
   - override
@@ -768,7 +773,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: TrimStart_with_arguments_in_predicate
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/QuerySqliteTest.cs
-    startLine: 61
+    startLine: 60
   assemblies:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
@@ -776,6 +781,7 @@ items:
     content: public override void TrimStart_with_arguments_in_predicate()
     content.vb: Public Overrides Sub TrimStart_with_arguments_in_predicate
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.TrimStart_with_arguments_in_predicate
+  overload: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimStart_with_arguments_in_predicate*
   modifiers.csharp:
   - public
   - override
@@ -800,7 +806,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: TrimEnd_in_predicate
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/QuerySqliteTest.cs
-    startLine: 72
+    startLine: 71
   assemblies:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
@@ -808,6 +814,7 @@ items:
     content: public override void TrimEnd_in_predicate()
     content.vb: Public Overrides Sub TrimEnd_in_predicate
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.TrimEnd_in_predicate
+  overload: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimEnd_in_predicate*
   modifiers.csharp:
   - public
   - override
@@ -832,7 +839,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: TrimEnd_with_arguments_in_predicate
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/QuerySqliteTest.cs
-    startLine: 83
+    startLine: 82
   assemblies:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
@@ -840,6 +847,7 @@ items:
     content: public override void TrimEnd_with_arguments_in_predicate()
     content.vb: Public Overrides Sub TrimEnd_with_arguments_in_predicate
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.TrimEnd_with_arguments_in_predicate
+  overload: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimEnd_with_arguments_in_predicate*
   modifiers.csharp:
   - public
   - override
@@ -864,7 +872,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Trim_in_predicate
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/QuerySqliteTest.cs
-    startLine: 94
+    startLine: 93
   assemblies:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
@@ -872,6 +880,7 @@ items:
     content: public override void Trim_in_predicate()
     content.vb: Public Overrides Sub Trim_in_predicate
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Trim_in_predicate
+  overload: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.Trim_in_predicate*
   modifiers.csharp:
   - public
   - override
@@ -896,7 +905,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Trim_with_arguments_in_predicate
     path: test/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests/QuerySqliteTest.cs
-    startLine: 105
+    startLine: 104
   assemblies:
   - Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
@@ -904,6 +913,7 @@ items:
     content: public override void Trim_with_arguments_in_predicate()
     content.vb: Public Overrides Sub Trim_with_arguments_in_predicate
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Trim_with_arguments_in_predicate
+  overload: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.Trim_with_arguments_in_predicate*
   modifiers.csharp:
   - public
   - override
@@ -954,48 +964,6 @@ references:
     name: QueryTestBase
     nameWithType: QueryTestBase
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture
-    name: NorthwindQuerySqliteFixture
-    nameWithType: NorthwindQuerySqliteFixture
-    fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Xunit.IClassFixture{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
-  commentId: T:Xunit.IClassFixture{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
-  parent: Xunit
-  definition: Xunit.IClassFixture`1
-  name: IClassFixture<NorthwindQuerySqliteFixture>
-  nameWithType: IClassFixture<NorthwindQuerySqliteFixture>
-  fullName: Xunit.IClassFixture<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>
-  nameWithType.vb: IClassFixture(Of NorthwindQuerySqliteFixture)
-  fullname.vb: Xunit.IClassFixture(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture)
-  name.vb: IClassFixture(Of NorthwindQuerySqliteFixture)
-  spec.csharp:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture
-    name: NorthwindQuerySqliteFixture
-    nameWithType: NorthwindQuerySqliteFixture
-    fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -1155,6 +1123,68 @@ references:
     name: Entity_equality_local_inline
     nameWithType: QueryTestBase(Of NorthwindQuerySqliteFixture).Entity_equality_local_inline
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).Entity_equality_local_inline
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Entity_equality_null
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Entity_equality_null
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Entity_equality_null
+  name: Entity_equality_null()
+  nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.Entity_equality_null()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.Entity_equality_null()
+  nameWithType.vb: QueryTestBase(Of NorthwindQuerySqliteFixture).Entity_equality_null()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).Entity_equality_null()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Entity_equality_null
+    name: Entity_equality_null
+    nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.Entity_equality_null
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.Entity_equality_null
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Entity_equality_null
+    name: Entity_equality_null
+    nameWithType: QueryTestBase(Of NorthwindQuerySqliteFixture).Entity_equality_null
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).Entity_equality_null
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Entity_equality_not_null
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Entity_equality_not_null
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Entity_equality_not_null
+  name: Entity_equality_not_null()
+  nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.Entity_equality_not_null()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.Entity_equality_not_null()
+  nameWithType.vb: QueryTestBase(Of NorthwindQuerySqliteFixture).Entity_equality_not_null()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).Entity_equality_not_null()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Entity_equality_not_null
+    name: Entity_equality_not_null
+    nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.Entity_equality_not_null
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.Entity_equality_not_null
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Entity_equality_not_null
+    name: Entity_equality_not_null
+    nameWithType: QueryTestBase(Of NorthwindQuerySqliteFixture).Entity_equality_not_null
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).Entity_equality_not_null
   - name: (
     nameWithType: (
     fullName: (
@@ -2488,6 +2518,37 @@ references:
     name: All_top_level_subquery
     nameWithType: QueryTestBase(Of NorthwindQuerySqliteFixture).All_top_level_subquery
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).All_top_level_subquery
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.All_top_level_subquery_ef_property
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.All_top_level_subquery_ef_property
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.All_top_level_subquery_ef_property
+  name: All_top_level_subquery_ef_property()
+  nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.All_top_level_subquery_ef_property()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.All_top_level_subquery_ef_property()
+  nameWithType.vb: QueryTestBase(Of NorthwindQuerySqliteFixture).All_top_level_subquery_ef_property()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).All_top_level_subquery_ef_property()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.All_top_level_subquery_ef_property
+    name: All_top_level_subquery_ef_property
+    nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.All_top_level_subquery_ef_property
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.All_top_level_subquery_ef_property
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.All_top_level_subquery_ef_property
+    name: All_top_level_subquery_ef_property
+    nameWithType: QueryTestBase(Of NorthwindQuerySqliteFixture).All_top_level_subquery_ef_property
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).All_top_level_subquery_ef_property
   - name: (
     nameWithType: (
     fullName: (
@@ -9655,6 +9716,37 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.OrderBy_parameter
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.OrderBy_parameter
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.OrderBy_parameter
+  name: OrderBy_parameter()
+  nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.OrderBy_parameter()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.OrderBy_parameter()
+  nameWithType.vb: QueryTestBase(Of NorthwindQuerySqliteFixture).OrderBy_parameter()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).OrderBy_parameter()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.OrderBy_parameter
+    name: OrderBy_parameter
+    nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.OrderBy_parameter
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.OrderBy_parameter
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.OrderBy_parameter
+    name: OrderBy_parameter
+    nameWithType: QueryTestBase(Of NorthwindQuerySqliteFixture).OrderBy_parameter
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).OrderBy_parameter
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.OrderBy_anon
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.OrderBy_anon
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
@@ -15034,6 +15126,37 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.GroupJoin_DefaultIfEmpty_multiple
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.GroupJoin_DefaultIfEmpty_multiple
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.GroupJoin_DefaultIfEmpty_multiple
+  name: GroupJoin_DefaultIfEmpty_multiple()
+  nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.GroupJoin_DefaultIfEmpty_multiple()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.GroupJoin_DefaultIfEmpty_multiple()
+  nameWithType.vb: QueryTestBase(Of NorthwindQuerySqliteFixture).GroupJoin_DefaultIfEmpty_multiple()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).GroupJoin_DefaultIfEmpty_multiple()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.GroupJoin_DefaultIfEmpty_multiple
+    name: GroupJoin_DefaultIfEmpty_multiple
+    nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.GroupJoin_DefaultIfEmpty_multiple
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.GroupJoin_DefaultIfEmpty_multiple
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.GroupJoin_DefaultIfEmpty_multiple
+    name: GroupJoin_DefaultIfEmpty_multiple
+    nameWithType: QueryTestBase(Of NorthwindQuerySqliteFixture).GroupJoin_DefaultIfEmpty_multiple
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).GroupJoin_DefaultIfEmpty_multiple
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.GroupJoin_DefaultIfEmpty2
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.GroupJoin_DefaultIfEmpty2
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
@@ -18457,6 +18580,130 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Select_expression_references_are_updated_correctly_with_subquery
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Select_expression_references_are_updated_correctly_with_subquery
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Select_expression_references_are_updated_correctly_with_subquery
+  name: Select_expression_references_are_updated_correctly_with_subquery()
+  nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.Select_expression_references_are_updated_correctly_with_subquery()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.Select_expression_references_are_updated_correctly_with_subquery()
+  nameWithType.vb: QueryTestBase(Of NorthwindQuerySqliteFixture).Select_expression_references_are_updated_correctly_with_subquery()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).Select_expression_references_are_updated_correctly_with_subquery()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Select_expression_references_are_updated_correctly_with_subquery
+    name: Select_expression_references_are_updated_correctly_with_subquery
+    nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.Select_expression_references_are_updated_correctly_with_subquery
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.Select_expression_references_are_updated_correctly_with_subquery
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Select_expression_references_are_updated_correctly_with_subquery
+    name: Select_expression_references_are_updated_correctly_with_subquery
+    nameWithType: QueryTestBase(Of NorthwindQuerySqliteFixture).Select_expression_references_are_updated_correctly_with_subquery
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).Select_expression_references_are_updated_correctly_with_subquery
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.DefaultIfEmpty_without_group_join
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.DefaultIfEmpty_without_group_join
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_without_group_join
+  name: DefaultIfEmpty_without_group_join()
+  nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.DefaultIfEmpty_without_group_join()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.DefaultIfEmpty_without_group_join()
+  nameWithType.vb: QueryTestBase(Of NorthwindQuerySqliteFixture).DefaultIfEmpty_without_group_join()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).DefaultIfEmpty_without_group_join()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_without_group_join
+    name: DefaultIfEmpty_without_group_join
+    nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.DefaultIfEmpty_without_group_join
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.DefaultIfEmpty_without_group_join
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_without_group_join
+    name: DefaultIfEmpty_without_group_join
+    nameWithType: QueryTestBase(Of NorthwindQuerySqliteFixture).DefaultIfEmpty_without_group_join
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).DefaultIfEmpty_without_group_join
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.DefaultIfEmpty_in_subquery
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.DefaultIfEmpty_in_subquery
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_in_subquery
+  name: DefaultIfEmpty_in_subquery()
+  nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.DefaultIfEmpty_in_subquery()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.DefaultIfEmpty_in_subquery()
+  nameWithType.vb: QueryTestBase(Of NorthwindQuerySqliteFixture).DefaultIfEmpty_in_subquery()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).DefaultIfEmpty_in_subquery()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_in_subquery
+    name: DefaultIfEmpty_in_subquery
+    nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.DefaultIfEmpty_in_subquery
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.DefaultIfEmpty_in_subquery
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_in_subquery
+    name: DefaultIfEmpty_in_subquery
+    nameWithType: QueryTestBase(Of NorthwindQuerySqliteFixture).DefaultIfEmpty_in_subquery
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).DefaultIfEmpty_in_subquery
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.DefaultIfEmpty_in_subquery_nested
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.DefaultIfEmpty_in_subquery_nested
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_in_subquery_nested
+  name: DefaultIfEmpty_in_subquery_nested()
+  nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.DefaultIfEmpty_in_subquery_nested()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.DefaultIfEmpty_in_subquery_nested()
+  nameWithType.vb: QueryTestBase(Of NorthwindQuerySqliteFixture).DefaultIfEmpty_in_subquery_nested()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).DefaultIfEmpty_in_subquery_nested()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_in_subquery_nested
+    name: DefaultIfEmpty_in_subquery_nested
+    nameWithType: QueryTestBase<NorthwindQuerySqliteFixture>.DefaultIfEmpty_in_subquery_nested
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture>.DefaultIfEmpty_in_subquery_nested
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_in_subquery_nested
+    name: DefaultIfEmpty_in_subquery_nested
+    nameWithType: QueryTestBase(Of NorthwindQuerySqliteFixture).DefaultIfEmpty_in_subquery_nested
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture).DefaultIfEmpty_in_subquery_nested
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.CreateContext
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.CreateContext
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
@@ -19306,285 +19553,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
@@ -19634,51 +19602,6 @@ references:
   name: Microsoft.EntityFrameworkCore.Specification.Tests
   nameWithType: Microsoft.EntityFrameworkCore.Specification.Tests
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests
-- uid: Xunit.IClassFixture`1
-  commentId: T:Xunit.IClassFixture`1
-  isExternal: true
-  name: IClassFixture<TFixture>
-  nameWithType: IClassFixture<TFixture>
-  fullName: Xunit.IClassFixture<TFixture>
-  nameWithType.vb: IClassFixture(Of TFixture)
-  fullname.vb: Xunit.IClassFixture(Of TFixture)
-  name.vb: IClassFixture(Of TFixture)
-  spec.csharp:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TFixture
-    nameWithType: TFixture
-    fullName: TFixture
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TFixture
-    nameWithType: TFixture
-    fullName: TFixture
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Xunit
-  commentId: N:Xunit
-  isExternal: false
-  name: Xunit
-  nameWithType: Xunit
-  fullName: Xunit
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Local_array
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Local_array
   isExternal: false
@@ -19823,6 +19746,66 @@ references:
     name: Entity_equality_local_inline
     nameWithType: QueryTestBase(Of TFixture).Entity_equality_local_inline
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).Entity_equality_local_inline
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Entity_equality_null
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Entity_equality_null
+  isExternal: false
+  name: Entity_equality_null()
+  nameWithType: QueryTestBase<TFixture>.Entity_equality_null()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.Entity_equality_null()
+  nameWithType.vb: QueryTestBase(Of TFixture).Entity_equality_null()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).Entity_equality_null()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Entity_equality_null
+    name: Entity_equality_null
+    nameWithType: QueryTestBase<TFixture>.Entity_equality_null
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.Entity_equality_null
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Entity_equality_null
+    name: Entity_equality_null
+    nameWithType: QueryTestBase(Of TFixture).Entity_equality_null
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).Entity_equality_null
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Entity_equality_not_null
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Entity_equality_not_null
+  isExternal: false
+  name: Entity_equality_not_null()
+  nameWithType: QueryTestBase<TFixture>.Entity_equality_not_null()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.Entity_equality_not_null()
+  nameWithType.vb: QueryTestBase(Of TFixture).Entity_equality_not_null()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).Entity_equality_not_null()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Entity_equality_not_null
+    name: Entity_equality_not_null
+    nameWithType: QueryTestBase<TFixture>.Entity_equality_not_null
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.Entity_equality_not_null
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Entity_equality_not_null
+    name: Entity_equality_not_null
+    nameWithType: QueryTestBase(Of TFixture).Entity_equality_not_null
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).Entity_equality_not_null
   - name: (
     nameWithType: (
     fullName: (
@@ -21113,6 +21096,36 @@ references:
     name: All_top_level_subquery
     nameWithType: QueryTestBase(Of TFixture).All_top_level_subquery
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).All_top_level_subquery
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.All_top_level_subquery_ef_property
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.All_top_level_subquery_ef_property
+  isExternal: false
+  name: All_top_level_subquery_ef_property()
+  nameWithType: QueryTestBase<TFixture>.All_top_level_subquery_ef_property()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.All_top_level_subquery_ef_property()
+  nameWithType.vb: QueryTestBase(Of TFixture).All_top_level_subquery_ef_property()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).All_top_level_subquery_ef_property()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.All_top_level_subquery_ef_property
+    name: All_top_level_subquery_ef_property
+    nameWithType: QueryTestBase<TFixture>.All_top_level_subquery_ef_property
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.All_top_level_subquery_ef_property
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.All_top_level_subquery_ef_property
+    name: All_top_level_subquery_ef_property
+    nameWithType: QueryTestBase(Of TFixture).All_top_level_subquery_ef_property
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).All_top_level_subquery_ef_property
   - name: (
     nameWithType: (
     fullName: (
@@ -28049,6 +28062,36 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.OrderBy_parameter
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.OrderBy_parameter
+  isExternal: false
+  name: OrderBy_parameter()
+  nameWithType: QueryTestBase<TFixture>.OrderBy_parameter()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.OrderBy_parameter()
+  nameWithType.vb: QueryTestBase(Of TFixture).OrderBy_parameter()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).OrderBy_parameter()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.OrderBy_parameter
+    name: OrderBy_parameter
+    nameWithType: QueryTestBase<TFixture>.OrderBy_parameter
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.OrderBy_parameter
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.OrderBy_parameter
+    name: OrderBy_parameter
+    nameWithType: QueryTestBase(Of TFixture).OrderBy_parameter
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).OrderBy_parameter
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.OrderBy_anon
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.OrderBy_anon
   isExternal: false
@@ -33255,6 +33298,36 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.GroupJoin_DefaultIfEmpty_multiple
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.GroupJoin_DefaultIfEmpty_multiple
+  isExternal: false
+  name: GroupJoin_DefaultIfEmpty_multiple()
+  nameWithType: QueryTestBase<TFixture>.GroupJoin_DefaultIfEmpty_multiple()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.GroupJoin_DefaultIfEmpty_multiple()
+  nameWithType.vb: QueryTestBase(Of TFixture).GroupJoin_DefaultIfEmpty_multiple()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).GroupJoin_DefaultIfEmpty_multiple()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.GroupJoin_DefaultIfEmpty_multiple
+    name: GroupJoin_DefaultIfEmpty_multiple
+    nameWithType: QueryTestBase<TFixture>.GroupJoin_DefaultIfEmpty_multiple
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.GroupJoin_DefaultIfEmpty_multiple
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.GroupJoin_DefaultIfEmpty_multiple
+    name: GroupJoin_DefaultIfEmpty_multiple
+    nameWithType: QueryTestBase(Of TFixture).GroupJoin_DefaultIfEmpty_multiple
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).GroupJoin_DefaultIfEmpty_multiple
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.GroupJoin_DefaultIfEmpty2
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.GroupJoin_DefaultIfEmpty2
   isExternal: false
@@ -36571,6 +36644,126 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Select_expression_references_are_updated_correctly_with_subquery
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Select_expression_references_are_updated_correctly_with_subquery
+  isExternal: false
+  name: Select_expression_references_are_updated_correctly_with_subquery()
+  nameWithType: QueryTestBase<TFixture>.Select_expression_references_are_updated_correctly_with_subquery()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.Select_expression_references_are_updated_correctly_with_subquery()
+  nameWithType.vb: QueryTestBase(Of TFixture).Select_expression_references_are_updated_correctly_with_subquery()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).Select_expression_references_are_updated_correctly_with_subquery()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Select_expression_references_are_updated_correctly_with_subquery
+    name: Select_expression_references_are_updated_correctly_with_subquery
+    nameWithType: QueryTestBase<TFixture>.Select_expression_references_are_updated_correctly_with_subquery
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.Select_expression_references_are_updated_correctly_with_subquery
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Select_expression_references_are_updated_correctly_with_subquery
+    name: Select_expression_references_are_updated_correctly_with_subquery
+    nameWithType: QueryTestBase(Of TFixture).Select_expression_references_are_updated_correctly_with_subquery
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).Select_expression_references_are_updated_correctly_with_subquery
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_without_group_join
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_without_group_join
+  isExternal: false
+  name: DefaultIfEmpty_without_group_join()
+  nameWithType: QueryTestBase<TFixture>.DefaultIfEmpty_without_group_join()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.DefaultIfEmpty_without_group_join()
+  nameWithType.vb: QueryTestBase(Of TFixture).DefaultIfEmpty_without_group_join()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).DefaultIfEmpty_without_group_join()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_without_group_join
+    name: DefaultIfEmpty_without_group_join
+    nameWithType: QueryTestBase<TFixture>.DefaultIfEmpty_without_group_join
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.DefaultIfEmpty_without_group_join
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_without_group_join
+    name: DefaultIfEmpty_without_group_join
+    nameWithType: QueryTestBase(Of TFixture).DefaultIfEmpty_without_group_join
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).DefaultIfEmpty_without_group_join
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_in_subquery
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_in_subquery
+  isExternal: false
+  name: DefaultIfEmpty_in_subquery()
+  nameWithType: QueryTestBase<TFixture>.DefaultIfEmpty_in_subquery()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.DefaultIfEmpty_in_subquery()
+  nameWithType.vb: QueryTestBase(Of TFixture).DefaultIfEmpty_in_subquery()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).DefaultIfEmpty_in_subquery()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_in_subquery
+    name: DefaultIfEmpty_in_subquery
+    nameWithType: QueryTestBase<TFixture>.DefaultIfEmpty_in_subquery
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.DefaultIfEmpty_in_subquery
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_in_subquery
+    name: DefaultIfEmpty_in_subquery
+    nameWithType: QueryTestBase(Of TFixture).DefaultIfEmpty_in_subquery
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).DefaultIfEmpty_in_subquery
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_in_subquery_nested
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_in_subquery_nested
+  isExternal: false
+  name: DefaultIfEmpty_in_subquery_nested()
+  nameWithType: QueryTestBase<TFixture>.DefaultIfEmpty_in_subquery_nested()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.DefaultIfEmpty_in_subquery_nested()
+  nameWithType.vb: QueryTestBase(Of TFixture).DefaultIfEmpty_in_subquery_nested()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).DefaultIfEmpty_in_subquery_nested()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_in_subquery_nested
+    name: DefaultIfEmpty_in_subquery_nested
+    nameWithType: QueryTestBase<TFixture>.DefaultIfEmpty_in_subquery_nested
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase<TFixture>.DefaultIfEmpty_in_subquery_nested
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.DefaultIfEmpty_in_subquery_nested
+    name: DefaultIfEmpty_in_subquery_nested
+    nameWithType: QueryTestBase(Of TFixture).DefaultIfEmpty_in_subquery_nested
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase(Of TFixture).DefaultIfEmpty_in_subquery_nested
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.CreateContext
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.CreateContext
   isExternal: false
@@ -37414,6 +37607,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.#ctor
+  isExternal: false
+  name: QuerySqliteTest
+  nameWithType: QuerySqliteTest.QuerySqliteTest
+  fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.QuerySqliteTest
 - uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture
   commentId: T:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture
   parent: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests
@@ -37421,6 +37620,11 @@ references:
   name: NorthwindQuerySqliteFixture
   nameWithType: NorthwindQuerySqliteFixture
   fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture
+- uid: ITestOutputHelper
+  isExternal: true
+  name: ITestOutputHelper
+  nameWithType: ITestOutputHelper
+  fullName: ITestOutputHelper
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Take_Skip
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}.Take_Skip
   parent: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase{Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.NorthwindQuerySqliteFixture}
@@ -37452,6 +37656,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.Take_Skip*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.Take_Skip
+  isExternal: false
+  name: Take_Skip
+  nameWithType: QuerySqliteTest.Take_Skip
+  fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.Take_Skip
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Take_Skip
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Take_Skip
   isExternal: false
@@ -37513,6 +37723,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.IsNullOrWhiteSpace_in_predicate*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.IsNullOrWhiteSpace_in_predicate
+  isExternal: false
+  name: IsNullOrWhiteSpace_in_predicate
+  nameWithType: QuerySqliteTest.IsNullOrWhiteSpace_in_predicate
+  fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.IsNullOrWhiteSpace_in_predicate
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.IsNullOrWhiteSpace_in_predicate
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.IsNullOrWhiteSpace_in_predicate
   isExternal: false
@@ -37574,6 +37790,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimStart_in_predicate*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimStart_in_predicate
+  isExternal: false
+  name: TrimStart_in_predicate
+  nameWithType: QuerySqliteTest.TrimStart_in_predicate
+  fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimStart_in_predicate
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.TrimStart_in_predicate
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.TrimStart_in_predicate
   isExternal: false
@@ -37635,6 +37857,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimStart_with_arguments_in_predicate*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimStart_with_arguments_in_predicate
+  isExternal: false
+  name: TrimStart_with_arguments_in_predicate
+  nameWithType: QuerySqliteTest.TrimStart_with_arguments_in_predicate
+  fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimStart_with_arguments_in_predicate
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.TrimStart_with_arguments_in_predicate
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.TrimStart_with_arguments_in_predicate
   isExternal: false
@@ -37696,6 +37924,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimEnd_in_predicate*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimEnd_in_predicate
+  isExternal: false
+  name: TrimEnd_in_predicate
+  nameWithType: QuerySqliteTest.TrimEnd_in_predicate
+  fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimEnd_in_predicate
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.TrimEnd_in_predicate
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.TrimEnd_in_predicate
   isExternal: false
@@ -37757,6 +37991,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimEnd_with_arguments_in_predicate*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimEnd_with_arguments_in_predicate
+  isExternal: false
+  name: TrimEnd_with_arguments_in_predicate
+  nameWithType: QuerySqliteTest.TrimEnd_with_arguments_in_predicate
+  fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.TrimEnd_with_arguments_in_predicate
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.TrimEnd_with_arguments_in_predicate
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.TrimEnd_with_arguments_in_predicate
   isExternal: false
@@ -37818,6 +38058,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.Trim_in_predicate*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.Trim_in_predicate
+  isExternal: false
+  name: Trim_in_predicate
+  nameWithType: QuerySqliteTest.Trim_in_predicate
+  fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.Trim_in_predicate
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Trim_in_predicate
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Trim_in_predicate
   isExternal: false
@@ -37879,6 +38125,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.Trim_with_arguments_in_predicate*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.Trim_with_arguments_in_predicate
+  isExternal: false
+  name: Trim_with_arguments_in_predicate
+  nameWithType: QuerySqliteTest.Trim_with_arguments_in_predicate
+  fullName: Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.QuerySqliteTest.Trim_with_arguments_in_predicate
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Trim_with_arguments_in_predicate
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.QueryTestBase`1.Trim_with_arguments_in_predicate
   isExternal: false

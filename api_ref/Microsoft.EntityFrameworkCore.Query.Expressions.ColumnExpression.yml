@@ -10,6 +10,7 @@ items:
   - Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Accept(System.Linq.Expressions.ExpressionVisitor)
   - Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Equals(System.Object)
   - Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.GetHashCode
+  - Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.IsNullable
   - Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Name
   - Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.NodeType
   - Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Property
@@ -36,7 +37,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Query.Expressions
-  summary: "\n    A column expression.\n"
+  summary: "\nA column expression.\n"
   example: []
   syntax:
     content: 'public class ColumnExpression : Expression'
@@ -365,14 +366,14 @@ items:
   - System.Object.GetType
   - System.Object.MemberwiseClone
   extensionMethods:
-  - System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
-  - System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
-  - System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
-  - System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
   - System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.ExpressionExtensions.RemoveConvert
   - System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.ExpressionExtensions.GetRootExpression``1
   - System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.ExpressionExtensions.IsLogicalOperation
   - System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.ExpressionExtensions.IsComparisonOperation
+  - System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
+  - System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
+  - System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
+  - System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
   modifiers.csharp:
   - public
   - class
@@ -401,7 +402,7 @@ items:
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Query.Expressions
-  summary: "\n    Creates a new instance of a ColumnExpression.\n"
+  summary: "\nCreates a new instance of a ColumnExpression.\n"
   example: []
   syntax:
     content: public ColumnExpression(string name, IProperty property, TableExpressionBase tableExpression)
@@ -416,6 +417,7 @@ items:
     - id: tableExpression
       type: Microsoft.EntityFrameworkCore.Query.Expressions.TableExpressionBase
       description: 'The target table expression. '
+  overload: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -438,11 +440,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore.Relational/Query/Expressions/ColumnExpression.cs
-    startLine: 41
+    startLine: 42
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Query.Expressions
-  summary: "\n    Creates a new instance of a ColumnExpression.\n"
+  summary: "\nCreates a new instance of a ColumnExpression.\n"
   example: []
   syntax:
     content: public ColumnExpression(string name, Type type, TableExpressionBase tableExpression)
@@ -457,6 +459,7 @@ items:
     - id: tableExpression
       type: Microsoft.EntityFrameworkCore.Query.Expressions.TableExpressionBase
       description: 'The target table expression. '
+  overload: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -479,11 +482,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Table
     path: src/Microsoft.EntityFrameworkCore.Relational/Query/Expressions/ColumnExpression.cs
-    startLine: 58
+    startLine: 59
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Query.Expressions
-  summary: "\n    The target table.\n"
+  summary: "\nThe target table.\n"
   example: []
   syntax:
     content: public virtual TableExpressionBase Table { get; }
@@ -491,6 +494,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.Query.Expressions.TableExpressionBase
+  overload: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Table*
   modifiers.csharp:
   - public
   - virtual
@@ -517,11 +521,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: TableAlias
     path: src/Microsoft.EntityFrameworkCore.Relational/Query/Expressions/ColumnExpression.cs
-    startLine: 63
+    startLine: 64
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Query.Expressions
-  summary: "\n    The target table alias.\n"
+  summary: "\nThe target table alias.\n"
   example: []
   syntax:
     content: public virtual string TableAlias { get; }
@@ -529,6 +533,7 @@ items:
     parameters: []
     return:
       type: System.String
+  overload: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.TableAlias*
   modifiers.csharp:
   - public
   - virtual
@@ -555,11 +560,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Property
     path: src/Microsoft.EntityFrameworkCore.Relational/Query/Expressions/ColumnExpression.cs
-    startLine: 70
+    startLine: 71
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Query.Expressions
-  summary: "\n    The corresponding property.\n"
+  summary: "\nThe corresponding property.\n"
   example: []
   syntax:
     content: public virtual IProperty Property { get; }
@@ -567,6 +572,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.IProperty
+  overload: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Property*
   modifiers.csharp:
   - public
   - virtual
@@ -593,11 +599,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Name
     path: src/Microsoft.EntityFrameworkCore.Relational/Query/Expressions/ColumnExpression.cs
-    startLine: 79
+    startLine: 80
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Query.Expressions
-  summary: "\n    Gets the column name.\n"
+  summary: "\nGets the column name.\n"
   example: []
   syntax:
     content: public virtual string Name { get; }
@@ -605,7 +611,8 @@ items:
     parameters: []
     return:
       type: System.String
-      description: "\n    The column name.\n"
+      description: "\nThe column name.\n"
+  overload: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Name*
   modifiers.csharp:
   - public
   - virtual
@@ -632,11 +639,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: NodeType
     path: src/Microsoft.EntityFrameworkCore.Relational/Query/Expressions/ColumnExpression.cs
-    startLine: 85
+    startLine: 86
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Query.Expressions
-  summary: "\n    Returns the node type of this <xref href=\"System.Linq.Expressions.Expression\" data-throw-if-not-resolved=\"false\"></xref>. (Inherited from <xref href=\"System.Linq.Expressions.Expression\" data-throw-if-not-resolved=\"false\"></xref>.)\n"
+  summary: "\nReturns the node type of this <xref href=\"System.Linq.Expressions.Expression\" data-throw-if-not-resolved=\"false\"></xref>. (Inherited from <xref href=\"System.Linq.Expressions.Expression\" data-throw-if-not-resolved=\"false\"></xref>.)\n"
   example: []
   syntax:
     content: public override ExpressionType NodeType { get; }
@@ -646,6 +653,7 @@ items:
       type: System.Linq.Expressions.ExpressionType
       description: 'The <xref href="System.Linq.Expressions.ExpressionType" data-throw-if-not-resolved="false"></xref> that represents this expression. '
   overridden: System.Linq.Expressions.Expression.NodeType
+  overload: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.NodeType*
   modifiers.csharp:
   - public
   - override
@@ -672,11 +680,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Type
     path: src/Microsoft.EntityFrameworkCore.Relational/Query/Expressions/ColumnExpression.cs
-    startLine: 91
+    startLine: 92
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Query.Expressions
-  summary: "\n    Gets the static type of the expression that this <xref href=\"System.Linq.Expressions.Expression\" data-throw-if-not-resolved=\"false\"></xref> represents. (Inherited from <xref href=\"System.Linq.Expressions.Expression\" data-throw-if-not-resolved=\"false\"></xref>.)\n"
+  summary: "\nGets the static type of the expression that this <xref href=\"System.Linq.Expressions.Expression\" data-throw-if-not-resolved=\"false\"></xref> represents. (Inherited from <xref href=\"System.Linq.Expressions.Expression\" data-throw-if-not-resolved=\"false\"></xref>.)\n"
   example: []
   syntax:
     content: public override Type Type { get; }
@@ -686,6 +694,7 @@ items:
       type: System.Type
       description: 'The <xref href="Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Type" data-throw-if-not-resolved="false"></xref> that represents the static type of the expression. '
   overridden: System.Linq.Expressions.Expression.Type
+  overload: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Type*
   modifiers.csharp:
   - public
   - override
@@ -694,6 +703,45 @@ items:
   - Public
   - Overrides
   - ReadOnly
+- uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.IsNullable
+  commentId: P:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.IsNullable
+  id: IsNullable
+  parent: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression
+  langs:
+  - csharp
+  - vb
+  name: IsNullable
+  nameWithType: ColumnExpression.IsNullable
+  fullName: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.IsNullable
+  type: Property
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.Relational/Query/Expressions/ColumnExpression.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: IsNullable
+    path: src/Microsoft.EntityFrameworkCore.Relational/Query/Expressions/ColumnExpression.cs
+    startLine: 97
+  assemblies:
+  - Microsoft.EntityFrameworkCore.Relational
+  namespace: Microsoft.EntityFrameworkCore.Query.Expressions
+  summary: "\nGets a value indicating whether this column expression can contain null.\n"
+  example: []
+  syntax:
+    content: public virtual bool IsNullable { get; set; }
+    content.vb: Public Overridable Property IsNullable As Boolean
+    parameters: []
+    return:
+      type: System.Boolean
+  overload: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.IsNullable*
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Overridable
 - uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Accept(System.Linq.Expressions.ExpressionVisitor)
   commentId: M:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Accept(System.Linq.Expressions.ExpressionVisitor)
   id: Accept(System.Linq.Expressions.ExpressionVisitor)
@@ -712,7 +760,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Accept
     path: src/Microsoft.EntityFrameworkCore.Relational/Query/Expressions/ColumnExpression.cs
-    startLine: 96
+    startLine: 102
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Query.Expressions
@@ -727,6 +775,7 @@ items:
     return:
       type: System.Linq.Expressions.Expression
   overridden: System.Linq.Expressions.Expression.Accept(System.Linq.Expressions.ExpressionVisitor)
+  overload: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Accept*
   modifiers.csharp:
   - protected
   - override
@@ -751,12 +800,12 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: VisitChildren
     path: src/Microsoft.EntityFrameworkCore.Relational/Query/Expressions/ColumnExpression.cs
-    startLine: 120
+    startLine: 126
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Query.Expressions
-  summary: "\n    Reduces the node and then calls the <xref href=\"System.Linq.Expressions.ExpressionVisitor.Visit(System.Linq.Expressions.Expression)\" data-throw-if-not-resolved=\"false\"></xref> method passing the\n    reduced expression.\n    Throws an exception if the node isn't reducible.\n"
-  remarks: "\n    Override this method to provide logic to walk the node's children.\n    A typical implementation will call visitor.Visit on each of its\n    children, and if any of them change, should return a new copy of\n    itself with the modified children.\n"
+  summary: "\nReduces the node and then calls the <xref href=\"System.Linq.Expressions.ExpressionVisitor.Visit(System.Linq.Expressions.Expression)\" data-throw-if-not-resolved=\"false\"></xref> method passing the\nreduced expression.\nThrows an exception if the node isn't reducible.\n"
+  remarks: "\nOverride this method to provide logic to walk the node's children.\nA typical implementation will call visitor.Visit on each of its\nchildren, and if any of them change, should return a new copy of\nitself with the modified children.\n"
   example: []
   syntax:
     content: protected override Expression VisitChildren(ExpressionVisitor visitor)
@@ -769,6 +818,7 @@ items:
       type: System.Linq.Expressions.Expression
       description: 'The expression being visited, or an expression which should replace it in the tree. '
   overridden: System.Linq.Expressions.Expression.VisitChildren(System.Linq.Expressions.ExpressionVisitor)
+  overload: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.VisitChildren*
   modifiers.csharp:
   - protected
   - override
@@ -793,11 +843,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Equals
     path: src/Microsoft.EntityFrameworkCore.Relational/Query/Expressions/ColumnExpression.cs
-    startLine: 135
+    startLine: 141
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Query.Expressions
-  summary: "\n    Tests if this object is considered equal to another.\n"
+  summary: "\nTests if this object is considered equal to another.\n"
   example: []
   syntax:
     content: public override bool Equals(object obj)
@@ -808,8 +858,9 @@ items:
       description: 'The object to compare with the current object. '
     return:
       type: System.Boolean
-      description: "\n    true if the objects are considered equal, false if they are not.\n"
+      description: "\ntrue if the objects are considered equal, false if they are not.\n"
   overridden: System.Object.Equals(System.Object)
+  overload: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Equals*
   modifiers.csharp:
   - public
   - override
@@ -834,19 +885,20 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: GetHashCode
     path: src/Microsoft.EntityFrameworkCore.Relational/Query/Expressions/ColumnExpression.cs
-    startLine: 157
+    startLine: 163
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Query.Expressions
-  summary: "\n    Returns a hash code for this object.\n"
+  summary: "\nReturns a hash code for this object.\n"
   example: []
   syntax:
     content: public override int GetHashCode()
     content.vb: Public Overrides Function GetHashCode As Integer
     return:
       type: System.Int32
-      description: "\n    A hash code for this object.\n"
+      description: "\nA hash code for this object.\n"
   overridden: System.Object.GetHashCode
+  overload: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.GetHashCode*
   modifiers.csharp:
   - public
   - override
@@ -871,7 +923,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ToString
     path: src/Microsoft.EntityFrameworkCore.Relational/Query/Expressions/ColumnExpression.cs
-    startLine: 170
+    startLine: 176
   assemblies:
   - Microsoft.EntityFrameworkCore.Relational
   namespace: Microsoft.EntityFrameworkCore.Query.Expressions
@@ -884,6 +936,7 @@ items:
       type: System.String
       description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> representation of the Expression.
   overridden: System.Linq.Expressions.Expression.ToString
+  overload: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.ToString*
   modifiers.csharp:
   - public
   - override
@@ -22972,122 +23025,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
-  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression(System.Linq.Expressions.Expression)
-  parent: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
-  definition: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression(System.Linq.Expressions.Expression)
-  name: TryGetColumnExpression()
-  nameWithType: RelationalExpressionExtensions.TryGetColumnExpression()
-  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
-    name: TryGetColumnExpression
-    nameWithType: RelationalExpressionExtensions.TryGetColumnExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
-    name: TryGetColumnExpression
-    nameWithType: RelationalExpressionExtensions.TryGetColumnExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
-  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression(System.Linq.Expressions.Expression)
-  parent: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
-  definition: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression(System.Linq.Expressions.Expression)
-  name: IsAliasWithColumnExpression()
-  nameWithType: RelationalExpressionExtensions.IsAliasWithColumnExpression()
-  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
-    name: IsAliasWithColumnExpression
-    nameWithType: RelationalExpressionExtensions.IsAliasWithColumnExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
-    name: IsAliasWithColumnExpression
-    nameWithType: RelationalExpressionExtensions.IsAliasWithColumnExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
-  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression(System.Linq.Expressions.Expression)
-  parent: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
-  definition: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression(System.Linq.Expressions.Expression)
-  name: IsAliasWithSelectExpression()
-  nameWithType: RelationalExpressionExtensions.IsAliasWithSelectExpression()
-  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
-    name: IsAliasWithSelectExpression
-    nameWithType: RelationalExpressionExtensions.IsAliasWithSelectExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
-    name: IsAliasWithSelectExpression
-    nameWithType: RelationalExpressionExtensions.IsAliasWithSelectExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
-  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression(System.Linq.Expressions.Expression)
-  parent: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
-  definition: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression(System.Linq.Expressions.Expression)
-  name: IsSimpleExpression()
-  nameWithType: RelationalExpressionExtensions.IsSimpleExpression()
-  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression()
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
-    name: IsSimpleExpression
-    nameWithType: RelationalExpressionExtensions.IsSimpleExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
-    name: IsSimpleExpression
-    nameWithType: RelationalExpressionExtensions.IsSimpleExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.ExpressionExtensions.RemoveConvert
   commentId: M:Microsoft.EntityFrameworkCore.Internal.ExpressionExtensions.RemoveConvert(System.Linq.Expressions.Expression)
   parent: Microsoft.EntityFrameworkCore.Internal.ExpressionExtensions
@@ -23207,6 +23144,122 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
+  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression(System.Linq.Expressions.Expression)
+  parent: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
+  definition: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression(System.Linq.Expressions.Expression)
+  name: TryGetColumnExpression()
+  nameWithType: RelationalExpressionExtensions.TryGetColumnExpression()
+  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
+    name: TryGetColumnExpression
+    nameWithType: RelationalExpressionExtensions.TryGetColumnExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
+    name: TryGetColumnExpression
+    nameWithType: RelationalExpressionExtensions.TryGetColumnExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
+  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression(System.Linq.Expressions.Expression)
+  parent: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
+  definition: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression(System.Linq.Expressions.Expression)
+  name: IsAliasWithColumnExpression()
+  nameWithType: RelationalExpressionExtensions.IsAliasWithColumnExpression()
+  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
+    name: IsAliasWithColumnExpression
+    nameWithType: RelationalExpressionExtensions.IsAliasWithColumnExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
+    name: IsAliasWithColumnExpression
+    nameWithType: RelationalExpressionExtensions.IsAliasWithColumnExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
+  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression(System.Linq.Expressions.Expression)
+  parent: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
+  definition: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression(System.Linq.Expressions.Expression)
+  name: IsAliasWithSelectExpression()
+  nameWithType: RelationalExpressionExtensions.IsAliasWithSelectExpression()
+  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
+    name: IsAliasWithSelectExpression
+    nameWithType: RelationalExpressionExtensions.IsAliasWithSelectExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
+    name: IsAliasWithSelectExpression
+    nameWithType: RelationalExpressionExtensions.IsAliasWithSelectExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression.Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
+  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression(System.Linq.Expressions.Expression)
+  parent: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
+  definition: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression(System.Linq.Expressions.Expression)
+  name: IsSimpleExpression()
+  nameWithType: RelationalExpressionExtensions.IsSimpleExpression()
+  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
+    name: IsSimpleExpression
+    nameWithType: RelationalExpressionExtensions.IsSimpleExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
+    name: IsSimpleExpression
+    nameWithType: RelationalExpressionExtensions.IsSimpleExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
@@ -23219,165 +23272,6 @@ references:
   name: System.Linq.Expressions
   nameWithType: System.Linq.Expressions
   fullName: System.Linq.Expressions
-- uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression(System.Linq.Expressions.Expression)
-  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression(System.Linq.Expressions.Expression)
-  isExternal: true
-  name: TryGetColumnExpression(Expression)
-  nameWithType: RelationalExpressionExtensions.TryGetColumnExpression(Expression)
-  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression(System.Linq.Expressions.Expression)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression(System.Linq.Expressions.Expression)
-    name: TryGetColumnExpression
-    nameWithType: RelationalExpressionExtensions.TryGetColumnExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.Expression
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression(System.Linq.Expressions.Expression)
-    name: TryGetColumnExpression
-    nameWithType: RelationalExpressionExtensions.TryGetColumnExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.Expression
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
-  commentId: T:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
-  parent: Microsoft.EntityFrameworkCore.Internal
-  isExternal: false
-  name: RelationalExpressionExtensions
-  nameWithType: RelationalExpressionExtensions
-  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
-- uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression(System.Linq.Expressions.Expression)
-  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression(System.Linq.Expressions.Expression)
-  isExternal: true
-  name: IsAliasWithColumnExpression(Expression)
-  nameWithType: RelationalExpressionExtensions.IsAliasWithColumnExpression(Expression)
-  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression(System.Linq.Expressions.Expression)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression(System.Linq.Expressions.Expression)
-    name: IsAliasWithColumnExpression
-    nameWithType: RelationalExpressionExtensions.IsAliasWithColumnExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.Expression
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression(System.Linq.Expressions.Expression)
-    name: IsAliasWithColumnExpression
-    nameWithType: RelationalExpressionExtensions.IsAliasWithColumnExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.Expression
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression(System.Linq.Expressions.Expression)
-  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression(System.Linq.Expressions.Expression)
-  isExternal: true
-  name: IsAliasWithSelectExpression(Expression)
-  nameWithType: RelationalExpressionExtensions.IsAliasWithSelectExpression(Expression)
-  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression(System.Linq.Expressions.Expression)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression(System.Linq.Expressions.Expression)
-    name: IsAliasWithSelectExpression
-    nameWithType: RelationalExpressionExtensions.IsAliasWithSelectExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.Expression
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression(System.Linq.Expressions.Expression)
-    name: IsAliasWithSelectExpression
-    nameWithType: RelationalExpressionExtensions.IsAliasWithSelectExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.Expression
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression(System.Linq.Expressions.Expression)
-  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression(System.Linq.Expressions.Expression)
-  isExternal: true
-  name: IsSimpleExpression(Expression)
-  nameWithType: RelationalExpressionExtensions.IsSimpleExpression(Expression)
-  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression(System.Linq.Expressions.Expression)
-  spec.csharp:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression(System.Linq.Expressions.Expression)
-    name: IsSimpleExpression
-    nameWithType: RelationalExpressionExtensions.IsSimpleExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.Expression
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression(System.Linq.Expressions.Expression)
-    name: IsSimpleExpression
-    nameWithType: RelationalExpressionExtensions.IsSimpleExpression
-    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.Expression
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Internal.ExpressionExtensions.RemoveConvert(System.Linq.Expressions.Expression)
   commentId: M:Microsoft.EntityFrameworkCore.Internal.ExpressionExtensions.RemoveConvert(System.Linq.Expressions.Expression)
   isExternal: true
@@ -23540,12 +23434,177 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression(System.Linq.Expressions.Expression)
+  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression(System.Linq.Expressions.Expression)
+  isExternal: true
+  name: TryGetColumnExpression(Expression)
+  nameWithType: RelationalExpressionExtensions.TryGetColumnExpression(Expression)
+  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression(System.Linq.Expressions.Expression)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression(System.Linq.Expressions.Expression)
+    name: TryGetColumnExpression
+    nameWithType: RelationalExpressionExtensions.TryGetColumnExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.Expression
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression(System.Linq.Expressions.Expression)
+    name: TryGetColumnExpression
+    nameWithType: RelationalExpressionExtensions.TryGetColumnExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.TryGetColumnExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.Expression
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
+  commentId: T:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
+  parent: Microsoft.EntityFrameworkCore.Internal
+  isExternal: false
+  name: RelationalExpressionExtensions
+  nameWithType: RelationalExpressionExtensions
+  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
+- uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression(System.Linq.Expressions.Expression)
+  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression(System.Linq.Expressions.Expression)
+  isExternal: true
+  name: IsAliasWithColumnExpression(Expression)
+  nameWithType: RelationalExpressionExtensions.IsAliasWithColumnExpression(Expression)
+  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression(System.Linq.Expressions.Expression)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression(System.Linq.Expressions.Expression)
+    name: IsAliasWithColumnExpression
+    nameWithType: RelationalExpressionExtensions.IsAliasWithColumnExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.Expression
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression(System.Linq.Expressions.Expression)
+    name: IsAliasWithColumnExpression
+    nameWithType: RelationalExpressionExtensions.IsAliasWithColumnExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithColumnExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.Expression
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression(System.Linq.Expressions.Expression)
+  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression(System.Linq.Expressions.Expression)
+  isExternal: true
+  name: IsAliasWithSelectExpression(Expression)
+  nameWithType: RelationalExpressionExtensions.IsAliasWithSelectExpression(Expression)
+  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression(System.Linq.Expressions.Expression)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression(System.Linq.Expressions.Expression)
+    name: IsAliasWithSelectExpression
+    nameWithType: RelationalExpressionExtensions.IsAliasWithSelectExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.Expression
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression(System.Linq.Expressions.Expression)
+    name: IsAliasWithSelectExpression
+    nameWithType: RelationalExpressionExtensions.IsAliasWithSelectExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsAliasWithSelectExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.Expression
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression(System.Linq.Expressions.Expression)
+  commentId: M:Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression(System.Linq.Expressions.Expression)
+  isExternal: true
+  name: IsSimpleExpression(Expression)
+  nameWithType: RelationalExpressionExtensions.IsSimpleExpression(Expression)
+  fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression(System.Linq.Expressions.Expression)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression(System.Linq.Expressions.Expression)
+    name: IsSimpleExpression
+    nameWithType: RelationalExpressionExtensions.IsSimpleExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.Expression
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression(System.Linq.Expressions.Expression)
+    name: IsSimpleExpression
+    nameWithType: RelationalExpressionExtensions.IsSimpleExpression
+    fullName: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions.IsSimpleExpression
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.Expression
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Internal
   commentId: N:Microsoft.EntityFrameworkCore.Internal
   isExternal: false
   name: Microsoft.EntityFrameworkCore.Internal
   nameWithType: Microsoft.EntityFrameworkCore.Internal
   fullName: Microsoft.EntityFrameworkCore.Internal
+- uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.#ctor
+  isExternal: false
+  name: ColumnExpression
+  nameWithType: ColumnExpression.ColumnExpression
+  fullName: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.ColumnExpression
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -23580,6 +23639,30 @@ references:
   name: Type
   nameWithType: Type
   fullName: System.Type
+- uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Table*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Table
+  isExternal: false
+  name: Table
+  nameWithType: ColumnExpression.Table
+  fullName: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Table
+- uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.TableAlias*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.TableAlias
+  isExternal: false
+  name: TableAlias
+  nameWithType: ColumnExpression.TableAlias
+  fullName: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.TableAlias
+- uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Property*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Property
+  isExternal: false
+  name: Property
+  nameWithType: ColumnExpression.Property
+  fullName: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Property
+- uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Name*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Name
+  isExternal: false
+  name: Name
+  nameWithType: ColumnExpression.Name
+  fullName: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Name
 - uid: System.Linq.Expressions.ExpressionType
   commentId: T:System.Linq.Expressions.ExpressionType
   parent: System.Linq.Expressions
@@ -23594,6 +23677,12 @@ references:
   name: NodeType
   nameWithType: Expression.NodeType
   fullName: System.Linq.Expressions.Expression.NodeType
+- uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.NodeType*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.NodeType
+  isExternal: false
+  name: NodeType
+  nameWithType: ColumnExpression.NodeType
+  fullName: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.NodeType
 - uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Type
   commentId: P:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Type
 - uid: System.Linq.Expressions.Expression.Type
@@ -23603,6 +23692,25 @@ references:
   name: Type
   nameWithType: Expression.Type
   fullName: System.Linq.Expressions.Expression.Type
+- uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Type*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Type
+  isExternal: false
+  name: Type
+  nameWithType: ColumnExpression.Type
+  fullName: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Type
+- uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.IsNullable*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.IsNullable
+  isExternal: false
+  name: IsNullable
+  nameWithType: ColumnExpression.IsNullable
+  fullName: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.IsNullable
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
 - uid: System.Linq.Expressions.Expression.Accept(System.Linq.Expressions.ExpressionVisitor)
   commentId: M:System.Linq.Expressions.Expression.Accept(System.Linq.Expressions.ExpressionVisitor)
   parent: System.Linq.Expressions.Expression
@@ -23644,6 +23752,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Accept*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Accept
+  isExternal: false
+  name: Accept
+  nameWithType: ColumnExpression.Accept
+  fullName: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Accept
 - uid: System.Linq.Expressions.ExpressionVisitor
   commentId: T:System.Linq.Expressions.ExpressionVisitor
   parent: System.Linq.Expressions
@@ -23733,6 +23847,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.VisitChildren*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.VisitChildren
+  isExternal: false
+  name: VisitChildren
+  nameWithType: ColumnExpression.VisitChildren
+  fullName: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.VisitChildren
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -23774,13 +23894,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+- uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Equals*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Equals
+  isExternal: false
+  name: Equals
+  nameWithType: ColumnExpression.Equals
+  fullName: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.Equals
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
@@ -23812,6 +23931,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.GetHashCode*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.GetHashCode
+  isExternal: false
+  name: GetHashCode
+  nameWithType: ColumnExpression.GetHashCode
+  fullName: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.GetHashCode
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -23850,3 +23975,9 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.ToString*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.ToString
+  isExternal: false
+  name: ToString
+  nameWithType: ColumnExpression.ToString
+  fullName: Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression.ToString

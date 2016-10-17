@@ -8,6 +8,7 @@ items:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.#ctor(Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture)
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.ConcurrencyCheckAttribute_throws_if_value_in_database_changed
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
+  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.DatabaseGeneratedOption_configures_the_property_correctly
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Field_annotations_are_enabled
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Key_and_column_work_together
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Key_and_MaxLength_64_produce_nvarchar_64
@@ -35,21 +36,20 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: DataAnnotationSqlServerTest
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 13
+    startLine: 14
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: 'public class DataAnnotationSqlServerTest : DataAnnotationTestBase<SqlServerTestStore, DataAnnotationSqlServerFixture>, IClassFixture<DataAnnotationSqlServerFixture>, IDisposable'
+    content: 'public class DataAnnotationSqlServerTest : DataAnnotationTestBase<SqlServerTestStore, DataAnnotationSqlServerFixture>, IDisposable'
     content.vb: >-
       Public Class DataAnnotationSqlServerTest
           Inherits DataAnnotationTestBase(Of SqlServerTestStore, DataAnnotationSqlServerFixture)
-          Implements IClassFixture(Of DataAnnotationSqlServerFixture), IDisposable
+          Implements IDisposable
   inheritance:
   - System.Object
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}
   implements:
-  - Xunit.IClassFixture{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}
   - System.IDisposable
   inheritedMembers:
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.CreateContext
@@ -86,6 +86,8 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Key_from_base_type_is_recognized_if_base_discovered_first
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Key_from_base_type_is_recognized_if_discovered_through_relationship
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Key_on_nav_prop_is_ignored
+  - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Key_property_is_not_used_for_FK_when_set_by_annotation
+  - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.DatabaseGeneratedOption_configures_the_property_correctly
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Timestamp_takes_precedence_over_MaxLength
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Timestamp_takes_precedence_over_MaxLength_with_value
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Annotation_in_derived_class_when_base_class_processed_after_derived_class
@@ -126,13 +128,6 @@ items:
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.RequiredAttribute_for_property_throws_while_inserting_null_value
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
   - Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.TimestampAttribute_throws_if_value_in_database_changed
-  - System.Object.ToString
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
   modifiers.csharp:
   - public
   - class
@@ -157,7 +152,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 15
+    startLine: 16
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -167,6 +162,7 @@ items:
     parameters:
     - id: fixture
       type: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -189,7 +185,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: UseTransaction
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 19
+    startLine: 21
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -202,6 +198,7 @@ items:
     - id: transaction
       type: Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.UseTransaction*
   modifiers.csharp:
   - protected
   - override
@@ -226,26 +223,17 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Non_public_annotations_are_enabled
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 22
+    startLine: 24
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: >-
-      [Fact]
-
-      public override ModelBuilder Non_public_annotations_are_enabled()
-    content.vb: >-
-      <Fact>
-
-      Public Overrides Function Non_public_annotations_are_enabled As ModelBuilder
+    content: public override ModelBuilder Non_public_annotations_are_enabled()
+    content.vb: Public Overrides Function Non_public_annotations_are_enabled As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Non_public_annotations_are_enabled
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Non_public_annotations_are_enabled*
   modifiers.csharp:
   - public
   - override
@@ -270,26 +258,17 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Field_annotations_are_enabled
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 34
+    startLine: 35
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: >-
-      [Fact]
-
-      public override ModelBuilder Field_annotations_are_enabled()
-    content.vb: >-
-      <Fact>
-
-      Public Overrides Function Field_annotations_are_enabled As ModelBuilder
+    content: public override ModelBuilder Field_annotations_are_enabled()
+    content.vb: Public Overrides Function Field_annotations_are_enabled As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Field_annotations_are_enabled
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Field_annotations_are_enabled*
   modifiers.csharp:
   - public
   - override
@@ -319,21 +298,12 @@ items:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: >-
-      [Fact]
-
-      public override ModelBuilder Key_and_column_work_together()
-    content.vb: >-
-      <Fact>
-
-      Public Overrides Function Key_and_column_work_together As ModelBuilder
+    content: public override ModelBuilder Key_and_column_work_together()
+    content.vb: Public Overrides Function Key_and_column_work_together As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Key_and_column_work_together
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Key_and_column_work_together*
   modifiers.csharp:
   - public
   - override
@@ -358,26 +328,17 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Key_and_MaxLength_64_produce_nvarchar_64
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 58
+    startLine: 57
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: >-
-      [Fact]
-
-      public override ModelBuilder Key_and_MaxLength_64_produce_nvarchar_64()
-    content.vb: >-
-      <Fact>
-
-      Public Overrides Function Key_and_MaxLength_64_produce_nvarchar_64 As ModelBuilder
+    content: public override ModelBuilder Key_and_MaxLength_64_produce_nvarchar_64()
+    content.vb: Public Overrides Function Key_and_MaxLength_64_produce_nvarchar_64 As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Key_and_MaxLength_64_produce_nvarchar_64
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Key_and_MaxLength_64_produce_nvarchar_64*
   modifiers.csharp:
   - public
   - override
@@ -402,26 +363,17 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Timestamp_takes_precedence_over_MaxLength
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 69
+    startLine: 67
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: >-
-      [Fact]
-
-      public override ModelBuilder Timestamp_takes_precedence_over_MaxLength()
-    content.vb: >-
-      <Fact>
-
-      Public Overrides Function Timestamp_takes_precedence_over_MaxLength As ModelBuilder
+    content: public override ModelBuilder Timestamp_takes_precedence_over_MaxLength()
+    content.vb: Public Overrides Function Timestamp_takes_precedence_over_MaxLength As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Timestamp_takes_precedence_over_MaxLength
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Timestamp_takes_precedence_over_MaxLength*
   modifiers.csharp:
   - public
   - override
@@ -446,26 +398,17 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Timestamp_takes_precedence_over_MaxLength_with_value
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 80
+    startLine: 77
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: >-
-      [Fact]
-
-      public override ModelBuilder Timestamp_takes_precedence_over_MaxLength_with_value()
-    content.vb: >-
-      <Fact>
-
-      Public Overrides Function Timestamp_takes_precedence_over_MaxLength_with_value As ModelBuilder
+    content: public override ModelBuilder Timestamp_takes_precedence_over_MaxLength_with_value()
+    content.vb: Public Overrides Function Timestamp_takes_precedence_over_MaxLength_with_value As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Timestamp_takes_precedence_over_MaxLength_with_value
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Timestamp_takes_precedence_over_MaxLength_with_value*
   modifiers.csharp:
   - public
   - override
@@ -490,26 +433,52 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: TableNameAttribute_affects_table_name_in_TPH
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 91
+    startLine: 87
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: >-
-      [Fact]
-
-      public override ModelBuilder TableNameAttribute_affects_table_name_in_TPH()
-    content.vb: >-
-      <Fact>
-
-      Public Overrides Function TableNameAttribute_affects_table_name_in_TPH As ModelBuilder
+    content: public override ModelBuilder TableNameAttribute_affects_table_name_in_TPH()
+    content.vb: Public Overrides Function TableNameAttribute_affects_table_name_in_TPH As ModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.ModelBuilder
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.TableNameAttribute_affects_table_name_in_TPH
-  attributes:
-  - type: Xunit.FactAttribute
-    ctor: Xunit.FactAttribute.#ctor
-    arguments: []
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.TableNameAttribute_affects_table_name_in_TPH*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.DatabaseGeneratedOption_configures_the_property_correctly
+  commentId: M:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.DatabaseGeneratedOption_configures_the_property_correctly
+  id: DatabaseGeneratedOption_configures_the_property_correctly
+  parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest
+  langs:
+  - csharp
+  - vb
+  name: DatabaseGeneratedOption_configures_the_property_correctly()
+  nameWithType: DataAnnotationSqlServerTest.DatabaseGeneratedOption_configures_the_property_correctly()
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.DatabaseGeneratedOption_configures_the_property_correctly()
+  type: Method
+  source:
+    remote:
+      path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: DatabaseGeneratedOption_configures_the_property_correctly
+    path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
+    startLine: 97
+  assemblies:
+  - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
+  namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
+  syntax:
+    content: public override ModelBuilder DatabaseGeneratedOption_configures_the_property_correctly()
+    content.vb: Public Overrides Function DatabaseGeneratedOption_configures_the_property_correctly As ModelBuilder
+    return:
+      type: Microsoft.EntityFrameworkCore.ModelBuilder
+  overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.DatabaseGeneratedOption_configures_the_property_correctly
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.DatabaseGeneratedOption_configures_the_property_correctly*
   modifiers.csharp:
   - public
   - override
@@ -534,7 +503,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: ConcurrencyCheckAttribute_throws_if_value_in_database_changed
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 102
+    startLine: 108
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -542,6 +511,7 @@ items:
     content: public override void ConcurrencyCheckAttribute_throws_if_value_in_database_changed()
     content.vb: Public Overrides Sub ConcurrencyCheckAttribute_throws_if_value_in_database_changed
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.ConcurrencyCheckAttribute_throws_if_value_in_database_changed
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.ConcurrencyCheckAttribute_throws_if_value_in_database_changed*
   modifiers.csharp:
   - public
   - override
@@ -566,7 +536,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 136
+    startLine: 142
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -574,6 +544,7 @@ items:
     content: public override void DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity()
     content.vb: Public Overrides Sub DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity*
   modifiers.csharp:
   - public
   - override
@@ -598,7 +569,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 153
+    startLine: 159
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -606,6 +577,7 @@ items:
     content: public override void MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length()
     content.vb: Public Overrides Sub MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length*
   modifiers.csharp:
   - public
   - override
@@ -630,7 +602,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: RequiredAttribute_for_navigation_throws_while_inserting_null_value
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 181
+    startLine: 187
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -638,6 +610,7 @@ items:
     content: public override void RequiredAttribute_for_navigation_throws_while_inserting_null_value()
     content.vb: Public Overrides Sub RequiredAttribute_for_navigation_throws_while_inserting_null_value
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.RequiredAttribute_for_navigation_throws_while_inserting_null_value
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.RequiredAttribute_for_navigation_throws_while_inserting_null_value*
   modifiers.csharp:
   - public
   - override
@@ -662,7 +635,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: RequiredAttribute_for_property_throws_while_inserting_null_value
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 194
+    startLine: 200
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -670,6 +643,7 @@ items:
     content: public override void RequiredAttribute_for_property_throws_while_inserting_null_value()
     content.vb: Public Overrides Sub RequiredAttribute_for_property_throws_while_inserting_null_value
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.RequiredAttribute_for_property_throws_while_inserting_null_value
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.RequiredAttribute_for_property_throws_while_inserting_null_value*
   modifiers.csharp:
   - public
   - override
@@ -694,7 +668,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 222
+    startLine: 228
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -702,6 +676,7 @@ items:
     content: public override void StringLengthAttribute_throws_while_inserting_value_longer_than_max_length()
     content.vb: Public Overrides Sub StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.StringLengthAttribute_throws_while_inserting_value_longer_than_max_length*
   modifiers.csharp:
   - public
   - override
@@ -726,7 +701,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: TimestampAttribute_throws_if_value_in_database_changed
     path: test/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests/DataAnnotationSqlServerTest.cs
-    startLine: 246
+    startLine: 252
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -734,6 +709,7 @@ items:
     content: public override void TimestampAttribute_throws_if_value_in_database_changed()
     content.vb: Public Overrides Sub TimestampAttribute_throws_if_value_in_database_changed
   overridden: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.TimestampAttribute_throws_if_value_in_database_changed
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.TimestampAttribute_throws_if_value_in_database_changed*
   modifiers.csharp:
   - public
   - override
@@ -801,48 +777,6 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture
-    name: DataAnnotationSqlServerFixture
-    nameWithType: DataAnnotationSqlServerFixture
-    fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Xunit.IClassFixture{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}
-  commentId: T:Xunit.IClassFixture{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}
-  parent: Xunit
-  definition: Xunit.IClassFixture`1
-  name: IClassFixture<DataAnnotationSqlServerFixture>
-  nameWithType: IClassFixture<DataAnnotationSqlServerFixture>
-  fullName: Xunit.IClassFixture<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture>
-  nameWithType.vb: IClassFixture(Of DataAnnotationSqlServerFixture)
-  fullname.vb: Xunit.IClassFixture(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture)
-  name.vb: IClassFixture(Of DataAnnotationSqlServerFixture)
-  spec.csharp:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture
-    name: DataAnnotationSqlServerFixture
-    nameWithType: DataAnnotationSqlServerFixture
-    fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture
     name: DataAnnotationSqlServerFixture
     nameWithType: DataAnnotationSqlServerFixture
@@ -1947,6 +1881,68 @@ references:
     name: Key_on_nav_prop_is_ignored
     nameWithType: DataAnnotationTestBase(Of SqlServerTestStore, DataAnnotationSqlServerFixture).Key_on_nav_prop_is_ignored
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture).Key_on_nav_prop_is_ignored
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Key_property_is_not_used_for_FK_when_set_by_annotation
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.Key_property_is_not_used_for_FK_when_set_by_annotation
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_property_is_not_used_for_FK_when_set_by_annotation
+  name: Key_property_is_not_used_for_FK_when_set_by_annotation()
+  nameWithType: DataAnnotationTestBase<SqlServerTestStore, DataAnnotationSqlServerFixture>.Key_property_is_not_used_for_FK_when_set_by_annotation()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture>.Key_property_is_not_used_for_FK_when_set_by_annotation()
+  nameWithType.vb: DataAnnotationTestBase(Of SqlServerTestStore, DataAnnotationSqlServerFixture).Key_property_is_not_used_for_FK_when_set_by_annotation()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture).Key_property_is_not_used_for_FK_when_set_by_annotation()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_property_is_not_used_for_FK_when_set_by_annotation
+    name: Key_property_is_not_used_for_FK_when_set_by_annotation
+    nameWithType: DataAnnotationTestBase<SqlServerTestStore, DataAnnotationSqlServerFixture>.Key_property_is_not_used_for_FK_when_set_by_annotation
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture>.Key_property_is_not_used_for_FK_when_set_by_annotation
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_property_is_not_used_for_FK_when_set_by_annotation
+    name: Key_property_is_not_used_for_FK_when_set_by_annotation
+    nameWithType: DataAnnotationTestBase(Of SqlServerTestStore, DataAnnotationSqlServerFixture).Key_property_is_not_used_for_FK_when_set_by_annotation
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture).Key_property_is_not_used_for_FK_when_set_by_annotation
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.DatabaseGeneratedOption_configures_the_property_correctly
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}.DatabaseGeneratedOption_configures_the_property_correctly
+  parent: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase{Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore,Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture}
+  definition: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedOption_configures_the_property_correctly
+  name: DatabaseGeneratedOption_configures_the_property_correctly()
+  nameWithType: DataAnnotationTestBase<SqlServerTestStore, DataAnnotationSqlServerFixture>.DatabaseGeneratedOption_configures_the_property_correctly()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture>.DatabaseGeneratedOption_configures_the_property_correctly()
+  nameWithType.vb: DataAnnotationTestBase(Of SqlServerTestStore, DataAnnotationSqlServerFixture).DatabaseGeneratedOption_configures_the_property_correctly()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture).DatabaseGeneratedOption_configures_the_property_correctly()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedOption_configures_the_property_correctly
+    name: DatabaseGeneratedOption_configures_the_property_correctly
+    nameWithType: DataAnnotationTestBase<SqlServerTestStore, DataAnnotationSqlServerFixture>.DatabaseGeneratedOption_configures_the_property_correctly
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture>.DatabaseGeneratedOption_configures_the_property_correctly
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedOption_configures_the_property_correctly
+    name: DatabaseGeneratedOption_configures_the_property_correctly
+    nameWithType: DataAnnotationTestBase(Of SqlServerTestStore, DataAnnotationSqlServerFixture).DatabaseGeneratedOption_configures_the_property_correctly
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.Utilities.SqlServerTestStore, Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture).DatabaseGeneratedOption_configures_the_property_correctly
   - name: (
     nameWithType: (
     fullName: (
@@ -3193,285 +3189,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: false
@@ -3533,51 +3250,6 @@ references:
   name: Microsoft.EntityFrameworkCore.Specification.Tests
   nameWithType: Microsoft.EntityFrameworkCore.Specification.Tests
   fullName: Microsoft.EntityFrameworkCore.Specification.Tests
-- uid: Xunit.IClassFixture`1
-  commentId: T:Xunit.IClassFixture`1
-  isExternal: true
-  name: IClassFixture<TFixture>
-  nameWithType: IClassFixture<TFixture>
-  fullName: Xunit.IClassFixture<TFixture>
-  nameWithType.vb: IClassFixture(Of TFixture)
-  fullname.vb: Xunit.IClassFixture(Of TFixture)
-  name.vb: IClassFixture(Of TFixture)
-  spec.csharp:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TFixture
-    nameWithType: TFixture
-    fullName: TFixture
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Xunit.IClassFixture`1
-    name: IClassFixture
-    nameWithType: IClassFixture
-    fullName: Xunit.IClassFixture
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TFixture
-    nameWithType: TFixture
-    fullName: TFixture
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Xunit
-  commentId: N:Xunit
-  isExternal: false
-  name: Xunit
-  nameWithType: Xunit
-  fullName: Xunit
 - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.CreateContext
   commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.CreateContext
   isExternal: false
@@ -4634,6 +4306,66 @@ references:
     name: Key_on_nav_prop_is_ignored
     nameWithType: DataAnnotationTestBase(Of TTestStore, TFixture).Key_on_nav_prop_is_ignored
     fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Key_on_nav_prop_is_ignored
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_property_is_not_used_for_FK_when_set_by_annotation
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_property_is_not_used_for_FK_when_set_by_annotation
+  isExternal: false
+  name: Key_property_is_not_used_for_FK_when_set_by_annotation()
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Key_property_is_not_used_for_FK_when_set_by_annotation()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Key_property_is_not_used_for_FK_when_set_by_annotation()
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Key_property_is_not_used_for_FK_when_set_by_annotation()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Key_property_is_not_used_for_FK_when_set_by_annotation()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_property_is_not_used_for_FK_when_set_by_annotation
+    name: Key_property_is_not_used_for_FK_when_set_by_annotation
+    nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.Key_property_is_not_used_for_FK_when_set_by_annotation
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.Key_property_is_not_used_for_FK_when_set_by_annotation
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Key_property_is_not_used_for_FK_when_set_by_annotation
+    name: Key_property_is_not_used_for_FK_when_set_by_annotation
+    nameWithType: DataAnnotationTestBase(Of TTestStore, TFixture).Key_property_is_not_used_for_FK_when_set_by_annotation
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).Key_property_is_not_used_for_FK_when_set_by_annotation
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedOption_configures_the_property_correctly
+  commentId: M:Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedOption_configures_the_property_correctly
+  isExternal: false
+  name: DatabaseGeneratedOption_configures_the_property_correctly()
+  nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.DatabaseGeneratedOption_configures_the_property_correctly()
+  fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.DatabaseGeneratedOption_configures_the_property_correctly()
+  nameWithType.vb: DataAnnotationTestBase(Of TTestStore, TFixture).DatabaseGeneratedOption_configures_the_property_correctly()
+  fullname.vb: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).DatabaseGeneratedOption_configures_the_property_correctly()
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedOption_configures_the_property_correctly
+    name: DatabaseGeneratedOption_configures_the_property_correctly
+    nameWithType: DataAnnotationTestBase<TTestStore, TFixture>.DatabaseGeneratedOption_configures_the_property_correctly
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase<TTestStore, TFixture>.DatabaseGeneratedOption_configures_the_property_correctly
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.DatabaseGeneratedOption_configures_the_property_correctly
+    name: DatabaseGeneratedOption_configures_the_property_correctly
+    nameWithType: DataAnnotationTestBase(Of TTestStore, TFixture).DatabaseGeneratedOption_configures_the_property_correctly
+    fullName: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase(Of TTestStore, TFixture).DatabaseGeneratedOption_configures_the_property_correctly
   - name: (
     nameWithType: (
     fullName: (
@@ -5840,6 +5572,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.#ctor
+  isExternal: false
+  name: DataAnnotationSqlServerTest
+  nameWithType: DataAnnotationSqlServerTest.DataAnnotationSqlServerTest
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.DataAnnotationSqlServerTest
 - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture
   commentId: T:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture
   parent: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
@@ -5847,6 +5585,12 @@ references:
   name: DataAnnotationSqlServerFixture
   nameWithType: DataAnnotationSqlServerFixture
   fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerFixture
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.UseTransaction*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.UseTransaction
+  isExternal: false
+  name: UseTransaction
+  nameWithType: DataAnnotationSqlServerTest.UseTransaction
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.UseTransaction
 - uid: Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
   commentId: T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade
   parent: Microsoft.EntityFrameworkCore.Infrastructure
@@ -5873,6 +5617,12 @@ references:
   name: Microsoft.EntityFrameworkCore.Storage
   nameWithType: Microsoft.EntityFrameworkCore.Storage
   fullName: Microsoft.EntityFrameworkCore.Storage
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Non_public_annotations_are_enabled*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Non_public_annotations_are_enabled
+  isExternal: false
+  name: Non_public_annotations_are_enabled
+  nameWithType: DataAnnotationSqlServerTest.Non_public_annotations_are_enabled
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Non_public_annotations_are_enabled
 - uid: Microsoft.EntityFrameworkCore.ModelBuilder
   commentId: T:Microsoft.EntityFrameworkCore.ModelBuilder
   parent: Microsoft.EntityFrameworkCore
@@ -5886,3 +5636,87 @@ references:
   name: Microsoft.EntityFrameworkCore
   nameWithType: Microsoft.EntityFrameworkCore
   fullName: Microsoft.EntityFrameworkCore
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Field_annotations_are_enabled*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Field_annotations_are_enabled
+  isExternal: false
+  name: Field_annotations_are_enabled
+  nameWithType: DataAnnotationSqlServerTest.Field_annotations_are_enabled
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Field_annotations_are_enabled
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Key_and_column_work_together*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Key_and_column_work_together
+  isExternal: false
+  name: Key_and_column_work_together
+  nameWithType: DataAnnotationSqlServerTest.Key_and_column_work_together
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Key_and_column_work_together
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Key_and_MaxLength_64_produce_nvarchar_64*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Key_and_MaxLength_64_produce_nvarchar_64
+  isExternal: false
+  name: Key_and_MaxLength_64_produce_nvarchar_64
+  nameWithType: DataAnnotationSqlServerTest.Key_and_MaxLength_64_produce_nvarchar_64
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Key_and_MaxLength_64_produce_nvarchar_64
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Timestamp_takes_precedence_over_MaxLength*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Timestamp_takes_precedence_over_MaxLength
+  isExternal: false
+  name: Timestamp_takes_precedence_over_MaxLength
+  nameWithType: DataAnnotationSqlServerTest.Timestamp_takes_precedence_over_MaxLength
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Timestamp_takes_precedence_over_MaxLength
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Timestamp_takes_precedence_over_MaxLength_with_value*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Timestamp_takes_precedence_over_MaxLength_with_value
+  isExternal: false
+  name: Timestamp_takes_precedence_over_MaxLength_with_value
+  nameWithType: DataAnnotationSqlServerTest.Timestamp_takes_precedence_over_MaxLength_with_value
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.Timestamp_takes_precedence_over_MaxLength_with_value
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.TableNameAttribute_affects_table_name_in_TPH*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.TableNameAttribute_affects_table_name_in_TPH
+  isExternal: false
+  name: TableNameAttribute_affects_table_name_in_TPH
+  nameWithType: DataAnnotationSqlServerTest.TableNameAttribute_affects_table_name_in_TPH
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.TableNameAttribute_affects_table_name_in_TPH
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.DatabaseGeneratedOption_configures_the_property_correctly*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.DatabaseGeneratedOption_configures_the_property_correctly
+  isExternal: false
+  name: DatabaseGeneratedOption_configures_the_property_correctly
+  nameWithType: DataAnnotationSqlServerTest.DatabaseGeneratedOption_configures_the_property_correctly
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.DatabaseGeneratedOption_configures_the_property_correctly
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.ConcurrencyCheckAttribute_throws_if_value_in_database_changed*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.ConcurrencyCheckAttribute_throws_if_value_in_database_changed
+  isExternal: false
+  name: ConcurrencyCheckAttribute_throws_if_value_in_database_changed
+  nameWithType: DataAnnotationSqlServerTest.ConcurrencyCheckAttribute_throws_if_value_in_database_changed
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.ConcurrencyCheckAttribute_throws_if_value_in_database_changed
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
+  isExternal: false
+  name: DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
+  nameWithType: DataAnnotationSqlServerTest.DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.DatabaseGeneratedAttribute_autogenerates_values_when_set_to_identity
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  isExternal: false
+  name: MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  nameWithType: DataAnnotationSqlServerTest.MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.MaxLengthAttribute_throws_while_inserting_value_longer_than_max_length
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.RequiredAttribute_for_navigation_throws_while_inserting_null_value*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.RequiredAttribute_for_navigation_throws_while_inserting_null_value
+  isExternal: false
+  name: RequiredAttribute_for_navigation_throws_while_inserting_null_value
+  nameWithType: DataAnnotationSqlServerTest.RequiredAttribute_for_navigation_throws_while_inserting_null_value
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.RequiredAttribute_for_navigation_throws_while_inserting_null_value
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.RequiredAttribute_for_property_throws_while_inserting_null_value*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.RequiredAttribute_for_property_throws_while_inserting_null_value
+  isExternal: false
+  name: RequiredAttribute_for_property_throws_while_inserting_null_value
+  nameWithType: DataAnnotationSqlServerTest.RequiredAttribute_for_property_throws_while_inserting_null_value
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.RequiredAttribute_for_property_throws_while_inserting_null_value
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.StringLengthAttribute_throws_while_inserting_value_longer_than_max_length*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  isExternal: false
+  name: StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  nameWithType: DataAnnotationSqlServerTest.StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.StringLengthAttribute_throws_while_inserting_value_longer_than_max_length
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.TimestampAttribute_throws_if_value_in_database_changed*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.TimestampAttribute_throws_if_value_in_database_changed
+  isExternal: false
+  name: TimestampAttribute_throws_if_value_in_database_changed
+  nameWithType: DataAnnotationSqlServerTest.TimestampAttribute_throws_if_value_in_database_changed
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.DataAnnotationSqlServerTest.TimestampAttribute_throws_if_value_in_database_changed

@@ -28,11 +28,11 @@ items:
   - Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   namespace: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests
   syntax:
-    content: 'public class TestDatabaseCreator : SqlServerDatabaseCreator, IRelationalDatabaseCreator, IDatabaseCreator'
+    content: 'public class TestDatabaseCreator : SqlServerDatabaseCreator, IRelationalDatabaseCreator, IDatabaseCreator, IServiceInjectionSite'
     content.vb: >-
       Public Class TestDatabaseCreator
           Inherits SqlServerDatabaseCreator
-          Implements IRelationalDatabaseCreator, IDatabaseCreator
+          Implements IRelationalDatabaseCreator, IDatabaseCreator, IServiceInjectionSite
   inheritance:
   - System.Object
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
@@ -40,6 +40,7 @@ items:
   implements:
   - Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator
   - Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator
+  - Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
   inheritedMembers:
   - Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Create
   - Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.CreateAsync(System.Threading.CancellationToken)
@@ -52,6 +53,7 @@ items:
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Model
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Connection
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.MigrationCommandExecutor
+  - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices(System.IServiceProvider)
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTables
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTablesAsync(System.Threading.CancellationToken)
   - Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.GetCreateTablesCommands
@@ -112,6 +114,7 @@ items:
       type: Microsoft.EntityFrameworkCore.Storage.IRawSqlCommandBuilder
     - id: executionStrategyFactory
       type: Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -143,6 +146,7 @@ items:
     content.vb: Public Function HasTablesBase As Boolean
     return:
       type: System.Boolean
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.HasTablesBase*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -177,6 +181,7 @@ items:
       type: System.Threading.CancellationToken
     return:
       type: System.Threading.Tasks.Task{System.Boolean}
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.HasTablesAsyncBase*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -209,6 +214,7 @@ items:
     parameters: []
     return:
       type: Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory
+  overload: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.ExecutionStrategyFactory*
   modifiers.csharp:
   - public
   - get
@@ -257,6 +263,13 @@ references:
   name: IDatabaseCreator
   nameWithType: IDatabaseCreator
   fullName: Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator
+- uid: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
+  commentId: T:Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
+  parent: Microsoft.EntityFrameworkCore.Internal
+  isExternal: false
+  name: IServiceInjectionSite
+  nameWithType: IServiceInjectionSite
+  fullName: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
 - uid: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Create
   commentId: M:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.Create
   parent: Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator
@@ -550,6 +563,47 @@ references:
   name: MigrationCommandExecutor
   nameWithType: RelationalDatabaseCreator.MigrationCommandExecutor
   fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.MigrationCommandExecutor
+- uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices(System.IServiceProvider)
+  commentId: M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices(System.IServiceProvider)
+  parent: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
+  isExternal: true
+  name: IServiceInjectionSite.InjectServices(IServiceProvider)
+  nameWithType: RelationalDatabaseCreator.IServiceInjectionSite.InjectServices(IServiceProvider)
+  fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(System.IServiceProvider)
+  nameWithType.vb: RelationalDatabaseCreator.Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(IServiceProvider)
+  name.vb: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices(IServiceProvider)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices(System.IServiceProvider)
+    name: IServiceInjectionSite.InjectServices
+    nameWithType: RelationalDatabaseCreator.IServiceInjectionSite.InjectServices
+    fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IServiceProvider
+    name: IServiceProvider
+    nameWithType: IServiceProvider
+    fullName: System.IServiceProvider
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft#EntityFrameworkCore#Internal#IServiceInjectionSite#InjectServices(System.IServiceProvider)
+    name: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices
+    nameWithType: RelationalDatabaseCreator.Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices
+    fullName: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite.InjectServices
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IServiceProvider
+    name: IServiceProvider
+    nameWithType: IServiceProvider
+    fullName: System.IServiceProvider
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTables
   commentId: M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.CreateTables
   parent: Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator
@@ -1080,6 +1134,18 @@ references:
   name: Microsoft.EntityFrameworkCore.Storage.Internal
   nameWithType: Microsoft.EntityFrameworkCore.Storage.Internal
   fullName: Microsoft.EntityFrameworkCore.Storage.Internal
+- uid: Microsoft.EntityFrameworkCore.Internal
+  commentId: N:Microsoft.EntityFrameworkCore.Internal
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.Internal
+  nameWithType: Microsoft.EntityFrameworkCore.Internal
+  fullName: Microsoft.EntityFrameworkCore.Internal
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.#ctor
+  isExternal: false
+  name: TestDatabaseCreator
+  nameWithType: SqlServerDatabaseCreatorTest.TestDatabaseCreator.TestDatabaseCreator
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.TestDatabaseCreator
 - uid: Microsoft.EntityFrameworkCore.Storage.Internal.ISqlServerConnection
   commentId: T:Microsoft.EntityFrameworkCore.Storage.Internal.ISqlServerConnection
   parent: Microsoft.EntityFrameworkCore.Storage.Internal
@@ -1141,6 +1207,12 @@ references:
   name: Microsoft.EntityFrameworkCore.Metadata
   nameWithType: Microsoft.EntityFrameworkCore.Metadata
   fullName: Microsoft.EntityFrameworkCore.Metadata
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.HasTablesBase*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.HasTablesBase
+  isExternal: false
+  name: HasTablesBase
+  nameWithType: SqlServerDatabaseCreatorTest.TestDatabaseCreator.HasTablesBase
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.HasTablesBase
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -1148,6 +1220,12 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.HasTablesAsyncBase*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.HasTablesAsyncBase
+  isExternal: false
+  name: HasTablesAsyncBase
+  nameWithType: SqlServerDatabaseCreatorTest.TestDatabaseCreator.HasTablesAsyncBase
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.HasTablesAsyncBase
 - uid: System.Threading.CancellationToken
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
@@ -1250,3 +1328,9 @@ references:
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+- uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.ExecutionStrategyFactory*
+  commentId: Overload:Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.ExecutionStrategyFactory
+  isExternal: false
+  name: ExecutionStrategyFactory
+  nameWithType: SqlServerDatabaseCreatorTest.TestDatabaseCreator.ExecutionStrategyFactory
+  fullName: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerDatabaseCreatorTest.TestDatabaseCreator.ExecutionStrategyFactory

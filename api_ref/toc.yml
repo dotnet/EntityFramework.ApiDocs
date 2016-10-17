@@ -49,6 +49,8 @@
     name: MutableModelExtensions
   - uid: Microsoft.EntityFrameworkCore.MutableNavigationExtensions
     name: MutableNavigationExtensions
+  - uid: Microsoft.EntityFrameworkCore.MutablePropertyBaseExtensions
+    name: MutablePropertyBaseExtensions
   - uid: Microsoft.EntityFrameworkCore.MutablePropertyExtensions
     name: MutablePropertyExtensions
   - uid: Microsoft.EntityFrameworkCore.NavigationExtensions
@@ -458,8 +460,10 @@
     name: DatabaseOperations
   - uid: Microsoft.EntityFrameworkCore.Design.DbContextOperations
     name: DbContextOperations
-  - uid: Microsoft.EntityFrameworkCore.Design.IOperationLogHandler
-    name: IOperationLogHandler
+  - uid: Microsoft.EntityFrameworkCore.Design.IOperationReporter
+    name: IOperationReporter
+  - uid: Microsoft.EntityFrameworkCore.Design.IOperationReportHandler
+    name: IOperationReportHandler
   - uid: Microsoft.EntityFrameworkCore.Design.IOperationResultHandler
     name: IOperationResultHandler
   - uid: Microsoft.EntityFrameworkCore.Design.MigrationInfo
@@ -492,17 +496,18 @@
     name: OperationExecutor.ScriptMigration
   - uid: Microsoft.EntityFrameworkCore.Design.OperationExecutor.UpdateDatabase
     name: OperationExecutor.UpdateDatabase
-  - uid: Microsoft.EntityFrameworkCore.Design.OperationLogHandler
-    name: OperationLogHandler
+  - uid: Microsoft.EntityFrameworkCore.Design.OperationReportHandler
+    name: OperationReportHandler
   - uid: Microsoft.EntityFrameworkCore.Design.OperationResultHandler
     name: OperationResultHandler
+- uid: Microsoft.EntityFrameworkCore.Design.Design.Internal
+  name: Microsoft.EntityFrameworkCore.Design.Design.Internal
+  items:
+  - uid: Microsoft.EntityFrameworkCore.Design.Design.Internal.OperationLoggerTests
+    name: OperationLoggerTests
 - uid: Microsoft.EntityFrameworkCore.Design.Internal
   name: Microsoft.EntityFrameworkCore.Design.Internal
   items:
-  - uid: Microsoft.EntityFrameworkCore.Design.Internal.CommandLogger
-    name: CommandLogger
-  - uid: Microsoft.EntityFrameworkCore.Design.Internal.CommandLoggerAdapter
-    name: CommandLoggerAdapter
   - uid: Microsoft.EntityFrameworkCore.Design.Internal.DesignTimeServicesBuilder
     name: DesignTimeServicesBuilder
   - uid: Microsoft.EntityFrameworkCore.Design.Internal.ForwardingProxy
@@ -516,6 +521,10 @@
     name: HostingEnvironment
   - uid: Microsoft.EntityFrameworkCore.Design.Internal.LoggerProvider
     name: LoggerProvider
+  - uid: Microsoft.EntityFrameworkCore.Design.Internal.OperationLogger
+    name: OperationLogger
+  - uid: Microsoft.EntityFrameworkCore.Design.Internal.OperationReporter
+    name: OperationReporter
   - uid: Microsoft.EntityFrameworkCore.Design.Internal.StartupInvoker
     name: StartupInvoker
 - uid: Microsoft.EntityFrameworkCore.Design.Tests
@@ -530,8 +539,8 @@
     name: OperationExecutorTest
   - uid: Microsoft.EntityFrameworkCore.Design.Tests.Design.OperationExecutorTest.OperationBaseTests
     name: OperationExecutorTest.OperationBaseTests
-  - uid: Microsoft.EntityFrameworkCore.Design.Tests.Design.OperationLogHandlerTest
-    name: OperationLogHandlerTest
+  - uid: Microsoft.EntityFrameworkCore.Design.Tests.Design.OperationReportHandlerTest
+    name: OperationReportHandlerTest
   - uid: Microsoft.EntityFrameworkCore.Design.Tests.Design.OperationResultHandlerTest
     name: OperationResultHandlerTest
 - uid: Microsoft.EntityFrameworkCore.Design.Tests.Design.Internal
@@ -560,6 +569,11 @@
   - uid: Microsoft.EntityFrameworkCore.Design.Tests.Scaffolding.Internal.TheoryData`6
     name: TheoryData<T1, T2, T3, T4, T5, T6>
     name.vb: TheoryData(Of T1, T2, T3, T4, T5, T6)
+- uid: Microsoft.EntityFrameworkCore.Design.TestUtilities
+  name: Microsoft.EntityFrameworkCore.Design.TestUtilities
+  items:
+  - uid: Microsoft.EntityFrameworkCore.Design.TestUtilities.TestOperationReporter
+    name: TestOperationReporter
 - uid: Microsoft.EntityFrameworkCore.Extensions.Internal
   name: Microsoft.EntityFrameworkCore.Extensions.Internal
   items:
@@ -604,6 +618,8 @@
     name: DbContextAttribute
   - uid: Microsoft.EntityFrameworkCore.Infrastructure.DbContextFactoryOptions
     name: DbContextFactoryOptions
+  - uid: Microsoft.EntityFrameworkCore.Infrastructure.DesignEventId
+    name: DesignEventId
   - uid: Microsoft.EntityFrameworkCore.Infrastructure.DesignTimeProviderServicesAttribute
     name: DesignTimeProviderServicesAttribute
   - uid: Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServiceCollectionExtensions
@@ -621,6 +637,8 @@
     name: IDbContextOptionsBuilderInfrastructure
   - uid: Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptionsExtension
     name: IDbContextOptionsExtension
+  - uid: Microsoft.EntityFrameworkCore.Infrastructure.IDesignTimeServices
+    name: IDesignTimeServices
   - uid: Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure`1
     name: IInfrastructure<T>
     name.vb: IInfrastructure(Of T)
@@ -652,6 +670,8 @@
   - uid: Microsoft.EntityFrameworkCore.Infrastructure.RelationalDbContextOptionsBuilder`2
     name: RelationalDbContextOptionsBuilder<TBuilder, TExtension>
     name.vb: RelationalDbContextOptionsBuilder(Of TBuilder, TExtension)
+  - uid: Microsoft.EntityFrameworkCore.Infrastructure.RelationalDesignEventId
+    name: RelationalDesignEventId
   - uid: Microsoft.EntityFrameworkCore.Infrastructure.RelationalEventId
     name: RelationalEventId
   - uid: Microsoft.EntityFrameworkCore.Infrastructure.RelationalOptionsExtension
@@ -663,8 +683,12 @@
     name.vb: SensitiveDataLogger(Of T)
   - uid: Microsoft.EntityFrameworkCore.Infrastructure.SqliteDbContextOptionsBuilder
     name: SqliteDbContextOptionsBuilder
+  - uid: Microsoft.EntityFrameworkCore.Infrastructure.SqliteDesignEventId
+    name: SqliteDesignEventId
   - uid: Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder
     name: SqlServerDbContextOptionsBuilder
+  - uid: Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDesignEventId
+    name: SqlServerDesignEventId
   - uid: Microsoft.EntityFrameworkCore.Infrastructure.WarningsConfigurationBuilder
     name: WarningsConfigurationBuilder
 - uid: Microsoft.EntityFrameworkCore.Infrastructure.Internal
@@ -928,6 +952,8 @@
   - uid: Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1
     name: InternalDbSet<TEntity>
     name.vb: InternalDbSet(Of TEntity)
+  - uid: Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite
+    name: IServiceInjectionSite
   - uid: Microsoft.EntityFrameworkCore.Internal.LazyRef`1
     name: LazyRef<T>
     name.vb: LazyRef(Of T)
@@ -947,6 +973,8 @@
     name.vb: ReferenceEnumerableEqualityComparer(Of TEnumerable, TValue)
   - uid: Microsoft.EntityFrameworkCore.Internal.ReferenceEqualityComparer
     name: ReferenceEqualityComparer
+  - uid: Microsoft.EntityFrameworkCore.Internal.RelationalDesignLoggerExtensions
+    name: RelationalDesignLoggerExtensions
   - uid: Microsoft.EntityFrameworkCore.Internal.RelationalDesignStrings
     name: RelationalDesignStrings
   - uid: Microsoft.EntityFrameworkCore.Internal.RelationalExpressionExtensions
@@ -957,10 +985,16 @@
     name: RelationalStrings
   - uid: Microsoft.EntityFrameworkCore.Internal.ServiceProviderCache
     name: ServiceProviderCache
+  - uid: Microsoft.EntityFrameworkCore.Internal.ServiceProviderExtensions
+    name: ServiceProviderExtensions
+  - uid: Microsoft.EntityFrameworkCore.Internal.SqliteDesignLoggerExtensions
+    name: SqliteDesignLoggerExtensions
   - uid: Microsoft.EntityFrameworkCore.Internal.SqliteDesignStrings
     name: SqliteDesignStrings
   - uid: Microsoft.EntityFrameworkCore.Internal.SqliteStrings
     name: SqliteStrings
+  - uid: Microsoft.EntityFrameworkCore.Internal.SqlServerDesignLoggerExtensions
+    name: SqlServerDesignLoggerExtensions
   - uid: Microsoft.EntityFrameworkCore.Internal.SqlServerDesignStrings
     name: SqlServerDesignStrings
   - uid: Microsoft.EntityFrameworkCore.Internal.SqlServerStrings
@@ -1334,8 +1368,6 @@
     name: IClrPropertyGetter
   - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.IClrPropertySetter
     name: IClrPropertySetter
-  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.ICollectionTypeFactory
-    name: ICollectionTypeFactory
   - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.IEntityMaterializer
     name: IEntityMaterializer
   - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.IEntityMaterializerSource
@@ -2097,6 +2129,8 @@
     name: IQueryBuffer
   - uid: Microsoft.EntityFrameworkCore.Query.Internal.IQueryCompiler
     name: IQueryCompiler
+  - uid: Microsoft.EntityFrameworkCore.Query.Internal.IQueryModelPrinter
+    name: IQueryModelPrinter
   - uid: Microsoft.EntityFrameworkCore.Query.Internal.IQueryOptimizer
     name: IQueryOptimizer
   - uid: Microsoft.EntityFrameworkCore.Query.Internal.IRelatedEntitiesLoader
@@ -2128,6 +2162,8 @@
     name: QueryingEnumerable
   - uid: Microsoft.EntityFrameworkCore.Query.Internal.QueryModelExtensions
     name: QueryModelExtensions
+  - uid: Microsoft.EntityFrameworkCore.Query.Internal.QueryModelPrinter
+    name: QueryModelPrinter
   - uid: Microsoft.EntityFrameworkCore.Query.Internal.QueryOptimizer
     name: QueryOptimizer
   - uid: Microsoft.EntityFrameworkCore.Query.Internal.QuerySourceExtensions
@@ -2259,10 +2295,10 @@
     name: E2ETestBase
   - uid: Microsoft.EntityFrameworkCore.Relational.Design.Specification.Tests.ReverseEngineering.FileSet
     name: FileSet
-  - uid: Microsoft.EntityFrameworkCore.Relational.Design.Specification.Tests.ReverseEngineering.InMemoryCommandLogger
-    name: InMemoryCommandLogger
   - uid: Microsoft.EntityFrameworkCore.Relational.Design.Specification.Tests.ReverseEngineering.InMemoryFileService
     name: InMemoryFileService
+  - uid: Microsoft.EntityFrameworkCore.Relational.Design.Specification.Tests.ReverseEngineering.InMemoryOperationReporter
+    name: InMemoryOperationReporter
   - uid: Microsoft.EntityFrameworkCore.Relational.Design.Specification.Tests.ReverseEngineering.LoggerMessages
     name: LoggerMessages
 - uid: Microsoft.EntityFrameworkCore.Relational.Design.Specification.Tests.TestUtilities
@@ -2720,6 +2756,9 @@
   - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.BaseEntity5
     name: DataAnnotationTestBase<TTestStore, TFixture>.BaseEntity5
     name.vb: DataAnnotationTestBase(Of TTestStore, TFixture).BaseEntity5
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Child
+    name: DataAnnotationTestBase<TTestStore, TFixture>.Child
+    name.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Child
   - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.ColumnKeyAnnotationClass1
     name: DataAnnotationTestBase<TTestStore, TFixture>.ColumnKeyAnnotationClass1
     name.vb: DataAnnotationTestBase(Of TTestStore, TFixture).ColumnKeyAnnotationClass1
@@ -2756,6 +2795,9 @@
   - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.FieldAnnotationClass
     name: DataAnnotationTestBase<TTestStore, TFixture>.FieldAnnotationClass
     name.vb: DataAnnotationTestBase(Of TTestStore, TFixture).FieldAnnotationClass
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.GeneratedEntity
+    name: DataAnnotationTestBase<TTestStore, TFixture>.GeneratedEntity
+    name.vb: DataAnnotationTestBase(Of TTestStore, TFixture).GeneratedEntity
   - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.IEntityBase
     name: DataAnnotationTestBase<TTestStore, TFixture>.IEntityBase
     name.vb: DataAnnotationTestBase(Of TTestStore, TFixture).IEntityBase
@@ -2813,6 +2855,9 @@
   - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.OKeyBase
     name: DataAnnotationTestBase<TTestStore, TFixture>.OKeyBase
     name.vb: DataAnnotationTestBase(Of TTestStore, TFixture).OKeyBase
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Parent
+    name: DataAnnotationTestBase<TTestStore, TFixture>.Parent
+    name.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Parent
   - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Person
     name: DataAnnotationTestBase<TTestStore, TFixture>.Person
     name.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Person
@@ -2876,6 +2921,9 @@
   - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.TNAttrDerived
     name: DataAnnotationTestBase<TTestStore, TFixture>.TNAttrDerived
     name.vb: DataAnnotationTestBase(Of TTestStore, TFixture).TNAttrDerived
+  - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Toy
+    name: DataAnnotationTestBase<TTestStore, TFixture>.Toy
+    name.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Toy
   - uid: Microsoft.EntityFrameworkCore.Specification.Tests.DataAnnotationTestBase`2.Unit1
     name: DataAnnotationTestBase<TTestStore, TFixture>.Unit1
     name.vb: DataAnnotationTestBase(Of TTestStore, TFixture).Unit1
@@ -4816,6 +4864,8 @@
     name: SqlServerTriggersTest.Product
   - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerTriggersTest.ProductBackup
     name: SqlServerTriggersTest.ProductBackup
+  - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerTriggersTest.QueryTriggersContext
+    name: SqlServerTriggersTest.QueryTriggersContext
   - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerTriggersTest.SqlServerTriggersFixture
     name: SqlServerTriggersTest.SqlServerTriggersFixture
   - uid: Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.SqlServerTriggersTest.TriggersContext
@@ -5126,6 +5176,8 @@
     name: RelationalCommandBuilderExtensions
   - uid: Microsoft.EntityFrameworkCore.Storage.RelationalCommandBuilderTest
     name: RelationalCommandBuilderTest
+  - uid: Microsoft.EntityFrameworkCore.Storage.RelationalCommandExtensions
+    name: RelationalCommandExtensions
   - uid: Microsoft.EntityFrameworkCore.Storage.RelationalConnection
     name: RelationalConnection
   - uid: Microsoft.EntityFrameworkCore.Storage.RelationalDatabase

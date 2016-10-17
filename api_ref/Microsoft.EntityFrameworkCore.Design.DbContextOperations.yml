@@ -5,7 +5,7 @@ items:
   id: DbContextOperations
   parent: Microsoft.EntityFrameworkCore.Design
   children:
-  - Microsoft.EntityFrameworkCore.Design.DbContextOperations.#ctor(Microsoft.Extensions.Logging.ILoggerProvider,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String)
+  - Microsoft.EntityFrameworkCore.Design.DbContextOperations.#ctor(Microsoft.EntityFrameworkCore.Design.IOperationReporter,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String)
   - Microsoft.EntityFrameworkCore.Design.DbContextOperations.CreateContext(System.String)
   - Microsoft.EntityFrameworkCore.Design.DbContextOperations.DropDatabase(System.String)
   - Microsoft.EntityFrameworkCore.Design.DbContextOperations.GetContextInfo(System.String)
@@ -48,16 +48,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: Microsoft.EntityFrameworkCore.Design.DbContextOperations.#ctor(Microsoft.Extensions.Logging.ILoggerProvider,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String)
-  commentId: M:Microsoft.EntityFrameworkCore.Design.DbContextOperations.#ctor(Microsoft.Extensions.Logging.ILoggerProvider,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String)
-  id: '#ctor(Microsoft.Extensions.Logging.ILoggerProvider,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String)'
+- uid: Microsoft.EntityFrameworkCore.Design.DbContextOperations.#ctor(Microsoft.EntityFrameworkCore.Design.IOperationReporter,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String)
+  commentId: M:Microsoft.EntityFrameworkCore.Design.DbContextOperations.#ctor(Microsoft.EntityFrameworkCore.Design.IOperationReporter,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String)
+  id: '#ctor(Microsoft.EntityFrameworkCore.Design.IOperationReporter,System.Reflection.Assembly,System.Reflection.Assembly,System.String,System.String)'
   parent: Microsoft.EntityFrameworkCore.Design.DbContextOperations
   langs:
   - csharp
   - vb
-  name: DbContextOperations(ILoggerProvider, Assembly, Assembly, String, String)
-  nameWithType: DbContextOperations.DbContextOperations(ILoggerProvider, Assembly, Assembly, String, String)
-  fullName: Microsoft.EntityFrameworkCore.Design.DbContextOperations.DbContextOperations(Microsoft.Extensions.Logging.ILoggerProvider, System.Reflection.Assembly, System.Reflection.Assembly, System.String, System.String)
+  name: DbContextOperations(IOperationReporter, Assembly, Assembly, String, String)
+  nameWithType: DbContextOperations.DbContextOperations(IOperationReporter, Assembly, Assembly, String, String)
+  fullName: Microsoft.EntityFrameworkCore.Design.DbContextOperations.DbContextOperations(Microsoft.EntityFrameworkCore.Design.IOperationReporter, System.Reflection.Assembly, System.Reflection.Assembly, System.String, System.String)
   type: Constructor
   source:
     remote:
@@ -66,16 +66,16 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: .ctor
     path: src/Microsoft.EntityFrameworkCore.Design/Design/DbContextOperations.cs
-    startLine: 29
+    startLine: 28
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design
   syntax:
-    content: public DbContextOperations(ILoggerProvider loggerProvider, Assembly assembly, Assembly startupAssembly, string environment, string contentRootPath)
-    content.vb: Public Sub New(loggerProvider As ILoggerProvider, assembly As Assembly, startupAssembly As Assembly, environment As String, contentRootPath As String)
+    content: public DbContextOperations(IOperationReporter reporter, Assembly assembly, Assembly startupAssembly, string environment, string contentRootPath)
+    content.vb: Public Sub New(reporter As IOperationReporter, assembly As Assembly, startupAssembly As Assembly, environment As String, contentRootPath As String)
     parameters:
-    - id: loggerProvider
-      type: Microsoft.Extensions.Logging.ILoggerProvider
+    - id: reporter
+      type: Microsoft.EntityFrameworkCore.Design.IOperationReporter
     - id: assembly
       type: System.Reflection.Assembly
     - id: startupAssembly
@@ -84,6 +84,7 @@ items:
       type: System.String
     - id: contentRootPath
       type: System.String
+  overload: Microsoft.EntityFrameworkCore.Design.DbContextOperations.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -106,7 +107,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: DropDatabase
     path: src/Microsoft.EntityFrameworkCore.Design/Design/DbContextOperations.cs
-    startLine: 51
+    startLine: 50
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design
@@ -116,6 +117,7 @@ items:
     parameters:
     - id: contextType
       type: System.String
+  overload: Microsoft.EntityFrameworkCore.Design.DbContextOperations.DropDatabase*
   modifiers.csharp:
   - public
   - virtual
@@ -140,7 +142,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: CreateContext
     path: src/Microsoft.EntityFrameworkCore.Design/Design/DbContextOperations.cs
-    startLine: 68
+    startLine: 67
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design
@@ -152,6 +154,7 @@ items:
       type: System.String
     return:
       type: Microsoft.EntityFrameworkCore.DbContext
+  overload: Microsoft.EntityFrameworkCore.Design.DbContextOperations.CreateContext*
   modifiers.csharp:
   - public
   - virtual
@@ -176,7 +179,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: GetContextTypes
     path: src/Microsoft.EntityFrameworkCore.Design/Design/DbContextOperations.cs
-    startLine: 82
+    startLine: 81
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design
@@ -185,6 +188,7 @@ items:
     content.vb: Public Overridable Function GetContextTypes As IEnumerable(Of Type)
     return:
       type: System.Collections.Generic.IEnumerable{System.Type}
+  overload: Microsoft.EntityFrameworkCore.Design.DbContextOperations.GetContextTypes*
   modifiers.csharp:
   - public
   - virtual
@@ -209,7 +213,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: GetContextType
     path: src/Microsoft.EntityFrameworkCore.Design/Design/DbContextOperations.cs
-    startLine: 85
+    startLine: 84
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design
@@ -221,6 +225,7 @@ items:
       type: System.String
     return:
       type: System.Type
+  overload: Microsoft.EntityFrameworkCore.Design.DbContextOperations.GetContextType*
   modifiers.csharp:
   - public
   - virtual
@@ -245,7 +250,7 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: GetContextInfo
     path: src/Microsoft.EntityFrameworkCore.Design/Design/DbContextOperations.cs
-    startLine: 154
+    startLine: 153
   assemblies:
   - Microsoft.EntityFrameworkCore.Design
   namespace: Microsoft.EntityFrameworkCore.Design
@@ -257,6 +262,7 @@ items:
       type: System.String
     return:
       type: Microsoft.EntityFrameworkCore.Design.ContextInfo
+  overload: Microsoft.EntityFrameworkCore.Design.DbContextOperations.GetContextInfo*
   modifiers.csharp:
   - public
   - virtual
@@ -562,13 +568,19 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Microsoft.Extensions.Logging.ILoggerProvider
-  commentId: T:Microsoft.Extensions.Logging.ILoggerProvider
-  parent: Microsoft.Extensions.Logging
-  isExternal: true
-  name: ILoggerProvider
-  nameWithType: ILoggerProvider
-  fullName: Microsoft.Extensions.Logging.ILoggerProvider
+- uid: Microsoft.EntityFrameworkCore.Design.DbContextOperations.#ctor*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.DbContextOperations.#ctor
+  isExternal: false
+  name: DbContextOperations
+  nameWithType: DbContextOperations.DbContextOperations
+  fullName: Microsoft.EntityFrameworkCore.Design.DbContextOperations.DbContextOperations
+- uid: Microsoft.EntityFrameworkCore.Design.IOperationReporter
+  commentId: T:Microsoft.EntityFrameworkCore.Design.IOperationReporter
+  parent: Microsoft.EntityFrameworkCore.Design
+  isExternal: false
+  name: IOperationReporter
+  nameWithType: IOperationReporter
+  fullName: Microsoft.EntityFrameworkCore.Design.IOperationReporter
 - uid: System.Reflection.Assembly
   commentId: T:System.Reflection.Assembly
   parent: System.Reflection
@@ -583,18 +595,24 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: Microsoft.Extensions.Logging
-  commentId: N:Microsoft.Extensions.Logging
-  isExternal: false
-  name: Microsoft.Extensions.Logging
-  nameWithType: Microsoft.Extensions.Logging
-  fullName: Microsoft.Extensions.Logging
 - uid: System.Reflection
   commentId: N:System.Reflection
   isExternal: false
   name: System.Reflection
   nameWithType: System.Reflection
   fullName: System.Reflection
+- uid: Microsoft.EntityFrameworkCore.Design.DbContextOperations.DropDatabase*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.DbContextOperations.DropDatabase
+  isExternal: false
+  name: DropDatabase
+  nameWithType: DbContextOperations.DropDatabase
+  fullName: Microsoft.EntityFrameworkCore.Design.DbContextOperations.DropDatabase
+- uid: Microsoft.EntityFrameworkCore.Design.DbContextOperations.CreateContext*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.DbContextOperations.CreateContext
+  isExternal: false
+  name: CreateContext
+  nameWithType: DbContextOperations.CreateContext
+  fullName: Microsoft.EntityFrameworkCore.Design.DbContextOperations.CreateContext
 - uid: Microsoft.EntityFrameworkCore.DbContext
   commentId: T:Microsoft.EntityFrameworkCore.DbContext
   parent: Microsoft.EntityFrameworkCore
@@ -608,6 +626,12 @@ references:
   name: Microsoft.EntityFrameworkCore
   nameWithType: Microsoft.EntityFrameworkCore
   fullName: Microsoft.EntityFrameworkCore
+- uid: Microsoft.EntityFrameworkCore.Design.DbContextOperations.GetContextTypes*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.DbContextOperations.GetContextTypes
+  isExternal: false
+  name: GetContextTypes
+  nameWithType: DbContextOperations.GetContextTypes
+  fullName: Microsoft.EntityFrameworkCore.Design.DbContextOperations.GetContextTypes
 - uid: System.Collections.Generic.IEnumerable{System.Type}
   commentId: T:System.Collections.Generic.IEnumerable{System.Type}
   parent: System.Collections.Generic
@@ -697,6 +721,12 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+- uid: Microsoft.EntityFrameworkCore.Design.DbContextOperations.GetContextType*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.DbContextOperations.GetContextType
+  isExternal: false
+  name: GetContextType
+  nameWithType: DbContextOperations.GetContextType
+  fullName: Microsoft.EntityFrameworkCore.Design.DbContextOperations.GetContextType
 - uid: System.Type
   commentId: T:System.Type
   parent: System
@@ -704,6 +734,12 @@ references:
   name: Type
   nameWithType: Type
   fullName: System.Type
+- uid: Microsoft.EntityFrameworkCore.Design.DbContextOperations.GetContextInfo*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Design.DbContextOperations.GetContextInfo
+  isExternal: false
+  name: GetContextInfo
+  nameWithType: DbContextOperations.GetContextInfo
+  fullName: Microsoft.EntityFrameworkCore.Design.DbContextOperations.GetContextInfo
 - uid: Microsoft.EntityFrameworkCore.Design.ContextInfo
   commentId: T:Microsoft.EntityFrameworkCore.Design.ContextInfo
   parent: Microsoft.EntityFrameworkCore.Design

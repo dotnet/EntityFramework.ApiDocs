@@ -6,6 +6,7 @@ items:
   parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
   children:
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerValueGenerationStrategyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalModelBuilder)
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerValueGenerationStrategyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute,System.Reflection.MemberInfo)
   langs:
   - csharp
   - vb
@@ -20,22 +21,29 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: SqlServerValueGenerationStrategyConvention
     path: src/Microsoft.EntityFrameworkCore.SqlServer/Metadata/Conventions/Internal/SqlServerValueGenerationStrategyConvention.cs
-    startLine: 11
+    startLine: 13
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer
   namespace: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
-    content: 'public class SqlServerValueGenerationStrategyConvention : IModelConvention'
+    content: 'public class SqlServerValueGenerationStrategyConvention : DatabaseGeneratedAttributeConvention, IPropertyConvention, IPropertyFieldChangedConvention, IModelConvention'
     content.vb: >-
       Public Class SqlServerValueGenerationStrategyConvention
-          Implements IModelConvention
+          Inherits DatabaseGeneratedAttributeConvention
+          Implements IPropertyConvention, IPropertyFieldChangedConvention, IModelConvention
   inheritance:
   - System.Object
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention{System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute}
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.DatabaseGeneratedAttributeConvention
   implements:
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPropertyConvention
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPropertyFieldChangedConvention
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IModelConvention
   inheritedMembers:
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention{System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute}.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
+  - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention{System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute}.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.Reflection.FieldInfo)
   - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -49,6 +57,48 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerValueGenerationStrategyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute,System.Reflection.MemberInfo)
+  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerValueGenerationStrategyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute,System.Reflection.MemberInfo)
+  id: Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute,System.Reflection.MemberInfo)
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerValueGenerationStrategyConvention
+  langs:
+  - csharp
+  - vb
+  name: Apply(InternalPropertyBuilder, DatabaseGeneratedAttribute, MemberInfo)
+  nameWithType: SqlServerValueGenerationStrategyConvention.Apply(InternalPropertyBuilder, DatabaseGeneratedAttribute, MemberInfo)
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerValueGenerationStrategyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder, System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute, System.Reflection.MemberInfo)
+  type: Method
+  source:
+    remote:
+      path: src/Microsoft.EntityFrameworkCore.SqlServer/Metadata/Conventions/Internal/SqlServerValueGenerationStrategyConvention.cs
+      branch: dev
+      repo: https://github.com/aspnet/EntityFramework.git
+    id: Apply
+    path: src/Microsoft.EntityFrameworkCore.SqlServer/Metadata/Conventions/Internal/SqlServerValueGenerationStrategyConvention.cs
+    startLine: 15
+  assemblies:
+  - Microsoft.EntityFrameworkCore.SqlServer
+  namespace: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
+  syntax:
+    content: public override InternalPropertyBuilder Apply(InternalPropertyBuilder propertyBuilder, DatabaseGeneratedAttribute attribute, MemberInfo clrMember)
+    content.vb: Public Overrides Function Apply(propertyBuilder As InternalPropertyBuilder, attribute As DatabaseGeneratedAttribute, clrMember As MemberInfo) As InternalPropertyBuilder
+    parameters:
+    - id: propertyBuilder
+      type: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+    - id: attribute
+      type: System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute
+    - id: clrMember
+      type: System.Reflection.MemberInfo
+    return:
+      type: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+  overridden: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.DatabaseGeneratedAttributeConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute,System.Reflection.MemberInfo)
+  overload: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerValueGenerationStrategyConvention.Apply*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
 - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerValueGenerationStrategyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalModelBuilder)
   commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerValueGenerationStrategyConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalModelBuilder)
   id: Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalModelBuilder)
@@ -67,11 +117,11 @@ items:
       repo: https://github.com/aspnet/EntityFramework.git
     id: Apply
     path: src/Microsoft.EntityFrameworkCore.SqlServer/Metadata/Conventions/Internal/SqlServerValueGenerationStrategyConvention.cs
-    startLine: 17
+    startLine: 30
   assemblies:
   - Microsoft.EntityFrameworkCore.SqlServer
   namespace: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
-  summary: "\n    This API supports the Entity Framework Core infrastructure and is not intended to be used\n    directly from your code. This API may change or be removed in future releases.\n"
+  summary: "\nThis API supports the Entity Framework Core infrastructure and is not intended to be used\ndirectly from your code. This API may change or be removed in future releases.\n"
   example: []
   syntax:
     content: public virtual InternalModelBuilder Apply(InternalModelBuilder modelBuilder)
@@ -81,6 +131,7 @@ items:
       type: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalModelBuilder
     return:
       type: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalModelBuilder
+  overload: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerValueGenerationStrategyConvention.Apply*
   implements:
   - Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IModelConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalModelBuilder)
   modifiers.csharp:
@@ -103,6 +154,69 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention{System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute}
+  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention{System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute}
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
+  definition: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1
+  name: PropertyAttributeConvention<DatabaseGeneratedAttribute>
+  nameWithType: PropertyAttributeConvention<DatabaseGeneratedAttribute>
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention<System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute>
+  nameWithType.vb: PropertyAttributeConvention(Of DatabaseGeneratedAttribute)
+  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention(Of System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute)
+  name.vb: PropertyAttributeConvention(Of DatabaseGeneratedAttribute)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1
+    name: PropertyAttributeConvention
+    nameWithType: PropertyAttributeConvention
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute
+    name: DatabaseGeneratedAttribute
+    nameWithType: DatabaseGeneratedAttribute
+    fullName: System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1
+    name: PropertyAttributeConvention
+    nameWithType: PropertyAttributeConvention
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute
+    name: DatabaseGeneratedAttribute
+    nameWithType: DatabaseGeneratedAttribute
+    fullName: System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.DatabaseGeneratedAttributeConvention
+  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.DatabaseGeneratedAttributeConvention
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
+  isExternal: false
+  name: DatabaseGeneratedAttributeConvention
+  nameWithType: DatabaseGeneratedAttributeConvention
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.DatabaseGeneratedAttributeConvention
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPropertyConvention
+  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPropertyConvention
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
+  isExternal: false
+  name: IPropertyConvention
+  nameWithType: IPropertyConvention
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPropertyConvention
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPropertyFieldChangedConvention
+  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPropertyFieldChangedConvention
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
+  isExternal: false
+  name: IPropertyFieldChangedConvention
+  nameWithType: IPropertyFieldChangedConvention
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IPropertyFieldChangedConvention
 - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IModelConvention
   commentId: T:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IModelConvention
   parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal
@@ -110,6 +224,100 @@ references:
   name: IModelConvention
   nameWithType: IModelConvention
   fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IModelConvention
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention{System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute}.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
+  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention{System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute}.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention{System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute}
+  definition: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
+  name: Apply(InternalPropertyBuilder)
+  nameWithType: PropertyAttributeConvention<DatabaseGeneratedAttribute>.Apply(InternalPropertyBuilder)
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention<System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute>.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
+  nameWithType.vb: PropertyAttributeConvention(Of DatabaseGeneratedAttribute).Apply(InternalPropertyBuilder)
+  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention(Of System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute).Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
+    name: Apply
+    nameWithType: PropertyAttributeConvention<DatabaseGeneratedAttribute>.Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention<System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute>.Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+    name: InternalPropertyBuilder
+    nameWithType: InternalPropertyBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
+    name: Apply
+    nameWithType: PropertyAttributeConvention(Of DatabaseGeneratedAttribute).Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention(Of System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute).Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+    name: InternalPropertyBuilder
+    nameWithType: InternalPropertyBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention{System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute}.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.Reflection.FieldInfo)
+  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention{System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute}.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.Reflection.FieldInfo)
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention{System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute}
+  definition: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.Reflection.FieldInfo)
+  name: Apply(InternalPropertyBuilder, FieldInfo)
+  nameWithType: PropertyAttributeConvention<DatabaseGeneratedAttribute>.Apply(InternalPropertyBuilder, FieldInfo)
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention<System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute>.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder, System.Reflection.FieldInfo)
+  nameWithType.vb: PropertyAttributeConvention(Of DatabaseGeneratedAttribute).Apply(InternalPropertyBuilder, FieldInfo)
+  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention(Of System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute).Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder, System.Reflection.FieldInfo)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.Reflection.FieldInfo)
+    name: Apply
+    nameWithType: PropertyAttributeConvention<DatabaseGeneratedAttribute>.Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention<System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute>.Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+    name: InternalPropertyBuilder
+    nameWithType: InternalPropertyBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    nameWithType: FieldInfo
+    fullName: System.Reflection.FieldInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.Reflection.FieldInfo)
+    name: Apply
+    nameWithType: PropertyAttributeConvention(Of DatabaseGeneratedAttribute).Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention(Of System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute).Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+    name: InternalPropertyBuilder
+    nameWithType: InternalPropertyBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    nameWithType: FieldInfo
+    fullName: System.Reflection.FieldInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
@@ -395,6 +603,249 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1
+  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1
+  isExternal: false
+  name: PropertyAttributeConvention<TAttribute>
+  nameWithType: PropertyAttributeConvention<TAttribute>
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention<TAttribute>
+  nameWithType.vb: PropertyAttributeConvention(Of TAttribute)
+  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention(Of TAttribute)
+  name.vb: PropertyAttributeConvention(Of TAttribute)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1
+    name: PropertyAttributeConvention
+    nameWithType: PropertyAttributeConvention
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TAttribute
+    nameWithType: TAttribute
+    fullName: TAttribute
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1
+    name: PropertyAttributeConvention
+    nameWithType: PropertyAttributeConvention
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TAttribute
+    nameWithType: TAttribute
+    fullName: TAttribute
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
+  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
+  isExternal: false
+  name: Apply(InternalPropertyBuilder)
+  nameWithType: PropertyAttributeConvention<TAttribute>.Apply(InternalPropertyBuilder)
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention<TAttribute>.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
+  nameWithType.vb: PropertyAttributeConvention(Of TAttribute).Apply(InternalPropertyBuilder)
+  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention(Of TAttribute).Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
+    name: Apply
+    nameWithType: PropertyAttributeConvention<TAttribute>.Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention<TAttribute>.Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+    name: InternalPropertyBuilder
+    nameWithType: InternalPropertyBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder)
+    name: Apply
+    nameWithType: PropertyAttributeConvention(Of TAttribute).Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention(Of TAttribute).Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+    name: InternalPropertyBuilder
+    nameWithType: InternalPropertyBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.Reflection.FieldInfo)
+  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.Reflection.FieldInfo)
+  isExternal: true
+  name: Apply(InternalPropertyBuilder, FieldInfo)
+  nameWithType: PropertyAttributeConvention<TAttribute>.Apply(InternalPropertyBuilder, FieldInfo)
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention<TAttribute>.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder, System.Reflection.FieldInfo)
+  nameWithType.vb: PropertyAttributeConvention(Of TAttribute).Apply(InternalPropertyBuilder, FieldInfo)
+  fullname.vb: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention(Of TAttribute).Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder, System.Reflection.FieldInfo)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.Reflection.FieldInfo)
+    name: Apply
+    nameWithType: PropertyAttributeConvention<TAttribute>.Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention<TAttribute>.Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+    name: InternalPropertyBuilder
+    nameWithType: InternalPropertyBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    nameWithType: FieldInfo
+    fullName: System.Reflection.FieldInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention`1.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.Reflection.FieldInfo)
+    name: Apply
+    nameWithType: PropertyAttributeConvention(Of TAttribute).Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.PropertyAttributeConvention(Of TAttribute).Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+    name: InternalPropertyBuilder
+    nameWithType: InternalPropertyBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    nameWithType: FieldInfo
+    fullName: System.Reflection.FieldInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.DatabaseGeneratedAttributeConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute,System.Reflection.MemberInfo)
+  commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.DatabaseGeneratedAttributeConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute,System.Reflection.MemberInfo)
+  parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.DatabaseGeneratedAttributeConvention
+  isExternal: true
+  name: Apply(InternalPropertyBuilder, DatabaseGeneratedAttribute, MemberInfo)
+  nameWithType: DatabaseGeneratedAttributeConvention.Apply(InternalPropertyBuilder, DatabaseGeneratedAttribute, MemberInfo)
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.DatabaseGeneratedAttributeConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder, System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute, System.Reflection.MemberInfo)
+  spec.csharp:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.DatabaseGeneratedAttributeConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute,System.Reflection.MemberInfo)
+    name: Apply
+    nameWithType: DatabaseGeneratedAttributeConvention.Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.DatabaseGeneratedAttributeConvention.Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+    name: InternalPropertyBuilder
+    nameWithType: InternalPropertyBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute
+    name: DatabaseGeneratedAttribute
+    nameWithType: DatabaseGeneratedAttribute
+    fullName: System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.DatabaseGeneratedAttributeConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder,System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute,System.Reflection.MemberInfo)
+    name: Apply
+    nameWithType: DatabaseGeneratedAttributeConvention.Apply
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.DatabaseGeneratedAttributeConvention.Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+    name: InternalPropertyBuilder
+    nameWithType: InternalPropertyBuilder
+    fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute
+    name: DatabaseGeneratedAttribute
+    nameWithType: DatabaseGeneratedAttribute
+    fullName: System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerValueGenerationStrategyConvention.Apply*
+  commentId: Overload:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerValueGenerationStrategyConvention.Apply
+  isExternal: false
+  name: Apply
+  nameWithType: SqlServerValueGenerationStrategyConvention.Apply
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerValueGenerationStrategyConvention.Apply
+- uid: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+  commentId: T:Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+  parent: Microsoft.EntityFrameworkCore.Metadata.Internal
+  isExternal: false
+  name: InternalPropertyBuilder
+  nameWithType: InternalPropertyBuilder
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder
+- uid: System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute
+  commentId: T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute
+  parent: System.ComponentModel.DataAnnotations.Schema
+  isExternal: true
+  name: DatabaseGeneratedAttribute
+  nameWithType: DatabaseGeneratedAttribute
+  fullName: System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute
+- uid: System.Reflection.MemberInfo
+  commentId: T:System.Reflection.MemberInfo
+  parent: System.Reflection
+  isExternal: true
+  name: MemberInfo
+  nameWithType: MemberInfo
+  fullName: System.Reflection.MemberInfo
+- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
+  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
+  isExternal: false
+  name: Microsoft.EntityFrameworkCore.Metadata.Internal
+  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
+  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
+- uid: System.ComponentModel.DataAnnotations.Schema
+  commentId: N:System.ComponentModel.DataAnnotations.Schema
+  isExternal: false
+  name: System.ComponentModel.DataAnnotations.Schema
+  nameWithType: System.ComponentModel.DataAnnotations.Schema
+  fullName: System.ComponentModel.DataAnnotations.Schema
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: false
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
 - uid: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IModelConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalModelBuilder)
   commentId: M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IModelConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalModelBuilder)
   parent: Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IModelConvention
@@ -439,9 +890,3 @@ references:
   name: InternalModelBuilder
   nameWithType: InternalModelBuilder
   fullName: Microsoft.EntityFrameworkCore.Metadata.Internal.InternalModelBuilder
-- uid: Microsoft.EntityFrameworkCore.Metadata.Internal
-  commentId: N:Microsoft.EntityFrameworkCore.Metadata.Internal
-  isExternal: false
-  name: Microsoft.EntityFrameworkCore.Metadata.Internal
-  nameWithType: Microsoft.EntityFrameworkCore.Metadata.Internal
-  fullName: Microsoft.EntityFrameworkCore.Metadata.Internal
