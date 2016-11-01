@@ -11,4 +11,4 @@ This API reference provides detailed documentation for each API in Entity Framew
 
 Some commonly used types include:
 * [DbContext](microsoft.entityframeworkcore.dbcontext)
-* [DbSet](microsoft.entityframeworkcore.dbset)
+* [DbSet<TEntity>](microsoft.entityframeworkcore.dbset-1)
