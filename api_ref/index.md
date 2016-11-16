@@ -1,3 +1,9 @@
+---
+title: Entity Framework Core API Reference | Microsoft Docs
+ms.assetid: 2793094b-ac39-417c-9805-49f444be4dbd
+uid: core/api/index
+---
+
 # Entity Framework Core API Reference
 
 > [!NOTE]
