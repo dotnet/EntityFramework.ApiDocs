@@ -1,0 +1,1677 @@
+﻿<Type Name="DefaultQuerySqlGenerator" FullName="Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator">
+  <TypeSignature Language="C#" Value="public class DefaultQuerySqlGenerator : Remotion.Linq.Parsing.ThrowingExpressionVisitor, Microsoft.EntityFrameworkCore.Query.Sql.IQuerySqlGenerator, Microsoft.EntityFrameworkCore.Query.Sql.ISqlExpressionVisitor" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DefaultQuerySqlGenerator extends Remotion.Linq.Parsing.ThrowingExpressionVisitor implements class Microsoft.EntityFrameworkCore.Query.Sql.IQuerySqlGenerator, class Microsoft.EntityFrameworkCore.Query.Sql.ISqlExpressionVisitor" />
+  <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator" />
+  <AssemblyInfo>
+    <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>Remotion.Linq.Parsing.ThrowingExpressionVisitor</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>Microsoft.EntityFrameworkCore.Query.Sql.IQuerySqlGenerator</InterfaceName>
+    </Interface>
+    <Interface>
+      <InterfaceName>Microsoft.EntityFrameworkCore.Query.Sql.ISqlExpressionVisitor</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Docs>
+    <summary>
+                The default query SQL generator.
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="protected DefaultQuerySqlGenerator (Microsoft.EntityFrameworkCore.Query.Sql.QuerySqlGeneratorDependencies dependencies, Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression selectExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Query.Sql.QuerySqlGeneratorDependencies dependencies, class Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression selectExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.#ctor(Microsoft.EntityFrameworkCore.Query.Sql.QuerySqlGeneratorDependencies,Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Query.Sql.QuerySqlGeneratorDependencies" />
+        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression" />
+      </Parameters>
+      <Docs>
+        <param name="dependencies"> Parameter object containing dependencies for this service. </param>
+        <param name="selectExpression"> The select expression. </param>
+        <summary>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public DefaultQuerySqlGenerator (Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory relationalCommandBuilderFactory, Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper sqlGenerationHelper, Microsoft.EntityFrameworkCore.Storage.IParameterNameGeneratorFactory parameterNameGeneratorFactory, Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMapper relationalTypeMapper, Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression selectExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory relationalCommandBuilderFactory, class Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper sqlGenerationHelper, class Microsoft.EntityFrameworkCore.Storage.IParameterNameGeneratorFactory parameterNameGeneratorFactory, class Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMapper relationalTypeMapper, class Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression selectExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.#ctor(Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory,Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper,Microsoft.EntityFrameworkCore.Storage.IParameterNameGeneratorFactory,Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMapper,Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="relationalCommandBuilderFactory" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory" />
+        <Parameter Name="sqlGenerationHelper" Type="Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" />
+        <Parameter Name="parameterNameGeneratorFactory" Type="Microsoft.EntityFrameworkCore.Storage.IParameterNameGeneratorFactory" />
+        <Parameter Name="relationalTypeMapper" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMapper" />
+        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression" />
+      </Parameters>
+      <Docs>
+        <param name="relationalCommandBuilderFactory"> The relational command builder factory. </param>
+        <param name="sqlGenerationHelper"> The SQL generation helper. </param>
+        <param name="parameterNameGeneratorFactory"> The parameter name generator factory. </param>
+        <param name="relationalTypeMapper"> The relational type mapper. </param>
+        <param name="selectExpression"> The select expression. </param>
+        <summary>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConcatOperator">
+      <MemberSignature Language="C#" Value="protected virtual string ConcatOperator { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string ConcatOperator" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.ConcatOperator" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                The default string concatenation operator SQL.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateUnhandledItemException&lt;T&gt;">
+      <MemberSignature Language="C#" Value="protected override Exception CreateUnhandledItemException&lt;T&gt; (T unhandledItem, string visitMethod);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance class System.Exception CreateUnhandledItemException&lt;T&gt;(!!T unhandledItem, string visitMethod) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.CreateUnhandledItemException``1(``0,System.String)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Exception</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="unhandledItem" Type="T" />
+        <Parameter Name="visitMethod" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T"> Generic type parameter. </typeparam>
+        <param name="unhandledItem"> The unhandled item. </param>
+        <param name="visitMethod"> The visit method. </param>
+        <summary>
+                Creates unhandled item exception.
+            </summary>
+        <returns>
+                The new unhandled item exception.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateValueBufferFactory">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Storage.IRelationalValueBufferFactory CreateValueBufferFactory (Microsoft.EntityFrameworkCore.Storage.IRelationalValueBufferFactoryFactory relationalValueBufferFactoryFactory, System.Data.Common.DbDataReader dataReader);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.IRelationalValueBufferFactory CreateValueBufferFactory(class Microsoft.EntityFrameworkCore.Storage.IRelationalValueBufferFactoryFactory relationalValueBufferFactoryFactory, class System.Data.Common.DbDataReader dataReader) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.CreateValueBufferFactory(Microsoft.EntityFrameworkCore.Storage.IRelationalValueBufferFactoryFactory,System.Data.Common.DbDataReader)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.IRelationalValueBufferFactory</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="relationalValueBufferFactoryFactory" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalValueBufferFactoryFactory" />
+        <Parameter Name="dataReader" Type="System.Data.Common.DbDataReader" />
+      </Parameters>
+      <Docs>
+        <param name="relationalValueBufferFactoryFactory"> The relational value buffer factory. </param>
+        <param name="dataReader"> The data reader. </param>
+        <summary>
+                Creates a relational value buffer factory.
+            </summary>
+        <returns>
+                The new value buffer factory.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Dependencies">
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Query.Sql.QuerySqlGeneratorDependencies Dependencies { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Query.Sql.QuerySqlGeneratorDependencies Dependencies" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.Dependencies" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Query.Sql.QuerySqlGeneratorDependencies</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Parameter object containing service dependencies.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ExtractNonNullExpressionValues">
+      <MemberSignature Language="C#" Value="protected virtual System.Collections.Generic.IReadOnlyList&lt;System.Linq.Expressions.Expression&gt; ExtractNonNullExpressionValues (System.Collections.Generic.IReadOnlyList&lt;System.Linq.Expressions.Expression&gt; inExpressionValues);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Collections.Generic.IReadOnlyList`1&lt;class System.Linq.Expressions.Expression&gt; ExtractNonNullExpressionValues(class System.Collections.Generic.IReadOnlyList`1&lt;class System.Linq.Expressions.Expression&gt; inExpressionValues) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.ExtractNonNullExpressionValues(System.Collections.Generic.IReadOnlyList{System.Linq.Expressions.Expression})" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IReadOnlyList&lt;System.Linq.Expressions.Expression&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="inExpressionValues" Type="System.Collections.Generic.IReadOnlyList&lt;System.Linq.Expressions.Expression&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="inExpressionValues"> The list of expressions. </param>
+        <summary>
+                Extracts the non null expression values from a list of expressions.
+            </summary>
+        <returns>
+                The extracted non null expression values.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateBinaryOperator">
+      <MemberSignature Language="C#" Value="protected virtual string GenerateBinaryOperator (System.Linq.Expressions.ExpressionType op);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance string GenerateBinaryOperator(valuetype System.Linq.Expressions.ExpressionType op) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.GenerateBinaryOperator(System.Linq.Expressions.ExpressionType)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="op" Type="System.Linq.Expressions.ExpressionType" />
+      </Parameters>
+      <Docs>
+        <param name="op"> The operation. </param>
+        <summary>
+                Generates SQL for a given binary operation type.
+            </summary>
+        <returns>
+                The binary operator.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateFromSql">
+      <MemberSignature Language="C#" Value="protected virtual void GenerateFromSql (string sql, System.Linq.Expressions.Expression arguments, System.Collections.Generic.IReadOnlyDictionary&lt;string,object&gt; parameters);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void GenerateFromSql(string sql, class System.Linq.Expressions.Expression arguments, class System.Collections.Generic.IReadOnlyDictionary`2&lt;string, object&gt; parameters) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.GenerateFromSql(System.String,System.Linq.Expressions.Expression,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object})" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="sql" Type="System.String" />
+        <Parameter Name="arguments" Type="System.Linq.Expressions.Expression" />
+        <Parameter Name="parameters" Type="System.Collections.Generic.IReadOnlyDictionary&lt;System.String,System.Object&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="sql"> The FromSql SQL query. </param>
+        <param name="arguments"> The arguments. </param>
+        <param name="parameters"> The parameters for this query. </param>
+        <summary>
+                Generate SQL corresponding to a FromSql query.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateFunctionCall">
+      <MemberSignature Language="C#" Value="protected virtual void GenerateFunctionCall (string functionName, System.Collections.Generic.IReadOnlyList&lt;System.Linq.Expressions.Expression&gt; arguments, string schema = null);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void GenerateFunctionCall(string functionName, class System.Collections.Generic.IReadOnlyList`1&lt;class System.Linq.Expressions.Expression&gt; arguments, string schema) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.GenerateFunctionCall(System.String,System.Collections.Generic.IReadOnlyList{System.Linq.Expressions.Expression},System.String)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="functionName" Type="System.String" />
+        <Parameter Name="arguments" Type="System.Collections.Generic.IReadOnlyList&lt;System.Linq.Expressions.Expression&gt;" />
+        <Parameter Name="schema" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="functionName">The function name</param>
+        <param name="arguments">The function arguments</param>
+        <param name="schema">The function schema</param>
+        <summary>
+                Generates a SQL function call.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateIsNotNull">
+      <MemberSignature Language="C#" Value="protected virtual System.Linq.Expressions.Expression GenerateIsNotNull (Microsoft.EntityFrameworkCore.Query.Expressions.IsNullExpression isNotNullExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Linq.Expressions.Expression GenerateIsNotNull(class Microsoft.EntityFrameworkCore.Query.Expressions.IsNullExpression isNotNullExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.GenerateIsNotNull(Microsoft.EntityFrameworkCore.Query.Expressions.IsNullExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="isNotNullExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.IsNullExpression" />
+      </Parameters>
+      <Docs>
+        <param name="isNotNullExpression"> The is not null expression. </param>
+        <summary>
+                Visits an IsNotNullExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateLimitOffset">
+      <MemberSignature Language="C#" Value="protected virtual void GenerateLimitOffset (Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression selectExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void GenerateLimitOffset(class Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression selectExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.GenerateLimitOffset(Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression" />
+      </Parameters>
+      <Docs>
+        <param name="selectExpression"> The select expression. </param>
+        <summary>
+                Generates the LIMIT OFFSET part of the SELECT statement,
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateNotIn">
+      <MemberSignature Language="C#" Value="protected virtual System.Linq.Expressions.Expression GenerateNotIn (Microsoft.EntityFrameworkCore.Query.Expressions.InExpression inExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Linq.Expressions.Expression GenerateNotIn(class Microsoft.EntityFrameworkCore.Query.Expressions.InExpression inExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.GenerateNotIn(Microsoft.EntityFrameworkCore.Query.Expressions.InExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="inExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.InExpression" />
+      </Parameters>
+      <Docs>
+        <param name="inExpression"> The in expression. </param>
+        <summary>
+                Visit a negated InExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateOperator">
+      <MemberSignature Language="C#" Value="protected virtual string GenerateOperator (System.Linq.Expressions.Expression expression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance string GenerateOperator(class System.Linq.Expressions.Expression expression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.GenerateOperator(System.Linq.Expressions.Expression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="System.Linq.Expressions.Expression" />
+      </Parameters>
+      <Docs>
+        <param name="expression"> The expression. </param>
+        <summary>
+                Generates an SQL operator for a given expression.
+            </summary>
+        <returns>
+                The operator.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateOrderBy">
+      <MemberSignature Language="C#" Value="protected virtual void GenerateOrderBy (System.Collections.Generic.IReadOnlyList&lt;Remotion.Linq.Clauses.Ordering&gt; orderings);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void GenerateOrderBy(class System.Collections.Generic.IReadOnlyList`1&lt;class Remotion.Linq.Clauses.Ordering&gt; orderings) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.GenerateOrderBy(System.Collections.Generic.IReadOnlyList{Remotion.Linq.Clauses.Ordering})" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="orderings" Type="System.Collections.Generic.IReadOnlyList&lt;Remotion.Linq.Clauses.Ordering&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="orderings"> The orderings. </param>
+        <summary>
+                Generates the ORDER BY SQL.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateOrdering">
+      <MemberSignature Language="C#" Value="protected virtual void GenerateOrdering (Remotion.Linq.Clauses.Ordering ordering);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void GenerateOrdering(class Remotion.Linq.Clauses.Ordering ordering) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.GenerateOrdering(Remotion.Linq.Clauses.Ordering)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="ordering" Type="Remotion.Linq.Clauses.Ordering" />
+      </Parameters>
+      <Docs>
+        <param name="ordering"> The ordering. </param>
+        <summary>
+                Generates a single ordering in an SQL ORDER BY clause.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GeneratePredicate">
+      <MemberSignature Language="C#" Value="protected virtual void GeneratePredicate (System.Linq.Expressions.Expression predicate);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void GeneratePredicate(class System.Linq.Expressions.Expression predicate) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.GeneratePredicate(System.Linq.Expressions.Expression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="predicate" Type="System.Linq.Expressions.Expression" />
+      </Parameters>
+      <Docs>
+        <param name="predicate"> The predicate expression. </param>
+        <summary>
+                Visit the predicate in SQL WHERE clause
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateProjection">
+      <MemberSignature Language="C#" Value="protected virtual void GenerateProjection (System.Linq.Expressions.Expression projection);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void GenerateProjection(class System.Linq.Expressions.Expression projection) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.GenerateProjection(System.Linq.Expressions.Expression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="projection" Type="System.Linq.Expressions.Expression" />
+      </Parameters>
+      <Docs>
+        <param name="projection"> The projection expression. </param>
+        <summary>
+                Visit a single projection in SQL SELECT clause
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateSql">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Storage.IRelationalCommand GenerateSql (System.Collections.Generic.IReadOnlyDictionary&lt;string,object&gt; parameterValues);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.IRelationalCommand GenerateSql(class System.Collections.Generic.IReadOnlyDictionary`2&lt;string, object&gt; parameterValues) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.GenerateSql(System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object})" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.IRelationalCommand</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="parameterValues" Type="System.Collections.Generic.IReadOnlyDictionary&lt;System.String,System.Object&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="parameterValues"> The parameter values. </param>
+        <summary>
+                Generates SQL for the given parameter values.
+            </summary>
+        <returns>
+                A relational command.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateTop">
+      <MemberSignature Language="C#" Value="protected virtual void GenerateTop (Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression selectExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void GenerateTop(class Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression selectExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.GenerateTop(Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression" />
+      </Parameters>
+      <Docs>
+        <param name="selectExpression"> The select expression. </param>
+        <summary>
+                Generates the TOP part of the SELECT statement,
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="InferTypeMappingFromColumn">
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping InferTypeMappingFromColumn (System.Linq.Expressions.Expression expression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping InferTypeMappingFromColumn(class System.Linq.Expressions.Expression expression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.InferTypeMappingFromColumn(System.Linq.Expressions.Expression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="System.Linq.Expressions.Expression" />
+      </Parameters>
+      <Docs>
+        <param name="expression"> The expression to infer a type mapping for. </param>
+        <summary>
+                Infers a type mapping from a column expression.
+            </summary>
+        <returns>
+                A RelationalTypeMapping.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsCacheable">
+      <MemberSignature Language="C#" Value="public bool IsCacheable { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool IsCacheable" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.IsCacheable" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Gets a value indicating whether this SQL query is cacheable.
+            </summary>
+        <value>
+                true if this SQL query is cacheable, false if not.
+            </value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ParameterValues">
+      <MemberSignature Language="C#" Value="protected virtual System.Collections.Generic.IReadOnlyDictionary&lt;string,object&gt; ParameterValues { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyDictionary`2&lt;string, object&gt; ParameterValues" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.ParameterValues" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IReadOnlyDictionary&lt;System.String,System.Object&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Gets the parameter values.
+            </summary>
+        <value>
+                The parameter values.
+            </value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ProcessInExpressionValues">
+      <MemberSignature Language="C#" Value="protected virtual System.Collections.Generic.IReadOnlyList&lt;System.Linq.Expressions.Expression&gt; ProcessInExpressionValues (System.Collections.Generic.IEnumerable&lt;System.Linq.Expressions.Expression&gt; inExpressionValues);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Collections.Generic.IReadOnlyList`1&lt;class System.Linq.Expressions.Expression&gt; ProcessInExpressionValues(class System.Collections.Generic.IEnumerable`1&lt;class System.Linq.Expressions.Expression&gt; inExpressionValues) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.ProcessInExpressionValues(System.Collections.Generic.IEnumerable{System.Linq.Expressions.Expression})" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IReadOnlyList&lt;System.Linq.Expressions.Expression&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="inExpressionValues" Type="System.Collections.Generic.IEnumerable&lt;System.Linq.Expressions.Expression&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="inExpressionValues"> The in expression values. </param>
+        <summary>
+                Process the InExpression values.
+            </summary>
+        <returns>
+                A list of expressions.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SelectExpression">
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression SelectExpression { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression SelectExpression" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.SelectExpression" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Gets the select expression.
+            </summary>
+        <value>
+                The select expression.
+            </value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Sql">
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilder Sql { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilder Sql" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.Sql" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilder</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                The generated SQL.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SqlGenerator">
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper SqlGenerator { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper SqlGenerator" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.SqlGenerator" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Gets the SQL generation helper.
+            </summary>
+        <value>
+                The SQL generation helper.
+            </value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TryGenerateBinaryOperator">
+      <MemberSignature Language="C#" Value="protected virtual bool TryGenerateBinaryOperator (System.Linq.Expressions.ExpressionType op, out string result);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance bool TryGenerateBinaryOperator(valuetype System.Linq.Expressions.ExpressionType op, string result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.TryGenerateBinaryOperator(System.Linq.Expressions.ExpressionType,System.String@)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="op" Type="System.Linq.Expressions.ExpressionType" />
+        <Parameter Name="result" Type="System.String&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="op"> The operation. </param>
+        <param name="result"> [out] The SQL binary operator. </param>
+        <summary>
+                Attempts to generate binary operator for a given expression type.
+            </summary>
+        <returns>
+                true if it succeeds, false if it fails.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TypedFalseLiteral">
+      <MemberSignature Language="C#" Value="protected virtual string TypedFalseLiteral { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string TypedFalseLiteral" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.TypedFalseLiteral" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                The default false literal SQL.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TypedTrueLiteral">
+      <MemberSignature Language="C#" Value="protected virtual string TypedTrueLiteral { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string TypedTrueLiteral" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.TypedTrueLiteral" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                The default true literal SQL.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitAlias">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitAlias (Microsoft.EntityFrameworkCore.Query.Expressions.AliasExpression aliasExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitAlias(class Microsoft.EntityFrameworkCore.Query.Expressions.AliasExpression aliasExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitAlias(Microsoft.EntityFrameworkCore.Query.Expressions.AliasExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="aliasExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.AliasExpression" />
+      </Parameters>
+      <Docs>
+        <param name="aliasExpression"> The alias expression. </param>
+        <summary>
+                Visits an AliasExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitBinary">
+      <MemberSignature Language="C#" Value="protected override System.Linq.Expressions.Expression VisitBinary (System.Linq.Expressions.BinaryExpression binaryExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance class System.Linq.Expressions.Expression VisitBinary(class System.Linq.Expressions.BinaryExpression binaryExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitBinary(System.Linq.Expressions.BinaryExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="System.Linq.Expressions.BinaryExpression" />
+      </Parameters>
+      <Docs>
+        <param name="binaryExpression"> The binary expression to visit. </param>
+        <summary>
+                Visit a BinaryExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitColumn">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitColumn (Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression columnExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitColumn(class Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression columnExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitColumn(Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="columnExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.ColumnExpression" />
+      </Parameters>
+      <Docs>
+        <param name="columnExpression"> The column expression. </param>
+        <summary>
+                Visits a ColumnExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitColumnReference">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitColumnReference (Microsoft.EntityFrameworkCore.Query.Expressions.ColumnReferenceExpression columnReferenceExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitColumnReference(class Microsoft.EntityFrameworkCore.Query.Expressions.ColumnReferenceExpression columnReferenceExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitColumnReference(Microsoft.EntityFrameworkCore.Query.Expressions.ColumnReferenceExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="columnReferenceExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.ColumnReferenceExpression" />
+      </Parameters>
+      <Docs>
+        <param name="columnReferenceExpression"> The column reference expression. </param>
+        <summary>
+                Visits a ColumnReferenceExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitConditional">
+      <MemberSignature Language="C#" Value="protected override System.Linq.Expressions.Expression VisitConditional (System.Linq.Expressions.ConditionalExpression conditionalExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance class System.Linq.Expressions.Expression VisitConditional(class System.Linq.Expressions.ConditionalExpression conditionalExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitConditional(System.Linq.Expressions.ConditionalExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="System.Linq.Expressions.ConditionalExpression" />
+      </Parameters>
+      <Docs>
+        <param name="conditionalExpression"> The conditional expression to visit. </param>
+        <summary>
+                Visit a ConditionalExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitConstant">
+      <MemberSignature Language="C#" Value="protected override System.Linq.Expressions.Expression VisitConstant (System.Linq.Expressions.ConstantExpression constantExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance class System.Linq.Expressions.Expression VisitConstant(class System.Linq.Expressions.ConstantExpression constantExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitConstant(System.Linq.Expressions.ConstantExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="System.Linq.Expressions.ConstantExpression" />
+      </Parameters>
+      <Docs>
+        <param name="constantExpression"> The constant expression to visit. </param>
+        <summary>
+                Visits a ConstantExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitCount">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitCount (Microsoft.EntityFrameworkCore.Query.Expressions.CountExpression countExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitCount(class Microsoft.EntityFrameworkCore.Query.Expressions.CountExpression countExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitCount(Microsoft.EntityFrameworkCore.Query.Expressions.CountExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="countExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.CountExpression" />
+      </Parameters>
+      <Docs>
+        <param name="countExpression"> The count expression. </param>
+        <summary>
+                Visit a CountExpression
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitCrossJoin">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitCrossJoin (Microsoft.EntityFrameworkCore.Query.Expressions.CrossJoinExpression crossJoinExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitCrossJoin(class Microsoft.EntityFrameworkCore.Query.Expressions.CrossJoinExpression crossJoinExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitCrossJoin(Microsoft.EntityFrameworkCore.Query.Expressions.CrossJoinExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="crossJoinExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.CrossJoinExpression" />
+      </Parameters>
+      <Docs>
+        <param name="crossJoinExpression"> The cross join expression. </param>
+        <summary>
+                Visit a CrossJoin expression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitCrossJoinLateral">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitCrossJoinLateral (Microsoft.EntityFrameworkCore.Query.Expressions.CrossJoinLateralExpression crossJoinLateralExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitCrossJoinLateral(class Microsoft.EntityFrameworkCore.Query.Expressions.CrossJoinLateralExpression crossJoinLateralExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitCrossJoinLateral(Microsoft.EntityFrameworkCore.Query.Expressions.CrossJoinLateralExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="crossJoinLateralExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.CrossJoinLateralExpression" />
+      </Parameters>
+      <Docs>
+        <param name="crossJoinLateralExpression"> The cross join lateral expression. </param>
+        <summary>
+                Visit a CrossJoinLateralExpression expression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitExists">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitExists (Microsoft.EntityFrameworkCore.Query.Expressions.ExistsExpression existsExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitExists(class Microsoft.EntityFrameworkCore.Query.Expressions.ExistsExpression existsExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitExists(Microsoft.EntityFrameworkCore.Query.Expressions.ExistsExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="existsExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.ExistsExpression" />
+      </Parameters>
+      <Docs>
+        <param name="existsExpression"> The exists expression. </param>
+        <summary>
+                Visit an ExistsExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitExplicitCast">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitExplicitCast (Microsoft.EntityFrameworkCore.Query.Expressions.ExplicitCastExpression explicitCastExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitExplicitCast(class Microsoft.EntityFrameworkCore.Query.Expressions.ExplicitCastExpression explicitCastExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitExplicitCast(Microsoft.EntityFrameworkCore.Query.Expressions.ExplicitCastExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="explicitCastExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.ExplicitCastExpression" />
+      </Parameters>
+      <Docs>
+        <param name="explicitCastExpression"> The explicit cast expression. </param>
+        <summary>
+                Visit a SQL ExplicitCastExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitFromSql">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitFromSql (Microsoft.EntityFrameworkCore.Query.Expressions.FromSqlExpression fromSqlExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitFromSql(class Microsoft.EntityFrameworkCore.Query.Expressions.FromSqlExpression fromSqlExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitFromSql(Microsoft.EntityFrameworkCore.Query.Expressions.FromSqlExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="fromSqlExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.FromSqlExpression" />
+      </Parameters>
+      <Docs>
+        <param name="fromSqlExpression"> The FromSql expression. </param>
+        <summary>
+                Visit a FromSqlExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitIn">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitIn (Microsoft.EntityFrameworkCore.Query.Expressions.InExpression inExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitIn(class Microsoft.EntityFrameworkCore.Query.Expressions.InExpression inExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitIn(Microsoft.EntityFrameworkCore.Query.Expressions.InExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="inExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.InExpression" />
+      </Parameters>
+      <Docs>
+        <param name="inExpression"> The in expression. </param>
+        <summary>
+                Visit an InExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitInnerJoin">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitInnerJoin (Microsoft.EntityFrameworkCore.Query.Expressions.InnerJoinExpression innerJoinExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitInnerJoin(class Microsoft.EntityFrameworkCore.Query.Expressions.InnerJoinExpression innerJoinExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitInnerJoin(Microsoft.EntityFrameworkCore.Query.Expressions.InnerJoinExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="innerJoinExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.InnerJoinExpression" />
+      </Parameters>
+      <Docs>
+        <param name="innerJoinExpression"> The inner join expression. </param>
+        <summary>
+                Visit an InnerJoinExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitIsNotNull">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitIsNotNull (Microsoft.EntityFrameworkCore.Query.Expressions.IsNullExpression isNotNullExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitIsNotNull(class Microsoft.EntityFrameworkCore.Query.Expressions.IsNullExpression isNotNullExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitIsNotNull(Microsoft.EntityFrameworkCore.Query.Expressions.IsNullExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="isNotNullExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.IsNullExpression" />
+      </Parameters>
+      <Docs>
+        <param name="isNotNullExpression"> The is not null expression. </param>
+        <summary>
+                Visits an IsNotNullExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitIsNull">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitIsNull (Microsoft.EntityFrameworkCore.Query.Expressions.IsNullExpression isNullExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitIsNull(class Microsoft.EntityFrameworkCore.Query.Expressions.IsNullExpression isNullExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitIsNull(Microsoft.EntityFrameworkCore.Query.Expressions.IsNullExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="isNullExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.IsNullExpression" />
+      </Parameters>
+      <Docs>
+        <param name="isNullExpression"> The is null expression. </param>
+        <summary>
+                Visits an IsNullExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitLateralJoin">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitLateralJoin (Microsoft.EntityFrameworkCore.Query.Expressions.LateralJoinExpression lateralJoinExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitLateralJoin(class Microsoft.EntityFrameworkCore.Query.Expressions.LateralJoinExpression lateralJoinExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitLateralJoin(Microsoft.EntityFrameworkCore.Query.Expressions.LateralJoinExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="lateralJoinExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.LateralJoinExpression" />
+      </Parameters>
+      <Docs>
+        <param name="lateralJoinExpression"> The lateral join expression. </param>
+        <summary>
+                Visit a LateralJoin expression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitLeftOuterJoin">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitLeftOuterJoin (Microsoft.EntityFrameworkCore.Query.Expressions.LeftOuterJoinExpression leftOuterJoinExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitLeftOuterJoin(class Microsoft.EntityFrameworkCore.Query.Expressions.LeftOuterJoinExpression leftOuterJoinExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitLeftOuterJoin(Microsoft.EntityFrameworkCore.Query.Expressions.LeftOuterJoinExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="leftOuterJoinExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.LeftOuterJoinExpression" />
+      </Parameters>
+      <Docs>
+        <param name="leftOuterJoinExpression"> The left outer join expression. </param>
+        <summary>
+                Visit an LeftOuterJoinExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitLike">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitLike (Microsoft.EntityFrameworkCore.Query.Expressions.LikeExpression likeExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitLike(class Microsoft.EntityFrameworkCore.Query.Expressions.LikeExpression likeExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitLike(Microsoft.EntityFrameworkCore.Query.Expressions.LikeExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="likeExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.LikeExpression" />
+      </Parameters>
+      <Docs>
+        <param name="likeExpression"> The like expression. </param>
+        <summary>
+                Visit a LikeExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitMax">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitMax (Microsoft.EntityFrameworkCore.Query.Expressions.MaxExpression maxExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitMax(class Microsoft.EntityFrameworkCore.Query.Expressions.MaxExpression maxExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitMax(Microsoft.EntityFrameworkCore.Query.Expressions.MaxExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="maxExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.MaxExpression" />
+      </Parameters>
+      <Docs>
+        <param name="maxExpression"> The max expression. </param>
+        <summary>
+                Visit a MaxExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitMin">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitMin (Microsoft.EntityFrameworkCore.Query.Expressions.MinExpression minExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitMin(class Microsoft.EntityFrameworkCore.Query.Expressions.MinExpression minExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitMin(Microsoft.EntityFrameworkCore.Query.Expressions.MinExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="minExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.MinExpression" />
+      </Parameters>
+      <Docs>
+        <param name="minExpression"> The min expression. </param>
+        <summary>
+                Visit a MinExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitNotIn">
+      <MemberSignature Language="C#" Value="protected virtual System.Linq.Expressions.Expression VisitNotIn (Microsoft.EntityFrameworkCore.Query.Expressions.InExpression inExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitNotIn(class Microsoft.EntityFrameworkCore.Query.Expressions.InExpression inExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitNotIn(Microsoft.EntityFrameworkCore.Query.Expressions.InExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="inExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.InExpression" />
+      </Parameters>
+      <Docs>
+        <param name="inExpression"> The in expression. </param>
+        <summary>
+                Visit a negated InExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitParameter">
+      <MemberSignature Language="C#" Value="protected override System.Linq.Expressions.Expression VisitParameter (System.Linq.Expressions.ParameterExpression parameterExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance class System.Linq.Expressions.Expression VisitParameter(class System.Linq.Expressions.ParameterExpression parameterExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitParameter(System.Linq.Expressions.ParameterExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="parameterExpression" Type="System.Linq.Expressions.ParameterExpression" />
+      </Parameters>
+      <Docs>
+        <param name="parameterExpression"> The parameter expression to visit. </param>
+        <summary>
+                Visits a ParameterExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitProjection">
+      <MemberSignature Language="C#" Value="protected virtual void VisitProjection (System.Collections.Generic.IReadOnlyList&lt;System.Linq.Expressions.Expression&gt; projections);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void VisitProjection(class System.Collections.Generic.IReadOnlyList`1&lt;class System.Linq.Expressions.Expression&gt; projections) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitProjection(System.Collections.Generic.IReadOnlyList{System.Linq.Expressions.Expression})" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="projections" Type="System.Collections.Generic.IReadOnlyList&lt;System.Linq.Expressions.Expression&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="projections"> The projection expression. </param>
+        <summary>
+                Visit the projection.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitPropertyParameter">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitPropertyParameter (Microsoft.EntityFrameworkCore.Query.Expressions.PropertyParameterExpression propertyParameterExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitPropertyParameter(class Microsoft.EntityFrameworkCore.Query.Expressions.PropertyParameterExpression propertyParameterExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitPropertyParameter(Microsoft.EntityFrameworkCore.Query.Expressions.PropertyParameterExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="propertyParameterExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.PropertyParameterExpression" />
+      </Parameters>
+      <Docs>
+        <param name="propertyParameterExpression"> The property parameter expression. </param>
+        <summary>
+                Visits a PropertyParameterExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitSelect">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitSelect (Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression selectExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitSelect(class Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression selectExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitSelect(Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.SelectExpression" />
+      </Parameters>
+      <Docs>
+        <param name="selectExpression"> The select expression. </param>
+        <summary>
+                Visit a top-level SelectExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitSqlFragment">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitSqlFragment (Microsoft.EntityFrameworkCore.Query.Expressions.SqlFragmentExpression sqlFragmentExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitSqlFragment(class Microsoft.EntityFrameworkCore.Query.Expressions.SqlFragmentExpression sqlFragmentExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitSqlFragment(Microsoft.EntityFrameworkCore.Query.Expressions.SqlFragmentExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="sqlFragmentExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.SqlFragmentExpression" />
+      </Parameters>
+      <Docs>
+        <param name="sqlFragmentExpression"> The SqlFragmentExpression expression. </param>
+        <summary>
+                Visit a SqlFragmentExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitSqlFunction">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitSqlFunction (Microsoft.EntityFrameworkCore.Query.Expressions.SqlFunctionExpression sqlFunctionExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitSqlFunction(class Microsoft.EntityFrameworkCore.Query.Expressions.SqlFunctionExpression sqlFunctionExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitSqlFunction(Microsoft.EntityFrameworkCore.Query.Expressions.SqlFunctionExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="sqlFunctionExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.SqlFunctionExpression" />
+      </Parameters>
+      <Docs>
+        <param name="sqlFunctionExpression"> The SQL function expression. </param>
+        <summary>
+                Visits a SqlFunctionExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitStringCompare">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitStringCompare (Microsoft.EntityFrameworkCore.Query.Expressions.StringCompareExpression stringCompareExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitStringCompare(class Microsoft.EntityFrameworkCore.Query.Expressions.StringCompareExpression stringCompareExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitStringCompare(Microsoft.EntityFrameworkCore.Query.Expressions.StringCompareExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="stringCompareExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.StringCompareExpression" />
+      </Parameters>
+      <Docs>
+        <param name="stringCompareExpression"> The string compare expression. </param>
+        <summary>
+                Visit a StringCompareExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitSum">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitSum (Microsoft.EntityFrameworkCore.Query.Expressions.SumExpression sumExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitSum(class Microsoft.EntityFrameworkCore.Query.Expressions.SumExpression sumExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitSum(Microsoft.EntityFrameworkCore.Query.Expressions.SumExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="sumExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.SumExpression" />
+      </Parameters>
+      <Docs>
+        <param name="sumExpression"> The sum expression. </param>
+        <summary>
+                Visit a SumExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitTable">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression VisitTable (Microsoft.EntityFrameworkCore.Query.Expressions.TableExpression tableExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitTable(class Microsoft.EntityFrameworkCore.Query.Expressions.TableExpression tableExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitTable(Microsoft.EntityFrameworkCore.Query.Expressions.TableExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="tableExpression" Type="Microsoft.EntityFrameworkCore.Query.Expressions.TableExpression" />
+      </Parameters>
+      <Docs>
+        <param name="tableExpression"> The table expression. </param>
+        <summary>
+                Visit a TableExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VisitUnary">
+      <MemberSignature Language="C#" Value="protected override System.Linq.Expressions.Expression VisitUnary (System.Linq.Expressions.UnaryExpression expression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance class System.Linq.Expressions.Expression VisitUnary(class System.Linq.Expressions.UnaryExpression expression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.Sql.DefaultQuerySqlGenerator.VisitUnary(System.Linq.Expressions.UnaryExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="System.Linq.Expressions.UnaryExpression" />
+      </Parameters>
+      <Docs>
+        <param name="expression"> The unary expression to visit. </param>
+        <summary>
+                Visits a UnaryExpression.
+            </summary>
+        <returns>
+                An Expression.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
