@@ -11,8 +11,8 @@ The API reference documentation is generated based on the XML documentation comm
 /// and re-used for subsequent instances of your derived context.
 /// </summary>
 /// <remarks>
-/// If a model is explicitly set on the options for this context (via <see cref="DbContextOptionsBuilder.UseModel(IModel)" />)
-/// then this method will not be run.
+/// If a model is explicitly set on the options for this context (via 
+/// <see cref="DbContextOptionsBuilder.UseModel(IModel)" />) then this method will not be run.
 /// </remarks>
 /// <param name="modelBuilder">
 /// The builder being used to construct the model for this context. Databases (and other extensions) typically
