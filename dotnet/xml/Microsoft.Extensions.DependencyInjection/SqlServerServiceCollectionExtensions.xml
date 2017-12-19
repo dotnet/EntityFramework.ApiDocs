@@ -3,6 +3,7 @@
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit SqlServerServiceCollectionExtensions extends System.Object" />
   <TypeSignature Language="DocId" Value="T:Microsoft.Extensions.DependencyInjection.SqlServerServiceCollectionExtensions" />
   <TypeSignature Language="VB.NET" Value="Public Module SqlServerServiceCollectionExtensions" />
+  <TypeSignature Language="F#" Value="type SqlServerServiceCollectionExtensions = class" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -25,6 +26,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.Extensions.DependencyInjection.IServiceCollection AddEntityFrameworkSqlServer(class Microsoft.Extensions.DependencyInjection.IServiceCollection serviceCollection) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.Extensions.DependencyInjection.SqlServerServiceCollectionExtensions.AddEntityFrameworkSqlServer(Microsoft.Extensions.DependencyInjection.IServiceCollection)" />
       <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function AddEntityFrameworkSqlServer (serviceCollection As IServiceCollection) As IServiceCollection" />
+      <MemberSignature Language="F#" Value="static member AddEntityFrameworkSqlServer : Microsoft.Extensions.DependencyInjection.IServiceCollection -&gt; Microsoft.Extensions.DependencyInjection.IServiceCollection" Usage="Microsoft.Extensions.DependencyInjection.SqlServerServiceCollectionExtensions.AddEntityFrameworkSqlServer services" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
@@ -70,6 +72,20 @@
                                         .UseInternalServiceProvider(serviceProvider));
                      }
                  </code>
+        </example>
+        <example>
+          <code>
+                      public void ConfigureServices(IServiceCollection services)
+                      {
+                          var connectionString = "connection string to database";
+            
+                          services
+                              .AddEntityFrameworkSqlServer()
+                              .AddDbContext&lt;MyContext&gt;((serviceProvider, options) =&gt;
+                                  options.UseSqlServer(connectionString)
+                                         .UseInternalServiceProvider(serviceProvider));
+                      }
+                  </code>
         </example>
       </Docs>
     </Member>
