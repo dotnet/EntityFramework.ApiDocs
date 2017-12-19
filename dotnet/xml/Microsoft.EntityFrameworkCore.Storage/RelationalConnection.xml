@@ -3,6 +3,7 @@
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit RelationalConnection extends System.Object implements class Microsoft.EntityFrameworkCore.Infrastructure.IResettableService, class Microsoft.EntityFrameworkCore.Storage.IDbContextTransactionManager, class Microsoft.EntityFrameworkCore.Storage.IRelationalConnection, class Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionManager, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Storage.RelationalConnection" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class RelationalConnection&#xA;Implements IDbContextTransactionManager, IDisposable, IRelationalConnection" />
+  <TypeSignature Language="F#" Value="type RelationalConnection = class&#xA;    interface IRelationalConnection&#xA;    interface IRelationalTransactionManager&#xA;    interface IDbContextTransactionManager&#xA;    interface IResettableService&#xA;    interface IDisposable" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -41,6 +42,7 @@
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Storage.RelationalConnectionDependencies dependencies) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.#ctor(Microsoft.EntityFrameworkCore.Storage.RelationalConnectionDependencies)" />
       <MemberSignature Language="VB.NET" Value="Protected Sub New (dependencies As RelationalConnectionDependencies)" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Storage.RelationalConnection : Microsoft.EntityFrameworkCore.Storage.RelationalConnectionDependencies -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalConnection" Usage="new Microsoft.EntityFrameworkCore.Storage.RelationalConnection dependencies" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -62,6 +64,7 @@
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions options, class Microsoft.Extensions.Logging.ILogger logger) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.#ctor(Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions,Microsoft.Extensions.Logging.ILogger)" />
       <MemberSignature Language="VB.NET" Value="Protected Sub New (options As IDbContextOptions, logger As ILogger)" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Storage.RelationalConnection : Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions * Microsoft.Extensions.Logging.ILogger -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalConnection" Usage="new Microsoft.EntityFrameworkCore.Storage.RelationalConnection (options, logger)" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -86,7 +89,11 @@
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Query.Internal.IValueBufferCursor ActiveCursor" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.ActiveCursor" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Property ActiveCursor As IValueBufferCursor" />
+      <MemberSignature Language="F#" Value="member this.ActiveCursor : Microsoft.EntityFrameworkCore.Query.Internal.IValueBufferCursor with get, set" Usage="Microsoft.EntityFrameworkCore.Storage.RelationalConnection.ActiveCursor" />
       <MemberType>Property</MemberType>
+      <Implements>
+        <InterfaceMember>P:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.ActiveCursor</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -108,7 +115,11 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction BeginTransaction() cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransaction" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Function BeginTransaction () As IDbContextTransaction" />
+      <MemberSignature Language="F#" Value="abstract member BeginTransaction : unit -&gt; Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&#xA;override this.BeginTransaction : unit -&gt; Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction" Usage="relationalConnection.BeginTransaction " />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IDbContextTransactionManager.BeginTransaction</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -131,7 +142,11 @@
       <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction BeginTransaction (System.Data.IsolationLevel isolationLevel);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction BeginTransaction(valuetype System.Data.IsolationLevel isolationLevel) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransaction(System.Data.IsolationLevel)" />
+      <MemberSignature Language="F#" Value="abstract member BeginTransaction : System.Data.IsolationLevel -&gt; Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&#xA;override this.BeginTransaction : System.Data.IsolationLevel -&gt; Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction" Usage="relationalConnection.BeginTransaction isolationLevel" />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionManager.BeginTransaction(System.Data.IsolationLevel)</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -157,7 +172,11 @@
       <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt; BeginTransactionAsync (System.Threading.CancellationToken cancellationToken = null);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;class Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt; BeginTransactionAsync(valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member BeginTransactionAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;&#xA;override this.BeginTransactionAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;" Usage="relationalConnection.BeginTransactionAsync cancellationToken" />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IDbContextTransactionManager.BeginTransactionAsync(System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -190,7 +209,11 @@
       <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt; BeginTransactionAsync (System.Data.IsolationLevel isolationLevel, System.Threading.CancellationToken cancellationToken = null);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;class Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt; BeginTransactionAsync(valuetype System.Data.IsolationLevel isolationLevel, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(System.Data.IsolationLevel,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member BeginTransactionAsync : System.Data.IsolationLevel * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;&#xA;override this.BeginTransactionAsync : System.Data.IsolationLevel * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;" Usage="relationalConnection.BeginTransactionAsync (isolationLevel, cancellationToken)" />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionManager.BeginTransactionAsync(System.Data.IsolationLevel,System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -226,7 +249,11 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool Close() cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Close" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Function Close () As Boolean" />
+      <MemberSignature Language="F#" Value="abstract member Close : unit -&gt; bool&#xA;override this.Close : unit -&gt; bool" Usage="relationalConnection.Close " />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.Close</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
@@ -248,7 +275,11 @@
       <MemberSignature Language="ILAsm" Value=".property instance valuetype System.Nullable`1&lt;int32&gt; CommandTimeout" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.CommandTimeout" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Property CommandTimeout As Nullable(Of Integer)" />
+      <MemberSignature Language="F#" Value="member this.CommandTimeout : Nullable&lt;int&gt; with get, set" Usage="Microsoft.EntityFrameworkCore.Storage.RelationalConnection.CommandTimeout" />
       <MemberType>Property</MemberType>
+      <Implements>
+        <InterfaceMember>P:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.CommandTimeout</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -271,7 +302,11 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void CommitTransaction() cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.CommitTransaction" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Sub CommitTransaction ()" />
+      <MemberSignature Language="F#" Value="abstract member CommitTransaction : unit -&gt; unit&#xA;override this.CommitTransaction : unit -&gt; unit" Usage="relationalConnection.CommitTransaction " />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IDbContextTransactionManager.CommitTransaction</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -294,7 +329,11 @@
       <MemberSignature Language="ILAsm" Value=".property instance valuetype System.Guid ConnectionId" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.ConnectionId" />
       <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property ConnectionId As Guid" />
+      <MemberSignature Language="F#" Value="member this.ConnectionId : Guid" Usage="Microsoft.EntityFrameworkCore.Storage.RelationalConnection.ConnectionId" />
       <MemberType>Property</MemberType>
+      <Implements>
+        <InterfaceMember>P:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.ConnectionId</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
@@ -315,7 +354,11 @@
       <MemberSignature Language="ILAsm" Value=".property instance string ConnectionString" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.ConnectionString" />
       <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property ConnectionString As String" />
+      <MemberSignature Language="F#" Value="member this.ConnectionString : string" Usage="Microsoft.EntityFrameworkCore.Storage.RelationalConnection.ConnectionString" />
       <MemberType>Property</MemberType>
+      <Implements>
+        <InterfaceMember>P:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.ConnectionString</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -338,6 +381,7 @@
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Data.Common.DbConnection CreateDbConnection() cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.CreateDbConnection" />
       <MemberSignature Language="VB.NET" Value="Protected MustOverride Function CreateDbConnection () As DbConnection" />
+      <MemberSignature Language="F#" Value="abstract member CreateDbConnection : unit -&gt; System.Data.Common.DbConnection" Usage="relationalConnection.CreateDbConnection " />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -362,6 +406,7 @@
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction CurrentTransaction" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.CurrentTransaction" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Property CurrentTransaction As IDbContextTransaction" />
+      <MemberSignature Language="F#" Value="member this.CurrentTransaction : Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction with get, set" Usage="Microsoft.EntityFrameworkCore.Storage.RelationalConnection.CurrentTransaction" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -385,7 +430,11 @@
       <MemberSignature Language="ILAsm" Value=".property instance class System.Data.Common.DbConnection DbConnection" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.DbConnection" />
       <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property DbConnection As DbConnection" />
+      <MemberSignature Language="F#" Value="member this.DbConnection : System.Data.Common.DbConnection" Usage="Microsoft.EntityFrameworkCore.Storage.RelationalConnection.DbConnection" />
       <MemberType>Property</MemberType>
+      <Implements>
+        <InterfaceMember>P:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.DbConnection</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -408,6 +457,7 @@
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Storage.RelationalConnectionDependencies Dependencies" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Dependencies" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable ReadOnly Property Dependencies As RelationalConnectionDependencies" />
+      <MemberSignature Language="F#" Value="member this.Dependencies : Microsoft.EntityFrameworkCore.Storage.RelationalConnectionDependencies" Usage="Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Dependencies" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -429,7 +479,11 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void Dispose() cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Dispose" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Sub Dispose ()" />
+      <MemberSignature Language="F#" Value="abstract member Dispose : unit -&gt; unit&#xA;override this.Dispose : unit -&gt; unit" Usage="relationalConnection.Dispose " />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:System.IDisposable.Dispose</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -452,7 +506,11 @@
       <MemberSignature Language="ILAsm" Value=".property instance bool IsMultipleActiveResultSetsEnabled" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.IsMultipleActiveResultSetsEnabled" />
       <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property IsMultipleActiveResultSetsEnabled As Boolean" />
+      <MemberSignature Language="F#" Value="member this.IsMultipleActiveResultSetsEnabled : bool" Usage="Microsoft.EntityFrameworkCore.Storage.RelationalConnection.IsMultipleActiveResultSetsEnabled" />
       <MemberType>Property</MemberType>
+      <Implements>
+        <InterfaceMember>P:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.IsMultipleActiveResultSetsEnabled</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -475,6 +533,7 @@
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.Extensions.Logging.ILogger Logger" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Logger" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable ReadOnly Property Logger As ILogger" />
+      <MemberSignature Language="F#" Value="member this.Logger : Microsoft.Extensions.Logging.ILogger" Usage="Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Logger" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -498,6 +557,9 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Microsoft#EntityFrameworkCore#Infrastructure#IResettableService#ResetState" />
       <MemberSignature Language="VB.NET" Value="Sub ResetState () Implements IResettableService.ResetState" />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetState</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
@@ -517,6 +579,9 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Microsoft#EntityFrameworkCore#Storage#IRelationalConnection#RegisterBufferable(Microsoft.EntityFrameworkCore.Query.Internal.IBufferable)" />
       <MemberSignature Language="VB.NET" Value="Sub RegisterBufferable (bufferable As IBufferable) Implements IRelationalConnection.RegisterBufferable" />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.RegisterBufferable(Microsoft.EntityFrameworkCore.Query.Internal.IBufferable)</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
@@ -540,6 +605,9 @@
       <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class System.Threading.Tasks.Task Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.RegisterBufferableAsync(class Microsoft.EntityFrameworkCore.Query.Internal.IBufferable bufferable, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Microsoft#EntityFrameworkCore#Storage#IRelationalConnection#RegisterBufferableAsync(Microsoft.EntityFrameworkCore.Query.Internal.IBufferable,System.Threading.CancellationToken)" />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.RegisterBufferableAsync(Microsoft.EntityFrameworkCore.Query.Internal.IBufferable,System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
@@ -573,7 +641,11 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void Open() cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Sub Open ()" />
+      <MemberSignature Language="F#" Value="abstract member Open : unit -&gt; unit&#xA;override this.Open : unit -&gt; unit" Usage="relationalConnection.Open " />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.Open</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -595,7 +667,11 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool Open(bool errorsExpected) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(System.Boolean)" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Function Open (Optional errorsExpected As Boolean = false) As Boolean" />
+      <MemberSignature Language="F#" Value="abstract member Open : bool -&gt; bool&#xA;override this.Open : bool -&gt; bool" Usage="relationalConnection.Open errorsExpected" />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.Open(System.Boolean)</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
@@ -619,7 +695,11 @@
       <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task OpenAsync (System.Threading.CancellationToken cancellationToken = null);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task OpenAsync(valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member OpenAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&#xA;override this.OpenAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="relationalConnection.OpenAsync cancellationToken" />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.OpenAsync(System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -651,7 +731,11 @@
       <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;bool&gt; OpenAsync (System.Threading.CancellationToken cancellationToken, bool errorsExpected = false);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;bool&gt; OpenAsync(valuetype System.Threading.CancellationToken cancellationToken, bool errorsExpected) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(System.Threading.CancellationToken,System.Boolean)" />
+      <MemberSignature Language="F#" Value="abstract member OpenAsync : System.Threading.CancellationToken * bool -&gt; System.Threading.Tasks.Task&lt;bool&gt;&#xA;override this.OpenAsync : System.Threading.CancellationToken * bool -&gt; System.Threading.Tasks.Task&lt;bool&gt;" Usage="relationalConnection.OpenAsync (cancellationToken, errorsExpected)" />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.OpenAsync(System.Threading.CancellationToken,System.Boolean)</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
@@ -688,7 +772,11 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void RollbackTransaction() cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.RollbackTransaction" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Sub RollbackTransaction ()" />
+      <MemberSignature Language="F#" Value="abstract member RollbackTransaction : unit -&gt; unit&#xA;override this.RollbackTransaction : unit -&gt; unit" Usage="relationalConnection.RollbackTransaction " />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IDbContextTransactionManager.RollbackTransaction</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -711,7 +799,11 @@
       <MemberSignature Language="ILAsm" Value=".property instance class System.Threading.SemaphoreSlim Semaphore" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Semaphore" />
       <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Semaphore As SemaphoreSlim" />
+      <MemberSignature Language="F#" Value="member this.Semaphore : System.Threading.SemaphoreSlim" Usage="Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Semaphore" />
       <MemberType>Property</MemberType>
+      <Implements>
+        <InterfaceMember>P:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.Semaphore</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
@@ -734,7 +826,11 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction UseTransaction(class System.Data.Common.DbTransaction transaction) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.UseTransaction(System.Data.Common.DbTransaction)" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Function UseTransaction (transaction As DbTransaction) As IDbContextTransaction" />
+      <MemberSignature Language="F#" Value="abstract member UseTransaction : System.Data.Common.DbTransaction -&gt; Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&#xA;override this.UseTransaction : System.Data.Common.DbTransaction -&gt; Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction" Usage="relationalConnection.UseTransaction transaction" />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionManager.UseTransaction(System.Data.Common.DbTransaction)</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
