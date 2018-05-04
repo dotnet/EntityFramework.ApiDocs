@@ -4,18 +4,30 @@
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ModificationCommandBatch" />
   <TypeSignature Language="F#" Value="type ModificationCommandBatch = class" />
+  <TypeSignature Language="C++ CLI" Value="public ref class ModificationCommandBatch abstract" />
+  <TypeSignature Language="C++ CX" Value="[Windows::Foundation::Metadata::WebHostHidden]&#xA;public ref class ModificationCommandBatch abstract" />
+  <TypeSignature Language="C++ WINRT" Value="[Windows::Foundation::Metadata::WebHostHidden]&#xA;class ModificationCommandBatch abstract" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+      <para>
+                    A base class for a collection of <see cref="T:Microsoft.EntityFrameworkCore.Update.ModificationCommand" />s that can be executed
+                    as a batch.
+                </para>
+      <para>
+                    This type is typically used by database providers; it is generally not used in application code.
+                </para>
+    </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -24,12 +36,16 @@
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor() cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch.#ctor" />
       <MemberSignature Language="VB.NET" Value="Protected Sub New ()" />
+      <MemberSignature Language="C++ CLI" Value="protected:&#xA; ModificationCommandBatch();" />
+      <MemberSignature Language="C++ CX" Value="protected:&#xA; ModificationCommandBatch();" />
+      <MemberSignature Language="C++ WINRT" Value=" ModificationCommandBatch();" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -42,12 +58,15 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool AddCommand(class Microsoft.EntityFrameworkCore.Update.ModificationCommand modificationCommand) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch.AddCommand(Microsoft.EntityFrameworkCore.Update.ModificationCommand)" />
       <MemberSignature Language="F#" Value="abstract member AddCommand : Microsoft.EntityFrameworkCore.Update.ModificationCommand -&gt; bool" Usage="modificationCommandBatch.AddCommand modificationCommand" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; abstract bool AddCommand(Microsoft::EntityFrameworkCore::Update::ModificationCommand ^ modificationCommand);" />
+      <MemberSignature Language="C++ WINRT" Value=" abstract bool AddCommand(Microsoft::EntityFrameworkCore::Update::ModificationCommand const &amp; modificationCommand);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -56,9 +75,14 @@
         <Parameter Name="modificationCommand" Type="Microsoft.EntityFrameworkCore.Update.ModificationCommand" />
       </Parameters>
       <Docs>
-        <param name="modificationCommand">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="modificationCommand"> The command to add. </param>
+        <summary>
+                Adds the given insert/update/delete <see cref="P:Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch.ModificationCommands" /> to the batch.
+            </summary>
+        <returns>
+          <c>True</c> if the command was successfully added; <c>false</c> if there was no
+                room in the current batch to add the command and it must instead be added to a new batch.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -68,12 +92,14 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch.Execute(Microsoft.EntityFrameworkCore.Storage.IRelationalConnection)" />
       <MemberSignature Language="VB.NET" Value="Public MustOverride Sub Execute (connection As IRelationalConnection)" />
       <MemberSignature Language="F#" Value="abstract member Execute : Microsoft.EntityFrameworkCore.Storage.IRelationalConnection -&gt; unit" Usage="modificationCommandBatch.Execute connection" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; abstract void Execute(Microsoft::EntityFrameworkCore::Storage::IRelationalConnection ^ connection);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -82,8 +108,10 @@
         <Parameter Name="connection" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalConnection" />
       </Parameters>
       <Docs>
-        <param name="connection">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="connection"> The database connection to use. </param>
+        <summary>
+                Sends insert/update/delete commands to the database.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -98,6 +126,7 @@
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
@@ -107,10 +136,12 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
-        <param name="connection">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="connection"> The database connection to use. </param>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+                Sends insert/update/delete commands to the database.
+            </summary>
+        <returns> A task that represents the asynchronous save operation. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -120,18 +151,22 @@
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch.ModificationCommands" />
       <MemberSignature Language="VB.NET" Value="Public MustOverride ReadOnly Property ModificationCommands As IReadOnlyList(Of ModificationCommand)" />
       <MemberSignature Language="F#" Value="member this.ModificationCommands : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt;" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch.ModificationCommands" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; abstract property System::Collections::Generic::IReadOnlyList&lt;Microsoft::EntityFrameworkCore::Update::ModificationCommand ^&gt; ^ ModificationCommands { System::Collections::Generic::IReadOnlyList&lt;Microsoft::EntityFrameworkCore::Update::ModificationCommand ^&gt; ^ get(); };" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                The list of conceptual insert/update/delete <see cref="P:Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch.ModificationCommands" />s in the batch.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
