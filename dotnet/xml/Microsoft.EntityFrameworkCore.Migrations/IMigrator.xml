@@ -4,15 +4,22 @@
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Migrations.IMigrator" />
   <TypeSignature Language="VB.NET" Value="Public Interface IMigrator" />
   <TypeSignature Language="F#" Value="type IMigrator = interface" />
+  <TypeSignature Language="C++ CLI" Value="public interface class IMigrator" />
+  <TypeSignature Language="C++ CX" Value="public interface class IMigrator" />
+  <TypeSignature Language="C++ WINRT" Value="__interface IMigrator" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+                The main service used to generated an EF Core Migrations script or
+                migrate a database directly.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -22,12 +29,14 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.IMigrator.GenerateScript(System.String,System.String,System.Boolean)" />
       <MemberSignature Language="VB.NET" Value="Public Function GenerateScript (Optional fromMigration As String = null, Optional toMigration As String = null, Optional idempotent As Boolean = false) As String" />
       <MemberSignature Language="F#" Value="abstract member GenerateScript : string * string * bool -&gt; string" Usage="iMigrator.GenerateScript (fromMigration, toMigration, idempotent)" />
+      <MemberSignature Language="C++ WINRT" Value="std::wstring GenerateScript(std::wstring const &amp; fromMigration = null, std::wstring const &amp; toMigration = null, bool idempotent = false);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -38,11 +47,22 @@
         <Parameter Name="idempotent" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="fromMigration">To be added.</param>
-        <param name="toMigration">To be added.</param>
-        <param name="idempotent">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="fromMigration">
+                The migration to start from, or <c>null</c> to start from the empty database.
+            </param>
+        <param name="toMigration">
+                The target migration to migrate the database to, or <c>null</c> to migrate to the latest.
+            </param>
+        <param name="idempotent">
+                If <c>true</c>, then idempotent scripts will be generated, otherwise
+                scripts will be generated that assume none of the migrations in the range specified have
+                already been applied to the database.
+            </param>
+        <summary>
+                Generates a SQL script to migrate a database either in its entirety, or starting and
+                ending at specified migrations.
+            </summary>
+        <returns> The generated script. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -52,12 +72,14 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.IMigrator.Migrate(System.String)" />
       <MemberSignature Language="VB.NET" Value="Public Sub Migrate (Optional targetMigration As String = null)" />
       <MemberSignature Language="F#" Value="abstract member Migrate : string -&gt; unit" Usage="iMigrator.Migrate targetMigration" />
+      <MemberSignature Language="C++ WINRT" Value="void Migrate(std::wstring const &amp; targetMigration = null);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -66,8 +88,13 @@
         <Parameter Name="targetMigration" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="targetMigration">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="targetMigration">
+                The target migration to migrate the database to, or <c>null</c> to migrate to the latest.
+            </param>
+        <summary>
+                Migrates the database to either a specified target migration or up to the latest
+                migration that exists in the <see cref="T:Microsoft.EntityFrameworkCore.Migrations.IMigrationsAssembly" />.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -82,6 +109,7 @@
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
@@ -91,10 +119,15 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
-        <param name="targetMigration">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="targetMigration">
+                The target migration to migrate the database to, or <c>null</c> to migrate to the latest.
+            </param>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+                Migrates the database to either a specified target migration or up to the latest
+                migration that exists in the <see cref="T:Microsoft.EntityFrameworkCore.Migrations.IMigrationsAssembly" />.
+            </summary>
+        <returns> A task that represents the asynchronous operation </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
