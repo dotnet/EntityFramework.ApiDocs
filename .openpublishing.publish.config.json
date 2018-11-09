@@ -1,7 +1,5 @@
 {
   "build_entry_point": "docs",
-  "need_generate_pdf": false,
-  "need_generate_intellisense": false,
   "docsets_to_publish": [
     {
       "docset_name": "efcoreapi",
@@ -11,7 +9,8 @@
       "monikers": [
         "efcore-1.0",
         "efcore-1.1",
-        "efcore-2.0"
+        "efcore-2.0",
+        "efcore-2.1"
       ],
       "open_to_public_contributors": true,
       "type_mapping": {
@@ -33,26 +32,89 @@
         "docset_postbuild": [
           "_dependentPackages/ECMA2Yaml/tools/PostBuild.ps1"
         ]
-      }
+      },
+      "ECMA2Yaml": {
+        "SourceXmlFolder": "dotnet/xml",
+        "OutputYamlFolder": "dotnet/api",
+        "Flatten": true,
+        "id": "dotnet-template"
+      },
+      "SplitTOC": [
+        "dotnet/api/dotnet-template/toc.yml"
+      ],
+      "DiffFolder": [
+        "dotnet/api"
+      ]
     },
     {
       "docset_name": "EntityFramework_ApiDocs",
       "build_source_folder": "api_ref",
       "build_output_subfolder": "ef",
       "locale": "en-us",
+      "monikers": [],
       "open_to_public_contributors": false,
       "type_mapping": {
         "Conceptual": "Content",
         "ManagedReference": "Content",
         "RestApi": "Content"
       },
+      "build_entry_point": "docs",
       "template_folder": "_themes",
+      "customized_template_paths": [
+        "_dependentPackages/memberpage.plugins/content"
+      ],
+      "customized_tasks": {
+        "docset_prebuild": [
+          "_dependentPackages/ECMA2Yaml/tools/Run.ps1",
+          "_dependentPackages/CommonPlugins/tools/SplitTOC.ps1",
+          "_dependentPackages/CommonPlugins/tools/DiffFolder.ps1"
+        ],
+        "docset_postbuild": [
+          "_dependentPackages/ECMA2Yaml/tools/PostBuild.ps1"
+        ]
+      },
+      "ECMA2Yaml": {
+        "SourceXmlFolder": "dotnet/xml",
+        "OutputYamlFolder": "dotnet/api",
+        "Flatten": true,
+        "id": "dotnet-template"
+      },
+      "SplitTOC": [
+        "dotnet/api/dotnet-template/toc.yml"
+      ],
+      "DiffFolder": [
+        "dotnet/api"
+      ],
       "version": 0
+    },
+    {
+      "docset_name": "EntityFramework-dotnet-ref",
+      "build_source_folder": "EF",
+      "build_output_subfolder": "EntityFramework-dotnet-ref",
+      "locale": "en-us",
+      "monikers": [
+        "entity-framework-4.3.1",
+        "entity-framework-5.0.0",
+        "entity-framework-6.2.0"
+      ],
+      "moniker_ranges": [],
+      "open_to_public_contributors": true,
+      "type_mapping": {
+        "Conceptual": "Content",
+        "ManagedReference": "Content",
+        "RestApi": "Content"
+      },
+      "build_entry_point": "docs",
+      "template_folder": "_themes"
     }
   ],
   "notification_subscribers": [],
+  "sync_notification_subscribers": [],
   "branches_to_filter": [],
   "skip_source_output_uploading": false,
+  "need_preview_pull_request": true,
+  "need_pr_comments": false,
+  "contribution_branch_mappings": {},
   "dependent_repositories": [
     {
       "path_to_root": "_themes",
@@ -61,7 +123,10 @@
       "branch_mapping": {}
     }
   ],
-  "need_generate_pdf_url_template": false,
+  "branch_target_mapping": {},
+  "need_generate_pdf_url_template": true,
+  "need_generate_pdf": false,
+  "need_generate_intellisense": false,
   "dependent_packages": [
     {
       "id": "Microsoft.DocAsCode.ECMA2Yaml",
