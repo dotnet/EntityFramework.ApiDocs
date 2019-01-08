@@ -1,9 +1,9 @@
 ﻿<Type Name="DbRawSqlQuery" FullName="System.Data.Entity.Infrastructure.DbRawSqlQuery">
-  <TypeSignature Language="C#" Value="public class DbRawSqlQuery : System.Collections.IEnumerable, System.ComponentModel.IListSource" />
-  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DbRawSqlQuery extends System.Object implements class System.Collections.IEnumerable, class System.ComponentModel.IListSource" />
+  <TypeSignature Language="C#" Value="public class DbRawSqlQuery : System.Collections.IEnumerable, System.ComponentModel.IListSource, System.Data.Entity.Infrastructure.IDbAsyncEnumerable" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DbRawSqlQuery extends System.Object implements class System.Collections.IEnumerable, class System.ComponentModel.IListSource, class System.Data.Entity.Infrastructure.IDbAsyncEnumerable" />
   <TypeSignature Language="DocId" Value="T:System.Data.Entity.Infrastructure.DbRawSqlQuery" />
-  <TypeSignature Language="VB.NET" Value="Public Class DbRawSqlQuery&#xA;Implements IEnumerable, IListSource" />
-  <TypeSignature Language="F#" Value="type DbRawSqlQuery = class&#xA;    interface IEnumerable&#xA;    interface IListSource" />
+  <TypeSignature Language="VB.NET" Value="Public Class DbRawSqlQuery&#xA;Implements IDbAsyncEnumerable, IEnumerable, IListSource" />
+  <TypeSignature Language="F#" Value="type DbRawSqlQuery = class&#xA;    interface IEnumerable&#xA;    interface IListSource&#xA;    interface IDbAsyncEnumerable" />
   <AssemblyInfo>
     <AssemblyName>EntityFramework</AssemblyName>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
@@ -18,12 +18,15 @@
     <Interface>
       <InterfaceName>System.ComponentModel.IListSource</InterfaceName>
     </Interface>
+    <Interface>
+      <InterfaceName>System.Data.Entity.Infrastructure.IDbAsyncEnumerable</InterfaceName>
+    </Interface>
   </Interfaces>
   <Attributes>
-    <Attribute>
+    <Attribute FrameworkAlternate="entity-framework-6.2.0">
       <AttributeName>System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")</AttributeName>
     </Attribute>
-    <Attribute>
+    <Attribute FrameworkAlternate="entity-framework-6.2.0">
       <AttributeName>System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1010:CollectionsShouldImplementGenericInterface")</AttributeName>
     </Attribute>
   </Attributes>
@@ -52,7 +55,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="entity-framework-6.2.0">
           <AttributeName>System.Obsolete("Queries are now streaming by default unless a retrying ExecutionStrategy is used. Calling this method will have no effect.")</AttributeName>
         </Attribute>
       </Attributes>
@@ -80,7 +83,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="entity-framework-6.2.0">
           <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)</AttributeName>
         </Attribute>
       </Attributes>
@@ -96,6 +99,67 @@
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="ForEachAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task ForEachAsync (Action&lt;object&gt; action);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task ForEachAsync(class System.Action`1&lt;object&gt; action) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Data.Entity.Infrastructure.DbRawSqlQuery.ForEachAsync(System.Action{System.Object})" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function ForEachAsync (action As Action(Of Object)) As Task" />
+      <MemberSignature Language="F#" Value="abstract member ForEachAsync : Action&lt;obj&gt; -&gt; System.Threading.Tasks.Task&#xA;override this.ForEachAsync : Action&lt;obj&gt; -&gt; System.Threading.Tasks.Task" Usage="dbRawSqlQuery.ForEachAsync action" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="action" Type="System.Action&lt;System.Object&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="action"> The action to perform on each element. </param>
+        <summary>
+            Asynchronously enumerates the query results and performs the specified action on each element.
+            </summary>
+        <returns> A task that represents the asynchronous operation. </returns>
+        <remarks>
+            Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
+            that any asynchronous operations have completed before calling another method on this context.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ForEachAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task ForEachAsync (Action&lt;object&gt; action, System.Threading.CancellationToken cancellationToken);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task ForEachAsync(class System.Action`1&lt;object&gt; action, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Data.Entity.Infrastructure.DbRawSqlQuery.ForEachAsync(System.Action{System.Object},System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member ForEachAsync : Action&lt;obj&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&#xA;override this.ForEachAsync : Action&lt;obj&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="dbRawSqlQuery.ForEachAsync (action, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="action" Type="System.Action&lt;System.Object&gt;" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="action"> The action to perform on each element. </param>
+        <param name="cancellationToken">
+            A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.
+            </param>
+        <summary>
+            Asynchronously enumerates the query results and performs the specified action on each element.
+            </summary>
+        <returns> A task that represents the asynchronous operation. </returns>
+        <remarks>
+            Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
+            that any asynchronous operations have completed before calling another method on this context.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetEnumerator">
@@ -138,7 +202,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="entity-framework-6.2.0">
           <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)</AttributeName>
         </Attribute>
       </Attributes>
@@ -165,10 +229,10 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="entity-framework-6.2.0">
           <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)</AttributeName>
         </Attribute>
-        <Attribute>
+        <Attribute FrameworkAlternate="entity-framework-6.2.0">
           <AttributeName>System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")</AttributeName>
         </Attribute>
       </Attributes>
@@ -198,7 +262,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="entity-framework-6.2.0">
           <AttributeName>System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes")</AttributeName>
         </Attribute>
       </Attributes>
@@ -229,7 +293,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="entity-framework-6.2.0">
           <AttributeName>System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes")</AttributeName>
         </Attribute>
       </Attributes>
@@ -243,6 +307,110 @@
             </summary>
         <returns> Never returns; always throws. </returns>
         <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="System.Data.Entity.Infrastructure.IDbAsyncEnumerable.GetAsyncEnumerator">
+      <MemberSignature Language="C#" Value="System.Data.Entity.Infrastructure.IDbAsyncEnumerator IDbAsyncEnumerable.GetAsyncEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class System.Data.Entity.Infrastructure.IDbAsyncEnumerator System.Data.Entity.Infrastructure.IDbAsyncEnumerable.GetAsyncEnumerator() cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Data.Entity.Infrastructure.DbRawSqlQuery.System#Data#Entity#Infrastructure#IDbAsyncEnumerable#GetAsyncEnumerator" />
+      <MemberSignature Language="VB.NET" Value="Function GetAsyncEnumerator () As IDbAsyncEnumerator Implements IDbAsyncEnumerable.GetAsyncEnumerator" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:System.Data.Entity.Infrastructure.IDbAsyncEnumerable.GetAsyncEnumerator</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="entity-framework-6.2.0">
+          <AttributeName>System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes")</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Data.Entity.Infrastructure.IDbAsyncEnumerator</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns an <see cref="T:System.Data.Entity.Infrastructure.IDbAsyncEnumerable" /> which when enumerated will execute the SQL query against the database.
+            </summary>
+        <returns>
+            An <see cref="T:System.Data.Entity.Infrastructure.IDbAsyncEnumerable" /> object that can be used to iterate through the elements.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToListAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;System.Collections.Generic.List&lt;object&gt;&gt; ToListAsync ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;class System.Collections.Generic.List`1&lt;object&gt;&gt; ToListAsync() cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Data.Entity.Infrastructure.DbRawSqlQuery.ToListAsync" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function ToListAsync () As Task(Of List(Of Object))" />
+      <MemberSignature Language="F#" Value="abstract member ToListAsync : unit -&gt; System.Threading.Tasks.Task&lt;System.Collections.Generic.List&lt;obj&gt;&gt;&#xA;override this.ToListAsync : unit -&gt; System.Threading.Tasks.Task&lt;System.Collections.Generic.List&lt;obj&gt;&gt;" Usage="dbRawSqlQuery.ToListAsync " />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="entity-framework-6.2.0">
+          <AttributeName>System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Collections.Generic.List&lt;System.Object&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Creates a <see cref="T:System.Collections.Generic.List`1" /> from the query by enumerating it asynchronously.
+            </summary>
+        <returns>
+            A task that represents the asynchronous operation.
+            The task result contains a <see cref="T:System.Collections.Generic.List`1" /> that contains elements from the query.
+            </returns>
+        <remarks>
+            Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
+            that any asynchronous operations have completed before calling another method on this context.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToListAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;System.Collections.Generic.List&lt;object&gt;&gt; ToListAsync (System.Threading.CancellationToken cancellationToken);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;class System.Collections.Generic.List`1&lt;object&gt;&gt; ToListAsync(valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Data.Entity.Infrastructure.DbRawSqlQuery.ToListAsync(System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member ToListAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;System.Collections.Generic.List&lt;obj&gt;&gt;&#xA;override this.ToListAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;System.Collections.Generic.List&lt;obj&gt;&gt;" Usage="dbRawSqlQuery.ToListAsync cancellationToken" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="entity-framework-6.2.0">
+          <AttributeName>System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Collections.Generic.List&lt;System.Object&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="cancellationToken">
+            A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Collections.Generic.List`1" /> from the query by enumerating it asynchronously.
+            </summary>
+        <returns>
+            A task that represents the asynchronous operation.
+            The task result contains a <see cref="T:System.Collections.Generic.List`1" /> that contains elements from the query.
+            </returns>
+        <remarks>
+            Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
+            that any asynchronous operations have completed before calling another method on this context.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="ToString">

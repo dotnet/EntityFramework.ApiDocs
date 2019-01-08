@@ -6,6 +6,8 @@
   <TypeSignature Language="F#" Value="type DbSet&lt;'Entity (requires 'Entity : null)&gt; = class&#xA;    inherit DbQuery&lt;'Entity (requires 'Entity : null)&gt;&#xA;    interface IDbSet&lt;'Entity (requires 'Entity : null)&gt;&#xA;    interface IQueryable&lt;'Entity (requires 'Entity : null)&gt;&#xA;    interface seq&lt;'Entity (requires 'Entity : null)&gt;&#xA;    interface IQueryable&#xA;    interface IEnumerable" />
   <AssemblyInfo>
     <AssemblyName>EntityFramework</AssemblyName>
+    <AssemblyVersion>4.3.1.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
@@ -44,6 +46,9 @@
   <Attributes>
     <Attribute>
       <AttributeName>System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification="Name is intentional")</AttributeName>
+    </Attribute>
+    <Attribute FrameworkAlternate="entity-framework-4.3.1;entity-framework-5.0.0">
+      <AttributeName>System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Justification="Casing is intentional")</AttributeName>
     </Attribute>
   </Attributes>
   <Docs>
@@ -91,6 +96,8 @@
       </Implements>
       <AssemblyInfo>
         <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>4.3.1.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -100,10 +107,16 @@
         <Parameter Name="entity" Type="TEntity" />
       </Parameters>
       <Docs>
-        <param name="entity">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="entity">The entity to add.</param>
+        <summary>
+                Adds the given entity to the context underlying the set in the Added state such that it will
+                be inserted into the database when SaveChanges is called.
+            </summary>
+        <returns>The entity.</returns>
+        <remarks>
+                Note that entities that are already in the context in some other state will have their state set
+                to Added.  Add is a no-op if the entity is already in the context in the Added state.
+            </remarks>
         <inheritdoc />
       </Docs>
     </Member>
@@ -155,6 +168,8 @@
       </Implements>
       <AssemblyInfo>
         <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>4.3.1.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -164,10 +179,19 @@
         <Parameter Name="entity" Type="TEntity" />
       </Parameters>
       <Docs>
-        <param name="entity">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="entity">The entity to attach.</param>
+        <summary>
+                Attaches the given entity to the context underlying the set.  That is, the entity is placed
+                into the context in the Unchanged state, just as if it had been read from the database.
+            </summary>
+        <returns>The entity.</returns>
+        <remarks>
+                Attach is used to repopulate a context with an entity that is known to already exist in the database.
+                SaveChanges will therefore not attempt to insert an attached entity into the database because
+                it is assumed to already be there.
+                Note that entities that are already in the context in some other state will have their state set
+                to Unchanged.  Attach is a no-op if the entity is already in the context in the Unchanged state.
+            </remarks>
         <inheritdoc />
       </Docs>
     </Member>
@@ -183,6 +207,8 @@
       </Implements>
       <AssemblyInfo>
         <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>4.3.1.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -190,8 +216,13 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>
+                Creates a new instance of an entity for the type of this set.
+                Note that this instance is NOT added or attached to the set.
+                The instance returned will be a proxy if the underlying context is configured to create
+                proxies and the entity type meets the requirements for creating a proxy.
+            </summary>
+        <returns>The entity instance, which may be a proxy.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
       </Docs>
@@ -208,6 +239,8 @@
       </Implements>
       <AssemblyInfo>
         <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>4.3.1.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -223,9 +256,15 @@
       </TypeParameters>
       <Parameters />
       <Docs>
-        <typeparam name="TDerivedEntity">To be added.</typeparam>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="TDerivedEntity">The type of entity to create.</typeparam>
+        <summary>
+                Creates a new instance of an entity for the type of this set or for a type derived
+                from the type of this set.
+                Note that this instance is NOT added or attached to the set.
+                The instance returned will be a proxy if the underlying context is configured to create
+                proxies and the entity type meets the requirements for creating a proxy.
+            </summary>
+        <returns> The entity instance, which may be a proxy. </returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
       </Docs>
@@ -239,6 +278,8 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>4.3.1.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
@@ -272,6 +313,8 @@
       </Implements>
       <AssemblyInfo>
         <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>4.3.1.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -304,6 +347,94 @@
         <exception cref="T:System.InvalidOperationException">Thrown if the context has been disposed.</exception>
       </Docs>
     </Member>
+    <Member MemberName="FindAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;TEntity&gt; FindAsync (params object[] keyValues);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;!TEntity&gt; FindAsync(object[] keyValues) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Data.Entity.DbSet`1.FindAsync(System.Object[])" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function FindAsync (ParamArray keyValues As Object()) As Task(Of TEntity)" />
+      <MemberSignature Language="F#" Value="abstract member FindAsync : obj[] -&gt; System.Threading.Tasks.Task&lt;'Entity (requires 'Entity : null)&gt;&#xA;override this.FindAsync : obj[] -&gt; System.Threading.Tasks.Task&lt;'Entity (requires 'Entity : null)&gt;" Usage="dbSet.FindAsync keyValues" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;TEntity&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="keyValues" Type="System.Object[]">
+          <Attributes>
+            <Attribute FrameworkAlternate="entity-framework-6.2.0">
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="keyValues"> The values of the primary key for the entity to be found. </param>
+        <summary>
+            Asynchronously finds an entity with the given primary key values.
+            If an entity with the given primary key values exists in the context, then it is
+            returned immediately without making a request to the store.  Otherwise, a request
+            is made to the store for an entity with the given primary key values and this entity,
+            if found, is attached to the context and returned.  If no entity is found in the
+            context or the store, then null is returned.
+            </summary>
+        <returns> A task that represents the asynchronous find operation. The task result contains the entity found, or null. </returns>
+        <remarks>
+            The ordering of composite key values is as defined in the EDM, which is in turn as defined in
+            the designer, by the Code First fluent API, or by the DataMember attribute.
+            Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
+            that any asynchronous operations have completed before calling another method on this context.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FindAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;TEntity&gt; FindAsync (System.Threading.CancellationToken cancellationToken, params object[] keyValues);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;!TEntity&gt; FindAsync(valuetype System.Threading.CancellationToken cancellationToken, object[] keyValues) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Data.Entity.DbSet`1.FindAsync(System.Threading.CancellationToken,System.Object[])" />
+      <MemberSignature Language="F#" Value="abstract member FindAsync : System.Threading.CancellationToken * obj[] -&gt; System.Threading.Tasks.Task&lt;'Entity (requires 'Entity : null)&gt;&#xA;override this.FindAsync : System.Threading.CancellationToken * obj[] -&gt; System.Threading.Tasks.Task&lt;'Entity (requires 'Entity : null)&gt;" Usage="dbSet.FindAsync (cancellationToken, keyValues)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;TEntity&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+        <Parameter Name="keyValues" Type="System.Object[]">
+          <Attributes>
+            <Attribute FrameworkAlternate="entity-framework-6.2.0">
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="cancellationToken">
+            A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.
+            </param>
+        <param name="keyValues"> The values of the primary key for the entity to be found. </param>
+        <summary>
+            Asynchronously finds an entity with the given primary key values.
+            If an entity with the given primary key values exists in the context, then it is
+            returned immediately without making a request to the store.  Otherwise, a request
+            is made to the store for an entity with the given primary key values and this entity,
+            if found, is attached to the context and returned.  If no entity is found in the
+            context or the store, then null is returned.
+            </summary>
+        <returns> A task that represents the asynchronous find operation. The task result contains the entity found, or null. </returns>
+        <remarks>
+            The ordering of composite key values is as defined in the EDM, which is in turn as defined in
+            the designer, by the Code First fluent API, or by the DataMember attribute.
+            Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
+            that any asynchronous operations have completed before calling another method on this context.
+            </remarks>
+        <exception cref="T:System.InvalidOperationException">Thrown if the context has been disposed.</exception>
+      </Docs>
+    </Member>
     <Member MemberName="GetHashCode">
       <MemberSignature Language="C#" Value="public override int GetHashCode ();" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance int32 GetHashCode() cil managed" />
@@ -313,6 +444,8 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>4.3.1.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
@@ -340,13 +473,15 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>4.3.1.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute>
           <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)</AttributeName>
         </Attribute>
-        <Attribute>
+        <Attribute FrameworkAlternate="entity-framework-6.2.0">
           <AttributeName>System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")</AttributeName>
         </Attribute>
       </Attributes>
@@ -373,15 +508,26 @@
       </Implements>
       <AssemblyInfo>
         <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>4.3.1.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.ObjectModel.ObservableCollection&lt;TEntity&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>
+                Gets an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1" /> that represents a local view of all Added, Unchanged,
+                and Modified entities in this set.  This local view will stay in sync as entities are added or
+                removed from the context.  Likewise, entities added to or removed from the local view will automatically
+                be added to or removed from the context.
+            </summary>
+        <value>The local view.</value>
+        <remarks>
+                This property can be used for data binding by populating the set with data, for example by using the Load
+                extension method, and then binding to the local data through this property.  For WPF bind to this property
+                directly.  For Windows Forms bind to the result of calling ToBindingList on this property
+            </remarks>
         <inheritdoc />
       </Docs>
     </Member>
@@ -394,13 +540,15 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>4.3.1.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute>
           <AttributeName>System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2225:OperatorOverloadsHaveNamedAlternates", Justification="Intentionally just implicit to reduce API clutter.")</AttributeName>
         </Attribute>
-        <Attribute>
+        <Attribute FrameworkAlternate="entity-framework-6.2.0">
           <AttributeName>System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1065:DoNotRaiseExceptionsInUnexpectedLocations")</AttributeName>
         </Attribute>
       </Attributes>
@@ -431,6 +579,8 @@
       </Implements>
       <AssemblyInfo>
         <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>4.3.1.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -440,10 +590,18 @@
         <Parameter Name="entity" Type="TEntity" />
       </Parameters>
       <Docs>
-        <param name="entity">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="entity">The entity to remove.</param>
+        <summary>
+                Marks the given entity as Deleted such that it will be deleted from the database when SaveChanges
+                is called.  Note that the entity must exist in the context in some other state before this method
+                is called.
+            </summary>
+        <returns>The entity.</returns>
+        <remarks>
+                Note that if the entity exists in the context in the Added state, then this method
+                will cause it to be detached from the context.  This is because an Added entity is assumed not to
+                exist in the database such that trying to delete it does not make sense.
+            </remarks>
         <inheritdoc />
       </Docs>
     </Member>
@@ -493,6 +651,8 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>4.3.1.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

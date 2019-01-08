@@ -141,6 +141,97 @@
         <exception cref="T:System.InvalidOperationException">if this instance was already used to execute an operation</exception>
       </Docs>
     </Member>
+    <Member MemberName="ExecuteAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task ExecuteAsync (Func&lt;System.Threading.Tasks.Task&gt; operation, System.Threading.CancellationToken cancellationToken);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task ExecuteAsync(class System.Func`1&lt;class System.Threading.Tasks.Task&gt; operation, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Data.Entity.Infrastructure.DbExecutionStrategy.ExecuteAsync(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member ExecuteAsync : Func&lt;System.Threading.Tasks.Task&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&#xA;override this.ExecuteAsync : Func&lt;System.Threading.Tasks.Task&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="dbExecutionStrategy.ExecuteAsync (operation, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:System.Data.Entity.Infrastructure.IDbExecutionStrategy.ExecuteAsync(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="operation" Type="System.Func&lt;System.Threading.Tasks.Task&gt;" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="operation">A function that returns a started task.</param>
+        <param name="cancellationToken">
+            A cancellation token used to cancel the retry operation, but not operations that are already in flight
+            or that already completed successfully.
+            </param>
+        <summary>
+            Repetitively executes the specified asynchronous operation while it satisfies the current retry policy.
+            </summary>
+        <returns>
+            A task that will run to completion if the original task completes successfully (either the
+            first time or after retrying transient failures). If the task fails with a non-transient error or
+            the retry limit is reached, the returned task will become faulted and the exception must be observed.
+            </returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.Data.Entity.Infrastructure.RetryLimitExceededException">if the retry delay strategy determines the operation shouldn't be retried anymore</exception>
+        <exception cref="T:System.InvalidOperationException">if this instance was already used to execute an operation</exception>
+      </Docs>
+    </Member>
+    <Member MemberName="ExecuteAsync&lt;TResult&gt;">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;TResult&gt; ExecuteAsync&lt;TResult&gt; (Func&lt;System.Threading.Tasks.Task&lt;TResult&gt;&gt; operation, System.Threading.CancellationToken cancellationToken);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;!!TResult&gt; ExecuteAsync&lt;TResult&gt;(class System.Func`1&lt;class System.Threading.Tasks.Task`1&lt;!!TResult&gt;&gt; operation, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Data.Entity.Infrastructure.DbExecutionStrategy.ExecuteAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member ExecuteAsync : Func&lt;System.Threading.Tasks.Task&lt;'Result&gt;&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;'Result&gt;&#xA;override this.ExecuteAsync : Func&lt;System.Threading.Tasks.Task&lt;'Result&gt;&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;'Result&gt;" Usage="dbExecutionStrategy.ExecuteAsync (operation, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:System.Data.Entity.Infrastructure.IDbExecutionStrategy.ExecuteAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>EntityFramework</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="entity-framework-6.2.0">
+          <AttributeName>System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;TResult&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="operation" Type="System.Func&lt;System.Threading.Tasks.Task&lt;TResult&gt;&gt;" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TResult">
+            The result type of the <see cref="T:System.Threading.Tasks.Task`1" /> returned by <paramref name="operation" />.
+            </typeparam>
+        <param name="operation">
+            A function that returns a started task of type <typeparamref name="TResult" />.
+            </param>
+        <param name="cancellationToken">
+            A cancellation token used to cancel the retry operation, but not operations that are already in flight
+            or that already completed successfully.
+            </param>
+        <summary>
+            Repeatedly executes the specified asynchronous operation while it satisfies the current retry policy.
+            </summary>
+        <returns>
+            A task that will run to completion if the original task completes successfully (either the
+            first time or after retrying transient failures). If the task fails with a non-transient error or
+            the retry limit is reached, the returned task will become faulted and the exception must be observed.
+            </returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.Data.Entity.Infrastructure.RetryLimitExceededException">if the retry delay strategy determines the operation shouldn't be retried anymore</exception>
+        <exception cref="T:System.InvalidOperationException">if this instance was already used to execute an operation</exception>
+      </Docs>
+    </Member>
     <Member MemberName="GetNextDelay">
       <MemberSignature Language="C#" Value="protected internal virtual Nullable&lt;TimeSpan&gt; GetNextDelay (Exception lastException);" />
       <MemberSignature Language="ILAsm" Value=".method familyorassemblyhidebysig newslot virtual instance valuetype System.Nullable`1&lt;valuetype System.TimeSpan&gt; GetNextDelay(class System.Exception lastException) cil managed" />
