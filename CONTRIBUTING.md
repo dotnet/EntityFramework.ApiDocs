@@ -22,6 +22,6 @@ The API reference documentation is generated based on the XML documentation comm
 protected internal virtual void OnModelCreating(ModelBuilder modelBuilder)
 ```
 
-Improvements to API documentation can be proposed by submitting issues or pull requests on [the product repository](https://github.com/aspnet/EntityFrameworkCore).
+Improvements to API documentation can be proposed by submitting issues or pull requests on [the product repository of Entity Framework Core](https://github.com/aspnet/EntityFrameworkCore) or [the product repository of Entity Framework 6](https://github.com/aspnet/EntityFramework6).
 
 General information on contributing to all our repositories is contained in our [Contributing Guide](https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md).
