@@ -1,4 +1,4 @@
-﻿<Type Name="MigrationsAnnotationProvider" FullName="Microsoft.EntityFrameworkCore.Migrations.MigrationsAnnotationProvider">
+<Type Name="MigrationsAnnotationProvider" FullName="Microsoft.EntityFrameworkCore.Migrations.MigrationsAnnotationProvider">
   <TypeSignature Language="C#" Value="public class MigrationsAnnotationProvider : Microsoft.EntityFrameworkCore.Migrations.IMigrationsAnnotationProvider" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit MigrationsAnnotationProvider extends System.Object implements class Microsoft.EntityFrameworkCore.Migrations.IMigrationsAnnotationProvider" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Migrations.MigrationsAnnotationProvider" />
@@ -7,9 +7,12 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -21,9 +24,16 @@
   </Interfaces>
   <Docs>
     <summary>
-                A base class inherited by database providers that gives access to annotations
-                used by EF Core Migrations on various elements of the <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IModel" />.
-            </summary>
+      <para>
+                    A base class inherited by database providers that gives access to annotations
+                    used by EF Core Migrations on various elements of the <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IModel" />.
+                </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
+                    is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
+                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
+                </para>
+    </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -36,6 +46,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
@@ -55,15 +66,51 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationsAnnotationProviderDependencies" />
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationsAnnotationProviderDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="dependencies"> Parameter object containing dependencies for this service. </param>
         <summary>
                 Initializes a new instance of this class.
             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="For">
+      <MemberSignature Language="C#" Value="public virtual System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt; For (Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint checkConstraint);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IEnumerable`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt; For(class Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint checkConstraint) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsAnnotationProvider.For(Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function For (checkConstraint As ICheckConstraint) As IEnumerable(Of IAnnotation)" />
+      <MemberSignature Language="F#" Value="abstract member For : Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint -&gt; seq&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;&#xA;override this.For : Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint -&gt; seq&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;" Usage="migrationsAnnotationProvider.For checkConstraint" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Migrations.IMigrationsAnnotationProvider.For(Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="checkConstraint" Type="Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint" Index="0" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="checkConstraint"> The check constraint. </param>
+        <summary>
+          <para>
+                    Gets provider-specific Migrations annotations for the given <see cref="T:Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint" />.
+                </para>
+          <para>
+                    The default implementation returns an empty collection.
+                </para>
+        </summary>
+        <returns> The annotations. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -80,9 +127,12 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
@@ -117,9 +167,12 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
@@ -154,9 +207,12 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
@@ -191,9 +247,12 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
@@ -230,12 +289,14 @@
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="model"> The model. </param>
@@ -264,9 +325,12 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
@@ -303,18 +367,55 @@
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="sequence" Type="Microsoft.EntityFrameworkCore.Metadata.ISequence" />
+        <Parameter Name="sequence" Type="Microsoft.EntityFrameworkCore.Metadata.ISequence" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="sequence"> The sequence. </param>
         <summary>
           <para>
                     Gets provider-specific Migrations annotations for the given <see cref="T:Microsoft.EntityFrameworkCore.Metadata.ISequence" />.
+                </para>
+          <para>
+                    The default implementation returns an empty collection.
+                </para>
+        </summary>
+        <returns> The annotations. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ForRemove">
+      <MemberSignature Language="C#" Value="public virtual System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt; ForRemove (Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint checkConstraint);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IEnumerable`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt; ForRemove(class Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint checkConstraint) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsAnnotationProvider.ForRemove(Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function ForRemove (checkConstraint As ICheckConstraint) As IEnumerable(Of IAnnotation)" />
+      <MemberSignature Language="F#" Value="abstract member ForRemove : Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint -&gt; seq&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;&#xA;override this.ForRemove : Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint -&gt; seq&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;" Usage="migrationsAnnotationProvider.ForRemove checkConstraint" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Migrations.IMigrationsAnnotationProvider.ForRemove(Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="checkConstraint" Type="Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint" Index="0" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="checkConstraint"> The check constraint. </param>
+        <summary>
+          <para>
+                    Gets provider-specific Migrations annotations for the given <see cref="T:Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint" />
+                    when it is being removed/altered.
                 </para>
           <para>
                     The default implementation returns an empty collection.
@@ -339,12 +440,14 @@
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" />
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="entityType"> The entity type. </param>
@@ -376,12 +479,14 @@
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="foreignKey" Type="Microsoft.EntityFrameworkCore.Metadata.IForeignKey" />
+        <Parameter Name="foreignKey" Type="Microsoft.EntityFrameworkCore.Metadata.IForeignKey" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="foreignKey"> The foreign key. </param>
@@ -413,12 +518,14 @@
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="index" Type="Microsoft.EntityFrameworkCore.Metadata.IIndex" />
+        <Parameter Name="index" Type="Microsoft.EntityFrameworkCore.Metadata.IIndex" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="index"> The index. </param>
@@ -450,12 +557,14 @@
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="key" Type="Microsoft.EntityFrameworkCore.Metadata.IKey" />
+        <Parameter Name="key" Type="Microsoft.EntityFrameworkCore.Metadata.IKey" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="key"> The key. </param>
@@ -487,12 +596,14 @@
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="model"> The model. </param>
@@ -524,12 +635,14 @@
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="property" Type="Microsoft.EntityFrameworkCore.Metadata.IProperty" />
+        <Parameter Name="property" Type="Microsoft.EntityFrameworkCore.Metadata.IProperty" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="property"> The property. </param>
@@ -561,12 +674,14 @@
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="sequence" Type="Microsoft.EntityFrameworkCore.Metadata.ISequence" />
+        <Parameter Name="sequence" Type="Microsoft.EntityFrameworkCore.Metadata.ISequence" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="sequence"> The sequence. </param>

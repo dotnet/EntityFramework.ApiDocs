@@ -1,4 +1,4 @@
-﻿<Type Name="PropertyBaseExtensions" FullName="Microsoft.EntityFrameworkCore.PropertyBaseExtensions">
+<Type Name="PropertyBaseExtensions" FullName="Microsoft.EntityFrameworkCore.PropertyBaseExtensions">
   <TypeSignature Language="C#" Value="public static class PropertyBaseExtensions" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit PropertyBaseExtensions extends System.Object" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.PropertyBaseExtensions" />
@@ -9,6 +9,8 @@
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -33,6 +35,8 @@
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -43,39 +47,141 @@
       <Docs>
         <param name="propertyBase"> The property for which the backing field will be returned. </param>
         <summary>
-                Gets the name of the backing field for this property, or null if the backing field
+                Gets the name of the backing field for this property, or <c>null</c> if the backing field
                 is not known.
             </summary>
-        <returns> The name of the backing field, or null. </returns>
+        <returns> The name of the backing field, or <c>null</c>. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetGetter">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.Metadata.IClrPropertyGetter GetGetter (this Microsoft.EntityFrameworkCore.Metadata.IPropertyBase propertyBase);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.Metadata.IClrPropertyGetter GetGetter(class Microsoft.EntityFrameworkCore.Metadata.IPropertyBase propertyBase) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.PropertyBaseExtensions.GetGetter(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function GetGetter (propertyBase As IPropertyBase) As IClrPropertyGetter" />
+      <MemberSignature Language="F#" Value="static member GetGetter : Microsoft.EntityFrameworkCore.Metadata.IPropertyBase -&gt; Microsoft.EntityFrameworkCore.Metadata.IClrPropertyGetter" Usage="Microsoft.EntityFrameworkCore.PropertyBaseExtensions.GetGetter propertyBase" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IClrPropertyGetter</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="propertyBase" Type="Microsoft.EntityFrameworkCore.Metadata.IPropertyBase" Index="0" FrameworkAlternate="efcore-3.0" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="propertyBase"> The property. </param>
+        <summary>
+          <para>
+                    Gets a <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IClrPropertyGetter" /> for reading the value of this property.
+                </para>
+          <para>
+                    Note that it is an error to call this method for a shadow property (<see cref="M:Microsoft.EntityFrameworkCore.PropertyBaseExtensions.IsShadowProperty(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)" />) since
+                    such a property has no associated <see cref="T:System.Reflection.MemberInfo" />.
+                </para>
+        </summary>
+        <returns> The accessor. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetMemberInfo">
+      <MemberSignature Language="C#" Value="public static System.Reflection.MemberInfo GetMemberInfo (this Microsoft.EntityFrameworkCore.Metadata.IPropertyBase propertyBase, bool forMaterialization, bool forSet);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Reflection.MemberInfo GetMemberInfo(class Microsoft.EntityFrameworkCore.Metadata.IPropertyBase propertyBase, bool forMaterialization, bool forSet) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.PropertyBaseExtensions.GetMemberInfo(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase,System.Boolean,System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function GetMemberInfo (propertyBase As IPropertyBase, forMaterialization As Boolean, forSet As Boolean) As MemberInfo" />
+      <MemberSignature Language="F#" Value="static member GetMemberInfo : Microsoft.EntityFrameworkCore.Metadata.IPropertyBase * bool * bool -&gt; System.Reflection.MemberInfo" Usage="Microsoft.EntityFrameworkCore.PropertyBaseExtensions.GetMemberInfo (propertyBase, forMaterialization, forSet)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Reflection.MemberInfo</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="propertyBase" Type="Microsoft.EntityFrameworkCore.Metadata.IPropertyBase" Index="0" FrameworkAlternate="efcore-3.0" RefType="this" />
+        <Parameter Name="forMaterialization" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="forSet" Type="System.Boolean" Index="2" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="propertyBase"> The property. </param>
+        <param name="forMaterialization"> If true, then the member to use for query materialization will be returned. </param>
+        <param name="forSet">
+                If true, then the member to use for setting the property value will be returned, otherwise
+                the member to use for getting the property value will be returned.
+            </param>
+        <summary>
+          <para>
+                    Gets the <see cref="T:System.Reflection.PropertyInfo" /> or <see cref="T:System.Reflection.FieldInfo" /> that should be used to
+                    get or set a value for the given property.
+                </para>
+          <para>
+                    Note that it is an error to call this method for a shadow property (<see cref="M:Microsoft.EntityFrameworkCore.PropertyBaseExtensions.IsShadowProperty(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)" />) since
+                    such a property has no associated <see cref="T:System.Reflection.MemberInfo" />.
+                </para>
+        </summary>
+        <returns> The <see cref="T:System.Reflection.MemberInfo" /> to use. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="GetPropertyAccessMode">
-      <MemberSignature Language="C#" Value="public static Nullable&lt;Microsoft.EntityFrameworkCore.Metadata.PropertyAccessMode&gt; GetPropertyAccessMode (this Microsoft.EntityFrameworkCore.Metadata.IPropertyBase propertyBase);" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig valuetype System.Nullable`1&lt;valuetype Microsoft.EntityFrameworkCore.Metadata.PropertyAccessMode&gt; GetPropertyAccessMode(class Microsoft.EntityFrameworkCore.Metadata.IPropertyBase propertyBase) cil managed" />
-      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.PropertyBaseExtensions.GetPropertyAccessMode(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)" />
-      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function GetPropertyAccessMode (propertyBase As IPropertyBase) As Nullable(Of PropertyAccessMode)" />
-      <MemberSignature Language="F#" Value="static member GetPropertyAccessMode : Microsoft.EntityFrameworkCore.Metadata.IPropertyBase -&gt; Nullable&lt;Microsoft.EntityFrameworkCore.Metadata.PropertyAccessMode&gt;" Usage="Microsoft.EntityFrameworkCore.PropertyBaseExtensions.GetPropertyAccessMode propertyBase" />
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.PropertyAccessMode GetPropertyAccessMode (this Microsoft.EntityFrameworkCore.Metadata.IPropertyBase propertyBase);" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig valuetype Microsoft.EntityFrameworkCore.PropertyAccessMode GetPropertyAccessMode(class Microsoft.EntityFrameworkCore.Metadata.IPropertyBase propertyBase) cil managed" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.PropertyBaseExtensions.GetPropertyAccessMode(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function GetPropertyAccessMode (propertyBase As IPropertyBase) As PropertyAccessMode" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="F#" Value="static member GetPropertyAccessMode : Microsoft.EntityFrameworkCore.Metadata.IPropertyBase -&gt; Microsoft.EntityFrameworkCore.PropertyAccessMode" Usage="Microsoft.EntityFrameworkCore.PropertyBaseExtensions.GetPropertyAccessMode propertyBase" FrameworkAlternate="efcore-3.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
-        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>System.Nullable&lt;Microsoft.EntityFrameworkCore.Metadata.PropertyAccessMode&gt;</ReturnType>
+        <ReturnType>Microsoft.EntityFrameworkCore.PropertyAccessMode</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="propertyBase" Type="Microsoft.EntityFrameworkCore.Metadata.IPropertyBase" RefType="this" />
+        <Parameter Name="propertyBase" Type="Microsoft.EntityFrameworkCore.Metadata.IPropertyBase" Index="0" FrameworkAlternate="efcore-3.0" RefType="this" />
       </Parameters>
       <Docs>
         <param name="propertyBase"> The property for which to get the access mode. </param>
         <summary>
           <para>
-                    Gets the <see cref="T:Microsoft.EntityFrameworkCore.Metadata.PropertyAccessMode" /> being used for this property.
-                    Null indicates that the default property access mode is being used.
+                    Gets the <see cref="T:Microsoft.EntityFrameworkCore.PropertyAccessMode" /> being used for this property.
+                    <c>null</c> indicates that the default property access mode is being used.
                 </para>
         </summary>
-        <returns> The access mode being used, or null if the default access mode is being used. </returns>
+        <returns> The access mode being used, or <c>null</c> if the default access mode is being used. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsShadowProperty">
+      <MemberSignature Language="C#" Value="public static bool IsShadowProperty (this Microsoft.EntityFrameworkCore.Metadata.IPropertyBase property);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsShadowProperty(class Microsoft.EntityFrameworkCore.Metadata.IPropertyBase property) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.PropertyBaseExtensions.IsShadowProperty(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function IsShadowProperty (property As IPropertyBase) As Boolean" />
+      <MemberSignature Language="F#" Value="static member IsShadowProperty : Microsoft.EntityFrameworkCore.Metadata.IPropertyBase -&gt; bool" Usage="Microsoft.EntityFrameworkCore.PropertyBaseExtensions.IsShadowProperty property" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="property" Type="Microsoft.EntityFrameworkCore.Metadata.IPropertyBase" Index="0" FrameworkAlternate="efcore-3.0" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="property"> The property to check. </param>
+        <summary>
+                Gets a value indicating whether this is a shadow property. A shadow property is one that does not have a
+                corresponding property in the entity class. The current value for the property is stored in
+                the <see cref="T:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker" /> rather than being stored in instances of the entity class.
+            </summary>
+        <returns>
+          <c>True</c> if the property is a shadow property, otherwise <c>false</c>.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

@@ -1,4 +1,4 @@
-﻿<Type Name="RelationalDatabaseCreatorDependencies" FullName="Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies">
+<Type Name="RelationalDatabaseCreatorDependencies" FullName="Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies">
   <TypeSignature Language="C#" Value="public sealed class RelationalDatabaseCreatorDependencies" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit RelationalDatabaseCreatorDependencies extends System.Object" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies" />
@@ -8,6 +8,8 @@
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -29,6 +31,12 @@
                     first resolve the object from the dependency injection container, then replace selected
                     services using the 'With...' methods. Do not call the constructor at any point in this process.
                 </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
+                </para>
     </summary>
     <remarks>To be added.</remarks>
   </Docs>
@@ -45,12 +53,12 @@
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="connection" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalConnection" />
-        <Parameter Name="modelDiffer" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer" />
-        <Parameter Name="migrationsSqlGenerator" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator" />
-        <Parameter Name="migrationCommandExecutor" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor" />
-        <Parameter Name="executionStrategyFactory" Type="Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.0" />
+        <Parameter Name="connection" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalConnection" Index="1" FrameworkAlternate="efcore-2.0" />
+        <Parameter Name="modelDiffer" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer" Index="2" FrameworkAlternate="efcore-2.0" />
+        <Parameter Name="migrationsSqlGenerator" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator" Index="3" FrameworkAlternate="efcore-2.0" />
+        <Parameter Name="migrationCommandExecutor" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor" Index="4" FrameworkAlternate="efcore-2.0" />
+        <Parameter Name="executionStrategyFactory" Type="Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory" Index="5" FrameworkAlternate="efcore-2.0" />
       </Parameters>
       <Docs>
         <param name="model"> The <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IModel" /> for the context this creator is being used with. </param>
@@ -89,15 +97,16 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="connection" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalConnection" />
-        <Parameter Name="modelDiffer" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer" />
-        <Parameter Name="migrationsSqlGenerator" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator" />
-        <Parameter Name="migrationCommandExecutor" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor" />
-        <Parameter Name="sqlGenerationHelper" Type="Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" />
-        <Parameter Name="executionStrategyFactory" Type="Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="connection" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalConnection" Index="1" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="modelDiffer" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer" Index="2" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="migrationsSqlGenerator" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator" Index="3" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="migrationCommandExecutor" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor" Index="4" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="sqlGenerationHelper" Type="Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" Index="5" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="executionStrategyFactory" Type="Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory" Index="6" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model"> The <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IModel" /> for the context this creator is being used with. </param>
@@ -127,6 +136,93 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public RelationalDatabaseCreatorDependencies (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Storage.IRelationalConnection connection, Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer modelDiffer, Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator migrationsSqlGenerator, Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor migrationCommandExecutor, Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper sqlGenerationHelper, Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory executionStrategyFactory, Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext currentContext, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command&gt; commandLogger);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Storage.IRelationalConnection connection, class Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer modelDiffer, class Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator migrationsSqlGenerator, class Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor migrationCommandExecutor, class Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper sqlGenerationHelper, class Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory executionStrategyFactory, class Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext currentContext, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Database/Command&gt; commandLogger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies.#ctor(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer,Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator,Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor,Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper,Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory,Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command})" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (model As IModel, connection As IRelationalConnection, modelDiffer As IMigrationsModelDiffer, migrationsSqlGenerator As IMigrationsSqlGenerator, migrationCommandExecutor As IMigrationCommandExecutor, sqlGenerationHelper As ISqlGenerationHelper, executionStrategyFactory As IExecutionStrategyFactory, currentContext As ICurrentDbContext, commandLogger As IDiagnosticsLogger(Of DbLoggerCategory.Database.Command))" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Storage.IRelationalConnection * Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer * Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator * Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor * Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper * Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory * Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command&gt; -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies" Usage="new Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies (model, connection, modelDiffer, migrationsSqlGenerator, migrationCommandExecutor, sqlGenerationHelper, executionStrategyFactory, currentContext, commandLogger)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-3.0">
+          <AttributeName>Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal</AttributeName>
+        </Attribute>
+      </Attributes>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="connection" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalConnection" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="modelDiffer" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer" Index="2" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="migrationsSqlGenerator" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator" Index="3" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="migrationCommandExecutor" Type="Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor" Index="4" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="sqlGenerationHelper" Type="Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" Index="5" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="executionStrategyFactory" Type="Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory" Index="6" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="currentContext" Type="Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext" Index="7" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="commandLogger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Database+Command&gt;" Index="8" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model">To be added.</param>
+        <param name="connection">To be added.</param>
+        <param name="modelDiffer">To be added.</param>
+        <param name="migrationsSqlGenerator">To be added.</param>
+        <param name="migrationCommandExecutor">To be added.</param>
+        <param name="sqlGenerationHelper">To be added.</param>
+        <param name="executionStrategyFactory">To be added.</param>
+        <param name="currentContext">To be added.</param>
+        <param name="commandLogger">To be added.</param>
+        <summary>
+          <para>
+                    Creates the service dependencies parameter object for a <see cref="T:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator" />.
+                </para>
+          <para>
+                    Do not call this constructor directly from either provider or application code as it may change
+                    as new dependencies are added. Instead, use this type in your constructor so that an instance
+                    will be created and injected automatically by the dependency injection container. To create
+                    an instance with some dependent services replaced, first resolve the object from the dependency
+                    injection container, then replace selected services using the 'With...' methods. Do not call
+                    the constructor at any point in this process.
+                </para>
+          <para>
+                    This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                    the same compatibility standards as public APIs. It may be changed or removed without notice in
+                    any release. You should only use it directly in your code with extreme caution and knowing that
+                    doing so can result in application failures when updating to a new Entity Framework Core release.
+                </para>
+          <para>
+                    This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                    the same compatibility standards as public APIs. It may be changed or removed without notice in
+                    any release. You should only use it directly in your code with extreme caution and knowing that
+                    doing so can result in application failures when updating to a new Entity Framework Core release.
+                </para>
+        </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CommandLogger">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command&gt; CommandLogger { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Database/Command&gt; CommandLogger" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies.CommandLogger" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property CommandLogger As IDiagnosticsLogger(Of DbLoggerCategory.Database.Command)" />
+      <MemberSignature Language="F#" Value="member this.CommandLogger : Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command&gt;" Usage="Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies.CommandLogger" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Database+Command&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                The command logger.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Connection">
       <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.IRelationalConnection Connection { get; }" />
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Storage.IRelationalConnection Connection" />
@@ -138,6 +234,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IRelationalConnection</ReturnType>
@@ -145,6 +243,28 @@
       <Docs>
         <summary>
                 Gets the connection for the database.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CurrentContext">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext CurrentContext { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext CurrentContext" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies.CurrentContext" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property CurrentContext As ICurrentDbContext" />
+      <MemberSignature Language="F#" Value="member this.CurrentContext : Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext" Usage="Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies.CurrentContext" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+               Contains the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> currently in use.
             </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
@@ -161,6 +281,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory</ReturnType>
@@ -184,6 +306,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor</ReturnType>
@@ -207,6 +331,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator</ReturnType>
@@ -230,6 +356,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IModel</ReturnType>
@@ -253,6 +381,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer</ReturnType>
@@ -275,6 +405,8 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper</ReturnType>
@@ -284,6 +416,58 @@
                 Gets the <see cref="T:Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" /> to be used.
             </summary>
         <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="With">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies With (Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command&gt; commandLogger);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies With(class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Database/Command&gt; commandLogger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies.With(Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command})" />
+      <MemberSignature Language="VB.NET" Value="Public Function With (commandLogger As IDiagnosticsLogger(Of DbLoggerCategory.Database.Command)) As RelationalDatabaseCreatorDependencies" />
+      <MemberSignature Language="F#" Value="member this.With : Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command&gt; -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies" Usage="relationalDatabaseCreatorDependencies.With commandLogger" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandLogger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Database+Command&gt;" Index="0" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandLogger"> A replacement for the current dependency of this type. </param>
+        <summary>
+                Clones this dependency parameter object with one service replaced.
+            </summary>
+        <returns> A new parameter object with the given service replaced. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="With">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies With (Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext currentContext);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies With(class Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext currentContext) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies.With(Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext)" />
+      <MemberSignature Language="VB.NET" Value="Public Function With (currentContext As ICurrentDbContext) As RelationalDatabaseCreatorDependencies" />
+      <MemberSignature Language="F#" Value="member this.With : Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies" Usage="relationalDatabaseCreatorDependencies.With currentContext" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="currentContext" Type="Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext" Index="0" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="currentContext"> A replacement for the current dependency of this type. </param>
+        <summary>
+                Clones this dependency parameter object with one service replaced.
+            </summary>
+        <returns> A new parameter object with the given service replaced. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -298,6 +482,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies</ReturnType>
@@ -325,6 +511,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies</ReturnType>
@@ -352,6 +540,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies</ReturnType>
@@ -379,6 +569,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies</ReturnType>
@@ -406,6 +598,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies</ReturnType>
@@ -433,6 +627,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies</ReturnType>
@@ -459,12 +655,14 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="sqlGenerationHelper" Type="Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" />
+        <Parameter Name="sqlGenerationHelper" Type="Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="sqlGenerationHelper"> A replacement for the current dependency of this type. </param>

@@ -1,4 +1,4 @@
-﻿<Type Name="PropertyAccessMode" FullName="Microsoft.EntityFrameworkCore.PropertyAccessMode">
+<Type Name="PropertyAccessMode" FullName="Microsoft.EntityFrameworkCore.PropertyAccessMode">
   <TypeSignature Language="C#" Value="public enum PropertyAccessMode" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed PropertyAccessMode extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.PropertyAccessMode" />
@@ -8,6 +8,8 @@
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Enum</BaseTypeName>
@@ -21,13 +23,8 @@
                     or backing field will be used when reading and writing to a property or field.
                 </para>
       <para>
-                    If no access mode is set, then the backing field for a property will be used if possible
-                    when constructing new instances of the entity. The property getter or setter will be used,
-                    if possible, for all other accesses of the property. Note that when it is not possible
-                    to use the field because it could not be found by convention and was not specified using
-                    <see cref="M:Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.HasField(System.String)" />, then the property will be used instead. Likewise,
-                    when it is not possible to use the property getter or setter, for example when the
-                    property is read-only, then the field will be used instead.
+                    The default behavior is <see cref="F:Microsoft.EntityFrameworkCore.PropertyAccessMode.PreferField" />. Prior to EF Core 3.0,
+                    the default behavior was <see cref="F:Microsoft.EntityFrameworkCore.PropertyAccessMode.PreferFieldDuringConstruction" />.
                 </para>
     </summary>
     <remarks>To be added.</remarks>
@@ -44,6 +41,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.PropertyAccessMode</ReturnType>
@@ -72,6 +71,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.PropertyAccessMode</ReturnType>
@@ -91,11 +92,80 @@
                     unless this is not possible because, for example, the property is read-only, in which
                     case these accesses will also use the field.
                 </para>
+        </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="PreferField">
+      <MemberSignature Language="C#" Value="PreferField" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Microsoft.EntityFrameworkCore.PropertyAccessMode PreferField = int32(3)" />
+      <MemberSignature Language="DocId" Value="F:Microsoft.EntityFrameworkCore.PropertyAccessMode.PreferField" />
+      <MemberSignature Language="VB.NET" Value="PreferField" />
+      <MemberSignature Language="F#" Value="PreferField = 3" Usage="Microsoft.EntityFrameworkCore.PropertyAccessMode.PreferField" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.PropertyAccessMode</ReturnType>
+      </ReturnValue>
+      <MemberValue>3</MemberValue>
+      <Docs>
+        <summary>
           <para>
-                    This access mode is similar to the default mode used if none has been set except
-                    that it will throw an exception if it is not possible to write to the field for
-                    entity construction. The default access mode will fall back to using the property
-                    instead.
+                    All accesses to the property goes directly to the field, unless the field is
+                    not known, in which as access goes through the property.
+                </para>
+        </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="PreferFieldDuringConstruction">
+      <MemberSignature Language="C#" Value="PreferFieldDuringConstruction" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Microsoft.EntityFrameworkCore.PropertyAccessMode PreferFieldDuringConstruction = int32(4)" />
+      <MemberSignature Language="DocId" Value="F:Microsoft.EntityFrameworkCore.PropertyAccessMode.PreferFieldDuringConstruction" />
+      <MemberSignature Language="VB.NET" Value="PreferFieldDuringConstruction" />
+      <MemberSignature Language="F#" Value="PreferFieldDuringConstruction = 4" Usage="Microsoft.EntityFrameworkCore.PropertyAccessMode.PreferFieldDuringConstruction" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.PropertyAccessMode</ReturnType>
+      </ReturnValue>
+      <MemberValue>4</MemberValue>
+      <Docs>
+        <summary>
+          <para>
+                    All accesses to the property when constructing new entity instances goes directly
+                    to the field, unless the field is not known, in which as access goes through the property.
+                    All other uses of the property will go through the property getters and setters,
+                    unless this is not possible because, for example, the property is read-only, in which
+                    case these accesses will also use the field.
+                </para>
+        </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="PreferProperty">
+      <MemberSignature Language="C#" Value="PreferProperty" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Microsoft.EntityFrameworkCore.PropertyAccessMode PreferProperty = int32(5)" />
+      <MemberSignature Language="DocId" Value="F:Microsoft.EntityFrameworkCore.PropertyAccessMode.PreferProperty" />
+      <MemberSignature Language="VB.NET" Value="PreferProperty" />
+      <MemberSignature Language="F#" Value="PreferProperty = 5" Usage="Microsoft.EntityFrameworkCore.PropertyAccessMode.PreferProperty" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.PropertyAccessMode</ReturnType>
+      </ReturnValue>
+      <MemberValue>5</MemberValue>
+      <Docs>
+        <summary>
+          <para>
+                    All accesses to the property go through the property, unless there is no property or
+                    it is missing a setter/getter, in which as access goes directly to the field.
                 </para>
         </summary>
       </Docs>
@@ -111,6 +181,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.PropertyAccessMode</ReturnType>

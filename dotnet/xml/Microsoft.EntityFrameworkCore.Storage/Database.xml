@@ -1,4 +1,4 @@
-﻿<Type Name="Database" FullName="Microsoft.EntityFrameworkCore.Storage.Database">
+<Type Name="Database" FullName="Microsoft.EntityFrameworkCore.Storage.Database">
   <TypeSignature Language="C#" Value="public abstract class Database : Microsoft.EntityFrameworkCore.Storage.IDatabase" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit Database extends System.Object implements class Microsoft.EntityFrameworkCore.Storage.IDatabase" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Storage.Database" />
@@ -7,9 +7,12 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -28,6 +31,12 @@
                     This type is typically used by database providers (and other extensions). It is generally
                     not used in application code.
                 </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
+                </para>
     </summary>
     <remarks>To be added.</remarks>
   </Docs>
@@ -42,10 +51,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="queryCompilationContextFactory" Type="Microsoft.EntityFrameworkCore.Query.IQueryCompilationContextFactory" />
+        <Parameter Name="queryCompilationContextFactory" Type="Microsoft.EntityFrameworkCore.Query.IQueryCompilationContextFactory" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1" />
       </Parameters>
       <Docs>
         <param name="queryCompilationContextFactory"> Factory for compilation contexts to process LINQ queries. </param>
@@ -66,9 +76,11 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies" />
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="dependencies"> Parameter object containing dependencies for this service. </param>
@@ -90,9 +102,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Func&lt;Microsoft.EntityFrameworkCore.Query.QueryContext,System.Collections.Generic.IAsyncEnumerable&lt;TResult&gt;&gt;</ReturnType>
@@ -101,7 +115,7 @@
         <TypeParameter Name="TResult" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="queryModel" Type="Remotion.Linq.QueryModel" />
+        <Parameter Name="queryModel" Type="Remotion.Linq.QueryModel" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <typeparam name="TResult"> The type of results returned by the query. </typeparam>
@@ -125,9 +139,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Func&lt;Microsoft.EntityFrameworkCore.Query.QueryContext,System.Collections.Generic.IEnumerable&lt;TResult&gt;&gt;</ReturnType>
@@ -136,7 +152,7 @@
         <TypeParameter Name="TResult" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="queryModel" Type="Remotion.Linq.QueryModel" />
+        <Parameter Name="queryModel" Type="Remotion.Linq.QueryModel" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <typeparam name="TResult"> The type of results returned by the query. </typeparam>
@@ -145,6 +161,39 @@
                 Translates a query model into a function that can be executed to get query results from the database.
             </summary>
         <returns> A function that will execute the query. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CompileQuery&lt;TResult&gt;">
+      <MemberSignature Language="C#" Value="public virtual Func&lt;Microsoft.EntityFrameworkCore.Query.QueryContext,TResult&gt; CompileQuery&lt;TResult&gt; (System.Linq.Expressions.Expression query, bool async);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Func`2&lt;class Microsoft.EntityFrameworkCore.Query.QueryContext, !!TResult&gt; CompileQuery&lt;TResult&gt;(class System.Linq.Expressions.Expression query, bool async) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery``1(System.Linq.Expressions.Expression,System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function CompileQuery(Of TResult) (query As Expression, async As Boolean) As Func(Of QueryContext, TResult)" />
+      <MemberSignature Language="F#" Value="abstract member CompileQuery : System.Linq.Expressions.Expression * bool -&gt; Func&lt;Microsoft.EntityFrameworkCore.Query.QueryContext, 'Result&gt;&#xA;override this.CompileQuery : System.Linq.Expressions.Expression * bool -&gt; Func&lt;Microsoft.EntityFrameworkCore.Query.QueryContext, 'Result&gt;" Usage="database.CompileQuery (query, async)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IDatabase.CompileQuery``1(System.Linq.Expressions.Expression,System.Boolean)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Func&lt;Microsoft.EntityFrameworkCore.Query.QueryContext,TResult&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="query" Type="System.Linq.Expressions.Expression" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="async" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="query">To be added.</param>
+        <param name="async">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -159,6 +208,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies</ReturnType>
@@ -168,6 +219,35 @@
                 Parameter object containing dependencies for this service.
             </summary>
         <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SaveChanges">
+      <MemberSignature Language="C#" Value="public abstract int SaveChanges (System.Collections.Generic.IList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt; entries);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance int32 SaveChanges(class System.Collections.Generic.IList`1&lt;class Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt; entries) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.Database.SaveChanges(System.Collections.Generic.IList{Microsoft.EntityFrameworkCore.Update.IUpdateEntry})" />
+      <MemberSignature Language="VB.NET" Value="Public MustOverride Function SaveChanges (entries As IList(Of IUpdateEntry)) As Integer" />
+      <MemberSignature Language="F#" Value="abstract member SaveChanges : System.Collections.Generic.IList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt; -&gt; int" Usage="database.SaveChanges entries" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IDatabase.SaveChanges(System.Collections.Generic.IList{Microsoft.EntityFrameworkCore.Update.IUpdateEntry})</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="entries" Type="System.Collections.Generic.IList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt;" Index="0" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="entries"> Entries representing the changes to be persisted. </param>
+        <summary>
+                Persists changes from the supplied entries to the database.
+            </summary>
+        <returns> The number of state entries persisted to the database. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -184,15 +264,17 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="entries" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt;" />
+        <Parameter Name="entries" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt;" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="entries"> Entries representing the changes to be persisted. </param>
@@ -200,6 +282,39 @@
                 Persists changes from the supplied entries to the database.
             </summary>
         <returns> The number of state entries persisted to the database. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SaveChangesAsync">
+      <MemberSignature Language="C#" Value="public abstract System.Threading.Tasks.Task&lt;int&gt; SaveChangesAsync (System.Collections.Generic.IList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt; entries, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;int32&gt; SaveChangesAsync(class System.Collections.Generic.IList`1&lt;class Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt; entries, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.Database.SaveChangesAsync(System.Collections.Generic.IList{Microsoft.EntityFrameworkCore.Update.IUpdateEntry},System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member SaveChangesAsync : System.Collections.Generic.IList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;int&gt;" Usage="database.SaveChangesAsync (entries, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IDatabase.SaveChangesAsync(System.Collections.Generic.IList{Microsoft.EntityFrameworkCore.Update.IUpdateEntry},System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="entries" Type="System.Collections.Generic.IList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt;" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="entries"> Entries representing the changes to be persisted. </param>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+                Asynchronously persists changes from the supplied entries to the database.
+            </summary>
+        <returns>
+                A task that represents the asynchronous save operation. The task result contains the
+                number of entries persisted to the database.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -215,16 +330,18 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="entries" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt;" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+        <Parameter Name="entries" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt;" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="entries"> Entries representing the changes to be persisted. </param>

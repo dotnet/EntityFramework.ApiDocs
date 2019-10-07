@@ -1,4 +1,4 @@
-﻿<Type Name="IRelationalTransactionFactory" FullName="Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionFactory">
+<Type Name="IRelationalTransactionFactory" FullName="Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionFactory">
   <TypeSignature Language="C#" Value="public interface IRelationalTransactionFactory" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IRelationalTransactionFactory" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionFactory" />
@@ -7,6 +7,8 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Docs>
@@ -16,6 +18,11 @@
                 </para>
       <para>
                     This type is typically used by database providers It is generally not used in application code.
+                </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
+                    is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
+                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
                 </para>
     </summary>
     <remarks>To be added.</remarks>
@@ -31,19 +38,56 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalTransaction</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="connection" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalConnection" />
-        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Database+Transaction&gt;" />
-        <Parameter Name="transactionOwned" Type="System.Boolean" />
+        <Parameter Name="connection" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalConnection" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" Index="1" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Database+Transaction&gt;" Index="2" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="transactionOwned" Type="System.Boolean" Index="3" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="connection"> The connection to the database. </param>
         <param name="transaction"> The underlying <see cref="T:System.Data.Common.DbTransaction" />. </param>
+        <param name="logger"> The logger to write to. </param>
+        <param name="transactionOwned">
+                A value indicating whether the transaction is owned by this class (i.e. if it can be disposed when this class is disposed).
+            </param>
+        <summary>
+                Creates a <see cref="T:Microsoft.EntityFrameworkCore.Storage.RelationalTransaction" /> instance.
+            </summary>
+        <returns> A new <see cref="T:Microsoft.EntityFrameworkCore.Storage.RelationalTransaction" /> instance. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Create">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.RelationalTransaction Create (Microsoft.EntityFrameworkCore.Storage.IRelationalConnection connection, System.Data.Common.DbTransaction transaction, Guid transactionId, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Transaction&gt; logger, bool transactionOwned);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.RelationalTransaction Create(class Microsoft.EntityFrameworkCore.Storage.IRelationalConnection connection, class System.Data.Common.DbTransaction transaction, valuetype System.Guid transactionId, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Database/Transaction&gt; logger, bool transactionOwned) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionFactory.Create(Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,System.Data.Common.DbTransaction,System.Guid,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Transaction},System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Public Function Create (connection As IRelationalConnection, transaction As DbTransaction, transactionId As Guid, logger As IDiagnosticsLogger(Of DbLoggerCategory.Database.Transaction), transactionOwned As Boolean) As RelationalTransaction" />
+      <MemberSignature Language="F#" Value="abstract member Create : Microsoft.EntityFrameworkCore.Storage.IRelationalConnection * System.Data.Common.DbTransaction * Guid * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Transaction&gt; * bool -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalTransaction" Usage="iRelationalTransactionFactory.Create (connection, transaction, transactionId, logger, transactionOwned)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalTransaction</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalConnection" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="transactionId" Type="System.Guid" Index="2" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Database+Transaction&gt;" Index="3" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="transactionOwned" Type="System.Boolean" Index="4" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection to the database. </param>
+        <param name="transaction"> The underlying <see cref="T:System.Data.Common.DbTransaction" />. </param>
+        <param name="transactionId"> The unique correlation ID for this transaction. </param>
         <param name="logger"> The logger to write to. </param>
         <param name="transactionOwned">
                 A value indicating whether the transaction is owned by this class (i.e. if it can be disposed when this class is disposed).

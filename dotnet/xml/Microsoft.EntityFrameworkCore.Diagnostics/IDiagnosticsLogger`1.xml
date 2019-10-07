@@ -1,13 +1,15 @@
-﻿<Type Name="IDiagnosticsLogger&lt;TLoggerCategory&gt;" FullName="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;TLoggerCategory&gt;">
-  <TypeSignature Language="C#" Value="public interface IDiagnosticsLogger&lt;TLoggerCategory&gt; where TLoggerCategory : LoggerCategory&lt;TLoggerCategory&gt;new()" />
-  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDiagnosticsLogger`1&lt;.ctor (class Microsoft.EntityFrameworkCore.Diagnostics.LoggerCategory`1&lt;!TLoggerCategory&gt;) TLoggerCategory&gt;" />
+<Type Name="IDiagnosticsLogger&lt;TLoggerCategory&gt;" FullName="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;TLoggerCategory&gt;">
+  <TypeSignature Language="C#" Value="public interface IDiagnosticsLogger&lt;TLoggerCategory&gt; : Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger where TLoggerCategory : LoggerCategory&lt;TLoggerCategory&gt;new()" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDiagnosticsLogger`1&lt;.ctor (class Microsoft.EntityFrameworkCore.Diagnostics.LoggerCategory`1&lt;!TLoggerCategory&gt;) TLoggerCategory&gt; implements class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1" />
-  <TypeSignature Language="VB.NET" Value="Public Interface IDiagnosticsLogger(Of TLoggerCategory)" />
-  <TypeSignature Language="F#" Value="type IDiagnosticsLogger&lt;'LoggerCategory (requires 'LoggerCategory :&gt; LoggerCategory&lt;'LoggerCategory&gt; and 'LoggerCategory : (new : unit -&gt; 'LoggerCategory))&gt; = interface" />
+  <TypeSignature Language="VB.NET" Value="Public Interface IDiagnosticsLogger(Of TLoggerCategory)&#xA;Implements IDiagnosticsLogger" />
+  <TypeSignature Language="F#" Value="type IDiagnosticsLogger&lt;'LoggerCategory (requires 'LoggerCategory :&gt; LoggerCategory&lt;'LoggerCategory&gt; and 'LoggerCategory : (new : unit -&gt; 'LoggerCategory))&gt; = interface&#xA;    interface IDiagnosticsLogger" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
     <TypeParameter Name="TLoggerCategory">
@@ -17,19 +19,29 @@
       </Constraints>
     </TypeParameter>
   </TypeParameters>
-  <Interfaces />
+  <Interfaces>
+    <Interface>
+      <InterfaceName>Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger</InterfaceName>
+    </Interface>
+  </Interfaces>
   <Docs>
     <typeparam name="TLoggerCategory">To be added.</typeparam>
     <summary>
       <para>
-                    Combines <see cref="T:Microsoft.Extensions.Logging.ILogger" /> and <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1.DiagnosticSource" />
+                    Combines <see cref="T:Microsoft.Extensions.Logging.ILogger" /> and <see cref="T:System.Diagnostics.DiagnosticSource" />
                     for use by all EF Core logging so that events can be sent to both <see cref="T:Microsoft.Extensions.Logging.ILogger" />
-                    for ASP.NET and <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1.DiagnosticSource" /> for everything else.
+                    for ASP.NET and <see cref="T:System.Diagnostics.DiagnosticSource" /> for everything else.
                 </para>
       <para>
                     Also intercepts messages such that warnings
                     can be either logged or thrown, and such that a decision as to whether to log
                     sensitive data or not can be made.
+                </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
                 </para>
     </summary>
     <remarks>To be added.</remarks>
@@ -46,6 +58,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Diagnostics.DiagnosticSource</ReturnType>
@@ -68,13 +81,14 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.WarningBehavior</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="eventId" Type="Microsoft.Extensions.Logging.EventId" />
-        <Parameter Name="logLevel" Type="Microsoft.Extensions.Logging.LogLevel" />
+        <Parameter Name="eventId" Type="Microsoft.Extensions.Logging.EventId" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="logLevel" Type="Microsoft.Extensions.Logging.LogLevel" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="eventId"> The event ID that will be logged, if enabled. </param>
@@ -84,6 +98,28 @@
                 if so, whether the event should be logged or thrown.
             </summary>
         <returns> One of Log, Throw, or Ignore. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Interceptors">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Diagnostics.IInterceptors Interceptors { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Diagnostics.IInterceptors Interceptors" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1.Interceptors" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property Interceptors As IInterceptors" />
+      <MemberSignature Language="F#" Value="member this.Interceptors : Microsoft.EntityFrameworkCore.Diagnostics.IInterceptors" Usage="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;'LoggerCategory (requires 'LoggerCategory :&gt; Microsoft.EntityFrameworkCore.Diagnostics.LoggerCategory&lt;'LoggerCategory&gt; and 'LoggerCategory : (new : unit -&gt; 'LoggerCategory))&gt;.Interceptors" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.IInterceptors</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Holds registered interceptors, if any.
+            </summary>
+        <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -98,6 +134,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.Extensions.Logging.ILogger</ReturnType>
@@ -121,6 +158,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.ILoggingOptions</ReturnType>
@@ -144,6 +182,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>

@@ -1,4 +1,4 @@
-﻿<Type Name="ExecutionStrategyDependencies" FullName="Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies">
+<Type Name="ExecutionStrategyDependencies" FullName="Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies">
   <TypeSignature Language="C#" Value="public sealed class ExecutionStrategyDependencies" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ExecutionStrategyDependencies extends System.Object" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies" />
@@ -8,6 +8,8 @@
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -29,10 +31,63 @@
                     first resolve the object from the dependency injection container, then replace selected
                     services using the 'With...' methods. Do not call the constructor at any point in this process.
                 </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
+                </para>
     </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ExecutionStrategyDependencies (Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext currentContext, Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions options, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Infrastructure&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext currentContext, class Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions options, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Infrastructure&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies.#ctor(Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext,Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Infrastructure})" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (currentContext As ICurrentDbContext, options As IDbContextOptions, logger As IDiagnosticsLogger(Of DbLoggerCategory.Infrastructure))" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies : Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext * Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Infrastructure&gt; -&gt; Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies" Usage="new Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies (currentContext, options, logger)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-3.0">
+          <AttributeName>Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal</AttributeName>
+        </Attribute>
+      </Attributes>
+      <Parameters>
+        <Parameter Name="currentContext" Type="Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="options" Type="Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Infrastructure&gt;" Index="2" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="currentContext">To be added.</param>
+        <param name="options">To be added.</param>
+        <param name="logger">To be added.</param>
+        <summary>
+          <para>
+                    Creates the service dependencies parameter object for a <see cref="T:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy" />.
+                </para>
+          <para>
+                    Do not call this constructor directly from either provider or application code as it may change
+                    as new dependencies are added. Instead, use this type in your constructor so that an instance
+                    will be created and injected automatically by the dependency injection container. To create
+                    an instance with some dependent services replaced, first resolve the object from the dependency
+                    injection container, then replace selected services using the 'With...' methods. Do not call
+                    the constructor at any point in this process.
+                </para>
+          <para>
+                    This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                    the same compatibility standards as public APIs. It may be changed or removed without notice in
+                    any release. You should only use it directly in your code with extreme caution and knowing that
+                    doing so can result in application failures when updating to a new Entity Framework Core release.
+                </para>
+        </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public ExecutionStrategyDependencies (Microsoft.EntityFrameworkCore.Internal.ICurrentDbContext currentDbContext, Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions options, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Infrastructure&gt; logger);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Internal.ICurrentDbContext currentDbContext, class Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions options, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Infrastructure&gt; logger) cil managed" />
@@ -44,11 +99,12 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="currentDbContext" Type="Microsoft.EntityFrameworkCore.Internal.ICurrentDbContext" />
-        <Parameter Name="options" Type="Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Infrastructure&gt;" />
+        <Parameter Name="currentDbContext" Type="Microsoft.EntityFrameworkCore.Internal.ICurrentDbContext" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="options" Type="Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Infrastructure&gt;" Index="2" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="currentDbContext"> Indirection to the current <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance. </param>
@@ -70,6 +126,28 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="CurrentContext">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext CurrentContext { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext CurrentContext" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies.CurrentContext" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property CurrentContext As ICurrentDbContext" />
+      <MemberSignature Language="F#" Value="member this.CurrentContext : Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext" Usage="Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies.CurrentContext" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Indirection to the current <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="CurrentDbContext">
       <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Internal.ICurrentDbContext CurrentDbContext { get; }" />
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Internal.ICurrentDbContext CurrentDbContext" />
@@ -81,6 +159,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Internal.ICurrentDbContext</ReturnType>
@@ -104,6 +183,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Infrastructure&gt;</ReturnType>
@@ -127,6 +208,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions</ReturnType>
@@ -150,6 +233,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies</ReturnType>
@@ -159,6 +244,32 @@
       </Parameters>
       <Docs>
         <param name="logger"> A replacement for the current dependency of this type. </param>
+        <summary>
+                Clones this dependency parameter object with one service replaced.
+            </summary>
+        <returns> A new parameter object with the given service replaced. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="With">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies With (Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext currentContext);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies With(class Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext currentContext) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies.With(Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext)" />
+      <MemberSignature Language="VB.NET" Value="Public Function With (currentContext As ICurrentDbContext) As ExecutionStrategyDependencies" />
+      <MemberSignature Language="F#" Value="member this.With : Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext -&gt; Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies" Usage="executionStrategyDependencies.With currentContext" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="currentContext" Type="Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext" Index="0" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="currentContext"> A replacement for the current dependency of this type. </param>
         <summary>
                 Clones this dependency parameter object with one service replaced.
             </summary>
@@ -177,6 +288,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies</ReturnType>
@@ -204,12 +317,13 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="currentDbContext" Type="Microsoft.EntityFrameworkCore.Internal.ICurrentDbContext" />
+        <Parameter Name="currentDbContext" Type="Microsoft.EntityFrameworkCore.Internal.ICurrentDbContext" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="currentDbContext"> A replacement for the current dependency of this type. </param>

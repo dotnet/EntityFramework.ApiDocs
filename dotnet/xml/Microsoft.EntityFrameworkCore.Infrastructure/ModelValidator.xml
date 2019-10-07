@@ -1,4 +1,4 @@
-﻿<Type Name="ModelValidator" FullName="Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator">
+<Type Name="ModelValidator" FullName="Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator">
   <TypeSignature Language="C#" Value="public class ModelValidator : Microsoft.EntityFrameworkCore.Infrastructure.IModelValidator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ModelValidator extends System.Object implements class Microsoft.EntityFrameworkCore.Infrastructure.IModelValidator" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator" />
@@ -8,6 +8,8 @@
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -19,8 +21,15 @@
   </Interfaces>
   <Docs>
     <summary>
-                The validator that enforces core rules common for all providers.
-            </summary>
+      <para>
+                    The validator that enforces core rules common for all providers.
+                </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
+                    is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
+                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
+                </para>
+    </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -35,6 +44,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies" />
@@ -58,6 +69,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies</ReturnType>
@@ -79,18 +92,46 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LogShadowProperties">
+      <MemberSignature Language="C#" Value="protected virtual void LogShadowProperties (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void LogShadowProperties(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.LogShadowProperties(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub LogShadowProperties (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member LogShadowProperties : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.LogShadowProperties : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.LogShadowProperties (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Logs all shadow properties that were created because there was no matching CLR member.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -109,15 +150,46 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model"> The model to validate. </param>
+        <summary>
+                Validates a model, throwing an exception if any errors are found.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Validate">
+      <MemberSignature Language="C#" Value="public virtual void Validate (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void Validate(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.Validate(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Sub Validate (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member Validate : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.Validate : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.Validate (model, logger)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Infrastructure.IModelValidator.Validate(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
         <summary>
                 Validates a model, throwing an exception if any errors are found.
             </summary>
@@ -135,18 +207,46 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateChangeTrackingStrategy">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateChangeTrackingStrategy (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateChangeTrackingStrategy(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateChangeTrackingStrategy(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateChangeTrackingStrategy (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateChangeTrackingStrategy : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateChangeTrackingStrategy : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateChangeTrackingStrategy (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of change tracking in the model.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -162,18 +262,46 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateClrInheritance">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateClrInheritance (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateClrInheritance(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateClrInheritance(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateClrInheritance (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateClrInheritance : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateClrInheritance : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateClrInheritance (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of inheritance in the model.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -189,14 +317,15 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" />
-        <Parameter Name="validEntityTypes" Type="System.Collections.Generic.HashSet&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="validEntityTypes" Type="System.Collections.Generic.HashSet&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="2" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
@@ -219,18 +348,46 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateData">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateData (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateData(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateData(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateData (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateData : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateData : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateData (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of data (e.g. seed data) in the model.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -246,18 +403,100 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateDefiningNavigations">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateDefiningNavigations (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateDefiningNavigations(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateDefiningNavigations(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateDefiningNavigations (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateDefiningNavigations : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateDefiningNavigations : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateDefiningNavigations (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of defining navigations in the model.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateDefiningQuery">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateDefiningQuery (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateDefiningQuery(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateDefiningQuery(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateDefiningQuery (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateDefiningQuery : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateDefiningQuery : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateDefiningQuery (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of defining queries in the model.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateDiscriminatorValues">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateDiscriminatorValues (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateDiscriminatorValues(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateDiscriminatorValues(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateDiscriminatorValues (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateDiscriminatorValues : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateDiscriminatorValues : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateDiscriminatorValues (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of inheritance in the model.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -273,18 +512,46 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateFieldMapping">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateFieldMapping (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateFieldMapping(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateFieldMapping(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateFieldMapping (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateFieldMapping : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateFieldMapping : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateFieldMapping (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of properties mapped to fields in the model.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -299,18 +566,100 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateForeignKeys">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateForeignKeys (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateForeignKeys(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateForeignKeys(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateForeignKeys (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateForeignKeys : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateForeignKeys : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateForeignKeys (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of foreign keys in the model.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateIgnoredMembers">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateIgnoredMembers (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateIgnoredMembers(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateIgnoredMembers(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateIgnoredMembers (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateIgnoredMembers : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateIgnoredMembers : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateIgnoredMembers (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates that no attempt is made to ignore inherited properties.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateKeylessTypes">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateKeylessTypes (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateKeylessTypes(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateKeylessTypes(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateKeylessTypes (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateKeylessTypes : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateKeylessTypes : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateKeylessTypes (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of entity types without keys in the model.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -325,18 +674,46 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateNoCycles">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateNoCycles (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateNoCycles(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateNoCycles(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateNoCycles (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateNoCycles : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateNoCycles : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateNoCycles (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of the model for cycles.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -352,18 +729,46 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateNoMutableKeys">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateNoMutableKeys (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateNoMutableKeys(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateNoMutableKeys(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateNoMutableKeys (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateNoMutableKeys : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateNoMutableKeys : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateNoMutableKeys (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of mutable in the model.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -379,18 +784,46 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateNonNullPrimaryKeys">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateNonNullPrimaryKeys (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateNonNullPrimaryKeys(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateNonNullPrimaryKeys(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateNonNullPrimaryKeys (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateNonNullPrimaryKeys : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateNonNullPrimaryKeys : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateNonNullPrimaryKeys (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of primary key nullability in the model.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -406,18 +839,46 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateNoShadowEntities">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateNoShadowEntities (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateNoShadowEntities(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateNoShadowEntities(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateNoShadowEntities (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateNoShadowEntities : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateNoShadowEntities : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateNoShadowEntities (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates that the model does not contain any entity types without a corresponding CLR type.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -433,18 +894,46 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateNoShadowKeys">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateNoShadowKeys (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateNoShadowKeys(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateNoShadowKeys(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateNoShadowKeys (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateNoShadowKeys : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateNoShadowKeys : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateNoShadowKeys (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of shadow keys in the model.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -460,18 +949,73 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateOwnership">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateOwnership (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateOwnership(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateOwnership(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateOwnership (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateOwnership : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateOwnership : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateOwnership (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of ownership in the model.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidatePropertyMapping">
+      <MemberSignature Language="C#" Value="protected virtual void ValidatePropertyMapping (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidatePropertyMapping(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidatePropertyMapping(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidatePropertyMapping (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidatePropertyMapping : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidatePropertyMapping : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidatePropertyMapping (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates property mappings.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -487,18 +1031,99 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateQueryFilters">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateQueryFilters (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateQueryFilters(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateQueryFilters(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateQueryFilters (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateQueryFilters : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateQueryFilters : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateQueryFilters (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model to validate. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates the mapping/configuration of query filters in the model.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateQueryTypes">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateQueryTypes (Microsoft.EntityFrameworkCore.Metadata.IModel model);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateQueryTypes(class Microsoft.EntityFrameworkCore.Metadata.IModel model) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateQueryTypes(Microsoft.EntityFrameworkCore.Metadata.IModel)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateQueryTypes (model As IModel)" />
+      <MemberSignature Language="F#" Value="abstract member ValidateQueryTypes : Microsoft.EntityFrameworkCore.Metadata.IModel -&gt; unit&#xA;override this.ValidateQueryTypes : Microsoft.EntityFrameworkCore.Metadata.IModel -&gt; unit" Usage="modelValidator.ValidateQueryTypes model" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.2" />
+      </Parameters>
+      <Docs>
+        <param name="model">To be added.</param>
+        <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateRelationships">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateRelationships (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateRelationships(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateRelationships(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateRelationships (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateRelationships : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateRelationships : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateRelationships (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The model. </param>
+        <param name="logger"> The logger to use. </param>
+        <summary>
+                Validates relationships.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>

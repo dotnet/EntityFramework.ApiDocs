@@ -1,4 +1,4 @@
-﻿<Type Name="IRelationalTransactionManager" FullName="Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionManager">
+<Type Name="IRelationalTransactionManager" FullName="Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionManager">
   <TypeSignature Language="C#" Value="public interface IRelationalTransactionManager : Microsoft.EntityFrameworkCore.Storage.IDbContextTransactionManager" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IRelationalTransactionManager implements class Microsoft.EntityFrameworkCore.Infrastructure.IResettableService, class Microsoft.EntityFrameworkCore.Storage.IDbContextTransactionManager" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionManager" />
@@ -7,11 +7,17 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces>
+    <Interface>
+      <InterfaceName>Microsoft.EntityFrameworkCore.Infrastructure.IResettableService</InterfaceName>
+    </Interface>
     <Interface>
       <InterfaceName>Microsoft.EntityFrameworkCore.Storage.IDbContextTransactionManager</InterfaceName>
     </Interface>
@@ -24,6 +30,12 @@
       <para>
                     This type is typically used by database providers (and other extensions). It is generally
                     not used in application code.
+                </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
                 </para>
     </summary>
     <remarks>To be added.</remarks>
@@ -38,9 +50,12 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction</ReturnType>
@@ -66,9 +81,12 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;</ReturnType>
@@ -83,9 +101,7 @@
         <summary>
                 Asynchronously begins a new transaction.
             </summary>
-        <returns>
-                A task that represents the asynchronous operation. The task result contains the newly created transaction.
-            </returns>
+        <returns> A task that represents the asynchronous operation. The task result contains the newly created transaction. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -99,9 +115,12 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction</ReturnType>
@@ -114,9 +133,34 @@
         <summary>
                 Specifies an existing <see cref="T:System.Data.Common.DbTransaction" /> to be used for database operations.
             </summary>
-        <returns>
-                An instance of <see cref="T:System.Data.IDbTransaction" /> that wraps the provided transaction.
-            </returns>
+        <returns> An instance of <see cref="T:System.Data.IDbTransaction" /> that wraps the provided transaction. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseTransactionAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt; UseTransactionAsync (System.Data.Common.DbTransaction transaction, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;class Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt; UseTransactionAsync(class System.Data.Common.DbTransaction transaction, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionManager.UseTransactionAsync(System.Data.Common.DbTransaction,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member UseTransactionAsync : System.Data.Common.DbTransaction * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;" Usage="iRelationalTransactionManager.UseTransactionAsync (transaction, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="transaction"> The transaction to be used. </param>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+                Specifies an existing <see cref="T:System.Data.Common.DbTransaction" /> to be used for database operations.
+            </summary>
+        <returns> An instance of <see cref="T:System.Data.IDbTransaction" /> that wraps the provided transaction. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

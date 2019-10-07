@@ -1,4 +1,4 @@
-﻿<Type Name="ModelValidatorDependencies" FullName="Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies">
+<Type Name="ModelValidatorDependencies" FullName="Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies">
   <TypeSignature Language="C#" Value="public sealed class ModelValidatorDependencies" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ModelValidatorDependencies extends System.Object" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies" />
@@ -8,6 +8,8 @@
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -29,6 +31,12 @@
                     first resolve the object from the dependency injection container, then replace selected
                     services using the 'With...' methods. Do not call the constructor at any point in this process.
                 </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />.
+                    This means a single instance of each service is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances.
+                    The implementation must be thread-safe.
+                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
+                </para>
     </summary>
     <remarks>To be added.</remarks>
   </Docs>
@@ -45,7 +53,7 @@
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="0" FrameworkAlternate="efcore-2.0" />
       </Parameters>
       <Docs>
         <param name="logger"> The logger. </param>
@@ -79,10 +87,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" />
-        <Parameter Name="modelLogger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model&gt;" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="modelLogger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model&gt;" Index="1" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="logger"> The validation logger. </param>
@@ -107,6 +116,55 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ModelValidatorDependencies (Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource typeMappingSource, Microsoft.EntityFrameworkCore.Metadata.Internal.IMemberClassifier memberClassifier);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource typeMappingSource, class Microsoft.EntityFrameworkCore.Metadata.Internal.IMemberClassifier memberClassifier) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies.#ctor(Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource,Microsoft.EntityFrameworkCore.Metadata.Internal.IMemberClassifier)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (typeMappingSource As ITypeMappingSource, memberClassifier As IMemberClassifier)" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies : Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource * Microsoft.EntityFrameworkCore.Metadata.Internal.IMemberClassifier -&gt; Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies" Usage="new Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies (typeMappingSource, memberClassifier)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-3.0">
+          <AttributeName>Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal</AttributeName>
+        </Attribute>
+      </Attributes>
+      <Parameters>
+        <Parameter Name="typeMappingSource" Type="Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="memberClassifier" Type="Microsoft.EntityFrameworkCore.Metadata.Internal.IMemberClassifier" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="typeMappingSource">To be added.</param>
+        <param name="memberClassifier">To be added.</param>
+        <summary>
+          <para>
+                    Creates the service dependencies parameter object for a <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator" />.
+                </para>
+          <para>
+                    This type is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+          <para>
+                    Do not call this constructor directly from either provider or application code as it may change
+                    as new dependencies are added. Instead, use this type in your constructor so that an instance
+                    will be created and injected automatically by the dependency injection container. To create
+                    an instance with some dependent services replaced, first resolve the object from the dependency
+                    injection container, then replace selected services using the 'With...' methods. Do not call
+                    the constructor at any point in this process.
+                </para>
+          <para>
+                    This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                    the same compatibility standards as public APIs. It may be changed or removed without notice in
+                    any release. You should only use it directly in your code with extreme caution and knowing that
+                    doing so can result in application failures when updating to a new Entity Framework Core release.
+                </para>
+        </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Logger">
       <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; Logger { get; }" />
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; Logger" />
@@ -118,6 +176,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;</ReturnType>
@@ -125,6 +184,28 @@
       <Docs>
         <summary>
                 The validation logger.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MemberClassifier">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.Internal.IMemberClassifier MemberClassifier { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Metadata.Internal.IMemberClassifier MemberClassifier" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies.MemberClassifier" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property MemberClassifier As IMemberClassifier" />
+      <MemberSignature Language="F#" Value="member this.MemberClassifier : Microsoft.EntityFrameworkCore.Metadata.Internal.IMemberClassifier" Usage="Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies.MemberClassifier" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Internal.IMemberClassifier</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                The member classifier.
             </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
@@ -140,6 +221,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model&gt;</ReturnType>
@@ -147,6 +229,28 @@
       <Docs>
         <summary>
                 The model logger.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TypeMappingSource">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource TypeMappingSource { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource TypeMappingSource" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies.TypeMappingSource" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property TypeMappingSource As ITypeMappingSource" />
+      <MemberSignature Language="F#" Value="member this.TypeMappingSource : Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource" Usage="Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies.TypeMappingSource" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                The type mapper.
             </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
@@ -163,12 +267,13 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="logger"> A replacement for the current dependency of this type. </param>
@@ -189,15 +294,68 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="modelLogger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model&gt;" />
+        <Parameter Name="modelLogger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model&gt;" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="modelLogger"> A replacement for the current dependency of this type. </param>
+        <summary>
+                Clones this dependency parameter object with one service replaced.
+            </summary>
+        <returns> A new parameter object with the given service replaced. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="With">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies With (Microsoft.EntityFrameworkCore.Metadata.Internal.IMemberClassifier memberClassifier);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies With(class Microsoft.EntityFrameworkCore.Metadata.Internal.IMemberClassifier memberClassifier) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies.With(Microsoft.EntityFrameworkCore.Metadata.Internal.IMemberClassifier)" />
+      <MemberSignature Language="VB.NET" Value="Public Function With (memberClassifier As IMemberClassifier) As ModelValidatorDependencies" />
+      <MemberSignature Language="F#" Value="member this.With : Microsoft.EntityFrameworkCore.Metadata.Internal.IMemberClassifier -&gt; Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies" Usage="modelValidatorDependencies.With memberClassifier" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="memberClassifier" Type="Microsoft.EntityFrameworkCore.Metadata.Internal.IMemberClassifier" Index="0" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="memberClassifier"> A replacement for the current dependency of this type. </param>
+        <summary>
+                Clones this dependency parameter object with one service replaced.
+            </summary>
+        <returns> A new parameter object with the given service replaced. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="With">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies With (Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource typeMappingSource);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies With(class Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource typeMappingSource) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies.With(Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource)" />
+      <MemberSignature Language="VB.NET" Value="Public Function With (typeMappingSource As ITypeMappingSource) As ModelValidatorDependencies" />
+      <MemberSignature Language="F#" Value="member this.With : Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource -&gt; Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies" Usage="modelValidatorDependencies.With typeMappingSource" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="typeMappingSource" Type="Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource" Index="0" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="typeMappingSource"> A replacement for the current dependency of this type. </param>
         <summary>
                 Clones this dependency parameter object with one service replaced.
             </summary>

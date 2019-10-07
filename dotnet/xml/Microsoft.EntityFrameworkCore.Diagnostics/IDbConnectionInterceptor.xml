@@ -1,0 +1,374 @@
+<Type Name="IDbConnectionInterceptor" FullName="Microsoft.EntityFrameworkCore.Diagnostics.IDbConnectionInterceptor">
+  <TypeSignature Language="C#" Value="public interface IDbConnectionInterceptor : Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDbConnectionInterceptor implements class Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor" />
+  <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Diagnostics.IDbConnectionInterceptor" />
+  <TypeSignature Language="VB.NET" Value="Public Interface IDbConnectionInterceptor&#xA;Implements IInterceptor" />
+  <TypeSignature Language="F#" Value="type IDbConnectionInterceptor = interface&#xA;    interface IInterceptor" />
+  <AssemblyInfo>
+    <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Docs>
+    <summary>
+      <para>
+                    Allows interception of operations on <see cref="T:System.Data.Common.DbConnection" />.
+                </para>
+      <para>
+                    Connection interceptors can be used to view, change, or suppress the operation on <see cref="T:System.Data.Common.DbConnection" />, and
+                    to modify the result before it is returned to EF.
+                </para>
+      <para>
+                    Consider inheriting from <see cref="T:Microsoft.EntityFrameworkCore.Diagnostics.DbConnectionInterceptor" /> if not implementing all methods.
+                </para>
+      <para>
+                    Use <see cref="M:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.AddInterceptors(Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor[])" />
+                    to register application interceptors.
+                </para>
+      <para>
+                    Extensions can also register interceptors in the internal service provider.
+                    If both injected and application interceptors are found, then the injected interceptors are run in the
+                    order that they are resolved from the service provider, and then the application interceptors are run last.
+                </para>
+    </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="ConnectionClosed">
+      <MemberSignature Language="C#" Value="public void ConnectionClosed (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData eventData);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void ConnectionClosed(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData eventData) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbConnectionInterceptor.ConnectionClosed(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub ConnectionClosed (connection As DbConnection, eventData As ConnectionEndEventData)" />
+      <MemberSignature Language="F#" Value="abstract member ConnectionClosed : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData -&gt; unit" Usage="iDbConnectionInterceptor.ConnectionClosed (connection, eventData)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about the connection. </param>
+        <summary>
+                Called just after EF has called <see cref="M:System.Data.Common.DbConnection.Close" /> in an async context.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConnectionClosedAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task ConnectionClosedAsync (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData eventData);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task ConnectionClosedAsync(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData eventData) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbConnectionInterceptor.ConnectionClosedAsync(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData)" />
+      <MemberSignature Language="VB.NET" Value="Public Function ConnectionClosedAsync (connection As DbConnection, eventData As ConnectionEndEventData) As Task" />
+      <MemberSignature Language="F#" Value="abstract member ConnectionClosedAsync : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData -&gt; System.Threading.Tasks.Task" Usage="iDbConnectionInterceptor.ConnectionClosedAsync (connection, eventData)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about the connection. </param>
+        <summary>
+                Called just after EF has called <see cref="M:System.Data.Common.DbConnection.CloseAsync" />.
+            </summary>
+        <returns> A <see cref="T:System.Threading.Tasks.Task" /> representing the asynchronous operation. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConnectionClosing">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult ConnectionClosing (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult ConnectionClosing(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbConnectionInterceptor.ConnectionClosing(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult)" />
+      <MemberSignature Language="VB.NET" Value="Public Function ConnectionClosing (connection As DbConnection, eventData As ConnectionEventData, result As InterceptionResult) As InterceptionResult" />
+      <MemberSignature Language="F#" Value="abstract member ConnectionClosing : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" Usage="iDbConnectionInterceptor.ConnectionClosing (connection, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about the connection. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.Suppress" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbConnection.CloseAsync" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is true, then EF will suppress the operation
+                it was about to perform.
+                A normal implementation of this method for any interceptor that is not attempting to suppress
+                the operation is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConnectionClosingAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt; ConnectionClosingAsync (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt; ConnectionClosingAsync(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbConnectionInterceptor.ConnectionClosingAsync(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult)" />
+      <MemberSignature Language="VB.NET" Value="Public Function ConnectionClosingAsync (connection As DbConnection, eventData As ConnectionEventData, result As InterceptionResult) As Task(Of InterceptionResult)" />
+      <MemberSignature Language="F#" Value="abstract member ConnectionClosingAsync : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt;" Usage="iDbConnectionInterceptor.ConnectionClosingAsync (connection, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about the connection. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.Suppress" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbConnection.Close" /> in an async context.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is true, then EF will suppress the operation
+                it was about to perform.
+                A normal implementation of this method for any interceptor that is not attempting to suppress
+                the operation is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConnectionFailed">
+      <MemberSignature Language="C#" Value="public void ConnectionFailed (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.ConnectionErrorEventData eventData);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void ConnectionFailed(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.ConnectionErrorEventData eventData) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbConnectionInterceptor.ConnectionFailed(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.ConnectionErrorEventData)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub ConnectionFailed (connection As DbConnection, eventData As ConnectionErrorEventData)" />
+      <MemberSignature Language="F#" Value="abstract member ConnectionFailed : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.ConnectionErrorEventData -&gt; unit" Usage="iDbConnectionInterceptor.ConnectionFailed (connection, eventData)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.ConnectionErrorEventData" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about the connection. </param>
+        <summary>
+                Called when closing of a connection has failed with an exception. /&gt;.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConnectionFailedAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task ConnectionFailedAsync (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.ConnectionErrorEventData eventData, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task ConnectionFailedAsync(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.ConnectionErrorEventData eventData, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbConnectionInterceptor.ConnectionFailedAsync(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.ConnectionErrorEventData,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member ConnectionFailedAsync : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.ConnectionErrorEventData * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="iDbConnectionInterceptor.ConnectionFailedAsync (connection, eventData, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.ConnectionErrorEventData" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about the connection. </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+                Called when closing of a connection has failed with an exception. /&gt;.
+            </summary>
+        <returns> A <see cref="T:System.Threading.Tasks.Task" /> representing the asynchronous operation. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConnectionOpened">
+      <MemberSignature Language="C#" Value="public void ConnectionOpened (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData eventData);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void ConnectionOpened(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData eventData) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbConnectionInterceptor.ConnectionOpened(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub ConnectionOpened (connection As DbConnection, eventData As ConnectionEndEventData)" />
+      <MemberSignature Language="F#" Value="abstract member ConnectionOpened : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData -&gt; unit" Usage="iDbConnectionInterceptor.ConnectionOpened (connection, eventData)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about the connection. </param>
+        <summary>
+                Called just after EF has called <see cref="M:System.Data.Common.DbConnection.Open" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConnectionOpenedAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task ConnectionOpenedAsync (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData eventData, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task ConnectionOpenedAsync(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData eventData, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbConnectionInterceptor.ConnectionOpenedAsync(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member ConnectionOpenedAsync : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="iDbConnectionInterceptor.ConnectionOpenedAsync (connection, eventData, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEndEventData" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about the connection. </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+                Called just after EF has called <see cref="M:System.Data.Common.DbConnection.OpenAsync" />.
+            </summary>
+        <returns> A <see cref="T:System.Threading.Tasks.Task" /> representing the asynchronous operation. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConnectionOpening">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult ConnectionOpening (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult ConnectionOpening(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbConnectionInterceptor.ConnectionOpening(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult)" />
+      <MemberSignature Language="VB.NET" Value="Public Function ConnectionOpening (connection As DbConnection, eventData As ConnectionEventData, result As InterceptionResult) As InterceptionResult" />
+      <MemberSignature Language="F#" Value="abstract member ConnectionOpening : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" Usage="iDbConnectionInterceptor.ConnectionOpening (connection, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about the connection. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.Suppress" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbConnection.Open" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is true, then EF will suppress the operation
+                it was about to perform.
+                A normal implementation of this method for any interceptor that is not attempting to suppress
+                the operation is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConnectionOpeningAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt; ConnectionOpeningAsync (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt; ConnectionOpeningAsync(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbConnectionInterceptor.ConnectionOpeningAsync(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member ConnectionOpeningAsync : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt;" Usage="iDbConnectionInterceptor.ConnectionOpeningAsync (connection, eventData, result, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.ConnectionEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about the connection. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.Suppress" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbConnection.OpenAsync" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is true, then EF will suppress the operation
+                it was about to perform.
+                A normal implementation of this method for any interceptor that is not attempting to suppress
+                the operation is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

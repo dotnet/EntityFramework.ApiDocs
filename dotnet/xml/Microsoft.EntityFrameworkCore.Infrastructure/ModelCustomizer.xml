@@ -1,4 +1,4 @@
-﻿<Type Name="ModelCustomizer" FullName="Microsoft.EntityFrameworkCore.Infrastructure.ModelCustomizer">
+<Type Name="ModelCustomizer" FullName="Microsoft.EntityFrameworkCore.Infrastructure.ModelCustomizer">
   <TypeSignature Language="C#" Value="public class ModelCustomizer : Microsoft.EntityFrameworkCore.Infrastructure.IModelCustomizer" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ModelCustomizer extends System.Object implements class Microsoft.EntityFrameworkCore.Infrastructure.IModelCustomizer" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelCustomizer" />
@@ -7,9 +7,12 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -22,12 +25,17 @@
   <Docs>
     <summary>
       <para>
-                    Builds the model for a given context. This default implementation builds the model by calling
+                    Builds the model for a given context. This implementation builds the model by calling
                     <see cref="M:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)" /> on the context.
                 </para>
       <para>
                     This type is typically used by database providers (and other extensions). It is generally
                     not used in application code.
+                </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
+                    is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
+                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
                 </para>
     </summary>
     <remarks>To be added.</remarks>
@@ -42,6 +50,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
@@ -61,9 +70,11 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Infrastructure.ModelCustomizerDependencies" />
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Infrastructure.ModelCustomizerDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="dependencies"> Parameter object containing dependencies for this service. </param>
@@ -76,12 +87,11 @@
     <Member MemberName="Customize">
       <MemberSignature Language="C#" Value="public virtual void Customize (Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder, Microsoft.EntityFrameworkCore.DbContext dbContext);" FrameworkAlternate="efcore-1.0;efcore-1.1" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void Customize(class Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder, class Microsoft.EntityFrameworkCore.DbContext dbContext) cil managed" FrameworkAlternate="efcore-1.0;efcore-1.1" />
-      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelCustomizer.Customize(Microsoft.EntityFrameworkCore.ModelBuilder,Microsoft.EntityFrameworkCore.DbContext)" FrameworkAlternate="efcore-2.0" />
-      <MemberSignature Language="F#" Value="abstract member Customize : Microsoft.EntityFrameworkCore.ModelBuilder * Microsoft.EntityFrameworkCore.DbContext -&gt; unit&#xA;override this.Customize : Microsoft.EntityFrameworkCore.ModelBuilder * Microsoft.EntityFrameworkCore.DbContext -&gt; unit" Usage="modelCustomizer.Customize (modelBuilder, dbContext)" FrameworkAlternate="efcore-2.0" />
-      <MemberSignature Language="C#" Value="public virtual void Customize (Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder, Microsoft.EntityFrameworkCore.DbContext context);" FrameworkAlternate="efcore-2.0;efcore-2.1" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void Customize(class Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder, class Microsoft.EntityFrameworkCore.DbContext context) cil managed" FrameworkAlternate="efcore-2.0;efcore-2.1" />
-      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelCustomizer.Customize(Microsoft.EntityFrameworkCore.ModelBuilder,Microsoft.EntityFrameworkCore.DbContext)" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.1" />
-      <MemberSignature Language="F#" Value="abstract member Customize : Microsoft.EntityFrameworkCore.ModelBuilder * Microsoft.EntityFrameworkCore.DbContext -&gt; unit&#xA;override this.Customize : Microsoft.EntityFrameworkCore.ModelBuilder * Microsoft.EntityFrameworkCore.DbContext -&gt; unit" Usage="modelCustomizer.Customize (modelBuilder, context)" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.1" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelCustomizer.Customize(Microsoft.EntityFrameworkCore.ModelBuilder,Microsoft.EntityFrameworkCore.DbContext)" />
+      <MemberSignature Language="F#" Value="abstract member Customize : Microsoft.EntityFrameworkCore.ModelBuilder * Microsoft.EntityFrameworkCore.DbContext -&gt; unit&#xA;override this.Customize : Microsoft.EntityFrameworkCore.ModelBuilder * Microsoft.EntityFrameworkCore.DbContext -&gt; unit" Usage="modelCustomizer.Customize (modelBuilder, dbContext)" FrameworkAlternate="efcore-1.0;efcore-1.1" />
+      <MemberSignature Language="C#" Value="public virtual void Customize (Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder, Microsoft.EntityFrameworkCore.DbContext context);" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void Customize(class Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder, class Microsoft.EntityFrameworkCore.DbContext context) cil managed" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+      <MemberSignature Language="F#" Value="abstract member Customize : Microsoft.EntityFrameworkCore.ModelBuilder * Microsoft.EntityFrameworkCore.DbContext -&gt; unit&#xA;override this.Customize : Microsoft.EntityFrameworkCore.ModelBuilder * Microsoft.EntityFrameworkCore.DbContext -&gt; unit" Usage="modelCustomizer.Customize (modelBuilder, context)" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Infrastructure.IModelCustomizer.Customize(Microsoft.EntityFrameworkCore.ModelBuilder,Microsoft.EntityFrameworkCore.DbContext)</InterfaceMember>
@@ -89,9 +99,12 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -99,7 +112,7 @@
       <Parameters>
         <Parameter Name="modelBuilder" Type="Microsoft.EntityFrameworkCore.ModelBuilder" Index="0" />
         <Parameter Name="dbContext" Type="Microsoft.EntityFrameworkCore.DbContext" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1" />
-        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1" />
+        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="modelBuilder">
@@ -130,6 +143,8 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.ModelCustomizerDependencies</ReturnType>
@@ -151,13 +166,14 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="modelBuilder" Type="Microsoft.EntityFrameworkCore.ModelBuilder" />
-        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" />
+        <Parameter Name="modelBuilder" Type="Microsoft.EntityFrameworkCore.ModelBuilder" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="modelBuilder"> The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> being used to build the model. </param>
