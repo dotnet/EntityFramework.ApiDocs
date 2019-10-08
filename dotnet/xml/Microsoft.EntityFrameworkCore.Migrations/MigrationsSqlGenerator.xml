@@ -1,4 +1,4 @@
-﻿<Type Name="MigrationsSqlGenerator" FullName="Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator">
+<Type Name="MigrationsSqlGenerator" FullName="Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator">
   <TypeSignature Language="C#" Value="public class MigrationsSqlGenerator : Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit MigrationsSqlGenerator extends System.Object implements class Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator" />
@@ -7,9 +7,15 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <AssemblyVersion>1.1.6.0</AssemblyVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.0.3.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.1.11.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -28,6 +34,12 @@
       <para>
                     This class is typically inherited by database providers to customize the SQL generation.
                 </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
+                </para>
     </summary>
     <remarks>To be added.</remarks>
   </Docs>
@@ -42,16 +54,19 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies" />
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="dependencies"> Parameter object containing dependencies for this service. </param>
         <summary>
-                This API supports the Entity Framework Core infrastructure and is not intended to be used
-                directly from your code. This API may change or be removed in future releases.
+               Creates a new <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator" /> instance using the given dependencies.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -66,13 +81,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="commandBuilderFactory" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory" />
-        <Parameter Name="sqlGenerationHelper" Type="Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" />
-        <Parameter Name="typeMapper" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMapper" />
-        <Parameter Name="annotations" Type="Microsoft.EntityFrameworkCore.Metadata.IRelationalAnnotationProvider" />
+        <Parameter Name="commandBuilderFactory" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1" />
+        <Parameter Name="sqlGenerationHelper" Type="Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1" />
+        <Parameter Name="typeMapper" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMapper" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1" />
+        <Parameter Name="annotations" Type="Microsoft.EntityFrameworkCore.Metadata.IRelationalAnnotationProvider" Index="3" FrameworkAlternate="efcore-1.0;efcore-1.1" />
       </Parameters>
       <Docs>
         <param name="commandBuilderFactory">To be added.</param>
@@ -93,6 +110,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IRelationalAnnotationProvider</ReturnType>
@@ -100,6 +118,35 @@
       <Docs>
         <summary>To be added.</summary>
         <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CheckConstraint">
+      <MemberSignature Language="C#" Value="protected virtual void CheckConstraint (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateCheckConstraintOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void CheckConstraint(class Microsoft.EntityFrameworkCore.Migrations.Operations.CreateCheckConstraintOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.CheckConstraint(Microsoft.EntityFrameworkCore.Migrations.Operations.CreateCheckConstraintOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub CheckConstraint (operation As CreateCheckConstraintOperation, model As IModel, builder As MigrationCommandListBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member CheckConstraint : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateCheckConstraintOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit&#xA;override this.CheckConstraint : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateCheckConstraintOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit" Usage="migrationsSqlGenerator.CheckConstraint (operation, model, builder)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateCheckConstraintOperation" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="operation"> The operation. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <param name="builder"> The command builder to use to add the SQL fragment. </param>
+        <summary>
+                Generates a SQL fragment for a check constraint of an <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.CreateCheckConstraintOperation" />.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -113,9 +160,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -130,15 +183,43 @@
         <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
         <param name="builder"> The command builder to use to add the SQL fragment. </param>
         <summary>
-          <para>
-                    Generates a SQL fragment for a column definition in an <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.AddColumnOperation" />.
-                </para>
-          <para>
-                    This method does not call the overload of ColumnDefinition that takes fixedLength because doing so
-                    would be a breaking change for providers that have overridden the method without fixedLength.
-                    Therefore, providers must explicitly override this method to get fixedLength functionality.
-                </para>
-        </summary>
+                Generates a SQL fragment for a column definition in an <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.AddColumnOperation" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ColumnDefinition">
+      <MemberSignature Language="C#" Value="protected virtual void ColumnDefinition (string schema, string table, string name, Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ColumnDefinition(string schema, string table, string name, class Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.ColumnDefinition(System.String,System.String,System.String,Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ColumnDefinition (schema As String, table As String, name As String, operation As ColumnOperation, model As IModel, builder As MigrationCommandListBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member ColumnDefinition : string * string * string * Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit&#xA;override this.ColumnDefinition : string * string * string * Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit" Usage="migrationsSqlGenerator.ColumnDefinition (schema, table, name, operation, model, builder)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="schema" Type="System.String" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="table" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="name" Type="System.String" Index="2" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation" Index="3" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="4" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="5" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="schema"> The schema that contains the table, or <c>null</c> to use the default schema. </param>
+        <param name="table"> The table that contains the column. </param>
+        <param name="name"> The column name. </param>
+        <param name="operation"> The column metadata. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <param name="builder"> The command builder to use to add the SQL fragment. </param>
+        <summary>
+                Generates a SQL fragment for a column definition for the given column metadata.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -151,29 +232,34 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="schema" Type="System.String" />
-        <Parameter Name="table" Type="System.String" />
-        <Parameter Name="name" Type="System.String" />
-        <Parameter Name="clrType" Type="System.Type" />
-        <Parameter Name="type" Type="System.String" />
-        <Parameter Name="unicode" Type="System.Nullable&lt;System.Boolean&gt;" />
-        <Parameter Name="maxLength" Type="System.Nullable&lt;System.Int32&gt;" />
-        <Parameter Name="rowVersion" Type="System.Boolean" />
-        <Parameter Name="nullable" Type="System.Boolean" />
-        <Parameter Name="defaultValue" Type="System.Object" />
-        <Parameter Name="defaultValueSql" Type="System.String" />
-        <Parameter Name="computedColumnSql" Type="System.String" />
-        <Parameter Name="annotatable" Type="Microsoft.EntityFrameworkCore.Infrastructure.IAnnotatable" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="schema" Type="System.String" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="table" Type="System.String" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="name" Type="System.String" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="clrType" Type="System.Type" Index="3" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="type" Type="System.String" Index="4" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="unicode" Type="System.Nullable&lt;System.Boolean&gt;" Index="5" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="maxLength" Type="System.Nullable&lt;System.Int32&gt;" Index="6" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="rowVersion" Type="System.Boolean" Index="7" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="nullable" Type="System.Boolean" Index="8" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="defaultValue" Type="System.Object" Index="9" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="defaultValueSql" Type="System.String" Index="10" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="computedColumnSql" Type="System.String" Index="11" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="annotatable" Type="Microsoft.EntityFrameworkCore.Infrastructure.IAnnotatable" Index="12" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="13" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="14" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="schema"> The schema that contains the table, or <c>null</c> to use the default schema. </param>
@@ -212,27 +298,29 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="schema" Type="System.String" />
-        <Parameter Name="table" Type="System.String" />
-        <Parameter Name="name" Type="System.String" />
-        <Parameter Name="clrType" Type="System.Type" />
-        <Parameter Name="type" Type="System.String" />
-        <Parameter Name="unicode" Type="System.Nullable&lt;System.Boolean&gt;" />
-        <Parameter Name="maxLength" Type="System.Nullable&lt;System.Int32&gt;" />
-        <Parameter Name="fixedLength" Type="System.Nullable&lt;System.Boolean&gt;" />
-        <Parameter Name="rowVersion" Type="System.Boolean" />
-        <Parameter Name="nullable" Type="System.Boolean" />
-        <Parameter Name="defaultValue" Type="System.Object" />
-        <Parameter Name="defaultValueSql" Type="System.String" />
-        <Parameter Name="computedColumnSql" Type="System.String" />
-        <Parameter Name="annotatable" Type="Microsoft.EntityFrameworkCore.Infrastructure.IAnnotatable" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="schema" Type="System.String" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="table" Type="System.String" Index="1" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="name" Type="System.String" Index="2" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="clrType" Type="System.Type" Index="3" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="type" Type="System.String" Index="4" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="unicode" Type="System.Nullable&lt;System.Boolean&gt;" Index="5" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="maxLength" Type="System.Nullable&lt;System.Int32&gt;" Index="6" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="fixedLength" Type="System.Nullable&lt;System.Boolean&gt;" Index="7" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="rowVersion" Type="System.Boolean" Index="8" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="nullable" Type="System.Boolean" Index="9" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="defaultValue" Type="System.Object" Index="10" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="defaultValueSql" Type="System.String" Index="11" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="computedColumnSql" Type="System.String" Index="12" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="annotatable" Type="Microsoft.EntityFrameworkCore.Infrastructure.IAnnotatable" Index="13" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="14" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="15" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="schema"> The schema that contains the table, or <c>null</c> to use the default schema. </param>
@@ -273,14 +361,19 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="columns" Type="System.String[]" />
+        <Parameter Name="columns" Type="System.String[]" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="columns"> The column names. </param>
@@ -289,6 +382,215 @@
                 separated list.
             </summary>
         <returns> The column list. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ComputedColumnDefinition">
+      <MemberSignature Language="C#" Value="protected virtual void ComputedColumnDefinition (string schema, string table, string name, Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ComputedColumnDefinition(string schema, string table, string name, class Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.ComputedColumnDefinition(System.String,System.String,System.String,Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ComputedColumnDefinition (schema As String, table As String, name As String, operation As ColumnOperation, model As IModel, builder As MigrationCommandListBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member ComputedColumnDefinition : string * string * string * Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit&#xA;override this.ComputedColumnDefinition : string * string * string * Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit" Usage="migrationsSqlGenerator.ComputedColumnDefinition (schema, table, name, operation, model, builder)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="schema" Type="System.String" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="table" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="name" Type="System.String" Index="2" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation" Index="3" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="4" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="5" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="schema"> The schema that contains the table, or <c>null</c> to use the default schema. </param>
+        <param name="table"> The table that contains the column. </param>
+        <param name="name"> The column name. </param>
+        <param name="operation"> The column metadata. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <param name="builder"> The command builder to use to add the SQL fragment. </param>
+        <summary>
+                Generates a SQL fragment for a computed column definition for the given column metadata.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateTableCheckConstraints">
+      <MemberSignature Language="C#" Value="protected virtual void CreateTableCheckConstraints (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void CreateTableCheckConstraints(class Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.CreateTableCheckConstraints(Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub CreateTableCheckConstraints (operation As CreateTableOperation, model As IModel, builder As MigrationCommandListBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member CreateTableCheckConstraints : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit&#xA;override this.CreateTableCheckConstraints : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit" Usage="migrationsSqlGenerator.CreateTableCheckConstraints (operation, model, builder)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="operation"> The operation. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <param name="builder"> The command builder to use to add the SQL fragment. </param>
+        <summary>
+                Generates a SQL fragment for the check constraints of a <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateTableColumns">
+      <MemberSignature Language="C#" Value="protected virtual void CreateTableColumns (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void CreateTableColumns(class Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.CreateTableColumns(Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub CreateTableColumns (operation As CreateTableOperation, model As IModel, builder As MigrationCommandListBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member CreateTableColumns : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit&#xA;override this.CreateTableColumns : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit" Usage="migrationsSqlGenerator.CreateTableColumns (operation, model, builder)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="operation"> The operation. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <param name="builder"> The command builder to use to add the SQL fragment. </param>
+        <summary>
+                Generates a SQL fragment for the column definitions in an <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateTableConstraints">
+      <MemberSignature Language="C#" Value="protected virtual void CreateTableConstraints (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void CreateTableConstraints(class Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.CreateTableConstraints(Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub CreateTableConstraints (operation As CreateTableOperation, model As IModel, builder As MigrationCommandListBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member CreateTableConstraints : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit&#xA;override this.CreateTableConstraints : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit" Usage="migrationsSqlGenerator.CreateTableConstraints (operation, model, builder)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="operation"> The operation. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <param name="builder"> The command builder to use to add the SQL fragment. </param>
+        <summary>
+                Generates a SQL fragment for the constraints of a <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateTableForeignKeys">
+      <MemberSignature Language="C#" Value="protected virtual void CreateTableForeignKeys (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void CreateTableForeignKeys(class Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.CreateTableForeignKeys(Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub CreateTableForeignKeys (operation As CreateTableOperation, model As IModel, builder As MigrationCommandListBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member CreateTableForeignKeys : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit&#xA;override this.CreateTableForeignKeys : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit" Usage="migrationsSqlGenerator.CreateTableForeignKeys (operation, model, builder)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="operation"> The operation. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <param name="builder"> The command builder to use to add the SQL fragment. </param>
+        <summary>
+                Generates a SQL fragment for the foreign key constraints of a <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateTablePrimaryKeyConstraint">
+      <MemberSignature Language="C#" Value="protected virtual void CreateTablePrimaryKeyConstraint (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void CreateTablePrimaryKeyConstraint(class Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.CreateTablePrimaryKeyConstraint(Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub CreateTablePrimaryKeyConstraint (operation As CreateTableOperation, model As IModel, builder As MigrationCommandListBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member CreateTablePrimaryKeyConstraint : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit&#xA;override this.CreateTablePrimaryKeyConstraint : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit" Usage="migrationsSqlGenerator.CreateTablePrimaryKeyConstraint (operation, model, builder)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="operation"> The operation. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <param name="builder"> The command builder to use to add the SQL fragment. </param>
+        <summary>
+                Generates a SQL fragment for the primary key constraint of a <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateTableUniqueConstraints">
+      <MemberSignature Language="C#" Value="protected virtual void CreateTableUniqueConstraints (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void CreateTableUniqueConstraints(class Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.CreateTableUniqueConstraints(Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub CreateTableUniqueConstraints (operation As CreateTableOperation, model As IModel, builder As MigrationCommandListBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member CreateTableUniqueConstraints : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit&#xA;override this.CreateTableUniqueConstraints : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit" Usage="migrationsSqlGenerator.CreateTableUniqueConstraints (operation, model, builder)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="operation"> The operation. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <param name="builder"> The command builder to use to add the SQL fragment. </param>
+        <summary>
+                Generates a SQL fragment for the unique constraints of a <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" />.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -302,21 +604,57 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="defaultValue" Type="System.Object" />
-        <Parameter Name="defaultValueSql" Type="System.String" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="defaultValue" Type="System.Object" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="defaultValueSql" Type="System.String" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="defaultValue"> The default value for the column. </param>
         <param name="defaultValueSql"> The SQL expression to use for the column's default constraint. </param>
+        <param name="builder"> The command builder to use to add the SQL fragment. </param>
+        <summary>
+                Generates a SQL fragment for the default constraint of a column.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DefaultValue">
+      <MemberSignature Language="C#" Value="protected virtual void DefaultValue (object defaultValue, string defaultValueSql, string columnType, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void DefaultValue(object defaultValue, string defaultValueSql, string columnType, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.DefaultValue(System.Object,System.String,System.String,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub DefaultValue (defaultValue As Object, defaultValueSql As String, columnType As String, builder As MigrationCommandListBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member DefaultValue : obj * string * string * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit&#xA;override this.DefaultValue : obj * string * string * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit" Usage="migrationsSqlGenerator.DefaultValue (defaultValue, defaultValueSql, columnType, builder)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="defaultValue" Type="System.Object" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="defaultValueSql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="columnType" Type="System.String" Index="2" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="3" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="defaultValue"> The default value for the column. </param>
+        <param name="defaultValueSql"> The SQL expression to use for the column's default constraint. </param>
+        <param name="columnType"> Store/database type of the column. </param>
         <param name="builder"> The command builder to use to add the SQL fragment. </param>
         <summary>
                 Generates a SQL fragment for the default constraint of a column.
@@ -334,7 +672,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies</ReturnType>
@@ -357,9 +699,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -389,9 +737,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;</ReturnType>
@@ -422,9 +776,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IProperty</ReturnType>
@@ -463,9 +823,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -493,9 +859,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -528,9 +900,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Migrations.MigrationCommand&gt;</ReturnType>
@@ -559,17 +937,22 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AddColumnOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AddColumnOperation" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -592,17 +975,22 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AddForeignKeyOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AddForeignKeyOperation" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -625,17 +1013,22 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AddPrimaryKeyOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AddPrimaryKeyOperation" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -658,9 +1051,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -691,9 +1090,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -730,16 +1135,21 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AlterDatabaseOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AlterDatabaseOperation" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -768,9 +1178,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -801,16 +1217,21 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AlterTableOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AlterTableOperation" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -831,6 +1252,36 @@
       </Docs>
     </Member>
     <Member MemberName="Generate">
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateCheckConstraintOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.CreateCheckConstraintOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.CreateCheckConstraintOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As CreateCheckConstraintOperation, model As IModel, builder As MigrationCommandListBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateCheckConstraintOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit&#xA;override this.Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateCheckConstraintOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit" Usage="migrationsSqlGenerator.Generate (operation, model, builder)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateCheckConstraintOperation" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="operation"> The operation. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <param name="builder"> The command builder to use to build the commands. </param>
+        <summary>
+                Builds commands for the given <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.CreateCheckConstraintOperation" /> by making calls on the given
+                <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />, and then terminates the final command.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Generate">
       <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
@@ -840,17 +1291,22 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -873,9 +1329,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -906,17 +1368,22 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -939,15 +1406,19 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DeleteDataOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DeleteDataOperation" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -955,6 +1426,36 @@
         <param name="builder"> The command builder to use to build the commands. </param>
         <summary>
                 Builds commands for the given <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.DeleteDataOperation" /> by making calls on the given
+                <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />, and then terminates the final command.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Generate">
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.DropCheckConstraintOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.DropCheckConstraintOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.DropCheckConstraintOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As DropCheckConstraintOperation, model As IModel, builder As MigrationCommandListBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.DropCheckConstraintOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit&#xA;override this.Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.DropCheckConstraintOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit" Usage="migrationsSqlGenerator.Generate (operation, model, builder)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropCheckConstraintOperation" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="operation"> The operation. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <param name="builder"> The command builder to use to build the commands. </param>
+        <summary>
+                Builds commands for the given <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.DropCheckConstraintOperation" /> by making calls on the given
                 <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />, and then terminates the final command.
             </summary>
         <remarks>To be added.</remarks>
@@ -970,17 +1471,22 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropColumnOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropColumnOperation" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1003,17 +1509,22 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropForeignKeyOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropForeignKeyOperation" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1036,17 +1547,22 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropIndexOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropIndexOperation" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1075,17 +1591,22 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1108,9 +1629,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1141,9 +1668,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1174,17 +1707,22 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropTableOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropTableOperation" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1207,9 +1745,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1240,9 +1784,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1279,15 +1829,18 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.InsertDataOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.InsertDataOperation" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1310,9 +1863,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1351,9 +1910,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1390,9 +1955,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1429,9 +2000,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1468,9 +2045,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1507,9 +2090,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1540,9 +2129,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1573,15 +2168,19 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.UpdateDataOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.UpdateDataOperation" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1595,26 +2194,33 @@
       </Docs>
     </Member>
     <Member MemberName="Generate">
-      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.AddColumnOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.AddColumnOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.AddColumnOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.AddColumnOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder,System.Boolean)" />
-      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As AddColumnOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As AddColumnOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="abstract member Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.AddColumnOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit&#xA;override this.Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.AddColumnOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit" Usage="migrationsSqlGenerator.Generate (operation, model, builder, terminate)" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.AddColumnOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate = true);" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As AddColumnOperation, model As IModel, builder As MigrationCommandListBuilder, Optional terminate As Boolean = true)" FrameworkAlternate="efcore-3.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AddColumnOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
-        <Parameter Name="terminate" Type="System.Boolean" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AddColumnOperation" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="terminate" Type="System.Boolean" Index="3" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1629,26 +2235,33 @@
       </Docs>
     </Member>
     <Member MemberName="Generate">
-      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.AddForeignKeyOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.AddForeignKeyOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.AddForeignKeyOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.AddForeignKeyOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder,System.Boolean)" />
-      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As AddForeignKeyOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As AddForeignKeyOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="abstract member Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.AddForeignKeyOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit&#xA;override this.Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.AddForeignKeyOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit" Usage="migrationsSqlGenerator.Generate (operation, model, builder, terminate)" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.AddForeignKeyOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate = true);" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As AddForeignKeyOperation, model As IModel, builder As MigrationCommandListBuilder, Optional terminate As Boolean = true)" FrameworkAlternate="efcore-3.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AddForeignKeyOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
-        <Parameter Name="terminate" Type="System.Boolean" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AddForeignKeyOperation" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="terminate" Type="System.Boolean" Index="3" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1663,26 +2276,33 @@
       </Docs>
     </Member>
     <Member MemberName="Generate">
-      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.AddPrimaryKeyOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.AddPrimaryKeyOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.AddPrimaryKeyOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.AddPrimaryKeyOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder,System.Boolean)" />
-      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As AddPrimaryKeyOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As AddPrimaryKeyOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="abstract member Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.AddPrimaryKeyOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit&#xA;override this.Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.AddPrimaryKeyOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit" Usage="migrationsSqlGenerator.Generate (operation, model, builder, terminate)" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.AddPrimaryKeyOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate = true);" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As AddPrimaryKeyOperation, model As IModel, builder As MigrationCommandListBuilder, Optional terminate As Boolean = true)" FrameworkAlternate="efcore-3.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AddPrimaryKeyOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
-        <Parameter Name="terminate" Type="System.Boolean" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.AddPrimaryKeyOperation" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="terminate" Type="System.Boolean" Index="3" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1697,18 +2317,26 @@
       </Docs>
     </Member>
     <Member MemberName="Generate">
-      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder,System.Boolean)" />
-      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As CreateIndexOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As CreateIndexOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="abstract member Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit&#xA;override this.Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit" Usage="migrationsSqlGenerator.Generate (operation, model, builder, terminate)" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate = true);" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As CreateIndexOperation, model As IModel, builder As MigrationCommandListBuilder, Optional terminate As Boolean = true)" FrameworkAlternate="efcore-3.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1732,26 +2360,33 @@
       </Docs>
     </Member>
     <Member MemberName="Generate">
-      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder,System.Boolean)" />
-      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As CreateTableOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As CreateTableOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="abstract member Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit&#xA;override this.Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit" Usage="migrationsSqlGenerator.Generate (operation, model, builder, terminate)" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate = true);" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As CreateTableOperation, model As IModel, builder As MigrationCommandListBuilder, Optional terminate As Boolean = true)" FrameworkAlternate="efcore-3.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
-        <Parameter Name="terminate" Type="System.Boolean" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateTableOperation" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="terminate" Type="System.Boolean" Index="3" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1766,26 +2401,33 @@
       </Docs>
     </Member>
     <Member MemberName="Generate">
-      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.DropColumnOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.DropColumnOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.DropColumnOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.DropColumnOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder,System.Boolean)" />
-      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As DropColumnOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As DropColumnOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="abstract member Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.DropColumnOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit&#xA;override this.Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.DropColumnOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit" Usage="migrationsSqlGenerator.Generate (operation, model, builder, terminate)" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.DropColumnOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate = true);" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As DropColumnOperation, model As IModel, builder As MigrationCommandListBuilder, Optional terminate As Boolean = true)" FrameworkAlternate="efcore-3.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropColumnOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
-        <Parameter Name="terminate" Type="System.Boolean" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropColumnOperation" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="terminate" Type="System.Boolean" Index="3" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1800,26 +2442,33 @@
       </Docs>
     </Member>
     <Member MemberName="Generate">
-      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.DropForeignKeyOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.DropForeignKeyOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.DropForeignKeyOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.DropForeignKeyOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder,System.Boolean)" />
-      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As DropForeignKeyOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As DropForeignKeyOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="abstract member Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.DropForeignKeyOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit&#xA;override this.Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.DropForeignKeyOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit" Usage="migrationsSqlGenerator.Generate (operation, model, builder, terminate)" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.DropForeignKeyOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate = true);" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As DropForeignKeyOperation, model As IModel, builder As MigrationCommandListBuilder, Optional terminate As Boolean = true)" FrameworkAlternate="efcore-3.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropForeignKeyOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
-        <Parameter Name="terminate" Type="System.Boolean" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropForeignKeyOperation" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="terminate" Type="System.Boolean" Index="3" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1834,26 +2483,71 @@
       </Docs>
     </Member>
     <Member MemberName="Generate">
-      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" />
-      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate) cil managed" />
-      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder,System.Boolean)" />
-      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As DropPrimaryKeyOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" />
-      <MemberSignature Language="F#" Value="abstract member Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit&#xA;override this.Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit" Usage="migrationsSqlGenerator.Generate (operation, model, builder, terminate)" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.DropIndexOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate = true);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.DropIndexOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.DropIndexOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder,System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As DropIndexOperation, model As IModel, builder As MigrationCommandListBuilder, Optional terminate As Boolean = true)" />
+      <MemberSignature Language="F#" Value="abstract member Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.DropIndexOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit&#xA;override this.Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.DropIndexOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit" Usage="migrationsSqlGenerator.Generate (operation, model, builder, terminate)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
-        <AssemblyVersion>1.1.0.0</AssemblyVersion>
-        <AssemblyVersion>2.0.0.0</AssemblyVersion>
-        <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
-        <Parameter Name="terminate" Type="System.Boolean" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropIndexOperation" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="terminate" Type="System.Boolean" Index="3" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="operation"> The operation. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <param name="builder"> The command builder to use to build the commands. </param>
+        <param name="terminate"> Indicates whether or not to terminate the command after generating SQL for the operation. </param>
+        <summary>
+          <para>
+                    Can be overridden by database providers to build commands for the given <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.DropIndexOperation" />
+                    by making calls on the given <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />.
+                </para>
+          <para>
+                    Note that the default implementation of this method throws <see cref="T:System.NotImplementedException" />. Providers
+                    must override if they are to support this kind of operation.
+                </para>
+        </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Generate">
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder,System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As DropPrimaryKeyOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+      <MemberSignature Language="F#" Value="abstract member Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit&#xA;override this.Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit" Usage="migrationsSqlGenerator.Generate (operation, model, builder, terminate)" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate = true);" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As DropPrimaryKeyOperation, model As IModel, builder As MigrationCommandListBuilder, Optional terminate As Boolean = true)" FrameworkAlternate="efcore-3.0" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropPrimaryKeyOperation" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="terminate" Type="System.Boolean" Index="3" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1868,26 +2562,33 @@
       </Docs>
     </Member>
     <Member MemberName="Generate">
-      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.DropTableOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.DropTableOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.DropTableOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.DropTableOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder,System.Boolean)" />
-      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As DropTableOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As DropTableOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="abstract member Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.DropTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit&#xA;override this.Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.DropTableOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit" Usage="migrationsSqlGenerator.Generate (operation, model, builder, terminate)" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.DropTableOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate = true);" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As DropTableOperation, model As IModel, builder As MigrationCommandListBuilder, Optional terminate As Boolean = true)" FrameworkAlternate="efcore-3.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropTableOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
-        <Parameter Name="terminate" Type="System.Boolean" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.DropTableOperation" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="terminate" Type="System.Boolean" Index="3" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1902,25 +2603,31 @@
       </Docs>
     </Member>
     <Member MemberName="Generate">
-      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.InsertDataOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.InsertDataOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate);" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void Generate(class Microsoft.EntityFrameworkCore.Migrations.Operations.InsertDataOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(Microsoft.EntityFrameworkCore.Migrations.Operations.InsertDataOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder,System.Boolean)" />
-      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As InsertDataOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As InsertDataOperation, model As IModel, builder As MigrationCommandListBuilder, terminate As Boolean)" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="abstract member Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.InsertDataOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit&#xA;override this.Generate : Microsoft.EntityFrameworkCore.Migrations.Operations.InsertDataOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder * bool -&gt; unit" Usage="migrationsSqlGenerator.Generate (operation, model, builder, terminate)" />
+      <MemberSignature Language="C#" Value="protected virtual void Generate (Microsoft.EntityFrameworkCore.Migrations.Operations.InsertDataOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder, bool terminate = true);" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub Generate (operation As InsertDataOperation, model As IModel, builder As MigrationCommandListBuilder, Optional terminate As Boolean = true)" FrameworkAlternate="efcore-3.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.InsertDataOperation" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
-        <Parameter Name="terminate" Type="System.Boolean" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.InsertDataOperation" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="terminate" Type="System.Boolean" Index="3" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="operation"> The operation. </param>
@@ -1935,6 +2642,40 @@
       </Docs>
     </Member>
     <Member MemberName="GetColumnType">
+      <MemberSignature Language="C#" Value="protected virtual string GetColumnType (string schema, string table, string name, Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance string GetColumnType(string schema, string table, string name, class Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.GetColumnType(System.String,System.String,System.String,Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation,Microsoft.EntityFrameworkCore.Metadata.IModel)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function GetColumnType (schema As String, table As String, name As String, operation As ColumnOperation, model As IModel) As String" />
+      <MemberSignature Language="F#" Value="abstract member GetColumnType : string * string * string * Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation * Microsoft.EntityFrameworkCore.Metadata.IModel -&gt; string&#xA;override this.GetColumnType : string * string * string * Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation * Microsoft.EntityFrameworkCore.Metadata.IModel -&gt; string" Usage="migrationsSqlGenerator.GetColumnType (schema, table, name, operation, model)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="schema" Type="System.String" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="table" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="name" Type="System.String" Index="2" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.ColumnOperation" Index="3" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="4" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="schema"> The schema that contains the table, or <c>null</c> to use the default schema. </param>
+        <param name="table"> The table that contains the column. </param>
+        <param name="name"> The column name. </param>
+        <param name="operation"> The column metadata. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <summary>
+                Gets the store/database type of a column given the provided metadata.
+            </summary>
+        <returns> The database/store type for the column. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetColumnType">
       <MemberSignature Language="C#" Value="protected virtual string GetColumnType (string schema, string table, string name, Type clrType, Nullable&lt;bool&gt; unicode, Nullable&lt;int&gt; maxLength, bool rowVersion, Microsoft.EntityFrameworkCore.Metadata.IModel model);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance string GetColumnType(string schema, string table, string name, class System.Type clrType, valuetype System.Nullable`1&lt;bool&gt; unicode, valuetype System.Nullable`1&lt;int32&gt; maxLength, bool rowVersion, class Microsoft.EntityFrameworkCore.Metadata.IModel model) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.GetColumnType(System.String,System.String,System.String,System.Type,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Boolean,Microsoft.EntityFrameworkCore.Metadata.IModel)" />
@@ -1944,22 +2685,27 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="schema" Type="System.String" />
-        <Parameter Name="table" Type="System.String" />
-        <Parameter Name="name" Type="System.String" />
-        <Parameter Name="clrType" Type="System.Type" />
-        <Parameter Name="unicode" Type="System.Nullable&lt;System.Boolean&gt;" />
-        <Parameter Name="maxLength" Type="System.Nullable&lt;System.Int32&gt;" />
-        <Parameter Name="rowVersion" Type="System.Boolean" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="schema" Type="System.String" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="table" Type="System.String" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="name" Type="System.String" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="clrType" Type="System.Type" Index="3" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="unicode" Type="System.Nullable&lt;System.Boolean&gt;" Index="4" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="maxLength" Type="System.Nullable&lt;System.Int32&gt;" Index="5" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="rowVersion" Type="System.Boolean" Index="6" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="7" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="schema"> The schema that contains the table, or <c>null</c> to use the default schema. </param>
@@ -1993,20 +2739,22 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="schema" Type="System.String" />
-        <Parameter Name="table" Type="System.String" />
-        <Parameter Name="name" Type="System.String" />
-        <Parameter Name="clrType" Type="System.Type" />
-        <Parameter Name="unicode" Type="System.Nullable&lt;System.Boolean&gt;" />
-        <Parameter Name="maxLength" Type="System.Nullable&lt;System.Int32&gt;" />
-        <Parameter Name="fixedLength" Type="System.Nullable&lt;System.Boolean&gt;" />
-        <Parameter Name="rowVersion" Type="System.Boolean" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="schema" Type="System.String" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="table" Type="System.String" Index="1" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="name" Type="System.String" Index="2" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="clrType" Type="System.Type" Index="3" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="unicode" Type="System.Nullable&lt;System.Boolean&gt;" Index="4" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="maxLength" Type="System.Nullable&lt;System.Int32&gt;" Index="5" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="fixedLength" Type="System.Nullable&lt;System.Boolean&gt;" Index="6" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="rowVersion" Type="System.Boolean" Index="7" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="8" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="schema"> The schema that contains the table, or <c>null</c> to use the default schema. </param>
@@ -2031,6 +2779,65 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="HasLegacyRenameOperations">
+      <MemberSignature Language="C#" Value="protected virtual bool HasLegacyRenameOperations (Microsoft.EntityFrameworkCore.Metadata.IModel model);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance bool HasLegacyRenameOperations(class Microsoft.EntityFrameworkCore.Metadata.IModel model) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.HasLegacyRenameOperations(Microsoft.EntityFrameworkCore.Metadata.IModel)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function HasLegacyRenameOperations (model As IModel) As Boolean" />
+      <MemberSignature Language="F#" Value="abstract member HasLegacyRenameOperations : Microsoft.EntityFrameworkCore.Metadata.IModel -&gt; bool&#xA;override this.HasLegacyRenameOperations : Microsoft.EntityFrameworkCore.Metadata.IModel -&gt; bool" Usage="migrationsSqlGenerator.HasLegacyRenameOperations model" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.2;efcore-3.0;efcore-2.1" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The target model. </param>
+        <summary>
+                Checks whether or not <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.RenameTableOperation" /> and <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.RenameSequenceOperation" /> use
+                the legacy behavior of setting the new name and schema to null when unchanged.
+            </summary>
+        <returns> True if the legacy behavior is used. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IndexOptions">
+      <MemberSignature Language="C#" Value="protected virtual void IndexOptions (Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void IndexOptions(class Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.IndexOptions(Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub IndexOptions (operation As CreateIndexOperation, model As IModel, builder As MigrationCommandListBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member IndexOptions : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit&#xA;override this.IndexOptions : Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit" Usage="migrationsSqlGenerator.IndexOptions (operation, model, builder)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation" Index="0" FrameworkAlternate="efcore-2.2;efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-2.2;efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="2" FrameworkAlternate="efcore-2.2;efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="operation"> The operation. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <param name="builder"> The command builder to use to add the SQL fragment. </param>
+        <summary>
+                Generates a SQL fragment for extras (filter, included columns, options) of an index from a <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.CreateIndexOperation" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="IndexTraits">
       <MemberSignature Language="C#" Value="protected virtual void IndexTraits (Microsoft.EntityFrameworkCore.Migrations.Operations.MigrationOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void IndexTraits(class Microsoft.EntityFrameworkCore.Migrations.Operations.MigrationOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
@@ -2041,9 +2848,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -2074,14 +2887,19 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
@@ -2106,9 +2924,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -2138,9 +2962,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -2170,9 +3000,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -2193,6 +3029,39 @@
       </Docs>
     </Member>
     <Member MemberName="SequenceOptions">
+      <MemberSignature Language="C#" Value="protected virtual void SequenceOptions (string schema, string name, Microsoft.EntityFrameworkCore.Migrations.Operations.SequenceOperation operation, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void SequenceOptions(string schema, string name, class Microsoft.EntityFrameworkCore.Migrations.Operations.SequenceOperation operation, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.SequenceOptions(System.String,System.String,Microsoft.EntityFrameworkCore.Migrations.Operations.SequenceOperation,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub SequenceOptions (schema As String, name As String, operation As SequenceOperation, model As IModel, builder As MigrationCommandListBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member SequenceOptions : string * string * Microsoft.EntityFrameworkCore.Migrations.Operations.SequenceOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit&#xA;override this.SequenceOptions : string * string * Microsoft.EntityFrameworkCore.Migrations.Operations.SequenceOperation * Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder -&gt; unit" Usage="migrationsSqlGenerator.SequenceOptions (schema, name, operation, model, builder)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="schema" Type="System.String" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="operation" Type="Microsoft.EntityFrameworkCore.Migrations.Operations.SequenceOperation" Index="2" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="3" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="4" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="schema"> The schema that contains the sequence, or <c>null</c> to use the default schema. </param>
+        <param name="name"> The sequence name. </param>
+        <param name="operation"> The sequence options. </param>
+        <param name="model"> The target model which may be <c>null</c> if the operations exist without a model. </param>
+        <param name="builder"> The command builder to use to add the SQL fragment. </param>
+        <summary>
+                Generates a SQL fragment configuring a sequence with the given options.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SequenceOptions">
       <MemberSignature Language="C#" Value="protected virtual void SequenceOptions (string schema, string name, int increment, Nullable&lt;long&gt; minimumValue, Nullable&lt;long&gt; maximumValue, bool cycle, Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void SequenceOptions(string schema, string name, int32 increment, valuetype System.Nullable`1&lt;int64&gt; minimumValue, valuetype System.Nullable`1&lt;int64&gt; maximumValue, bool cycle, class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder builder) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.SequenceOptions(System.String,System.String,System.Int32,System.Nullable{System.Int64},System.Nullable{System.Int64},System.Boolean,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder)" />
@@ -2202,22 +3071,27 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="schema" Type="System.String" />
-        <Parameter Name="name" Type="System.String" />
-        <Parameter Name="increment" Type="System.Int32" />
-        <Parameter Name="minimumValue" Type="System.Nullable&lt;System.Int64&gt;" />
-        <Parameter Name="maximumValue" Type="System.Nullable&lt;System.Int64&gt;" />
-        <Parameter Name="cycle" Type="System.Boolean" />
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" />
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" />
+        <Parameter Name="schema" Type="System.String" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="increment" Type="System.Int32" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="minimumValue" Type="System.Nullable&lt;System.Int64&gt;" Index="3" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="maximumValue" Type="System.Nullable&lt;System.Int64&gt;" Index="4" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="cycle" Type="System.Boolean" Index="5" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="6" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationCommandListBuilder" Index="7" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="schema"> The schema that contains the sequence, or <c>null</c> to use the default schema. </param>
@@ -2244,7 +3118,9 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper</ReturnType>
@@ -2265,6 +3141,9 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator</ReturnType>
@@ -2274,6 +3153,37 @@
                 The <see cref="T:Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator" />.
             </summary>
         <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TryGetVersion">
+      <MemberSignature Language="C#" Value="protected virtual bool TryGetVersion (Microsoft.EntityFrameworkCore.Metadata.IModel model, out string version);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance bool TryGetVersion(class Microsoft.EntityFrameworkCore.Metadata.IModel model, [out] string&amp; version) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.TryGetVersion(Microsoft.EntityFrameworkCore.Metadata.IModel,System.String@)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function TryGetVersion (model As IModel, ByRef version As String) As Boolean" />
+      <MemberSignature Language="F#" Value="abstract member TryGetVersion : Microsoft.EntityFrameworkCore.Metadata.IModel * string -&gt; bool&#xA;override this.TryGetVersion : Microsoft.EntityFrameworkCore.Metadata.IModel * string -&gt; bool" Usage="migrationsSqlGenerator.TryGetVersion (model, version)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-2.2;efcore-3.0;efcore-2.1" />
+        <Parameter Name="version" Type="System.String" RefType="out" Index="1" FrameworkAlternate="efcore-2.2;efcore-3.0;efcore-2.1" />
+      </Parameters>
+      <Docs>
+        <param name="model"> The target model. </param>
+        <param name="version"> The version. </param>
+        <summary>
+                Gets the product version used to generate the current migration. Providers can use this to preserve
+                compatibility with migrations generated using previous versions.
+            </summary>
+        <returns> True if the version could be retrieved. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -2287,7 +3197,9 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMapper</ReturnType>
@@ -2308,9 +3220,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -2327,6 +3245,30 @@
         <summary>
                 Generates a SQL fragment for a unique constraint of an <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Operations.AddUniqueConstraintOperation" />.
             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VersionComparer">
+      <MemberSignature Language="C#" Value="protected virtual System.Collections.Generic.IComparer&lt;string&gt; VersionComparer { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IComparer`1&lt;string&gt; VersionComparer" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.VersionComparer" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable ReadOnly Property VersionComparer As IComparer(Of String)" />
+      <MemberSignature Language="F#" Value="member this.VersionComparer : System.Collections.Generic.IComparer&lt;string&gt;" Usage="Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.VersionComparer" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IComparer&lt;System.String&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Gets a comparer that can be used to compare two product versions.
+            </summary>
+        <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

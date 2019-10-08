@@ -1,0 +1,136 @@
+<Type Name="IEntityMaterializerSource" FullName="Microsoft.EntityFrameworkCore.Query.IEntityMaterializerSource">
+  <TypeSignature Language="C#" Value="public interface IEntityMaterializerSource" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IEntityMaterializerSource" />
+  <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Query.IEntityMaterializerSource" />
+  <TypeSignature Language="VB.NET" Value="Public Interface IEntityMaterializerSource" />
+  <TypeSignature Language="F#" Value="type IEntityMaterializerSource = interface" />
+  <AssemblyInfo>
+    <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Docs>
+    <summary>
+      <para>
+                    Defines a source for generating <see cref="T:System.Linq.Expressions.Expression" /> trees that read values from
+                    a <see cref="T:Microsoft.EntityFrameworkCore.Storage.ValueBuffer" /> or creates entity instances.
+                </para>
+      <para>
+                    This type is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
+                    is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
+                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
+                </para>
+    </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="CreateMaterializeExpression">
+      <MemberSignature Language="C#" Value="public System.Linq.Expressions.Expression CreateMaterializeExpression (Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType, string entityInstanceName, System.Linq.Expressions.Expression materializationExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression CreateMaterializeExpression(class Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType, string entityInstanceName, class System.Linq.Expressions.Expression materializationExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.IEntityMaterializerSource.CreateMaterializeExpression(Microsoft.EntityFrameworkCore.Metadata.IEntityType,System.String,System.Linq.Expressions.Expression)" />
+      <MemberSignature Language="VB.NET" Value="Public Function CreateMaterializeExpression (entityType As IEntityType, entityInstanceName As String, materializationExpression As Expression) As Expression" />
+      <MemberSignature Language="F#" Value="abstract member CreateMaterializeExpression : Microsoft.EntityFrameworkCore.Metadata.IEntityType * string * System.Linq.Expressions.Expression -&gt; System.Linq.Expressions.Expression" Usage="iEntityMaterializerSource.CreateMaterializeExpression (entityType, entityInstanceName, materializationExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" />
+        <Parameter Name="entityInstanceName" Type="System.String" />
+        <Parameter Name="materializationExpression" Type="System.Linq.Expressions.Expression" />
+      </Parameters>
+      <Docs>
+        <param name="entityType"> The entity type being materialized. </param>
+        <param name="entityInstanceName"> The name of the instance being materialized. </param>
+        <param name="materializationExpression"> The materialization expression to build on. </param>
+        <summary>
+          <para>
+                    Creates an <see cref="T:System.Linq.Expressions.Expression" /> tree representing creating an entity instance.
+                </para>
+          <para>
+                    This method is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+        </summary>
+        <returns> An expression to read the value. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateReadValueExpression">
+      <MemberSignature Language="C#" Value="public System.Linq.Expressions.Expression CreateReadValueExpression (System.Linq.Expressions.Expression valueBuffer, Type type, int index, Microsoft.EntityFrameworkCore.Metadata.IPropertyBase property);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression CreateReadValueExpression(class System.Linq.Expressions.Expression valueBuffer, class System.Type type, int32 index, class Microsoft.EntityFrameworkCore.Metadata.IPropertyBase property) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.IEntityMaterializerSource.CreateReadValueExpression(System.Linq.Expressions.Expression,System.Type,System.Int32,Microsoft.EntityFrameworkCore.Metadata.IPropertyBase)" />
+      <MemberSignature Language="F#" Value="abstract member CreateReadValueExpression : System.Linq.Expressions.Expression * Type * int * Microsoft.EntityFrameworkCore.Metadata.IPropertyBase -&gt; System.Linq.Expressions.Expression" Usage="iEntityMaterializerSource.CreateReadValueExpression (valueBuffer, type, index, property)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="valueBuffer" Type="System.Linq.Expressions.Expression" />
+        <Parameter Name="type" Type="System.Type" />
+        <Parameter Name="index" Type="System.Int32" />
+        <Parameter Name="property" Type="Microsoft.EntityFrameworkCore.Metadata.IPropertyBase" />
+      </Parameters>
+      <Docs>
+        <param name="valueBuffer"> The expression that exposes the <see cref="T:Microsoft.EntityFrameworkCore.Storage.ValueBuffer" />. </param>
+        <param name="type"> The type to read. </param>
+        <param name="index"> The index in the buffer to read from. </param>
+        <param name="property"> The IPropertyBase being read if any. </param>
+        <summary>
+          <para>
+                    Creates an <see cref="T:System.Linq.Expressions.Expression" /> tree representing reading a value from a <see cref="T:Microsoft.EntityFrameworkCore.Storage.ValueBuffer" /></para>
+          <para>
+                    This method is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+        </summary>
+        <returns> An expression to read the value. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetMaterializer">
+      <MemberSignature Language="C#" Value="public Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext,object&gt; GetMaterializer (Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Func`2&lt;valuetype Microsoft.EntityFrameworkCore.Storage.MaterializationContext, object&gt; GetMaterializer(class Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.IEntityMaterializerSource.GetMaterializer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)" />
+      <MemberSignature Language="VB.NET" Value="Public Function GetMaterializer (entityType As IEntityType) As Func(Of MaterializationContext, Object)" />
+      <MemberSignature Language="F#" Value="abstract member GetMaterializer : Microsoft.EntityFrameworkCore.Metadata.IEntityType -&gt; Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext, obj&gt;" Usage="iEntityMaterializerSource.GetMaterializer entityType" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext,System.Object&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" />
+      </Parameters>
+      <Docs>
+        <param name="entityType"> The entity type being materialized. </param>
+        <summary>
+          <para>
+                    Returns a cached delegate that creates instances of the given entity type.
+                </para>
+          <para>
+                    This method is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+        </summary>
+        <returns> A delegate to create instances. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

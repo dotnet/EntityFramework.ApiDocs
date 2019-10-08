@@ -1,4 +1,4 @@
-﻿<Type Name="ModelSourceDependencies" FullName="Microsoft.EntityFrameworkCore.Infrastructure.ModelSourceDependencies">
+<Type Name="ModelSourceDependencies" FullName="Microsoft.EntityFrameworkCore.Infrastructure.ModelSourceDependencies">
   <TypeSignature Language="C#" Value="public sealed class ModelSourceDependencies" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ModelSourceDependencies extends System.Object" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelSourceDependencies" />
@@ -7,7 +7,11 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.0.3.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.1.11.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -29,10 +33,61 @@
                     first resolve the object from the dependency injection container, then replace selected
                     services using the 'With...' methods. Do not call the constructor at any point in this process.
                 </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />.
+                    This means a single instance of each service is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances.
+                    The implementation must be thread-safe.
+                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
+                </para>
     </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ModelSourceDependencies (Microsoft.EntityFrameworkCore.Infrastructure.IModelCustomizer modelCustomizer, Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory modelCacheKeyFactory);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Infrastructure.IModelCustomizer modelCustomizer, class Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory modelCacheKeyFactory) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelSourceDependencies.#ctor(Microsoft.EntityFrameworkCore.Infrastructure.IModelCustomizer,Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (modelCustomizer As IModelCustomizer, modelCacheKeyFactory As IModelCacheKeyFactory)" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Infrastructure.ModelSourceDependencies : Microsoft.EntityFrameworkCore.Infrastructure.IModelCustomizer * Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory -&gt; Microsoft.EntityFrameworkCore.Infrastructure.ModelSourceDependencies" Usage="new Microsoft.EntityFrameworkCore.Infrastructure.ModelSourceDependencies (modelCustomizer, modelCacheKeyFactory)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-3.0">
+          <AttributeName>Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal</AttributeName>
+        </Attribute>
+      </Attributes>
+      <Parameters>
+        <Parameter Name="modelCustomizer" Type="Microsoft.EntityFrameworkCore.Infrastructure.IModelCustomizer" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="modelCacheKeyFactory" Type="Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="modelCustomizer">To be added.</param>
+        <param name="modelCacheKeyFactory">To be added.</param>
+        <summary>
+          <para>
+                    Creates the service dependencies parameter object for a <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelSource" />.
+                </para>
+          <para>
+                    This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                    the same compatibility standards as public APIs. It may be changed or removed without notice in
+                    any release. You should only use it directly in your code with extreme caution and knowing that
+                    doing so can result in application failures when updating to a new Entity Framework Core release.
+                </para>
+          <para>
+                    Do not call this constructor directly from either provider or application code as it may change
+                    as new dependencies are added. Instead, use this type in your constructor so that an instance
+                    will be created and injected automatically by the dependency injection container. To create
+                    an instance with some dependent services replaced, first resolve the object from the dependency
+                    injection container, then replace selected services using the 'With...' methods. Do not call
+                    the constructor at any point in this process.
+                </para>
+        </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public ModelSourceDependencies (Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ICoreConventionSetBuilder coreConventionSetBuilder, Microsoft.EntityFrameworkCore.Infrastructure.IModelCustomizer modelCustomizer, Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory modelCacheKeyFactory);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ICoreConventionSetBuilder coreConventionSetBuilder, class Microsoft.EntityFrameworkCore.Infrastructure.IModelCustomizer modelCustomizer, class Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory modelCacheKeyFactory) cil managed" />
@@ -43,12 +98,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="coreConventionSetBuilder" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ICoreConventionSetBuilder" />
-        <Parameter Name="modelCustomizer" Type="Microsoft.EntityFrameworkCore.Infrastructure.IModelCustomizer" />
-        <Parameter Name="modelCacheKeyFactory" Type="Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory" />
+        <Parameter Name="coreConventionSetBuilder" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ICoreConventionSetBuilder" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="modelCustomizer" Type="Microsoft.EntityFrameworkCore.Infrastructure.IModelCustomizer" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="modelCacheKeyFactory" Type="Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory" Index="2" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="coreConventionSetBuilder">To be added.</param>
@@ -84,7 +142,10 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ICoreConventionSetBuilder</ReturnType>
@@ -108,7 +169,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory</ReturnType>
@@ -132,7 +197,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.IModelCustomizer</ReturnType>
@@ -156,7 +225,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.ModelSourceDependencies</ReturnType>
@@ -183,7 +256,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.ModelSourceDependencies</ReturnType>
@@ -210,13 +287,16 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.ModelSourceDependencies</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="coreConventionSetBuilder" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ICoreConventionSetBuilder" />
+        <Parameter Name="coreConventionSetBuilder" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ICoreConventionSetBuilder" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="coreConventionSetBuilder"> A replacement for the current dependency of this type. </param>

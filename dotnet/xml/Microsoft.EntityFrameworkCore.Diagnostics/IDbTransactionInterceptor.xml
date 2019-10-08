@@ -1,0 +1,622 @@
+<Type Name="IDbTransactionInterceptor" FullName="Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor">
+  <TypeSignature Language="C#" Value="public interface IDbTransactionInterceptor : Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDbTransactionInterceptor implements class Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor" />
+  <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor" />
+  <TypeSignature Language="VB.NET" Value="Public Interface IDbTransactionInterceptor&#xA;Implements IInterceptor" />
+  <TypeSignature Language="F#" Value="type IDbTransactionInterceptor = interface&#xA;    interface IInterceptor" />
+  <AssemblyInfo>
+    <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Docs>
+    <summary>
+      <para>
+                    Allows interception of operations related to a <see cref="T:System.Data.Common.DbTransaction" />.
+                </para>
+      <para>
+                    Transaction interceptors can be used to view, change, or suppress operations on <see cref="T:System.Data.Common.DbTransaction" />, and
+                    to modify the result before it is returned to EF.
+                </para>
+      <para>
+                    Consider inheriting from <see cref="T:Microsoft.EntityFrameworkCore.Diagnostics.DbTransactionInterceptor" /> if not implementing all methods.
+                </para>
+      <para>
+                    Use <see cref="M:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.AddInterceptors(Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor[])" />
+                    to register application interceptors.
+                </para>
+      <para>
+                    Extensions can also register interceptors in the internal service provider.
+                    If both injected and application interceptors are found, then the injected interceptors are run in the
+                    order that they are resolved from the service provider, and then the application interceptors are run last.
+                </para>
+    </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="TransactionCommitted">
+      <MemberSignature Language="C#" Value="public void TransactionCommitted (System.Data.Common.DbTransaction transaction, Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData eventData);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void TransactionCommitted(class System.Data.Common.DbTransaction transaction, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData eventData) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionCommitted(System.Data.Common.DbTransaction,Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub TransactionCommitted (transaction As DbTransaction, eventData As TransactionEndEventData)" />
+      <MemberSignature Language="F#" Value="abstract member TransactionCommitted : System.Data.Common.DbTransaction * Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData -&gt; unit" Usage="iDbTransactionInterceptor.TransactionCommitted (transaction, eventData)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData" />
+      </Parameters>
+      <Docs>
+        <param name="transaction"> The transaction. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <summary>
+                Called immediately after EF calls <see cref="M:System.Data.Common.DbTransaction.Commit" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionCommittedAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task TransactionCommittedAsync (System.Data.Common.DbTransaction transaction, Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData eventData, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task TransactionCommittedAsync(class System.Data.Common.DbTransaction transaction, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData eventData, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionCommittedAsync(System.Data.Common.DbTransaction,Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member TransactionCommittedAsync : System.Data.Common.DbTransaction * Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="iDbTransactionInterceptor.TransactionCommittedAsync (transaction, eventData, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="transaction"> The transaction. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+                Called immediately after EF calls <see cref="M:System.Data.Common.DbTransaction.CommitAsync(System.Threading.CancellationToken)" />.
+            </summary>
+        <returns> A <see cref="T:System.Threading.Tasks.Task" /> representing the asynchronous operation. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionCommitting">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult TransactionCommitting (System.Data.Common.DbTransaction transaction, Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult TransactionCommitting(class System.Data.Common.DbTransaction transaction, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionCommitting(System.Data.Common.DbTransaction,Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult)" />
+      <MemberSignature Language="VB.NET" Value="Public Function TransactionCommitting (transaction As DbTransaction, eventData As TransactionEventData, result As InterceptionResult) As InterceptionResult" />
+      <MemberSignature Language="F#" Value="abstract member TransactionCommitting : System.Data.Common.DbTransaction * Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" Usage="iDbTransactionInterceptor.TransactionCommitting (transaction, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" />
+      </Parameters>
+      <Docs>
+        <param name="transaction"> The transaction. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.Suppress" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbTransaction.Commit" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is true, then EF will suppress the operation
+                it was about to perform.
+                A normal implementation of this method for any interceptor that is not attempting to suppress
+                the operation is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionCommittingAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt; TransactionCommittingAsync (System.Data.Common.DbTransaction transaction, Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt; TransactionCommittingAsync(class System.Data.Common.DbTransaction transaction, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionCommittingAsync(System.Data.Common.DbTransaction,Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member TransactionCommittingAsync : System.Data.Common.DbTransaction * Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt;" Usage="iDbTransactionInterceptor.TransactionCommittingAsync (transaction, eventData, result, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="transaction"> The transaction. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.Suppress" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbTransaction.CommitAsync(System.Threading.CancellationToken)" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is true, then EF will suppress the operation
+                it was about to perform.
+                A normal implementation of this method for any interceptor that is not attempting to suppress
+                the operation is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionFailed">
+      <MemberSignature Language="C#" Value="public void TransactionFailed (System.Data.Common.DbTransaction transaction, Microsoft.EntityFrameworkCore.Diagnostics.TransactionErrorEventData eventData);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void TransactionFailed(class System.Data.Common.DbTransaction transaction, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionErrorEventData eventData) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionFailed(System.Data.Common.DbTransaction,Microsoft.EntityFrameworkCore.Diagnostics.TransactionErrorEventData)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub TransactionFailed (transaction As DbTransaction, eventData As TransactionErrorEventData)" />
+      <MemberSignature Language="F#" Value="abstract member TransactionFailed : System.Data.Common.DbTransaction * Microsoft.EntityFrameworkCore.Diagnostics.TransactionErrorEventData -&gt; unit" Usage="iDbTransactionInterceptor.TransactionFailed (transaction, eventData)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionErrorEventData" />
+      </Parameters>
+      <Docs>
+        <param name="transaction"> The transaction. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <summary>
+                Called when use of a <see cref="T:System.Data.Common.DbTransaction" /> has failed with an exception. /&gt;.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionFailedAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task TransactionFailedAsync (System.Data.Common.DbTransaction transaction, Microsoft.EntityFrameworkCore.Diagnostics.TransactionErrorEventData eventData, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task TransactionFailedAsync(class System.Data.Common.DbTransaction transaction, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionErrorEventData eventData, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionFailedAsync(System.Data.Common.DbTransaction,Microsoft.EntityFrameworkCore.Diagnostics.TransactionErrorEventData,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member TransactionFailedAsync : System.Data.Common.DbTransaction * Microsoft.EntityFrameworkCore.Diagnostics.TransactionErrorEventData * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="iDbTransactionInterceptor.TransactionFailedAsync (transaction, eventData, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionErrorEventData" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="transaction"> The transaction. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+                Called when use of a <see cref="T:System.Data.Common.DbTransaction" /> has failed with an exception. /&gt;.
+            </summary>
+        <returns> A <see cref="T:System.Threading.Tasks.Task" /> representing the asynchronous operation. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionRolledBack">
+      <MemberSignature Language="C#" Value="public void TransactionRolledBack (System.Data.Common.DbTransaction transaction, Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData eventData);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void TransactionRolledBack(class System.Data.Common.DbTransaction transaction, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData eventData) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionRolledBack(System.Data.Common.DbTransaction,Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub TransactionRolledBack (transaction As DbTransaction, eventData As TransactionEndEventData)" />
+      <MemberSignature Language="F#" Value="abstract member TransactionRolledBack : System.Data.Common.DbTransaction * Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData -&gt; unit" Usage="iDbTransactionInterceptor.TransactionRolledBack (transaction, eventData)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData" />
+      </Parameters>
+      <Docs>
+        <param name="transaction"> The transaction. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <summary>
+                Called immediately after EF calls <see cref="M:System.Data.Common.DbTransaction.Rollback" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionRolledBackAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task TransactionRolledBackAsync (System.Data.Common.DbTransaction transaction, Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData eventData, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task TransactionRolledBackAsync(class System.Data.Common.DbTransaction transaction, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData eventData, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionRolledBackAsync(System.Data.Common.DbTransaction,Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member TransactionRolledBackAsync : System.Data.Common.DbTransaction * Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="iDbTransactionInterceptor.TransactionRolledBackAsync (transaction, eventData, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="transaction"> The transaction. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+                Called immediately after EF calls <see cref="M:System.Data.Common.DbTransaction.RollbackAsync(System.Threading.CancellationToken)" />.
+            </summary>
+        <returns> A <see cref="T:System.Threading.Tasks.Task" /> representing the asynchronous operation. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionRollingBack">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult TransactionRollingBack (System.Data.Common.DbTransaction transaction, Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult TransactionRollingBack(class System.Data.Common.DbTransaction transaction, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionRollingBack(System.Data.Common.DbTransaction,Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult)" />
+      <MemberSignature Language="VB.NET" Value="Public Function TransactionRollingBack (transaction As DbTransaction, eventData As TransactionEventData, result As InterceptionResult) As InterceptionResult" />
+      <MemberSignature Language="F#" Value="abstract member TransactionRollingBack : System.Data.Common.DbTransaction * Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" Usage="iDbTransactionInterceptor.TransactionRollingBack (transaction, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" />
+      </Parameters>
+      <Docs>
+        <param name="transaction"> The transaction. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.Suppress" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbTransaction.Rollback" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is true, then EF will suppress the operation
+                it was about to perform.
+                A normal implementation of this method for any interceptor that is not attempting to suppress
+                the operation is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionRollingBackAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt; TransactionRollingBackAsync (System.Data.Common.DbTransaction transaction, Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt; TransactionRollingBackAsync(class System.Data.Common.DbTransaction transaction, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionRollingBackAsync(System.Data.Common.DbTransaction,Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member TransactionRollingBackAsync : System.Data.Common.DbTransaction * Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt;" Usage="iDbTransactionInterceptor.TransactionRollingBackAsync (transaction, eventData, result, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="transaction"> The transaction. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.Suppress" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbTransaction.RollbackAsync(System.Threading.CancellationToken)" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is true, then EF will suppress the operation
+                it was about to perform.
+                A normal implementation of this method for any interceptor that is not attempting to suppress
+                the operation is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionStarted">
+      <MemberSignature Language="C#" Value="public System.Data.Common.DbTransaction TransactionStarted (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData eventData, System.Data.Common.DbTransaction result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Data.Common.DbTransaction TransactionStarted(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData eventData, class System.Data.Common.DbTransaction result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionStarted(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData,System.Data.Common.DbTransaction)" />
+      <MemberSignature Language="VB.NET" Value="Public Function TransactionStarted (connection As DbConnection, eventData As TransactionEndEventData, result As DbTransaction) As DbTransaction" />
+      <MemberSignature Language="F#" Value="abstract member TransactionStarted : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData * System.Data.Common.DbTransaction -&gt; System.Data.Common.DbTransaction" Usage="iDbTransactionInterceptor.TransactionStarted (connection, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Data.Common.DbTransaction</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData" />
+        <Parameter Name="result" Type="System.Data.Common.DbTransaction" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <param name="result">
+                The result of the call to <see cref="M:System.Data.Common.DbConnection.BeginTransaction(System.Data.IsolationLevel)" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+          <para>
+                    Called immediately after EF calls <see cref="M:System.Data.Common.DbConnection.BeginTransaction(System.Data.IsolationLevel)" />.
+                </para>
+          <para>
+                    This method is still called if an interceptor suppressed creation in <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionStarting(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.TransactionStartingEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbTransaction})" />.
+                    In this case, <paramref name="result" /> is the result returned by <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionStarting(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.TransactionStartingEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbTransaction})" />.
+                </para>
+        </summary>
+        <returns>
+                The result that EF will use.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionStartedAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;System.Data.Common.DbTransaction&gt; TransactionStartedAsync (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData eventData, System.Data.Common.DbTransaction result, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;class System.Data.Common.DbTransaction&gt; TransactionStartedAsync(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData eventData, class System.Data.Common.DbTransaction result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionStartedAsync(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData,System.Data.Common.DbTransaction,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member TransactionStartedAsync : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData * System.Data.Common.DbTransaction * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;System.Data.Common.DbTransaction&gt;" Usage="iDbTransactionInterceptor.TransactionStartedAsync (connection, eventData, result, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Data.Common.DbTransaction&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionEndEventData" />
+        <Parameter Name="result" Type="System.Data.Common.DbTransaction" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <param name="result">
+                The result of the call to <see cref="M:System.Data.Common.DbConnection.BeginTransactionAsync(System.Data.IsolationLevel,System.Threading.CancellationToken)" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+          <para>
+                    Called immediately after EF calls <see cref="M:System.Data.Common.DbConnection.BeginTransactionAsync(System.Data.IsolationLevel,System.Threading.CancellationToken)" />.
+                </para>
+          <para>
+                    This method is still called if an interceptor suppressed creation in <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionStarting(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.TransactionStartingEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbTransaction})" />.
+                    In this case, <paramref name="result" /> is the result returned by <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionStarting(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.TransactionStartingEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbTransaction})" />.
+                </para>
+        </summary>
+        <returns>
+                A <see cref="T:System.Threading.Tasks.Task" /> providing the result that EF will use.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in, often using <see cref="M:System.Threading.Tasks.Task.FromResult``1(``0)" /></returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionStarting">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbTransaction&gt; TransactionStarting (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.TransactionStartingEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbTransaction&gt; result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;class System.Data.Common.DbTransaction&gt; TransactionStarting(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionStartingEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;class System.Data.Common.DbTransaction&gt; result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionStarting(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.TransactionStartingEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbTransaction})" />
+      <MemberSignature Language="VB.NET" Value="Public Function TransactionStarting (connection As DbConnection, eventData As TransactionStartingEventData, result As InterceptionResult(Of DbTransaction)) As InterceptionResult(Of DbTransaction)" />
+      <MemberSignature Language="F#" Value="abstract member TransactionStarting : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.TransactionStartingEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbTransaction&gt; -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbTransaction&gt;" Usage="iDbTransactionInterceptor.TransactionStarting (connection, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbTransaction&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionStartingEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbTransaction&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.SuppressWithResult(`0)" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbConnection.BeginTransaction(System.Data.IsolationLevel)" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is true, then EF will suppress the operation it
+                was about to perform and use <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.Result" /> instead.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in, often using <see cref="M:System.Threading.Tasks.Task.FromResult``1(``0)" /></returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionStartingAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbTransaction&gt;&gt; TransactionStartingAsync (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.TransactionStartingEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbTransaction&gt; result, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;class System.Data.Common.DbTransaction&gt;&gt; TransactionStartingAsync(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionStartingEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;class System.Data.Common.DbTransaction&gt; result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionStartingAsync(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.TransactionStartingEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbTransaction},System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member TransactionStartingAsync : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.TransactionStartingEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbTransaction&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbTransaction&gt;&gt;" Usage="iDbTransactionInterceptor.TransactionStartingAsync (connection, eventData, result, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbTransaction&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionStartingEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbTransaction&gt;" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.SuppressWithResult(`0)" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbConnection.BeginTransactionAsync(System.Data.IsolationLevel,System.Threading.CancellationToken)" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is true, then EF will suppress the operation it
+                was about to perform and use <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.Result" /> instead.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in, often using <see cref="M:System.Threading.Tasks.Task.FromResult``1(``0)" /></returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionUsed">
+      <MemberSignature Language="C#" Value="public System.Data.Common.DbTransaction TransactionUsed (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData eventData, System.Data.Common.DbTransaction result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Data.Common.DbTransaction TransactionUsed(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData eventData, class System.Data.Common.DbTransaction result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionUsed(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData,System.Data.Common.DbTransaction)" />
+      <MemberSignature Language="VB.NET" Value="Public Function TransactionUsed (connection As DbConnection, eventData As TransactionEventData, result As DbTransaction) As DbTransaction" />
+      <MemberSignature Language="F#" Value="abstract member TransactionUsed : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData * System.Data.Common.DbTransaction -&gt; System.Data.Common.DbTransaction" Usage="iDbTransactionInterceptor.TransactionUsed (connection, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Data.Common.DbTransaction</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData" />
+        <Parameter Name="result" Type="System.Data.Common.DbTransaction" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <param name="result">
+                The <see cref="T:System.Data.Common.DbTransaction" /> that was passed to <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction)" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+          <para>
+                    Called immediately after <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction)" /> is called.
+                </para>
+        </summary>
+        <returns>
+                The value that will be used as the effective value passed to <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction)" />
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TransactionUsedAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;System.Data.Common.DbTransaction&gt; TransactionUsedAsync (System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData eventData, System.Data.Common.DbTransaction result, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;class System.Data.Common.DbTransaction&gt; TransactionUsedAsync(class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData eventData, class System.Data.Common.DbTransaction result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbTransactionInterceptor.TransactionUsedAsync(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData,System.Data.Common.DbTransaction,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member TransactionUsedAsync : System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData * System.Data.Common.DbTransaction * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;System.Data.Common.DbTransaction&gt;" Usage="iDbTransactionInterceptor.TransactionUsedAsync (connection, eventData, result, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Data.Common.DbTransaction&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.TransactionEventData" />
+        <Parameter Name="result" Type="System.Data.Common.DbTransaction" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="connection"> The connection. </param>
+        <param name="eventData"> Contextual information about connection and transaction. </param>
+        <param name="result">
+                The <see cref="T:System.Data.Common.DbTransaction" /> that was passed to <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransactionAsync(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction,System.Threading.CancellationToken)" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+          <para>
+                    Called immediately after <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransactionAsync(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction,System.Threading.CancellationToken)" /> is called.
+                </para>
+        </summary>
+        <returns>
+                A <see cref="T:System.Threading.Tasks.Task" />  containing the value that will be used as the effective value passed
+                to <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransactionAsync(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction,System.Threading.CancellationToken)" />
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in, often using <see cref="M:System.Threading.Tasks.Task.FromResult``1(``0)" /></returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
