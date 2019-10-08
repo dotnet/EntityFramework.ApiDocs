@@ -1,20 +1,29 @@
-﻿<Type Name="RelationalConnection" FullName="Microsoft.EntityFrameworkCore.Storage.RelationalConnection">
+<Type Name="RelationalConnection" FullName="Microsoft.EntityFrameworkCore.Storage.RelationalConnection">
   <TypeSignature Language="C#" Value="public abstract class RelationalConnection : IDisposable, Microsoft.EntityFrameworkCore.Storage.IDbContextTransactionManager, Microsoft.EntityFrameworkCore.Storage.IRelationalConnection, Microsoft.EntityFrameworkCore.Storage.ITransactionEnlistmentManager" />
-  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit RelationalConnection extends System.Object implements class Microsoft.EntityFrameworkCore.Infrastructure.IResettableService, class Microsoft.EntityFrameworkCore.Storage.IDbContextTransactionManager, class Microsoft.EntityFrameworkCore.Storage.IRelationalConnection, class Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionManager, class Microsoft.EntityFrameworkCore.Storage.ITransactionEnlistmentManager, class System.IDisposable" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit RelationalConnection extends System.Object implements class Microsoft.EntityFrameworkCore.Infrastructure.IResettableService, class Microsoft.EntityFrameworkCore.Storage.IDbContextTransactionManager, class Microsoft.EntityFrameworkCore.Storage.IRelationalConnection, class Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionManager, class Microsoft.EntityFrameworkCore.Storage.ITransactionEnlistmentManager, class System.IAsyncDisposable, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Storage.RelationalConnection" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class RelationalConnection&#xA;Implements IDbContextTransactionManager, IDisposable, IRelationalConnection, ITransactionEnlistmentManager" />
-  <TypeSignature Language="F#" Value="type RelationalConnection = class&#xA;    interface IRelationalConnection&#xA;    interface IRelationalTransactionManager&#xA;    interface IDbContextTransactionManager&#xA;    interface IResettableService&#xA;    interface IDisposable&#xA;    interface ITransactionEnlistmentManager" />
+  <TypeSignature Language="F#" Value="type RelationalConnection = class&#xA;    interface IRelationalConnection&#xA;    interface IRelationalTransactionManager&#xA;    interface IDbContextTransactionManager&#xA;    interface IResettableService&#xA;    interface IDisposable&#xA;    interface IAsyncDisposable&#xA;    interface ITransactionEnlistmentManager" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <AssemblyVersion>1.1.6.0</AssemblyVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.0.3.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.1.11.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
   <Interfaces>
+    <Interface>
+      <InterfaceName>Microsoft.EntityFrameworkCore.Infrastructure.IResettableService</InterfaceName>
+    </Interface>
     <Interface>
       <InterfaceName>Microsoft.EntityFrameworkCore.Storage.IDbContextTransactionManager</InterfaceName>
     </Interface>
@@ -22,7 +31,13 @@
       <InterfaceName>Microsoft.EntityFrameworkCore.Storage.IRelationalConnection</InterfaceName>
     </Interface>
     <Interface>
+      <InterfaceName>Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionManager</InterfaceName>
+    </Interface>
+    <Interface>
       <InterfaceName>Microsoft.EntityFrameworkCore.Storage.ITransactionEnlistmentManager</InterfaceName>
+    </Interface>
+    <Interface>
+      <InterfaceName>System.IAsyncDisposable</InterfaceName>
     </Interface>
     <Interface>
       <InterfaceName>System.IDisposable</InterfaceName>
@@ -36,6 +51,12 @@
       <para>
                     This type is typically used by database providers (and other extensions). It is generally
                     not used in application code.
+                </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
                 </para>
     </summary>
     <remarks>To be added.</remarks>
@@ -51,10 +72,14 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Storage.RelationalConnectionDependencies" />
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Storage.RelationalConnectionDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="dependencies"> Parameter object containing dependencies for this service. </param>
@@ -74,11 +99,13 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="options" Type="Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions" />
-        <Parameter Name="logger" Type="Microsoft.Extensions.Logging.ILogger" />
+        <Parameter Name="options" Type="Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1" />
+        <Parameter Name="logger" Type="Microsoft.Extensions.Logging.ILogger" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1" />
       </Parameters>
       <Docs>
         <param name="options"> The options for the context that this connection will be used with. </param>
@@ -102,7 +129,9 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.Internal.IValueBufferCursor</ReturnType>
@@ -128,9 +157,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction</ReturnType>
@@ -156,9 +191,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction</ReturnType>
@@ -187,21 +228,16 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
-      <Attributes>
-        <Attribute FrameworkAlternate="efcore-2.1">
-          <AttributeName>System.Runtime.CompilerServices.AsyncStateMachine(typeof(Microsoft.EntityFrameworkCore.Storage.RelationalConnection/&lt;BeginTransactionAsync&gt;d__36))</AttributeName>
-        </Attribute>
-        <Attribute FrameworkAlternate="efcore-1.0;efcore-1.1">
-          <AttributeName>System.Runtime.CompilerServices.AsyncStateMachine(typeof(Microsoft.EntityFrameworkCore.Storage.RelationalConnection/&lt;BeginTransactionAsync&gt;d__23))</AttributeName>
-        </Attribute>
-        <Attribute FrameworkAlternate="efcore-2.0">
-          <AttributeName>System.Runtime.CompilerServices.AsyncStateMachine(typeof(Microsoft.EntityFrameworkCore.Storage.RelationalConnection/&lt;BeginTransactionAsync&gt;d__26))</AttributeName>
-        </Attribute>
-      </Attributes>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;</ReturnType>
       </ReturnValue>
@@ -231,21 +267,16 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
-      <Attributes>
-        <Attribute FrameworkAlternate="efcore-2.1">
-          <AttributeName>System.Runtime.CompilerServices.AsyncStateMachine(typeof(Microsoft.EntityFrameworkCore.Storage.RelationalConnection/&lt;BeginTransactionAsync&gt;d__38))</AttributeName>
-        </Attribute>
-        <Attribute FrameworkAlternate="efcore-1.0;efcore-1.1">
-          <AttributeName>System.Runtime.CompilerServices.AsyncStateMachine(typeof(Microsoft.EntityFrameworkCore.Storage.RelationalConnection/&lt;BeginTransactionAsync&gt;d__25))</AttributeName>
-        </Attribute>
-        <Attribute FrameworkAlternate="efcore-2.0">
-          <AttributeName>System.Runtime.CompilerServices.AsyncStateMachine(typeof(Microsoft.EntityFrameworkCore.Storage.RelationalConnection/&lt;BeginTransactionAsync&gt;d__28))</AttributeName>
-        </Attribute>
-      </Attributes>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;</ReturnType>
       </ReturnValue>
@@ -266,11 +297,11 @@
       </Docs>
     </Member>
     <Member MemberName="Close">
-      <MemberSignature Language="C#" Value="public virtual bool Close ();" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool Close() cil managed" />
-      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Close" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable Function Close () As Boolean" />
-      <MemberSignature Language="F#" Value="abstract member Close : unit -&gt; bool&#xA;override this.Close : unit -&gt; bool" Usage="relationalConnection.Close " />
+      <MemberSignature Language="C#" Value="public virtual bool Close ();" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool Close() cil managed" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Close" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function Close () As Boolean" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+      <MemberSignature Language="F#" Value="abstract member Close : unit -&gt; bool&#xA;override this.Close : unit -&gt; bool" Usage="relationalConnection.Close " FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.Close</InterfaceMember>
@@ -278,7 +309,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -289,6 +324,35 @@
                 Closes the connection to the database.
             </summary>
         <returns> True if the underlying connection was actually closed; false otherwise. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CloseAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;bool&gt; CloseAsync ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;bool&gt; CloseAsync() cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.CloseAsync" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function CloseAsync () As Task(Of Boolean)" />
+      <MemberSignature Language="F#" Value="abstract member CloseAsync : unit -&gt; System.Threading.Tasks.Task&lt;bool&gt;&#xA;override this.CloseAsync : unit -&gt; System.Threading.Tasks.Task&lt;bool&gt;" Usage="relationalConnection.CloseAsync " />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.CloseAsync</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Boolean&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+                Closes the connection to the database.
+            </summary>
+        <returns>
+                A task that represents the asynchronous operation, with a value of true if the connection
+                was actually closed.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -305,9 +369,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Nullable&lt;System.Int32&gt;</ReturnType>
@@ -333,9 +403,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -361,7 +437,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Guid</ReturnType>
@@ -387,9 +467,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -397,6 +483,31 @@
       <Docs>
         <summary>
                 Gets the connection string for the database.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Context">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.DbContext Context { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.DbContext Context" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Context" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Context As DbContext" />
+      <MemberSignature Language="F#" Value="member this.Context : Microsoft.EntityFrameworkCore.DbContext" Usage="Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Context" />
+      <MemberType>Property</MemberType>
+      <Implements>
+        <InterfaceMember>P:Microsoft.EntityFrameworkCore.Storage.IRelationalConnection.Context</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContext</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                The <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> currently in use, or null if not known.
             </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
@@ -412,9 +523,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Data.Common.DbConnection</ReturnType>
@@ -438,9 +555,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction</ReturnType>
@@ -466,9 +589,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Data.Common.DbConnection</ReturnType>
@@ -491,7 +620,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalConnectionDependencies</ReturnType>
@@ -517,9 +650,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -529,6 +668,29 @@
         <summary>
                 Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DisposeAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.ValueTask DisposeAsync ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype System.Threading.Tasks.ValueTask DisposeAsync() cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.DisposeAsync" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function DisposeAsync () As ValueTask" />
+      <MemberSignature Language="F#" Value="abstract member DisposeAsync : unit -&gt; System.Threading.Tasks.ValueTask&#xA;override this.DisposeAsync : unit -&gt; System.Threading.Tasks.ValueTask" Usage="relationalConnection.DisposeAsync " />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.ValueTask</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+                Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -542,6 +704,9 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Transactions.Transaction</ReturnType>
@@ -566,12 +731,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="transaction" Type="System.Transactions.Transaction" />
+        <Parameter Name="transaction" Type="System.Transactions.Transaction" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="transaction"> The transaction to be used. </param>
@@ -594,9 +762,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -619,7 +793,9 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.Extensions.Logging.ILogger</ReturnType>
@@ -644,7 +820,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -652,6 +832,31 @@
       <Parameters />
       <Docs>
         <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetStateAsync">
+      <MemberSignature Language="C#" Value="System.Threading.Tasks.Task IResettableService.ResetStateAsync (System.Threading.CancellationToken cancellationToken);" />
+      <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class System.Threading.Tasks.Task Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetStateAsync(valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Microsoft#EntityFrameworkCore#Infrastructure#IResettableService#ResetStateAsync(System.Threading.CancellationToken)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetStateAsync(System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="cancellationToken">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -667,13 +872,16 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="bufferable" Type="Microsoft.EntityFrameworkCore.Query.Internal.IBufferable" />
+        <Parameter Name="bufferable" Type="Microsoft.EntityFrameworkCore.Query.Internal.IBufferable" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="bufferable"> The bufferable query. </param>
@@ -694,13 +902,16 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-2.1">
+        <Attribute FrameworkAlternate="">
           <AttributeName>System.Runtime.CompilerServices.AsyncStateMachine(typeof(Microsoft.EntityFrameworkCore.Storage.RelationalConnection/&lt;Microsoft-EntityFrameworkCore-Storage-IRelationalConnection-RegisterBufferableAsync&gt;d__61))</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="efcore-2.0">
+        <Attribute FrameworkAlternate="">
           <AttributeName>System.Runtime.CompilerServices.AsyncStateMachine(typeof(Microsoft.EntityFrameworkCore.Storage.RelationalConnection/&lt;Microsoft-EntityFrameworkCore-Storage-IRelationalConnection-RegisterBufferableAsync&gt;d__45))</AttributeName>
         </Attribute>
       </Attributes>
@@ -708,8 +919,8 @@
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="bufferable" Type="Microsoft.EntityFrameworkCore.Query.Internal.IBufferable" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+        <Parameter Name="bufferable" Type="Microsoft.EntityFrameworkCore.Query.Internal.IBufferable" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="bufferable"> The bufferable query. </param>
@@ -736,7 +947,9 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -762,13 +975,17 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="errorsExpected" Type="System.Boolean" />
+        <Parameter Name="errorsExpected" Type="System.Boolean" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="errorsExpected">
@@ -793,10 +1010,12 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-1.0;efcore-1.1">
+        <Attribute FrameworkAlternate="">
           <AttributeName>System.Runtime.CompilerServices.AsyncStateMachine(typeof(Microsoft.EntityFrameworkCore.Storage.RelationalConnection/&lt;OpenAsync&gt;d__31))</AttributeName>
         </Attribute>
       </Attributes>
@@ -804,7 +1023,7 @@
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1" />
       </Parameters>
       <Docs>
         <param name="cancellationToken">
@@ -829,22 +1048,18 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
-      <Attributes>
-        <Attribute FrameworkAlternate="efcore-2.1">
-          <AttributeName>System.Runtime.CompilerServices.AsyncStateMachine(typeof(Microsoft.EntityFrameworkCore.Storage.RelationalConnection/&lt;OpenAsync&gt;d__45))</AttributeName>
-        </Attribute>
-        <Attribute FrameworkAlternate="efcore-2.0">
-          <AttributeName>System.Runtime.CompilerServices.AsyncStateMachine(typeof(Microsoft.EntityFrameworkCore.Storage.RelationalConnection/&lt;OpenAsync&gt;d__34))</AttributeName>
-        </Attribute>
-      </Attributes>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Boolean&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
-        <Parameter Name="errorsExpected" Type="System.Boolean" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
+        <Parameter Name="errorsExpected" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="cancellationToken">
@@ -874,9 +1089,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -902,7 +1123,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.SemaphoreSlim</ReturnType>
@@ -927,6 +1152,9 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -952,9 +1180,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
         <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction</ReturnType>
@@ -968,6 +1202,36 @@
                 Specifies an existing <see cref="T:System.Data.Common.DbTransaction" /> to be used for database operations.
             </summary>
         <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseTransactionAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt; UseTransactionAsync (System.Data.Common.DbTransaction transaction, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;class Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt; UseTransactionAsync(class System.Data.Common.DbTransaction transaction, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalConnection.UseTransactionAsync(System.Data.Common.DbTransaction,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member UseTransactionAsync : System.Data.Common.DbTransaction * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;&#xA;override this.UseTransactionAsync : System.Data.Common.DbTransaction * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;" Usage="relationalConnection.UseTransactionAsync (transaction, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalTransactionManager.UseTransactionAsync(System.Data.Common.DbTransaction,System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="transaction"> The transaction to be used. </param>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+                Specifies an existing <see cref="T:System.Data.Common.DbTransaction" /> to be used for database operations.
+            </summary>
+        <returns> An instance of <see cref="T:System.Data.IDbTransaction" /> that wraps the provided transaction. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

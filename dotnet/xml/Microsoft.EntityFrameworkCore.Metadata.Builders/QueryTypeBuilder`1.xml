@@ -1,12 +1,15 @@
-﻿<Type Name="QueryTypeBuilder&lt;TQuery&gt;" FullName="Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder&lt;TQuery&gt;">
-  <TypeSignature Language="C#" Value="public class QueryTypeBuilder&lt;TQuery&gt; : Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder where TQuery : class" />
-  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit QueryTypeBuilder`1&lt;class TQuery&gt; extends Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder" />
+<Type Name="QueryTypeBuilder&lt;TQuery&gt;" FullName="Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder&lt;TQuery&gt;">
+  <TypeSignature Language="C#" Value="public class QueryTypeBuilder&lt;TQuery&gt; : Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder&lt;TQuery&gt; where TQuery : class" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit QueryTypeBuilder`1&lt;class TQuery&gt; extends Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder`1&lt;!TQuery&gt;" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder`1" />
-  <TypeSignature Language="VB.NET" Value="Public Class QueryTypeBuilder(Of TQuery)&#xA;Inherits QueryTypeBuilder" />
-  <TypeSignature Language="F#" Value="type QueryTypeBuilder&lt;'Query (requires 'Query : null)&gt; = class&#xA;    inherit QueryTypeBuilder" />
+  <TypeSignature Language="VB.NET" Value="Public Class QueryTypeBuilder(Of TQuery)&#xA;Inherits EntityTypeBuilder(Of TQuery)" />
+  <TypeSignature Language="F#" Value="type QueryTypeBuilder&lt;'Query (requires 'Query : null)&gt; = class&#xA;    inherit EntityTypeBuilder&lt;'Query (requires 'Query : null)&gt;" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.1.11.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
     <TypeParameter Name="TQuery">
@@ -17,13 +20,22 @@
   </TypeParameters>
   <Base>
     <BaseTypeName>Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder</BaseTypeName>
+    <BaseTypeName FrameworkAlternate="efcore-3.0">Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder&lt;TQuery&gt;</BaseTypeName>
+    <BaseTypeArguments>
+      <BaseTypeArgument TypeParamName="TEntity">TQuery</BaseTypeArgument>
+    </BaseTypeArguments>
   </Base>
   <Interfaces />
+  <Attributes>
+    <Attribute FrameworkAlternate="efcore-3.0">
+      <AttributeName>System.Obsolete("Use EntityTypeBuilder instead")</AttributeName>
+    </Attribute>
+  </Attributes>
   <Docs>
     <typeparam name="TQuery"> The query type being configured. </typeparam>
     <summary>
       <para>
-                    Provides a simple API for configuring an <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Internal.EntityType" />.
+                    Provides a simple API for configuring an <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType" />.
                 </para>
       <para>
                     Instances of this class are returned from methods when using the <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> API
@@ -34,6 +46,36 @@
   </Docs>
   <Members>
     <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public QueryTypeBuilder (Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType entityType);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType entityType) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder`1.#ctor(Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (entityType As IMutableEntityType)" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder&lt;'Query (requires 'Query : null)&gt; : Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType -&gt; Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder&lt;'Query (requires 'Query : null)&gt;" Usage="new Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder&lt;'Query (requires 'Query : null)&gt; entityType" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-3.0">
+          <AttributeName>Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal</AttributeName>
+        </Attribute>
+      </Attributes>
+      <Parameters>
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType" Index="0" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="entityType">To be added.</param>
+        <summary>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public QueryTypeBuilder (Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder builder);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder builder) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder`1.#ctor(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder)" />
@@ -43,9 +85,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder" />
+        <Parameter Name="builder" Type="Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="builder">To be added.</param>
@@ -66,13 +110,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder&lt;TQuery&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="annotation" Type="System.String" />
-        <Parameter Name="value" Type="System.Object" />
+        <Parameter Name="annotation" Type="System.String" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="value" Type="System.Object" Index="1" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="annotation"> The key of the annotation to be added or updated. </param>
@@ -95,12 +141,14 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder&lt;TQuery&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="name" Type="System.String" />
+        <Parameter Name="name" Type="System.String" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="name"> The name of the base type. </param>
@@ -121,12 +169,14 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder&lt;TQuery&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="queryType" Type="System.Type" />
+        <Parameter Name="queryType" Type="System.Type" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="queryType"> The base type. </param>
@@ -147,6 +197,8 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder&lt;TQuery&gt;</ReturnType>
@@ -164,42 +216,6 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="HasIndex">
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.Builders.IndexBuilder HasIndex (System.Linq.Expressions.Expression&lt;Func&lt;TQuery,object&gt;&gt; indexExpression);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Metadata.Builders.IndexBuilder HasIndex(class System.Linq.Expressions.Expression`1&lt;class System.Func`2&lt;!TQuery, object&gt;&gt; indexExpression) cil managed" />
-      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder`1.HasIndex(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable Function HasIndex (indexExpression As Expression(Of Func(Of TQuery, Object))) As IndexBuilder" />
-      <MemberSignature Language="F#" Value="override this.HasIndex : System.Linq.Expressions.Expression&lt;Func&lt;'Query, obj&gt;&gt; -&gt; Microsoft.EntityFrameworkCore.Metadata.Builders.IndexBuilder" Usage="queryTypeBuilder.HasIndex indexExpression" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
-        <AssemblyVersion>2.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Builders.IndexBuilder</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="indexExpression" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TQuery,System.Object&gt;&gt;" />
-      </Parameters>
-      <Docs>
-        <param name="indexExpression">
-          <para>
-                    A lambda expression representing the property(s) to be included in the index
-                    (<c>blog =&gt; blog.Url</c>).
-                </para>
-          <para>
-                    If the index is made up of multiple properties then specify an anonymous type including the
-                    properties (<c>post =&gt; new { post.Title, post.BlogId }</c>).
-                </para>
-        </param>
-        <summary>
-                Configures an index on the specified properties. If there is an existing index on the given
-                set of properties, then the existing index will be returned for configuration.
-            </summary>
-        <returns> An object that can be used to configure the index. </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
     <Member MemberName="HasOne&lt;TRelatedEntity&gt;">
       <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.Builders.ReferenceNavigationBuilder&lt;TQuery,TRelatedEntity&gt; HasOne&lt;TRelatedEntity&gt; (System.Linq.Expressions.Expression&lt;Func&lt;TQuery,TRelatedEntity&gt;&gt; navigationExpression = null) where TRelatedEntity : class;" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Metadata.Builders.ReferenceNavigationBuilder`2&lt;!TQuery, !!TRelatedEntity&gt; HasOne&lt;class TRelatedEntity&gt;(class System.Linq.Expressions.Expression`1&lt;class System.Func`2&lt;!TQuery, !!TRelatedEntity&gt;&gt; navigationExpression) cil managed" />
@@ -210,6 +226,8 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Builders.ReferenceNavigationBuilder&lt;TQuery,TRelatedEntity&gt;</ReturnType>
@@ -222,7 +240,7 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="navigationExpression" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TQuery,TRelatedEntity&gt;&gt;" />
+        <Parameter Name="navigationExpression" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TQuery,TRelatedEntity&gt;&gt;" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <typeparam name="TRelatedEntity"> The query type that this relationship targets. </typeparam>
@@ -264,12 +282,14 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder&lt;TQuery&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="filter" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TQuery,System.Boolean&gt;&gt;" />
+        <Parameter Name="filter" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TQuery,System.Boolean&gt;&gt;" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="filter">The LINQ predicate expression.</param>
@@ -291,12 +311,14 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder&lt;TQuery&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="propertyExpression" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TQuery,System.Object&gt;&gt;" />
+        <Parameter Name="propertyExpression" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TQuery,System.Object&gt;&gt;" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="propertyExpression">
@@ -321,12 +343,14 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder&lt;TQuery&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="propertyName" Type="System.String" />
+        <Parameter Name="propertyName" Type="System.String" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="propertyName"> The name of then property to be removed from the query type. </param>
@@ -348,6 +372,8 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder&lt;TProperty&gt;</ReturnType>
@@ -356,7 +382,7 @@
         <TypeParameter Name="TProperty" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="propertyExpression" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TQuery,TProperty&gt;&gt;" />
+        <Parameter Name="propertyExpression" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TQuery,TProperty&gt;&gt;" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <typeparam name="TProperty">To be added.</typeparam>
@@ -382,12 +408,14 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder&lt;TQuery&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="query" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;System.Linq.IQueryable&lt;TQuery&gt;&gt;&gt;" />
+        <Parameter Name="query" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;System.Linq.IQueryable&lt;TQuery&gt;&gt;&gt;" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="query"> The query that will provider the underlying data for the query type. </param>
@@ -407,12 +435,14 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Builders.QueryTypeBuilder&lt;TQuery&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="propertyAccessMode" Type="Microsoft.EntityFrameworkCore.PropertyAccessMode" />
+        <Parameter Name="propertyAccessMode" Type="Microsoft.EntityFrameworkCore.PropertyAccessMode" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="propertyAccessMode"> The <see cref="T:Microsoft.EntityFrameworkCore.PropertyAccessMode" /> to use for properties of this query type. </param>
@@ -423,11 +453,11 @@
           <para>
                     By default, the backing field, if one is found by convention or has been specified, is used when
                     new objects are constructed, typically when entities are queried from the database.
-                    Properties are used for all other accesses.  Calling this method witll change that behavior
+                    Properties are used for all other accesses.  Calling this method will change that behavior
                     for all properties of this query type as described in the <see cref="T:Microsoft.EntityFrameworkCore.PropertyAccessMode" /> enum.
                 </para>
           <para>
-                    Calling this method overrrides for all properties of this query type any access mode that was
+                    Calling this method overrides for all properties of this query type any access mode that was
                     set on the model.
                 </para>
         </summary>

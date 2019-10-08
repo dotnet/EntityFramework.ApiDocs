@@ -1,4 +1,4 @@
-﻿<Type Name="MigrationsSqlGeneratorDependencies" FullName="Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies">
+<Type Name="MigrationsSqlGeneratorDependencies" FullName="Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies">
   <TypeSignature Language="C#" Value="public sealed class MigrationsSqlGeneratorDependencies" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit MigrationsSqlGeneratorDependencies extends System.Object" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies" />
@@ -7,7 +7,11 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.0.3.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.1.11.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -29,6 +33,12 @@
                     first resolve the object from the dependency injection container, then replace selected
                     services using the 'With...' methods. Do not call the constructor at any point in this process.
                 </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
+                </para>
     </summary>
     <remarks>To be added.</remarks>
   </Docs>
@@ -43,11 +53,12 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="commandBuilderFactory" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory" />
-        <Parameter Name="sqlGenerationHelper" Type="Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" />
-        <Parameter Name="typeMapper" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMapper" />
+        <Parameter Name="commandBuilderFactory" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory" Index="0" FrameworkAlternate="efcore-2.0" />
+        <Parameter Name="sqlGenerationHelper" Type="Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" Index="1" FrameworkAlternate="efcore-2.0" />
+        <Parameter Name="typeMapper" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMapper" Index="2" FrameworkAlternate="efcore-2.0" />
       </Parameters>
       <Docs>
         <param name="commandBuilderFactory"> The command builder factory. </param>
@@ -83,13 +94,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="commandBuilderFactory" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory" />
-        <Parameter Name="updateSqlGenerator" Type="Microsoft.EntityFrameworkCore.Update.Internal.ISingletonUpdateSqlGenerator" />
-        <Parameter Name="sqlGenerationHelper" Type="Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" />
-        <Parameter Name="typeMapper" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMapper" />
-        <Parameter Name="typeMappingSource" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource" />
+        <Parameter Name="commandBuilderFactory" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="updateSqlGenerator" Type="Microsoft.EntityFrameworkCore.Update.Internal.ISingletonUpdateSqlGenerator" Index="1" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="sqlGenerationHelper" Type="Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" Index="2" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="typeMapper" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMapper" Index="3" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+        <Parameter Name="typeMappingSource" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource" Index="4" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="commandBuilderFactory"> The command builder factory. </param>
@@ -117,6 +130,59 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public MigrationsSqlGeneratorDependencies (Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory commandBuilderFactory, Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator updateSqlGenerator, Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper sqlGenerationHelper, Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource typeMappingSource, Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext currentContext, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory commandBuilderFactory, class Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator updateSqlGenerator, class Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper sqlGenerationHelper, class Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource typeMappingSource, class Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext currentContext, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Database/Command&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies.#ctor(Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory,Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator,Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper,Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource,Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command})" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (commandBuilderFactory As IRelationalCommandBuilderFactory, updateSqlGenerator As IUpdateSqlGenerator, sqlGenerationHelper As ISqlGenerationHelper, typeMappingSource As IRelationalTypeMappingSource, currentContext As ICurrentDbContext, logger As IDiagnosticsLogger(Of DbLoggerCategory.Database.Command))" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies : Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory * Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator * Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper * Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource * Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command&gt; -&gt; Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies" Usage="new Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies (commandBuilderFactory, updateSqlGenerator, sqlGenerationHelper, typeMappingSource, currentContext, logger)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-3.0">
+          <AttributeName>Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal</AttributeName>
+        </Attribute>
+      </Attributes>
+      <Parameters>
+        <Parameter Name="commandBuilderFactory" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="updateSqlGenerator" Type="Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator" Index="1" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="sqlGenerationHelper" Type="Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" Index="2" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="typeMappingSource" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource" Index="3" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="currentContext" Type="Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext" Index="4" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Database+Command&gt;" Index="5" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandBuilderFactory">To be added.</param>
+        <param name="updateSqlGenerator">To be added.</param>
+        <param name="sqlGenerationHelper">To be added.</param>
+        <param name="typeMappingSource">To be added.</param>
+        <param name="currentContext">To be added.</param>
+        <param name="logger">To be added.</param>
+        <summary>
+          <para>
+                    Creates the service dependencies parameter object for a <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator" />.
+                </para>
+          <para>
+                    Do not call this constructor directly from either provider or application code as it may change
+                    as new dependencies are added. Instead, use this type in your constructor so that an instance
+                    will be created and injected automatically by the dependency injection container. To create
+                    an instance with some dependent services replaced, first resolve the object from the dependency
+                    injection container, then replace selected services using the 'With...' methods. Do not call
+                    the constructor at any point in this process.
+                </para>
+          <para>
+                    This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                    the same compatibility standards as public APIs. It may be changed or removed without notice in
+                    any release. You should only use it directly in your code with extreme caution and knowing that
+                    doing so can result in application failures when updating to a new Entity Framework Core release.
+                </para>
+        </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="CommandBuilderFactory">
       <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory CommandBuilderFactory { get; }" />
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory CommandBuilderFactory" />
@@ -127,7 +193,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory</ReturnType>
@@ -135,6 +205,50 @@
       <Docs>
         <summary>
                 The command builder factory.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CurrentContext">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext CurrentContext { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext CurrentContext" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies.CurrentContext" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property CurrentContext As ICurrentDbContext" />
+      <MemberSignature Language="F#" Value="member this.CurrentContext : Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext" Usage="Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies.CurrentContext" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+               Contains the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> currently in use.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Logger">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command&gt; Logger { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Database/Command&gt; Logger" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies.Logger" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property Logger As IDiagnosticsLogger(Of DbLoggerCategory.Database.Command)" />
+      <MemberSignature Language="F#" Value="member this.Logger : Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command&gt;" Usage="Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies.Logger" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Database+Command&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                A logger.
             </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
@@ -150,7 +264,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper</ReturnType>
@@ -173,10 +291,13 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-2.1">
+        <Attribute FrameworkAlternate="efcore-2.1;efcore-2.2">
           <AttributeName>System.Obsolete("Use TypeMappingSource.")</AttributeName>
         </Attribute>
       </Attributes>
@@ -201,6 +322,9 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource</ReturnType>
@@ -214,24 +338,83 @@
       </Docs>
     </Member>
     <Member MemberName="UpdateSqlGenerator">
-      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Update.Internal.ISingletonUpdateSqlGenerator UpdateSqlGenerator { get; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Update.Internal.ISingletonUpdateSqlGenerator UpdateSqlGenerator" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Update.Internal.ISingletonUpdateSqlGenerator UpdateSqlGenerator { get; }" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Update.Internal.ISingletonUpdateSqlGenerator UpdateSqlGenerator" FrameworkAlternate="efcore-2.1;efcore-2.2" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies.UpdateSqlGenerator" />
-      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property UpdateSqlGenerator As ISingletonUpdateSqlGenerator" />
-      <MemberSignature Language="F#" Value="member this.UpdateSqlGenerator : Microsoft.EntityFrameworkCore.Update.Internal.ISingletonUpdateSqlGenerator" Usage="Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies.UpdateSqlGenerator" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property UpdateSqlGenerator As ISingletonUpdateSqlGenerator" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+      <MemberSignature Language="F#" Value="member this.UpdateSqlGenerator : Microsoft.EntityFrameworkCore.Update.Internal.ISingletonUpdateSqlGenerator" Usage="Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies.UpdateSqlGenerator" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator UpdateSqlGenerator { get; }" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator UpdateSqlGenerator" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property UpdateSqlGenerator As IUpdateSqlGenerator" FrameworkAlternate="efcore-3.0" />
+      <MemberSignature Language="F#" Value="member this.UpdateSqlGenerator : Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator" Usage="Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies.UpdateSqlGenerator" FrameworkAlternate="efcore-3.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Microsoft.EntityFrameworkCore.Update.Internal.ISingletonUpdateSqlGenerator</ReturnType>
+        <ReturnType>Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>
                 High level SQL generator.
             </summary>
         <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="With">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies With (Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies With(class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Database/Command&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies.With(Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command})" />
+      <MemberSignature Language="VB.NET" Value="Public Function With (logger As IDiagnosticsLogger(Of DbLoggerCategory.Database.Command)) As MigrationsSqlGeneratorDependencies" />
+      <MemberSignature Language="F#" Value="member this.With : Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Database.Command&gt; -&gt; Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies" Usage="migrationsSqlGeneratorDependencies.With logger" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Database+Command&gt;" Index="0" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="logger"> A replacement for the current dependency of this type. </param>
+        <summary>
+                Clones this dependency parameter object with one service replaced.
+            </summary>
+        <returns> A new parameter object with the given service replaced. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="With">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies With (Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext currentContext);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies With(class Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext currentContext) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies.With(Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext)" />
+      <MemberSignature Language="VB.NET" Value="Public Function With (currentContext As ICurrentDbContext) As MigrationsSqlGeneratorDependencies" />
+      <MemberSignature Language="F#" Value="member this.With : Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext -&gt; Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies" Usage="migrationsSqlGeneratorDependencies.With currentContext" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="currentContext" Type="Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext" Index="0" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="currentContext"> A replacement for the current dependency of this type. </param>
+        <summary>
+                Clones this dependency parameter object with one service replaced.
+            </summary>
+        <returns> A new parameter object with the given service replaced. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -245,7 +428,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies</ReturnType>
@@ -272,10 +459,13 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-2.1">
+        <Attribute FrameworkAlternate="efcore-2.1;efcore-2.2">
           <AttributeName>System.Obsolete("Use IRelationalTypeMappingSource.")</AttributeName>
         </Attribute>
       </Attributes>
@@ -283,7 +473,7 @@
         <ReturnType>Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="typeMapper" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMapper" />
+        <Parameter Name="typeMapper" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMapper" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="typeMapper"> A replacement for the current dependency of this type. </param>
@@ -304,12 +494,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="typeMappingSource" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource" />
+        <Parameter Name="typeMappingSource" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="typeMappingSource"> A replacement for the current dependency of this type. </param>
@@ -330,7 +523,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies</ReturnType>
@@ -357,12 +554,40 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="updateSqlGenerator" Type="Microsoft.EntityFrameworkCore.Update.Internal.ISingletonUpdateSqlGenerator" />
+        <Parameter Name="updateSqlGenerator" Type="Microsoft.EntityFrameworkCore.Update.Internal.ISingletonUpdateSqlGenerator" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2" />
+      </Parameters>
+      <Docs>
+        <param name="updateSqlGenerator"> A replacement for the current dependency of this type. </param>
+        <summary>
+                Clones this dependency parameter object with one service replaced.
+            </summary>
+        <returns> A new parameter object with the given service replaced. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="With">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies With (Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator updateSqlGenerator);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies With(class Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator updateSqlGenerator) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies.With(Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator)" />
+      <MemberSignature Language="VB.NET" Value="Public Function With (updateSqlGenerator As IUpdateSqlGenerator) As MigrationsSqlGeneratorDependencies" />
+      <MemberSignature Language="F#" Value="member this.With : Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator -&gt; Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies" Usage="migrationsSqlGeneratorDependencies.With updateSqlGenerator" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGeneratorDependencies</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="updateSqlGenerator" Type="Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator" Index="0" FrameworkAlternate="efcore-3.0" />
       </Parameters>
       <Docs>
         <param name="updateSqlGenerator"> A replacement for the current dependency of this type. </param>

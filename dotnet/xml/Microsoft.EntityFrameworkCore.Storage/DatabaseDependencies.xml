@@ -1,4 +1,4 @@
-﻿<Type Name="DatabaseDependencies" FullName="Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies">
+<Type Name="DatabaseDependencies" FullName="Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies">
   <TypeSignature Language="C#" Value="public sealed class DatabaseDependencies" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit DatabaseDependencies extends System.Object" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies" />
@@ -7,7 +7,11 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.0.3.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <AssemblyVersion>2.1.11.0</AssemblyVersion>
+    <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -29,6 +33,12 @@
                     first resolve the object from the dependency injection container, then replace selected
                     services using the 'With...' methods. Do not call the constructor at any point in this process.
                 </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
+                </para>
     </summary>
     <remarks>To be added.</remarks>
   </Docs>
@@ -43,10 +53,13 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="queryCompilationContextFactory" Type="Microsoft.EntityFrameworkCore.Query.IQueryCompilationContextFactory" />
+        <Parameter Name="queryCompilationContextFactory" Type="Microsoft.EntityFrameworkCore.Query.IQueryCompilationContextFactory" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="queryCompilationContextFactory"> Factory for compilation contexts to process LINQ queries. </param>
@@ -66,6 +79,51 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public DatabaseDependencies (Microsoft.EntityFrameworkCore.Query.IQueryCompilationContextFactory queryCompilationContextFactory, Microsoft.EntityFrameworkCore.Update.IUpdateAdapterFactory updateAdapterFactory);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Query.IQueryCompilationContextFactory queryCompilationContextFactory, class Microsoft.EntityFrameworkCore.Update.IUpdateAdapterFactory updateAdapterFactory) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies.#ctor(Microsoft.EntityFrameworkCore.Query.IQueryCompilationContextFactory,Microsoft.EntityFrameworkCore.Update.IUpdateAdapterFactory)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (queryCompilationContextFactory As IQueryCompilationContextFactory, updateAdapterFactory As IUpdateAdapterFactory)" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies : Microsoft.EntityFrameworkCore.Query.IQueryCompilationContextFactory * Microsoft.EntityFrameworkCore.Update.IUpdateAdapterFactory -&gt; Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies" Usage="new Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies (queryCompilationContextFactory, updateAdapterFactory)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-3.0">
+          <AttributeName>Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal</AttributeName>
+        </Attribute>
+      </Attributes>
+      <Parameters>
+        <Parameter Name="queryCompilationContextFactory" Type="Microsoft.EntityFrameworkCore.Query.IQueryCompilationContextFactory" Index="0" FrameworkAlternate="efcore-3.0" />
+        <Parameter Name="updateAdapterFactory" Type="Microsoft.EntityFrameworkCore.Update.IUpdateAdapterFactory" Index="1" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="queryCompilationContextFactory">To be added.</param>
+        <param name="updateAdapterFactory">To be added.</param>
+        <summary>
+          <para>
+                    Creates the service dependencies parameter object for a <see cref="T:Microsoft.EntityFrameworkCore.Storage.Database" />.
+                </para>
+          <para>
+                    Do not call this constructor directly from either provider or application code as it may change
+                    as new dependencies are added. Instead, use this type in your constructor so that an instance
+                    will be created and injected automatically by the dependency injection container. To create
+                    an instance with some dependent services replaced, first resolve the object from the dependency
+                    injection container, then replace selected services using the 'With...' methods. Do not call
+                    the constructor at any point in this process.
+                </para>
+          <para>
+                    This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                    the same compatibility standards as public APIs. It may be changed or removed without notice in
+                    any release. You should only use it directly in your code with extreme caution and knowing that
+                    doing so can result in application failures when updating to a new Entity Framework Core release.
+                </para>
+        </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="QueryCompilationContextFactory">
       <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Query.IQueryCompilationContextFactory QueryCompilationContextFactory { get; }" />
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Query.IQueryCompilationContextFactory QueryCompilationContextFactory" />
@@ -76,7 +134,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.IQueryCompilationContextFactory</ReturnType>
@@ -84,6 +146,28 @@
       <Docs>
         <summary>
                 Factory for compilation contexts to process LINQ queries.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UpdateAdapterFactory">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Update.IUpdateAdapterFactory UpdateAdapterFactory { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Update.IUpdateAdapterFactory UpdateAdapterFactory" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies.UpdateAdapterFactory" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property UpdateAdapterFactory As IUpdateAdapterFactory" />
+      <MemberSignature Language="F#" Value="member this.UpdateAdapterFactory : Microsoft.EntityFrameworkCore.Update.IUpdateAdapterFactory" Usage="Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies.UpdateAdapterFactory" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Update.IUpdateAdapterFactory</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Factory for creating model data tracker.
             </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
@@ -99,7 +183,11 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies</ReturnType>
@@ -109,6 +197,34 @@
       </Parameters>
       <Docs>
         <param name="queryCompilationContextFactory">
+                A replacement for the current dependency of this type.
+            </param>
+        <summary>
+                Clones this dependency parameter object with one service replaced.
+            </summary>
+        <returns> A new parameter object with the given service replaced. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="With">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies With (Microsoft.EntityFrameworkCore.Update.IUpdateAdapterFactory updateAdapterFactory);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies With(class Microsoft.EntityFrameworkCore.Update.IUpdateAdapterFactory updateAdapterFactory) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies.With(Microsoft.EntityFrameworkCore.Update.IUpdateAdapterFactory)" />
+      <MemberSignature Language="VB.NET" Value="Public Function With (updateAdapterFactory As IUpdateAdapterFactory) As DatabaseDependencies" />
+      <MemberSignature Language="F#" Value="member this.With : Microsoft.EntityFrameworkCore.Update.IUpdateAdapterFactory -&gt; Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies" Usage="databaseDependencies.With updateAdapterFactory" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.DatabaseDependencies</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="updateAdapterFactory" Type="Microsoft.EntityFrameworkCore.Update.IUpdateAdapterFactory" Index="0" FrameworkAlternate="efcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="updateAdapterFactory">
                 A replacement for the current dependency of this type.
             </param>
         <summary>

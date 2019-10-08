@@ -1,0 +1,778 @@
+<Type Name="DbCommandInterceptor" FullName="Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor">
+  <TypeSignature Language="C#" Value="public abstract class DbCommandInterceptor : Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor, Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DbCommandInterceptor extends System.Object implements class Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor, class Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor" />
+  <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor" />
+  <TypeSignature Language="VB.NET" Value="Public MustInherit Class DbCommandInterceptor&#xA;Implements IDbCommandInterceptor, IInterceptor" />
+  <TypeSignature Language="F#" Value="type DbCommandInterceptor = class&#xA;    interface IDbCommandInterceptor&#xA;    interface IInterceptor" />
+  <AssemblyInfo>
+    <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor</InterfaceName>
+    </Interface>
+    <Interface>
+      <InterfaceName>Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Docs>
+    <summary>
+      <para>
+                    Abstract base class for <see cref="T:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor" /> for use when implementing a subset
+                    of the interface methods.
+                </para>
+    </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="protected DbCommandInterceptor ();" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.#ctor" />
+      <MemberSignature Language="VB.NET" Value="Protected Sub New ()" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CommandCreated">
+      <MemberSignature Language="C#" Value="public virtual System.Data.Common.DbCommand CommandCreated (Microsoft.EntityFrameworkCore.Diagnostics.CommandEndEventData eventData, System.Data.Common.DbCommand result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Data.Common.DbCommand CommandCreated(class Microsoft.EntityFrameworkCore.Diagnostics.CommandEndEventData eventData, class System.Data.Common.DbCommand result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.CommandCreated(Microsoft.EntityFrameworkCore.Diagnostics.CommandEndEventData,System.Data.Common.DbCommand)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function CommandCreated (eventData As CommandEndEventData, result As DbCommand) As DbCommand" />
+      <MemberSignature Language="F#" Value="abstract member CommandCreated : Microsoft.EntityFrameworkCore.Diagnostics.CommandEndEventData * System.Data.Common.DbCommand -&gt; System.Data.Common.DbCommand&#xA;override this.CommandCreated : Microsoft.EntityFrameworkCore.Diagnostics.CommandEndEventData * System.Data.Common.DbCommand -&gt; System.Data.Common.DbCommand" Usage="dbCommandInterceptor.CommandCreated (eventData, result)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.CommandCreated(Microsoft.EntityFrameworkCore.Diagnostics.CommandEndEventData,System.Data.Common.DbCommand)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Data.Common.DbCommand</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandEndEventData" />
+        <Parameter Name="result" Type="System.Data.Common.DbCommand" />
+      </Parameters>
+      <Docs>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="result">
+                The result of the call to <see cref="M:System.Data.Common.DbConnection.CreateCommand" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+          <para>
+                    Called immediately after EF calls <see cref="M:System.Data.Common.DbConnection.CreateCommand" />.
+                </para>
+          <para>
+                    This method is still called if an interceptor suppressed creation of a command in <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.CommandCreating(Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbCommand})" />.
+                    In this case, <paramref name="result" /> is the result returned by <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.CommandCreating(Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbCommand})" />.
+                </para>
+        </summary>
+        <returns>
+                The result that EF will use.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CommandCreating">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbCommand&gt; CommandCreating (Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbCommand&gt; result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;class System.Data.Common.DbCommand&gt; CommandCreating(class Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;class System.Data.Common.DbCommand&gt; result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.CommandCreating(Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbCommand})" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function CommandCreating (eventData As CommandCorrelatedEventData, result As InterceptionResult(Of DbCommand)) As InterceptionResult(Of DbCommand)" />
+      <MemberSignature Language="F#" Value="abstract member CommandCreating : Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbCommand&gt; -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbCommand&gt;&#xA;override this.CommandCreating : Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbCommand&gt; -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbCommand&gt;" Usage="dbCommandInterceptor.CommandCreating (eventData, result)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.CommandCreating(Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbCommand})</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbCommand&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbCommand&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.SuppressWithResult(`0)" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbConnection.CreateCommand" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is true, then EF will suppress the operation it
+                was about to perform and use <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.Result" /> instead.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CommandFailed">
+      <MemberSignature Language="C#" Value="public virtual void CommandFailed (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.CommandErrorEventData eventData);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void CommandFailed(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.CommandErrorEventData eventData) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.CommandFailed(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandErrorEventData)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Sub CommandFailed (command As DbCommand, eventData As CommandErrorEventData)" />
+      <MemberSignature Language="F#" Value="abstract member CommandFailed : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandErrorEventData -&gt; unit&#xA;override this.CommandFailed : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandErrorEventData -&gt; unit" Usage="dbCommandInterceptor.CommandFailed (command, eventData)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.CommandFailed(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandErrorEventData)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandErrorEventData" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <summary>
+                Called when execution of a command has failed with an exception. /&gt;.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CommandFailedAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task CommandFailedAsync (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.CommandErrorEventData eventData, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task CommandFailedAsync(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.CommandErrorEventData eventData, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.CommandFailedAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandErrorEventData,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member CommandFailedAsync : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandErrorEventData * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&#xA;override this.CommandFailedAsync : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandErrorEventData * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="dbCommandInterceptor.CommandFailedAsync (command, eventData, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.CommandFailedAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandErrorEventData,System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandErrorEventData" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+                Called when execution of a command has failed with an exception. /&gt;.
+            </summary>
+        <returns> A <see cref="T:System.Threading.Tasks.Task" /> representing the asynchronous operation. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DataReaderDisposing">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult DataReaderDisposing (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.DataReaderDisposingEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult DataReaderDisposing(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.DataReaderDisposingEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.DataReaderDisposing(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.DataReaderDisposingEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function DataReaderDisposing (command As DbCommand, eventData As DataReaderDisposingEventData, result As InterceptionResult) As InterceptionResult" />
+      <MemberSignature Language="F#" Value="abstract member DataReaderDisposing : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.DataReaderDisposingEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&#xA;override this.DataReaderDisposing : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.DataReaderDisposingEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" Usage="dbCommandInterceptor.DataReaderDisposing (command, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.DataReaderDisposing(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.DataReaderDisposingEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.DataReaderDisposingEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and reader. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.Suppress" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+                Called when execution of a <see cref="T:System.Data.Common.DbDataReader" /> is about to be disposed. /&gt;.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is true, then EF will suppress the operation
+                it was about to perform.
+                A normal implementation of this method for any interceptor that is not attempting to suppress
+                the operation is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NonQueryExecuted">
+      <MemberSignature Language="C#" Value="public virtual int NonQueryExecuted (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData eventData, int result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance int32 NonQueryExecuted(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData eventData, int32 result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.NonQueryExecuted(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData,System.Int32)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function NonQueryExecuted (command As DbCommand, eventData As CommandExecutedEventData, result As Integer) As Integer" />
+      <MemberSignature Language="F#" Value="abstract member NonQueryExecuted : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData * int -&gt; int&#xA;override this.NonQueryExecuted : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData * int -&gt; int" Usage="dbCommandInterceptor.NonQueryExecuted (command, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.NonQueryExecuted(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData,System.Int32)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData" />
+        <Parameter Name="result" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="result">
+                The result of the call to <see cref="M:System.Data.Common.DbCommand.ExecuteNonQuery" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+          <para>
+                    Called immediately after EF calls <see cref="M:System.Data.Common.DbCommand.ExecuteNonQuery" />.
+                </para>
+          <para>
+                    This method is still called if an interceptor suppressed execution of a command in <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.NonQueryExecuting(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32})" />.
+                    In this case, <paramref name="result" /> is the result returned by <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.NonQueryExecuting(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32})" />.
+                </para>
+        </summary>
+        <returns>
+                The result that EF will use.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NonQueryExecutedAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;int&gt; NonQueryExecutedAsync (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData eventData, int result, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;int32&gt; NonQueryExecutedAsync(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData eventData, int32 result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.NonQueryExecutedAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData,System.Int32,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member NonQueryExecutedAsync : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData * int * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;int&gt;&#xA;override this.NonQueryExecutedAsync : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData * int * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;int&gt;" Usage="dbCommandInterceptor.NonQueryExecutedAsync (command, eventData, result, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.NonQueryExecutedAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData,System.Int32,System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData" />
+        <Parameter Name="result" Type="System.Int32" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="result">
+                The result of the call to <see cref="M:System.Data.Common.DbCommand.ExecuteNonQueryAsync" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+          <para>
+                    Called immediately after EF calls <see cref="M:System.Data.Common.DbCommand.ExecuteNonQueryAsync" />.
+                </para>
+          <para>
+                    This method is still called if an interceptor suppressed execution of a command in <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.NonQueryExecutingAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32},System.Threading.CancellationToken)" />.
+                    In this case, <paramref name="result" /> is the result returned by <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.NonQueryExecutingAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32},System.Threading.CancellationToken)" />.
+                </para>
+        </summary>
+        <returns>
+                A <see cref="T:System.Threading.Tasks.Task" /> providing the result that EF will use.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in, often using <see cref="M:System.Threading.Tasks.Task.FromResult``1(``0)" /></returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NonQueryExecuting">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; NonQueryExecuting (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;int32&gt; NonQueryExecuting(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;int32&gt; result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.NonQueryExecuting(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32})" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function NonQueryExecuting (command As DbCommand, eventData As CommandEventData, result As InterceptionResult(Of Integer)) As InterceptionResult(Of Integer)" />
+      <MemberSignature Language="F#" Value="abstract member NonQueryExecuting : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;&#xA;override this.NonQueryExecuting : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;" Usage="dbCommandInterceptor.NonQueryExecuting (command, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.NonQueryExecuting(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32})</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Int32&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.SuppressWithResult(`0)" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbCommand.ExecuteNonQuery" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is true, then EF will suppress the operation it
+                was about to perform and use <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.Result" /> instead.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in, often using <see cref="M:System.Threading.Tasks.Task.FromResult``1(``0)" /></returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NonQueryExecutingAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;&gt; NonQueryExecutingAsync (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; result, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;int32&gt;&gt; NonQueryExecutingAsync(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;int32&gt; result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.NonQueryExecutingAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32},System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member NonQueryExecutingAsync : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;&gt;&#xA;override this.NonQueryExecutingAsync : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;&gt;" Usage="dbCommandInterceptor.NonQueryExecutingAsync (command, eventData, result, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.NonQueryExecutingAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32},System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Int32&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Int32&gt;" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.SuppressWithResult(`0)" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbCommand.ExecuteNonQueryAsync" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is true, then EF will suppress the operation it
+                was about to perform and use <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.Result" /> instead.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in, often using <see cref="M:System.Threading.Tasks.Task.FromResult``1(``0)" /></returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ReaderExecuted">
+      <MemberSignature Language="C#" Value="public virtual System.Data.Common.DbDataReader ReaderExecuted (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData eventData, System.Data.Common.DbDataReader result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Data.Common.DbDataReader ReaderExecuted(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData eventData, class System.Data.Common.DbDataReader result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ReaderExecuted(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData,System.Data.Common.DbDataReader)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function ReaderExecuted (command As DbCommand, eventData As CommandExecutedEventData, result As DbDataReader) As DbDataReader" />
+      <MemberSignature Language="F#" Value="abstract member ReaderExecuted : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData * System.Data.Common.DbDataReader -&gt; System.Data.Common.DbDataReader&#xA;override this.ReaderExecuted : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData * System.Data.Common.DbDataReader -&gt; System.Data.Common.DbDataReader" Usage="dbCommandInterceptor.ReaderExecuted (command, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.ReaderExecuted(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData,System.Data.Common.DbDataReader)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Data.Common.DbDataReader</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData" />
+        <Parameter Name="result" Type="System.Data.Common.DbDataReader" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="result">
+                The result of the call to <see cref="M:System.Data.Common.DbCommand.ExecuteReader" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+          <para>
+                    Called immediately after EF calls <see cref="M:System.Data.Common.DbCommand.ExecuteReader" />.
+                </para>
+          <para>
+                    This method is still called if an interceptor suppressed execution of a command in <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ReaderExecuting(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbDataReader})" />.
+                    In this case, <paramref name="result" /> is the result returned by <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ReaderExecuting(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbDataReader})" />.
+                </para>
+        </summary>
+        <returns>
+                The result that EF will use.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ReaderExecutedAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;System.Data.Common.DbDataReader&gt; ReaderExecutedAsync (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData eventData, System.Data.Common.DbDataReader result, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;class System.Data.Common.DbDataReader&gt; ReaderExecutedAsync(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData eventData, class System.Data.Common.DbDataReader result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ReaderExecutedAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData,System.Data.Common.DbDataReader,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member ReaderExecutedAsync : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData * System.Data.Common.DbDataReader * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;System.Data.Common.DbDataReader&gt;&#xA;override this.ReaderExecutedAsync : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData * System.Data.Common.DbDataReader * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;System.Data.Common.DbDataReader&gt;" Usage="dbCommandInterceptor.ReaderExecutedAsync (command, eventData, result, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.ReaderExecutedAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData,System.Data.Common.DbDataReader,System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Data.Common.DbDataReader&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData" />
+        <Parameter Name="result" Type="System.Data.Common.DbDataReader" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="result">
+                The result of the call to <see cref="M:System.Data.Common.DbCommand.ExecuteReaderAsync" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+          <para>
+                    Called immediately after EF calls <see cref="M:System.Data.Common.DbCommand.ExecuteReaderAsync" />.
+                </para>
+          <para>
+                    This method is still called if an interceptor suppressed execution of a command in <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ReaderExecutingAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbDataReader},System.Threading.CancellationToken)" />.
+                    In this case, <paramref name="result" /> is the result returned by <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ReaderExecutingAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbDataReader},System.Threading.CancellationToken)" />.
+                </para>
+        </summary>
+        <returns>
+                A <see cref="T:System.Threading.Tasks.Task" /> providing the result that EF will use.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in, often using <see cref="M:System.Threading.Tasks.Task.FromResult``1(``0)" /></returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ReaderExecuting">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt; ReaderExecuting (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt; result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;class System.Data.Common.DbDataReader&gt; ReaderExecuting(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;class System.Data.Common.DbDataReader&gt; result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ReaderExecuting(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbDataReader})" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function ReaderExecuting (command As DbCommand, eventData As CommandEventData, result As InterceptionResult(Of DbDataReader)) As InterceptionResult(Of DbDataReader)" />
+      <MemberSignature Language="F#" Value="abstract member ReaderExecuting : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt; -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt;&#xA;override this.ReaderExecuting : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt; -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt;" Usage="dbCommandInterceptor.ReaderExecuting (command, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.ReaderExecuting(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbDataReader})</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.SuppressWithResult(`0)" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbCommand.ExecuteReader" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is true, then EF will suppress the operation it
+                was about to perform and use <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.Result" /> instead.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in, often using <see cref="M:System.Threading.Tasks.Task.FromResult``1(``0)" /></returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ReaderExecutingAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt;&gt; ReaderExecutingAsync (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt; result, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;class System.Data.Common.DbDataReader&gt;&gt; ReaderExecutingAsync(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;class System.Data.Common.DbDataReader&gt; result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ReaderExecutingAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbDataReader},System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member ReaderExecutingAsync : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt;&gt;&#xA;override this.ReaderExecutingAsync : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt;&gt;" Usage="dbCommandInterceptor.ReaderExecutingAsync (command, eventData, result, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.ReaderExecutingAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Data.Common.DbDataReader},System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Data.Common.DbDataReader&gt;" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.SuppressWithResult(`0)" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbCommand.ExecuteReaderAsync" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is true, then EF will suppress the operation it
+                was about to perform and use <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.Result" /> instead.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in, often using <see cref="M:System.Threading.Tasks.Task.FromResult``1(``0)" /></returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ScalarExecuted">
+      <MemberSignature Language="C#" Value="public virtual object ScalarExecuted (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData eventData, object result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance object ScalarExecuted(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData eventData, object result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ScalarExecuted(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData,System.Object)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function ScalarExecuted (command As DbCommand, eventData As CommandExecutedEventData, result As Object) As Object" />
+      <MemberSignature Language="F#" Value="abstract member ScalarExecuted : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData * obj -&gt; obj&#xA;override this.ScalarExecuted : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData * obj -&gt; obj" Usage="dbCommandInterceptor.ScalarExecuted (command, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.ScalarExecuted(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData,System.Object)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Object</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData" />
+        <Parameter Name="result" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="result">
+                The result of the call to <see cref="M:System.Data.Common.DbCommand.ExecuteScalar" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+          <para>
+                    Called immediately after EF calls <see cref="M:System.Data.Common.DbCommand.ExecuteScalar" />.
+                </para>
+          <para>
+                    This method is still called if an interceptor suppressed execution of a command in <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ScalarExecuting(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Object})" />.
+                    In this case, <paramref name="result" /> is the result returned by <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ScalarExecuting(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Object})" />.
+                </para>
+        </summary>
+        <returns>
+                The result that EF will use.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ScalarExecutedAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;object&gt; ScalarExecutedAsync (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData eventData, object result, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;object&gt; ScalarExecutedAsync(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData eventData, object result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ScalarExecutedAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData,System.Object,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member ScalarExecutedAsync : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData * obj * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;obj&gt;&#xA;override this.ScalarExecutedAsync : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData * obj * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;obj&gt;" Usage="dbCommandInterceptor.ScalarExecutedAsync (command, eventData, result, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.ScalarExecutedAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData,System.Object,System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Object&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandExecutedEventData" />
+        <Parameter Name="result" Type="System.Object" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="result">
+                The result of the call to <see cref="M:System.Data.Common.DbCommand.ExecuteScalarAsync" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+          <para>
+                    Called immediately after EF calls <see cref="M:System.Data.Common.DbCommand.ExecuteScalarAsync" />.
+                </para>
+          <para>
+                    This method is still called if an interceptor suppressed execution of a command in <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ScalarExecutingAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Object},System.Threading.CancellationToken)" />.
+                    In this case, <paramref name="result" /> is the result returned by <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ScalarExecutingAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Object},System.Threading.CancellationToken)" />.
+                </para>
+        </summary>
+        <returns>
+                A <see cref="T:System.Threading.Tasks.Task" /> providing the result that EF will use.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in, often using <see cref="M:System.Threading.Tasks.Task.FromResult``1(``0)" /></returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ScalarExecuting">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;object&gt; ScalarExecuting (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;object&gt; result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;object&gt; ScalarExecuting(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;object&gt; result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ScalarExecuting(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Object})" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function ScalarExecuting (command As DbCommand, eventData As CommandEventData, result As InterceptionResult(Of Object)) As InterceptionResult(Of Object)" />
+      <MemberSignature Language="F#" Value="abstract member ScalarExecuting : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;obj&gt; -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;obj&gt;&#xA;override this.ScalarExecuting : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;obj&gt; -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;obj&gt;" Usage="dbCommandInterceptor.ScalarExecuting (command, eventData, result)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.ScalarExecuting(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Object})</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Object&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Object&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.SuppressWithResult(`0)" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbCommand.ExecuteScalar" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is true, then EF will suppress the operation it
+                was about to perform and use <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.Result" /> instead.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in, often using <see cref="M:System.Threading.Tasks.Task.FromResult``1(``0)" /></returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ScalarExecutingAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;object&gt;&gt; ScalarExecutingAsync (System.Data.Common.DbCommand command, Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;object&gt; result, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;object&gt;&gt; ScalarExecutingAsync(class System.Data.Common.DbCommand command, class Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;object&gt; result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.DbCommandInterceptor.ScalarExecutingAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Object},System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="abstract member ScalarExecutingAsync : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;obj&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;obj&gt;&gt;&#xA;override this.ScalarExecutingAsync : System.Data.Common.DbCommand * Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;obj&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;obj&gt;&gt;" Usage="dbCommandInterceptor.ScalarExecutingAsync (command, eventData, result, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor.ScalarExecutingAsync(System.Data.Common.DbCommand,Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Object},System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Object&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" />
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Object&gt;" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
+      </Parameters>
+      <Docs>
+        <param name="command"> The command. </param>
+        <param name="eventData"> Contextual information about the command and execution. </param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> set to true if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.SuppressWithResult(`0)" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <param name="cancellationToken"> The cancellation token. </param>
+        <summary>
+                Called just before EF intends to call <see cref="M:System.Data.Common.DbCommand.ExecuteScalarAsync" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is false, the EF will continue as normal.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is true, then EF will suppress the operation it
+                was about to perform and use <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.Result" /> instead.
+                A normal implementation of this method for any interceptor that is not attempting to change the result
+                is to return the <paramref name="result" /> value passed in, often using <see cref="M:System.Threading.Tasks.Task.FromResult``1(``0)" /></returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
