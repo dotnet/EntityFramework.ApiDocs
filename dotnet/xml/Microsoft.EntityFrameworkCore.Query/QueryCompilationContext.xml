@@ -17,6 +17,7 @@
     <AssemblyVersion>2.2.6.0</AssemblyVersion>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -24,9 +25,14 @@
   <Interfaces />
   <Docs>
     <summary>
-                A query compilation context. The primary data structure representing the state/components
-                used during query compilation.
-            </summary>
+      <para>
+                    The primary data structure representing the state/components used during query compilation.
+                </para>
+      <para>
+                    This type is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+    </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -41,15 +47,18 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Query.QueryCompilationContextDependencies" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="async" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Query.QueryCompilationContextDependencies" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="async" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
-        <param name="dependencies">To be added.</param>
-        <param name="async">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="dependencies"> Parameter object containing dependencies for this class. </param>
+        <param name="async"> A bool value indicating whether it is for async query. </param>
+        <summary>
+                Creates a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Query.QueryCompilationContext" /> class.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -255,16 +264,19 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="tag" Type="System.String" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="tag" Type="System.String" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
-        <param name="tag">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="tag"> The tag to add. </param>
+        <summary>
+                Adds a tag to <see cref="P:Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.Tags" />.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -345,12 +357,15 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                The ContextOptions to use during query compilation.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -375,13 +390,14 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>
-                Gets the type of the context./
+                The CLR type of derived DbContext to use during query compilation.
             </summary>
         <value>
                 The type of the context.
@@ -400,6 +416,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Func&lt;Microsoft.EntityFrameworkCore.Query.QueryContext,TResult&gt;</ReturnType>
@@ -408,13 +425,15 @@
         <TypeParameter Name="TResult" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="query" Type="System.Linq.Expressions.Expression" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="query" Type="System.Linq.Expressions.Expression" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="query">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="TResult"> The result type of this query. </typeparam>
+        <param name="query"> The query to generate executor for. </param>
+        <summary>
+                Creates the query executor func which gives results for this query.
+            </summary>
+        <returns> Returns <see cref="T:System.Func`2" /> which can be invoked to get results of this query. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -484,6 +503,28 @@
         <returns>
                 The new query model visitor.
             </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Dependencies">
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Query.QueryCompilationContextDependencies Dependencies { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Query.QueryCompilationContextDependencies Dependencies" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.Dependencies" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable ReadOnly Property Dependencies As QueryCompilationContextDependencies" />
+      <MemberSignature Language="F#" Value="member this.Dependencies : Microsoft.EntityFrameworkCore.Query.QueryCompilationContextDependencies" Usage="Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.Dependencies" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Query.QueryCompilationContextDependencies</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Parameter object containing dependencies for this service.
+            </summary>
+        <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -621,6 +662,28 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="IgnoreAutoIncludes">
+      <MemberSignature Language="C#" Value="public virtual bool IgnoreAutoIncludes { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool IgnoreAutoIncludes" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.IgnoreAutoIncludes" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property IgnoreAutoIncludes As Boolean" />
+      <MemberSignature Language="F#" Value="member this.IgnoreAutoIncludes : bool" Usage="Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.IgnoreAutoIncludes" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                A value indicating whether eager loaded navigations are ignored in this query.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="IgnoreQueryFilters">
       <MemberSignature Language="C#" Value="public virtual bool IgnoreQueryFilters { get; }" />
       <MemberSignature Language="ILAsm" Value=".property instance bool IgnoreQueryFilters" />
@@ -637,13 +700,14 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>
-                Gets a value indicating whether this query should have model-level query filters applied.
+                A value indicating whether query filters are ignored in this query.
             </summary>
         <value>
                 true if query filters should be applied, false if not.
@@ -662,12 +726,15 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                A value indicating whether it is async query.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -706,12 +773,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                A value indicating whether the underlying server query needs to pre-buffer all data.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -789,12 +859,21 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-5.0">
+          <AttributeName Language="C#">[System.Obsolete("Use QueryTrackingBehavior instead.")]</AttributeName>
+          <AttributeName Language="F#">[&lt;System.Obsolete("Use QueryTrackingBehavior instead.")&gt;]</AttributeName>
+        </Attribute>
+      </Attributes>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                A value indicating whether it is tracking query.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -869,10 +948,10 @@
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.Logger" />
       <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Logger As ILogger" FrameworkAlternate="efcore-1.0;efcore-1.1" />
       <MemberSignature Language="F#" Value="member this.Logger : Microsoft.Extensions.Logging.ILogger" Usage="Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.Logger" FrameworkAlternate="efcore-1.0;efcore-1.1" />
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Query&gt; Logger { get; }" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
-      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Query&gt; Logger" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Logger As IDiagnosticsLogger(Of DbLoggerCategory.Query)" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
-      <MemberSignature Language="F#" Value="member this.Logger : Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Query&gt;" Usage="Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.Logger" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Query&gt; Logger { get; }" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Query&gt; Logger" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Logger As IDiagnosticsLogger(Of DbLoggerCategory.Query)" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="F#" Value="member this.Logger : Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Query&gt;" Usage="Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.Logger" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -887,14 +966,15 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType FrameworkAlternate="efcore-1.0;efcore-1.1">Microsoft.Extensions.Logging.ILogger</ReturnType>
-        <ReturnType FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1">Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Query&gt;</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Query&gt;</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>
-                Gets the logger.
+                The query logger to use during query compilation.
             </summary>
         <value>
                 The logger.
@@ -922,13 +1002,14 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IModel</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>
-                Gets the model.
+                The model to use during query compilation.
             </summary>
         <value>
                 The model.
@@ -982,12 +1063,48 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.ParameterExpression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+          <para>
+                    ParameterExpression representing <see cref="T:Microsoft.EntityFrameworkCore.Query.QueryContext" /> parameter in query expression.
+                </para>
+          <para>
+                    This property is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+        </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="QueryParameterPrefix">
+      <MemberSignature Language="C#" Value="public const string QueryParameterPrefix;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string QueryParameterPrefix" />
+      <MemberSignature Language="DocId" Value="F:Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.QueryParameterPrefix" />
+      <MemberSignature Language="VB.NET" Value="Public Const QueryParameterPrefix As String " />
+      <MemberSignature Language="F#" Value="val mutable QueryParameterPrefix : string" Usage="Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.QueryParameterPrefix" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+          <para>
+                    Prefix for all the query parameters generated during parameter extraction in query pipeline.
+                </para>
+          <para>
+                    This property is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+        </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1059,6 +1176,28 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="QueryTrackingBehavior">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.QueryTrackingBehavior QueryTrackingBehavior { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Microsoft.EntityFrameworkCore.QueryTrackingBehavior QueryTrackingBehavior" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.QueryTrackingBehavior" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property QueryTrackingBehavior As QueryTrackingBehavior" />
+      <MemberSignature Language="F#" Value="member this.QueryTrackingBehavior : Microsoft.EntityFrameworkCore.QueryTrackingBehavior" Usage="Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.QueryTrackingBehavior" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.QueryTrackingBehavior</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                A value indicating <see cref="T:Microsoft.EntityFrameworkCore.QueryTrackingBehavior" /> of the query.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="RegisterCorrelatedSubqueryMetadata">
       <MemberSignature Language="C#" Value="public virtual void RegisterCorrelatedSubqueryMetadata (Remotion.Linq.Clauses.MainFromClause mainFromClause, bool trackingQuery, Microsoft.EntityFrameworkCore.Metadata.INavigation firstNavigation, Microsoft.EntityFrameworkCore.Metadata.INavigation collectionNavigation, Remotion.Linq.Clauses.IQuerySource parentQuerySource);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void RegisterCorrelatedSubqueryMetadata(class Remotion.Linq.Clauses.MainFromClause mainFromClause, bool trackingQuery, class Microsoft.EntityFrameworkCore.Metadata.INavigation firstNavigation, class Microsoft.EntityFrameworkCore.Metadata.INavigation collectionNavigation, class Remotion.Linq.Clauses.IQuerySource parentQuerySource) cil managed" />
@@ -1105,13 +1244,14 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.ParameterExpression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="name" Type="System.String" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="valueExtractor" Type="System.Linq.Expressions.LambdaExpression" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="name" Type="System.String" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="valueExtractor" Type="System.Linq.Expressions.LambdaExpression" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="name">To be added.</param>
@@ -1136,12 +1276,15 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.ISet&lt;System.String&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                The set of tags applied to this query.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>

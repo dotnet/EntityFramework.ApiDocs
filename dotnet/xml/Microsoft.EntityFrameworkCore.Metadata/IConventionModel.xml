@@ -8,6 +8,7 @@
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces>
     <Interface>
@@ -25,7 +26,7 @@
       <para>
                     Metadata about the shape of entities, the relationships between them, and how they map to
                     the database. A model is typically created by overriding the
-                    <see cref="M:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)" /> method on a derived
+                    <see cref="M:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)" /> method on a derived
                     <see cref="T:Microsoft.EntityFrameworkCore.DbContext" />.
                 </para>
       <para>
@@ -47,6 +48,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType</ReturnType>
@@ -72,26 +74,69 @@
       </Docs>
     </Member>
     <Member MemberName="AddEntityType">
-      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType AddEntityType (Type clrType, bool fromDataAnnotation = false);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType AddEntityType(class System.Type clrType, bool fromDataAnnotation) cil managed" />
-      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.IConventionModel.AddEntityType(System.Type,System.Boolean)" />
-      <MemberSignature Language="VB.NET" Value="Public Function AddEntityType (clrType As Type, Optional fromDataAnnotation As Boolean = false) As IConventionEntityType" />
-      <MemberSignature Language="F#" Value="abstract member AddEntityType : Type * bool -&gt; Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType" Usage="iConventionModel.AddEntityType (clrType, fromDataAnnotation)" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType AddEntityType (string name, Type clrType, bool fromDataAnnotation = false);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType AddEntityType(string name, class System.Type clrType, bool fromDataAnnotation) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.IConventionModel.AddEntityType(System.String,System.Type,System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Public Function AddEntityType (name As String, clrType As Type, Optional fromDataAnnotation As Boolean = false) As IConventionEntityType" />
+      <MemberSignature Language="F#" Value="abstract member AddEntityType : string * Type * bool -&gt; Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType" Usage="iConventionModel.AddEntityType (name, clrType, fromDataAnnotation)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
-        <AssemblyVersion>3.0.0.0</AssemblyVersion>
-        <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="clrType" Type="System.Type" />
-        <Parameter Name="fromDataAnnotation" Type="System.Boolean" />
+        <Parameter Name="name" Type="System.String" Index="0" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="clrType" Type="System.Type" Index="1" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="fromDataAnnotation" Type="System.Boolean" Index="2" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="name"> The name of the entity to be added. </param>
+        <param name="clrType"> The CLR class that is used to represent instances of the entity type. </param>
+        <param name="fromDataAnnotation"> Indicates whether the configuration was specified using a data annotation. </param>
+        <summary>
+          <para>
+                    Adds a shared type entity type to the model.
+                </para>
+          <para>
+                    Shared type entity type is an entity type which can share CLR type with other types in the model but has
+                    a unique name and always identified by the name.
+                </para>
+        </summary>
+        <returns> The new entity type. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AddEntityType">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType AddEntityType (Type clrType, bool fromDataAnnotation = false);" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType AddEntityType(class System.Type clrType, bool fromDataAnnotation) cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.IConventionModel.AddEntityType(System.Type,System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Public Function AddEntityType (clrType As Type, Optional fromDataAnnotation As Boolean = false) As IConventionEntityType" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="F#" Value="abstract member AddEntityType : Type * bool -&gt; Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType" Usage="iConventionModel.AddEntityType (clrType, fromDataAnnotation)" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType AddEntityType (Type type, bool fromDataAnnotation = false);" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType AddEntityType(class System.Type type, bool fromDataAnnotation) cil managed" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="VB.NET" Value="Public Function AddEntityType (type As Type, Optional fromDataAnnotation As Boolean = false) As IConventionEntityType" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="F#" Value="abstract member AddEntityType : Type * bool -&gt; Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType" Usage="iConventionModel.AddEntityType (type, fromDataAnnotation)" FrameworkAlternate="efcore-5.0" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+        <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="clrType" Type="System.Type" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="fromDataAnnotation" Type="System.Boolean" Index="1" />
       </Parameters>
       <Docs>
         <param name="clrType"> The CLR class that is used to represent instances of the entity type. </param>
+        <param name="type"> The CLR class that is used to represent instances of the entity type. </param>
         <param name="fromDataAnnotation"> Indicates whether the configuration was specified using a data annotation. </param>
         <summary>
                 Adds an entity type to the model.
@@ -111,6 +156,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType</ReturnType>
@@ -134,28 +180,35 @@
       </Docs>
     </Member>
     <Member MemberName="AddEntityType">
-      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType AddEntityType (Type clrType, string definingNavigationName, Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType definingEntityType, bool fromDataAnnotation = false);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType AddEntityType(class System.Type clrType, string definingNavigationName, class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType definingEntityType, bool fromDataAnnotation) cil managed" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType AddEntityType (Type clrType, string definingNavigationName, Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType definingEntityType, bool fromDataAnnotation = false);" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType AddEntityType(class System.Type clrType, string definingNavigationName, class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType definingEntityType, bool fromDataAnnotation) cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.IConventionModel.AddEntityType(System.Type,System.String,Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType,System.Boolean)" />
-      <MemberSignature Language="VB.NET" Value="Public Function AddEntityType (clrType As Type, definingNavigationName As String, definingEntityType As IConventionEntityType, Optional fromDataAnnotation As Boolean = false) As IConventionEntityType" />
-      <MemberSignature Language="F#" Value="abstract member AddEntityType : Type * string * Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType * bool -&gt; Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType" Usage="iConventionModel.AddEntityType (clrType, definingNavigationName, definingEntityType, fromDataAnnotation)" />
+      <MemberSignature Language="VB.NET" Value="Public Function AddEntityType (clrType As Type, definingNavigationName As String, definingEntityType As IConventionEntityType, Optional fromDataAnnotation As Boolean = false) As IConventionEntityType" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="F#" Value="abstract member AddEntityType : Type * string * Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType * bool -&gt; Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType" Usage="iConventionModel.AddEntityType (clrType, definingNavigationName, definingEntityType, fromDataAnnotation)" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType AddEntityType (Type type, string definingNavigationName, Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType definingEntityType, bool fromDataAnnotation = false);" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType AddEntityType(class System.Type type, string definingNavigationName, class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType definingEntityType, bool fromDataAnnotation) cil managed" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="VB.NET" Value="Public Function AddEntityType (type As Type, definingNavigationName As String, definingEntityType As IConventionEntityType, Optional fromDataAnnotation As Boolean = false) As IConventionEntityType" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="F#" Value="abstract member AddEntityType : Type * string * Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType * bool -&gt; Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType" Usage="iConventionModel.AddEntityType (type, definingNavigationName, definingEntityType, fromDataAnnotation)" FrameworkAlternate="efcore-5.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="clrType" Type="System.Type" />
-        <Parameter Name="definingNavigationName" Type="System.String" />
-        <Parameter Name="definingEntityType" Type="Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType" />
-        <Parameter Name="fromDataAnnotation" Type="System.Boolean" />
+        <Parameter Name="clrType" Type="System.Type" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="definingNavigationName" Type="System.String" Index="1" />
+        <Parameter Name="definingEntityType" Type="Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType" Index="2" />
+        <Parameter Name="fromDataAnnotation" Type="System.Boolean" Index="3" />
       </Parameters>
       <Docs>
         <param name="clrType"> The CLR class that is used to represent instances of this entity type. </param>
+        <param name="type"> The CLR class that is used to represent instances of this entity type. </param>
         <param name="definingNavigationName"> The defining navigation. </param>
         <param name="definingEntityType"> The defining entity type. </param>
         <param name="fromDataAnnotation"> Indicates whether the configuration was specified using a data annotation. </param>
@@ -167,19 +220,25 @@
       </Docs>
     </Member>
     <Member MemberName="AddIgnored">
-      <MemberSignature Language="C#" Value="public void AddIgnored (string typeName, bool fromDataAnnotation = false);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AddIgnored(string typeName, bool fromDataAnnotation) cil managed" />
+      <MemberSignature Language="C#" Value="public void AddIgnored (string typeName, bool fromDataAnnotation = false);" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AddIgnored(string typeName, bool fromDataAnnotation) cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.IConventionModel.AddIgnored(System.String,System.Boolean)" />
-      <MemberSignature Language="VB.NET" Value="Public Sub AddIgnored (typeName As String, Optional fromDataAnnotation As Boolean = false)" />
-      <MemberSignature Language="F#" Value="abstract member AddIgnored : string * bool -&gt; unit" Usage="iConventionModel.AddIgnored (typeName, fromDataAnnotation)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub AddIgnored (typeName As String, Optional fromDataAnnotation As Boolean = false)" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="F#" Value="abstract member AddIgnored : string * bool -&gt; unit" Usage="iConventionModel.AddIgnored (typeName, fromDataAnnotation)" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="C#" Value="public string AddIgnored (string typeName, bool fromDataAnnotation = false);" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance string AddIgnored(string typeName, bool fromDataAnnotation) cil managed" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="VB.NET" Value="Public Function AddIgnored (typeName As String, Optional fromDataAnnotation As Boolean = false) As String" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="F#" Value="abstract member AddIgnored : string * bool -&gt; string" Usage="iConventionModel.AddIgnored (typeName, fromDataAnnotation)" FrameworkAlternate="efcore-5.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-3.0;efcore-3.1">System.Void</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-5.0">System.String</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="typeName" Type="System.String" />
@@ -191,6 +250,7 @@
         <summary>
                 Marks the given entity type name as ignored.
             </summary>
+        <returns> The name of the ignored entity type. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -205,6 +265,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder</ReturnType>
@@ -228,6 +289,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType</ReturnType>
@@ -238,10 +300,11 @@
       <Docs>
         <param name="name"> The name of the entity type to find. </param>
         <summary>
-                Gets the entity with the given name. Returns <c>null</c> if no entity type with the given name is found
+                Gets the entity with the given name. Returns <see langword="null" /> if no entity type with the given name is found
+                or the given CLR type is being used by shared type entity type
                 or the entity type has a defining navigation.
             </summary>
-        <returns> The entity type, or <c>null</c> if none are found. </returns>
+        <returns> The entity type, or <see langword="null" /> if none are found. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -256,6 +319,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType</ReturnType>
@@ -271,9 +335,9 @@
         <param name="definingEntityType"> The defining entity type of the entity type to find. </param>
         <summary>
                 Gets the entity type for the given name, defining navigation name
-                and the defining entity type. Returns <c>null</c> if no matching entity type is found.
+                and the defining entity type. Returns <see langword="null" /> if no matching entity type is found.
             </summary>
-        <returns> The entity type, or <c>null</c> if none are found. </returns>
+        <returns> The entity type, or <see langword="null" /> if none are found. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -288,6 +352,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Nullable&lt;Microsoft.EntityFrameworkCore.Metadata.ConfigurationSource&gt;</ReturnType>
@@ -302,7 +367,7 @@
             </summary>
         <returns>
                 The configuration source if the given entity type name is ignored,
-                <c>null</c> otherwise.
+                <see langword="null" /> otherwise.
             </returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -318,6 +383,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType&gt;</ReturnType>
@@ -331,20 +397,52 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="IsShared">
+      <MemberSignature Language="C#" Value="public bool IsShared (Type type);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool IsShared(class System.Type type) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.IConventionModel.IsShared(System.Type)" />
+      <MemberSignature Language="VB.NET" Value="Public Function IsShared (type As Type) As Boolean" />
+      <MemberSignature Language="F#" Value="abstract member IsShared : Type -&gt; bool" Usage="iConventionModel.IsShared type" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="type"> The CLR type. </param>
+        <summary>
+                Gets whether the CLR type is used by shared type entities in the model.
+            </summary>
+        <returns> Whether the CLR type is used by shared type entities in the model. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="RemoveEntityType">
-      <MemberSignature Language="C#" Value="public void RemoveEntityType (Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType entityType);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void RemoveEntityType(class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType entityType) cil managed" />
+      <MemberSignature Language="C#" Value="public void RemoveEntityType (Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType entityType);" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void RemoveEntityType(class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType entityType) cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.IConventionModel.RemoveEntityType(Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType)" />
-      <MemberSignature Language="VB.NET" Value="Public Sub RemoveEntityType (entityType As IConventionEntityType)" />
-      <MemberSignature Language="F#" Value="abstract member RemoveEntityType : Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType -&gt; unit" Usage="iConventionModel.RemoveEntityType entityType" />
+      <MemberSignature Language="VB.NET" Value="Public Sub RemoveEntityType (entityType As IConventionEntityType)" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="F#" Value="abstract member RemoveEntityType : Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType -&gt; unit" Usage="iConventionModel.RemoveEntityType entityType" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType RemoveEntityType (Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType entityType);" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType RemoveEntityType(class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType entityType) cil managed" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="VB.NET" Value="Public Function RemoveEntityType (entityType As IConventionEntityType) As IConventionEntityType" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="F#" Value="abstract member RemoveEntityType : Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType -&gt; Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType" Usage="iConventionModel.RemoveEntityType entityType" FrameworkAlternate="efcore-5.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-3.0;efcore-3.1">System.Void</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-5.0">Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType" />
@@ -354,23 +452,30 @@
         <summary>
                 Removes an entity type from the model.
             </summary>
+        <returns> The removed entity type. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="RemoveIgnored">
-      <MemberSignature Language="C#" Value="public void RemoveIgnored (string typeName);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void RemoveIgnored(string typeName) cil managed" />
+      <MemberSignature Language="C#" Value="public void RemoveIgnored (string typeName);" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void RemoveIgnored(string typeName) cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.IConventionModel.RemoveIgnored(System.String)" />
-      <MemberSignature Language="VB.NET" Value="Public Sub RemoveIgnored (typeName As String)" />
-      <MemberSignature Language="F#" Value="abstract member RemoveIgnored : string -&gt; unit" Usage="iConventionModel.RemoveIgnored typeName" />
+      <MemberSignature Language="VB.NET" Value="Public Sub RemoveIgnored (typeName As String)" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="F#" Value="abstract member RemoveIgnored : string -&gt; unit" Usage="iConventionModel.RemoveIgnored typeName" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="C#" Value="public string RemoveIgnored (string typeName);" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance string RemoveIgnored(string typeName) cil managed" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="VB.NET" Value="Public Function RemoveIgnored (typeName As String) As String" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="F#" Value="abstract member RemoveIgnored : string -&gt; string" Usage="iConventionModel.RemoveIgnored typeName" FrameworkAlternate="efcore-5.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-3.0;efcore-3.1">System.Void</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-5.0">System.String</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="typeName" Type="System.String" />
@@ -380,6 +485,7 @@
         <summary>
                 Removes the ignored entity type name.
             </summary>
+        <returns> The removed ignored type name. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

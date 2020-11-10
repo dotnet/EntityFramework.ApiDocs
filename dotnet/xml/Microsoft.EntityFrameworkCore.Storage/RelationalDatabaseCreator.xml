@@ -1,9 +1,9 @@
 <Type Name="RelationalDatabaseCreator" FullName="Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator">
-  <TypeSignature Language="C#" Value="public abstract class RelationalDatabaseCreator : Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator, Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator" FrameworkAlternate="efcore-1.0;efcore-2.0;efcore-2.1;efcore-3.0;efcore-3.1" />
-  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit RelationalDatabaseCreator extends System.Object implements class Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator, class Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator" FrameworkAlternate="efcore-1.0;efcore-2.0;efcore-2.1;efcore-3.0;efcore-3.1" />
+  <TypeSignature Language="C#" Value="public abstract class RelationalDatabaseCreator : Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator, Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator" FrameworkAlternate="efcore-1.0;efcore-2.0;efcore-2.1;efcore-3.0;efcore-3.1;efcore-5.0" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit RelationalDatabaseCreator extends System.Object implements class Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator, class Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator" FrameworkAlternate="efcore-1.0;efcore-2.0;efcore-2.1;efcore-3.0;efcore-3.1;efcore-5.0" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator" />
-  <TypeSignature Language="VB.NET" Value="Public MustInherit Class RelationalDatabaseCreator&#xA;Implements IDatabaseCreator, IRelationalDatabaseCreator" FrameworkAlternate="efcore-1.0;efcore-2.0;efcore-2.1;efcore-3.0;efcore-3.1" />
-  <TypeSignature Language="F#" Value="type RelationalDatabaseCreator = class&#xA;    interface IRelationalDatabaseCreator&#xA;    interface IDatabaseCreator" FrameworkAlternate="efcore-1.0;efcore-2.0;efcore-2.1;efcore-3.0;efcore-3.1" />
+  <TypeSignature Language="VB.NET" Value="Public MustInherit Class RelationalDatabaseCreator&#xA;Implements IDatabaseCreator, IRelationalDatabaseCreator" FrameworkAlternate="efcore-1.0;efcore-2.0;efcore-2.1;efcore-3.0;efcore-3.1;efcore-5.0" />
+  <TypeSignature Language="F#" Value="type RelationalDatabaseCreator = class&#xA;    interface IRelationalDatabaseCreator&#xA;    interface IDatabaseCreator" FrameworkAlternate="efcore-1.0;efcore-2.0;efcore-2.1;efcore-3.0;efcore-3.1;efcore-5.0" />
   <TypeSignature Language="C#" Value="public abstract class RelationalDatabaseCreator : Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite, Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator, Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator" FrameworkAlternate="efcore-1.1" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit RelationalDatabaseCreator extends System.Object implements class Microsoft.EntityFrameworkCore.Internal.IServiceInjectionSite, class Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator, class Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator" FrameworkAlternate="efcore-1.1" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class RelationalDatabaseCreator&#xA;Implements IDatabaseCreator, IRelationalDatabaseCreator, IServiceInjectionSite" FrameworkAlternate="efcore-1.1" />
@@ -25,6 +25,7 @@
     <AssemblyVersion>2.2.6.0</AssemblyVersion>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -78,9 +79,10 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="dependencies"> Parameter object containing dependencies for this service. </param>
@@ -171,13 +173,14 @@
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember FrameworkAlternate="efcore-2.2">M:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreatorWithCanConnect.CanConnect</InterfaceMember>
-        <InterfaceMember FrameworkAlternate="efcore-3.0;efcore-3.1">M:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.CanConnect</InterfaceMember>
+        <InterfaceMember FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">M:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.CanConnect</InterfaceMember>
       </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -189,12 +192,19 @@
                     Determines whether or not the database is available and can be connected to.
                 </para>
           <para>
+                    Any exceptions thrown when attempting to connect are caught and not propagated to the application.
+                </para>
+          <para>
+                    The configured connection string is used to create the connection in the normal way, so all
+                    configured options such as timeouts are honored.
+                </para>
+          <para>
                     Note that being able to connect to the database does not mean that it is
                     up-to-date with regard to schema creation, etc.
                 </para>
         </summary>
         <returns>
-          <c>True</c> if the database is available; <c>false</c> otherwise. </returns>
+          <see langword="true" /> if the database is available; <see langword="false" /> otherwise. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -207,19 +217,20 @@
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember FrameworkAlternate="efcore-2.2">M:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreatorWithCanConnect.CanConnectAsync(System.Threading.CancellationToken)</InterfaceMember>
-        <InterfaceMember FrameworkAlternate="efcore-3.0;efcore-3.1">M:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.CanConnectAsync(System.Threading.CancellationToken)</InterfaceMember>
+        <InterfaceMember FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">M:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.CanConnectAsync(System.Threading.CancellationToken)</InterfaceMember>
       </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Boolean&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="efcore-2.2;efcore-3.0;efcore-3.1" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
@@ -228,12 +239,19 @@
                     Determines whether or not the database is available and can be connected to.
                 </para>
           <para>
+                    Any exceptions thrown when attempting to connect are caught and not propagated to the application.
+                </para>
+          <para>
+                    The configured connection string is used to create the connection in the normal way, so all
+                    configured options such as timeouts are honored.
+                </para>
+          <para>
                     Note that being able to connect to the database does not mean that it is
                     up-to-date with regard to schema creation, etc.
                 </para>
         </summary>
         <returns>
-          <c>True</c> if the database is available; <c>false</c> otherwise. </returns>
+          <see langword="true" /> if the database is available; <see langword="false" /> otherwise. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -285,6 +303,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -320,6 +339,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
@@ -361,6 +381,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -397,6 +418,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
@@ -439,6 +461,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -474,6 +497,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
@@ -508,6 +532,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreatorDependencies</ReturnType>
@@ -543,6 +568,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -555,7 +581,7 @@
                 to ensure it is compatible with the model for this context.
             </summary>
         <returns>
-                True if the database is created, false if it already existed.
+          <see langword="true" /> if the database is created, <see langword="false" /> if it already existed.
             </returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -583,6 +609,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Boolean&gt;</ReturnType>
@@ -598,8 +625,8 @@
                 to ensure it is compatible with the model for this context.
             </summary>
         <returns>
-                A task that represents the asynchronous save operation. The task result contains true if the database is created,
-                false if it already existed.
+                A task that represents the asynchronous save operation. The task result contains <see langword="true" />
+                if the database is created, <see langword="false" /> if it already existed.
             </returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -627,6 +654,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -644,7 +672,7 @@
                 </para>
         </summary>
         <returns>
-                True if the database is deleted, false if it did not exist.
+          <see langword="true" /> if the database is deleted, <see langword="false" /> if it did not exist.
             </returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -672,6 +700,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Boolean&gt;</ReturnType>
@@ -692,8 +721,8 @@
                 </para>
         </summary>
         <returns>
-                A task that represents the asynchronous save operation. The task result contains true if the database is deleted,
-                false if it did not exist.
+                A task that represents the asynchronous save operation. The task result contains <see langword="true" />
+                if the database is deleted, <see langword="false" /> if it did not exist.
             </returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -744,6 +773,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -755,7 +785,7 @@
                 contains the schema for the current model.
             </summary>
         <returns>
-                True if the database exists; otherwise false.
+          <see langword="true" /> if the database exists; otherwise <see langword="false" />.
             </returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -783,6 +813,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Boolean&gt;</ReturnType>
@@ -800,7 +831,7 @@
             </summary>
         <returns>
                 A task that represents the asynchronous operation. The task result contains
-                true if the database exists; otherwise false.
+                <see langword="true" /> if the database exists; otherwise <see langword="false" />.
             </returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -822,6 +853,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -870,18 +902,44 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="GetCreateTablesCommands">
+      <MemberSignature Language="C#" Value="protected virtual System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Migrations.MigrationCommand&gt; GetCreateTablesCommands (Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerationOptions options = Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerationOptions.Default);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Migrations.MigrationCommand&gt; GetCreateTablesCommands(valuetype Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerationOptions options) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.GetCreateTablesCommands(Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerationOptions)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function GetCreateTablesCommands (Optional options As MigrationsSqlGenerationOptions = Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerationOptions.Default) As IReadOnlyList(Of MigrationCommand)" />
+      <MemberSignature Language="F#" Value="abstract member GetCreateTablesCommands : Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerationOptions -&gt; System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Migrations.MigrationCommand&gt;&#xA;override this.GetCreateTablesCommands : Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerationOptions -&gt; System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Migrations.MigrationCommand&gt;" Usage="relationalDatabaseCreator.GetCreateTablesCommands options" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Migrations.MigrationCommand&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="options" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerationOptions" Index="0" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="options"> The options to use when generating commands. </param>
+        <summary>
+                Gets the commands that will create all tables from the model.
+            </summary>
+        <returns> The generated commands. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="HasTables">
       <MemberSignature Language="C#" Value="protected abstract bool HasTables ();" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance bool HasTables() cil managed" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.HasTables" />
       <MemberSignature Language="VB.NET" Value="Protected MustOverride Function HasTables () As Boolean" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="abstract member HasTables : unit -&gt; bool" Usage="relationalDatabaseCreator.HasTables " />
-      <MemberSignature Language="C#" Value="public abstract bool HasTables ();" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool HasTables() cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-      <MemberSignature Language="VB.NET" Value="Public MustOverride Function HasTables () As Boolean" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="C#" Value="public abstract bool HasTables ();" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool HasTables() cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="VB.NET" Value="Public MustOverride Function HasTables () As Boolean" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberType>Method</MemberType>
       <Implements>
-        <InterfaceMember FrameworkAlternate="efcore-3.0;efcore-3.1">M:Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.HasTables</InterfaceMember>
+        <InterfaceMember FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">M:Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.HasTables</InterfaceMember>
       </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -896,6 +954,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -916,12 +975,12 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.HasTablesAsync(System.Threading.CancellationToken)" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Function HasTablesAsync (Optional cancellationToken As CancellationToken = Nothing) As Task(Of Boolean)" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="abstract member HasTablesAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;bool&gt;&#xA;override this.HasTablesAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;bool&gt;" Usage="relationalDatabaseCreator.HasTablesAsync cancellationToken" />
-      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;bool&gt; HasTablesAsync (System.Threading.CancellationToken cancellationToken = default);" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;bool&gt; HasTablesAsync(valuetype System.Threading.CancellationToken cancellationToken) cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable Function HasTablesAsync (Optional cancellationToken As CancellationToken = Nothing) As Task(Of Boolean)" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;bool&gt; HasTablesAsync (System.Threading.CancellationToken cancellationToken = default);" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;bool&gt; HasTablesAsync(valuetype System.Threading.CancellationToken cancellationToken) cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function HasTablesAsync (Optional cancellationToken As CancellationToken = Nothing) As Task(Of Boolean)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberType>Method</MemberType>
       <Implements>
-        <InterfaceMember FrameworkAlternate="efcore-3.0;efcore-3.1">M:Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.HasTablesAsync(System.Threading.CancellationToken)</InterfaceMember>
+        <InterfaceMember FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">M:Microsoft.EntityFrameworkCore.Storage.IRelationalDatabaseCreator.HasTablesAsync(System.Threading.CancellationToken)</InterfaceMember>
       </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -936,6 +995,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Boolean&gt;</ReturnType>

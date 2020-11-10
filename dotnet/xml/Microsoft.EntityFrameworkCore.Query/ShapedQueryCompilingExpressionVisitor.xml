@@ -8,13 +8,30 @@
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Linq.Expressions.ExpressionVisitor</BaseTypeName>
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+      <para>
+                    A class that compiles the shaper expression for given shaped query expression.
+                </para>
+      <para>
+                    Materializer is a code which creates entity instance from the given property values.
+                    It takes into account constructor bindings, fields, property access mode configured in the model when creating the instance.
+                </para>
+      <para>
+                    Shaper is a code which generate result for the query from given scalar values based on the structure of projection.
+                    A shaper can contain zero or more materializers inside it.
+                </para>
+      <para>
+                    This type is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+    </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -29,15 +46,18 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitorDependencies" />
         <Parameter Name="queryCompilationContext" Type="Microsoft.EntityFrameworkCore.Query.QueryCompilationContext" />
       </Parameters>
       <Docs>
-        <param name="dependencies">To be added.</param>
-        <param name="queryCompilationContext">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="dependencies"> Parameter object containing dependencies for this class. </param>
+        <param name="queryCompilationContext"> The query compilation context object to use. </param>
+        <summary>
+                Creates a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor" /> class.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -52,12 +72,15 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitorDependencies</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                Parameter object containing service dependencies.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -73,6 +96,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -81,9 +105,12 @@
         <Parameter Name="expression" Type="System.Linq.Expressions.Expression" />
       </Parameters>
       <Docs>
-        <param name="expression">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="expression"> The expression to inject entity materializers. </param>
+        <summary>
+                Inject entity materializers in given shaper expression. <see cref="T:Microsoft.EntityFrameworkCore.Query.EntityShaperExpression" /> is replaced with materializer
+                expression for given entity.
+            </summary>
+        <returns> A expression with entity materializers injected. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -149,6 +176,53 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="QueryCompilationContext">
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Query.QueryCompilationContext QueryCompilationContext { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Query.QueryCompilationContext QueryCompilationContext" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.QueryCompilationContext" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable ReadOnly Property QueryCompilationContext As QueryCompilationContext" />
+      <MemberSignature Language="F#" Value="member this.QueryCompilationContext : Microsoft.EntityFrameworkCore.Query.QueryCompilationContext" Usage="Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.QueryCompilationContext" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Query.QueryCompilationContext</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                The query compilation context object for current compilation.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VerifyNoClientConstant">
+      <MemberSignature Language="C#" Value="protected virtual void VerifyNoClientConstant (System.Linq.Expressions.Expression expression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void VerifyNoClientConstant(class System.Linq.Expressions.Expression expression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.VerifyNoClientConstant(System.Linq.Expressions.Expression)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub VerifyNoClientConstant (expression As Expression)" />
+      <MemberSignature Language="F#" Value="abstract member VerifyNoClientConstant : System.Linq.Expressions.Expression -&gt; unit&#xA;override this.VerifyNoClientConstant : System.Linq.Expressions.Expression -&gt; unit" Usage="shapedQueryCompilingExpressionVisitor.VerifyNoClientConstant expression" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="System.Linq.Expressions.Expression" Index="0" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="expression"> An expression to verify. </param>
+        <summary>
+                Verifies that the given shaper expression does not contain client side constant which could cause memory leak.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="VisitExtension">
       <MemberSignature Language="C#" Value="protected override System.Linq.Expressions.Expression VisitExtension (System.Linq.Expressions.Expression extensionExpression);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance class System.Linq.Expressions.Expression VisitExtension(class System.Linq.Expressions.Expression extensionExpression) cil managed" />
@@ -160,6 +234,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -171,6 +246,33 @@
         <param name="extensionExpression">To be added.</param>
         <summary>To be added.</summary>
         <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="VisitShapedQuery">
+      <MemberSignature Language="C#" Value="protected abstract System.Linq.Expressions.Expression VisitShapedQuery (Microsoft.EntityFrameworkCore.Query.ShapedQueryExpression shapedQueryExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Linq.Expressions.Expression VisitShapedQuery(class Microsoft.EntityFrameworkCore.Query.ShapedQueryExpression shapedQueryExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.VisitShapedQuery(Microsoft.EntityFrameworkCore.Query.ShapedQueryExpression)" />
+      <MemberSignature Language="VB.NET" Value="Protected MustOverride Function VisitShapedQuery (shapedQueryExpression As ShapedQueryExpression) As Expression" />
+      <MemberSignature Language="F#" Value="abstract member VisitShapedQuery : Microsoft.EntityFrameworkCore.Query.ShapedQueryExpression -&gt; System.Linq.Expressions.Expression" Usage="shapedQueryCompilingExpressionVisitor.VisitShapedQuery shapedQueryExpression" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="shapedQueryExpression" Type="Microsoft.EntityFrameworkCore.Query.ShapedQueryExpression" Index="0" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="shapedQueryExpression"> The shaped query expression to compile. </param>
+        <summary>
+                Visits given shaped query expression to create an expression of enumerable.
+            </summary>
+        <returns> An expression of enumerable. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -190,7 +292,7 @@
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="shapedQueryExpression" Type="Microsoft.EntityFrameworkCore.Query.ShapedQueryExpression" />
+        <Parameter Name="shapedQueryExpression" Type="Microsoft.EntityFrameworkCore.Query.ShapedQueryExpression" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
       </Parameters>
       <Docs>
         <param name="shapedQueryExpression">To be added.</param>

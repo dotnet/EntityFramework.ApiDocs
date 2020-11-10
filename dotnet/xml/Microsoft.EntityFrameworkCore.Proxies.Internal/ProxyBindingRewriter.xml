@@ -8,6 +8,10 @@
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ProxyBindingRewriter extends System.Object implements class Microsoft.EntityFrameworkCore.Metadata.Conventions.IConvention, class Microsoft.EntityFrameworkCore.Metadata.Conventions.IModelFinalizedConvention" FrameworkAlternate="efcore-3.0;efcore-3.1" />
   <TypeSignature Language="VB.NET" Value="Public Class ProxyBindingRewriter&#xA;Implements IModelFinalizedConvention" FrameworkAlternate="efcore-3.0;efcore-3.1" />
   <TypeSignature Language="F#" Value="type ProxyBindingRewriter = class&#xA;    interface IModelFinalizedConvention&#xA;    interface IConvention" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+  <TypeSignature Language="C#" Value="public class ProxyBindingRewriter : Microsoft.EntityFrameworkCore.Metadata.Conventions.IModelFinalizingConvention" FrameworkAlternate="efcore-5.0" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ProxyBindingRewriter extends System.Object implements class Microsoft.EntityFrameworkCore.Metadata.Conventions.IConvention, class Microsoft.EntityFrameworkCore.Metadata.Conventions.IModelFinalizingConvention" FrameworkAlternate="efcore-5.0" />
+  <TypeSignature Language="VB.NET" Value="Public Class ProxyBindingRewriter&#xA;Implements IModelFinalizingConvention" FrameworkAlternate="efcore-5.0" />
+  <TypeSignature Language="F#" Value="type ProxyBindingRewriter = class&#xA;    interface IModelFinalizingConvention&#xA;    interface IConvention" FrameworkAlternate="efcore-5.0" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Proxies</AssemblyName>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
@@ -15,6 +19,7 @@
     <AssemblyVersion>2.2.6.0</AssemblyVersion>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -23,11 +28,14 @@
     <Interface FrameworkAlternate="efcore-2.1;efcore-2.2">
       <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.IModelBuiltConvention</InterfaceName>
     </Interface>
-    <Interface FrameworkAlternate="efcore-3.0;efcore-3.1">
+    <Interface FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">
       <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.Conventions.IConvention</InterfaceName>
     </Interface>
     <Interface FrameworkAlternate="efcore-3.0;efcore-3.1">
       <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.Conventions.IModelFinalizedConvention</InterfaceName>
+    </Interface>
+    <Interface FrameworkAlternate="efcore-5.0">
+      <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.Conventions.IModelFinalizingConvention</InterfaceName>
     </Interface>
   </Interfaces>
   <Docs>
@@ -80,12 +88,13 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Proxies</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="proxyFactory" Type="Microsoft.EntityFrameworkCore.Proxies.Internal.IProxyFactory" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="options" Type="Microsoft.EntityFrameworkCore.Proxies.Internal.ProxiesOptionsExtension" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="lazyLoaderParameterBindingFactoryDependencies" Type="Microsoft.EntityFrameworkCore.Metadata.LazyLoaderParameterBindingFactoryDependencies" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="conventionSetBuilderDependencies" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure.ProviderConventionSetBuilderDependencies" Index="3" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="proxyFactory" Type="Microsoft.EntityFrameworkCore.Proxies.Internal.IProxyFactory" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="options" Type="Microsoft.EntityFrameworkCore.Proxies.Internal.ProxiesOptionsExtension" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="lazyLoaderParameterBindingFactoryDependencies" Type="Microsoft.EntityFrameworkCore.Metadata.LazyLoaderParameterBindingFactoryDependencies" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="conventionSetBuilderDependencies" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure.ProviderConventionSetBuilderDependencies" Index="3" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="proxyFactory">To be added.</param>
@@ -162,6 +171,35 @@
                 Called after a model is finalized.
             </summary>
         <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ProcessModelFinalizing">
+      <MemberSignature Language="C#" Value="public virtual void ProcessModelFinalizing (Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder modelBuilder, Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder&gt; context);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void ProcessModelFinalizing(class Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder modelBuilder, class Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext`1&lt;class Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder&gt; context) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Proxies.Internal.ProxyBindingRewriter.ProcessModelFinalizing(Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder,Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext{Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder})" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Sub ProcessModelFinalizing (modelBuilder As IConventionModelBuilder, context As IConventionContext(Of IConventionModelBuilder))" />
+      <MemberSignature Language="F#" Value="abstract member ProcessModelFinalizing : Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder * Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder&gt; -&gt; unit&#xA;override this.ProcessModelFinalizing : Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder * Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder&gt; -&gt; unit" Usage="proxyBindingRewriter.ProcessModelFinalizing (modelBuilder, context)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Metadata.Conventions.IModelFinalizingConvention.ProcessModelFinalizing(Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder,Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext{Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder})</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Proxies</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="modelBuilder" Type="Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder" Index="0" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionModelBuilder&gt;" Index="1" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="modelBuilder">To be added.</param>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
   </Members>

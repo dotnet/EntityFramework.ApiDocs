@@ -17,6 +17,7 @@
     <AssemblyVersion>2.2.6.0</AssemblyVersion>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -29,6 +30,139 @@
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
+    <Member MemberName="AsSingleQuery&lt;TEntity&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; AsSingleQuery&lt;TEntity&gt; (this System.Linq.IQueryable&lt;TEntity&gt; source) where TEntity : class;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; AsSingleQuery&lt;class TEntity&gt;(class System.Linq.IQueryable`1&lt;!!TEntity&gt; source) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.AsSingleQuery``1(System.Linq.IQueryable{``0})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function AsSingleQuery(Of TEntity As Class) (source As IQueryable(Of TEntity)) As IQueryable(Of TEntity)" />
+      <MemberSignature Language="F#" Value="static member AsSingleQuery : System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; -&gt; System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; (requires 'Entity : null)" Usage="Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.AsSingleQuery source" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TEntity">
+          <Constraints>
+            <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" Index="0" FrameworkAlternate="efcore-5.0" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TEntity"> The type of entity being queried. </typeparam>
+        <param name="source"> The source query. </param>
+        <summary>
+          <para>
+                    Returns a new query which is configured to load the collections in the query results in a single database query.
+                </para>
+          <para>
+                    This behavior generally guarantees result consistency in the face of concurrent updates
+                    (but details may vary based on the database and transaction isolation level in use).
+                    However, this can cause performance issues when the query loads multiple related collections.
+                </para>
+          <para>
+                    The default query splitting behavior for queries can be controlled by
+                    <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalDbContextOptionsBuilder`2.UseQuerySplittingBehavior(Microsoft.EntityFrameworkCore.QuerySplittingBehavior)" />.
+                </para>
+        </summary>
+        <returns> A new query where collections will be loaded through single database query. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AsSplitQuery&lt;TEntity&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; AsSplitQuery&lt;TEntity&gt; (this System.Linq.IQueryable&lt;TEntity&gt; source) where TEntity : class;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; AsSplitQuery&lt;class TEntity&gt;(class System.Linq.IQueryable`1&lt;!!TEntity&gt; source) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.AsSplitQuery``1(System.Linq.IQueryable{``0})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function AsSplitQuery(Of TEntity As Class) (source As IQueryable(Of TEntity)) As IQueryable(Of TEntity)" />
+      <MemberSignature Language="F#" Value="static member AsSplitQuery : System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; -&gt; System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; (requires 'Entity : null)" Usage="Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.AsSplitQuery source" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TEntity">
+          <Constraints>
+            <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" Index="0" FrameworkAlternate="efcore-5.0" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TEntity"> The type of entity being queried. </typeparam>
+        <param name="source"> The source query. </param>
+        <summary>
+          <para>
+                    Returns a new query which is configured to load the collections in the query results through separate database queries.
+                </para>
+          <para>
+                    This behavior can significantly improve performance when the query loads multiple collections.
+                    However, since separate queries are used, this can result in inconsistent results when concurrent updates occur.
+                    Serializable or snapshot transactions can be used to mitigate this
+                    and achieve consistency with split queries, but that may bring other performance costs and behavioral difference.
+                </para>
+          <para>
+                    The default query splitting behavior for queries can be controlled by
+                    <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalDbContextOptionsBuilder`2.UseQuerySplittingBehavior(Microsoft.EntityFrameworkCore.QuerySplittingBehavior)" />.
+                </para>
+        </summary>
+        <returns> A new query where collections will be loaded through separate database queries. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateDbCommand">
+      <MemberSignature Language="C#" Value="public static System.Data.Common.DbCommand CreateDbCommand (this System.Linq.IQueryable source);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Data.Common.DbCommand CreateDbCommand(class System.Linq.IQueryable source) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.CreateDbCommand(System.Linq.IQueryable)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function CreateDbCommand (source As IQueryable) As DbCommand" />
+      <MemberSignature Language="F#" Value="static member CreateDbCommand : System.Linq.IQueryable -&gt; System.Data.Common.DbCommand" Usage="Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.CreateDbCommand source" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Data.Common.DbCommand</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="source" Type="System.Linq.IQueryable" Index="0" FrameworkAlternate="efcore-5.0" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="source"> The query source. </param>
+        <summary>
+          <para>
+                    Creates a <see cref="T:System.Data.Common.DbCommand" /> set up to execute this query.
+                </para>
+          <para>
+                    This is only typically supported by queries generated by Entity Framework Core.
+                </para>
+          <para>
+                    Warning: there is no guarantee that executing this command directly will result in the same behavior as if EF Core had
+                    executed the command.
+                </para>
+          <para>
+                    Note that DbCommand is an <see cref="T:System.IDisposable" /> object. The caller is responsible for disposing the returned
+                    command.
+                </para>
+          <para>
+                    This is only typically supported by queries generated by Entity Framework Core.
+                </para>
+        </summary>
+        <returns> The query string for debugging. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="FromSql&lt;TEntity&gt;">
       <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; FromSql&lt;TEntity&gt; (this System.Linq.IQueryable&lt;TEntity&gt; source, FormattableString sql) where TEntity : class;" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; FromSql&lt;class TEntity&gt;(class System.Linq.IQueryable`1&lt;!!TEntity&gt; source, class System.FormattableString sql) cil managed" />
@@ -264,6 +398,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
@@ -276,8 +411,8 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="sql" Type="System.FormattableString" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1">
+        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="sql" Type="System.FormattableString" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">
           <Attributes>
             <Attribute FrameworkAlternate="efcore-3.0">
               <AttributeName>Microsoft.EntityFrameworkCore.Query.NotParameterized</AttributeName>
@@ -297,14 +432,15 @@
                 </para>
           <para>
                     If the database provider supports composing on the supplied SQL, you can compose on top of the raw SQL query using
-                    LINQ operators - <code>context.Blogs.FromSqlInterpolated($"SELECT * FROM dbo.Blogs").OrderBy(b =&gt; b.Name)</code>.
+                    LINQ operators:
                 </para>
+          <code>context.Blogs.FromSqlInterpolated($"SELECT * FROM dbo.Blogs").OrderBy(b =&gt; b.Name)</code>
           <para>
                     As with any API that accepts SQL it is important to parameterize any user input to protect against a SQL injection
                     attack. You can include interpolated parameter place holders in the SQL query string. Any interpolated parameter values
-                    you supply will automatically be converted to a DbParameter -
-                    <code>context.Blogs.FromSqlInterpolated($"SELECT * FROM [dbo].[SearchBlogs]({userSuppliedSearchTerm})")</code>.
+                    you supply will automatically be converted to a DbParameter:
                 </para>
+          <code>context.Blogs.FromSqlInterpolated($"SELECT * FROM [dbo].[SearchBlogs]({userSuppliedSearchTerm})")</code>
         </summary>
         <returns> An <see cref="T:System.Linq.IQueryable`1" /> representing the interpolated string SQL query. </returns>
         <remarks>To be added.</remarks>
@@ -321,6 +457,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
@@ -333,15 +470,15 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1">
+        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">
           <Attributes>
             <Attribute FrameworkAlternate="efcore-3.0">
               <AttributeName>Microsoft.EntityFrameworkCore.Query.NotParameterized</AttributeName>
             </Attribute>
           </Attributes>
         </Parameter>
-        <Parameter Name="parameters" Type="System.Object[]" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1">
+        <Parameter Name="parameters" Type="System.Object[]" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">
           <Attributes>
             <Attribute FrameworkAlternate="efcore-3.0">
               <AttributeName>System.ParamArray</AttributeName>
@@ -362,19 +499,24 @@
                 </para>
           <para>
                     If the database provider supports composing on the supplied SQL, you can compose on top of the raw SQL query using
-                    LINQ operators - <code>context.Blogs.FromSqlRaw("SELECT * FROM dbo.Blogs").OrderBy(b =&gt; b.Name)</code>.
+                    LINQ operators: <c>context.Blogs.FromSqlRaw("SELECT * FROM dbo.Blogs").OrderBy(b =&gt; b.Name)</c>.
                 </para>
           <para>
                     As with any API that accepts SQL it is important to parameterize any user input to protect against a SQL injection
                     attack. You can include parameter place holders in the SQL query string and then supply parameter values as additional
-                    arguments. Any parameter values you supply will automatically be converted to a DbParameter -
-                    <code>context.Blogs.FromSqlRaw("SELECT * FROM [dbo].[SearchBlogs]({0})", userSuppliedSearchTerm)</code>.
-                    You can also consider using <see cref="M:Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.FromSqlInterpolated``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.FormattableString)" /> to use interpolated string syntax to create parameters.
+                    arguments. Any parameter values you supply will automatically be converted to a DbParameter:
+                </para>
+          <code>context.Blogs.FromSqlRaw("SELECT * FROM [dbo].[SearchBlogs]({0})", userSuppliedSearchTerm)</code>
+          <para>
+                    However, <b>never</b> pass a concatenated or interpolated string (<c>$""</c>) with non-validated user-provided values
+                    into this method. Doing so may expose your application to SQL injection attacks. To use the interpolated string syntax,
+                    consider using <see cref="M:Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.FromSqlInterpolated``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.FormattableString)" /> to create parameters.
                 </para>
           <para>
                     This overload also accepts DbParameter instances as parameter values. This allows you to use named
-                    parameters in the SQL query string -
-                    <code>context.Blogs.FromSqlRaw("SELECT * FROM [dbo].[SearchBlogs]({@searchTerm})", new SqlParameter("@searchTerm", userSuppliedSearchTerm))</code></para>
+                    parameters in the SQL query string:
+                </para>
+          <code>context.Blogs.FromSqlRaw("SELECT * FROM [dbo].[SearchBlogs]({@searchTerm})", new SqlParameter("@searchTerm", userSuppliedSearchTerm))</code>
         </summary>
         <returns> An <see cref="T:System.Linq.IQueryable`1" /> representing the raw SQL query. </returns>
         <remarks>To be added.</remarks>

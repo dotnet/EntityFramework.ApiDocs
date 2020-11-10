@@ -1,0 +1,79 @@
+<Type Name="QuerySplittingBehavior" FullName="Microsoft.EntityFrameworkCore.QuerySplittingBehavior">
+  <TypeSignature Language="C#" Value="public enum QuerySplittingBehavior" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed QuerySplittingBehavior extends System.Enum" />
+  <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.QuerySplittingBehavior" />
+  <TypeSignature Language="VB.NET" Value="Public Enum QuerySplittingBehavior" />
+  <TypeSignature Language="F#" Value="type QuerySplittingBehavior = " />
+  <AssemblyInfo>
+    <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Docs>
+    <summary>
+                Indicates how the related collections in a query should be loaded from database.
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="SingleQuery">
+      <MemberSignature Language="C#" Value="SingleQuery" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Microsoft.EntityFrameworkCore.QuerySplittingBehavior SingleQuery = int32(0)" />
+      <MemberSignature Language="DocId" Value="F:Microsoft.EntityFrameworkCore.QuerySplittingBehavior.SingleQuery" />
+      <MemberSignature Language="VB.NET" Value="SingleQuery" />
+      <MemberSignature Language="F#" Value="SingleQuery = 0" Usage="Microsoft.EntityFrameworkCore.QuerySplittingBehavior.SingleQuery" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.QuerySplittingBehavior</ReturnType>
+      </ReturnValue>
+      <MemberValue>0</MemberValue>
+      <Docs>
+        <summary>
+          <para>
+                    The related collections will be loaded in same database query as parent query.
+                </para>
+          <para>
+                    This behavior generally guarantees result consistency in the face of concurrent updates
+                    (but details may vary based on the database and transaction isolation level in use).
+                    However, this can cause performance issues when the query loads multiple related collections.
+                </para>
+        </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="SplitQuery">
+      <MemberSignature Language="C#" Value="SplitQuery" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Microsoft.EntityFrameworkCore.QuerySplittingBehavior SplitQuery = int32(1)" />
+      <MemberSignature Language="DocId" Value="F:Microsoft.EntityFrameworkCore.QuerySplittingBehavior.SplitQuery" />
+      <MemberSignature Language="VB.NET" Value="SplitQuery" />
+      <MemberSignature Language="F#" Value="SplitQuery = 1" Usage="Microsoft.EntityFrameworkCore.QuerySplittingBehavior.SplitQuery" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.QuerySplittingBehavior</ReturnType>
+      </ReturnValue>
+      <MemberValue>1</MemberValue>
+      <Docs>
+        <summary>
+          <para>
+                    The related collections will be loaded in separate database queries from the parent query.
+                </para>
+          <para>
+                    This behavior can significantly improve performance when the query loads multiple collections.
+                    However, since separate queries are used, this can result in inconsistent results when concurrent updates occur.
+                    Serializable or snapshot transactions can be used to mitigate this
+                    and achieve consistency with split queries, but that may bring other performance costs and behavioral difference.
+                </para>
+        </summary>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
