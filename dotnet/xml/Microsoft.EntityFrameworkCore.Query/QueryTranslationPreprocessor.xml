@@ -8,13 +8,22 @@
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+      <para>
+                    A class that preprocesses the query before translation.
+                </para>
+      <para>
+                    This type is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+    </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -29,15 +38,18 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessorDependencies" />
         <Parameter Name="queryCompilationContext" Type="Microsoft.EntityFrameworkCore.Query.QueryCompilationContext" />
       </Parameters>
       <Docs>
-        <param name="dependencies">To be added.</param>
-        <param name="queryCompilationContext">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="dependencies"> Parameter object containing dependencies for this class. </param>
+        <param name="queryCompilationContext"> The query compilation context object to use. </param>
+        <summary>
+                Creates a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessor" /> class.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -52,13 +64,49 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessorDependencies</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                Parameter object containing service dependencies.
+            </summary>
         <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NormalizeQueryableMethod">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression NormalizeQueryableMethod (System.Linq.Expressions.Expression expression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression NormalizeQueryableMethod(class System.Linq.Expressions.Expression expression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessor.NormalizeQueryableMethod(System.Linq.Expressions.Expression)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function NormalizeQueryableMethod (expression As Expression) As Expression" />
+      <MemberSignature Language="F#" Value="abstract member NormalizeQueryableMethod : System.Linq.Expressions.Expression -&gt; System.Linq.Expressions.Expression&#xA;override this.NormalizeQueryableMethod : System.Linq.Expressions.Expression -&gt; System.Linq.Expressions.Expression" Usage="queryTranslationPreprocessor.NormalizeQueryableMethod expression" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="System.Linq.Expressions.Expression" Index="0" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="expression"> The query expression to normalize. </param>
+        <summary>
+          <para>
+                    Normalizes queryable methods in the query.
+                </para>
+          <para>
+                    This method extracts query metadata information like tracking, ignore query filters.
+                    It also converts potential enumerable methods on navigation to queryable methods.
+                    It flattens patterns of GroupJoin-SelectMany patterns to appropriate Join/LeftJoin.
+                </para>
+        </summary>
+        <returns> A query expression after normalization has been done. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -73,6 +121,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -81,9 +130,33 @@
         <Parameter Name="query" Type="System.Linq.Expressions.Expression" />
       </Parameters>
       <Docs>
-        <param name="query">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="query"> The query to process. </param>
+        <summary>
+                Applies preprocessing transformations to the query.
+            </summary>
+        <returns> A query expression after transformations. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="QueryCompilationContext">
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Query.QueryCompilationContext QueryCompilationContext { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Query.QueryCompilationContext QueryCompilationContext" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessor.QueryCompilationContext" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable ReadOnly Property QueryCompilationContext As QueryCompilationContext" />
+      <MemberSignature Language="F#" Value="member this.QueryCompilationContext : Microsoft.EntityFrameworkCore.Query.QueryCompilationContext" Usage="Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessor.QueryCompilationContext" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Query.QueryCompilationContext</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                The query compilation context object for current compilation.
+            </summary>
+        <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

@@ -17,6 +17,7 @@
     <AssemblyVersion>2.2.6.0</AssemblyVersion>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>Microsoft.EntityFrameworkCore.ValueGeneration.ValueGenerator&lt;System.Guid&gt;</BaseTypeName>
@@ -27,11 +28,20 @@
   <Interfaces />
   <Docs>
     <summary>
-                Generates sequential <see cref="T:System.Guid" /> values using the same algorithm as NEWSEQUENTIALID()
-                in Microsoft SQL Server. This is useful when entities are being saved to a database where sequential
-                GUIDs will provide a performance benefit. The generated values are non-temporary, meaning they will
-                be saved to the database.
-            </summary>
+      <para>
+                    Generates sequential <see cref="T:System.Guid" /> values optimized for use in Microsoft SQL server clustered
+                    keys or indexes, yielding better performance than random values. This is the default generator for
+                    SQL Server <see cref="T:System.Guid" /> columns which are set to be generated on add.
+                </para>
+      <para>
+                    See https://docs.microsoft.com/sql/t-sql/functions/newsequentialid-transact-sql.
+                    Although this generator achieves the same goals as SQL Server's NEWSEQUENTIALID, the algorithm used
+                    to generate the GUIDs is different.
+                </para>
+      <para>
+                    The generated values are non-temporary, meaning they will be saved to the database.
+                </para>
+    </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -54,6 +64,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -81,6 +92,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -114,6 +126,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Guid</ReturnType>
@@ -122,7 +135,7 @@
         <Parameter Name="entry" Type="Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry" />
       </Parameters>
       <Docs>
-        <param name="entry">To be added.</param>
+        <param name="entry"> The change tracking entry of the entity for which the value is being generated. </param>
         <summary>
                 Gets a value to be assigned to a property.
             </summary>

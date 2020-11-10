@@ -11,6 +11,7 @@
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.11.0</AssemblyVersion>
     <AssemblyVersion>2.2.6.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -32,10 +33,56 @@
                     first resolve the object from the dependency injection container, then replace selected
                     services using the 'With...' methods. Do not call the constructor at any point in this process.
                 </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
+                </para>
     </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public RelationalQueryCompilationContextDependencies ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.RelationalQueryCompilationContextDependencies.#ctor" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New ()" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-5.0">
+          <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal]</AttributeName>
+          <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal&gt;]</AttributeName>
+        </Attribute>
+      </Attributes>
+      <Parameters />
+      <Docs>
+        <summary>
+          <para>
+                    Creates the service dependencies parameter object for a <see cref="T:Microsoft.EntityFrameworkCore.Query.RelationalQueryCompilationContext" />.
+                </para>
+          <para>
+                    Do not call this constructor directly from either provider or application code as it may change
+                    as new dependencies are added. Instead, use this type in your constructor so that an instance
+                    will be created and injected automatically by the dependency injection container. To create
+                    an instance with some dependent services replaced, first resolve the object from the dependency
+                    injection container, then replace selected services using the 'With...' methods. Do not call
+                    the constructor at any point in this process.
+                </para>
+          <para>
+                    This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                    the same compatibility standards as public APIs. It may be changed or removed without notice in
+                    any release. You should only use it directly in your code with extreme caution and knowing that
+                    doing so can result in application failures when updating to a new Entity Framework Core release.
+                </para>
+        </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public RelationalQueryCompilationContextDependencies (Microsoft.EntityFrameworkCore.Query.Internal.INodeTypeProviderFactory nodeTypeProviderFactory);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Query.Internal.INodeTypeProviderFactory nodeTypeProviderFactory) cil managed" />
@@ -52,7 +99,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="nodeTypeProviderFactory" Type="Microsoft.EntityFrameworkCore.Query.Internal.INodeTypeProviderFactory" />
+        <Parameter Name="nodeTypeProviderFactory" Type="Microsoft.EntityFrameworkCore.Query.Internal.INodeTypeProviderFactory" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="nodeTypeProviderFactory"> The node type provider factory. </param>
@@ -117,7 +164,7 @@
         <ReturnType>Microsoft.EntityFrameworkCore.Query.RelationalQueryCompilationContextDependencies</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="nodeTypeProviderFactory" Type="Microsoft.EntityFrameworkCore.Query.Internal.INodeTypeProviderFactory" />
+        <Parameter Name="nodeTypeProviderFactory" Type="Microsoft.EntityFrameworkCore.Query.Internal.INodeTypeProviderFactory" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2" />
       </Parameters>
       <Docs>
         <param name="nodeTypeProviderFactory">A replacement for the current dependency of this type. </param>
