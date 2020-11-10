@@ -17,6 +17,7 @@
     <AssemblyVersion>2.2.6.0</AssemblyVersion>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -49,6 +50,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Boolean&gt;</ReturnType>
@@ -77,13 +79,16 @@
             </summary>
         <returns>
                 A task that represents the asynchronous operation.
-                The task result contains <c>true</c> if every element of the source sequence passes the test in the specified
-                predicate; otherwise, <c>false</c>.
+                The task result contains <see langword="true" /> if every element of the source sequence passes the test in the specified
+                predicate; otherwise, <see langword="false" />.
             </returns>
         <remarks>
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AnyAsync&lt;TSource&gt;">
@@ -106,6 +111,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Boolean&gt;</ReturnType>
@@ -132,12 +138,15 @@
             </summary>
         <returns>
                 A task that represents the asynchronous operation.
-                The task result contains <c>true</c> if the source sequence contains any elements; otherwise, <c>false</c>.
+                The task result contains <see langword="true" /> if the source sequence contains any elements; otherwise, <see langword="false" />.
             </returns>
         <remarks>
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AnyAsync&lt;TSource&gt;">
@@ -160,6 +169,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Boolean&gt;</ReturnType>
@@ -188,13 +198,16 @@
             </summary>
         <returns>
                 A task that represents the asynchronous operation.
-                The task result contains <c>true</c> if any elements in the source sequence pass the test in the specified
-                predicate; otherwise, <c>false</c>.
+                The task result contains <see langword="true" /> if any elements in the source sequence pass the test in the specified
+                predicate; otherwise, <see langword="false" />.
             </returns>
         <remarks>
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AsAsyncEnumerable&lt;TSource&gt;">
@@ -208,6 +221,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IAsyncEnumerable&lt;TSource&gt;</ReturnType>
@@ -216,7 +230,7 @@
         <TypeParameter Name="TSource" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TSource&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TSource&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <typeparam name="TSource">
@@ -233,6 +247,12 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.InvalidOperationException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is not a <see cref="T:System.Collections.Generic.IAsyncEnumerable`1" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AsNoTracking&lt;TEntity&gt;">
@@ -255,6 +275,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
@@ -274,8 +295,8 @@
         <param name="source"> The source query. </param>
         <summary>
           <para>
-                    Returns a new query where the change tracker will not track any of the entities that are returned.
-                    If the entity instances are modified, this will not be detected by the change tracker and
+                    The change tracker will not track any of the entities that are returned from a LINQ query. If the
+                    entity instances are modified, this will not be detected by the change tracker and
                     <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> will not persist those changes to the database.
                 </para>
           <para>
@@ -285,6 +306,10 @@
                     <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" />.
                 </para>
           <para>
+                    Identity resolution will not be performed. If an entity with a given key is in different result in the result set
+                    then they will be different instances.
+                </para>
+          <para>
                     The default tracking behavior for queries can be controlled by <see cref="P:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.QueryTrackingBehavior" />.
                 </para>
         </summary>
@@ -292,6 +317,65 @@
                 A new query where the result set will not be tracked by the context.
             </returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
+      </Docs>
+    </Member>
+    <Member MemberName="AsNoTrackingWithIdentityResolution&lt;TEntity&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; AsNoTrackingWithIdentityResolution&lt;TEntity&gt; (this System.Linq.IQueryable&lt;TEntity&gt; source) where TEntity : class;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; AsNoTrackingWithIdentityResolution&lt;class TEntity&gt;(class System.Linq.IQueryable`1&lt;!!TEntity&gt; source) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTrackingWithIdentityResolution``1(System.Linq.IQueryable{``0})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function AsNoTrackingWithIdentityResolution(Of TEntity As Class) (source As IQueryable(Of TEntity)) As IQueryable(Of TEntity)" />
+      <MemberSignature Language="F#" Value="static member AsNoTrackingWithIdentityResolution : System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; -&gt; System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; (requires 'Entity : null)" Usage="Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTrackingWithIdentityResolution source" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TEntity">
+          <Constraints>
+            <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" Index="0" FrameworkAlternate="efcore-5.0" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TEntity"> The type of entity being queried. </typeparam>
+        <param name="source"> The source query. </param>
+        <summary>
+          <para>
+                    The change tracker will not track any of the entities that are returned from a LINQ query. If the
+                    entity instances are modified, this will not be detected by the change tracker and
+                    <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> will not persist those changes to the database.
+                </para>
+          <para>
+                    Disabling change tracking is useful for read-only scenarios because it avoids the overhead of setting
+                    up change tracking for each entity instance. You should not disable change tracking if you want to
+                    manipulate entity instances and persist those changes to the database using
+                    <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" />.
+                </para>
+          <para>
+                    Identity resolution will be performed to ensure that all occurrences of an entity with a given key
+                    in the result set are represented by the same entity instance.
+                </para>
+          <para>
+                    The default tracking behavior for queries can be controlled by <see cref="P:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.QueryTrackingBehavior" />.
+                </para>
+        </summary>
+        <returns>
+                A new query where the result set will not be tracked by the context.
+            </returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AsTracking&lt;TEntity&gt;">
@@ -314,6 +398,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
@@ -345,6 +430,9 @@
                 A new query where the result set will be tracked by the context.
             </returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AsTracking&lt;TEntity&gt;">
@@ -358,6 +446,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
@@ -370,8 +459,8 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="track" Type="Microsoft.EntityFrameworkCore.QueryTrackingBehavior" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="track" Type="Microsoft.EntityFrameworkCore.QueryTrackingBehavior" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <typeparam name="TEntity"> The type of entity being queried. </typeparam>
@@ -400,6 +489,9 @@
                 A new query where the result set will be tracked by the context.
             </returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync">
@@ -422,6 +514,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Decimal&gt;</ReturnType>
@@ -448,6 +541,12 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <paramref name="source" /> contains no elements.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync">
@@ -470,6 +569,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Double&gt;</ReturnType>
@@ -496,6 +596,12 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <paramref name="source" /> contains no elements.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync">
@@ -518,6 +624,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Double&gt;</ReturnType>
@@ -544,6 +651,12 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <paramref name="source" /> contains no elements.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync">
@@ -566,6 +679,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Double&gt;</ReturnType>
@@ -592,6 +706,12 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <paramref name="source" /> contains no elements.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync">
@@ -614,6 +734,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Decimal&gt;&gt;</ReturnType>
@@ -640,6 +761,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync">
@@ -662,6 +786,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Double&gt;&gt;</ReturnType>
@@ -688,6 +813,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync">
@@ -710,6 +838,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Double&gt;&gt;</ReturnType>
@@ -736,6 +865,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync">
@@ -758,6 +890,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Double&gt;&gt;</ReturnType>
@@ -784,6 +917,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync">
@@ -806,6 +942,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Single&gt;&gt;</ReturnType>
@@ -832,6 +969,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync">
@@ -854,6 +994,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Single&gt;</ReturnType>
@@ -880,6 +1021,12 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <paramref name="source" /> contains no elements.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync&lt;TSource&gt;">
@@ -902,6 +1049,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Decimal&gt;</ReturnType>
@@ -935,6 +1083,12 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <paramref name="source" /> contains no elements.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync&lt;TSource&gt;">
@@ -957,6 +1111,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Double&gt;</ReturnType>
@@ -990,6 +1145,12 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <paramref name="source" /> contains no elements.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync&lt;TSource&gt;">
@@ -1012,6 +1173,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Double&gt;</ReturnType>
@@ -1045,6 +1207,12 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <paramref name="source" /> contains no elements.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync&lt;TSource&gt;">
@@ -1067,6 +1235,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Double&gt;</ReturnType>
@@ -1100,6 +1269,12 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <paramref name="source" /> contains no elements.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync&lt;TSource&gt;">
@@ -1122,6 +1297,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Decimal&gt;&gt;</ReturnType>
@@ -1155,6 +1331,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync&lt;TSource&gt;">
@@ -1177,6 +1356,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Double&gt;&gt;</ReturnType>
@@ -1210,6 +1390,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync&lt;TSource&gt;">
@@ -1232,6 +1415,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Double&gt;&gt;</ReturnType>
@@ -1265,6 +1449,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync&lt;TSource&gt;">
@@ -1287,6 +1474,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Double&gt;&gt;</ReturnType>
@@ -1320,6 +1508,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync&lt;TSource&gt;">
@@ -1342,6 +1533,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Single&gt;&gt;</ReturnType>
@@ -1375,6 +1567,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="AverageAsync&lt;TSource&gt;">
@@ -1397,6 +1592,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Single&gt;</ReturnType>
@@ -1430,6 +1626,12 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <paramref name="source" /> contains no elements.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="ContainsAsync&lt;TSource&gt;">
@@ -1452,6 +1654,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Boolean&gt;</ReturnType>
@@ -1480,12 +1683,16 @@
             </summary>
         <returns>
                 A task that represents the asynchronous operation.
-                The task result contains <c>true</c> if the input sequence contains the specified value; otherwise, <c>false</c>.
+                The task result contains <see langword="true" /> if the input sequence contains the specified value; otherwise,
+                <see langword="false" />.
             </returns>
         <remarks>
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="CountAsync&lt;TSource&gt;">
@@ -1508,6 +1715,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
@@ -1540,6 +1748,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="CountAsync&lt;TSource&gt;">
@@ -1562,6 +1773,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
@@ -1597,6 +1809,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="FirstAsync&lt;TSource&gt;">
@@ -1619,6 +1834,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource&gt;</ReturnType>
@@ -1651,6 +1867,12 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <paramref name="source" /> contains no elements.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="FirstAsync&lt;TSource&gt;">
@@ -1673,6 +1895,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource&gt;</ReturnType>
@@ -1708,6 +1931,19 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <para>
+                    No element satisfies the condition in <paramref name="predicate" /></para>
+          <para>
+                    -or -
+                </para>
+          <para>
+            <paramref name="source" /> contains no elements.
+                </para>
+        </exception>
       </Docs>
     </Member>
     <Member MemberName="FirstOrDefaultAsync&lt;TSource&gt;">
@@ -1730,6 +1966,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource&gt;</ReturnType>
@@ -1756,13 +1993,16 @@
             </summary>
         <returns>
                 A task that represents the asynchronous operation.
-                The task result contains <c>default</c> ( <typeparamref name="TSource" /> ) if
+                The task result contains <see langword="default" /> ( <typeparamref name="TSource" /> ) if
                 <paramref name="source" /> is empty; otherwise, the first element in <paramref name="source" />.
             </returns>
         <remarks>
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="FirstOrDefaultAsync&lt;TSource&gt;">
@@ -1785,6 +2025,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource&gt;</ReturnType>
@@ -1814,7 +2055,7 @@
             </summary>
         <returns>
                 A task that represents the asynchronous operation.
-                The task result contains <c>default</c> ( <typeparamref name="TSource" /> ) if <paramref name="source" />
+                The task result contains <see langword="default" /> ( <typeparamref name="TSource" /> ) if <paramref name="source" />
                 is empty or if no element passes the test specified by <paramref name="predicate" /> ; otherwise, the first
                 element in <paramref name="source" /> that passes the test specified by <paramref name="predicate" />.
             </returns>
@@ -1822,6 +2063,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="ForEachAsync&lt;T&gt;">
@@ -1844,6 +2088,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
@@ -1875,6 +2120,46 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="action" /> is <see langword="null" />.
+            </exception>
+      </Docs>
+    </Member>
+    <Member MemberName="IgnoreAutoIncludes&lt;TEntity&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; IgnoreAutoIncludes&lt;TEntity&gt; (this System.Linq.IQueryable&lt;TEntity&gt; source) where TEntity : class;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; IgnoreAutoIncludes&lt;class TEntity&gt;(class System.Linq.IQueryable`1&lt;!!TEntity&gt; source) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.IgnoreAutoIncludes``1(System.Linq.IQueryable{``0})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function IgnoreAutoIncludes(Of TEntity As Class) (source As IQueryable(Of TEntity)) As IQueryable(Of TEntity)" />
+      <MemberSignature Language="F#" Value="static member IgnoreAutoIncludes : System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; -&gt; System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; (requires 'Entity : null)" Usage="Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.IgnoreAutoIncludes source" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TEntity">
+          <Constraints>
+            <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" Index="0" FrameworkAlternate="efcore-5.0" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TEntity"> The type of entity being queried. </typeparam>
+        <param name="source"> The source query. </param>
+        <summary>
+                Specifies that the current Entity Framework LINQ query should not have any
+                model-level eager loaded navigations applied.
+            </summary>
+        <returns>
+                A new query that will not apply any model-level eager loaded navigations.
+            </returns>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="IgnoreQueryFilters&lt;TEntity&gt;">
@@ -1893,6 +2178,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
@@ -1905,7 +2191,7 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <typeparam name="TEntity"> The type of entity being queried. </typeparam>
@@ -1918,6 +2204,9 @@
                 A new query that will not apply any model-level entity query filters.
             </returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="Include&lt;TEntity&gt;">
@@ -1938,6 +2227,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
@@ -1950,8 +2240,8 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
-        <Parameter Name="navigationPropertyPath" Type="System.String" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1">
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="navigationPropertyPath" Type="System.String" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">
           <Attributes>
             <Attribute>
               <AttributeName>Microsoft.EntityFrameworkCore.Query.NotParameterized</AttributeName>
@@ -1972,26 +2262,28 @@
         <remarks>To be added.</remarks>
         <example>
           <para>
-                    The following query shows including a single level of related entities.
-                    <code>
-                        context.Blogs.Include("Posts");
-                    </code>
-          </para>
+                    The following query shows including a single level of related entities:
+                </para>
+          <code>context.Blogs.Include("Posts")</code>
           <para>
-                    The following query shows including two levels of entities on the same branch.
-                    <code>
-                        context.Blogs.Include("Posts.Tags");
-                    </code>
-          </para>
+                    The following query shows including two levels of entities on the same branch:
+                </para>
+          <code>context.Blogs.Include("Posts.Tags")</code>
           <para>
-                    The following query shows including multiple levels and branches of related data.
-                    <code>
-                        context.Blogs
-                            .Include("Posts.Tags.TagInfo')
-                            .Include("Contributors");
-                    </code>
-          </para>
+                    The following query shows including multiple levels and branches of related data:
+                </para>
+          <code>
+            context.Blogs
+               .Include("Posts.Tags.TagInfo')
+               .Include("Contributors")
+                </code>
         </example>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="navigationPropertyPath" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.ArgumentException">
+          <paramref name="navigationPropertyPath" /> is empty or whitespace.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="Include&lt;TEntity,TProperty&gt;">
@@ -2014,6 +2306,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.IIncludableQueryable&lt;TEntity,TProperty&gt;</ReturnType>
@@ -2050,39 +2343,36 @@
         <remarks>To be added.</remarks>
         <example>
           <para>
-                    The following query shows including a single level of related entities.
-                    <code>
-                        context.Blogs.Include(blog =&gt; blog.Posts);
-                    </code>
-          </para>
+                    The following query shows including a single level of related entities:
+                </para>
+          <code>context.Blogs.Include(blog =&gt; blog.Posts)</code>
           <para>
-                    The following query shows including two levels of entities on the same branch.
-                    <code>
-                        context.Blogs
-                            .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; post.Tags);
-                    </code>
-          </para>
+                    The following query shows including two levels of entities on the same branch:
+                </para>
+          <code>
+            context.Blogs
+               .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; post.Tags)
+                </code>
           <para>
-                    The following query shows including multiple levels and branches of related data.
-                    <code>
-                        context.Blogs
-                            .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; post.Tags).ThenInclude(tag =&gt; tag.TagInfo)
-                            .Include(blog =&gt; blog.Contributors);
-                    </code>
-          </para>
+                    The following query shows including multiple levels and branches of related data:
+                </para>
+          <code>
+            context.Blogs
+               .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; post.Tags).ThenInclude(tag =&gt; tag.TagInfo)
+               .Include(blog =&gt; blog.Contributors)
+                </code>
           <para>
-                    The following query shows including a single level of related entities on a derived type using casting.
-                    <code>
-                        context.Blogs.Include(blog =&gt; ((SpecialBlog)blog).SpecialPosts);
-                    </code>
-          </para>
+                    The following query shows including a single level of related entities on a derived type using casting:
+                </para>
+          <code>context.Blogs.Include(blog =&gt; ((SpecialBlog)blog).SpecialPosts)</code>
           <para>
-                    The following query shows including a single level of related entities on a derived type using 'as' operator.
-                    <code>
-                        context.Blogs.Include(blog =&gt; (blog as SpecialBlog).SpecialPosts);
-                    </code>
-          </para>
+                    The following query shows including a single level of related entities on a derived type using 'as' operator:
+                </para>
+          <code>context.Blogs.Include(blog =&gt; (blog as SpecialBlog).SpecialPosts)</code>
         </example>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="navigationPropertyPath" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="LastAsync&lt;TSource&gt;">
@@ -2105,6 +2395,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource&gt;</ReturnType>
@@ -2137,6 +2428,12 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <paramref name="source" /> contains no elements.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="LastAsync&lt;TSource&gt;">
@@ -2159,6 +2456,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource&gt;</ReturnType>
@@ -2194,6 +2492,20 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <para>
+                    No element satisfies the condition in <paramref name="predicate" />.
+                </para>
+          <para>
+                    -or-
+                </para>
+          <para>
+            <paramref name="source" /> contains no elements.
+                </para>
+        </exception>
       </Docs>
     </Member>
     <Member MemberName="LastOrDefaultAsync&lt;TSource&gt;">
@@ -2216,6 +2528,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource&gt;</ReturnType>
@@ -2242,13 +2555,16 @@
             </summary>
         <returns>
                 A task that represents the asynchronous operation.
-                The task result contains <c>default</c> ( <typeparamref name="TSource" /> ) if
+                The task result contains <see langword="default" /> ( <typeparamref name="TSource" /> ) if
                 <paramref name="source" /> is empty; otherwise, the last element in <paramref name="source" />.
             </returns>
         <remarks>
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="LastOrDefaultAsync&lt;TSource&gt;">
@@ -2271,6 +2587,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource&gt;</ReturnType>
@@ -2300,7 +2617,7 @@
             </summary>
         <returns>
                 A task that represents the asynchronous operation.
-                The task result contains <c>default</c> ( <typeparamref name="TSource" /> ) if <paramref name="source" />
+                The task result contains <see langword="default" /> ( <typeparamref name="TSource" /> ) if <paramref name="source" />
                 is empty or if no element passes the test specified by <paramref name="predicate" /> ; otherwise, the last
                 element in <paramref name="source" /> that passes the test specified by <paramref name="predicate" />.
             </returns>
@@ -2308,6 +2625,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="Load&lt;TSource&gt;">
@@ -2330,6 +2650,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -2349,6 +2670,9 @@
                 and then throwing away the list (without the overhead of actually creating the list).
             </summary>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="LoadAsync&lt;TSource&gt;">
@@ -2371,6 +2695,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
@@ -2395,6 +2720,9 @@
             </summary>
         <returns> A task that represents the asynchronous operation. </returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="LongCountAsync&lt;TSource&gt;">
@@ -2417,6 +2745,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Int64&gt;</ReturnType>
@@ -2449,6 +2778,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="LongCountAsync&lt;TSource&gt;">
@@ -2471,6 +2803,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Int64&gt;</ReturnType>
@@ -2507,6 +2840,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="MaxAsync&lt;TSource&gt;">
@@ -2529,6 +2865,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource&gt;</ReturnType>
@@ -2561,6 +2898,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="MaxAsync&lt;TSource,TResult&gt;">
@@ -2583,6 +2923,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TResult&gt;</ReturnType>
@@ -2621,6 +2962,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="MinAsync&lt;TSource&gt;">
@@ -2643,6 +2987,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource&gt;</ReturnType>
@@ -2675,6 +3020,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="MinAsync&lt;TSource,TResult&gt;">
@@ -2697,6 +3045,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TResult&gt;</ReturnType>
@@ -2735,6 +3084,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SingleAsync&lt;TSource&gt;">
@@ -2757,6 +3109,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource&gt;</ReturnType>
@@ -2790,6 +3143,20 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <para>
+            <paramref name="source" /> contains more than one elements.
+                </para>
+          <para>
+                    -or-
+                </para>
+          <para>
+            <paramref name="source" /> contains no elements.
+                </para>
+        </exception>
       </Docs>
     </Member>
     <Member MemberName="SingleAsync&lt;TSource&gt;">
@@ -2812,6 +3179,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource&gt;</ReturnType>
@@ -2848,6 +3216,26 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <para>
+                    No element satisfies the condition in <paramref name="predicate" />.
+                </para>
+          <para>
+                    -or-
+                </para>
+          <para>
+                    More than one element satisfies the condition in <paramref name="predicate" />.
+                </para>
+          <para>
+                    -or-
+                </para>
+          <para>
+            <paramref name="source" /> contains no elements.
+                </para>
+        </exception>
       </Docs>
     </Member>
     <Member MemberName="SingleOrDefaultAsync&lt;TSource&gt;">
@@ -2870,6 +3258,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource&gt;</ReturnType>
@@ -2897,7 +3286,7 @@
             </summary>
         <returns>
                 A task that represents the asynchronous operation.
-                The task result contains the single element of the input sequence, or <c>default</c> (
+                The task result contains the single element of the input sequence, or <see langword="default" /> (
                 <typeparamref name="TSource" />)
                 if the sequence contains no elements.
             </returns>
@@ -2905,6 +3294,12 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+          <paramref name="source" /> contains more than one element.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SingleOrDefaultAsync&lt;TSource&gt;">
@@ -2927,6 +3322,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource&gt;</ReturnType>
@@ -2958,12 +3354,18 @@
         <returns>
                 A task that represents the asynchronous operation.
                 The task result contains the single element of the input sequence that satisfies the condition in
-                <paramref name="predicate" />, or <c>default</c> ( <typeparamref name="TSource" /> ) if no such element is found.
+                <paramref name="predicate" />, or <see langword="default" /> ( <typeparamref name="TSource" /> ) if no such element is found.
             </returns>
         <remarks>
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.InvalidOperationException">
+                More than one element satisfies the condition in <paramref name="predicate" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync">
@@ -2986,6 +3388,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Decimal&gt;</ReturnType>
@@ -3012,6 +3415,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync">
@@ -3034,6 +3440,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Double&gt;</ReturnType>
@@ -3060,6 +3467,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync">
@@ -3082,6 +3492,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
@@ -3108,6 +3519,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync">
@@ -3130,6 +3544,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Int64&gt;</ReturnType>
@@ -3156,6 +3571,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync">
@@ -3178,6 +3596,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Decimal&gt;&gt;</ReturnType>
@@ -3204,6 +3623,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync">
@@ -3226,6 +3648,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Double&gt;&gt;</ReturnType>
@@ -3252,6 +3675,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync">
@@ -3274,6 +3700,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Int32&gt;&gt;</ReturnType>
@@ -3300,6 +3727,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync">
@@ -3322,6 +3752,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Int64&gt;&gt;</ReturnType>
@@ -3348,6 +3779,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync">
@@ -3370,6 +3804,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Single&gt;&gt;</ReturnType>
@@ -3396,6 +3831,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync">
@@ -3418,6 +3856,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Single&gt;</ReturnType>
@@ -3444,6 +3883,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync&lt;TSource&gt;">
@@ -3466,6 +3908,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Decimal&gt;</ReturnType>
@@ -3499,6 +3942,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync&lt;TSource&gt;">
@@ -3521,6 +3967,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Double&gt;</ReturnType>
@@ -3554,6 +4001,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync&lt;TSource&gt;">
@@ -3576,6 +4026,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
@@ -3609,6 +4060,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync&lt;TSource&gt;">
@@ -3631,6 +4085,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Int64&gt;</ReturnType>
@@ -3664,6 +4119,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync&lt;TSource&gt;">
@@ -3686,6 +4144,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Decimal&gt;&gt;</ReturnType>
@@ -3719,6 +4178,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync&lt;TSource&gt;">
@@ -3741,6 +4203,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Double&gt;&gt;</ReturnType>
@@ -3774,6 +4237,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync&lt;TSource&gt;">
@@ -3796,6 +4262,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Int32&gt;&gt;</ReturnType>
@@ -3829,6 +4296,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync&lt;TSource&gt;">
@@ -3851,6 +4321,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Int64&gt;&gt;</ReturnType>
@@ -3884,6 +4355,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync&lt;TSource&gt;">
@@ -3906,6 +4380,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Nullable&lt;System.Single&gt;&gt;</ReturnType>
@@ -3939,6 +4414,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="SumAsync&lt;TSource&gt;">
@@ -3961,6 +4439,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Single&gt;</ReturnType>
@@ -3994,6 +4473,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="selector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="TagWith&lt;T&gt;">
@@ -4008,6 +4490,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;T&gt;</ReturnType>
@@ -4016,8 +4499,8 @@
         <TypeParameter Name="T" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="source" Type="System.Linq.IQueryable&lt;T&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-2.2;efcore-3.0;efcore-3.1" />
-        <Parameter Name="tag" Type="System.String" Index="1" FrameworkAlternate="efcore-2.2;efcore-3.0;efcore-3.1">
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;T&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="tag" Type="System.String" Index="1" FrameworkAlternate="efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">
           <Attributes>
             <Attribute FrameworkAlternate="efcore-2.2">
               <AttributeName>Microsoft.EntityFrameworkCore.Query.NotParameterized</AttributeName>
@@ -4037,6 +4520,12 @@
                 A new query annotated with the given tag.
             </returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="tag" /> is <see langword="null" />.
+            </exception>
+        <exception cref="T:System.ArgumentException">
+          <paramref name="tag" /> is empty or whitespace.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="ThenInclude&lt;TEntity,TPreviousProperty,TProperty&gt;">
@@ -4087,23 +4576,20 @@
                     The following query shows including a single level of related entities.
                     <code>
                         context.Blogs.Include(blog =&gt; blog.Posts);
-                    </code>
-          </para>
+                    </code></para>
           <para>
                     The following query shows including two levels of entities on the same branch.
                     <code>
                         context.Blogs
                             .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; post.Tags);
-                    </code>
-          </para>
+                    </code></para>
           <para>
                     The following query shows including multiple levels and branches of related data.
                     <code>
                         context.Blogs
                             .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; post.Tags).ThenInclude(tag =&gt; tag.TagInfo)
                             .Include(blog =&gt; blog.Contributors);
-                    </code>
-          </para>
+                    </code></para>
         </example>
       </Docs>
     </Member>
@@ -4125,6 +4611,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.IIncludableQueryable&lt;TEntity,TProperty&gt;</ReturnType>
@@ -4139,8 +4626,8 @@
         <TypeParameter Name="TProperty" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.Query.IIncludableQueryable&lt;TEntity,System.Collections.Generic.IEnumerable&lt;TPreviousProperty&gt;&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
-        <Parameter Name="navigationPropertyPath" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TPreviousProperty,TProperty&gt;&gt;" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
+        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.Query.IIncludableQueryable&lt;TEntity,System.Collections.Generic.IEnumerable&lt;TPreviousProperty&gt;&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="navigationPropertyPath" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TPreviousProperty,TProperty&gt;&gt;" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <typeparam name="TEntity"> The type of entity being queried. </typeparam>
@@ -4159,41 +4646,34 @@
         <remarks>To be added.</remarks>
         <example>
           <para>
-                    The following query shows including a single level of related entities.
-                    <code>
-                        context.Blogs.Include(blog =&gt; blog.Posts);
-                    </code>
-          </para>
+                    The following query shows including a single level of related entities:
+                </para>
+          <code>context.Blogs.Include(blog =&gt; blog.Posts)</code>
           <para>
-                    The following query shows including two levels of entities on the same branch.
-                    <code>
-                        context.Blogs
-                            .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; post.Tags);
-                    </code>
-          </para>
+                    The following query shows including two levels of entities on the same branch:
+                </para>
+          <code>
+            context.Blogs
+               .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; post.Tags)
+                </code>
           <para>
-                    The following query shows including multiple levels and branches of related data.
-                    <code>
-                        context.Blogs
-                            .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; post.Tags).ThenInclude(tag =&gt; tag.TagInfo)
-                            .Include(blog =&gt; blog.Contributors);
-                    </code>
-          </para>
+                    The following query shows including multiple levels and branches of related data:
+                </para>
+          <code>
+            context.Blogs
+               .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; post.Tags).ThenInclude(tag =&gt; tag.TagInfo)
+               .Include(blog =&gt; blog.Contributors)
+                </code>
           <para>
-                    The following query shows including two levels of entities on the same branch, second one being on derived type using casting.
-                    <code>
-                        context.Blogs
-                            .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; ((SpecialPost)post).SpecialTags);
-                    </code>
-          </para>
+                    The following query shows including two levels of entities on the same branch, second one being on derived type using
+                    casting:
+                </para>
+          <code>context.Blogs.Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; ((SpecialPost)post).SpecialTags)</code>
           <para>
-                    The following query shows including two levels of entities on the same branch, second one being on derived type using 'as'
-                    operator.
-                    <code>
-                        context.Blogs
-                            .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; (post as SpecialPost).SpecialTags);
-                    </code>
-          </para>
+                    The following query shows including two levels of entities on the same branch, second one being on derived type using
+                    the <see langword="as" /> operator.
+                </para>
+          <code>context.Blogs.Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; (post as SpecialPost).SpecialTags)</code>
         </example>
       </Docs>
     </Member>
@@ -4217,6 +4697,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.IIncludableQueryable&lt;TEntity,TProperty&gt;</ReturnType>
@@ -4251,41 +4732,30 @@
         <remarks>To be added.</remarks>
         <example>
           <para>
-                    The following query shows including a single level of related entities.
-                    <code>
-                        context.Blogs.Include(blog =&gt; blog.Posts);
-                    </code>
-          </para>
+                    The following query shows including a single level of related entities:
+                </para>
+          <code>context.Blogs.Include(blog =&gt; blog.Posts)</code>
           <para>
-                    The following query shows including two levels of entities on the same branch.
-                    <code>
-                        context.Blogs
-                            .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; post.Tags);
-                    </code>
-          </para>
+                    The following query shows including two levels of entities on the same branch:
+                </para>
+          <code>context.Blogs.Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; post.Tags)</code>
           <para>
-                    The following query shows including multiple levels and branches of related data.
-                    <code>
-                        context.Blogs
-                            .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; post.Tags).ThenInclude(tag =&gt; tag.TagInfo)
-                            .Include(blog =&gt; blog.Contributors);
-                    </code>
-          </para>
+                    The following query shows including multiple levels and branches of related data:
+                </para>
+          <code>
+            context.Blogs
+               .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; post.Tags).ThenInclude(tag =&gt; tag.TagInfo)
+               .Include(blog =&gt; blog.Contributors)
+                </code>
           <para>
-                    The following query shows including two levels of entities on the same branch, second one being on derived type.
-                    <code>
-                        context.Blogs
-                            .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; ((SpecialPost)post).SpecialTags);
-                    </code>
-          </para>
+                    The following query shows including two levels of entities on the same branch, second one being on derived type:
+                </para>
+          <code>context.Blogs.Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; ((SpecialPost)post).SpecialTags)</code>
           <para>
-                    The following query shows including two levels of entities on the same branch, second one being on derived type using alternative
-                    method.
-                    <code>
-                        context.Blogs
-                            .Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; (post as SpecialPost).SpecialTags);
-                    </code>
-          </para>
+                    The following query shows including two levels of entities on the same branch, second one being on derived type using
+                    alternative method.
+                </para>
+          <code>context.Blogs.Include(blog =&gt; blog.Posts).ThenInclude(post =&gt; (post as SpecialPost).SpecialTags)</code>
         </example>
       </Docs>
     </Member>
@@ -4309,6 +4779,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TSource[]&gt;</ReturnType>
@@ -4341,6 +4812,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="ToDictionaryAsync&lt;TSource,TKey&gt;">
@@ -4363,6 +4837,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Collections.Generic.Dictionary&lt;TKey,TSource&gt;&gt;</ReturnType>
@@ -4403,6 +4878,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="keySelector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="ToDictionaryAsync&lt;TSource,TKey&gt;">
@@ -4425,6 +4903,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Collections.Generic.Dictionary&lt;TKey,TSource&gt;&gt;</ReturnType>
@@ -4469,6 +4948,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="keySelector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="ToDictionaryAsync&lt;TSource,TKey,TElement&gt;">
@@ -4491,6 +4973,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Collections.Generic.Dictionary&lt;TKey,TElement&gt;&gt;</ReturnType>
@@ -4538,6 +5021,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="elementSelector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="ToDictionaryAsync&lt;TSource,TKey,TElement&gt;">
@@ -4560,6 +5046,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Collections.Generic.Dictionary&lt;TKey,TElement&gt;&gt;</ReturnType>
@@ -4611,6 +5098,9 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="elementSelector" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
     <Member MemberName="ToListAsync&lt;TSource&gt;">
@@ -4633,6 +5123,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Collections.Generic.List&lt;TSource&gt;&gt;</ReturnType>
@@ -4666,6 +5157,44 @@
                 Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
                 that any asynchronous operations have completed before calling another method on this context.
             </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
+      </Docs>
+    </Member>
+    <Member MemberName="ToQueryString">
+      <MemberSignature Language="C#" Value="public static string ToQueryString (this System.Linq.IQueryable source);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string ToQueryString(class System.Linq.IQueryable source) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToQueryString(System.Linq.IQueryable)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function ToQueryString (source As IQueryable) As String" />
+      <MemberSignature Language="F#" Value="static member ToQueryString : System.Linq.IQueryable -&gt; string" Usage="Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToQueryString source" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="source" Type="System.Linq.IQueryable" Index="0" FrameworkAlternate="efcore-5.0" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="source"> The query source. </param>
+        <summary>
+          <para>
+                    Generates a string representation of the query used. This string may not be suitable for direct execution is intended only
+                    for use in debugging.
+                </para>
+          <para>
+                    This is only typically supported by queries generated by Entity Framework Core.
+                </para>
+        </summary>
+        <returns> The query string for debugging. </returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="source" /> is <see langword="null" />.
+            </exception>
       </Docs>
     </Member>
   </Members>

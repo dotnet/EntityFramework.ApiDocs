@@ -8,6 +8,7 @@
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Linq.Expressions.Expression</BaseTypeName>
@@ -18,7 +19,16 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+      <para>
+                    An expression that represents creation of a collection for relational provider in
+                    <see cref="P:Microsoft.EntityFrameworkCore.Query.ShapedQueryExpression.ShaperExpression" />.
+                </para>
+      <para>
+                    This type is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+    </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -33,7 +43,14 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-5.0">
+          <AttributeName Language="C#">[System.Obsolete("Use ctor which takes value comaprers.")]</AttributeName>
+          <AttributeName Language="F#">[&lt;System.Obsolete("Use ctor which takes value comaprers.")&gt;]</AttributeName>
+        </Attribute>
+      </Attributes>
       <Parameters>
         <Parameter Name="collectionId" Type="System.Int32" />
         <Parameter Name="parentIdentifier" Type="System.Linq.Expressions.Expression" />
@@ -44,14 +61,56 @@
         <Parameter Name="elementType" Type="System.Type" />
       </Parameters>
       <Docs>
-        <param name="collectionId">To be added.</param>
-        <param name="parentIdentifier">To be added.</param>
-        <param name="outerIdentifier">To be added.</param>
-        <param name="selfIdentifier">To be added.</param>
-        <param name="innerShaper">To be added.</param>
-        <param name="navigation">To be added.</param>
-        <param name="elementType">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="collectionId"> A unique id for the collection being shaped. </param>
+        <param name="parentIdentifier"> An identifier for the parent element. </param>
+        <param name="outerIdentifier"> An identifier for the outer element. </param>
+        <param name="selfIdentifier"> An identifier for the element in the collection. </param>
+        <param name="innerShaper"> An expression used to create individual elements of the collection. </param>
+        <param name="navigation"> A navigation associated with this collection, if any. </param>
+        <param name="elementType"> The clr type of individual elements in the collection. </param>
+        <summary>
+                Creates a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression" /> class.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public RelationalCollectionShaperExpression (int collectionId, System.Linq.Expressions.Expression parentIdentifier, System.Linq.Expressions.Expression outerIdentifier, System.Linq.Expressions.Expression selfIdentifier, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; parentIdentifierValueComparers, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; outerIdentifierValueComparers, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; selfIdentifierValueComparers, System.Linq.Expressions.Expression innerShaper, Microsoft.EntityFrameworkCore.Metadata.INavigationBase navigation, Type elementType);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(int32 collectionId, class System.Linq.Expressions.Expression parentIdentifier, class System.Linq.Expressions.Expression outerIdentifier, class System.Linq.Expressions.Expression selfIdentifier, class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; parentIdentifierValueComparers, class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; outerIdentifierValueComparers, class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; selfIdentifierValueComparers, class System.Linq.Expressions.Expression innerShaper, class Microsoft.EntityFrameworkCore.Metadata.INavigationBase navigation, class System.Type elementType) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.#ctor(System.Int32,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer},System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer},System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer},System.Linq.Expressions.Expression,Microsoft.EntityFrameworkCore.Metadata.INavigationBase,System.Type)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (collectionId As Integer, parentIdentifier As Expression, outerIdentifier As Expression, selfIdentifier As Expression, parentIdentifierValueComparers As IReadOnlyList(Of ValueComparer), outerIdentifierValueComparers As IReadOnlyList(Of ValueComparer), selfIdentifierValueComparers As IReadOnlyList(Of ValueComparer), innerShaper As Expression, navigation As INavigationBase, elementType As Type)" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression : int * System.Linq.Expressions.Expression * System.Linq.Expressions.Expression * System.Linq.Expressions.Expression * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; * System.Linq.Expressions.Expression * Microsoft.EntityFrameworkCore.Metadata.INavigationBase * Type -&gt; Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression" Usage="new Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression (collectionId, parentIdentifier, outerIdentifier, selfIdentifier, parentIdentifierValueComparers, outerIdentifierValueComparers, selfIdentifierValueComparers, innerShaper, navigation, elementType)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="collectionId" Type="System.Int32" Index="0" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="parentIdentifier" Type="System.Linq.Expressions.Expression" Index="1" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="outerIdentifier" Type="System.Linq.Expressions.Expression" Index="2" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="selfIdentifier" Type="System.Linq.Expressions.Expression" Index="3" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="parentIdentifierValueComparers" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt;" Index="4" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="outerIdentifierValueComparers" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt;" Index="5" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="selfIdentifierValueComparers" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt;" Index="6" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="innerShaper" Type="System.Linq.Expressions.Expression" Index="7" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="navigation" Type="Microsoft.EntityFrameworkCore.Metadata.INavigationBase" Index="8" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="elementType" Type="System.Type" Index="9" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="collectionId"> A unique id for the collection being shaped. </param>
+        <param name="parentIdentifier"> An identifier for the parent element. </param>
+        <param name="outerIdentifier"> An identifier for the outer element. </param>
+        <param name="selfIdentifier"> An identifier for the element in the collection. </param>
+        <param name="parentIdentifierValueComparers"> A list of value comparers to compare parent identifier. </param>
+        <param name="outerIdentifierValueComparers"> A list of value comparers to compare outer identifier. </param>
+        <param name="selfIdentifierValueComparers"> A list of value comparers to compare self identifier. </param>
+        <param name="innerShaper"> An expression used to create individual elements of the collection. </param>
+        <param name="navigation"> A navigation associated with this collection, if any. </param>
+        <param name="elementType"> The clr type of individual elements in the collection. </param>
+        <summary>
+                Creates a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression" /> class.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -66,12 +125,15 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                A unique id for this collection shaper.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -87,12 +149,15 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                The clr type of elements of the collection.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -108,33 +173,71 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                The expression to create inner elements.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Microsoft.EntityFrameworkCore.Query.IPrintableExpression.Print">
+      <MemberSignature Language="C#" Value="void IPrintableExpression.Print (Microsoft.EntityFrameworkCore.Query.ExpressionPrinter expressionPrinter);" />
+      <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance void Microsoft.EntityFrameworkCore.Query.IPrintableExpression.Print(class Microsoft.EntityFrameworkCore.Query.ExpressionPrinter expressionPrinter) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.Microsoft#EntityFrameworkCore#Query#IPrintableExpression#Print(Microsoft.EntityFrameworkCore.Query.ExpressionPrinter)" />
+      <MemberSignature Language="VB.NET" Value="Sub Print (expressionPrinter As ExpressionPrinter) Implements IPrintableExpression.Print" />
+      <MemberSignature Language="F#" Value="abstract member Microsoft.EntityFrameworkCore.Query.IPrintableExpression.Print : Microsoft.EntityFrameworkCore.Query.ExpressionPrinter -&gt; unit&#xA;override this.Microsoft.EntityFrameworkCore.Query.IPrintableExpression.Print : Microsoft.EntityFrameworkCore.Query.ExpressionPrinter -&gt; unit" Usage="relationalCollectionShaperExpression.Microsoft.EntityFrameworkCore.Query.IPrintableExpression.Print expressionPrinter" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Query.IPrintableExpression.Print(Microsoft.EntityFrameworkCore.Query.ExpressionPrinter)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expressionPrinter" Type="Microsoft.EntityFrameworkCore.Query.ExpressionPrinter" Index="0" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="expressionPrinter">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
     <Member MemberName="Navigation">
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.INavigation Navigation { get; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Metadata.INavigation Navigation" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.INavigation Navigation { get; }" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Metadata.INavigation Navigation" FrameworkAlternate="efcore-3.0;efcore-3.1" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.Navigation" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Navigation As INavigation" />
-      <MemberSignature Language="F#" Value="member this.Navigation : Microsoft.EntityFrameworkCore.Metadata.INavigation" Usage="Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.Navigation" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Navigation As INavigation" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="F#" Value="member this.Navigation : Microsoft.EntityFrameworkCore.Metadata.INavigation" Usage="Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.Navigation" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.INavigationBase Navigation { get; }" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Metadata.INavigationBase Navigation" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Navigation As INavigationBase" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="F#" Value="member this.Navigation : Microsoft.EntityFrameworkCore.Metadata.INavigationBase" Usage="Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.Navigation" FrameworkAlternate="efcore-5.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Microsoft.EntityFrameworkCore.Metadata.INavigation</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-3.0;efcore-3.1">Microsoft.EntityFrameworkCore.Metadata.INavigation</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-5.0">Microsoft.EntityFrameworkCore.Metadata.INavigationBase</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                The navigation if associated with the collection.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -150,6 +253,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.ExpressionType</ReturnType>
@@ -158,6 +262,7 @@
         <summary>To be added.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
     <Member MemberName="OuterIdentifier">
@@ -171,12 +276,37 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                The identifier for the outer element.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OuterIdentifierValueComparers">
+      <MemberSignature Language="C#" Value="public virtual System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; OuterIdentifierValueComparers { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; OuterIdentifierValueComparers" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.OuterIdentifierValueComparers" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property OuterIdentifierValueComparers As IReadOnlyList(Of ValueComparer)" />
+      <MemberSignature Language="F#" Value="member this.OuterIdentifierValueComparers : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt;" Usage="Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.OuterIdentifierValueComparers" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                The list of value comparers to compare outer identifier.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -192,12 +322,37 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                The identifier for the parent element.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ParentIdentifierValueComparers">
+      <MemberSignature Language="C#" Value="public virtual System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; ParentIdentifierValueComparers { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; ParentIdentifierValueComparers" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.ParentIdentifierValueComparers" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property ParentIdentifierValueComparers As IReadOnlyList(Of ValueComparer)" />
+      <MemberSignature Language="F#" Value="member this.ParentIdentifierValueComparers : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt;" Usage="Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.ParentIdentifierValueComparers" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                The list of value comparers to compare parent identifier.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -221,7 +376,7 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="expressionPrinter" Type="Microsoft.EntityFrameworkCore.Query.ExpressionPrinter" />
+        <Parameter Name="expressionPrinter" Type="Microsoft.EntityFrameworkCore.Query.ExpressionPrinter" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
       </Parameters>
       <Docs>
         <param name="expressionPrinter">To be added.</param>
@@ -240,12 +395,37 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                The identifier for the element in the collection.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SelfIdentifierValueComparers">
+      <MemberSignature Language="C#" Value="public virtual System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; SelfIdentifierValueComparers { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt; SelfIdentifierValueComparers" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.SelfIdentifierValueComparers" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property SelfIdentifierValueComparers As IReadOnlyList(Of ValueComparer)" />
+      <MemberSignature Language="F#" Value="member this.SelfIdentifierValueComparers : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt;" Usage="Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.SelfIdentifierValueComparers" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                The list of value comparers to compare self identifier.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -261,6 +441,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>
@@ -269,6 +450,7 @@
         <summary>To be added.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
     <Member MemberName="Update">
@@ -282,6 +464,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression</ReturnType>
@@ -293,12 +476,15 @@
         <Parameter Name="innerShaper" Type="System.Linq.Expressions.Expression" />
       </Parameters>
       <Docs>
-        <param name="parentIdentifier">To be added.</param>
-        <param name="outerIdentifier">To be added.</param>
-        <param name="selfIdentifier">To be added.</param>
-        <param name="innerShaper">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="parentIdentifier"> The <see cref="P:Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.ParentIdentifier" /> property of the result. </param>
+        <param name="outerIdentifier"> The <see cref="P:Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.OuterIdentifier" /> property of the result. </param>
+        <param name="selfIdentifier"> The <see cref="P:Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.SelfIdentifier" /> property of the result. </param>
+        <param name="innerShaper"> The <see cref="P:Microsoft.EntityFrameworkCore.Query.RelationalCollectionShaperExpression.InnerShaper" /> property of the result. </param>
+        <summary>
+                Creates a new expression that is like this one, but using the supplied children. If all of the children are the same, it will
+                return this expression.
+            </summary>
+        <returns> This expression if no children changed, or an expression with the updated children. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -313,6 +499,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -325,6 +512,7 @@
         <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
   </Members>

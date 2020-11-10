@@ -8,13 +8,22 @@
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Linq.Expressions.Expression</BaseTypeName>
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+      <para>
+                    An expression that represents an entity in the projection of <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" />.
+                </para>
+      <para>
+                    This type is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+    </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -31,8 +40,8 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" />
-        <Parameter Name="propertyExpressions" Type="System.Collections.Generic.IDictionary&lt;Microsoft.EntityFrameworkCore.Metadata.IProperty,Microsoft.EntityFrameworkCore.Query.SqlExpressions.ColumnExpression&gt;" />
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="propertyExpressions" Type="System.Collections.Generic.IDictionary&lt;Microsoft.EntityFrameworkCore.Metadata.IProperty,Microsoft.EntityFrameworkCore.Query.SqlExpressions.ColumnExpression&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1" />
       </Parameters>
       <Docs>
         <param name="entityType">To be added.</param>
@@ -52,17 +61,52 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-5.0">
+          <AttributeName Language="C#">[System.Obsolete("Use the constructor which takes populated column expressions map.", true)]</AttributeName>
+          <AttributeName Language="F#">[&lt;System.Obsolete("Use the constructor which takes populated column expressions map.", true)&gt;]</AttributeName>
+        </Attribute>
+      </Attributes>
       <Parameters>
         <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" />
         <Parameter Name="innerTable" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.TableExpressionBase" />
         <Parameter Name="nullable" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="entityType">To be added.</param>
-        <param name="innerTable">To be added.</param>
-        <param name="nullable">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="entityType"> The entity type to shape. </param>
+        <param name="innerTable"> The table from which entity columns are being projected out. </param>
+        <param name="nullable"> A bool value indicating whether this entity instance can be null. </param>
+        <summary>
+                Creates a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Query.EntityProjectionExpression" /> class.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public EntityProjectionExpression (Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType, System.Collections.Generic.IDictionary&lt;Microsoft.EntityFrameworkCore.Metadata.IProperty,Microsoft.EntityFrameworkCore.Query.SqlExpressions.ColumnExpression&gt; propertyExpressionMap, Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression discriminatorExpression = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType, class System.Collections.Generic.IDictionary`2&lt;class Microsoft.EntityFrameworkCore.Metadata.IProperty, class Microsoft.EntityFrameworkCore.Query.SqlExpressions.ColumnExpression&gt; propertyExpressionMap, class Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression discriminatorExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.EntityProjectionExpression.#ctor(Microsoft.EntityFrameworkCore.Metadata.IEntityType,System.Collections.Generic.IDictionary{Microsoft.EntityFrameworkCore.Metadata.IProperty,Microsoft.EntityFrameworkCore.Query.SqlExpressions.ColumnExpression},Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (entityType As IEntityType, propertyExpressionMap As IDictionary(Of IProperty, ColumnExpression), Optional discriminatorExpression As SqlExpression = Nothing)" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Query.EntityProjectionExpression : Microsoft.EntityFrameworkCore.Metadata.IEntityType * System.Collections.Generic.IDictionary&lt;Microsoft.EntityFrameworkCore.Metadata.IProperty, Microsoft.EntityFrameworkCore.Query.SqlExpressions.ColumnExpression&gt; * Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression -&gt; Microsoft.EntityFrameworkCore.Query.EntityProjectionExpression" Usage="new Microsoft.EntityFrameworkCore.Query.EntityProjectionExpression (entityType, propertyExpressionMap, discriminatorExpression)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="0" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="propertyExpressionMap" Type="System.Collections.Generic.IDictionary&lt;Microsoft.EntityFrameworkCore.Metadata.IProperty,Microsoft.EntityFrameworkCore.Query.SqlExpressions.ColumnExpression&gt;" Index="1" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="discriminatorExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" Index="2" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="entityType"> The entity type to shape. </param>
+        <param name="propertyExpressionMap"> A dictionary of column expressions corresponding to properties of the entity type. </param>
+        <param name="discriminatorExpression"> A <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" /> to generate discriminator for each concrete entity type in hierarchy. </param>
+        <summary>
+                Creates a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Query.EntityProjectionExpression" /> class.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -77,6 +121,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -86,9 +131,11 @@
         <Parameter Name="entityShaper" Type="Microsoft.EntityFrameworkCore.Query.EntityShaperExpression" />
       </Parameters>
       <Docs>
-        <param name="navigation">To be added.</param>
-        <param name="entityShaper">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="navigation"> A navigation to add binding for. </param>
+        <param name="entityShaper"> An entity shaper expression for the target type. </param>
+        <summary>
+                Adds a navigation binding for this entity projection when the target entity type of the navigation is owned or weak.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -103,6 +150,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.EntityShaperExpression</ReturnType>
@@ -111,9 +159,12 @@
         <Parameter Name="navigation" Type="Microsoft.EntityFrameworkCore.Metadata.INavigation" />
       </Parameters>
       <Docs>
-        <param name="navigation">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="navigation"> A navigation to bind. </param>
+        <summary>
+                Binds a navigation with this entity projection to get entity shaper for the target entity type of the navigation which was
+                previously added using <see cref="M:Microsoft.EntityFrameworkCore.Query.EntityProjectionExpression.AddNavigationBinding(Microsoft.EntityFrameworkCore.Metadata.INavigation,Microsoft.EntityFrameworkCore.Query.EntityShaperExpression)" /> method.
+            </summary>
+        <returns> An entity shaper expression for the target entity type of the navigation. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -128,6 +179,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.SqlExpressions.ColumnExpression</ReturnType>
@@ -136,9 +188,33 @@
         <Parameter Name="property" Type="Microsoft.EntityFrameworkCore.Metadata.IProperty" />
       </Parameters>
       <Docs>
-        <param name="property">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="property"> A property to bind. </param>
+        <summary>
+                Binds a property with this entity projection to get the SQL representation.
+            </summary>
+        <returns> A column which is a SQL representation of the property. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DiscriminatorExpression">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression DiscriminatorExpression { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression DiscriminatorExpression" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.EntityProjectionExpression.DiscriminatorExpression" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property DiscriminatorExpression As SqlExpression" />
+      <MemberSignature Language="F#" Value="member this.DiscriminatorExpression : Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" Usage="Microsoft.EntityFrameworkCore.Query.EntityProjectionExpression.DiscriminatorExpression" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                A <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" /> to generate discriminator for entity type.
+            </summary>
+        <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -153,12 +229,15 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IEntityType</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+                The entity type being projected out.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -174,14 +253,17 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.EntityProjectionExpression</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>
+                Makes entity instance in projection nullable.
+            </summary>
+        <returns> A new entity projection expression which can project nullable entity. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -196,6 +278,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.ExpressionType</ReturnType>
@@ -204,6 +287,7 @@
         <summary>To be added.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
     <Member MemberName="Type">
@@ -217,6 +301,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>
@@ -225,6 +310,7 @@
         <summary>To be added.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
     <Member MemberName="UpdateEntityType">
@@ -238,6 +324,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.EntityProjectionExpression</ReturnType>
@@ -246,9 +333,11 @@
         <Parameter Name="derivedType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" />
       </Parameters>
       <Docs>
-        <param name="derivedType">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="derivedType"> A derived entity type which should be projected. </param>
+        <summary>
+                Updates the entity type being projected out to one of the derived type.
+            </summary>
+        <returns> A new entity projection expression which has the derived type being projected. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -263,6 +352,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -275,6 +365,7 @@
         <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
   </Members>

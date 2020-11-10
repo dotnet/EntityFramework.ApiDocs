@@ -17,6 +17,7 @@
     <AssemblyVersion>2.2.6.0</AssemblyVersion>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -50,6 +51,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction</ReturnType>
@@ -88,6 +90,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;</ReturnType>
@@ -131,6 +134,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -157,12 +161,13 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context. </param>
@@ -704,13 +709,14 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="sql" Type="System.FormattableString" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="sql" Type="System.FormattableString" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context. </param>
@@ -721,20 +727,23 @@
                 </para>
           <para>
                     Note that this method does not start a transaction. To use this method with
-                    a transaction, first call <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)" /> or <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction)" />.
+                    a transaction, first call <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)" /> or <see cref="M:UseTransaction" />.
                 </para>
           <para>
                     Note that the current <see cref="T:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy" /> is not used by this method
-                    since the SQL may not be idempotent and does not run in a transaction. An ExecutionStrategy
+                    since the SQL may not be idempotent and does not run in a transaction. An <see cref="T:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy" />
                     can be used explicitly, making sure to also use a transaction if the SQL is not
                     idempotent.
                 </para>
           <para>
                     As with any API that accepts SQL it is important to parameterize any user input to protect against a SQL injection
                     attack. You can include parameter place holders in the SQL query string and then supply parameter values as additional
-                    arguments. Any parameter values you supply will automatically be converted to a DbParameter -
-                    <code>context.Database.ExecuteSqlInterpolated($"SELECT * FROM [dbo].[SearchBlogs]({userSuppliedSearchTerm})")</code>.
+                    arguments. Any parameter values you supply will automatically be converted to a DbParameter:
                 </para>
+          <code>
+                    var userSuppliedSearchTerm = ".NET";
+                    context.Database.ExecuteSqlInterpolated($"SELECT * FROM [dbo].[SearchBlogs]({userSuppliedSearchTerm})")
+                </code>
         </summary>
         <returns> The number of rows affected. </returns>
         <remarks>To be added.</remarks>
@@ -751,14 +760,15 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="sql" Type="System.FormattableString" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="sql" Type="System.FormattableString" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context. </param>
@@ -770,20 +780,23 @@
                 </para>
           <para>
                     Note that this method does not start a transaction. To use this method with
-                    a transaction, first call <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)" /> or <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction)" />.
+                    a transaction, first call <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)" /> or <see cref="M:UseTransaction" />.
                 </para>
           <para>
                     Note that the current <see cref="T:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy" /> is not used by this method
-                    since the SQL may not be idempotent and does not run in a transaction. An ExecutionStrategy
+                    since the SQL may not be idempotent and does not run in a transaction. An <see cref="T:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy" />
                     can be used explicitly, making sure to also use a transaction if the SQL is not
                     idempotent.
                 </para>
           <para>
                     As with any API that accepts SQL it is important to parameterize any user input to protect against a SQL injection
                     attack. You can include parameter place holders in the SQL query string and then supply parameter values as additional
-                    arguments. Any parameter values you supply will automatically be converted to a DbParameter -
-                    <code>context.Database.ExecuteSqlInterpolatedAsync($"SELECT * FROM [dbo].[SearchBlogs]({userSuppliedSearchTerm})")</code>.
+                    arguments. Any parameter values you supply will automatically be converted to a DbParameter:
                 </para>
+          <code>
+                    var userSuppliedSearchTerm = ".NET";
+                    context.Database.ExecuteSqlInterpolatedAsync($"SELECT * FROM [dbo].[SearchBlogs]({userSuppliedSearchTerm})")
+                </code>
         </summary>
         <returns>
                 A task that represents the asynchronous operation. The task result is the number of rows affected.
@@ -802,14 +815,15 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="parameters" Type="System.Collections.Generic.IEnumerable&lt;System.Object&gt;" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="parameters" Type="System.Collections.Generic.IEnumerable&lt;System.Object&gt;" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context. </param>
@@ -821,19 +835,24 @@
                 </para>
           <para>
                     Note that this method does not start a transaction. To use this method with
-                    a transaction, first call <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)" /> or <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction)" />.
+                    a transaction, first call <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)" /> or <see cref="M:UseTransaction" />.
                 </para>
           <para>
                     Note that the current <see cref="T:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy" /> is not used by this method
-                    since the SQL may not be idempotent and does not run in a transaction. An ExecutionStrategy
+                    since the SQL may not be idempotent and does not run in a transaction. An <see cref="T:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy" />
                     can be used explicitly, making sure to also use a transaction if the SQL is not
                     idempotent.
                 </para>
           <para>
                     As with any API that accepts SQL it is important to parameterize any user input to protect against a SQL injection
                     attack. You can include parameter place holders in the SQL query string and then supply parameter values as additional
-                    arguments. Any parameter values you supply will automatically be converted to a DbParameter.
-                    You can also consider using ExecuteSqlInterpolated to use interpolated string syntax to create parameters.
+                    arguments. Any parameter values you supply will automatically be converted to a DbParameter:
+                </para>
+          <code>context.Database.ExecuteSqlRawAsync("SELECT * FROM [dbo].[SearchBlogs]({0})", userSuppliedSearchTerm)</code>
+          <para>
+                    However, <b>never</b> pass a concatenated or interpolated string (<c>$""</c>) with non-validated user-provided values
+                    into this method. Doing so may expose your application to SQL injection attacks. To use the interpolated string syntax,
+                    consider using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.ExecuteSqlInterpolated(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.FormattableString)" /> to create parameters.
                 </para>
         </summary>
         <returns> The number of rows affected. </returns>
@@ -851,14 +870,15 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="parameters" Type="System.Object[]" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1">
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="parameters" Type="System.Object[]" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">
           <Attributes>
             <Attribute FrameworkAlternate="efcore-3.0">
               <AttributeName>System.ParamArray</AttributeName>
@@ -876,20 +896,24 @@
                 </para>
           <para>
                     Note that this method does not start a transaction. To use this method with
-                    a transaction, first call <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)" /> or <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction)" />.
+                    a transaction, first call <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)" /> or <see cref="M:UseTransaction" />.
                 </para>
           <para>
                     Note that the current <see cref="T:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy" /> is not used by this method
-                    since the SQL may not be idempotent and does not run in a transaction. An ExecutionStrategy
+                    since the SQL may not be idempotent and does not run in a transaction. An <see cref="T:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy" />
                     can be used explicitly, making sure to also use a transaction if the SQL is not
                     idempotent.
                 </para>
           <para>
                     As with any API that accepts SQL it is important to parameterize any user input to protect against a SQL injection
                     attack. You can include parameter place holders in the SQL query string and then supply parameter values as additional
-                    arguments. Any parameter values you supply will automatically be converted to a DbParameter -
-                    <code>context.Database.ExecuteSqlRaw("SELECT * FROM [dbo].[SearchBlogs]({0})", userSuppliedSearchTerm)</code>.
-                    You can also consider using ExecuteSqlInterpolated to use interpolated string syntax to create parameters.
+                    arguments. Any parameter values you supply will automatically be converted to a DbParameter:
+                </para>
+          <code>context.Database.ExecuteSqlRaw("SELECT * FROM [dbo].[SearchBlogs]({0})", userSuppliedSearchTerm)</code>
+          <para>
+                    However, <b>never</b> pass a concatenated or interpolated string (<c>$""</c>) with non-validated user-provided values
+                    into this method. Doing so may expose your application to SQL injection attacks. To use the interpolated string syntax,
+                    consider using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.ExecuteSqlInterpolated(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.FormattableString)" /> to create parameters.
                 </para>
         </summary>
         <returns> The number of rows affected. </returns>
@@ -907,14 +931,15 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="parameters" Type="System.Object[]" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1">
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="parameters" Type="System.Object[]" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">
           <Attributes>
             <Attribute FrameworkAlternate="efcore-3.0">
               <AttributeName>System.ParamArray</AttributeName>
@@ -932,20 +957,24 @@
                 </para>
           <para>
                     Note that this method does not start a transaction. To use this method with
-                    a transaction, first call <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)" /> or <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction)" />.
+                    a transaction, first call <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)" /> or <see cref="M:UseTransaction" />.
                 </para>
           <para>
                     Note that the current <see cref="T:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy" /> is not used by this method
-                    since the SQL may not be idempotent and does not run in a transaction. An ExecutionStrategy
+                    since the SQL may not be idempotent and does not run in a transaction. An <see cref="T:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy" />
                     can be used explicitly, making sure to also use a transaction if the SQL is not
                     idempotent.
                 </para>
           <para>
                     As with any API that accepts SQL it is important to parameterize any user input to protect against a SQL injection
                     attack. You can include parameter place holders in the SQL query string and then supply parameter values as additional
-                    arguments. Any parameter values you supply will automatically be converted to a DbParameter -
-                    <code>context.Database.ExecuteSqlRawAsync("SELECT * FROM [dbo].[SearchBlogs]({0})", userSuppliedSearchTerm)</code>.
-                    You can also consider using ExecuteSqlInterpolated to use interpolated string syntax to create parameters.
+                    arguments. Any parameter values you supply will automatically be converted to a DbParameter:
+                </para>
+          <code>context.Database.ExecuteSqlRawAsync("SELECT * FROM [dbo].[SearchBlogs]({0})", userSuppliedSearchTerm)</code>
+          <para>
+                    However, <b>never</b> pass a concatenated or interpolated string (<c>$""</c>) with non-validated user-provided values
+                    into this method. Doing so may expose your application to SQL injection attacks. To use the interpolated string syntax,
+                    consider using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.ExecuteSqlInterpolated(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.FormattableString)" /> to create parameters.
                 </para>
         </summary>
         <returns>
@@ -965,14 +994,15 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context. </param>
@@ -984,13 +1014,17 @@
                 </para>
           <para>
                     Note that this method does not start a transaction. To use this method with
-                    a transaction, first call <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)" /> or <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction)" />.
+                    a transaction, first call <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)" /> or <see cref="M:UseTransaction" />.
                 </para>
           <para>
                     Note that the current <see cref="T:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy" /> is not used by this method
-                    since the SQL may not be idempotent and does not run in a transaction. An ExecutionStrategy
+                    since the SQL may not be idempotent and does not run in a transaction. An <see cref="T:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy" />
                     can be used explicitly, making sure to also use a transaction if the SQL is not
                     idempotent.
+                </para>
+          <para>
+            <b>Never</b> pass a concatenated or interpolated string (<c>$""</c>) with non-validated user-provided values
+                    into this method. Doing so may expose your application to SQL injection attacks.
                 </para>
         </summary>
         <returns>
@@ -1010,15 +1044,16 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="parameters" Type="System.Collections.Generic.IEnumerable&lt;System.Object&gt;" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="3" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="parameters" Type="System.Collections.Generic.IEnumerable&lt;System.Object&gt;" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="3" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context. </param>
@@ -1031,7 +1066,7 @@
                 </para>
           <para>
                     Note that this method does not start a transaction. To use this method with
-                    a transaction, first call <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)" /> or <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction)" />.
+                    a transaction, first call <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)" /> or <see cref="M:UseTransaction" />.
                 </para>
           <para>
                     Note that the current <see cref="T:Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy" /> is not used by this method
@@ -1042,8 +1077,13 @@
           <para>
                     As with any API that accepts SQL it is important to parameterize any user input to protect against a SQL injection
                     attack. You can include parameter place holders in the SQL query string and then supply parameter values as additional
-                    arguments. Any parameter values you supply will automatically be converted to a DbParameter.
-                    You can also consider using ExecuteSqlInterpolated to use interpolated string syntax to create parameters.
+                    arguments. Any parameter values you supply will automatically be converted to a DbParameter:
+                </para>
+          <code>context.Database.ExecuteSqlRawAsync("SELECT * FROM [dbo].[SearchBlogs]({0})", userSuppliedSearchTerm)</code>
+          <para>
+                    However, <b>never</b> pass a concatenated or interpolated string (<c>$""</c>) with non-validated user-provided values
+                    into this method. Doing so may expose your application to SQL injection attacks. To use the interpolated string syntax,
+                    consider using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.ExecuteSqlInterpolated(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.FormattableString)" /> to create parameters.
                 </para>
         </summary>
         <returns>
@@ -1066,12 +1106,13 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="databaseFacade">To be added.</param>
@@ -1102,12 +1143,13 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context.</param>
@@ -1136,13 +1178,14 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Collections.Generic.IEnumerable&lt;System.String&gt;&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context.</param>
@@ -1174,6 +1217,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Nullable&lt;System.Int32&gt;</ReturnType>
@@ -1193,6 +1237,32 @@
                 </para>
         </summary>
         <returns> The timeout, in seconds, or null if no timeout has been set. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetConnectionString">
+      <MemberSignature Language="C#" Value="public static string GetConnectionString (this Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string GetConnectionString(class Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.GetConnectionString(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function GetConnectionString (databaseFacade As DatabaseFacade) As String" />
+      <MemberSignature Language="F#" Value="static member GetConnectionString : Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade -&gt; string" Usage="Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.GetConnectionString databaseFacade" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" Index="0" FrameworkAlternate="efcore-5.0" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context. </param>
+        <summary>
+                Gets the underlying connection string configured for this <see cref="T:Microsoft.EntityFrameworkCore.DbContext" />.
+            </summary>
+        <returns> The connection string. </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1216,6 +1286,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Data.Common.DbConnection</ReturnType>
@@ -1250,12 +1321,13 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context.</param>
@@ -1284,12 +1356,13 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context.</param>
@@ -1318,13 +1391,14 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Collections.Generic.IEnumerable&lt;System.String&gt;&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context.</param>
@@ -1333,6 +1407,37 @@
                 Asynchronously gets all migrations that are defined in the assembly but haven't been applied to the target database.
             </summary>
         <returns> A task that represents the asynchronous operation. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsRelational">
+      <MemberSignature Language="C#" Value="public static bool IsRelational (this Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsRelational(class Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.IsRelational(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function IsRelational (databaseFacade As DatabaseFacade) As Boolean" />
+      <MemberSignature Language="F#" Value="static member IsRelational : Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade -&gt; bool" Usage="Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.IsRelational databaseFacade" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" Index="0" FrameworkAlternate="efcore-5.0" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="databaseFacade"> The facade from <see cref="P:Microsoft.EntityFrameworkCore.DbContext.Database" />. </param>
+        <summary>
+          <para>
+                    Returns <see langword="true" /> if the database provider currently in use is a relational database.
+                </para>
+        </summary>
+        <returns>
+          <see langword="true" /> if a relational database provider is being used;
+                <see langword="false" /> otherwise.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1356,6 +1461,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1371,7 +1477,7 @@
                     if it does not already exist.
                 </para>
           <para>
-                    Note that this API is mutually exclusive with DbContext.Database.EnsureCreated(). EnsureCreated does not use migrations
+                    Note that this API is mutually exclusive with <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated" />. EnsureCreated does not use migrations
                     to create the database and therefore the database that is created cannot be later updated using migrations.
                 </para>
         </summary>
@@ -1398,6 +1504,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
@@ -1415,8 +1522,9 @@
                     if it does not already exist.
                 </para>
           <para>
-                    Note that this API is mutually exclusive with DbContext.Database.EnsureCreated(). EnsureCreated does not use migrations
-                    to create the database and therefore the database that is created cannot be later updated using migrations.
+                    Note that this API is mutually exclusive with <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated" />.
+                    <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated" /> does not use migrations to create the database and therefore the database
+                    that is created cannot be later updated using migrations.
                 </para>
         </summary>
         <returns> A task that represents the asynchronous migration operation. </returns>
@@ -1443,6 +1551,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1478,6 +1587,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
@@ -1516,6 +1626,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1555,13 +1666,14 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
-        <Parameter Name="timeout" Type="System.TimeSpan" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="timeout" Type="System.TimeSpan" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context. </param>
@@ -1573,6 +1685,73 @@
           <para>
                     Note that the command timeout is distinct from the connection timeout, which is commonly
                     set on the database connection string.
+                </para>
+        </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SetConnectionString">
+      <MemberSignature Language="C#" Value="public static void SetConnectionString (this Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade, string connectionString);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void SetConnectionString(class Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade, string connectionString) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetConnectionString(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Sub SetConnectionString (databaseFacade As DatabaseFacade, connectionString As String)" />
+      <MemberSignature Language="F#" Value="static member SetConnectionString : Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade * string -&gt; unit" Usage="Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetConnectionString (databaseFacade, connectionString)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" Index="0" FrameworkAlternate="efcore-5.0" RefType="this" />
+        <Parameter Name="connectionString" Type="System.String" Index="1" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context. </param>
+        <param name="connectionString"> The connection string. </param>
+        <summary>
+          <para>
+                    Sets the underlying connection string configured for this <see cref="T:Microsoft.EntityFrameworkCore.DbContext" />.
+                </para>
+          <para>
+                    It may not be possible to change the connection string if existing connection, if any, is open.
+                </para>
+        </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SetDbConnection">
+      <MemberSignature Language="C#" Value="public static void SetDbConnection (this Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade, System.Data.Common.DbConnection connection);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void SetDbConnection(class Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade, class System.Data.Common.DbConnection connection) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetDbConnection(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbConnection)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Sub SetDbConnection (databaseFacade As DatabaseFacade, connection As DbConnection)" />
+      <MemberSignature Language="F#" Value="static member SetDbConnection : Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade * System.Data.Common.DbConnection -&gt; unit" Usage="Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetDbConnection (databaseFacade, connection)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" Index="0" FrameworkAlternate="efcore-5.0" RefType="this" />
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="1" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context. </param>
+        <param name="connection"> The connection. </param>
+        <summary>
+          <para>
+                    Sets the underlying ADO.NET <see cref="T:System.Data.Common.DbConnection" /> for this <see cref="T:Microsoft.EntityFrameworkCore.DbContext" />.
+                </para>
+          <para>
+                    The connection can only be set when the existing connection, if any, is not open.
+                </para>
+          <para>
+                    Note that the given connection must be disposed by application code since it was not created by Entity Framework.
                 </para>
         </summary>
         <remarks>To be added.</remarks>
@@ -1598,6 +1777,7 @@
         <AssemblyVersion>2.2.6.0</AssemblyVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction</ReturnType>
@@ -1616,6 +1796,36 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="UseTransaction">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction UseTransaction (this Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade, System.Data.Common.DbTransaction transaction, Guid transactionId);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction UseTransaction(class Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade, class System.Data.Common.DbTransaction transaction, valuetype System.Guid transactionId) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction,System.Guid)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseTransaction (databaseFacade As DatabaseFacade, transaction As DbTransaction, transactionId As Guid) As IDbContextTransaction" />
+      <MemberSignature Language="F#" Value="static member UseTransaction : Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade * System.Data.Common.DbTransaction * Guid -&gt; Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction" Usage="Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransaction (databaseFacade, transaction, transactionId)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" Index="0" FrameworkAlternate="efcore-5.0" RefType="this" />
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" Index="1" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="transactionId" Type="System.Guid" Index="2" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context. </param>
+        <param name="transaction"> The <see cref="T:System.Data.Common.DbTransaction" /> to use. </param>
+        <param name="transactionId"> The unique identifier for the transaction. </param>
+        <summary>
+                Sets the <see cref="T:System.Data.Common.DbTransaction" /> to be used by database operations on the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" />.
+            </summary>
+        <returns> A <see cref="T:Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction" /> that encapsulates the given transaction. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="UseTransactionAsync">
       <MemberSignature Language="C#" Value="public static System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt; UseTransactionAsync (this Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade, System.Data.Common.DbTransaction transaction, System.Threading.CancellationToken cancellationToken = default);" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Threading.Tasks.Task`1&lt;class Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt; UseTransactionAsync(class Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade, class System.Data.Common.DbTransaction transaction, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
@@ -1627,18 +1837,51 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context. </param>
         <param name="transaction"> The <see cref="T:System.Data.Common.DbTransaction" /> to use. </param>
+        <param name="cancellationToken">A token to observe while waiting for the task to complete.</param>
+        <summary>
+                Sets the <see cref="T:System.Data.Common.DbTransaction" /> to be used by database operations on the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" />.
+            </summary>
+        <returns> A <see cref="T:System.Threading.Tasks.Task" /> containing the <see cref="T:Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction" /> for the given transaction. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseTransactionAsync">
+      <MemberSignature Language="C#" Value="public static System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt; UseTransactionAsync (this Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade, System.Data.Common.DbTransaction transaction, Guid transactionId, System.Threading.CancellationToken cancellationToken = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Threading.Tasks.Task`1&lt;class Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt; UseTransactionAsync(class Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade, class System.Data.Common.DbTransaction transaction, valuetype System.Guid transactionId, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransactionAsync(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbTransaction,System.Guid,System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseTransactionAsync (databaseFacade As DatabaseFacade, transaction As DbTransaction, transactionId As Guid, Optional cancellationToken As CancellationToken = Nothing) As Task(Of IDbContextTransaction)" />
+      <MemberSignature Language="F#" Value="static member UseTransactionAsync : Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade * System.Data.Common.DbTransaction * Guid * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;" Usage="Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransactionAsync (databaseFacade, transaction, transactionId, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="databaseFacade" Type="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" Index="0" FrameworkAlternate="efcore-5.0" RefType="this" />
+        <Parameter Name="transaction" Type="System.Data.Common.DbTransaction" Index="1" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="transactionId" Type="System.Guid" Index="2" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="3" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="databaseFacade"> The <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> for the context. </param>
+        <param name="transaction"> The <see cref="T:System.Data.Common.DbTransaction" /> to use. </param>
+        <param name="transactionId"> The unique identifier for the transaction. </param>
         <param name="cancellationToken">A token to observe while waiting for the task to complete.</param>
         <summary>
                 Sets the <see cref="T:System.Data.Common.DbTransaction" /> to be used by database operations on the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" />.

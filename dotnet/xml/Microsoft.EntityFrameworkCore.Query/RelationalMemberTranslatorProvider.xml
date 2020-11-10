@@ -8,6 +8,7 @@
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -18,7 +19,17 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+      <para>
+                    Provides translations for LINQ <see cref="T:System.Linq.Expressions.MemberExpression" /> expressions by dispatching to multiple specialized member
+                    translators.
+                </para>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
+                    is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
+                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
+                </para>
+    </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -33,13 +44,16 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Query.RelationalMemberTranslatorProviderDependencies" />
       </Parameters>
       <Docs>
-        <param name="dependencies">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="dependencies"> Parameter object containing dependencies for this class. </param>
+        <summary>
+                Creates a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Query.RelationalMemberTranslatorProvider" /> class.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -54,6 +68,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -62,8 +77,10 @@
         <Parameter Name="translators" Type="System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Query.IMemberTranslator&gt;" />
       </Parameters>
       <Docs>
-        <param name="translators">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="translators"> Translators to add. </param>
+        <summary>
+                Adds additional translators which will take priority over existing registered translators.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -86,9 +103,9 @@
         <ReturnType>Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="instance" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" />
-        <Parameter Name="member" Type="System.Reflection.MemberInfo" />
-        <Parameter Name="returnType" Type="System.Type" />
+        <Parameter Name="instance" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="member" Type="System.Reflection.MemberInfo" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1" />
+        <Parameter Name="returnType" Type="System.Type" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1" />
       </Parameters>
       <Docs>
         <param name="instance">To be added.</param>
@@ -97,6 +114,40 @@
         <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Translate">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression Translate (Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression instance, System.Reflection.MemberInfo member, Type returnType, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Query&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression Translate(class Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression instance, class System.Reflection.MemberInfo member, class System.Type returnType, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Query&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.RelationalMemberTranslatorProvider.Translate(Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression,System.Reflection.MemberInfo,System.Type,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Query})" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function Translate (instance As SqlExpression, member As MemberInfo, returnType As Type, logger As IDiagnosticsLogger(Of DbLoggerCategory.Query)) As SqlExpression" />
+      <MemberSignature Language="F#" Value="abstract member Translate : Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression * System.Reflection.MemberInfo * Type * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Query&gt; -&gt; Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression&#xA;override this.Translate : Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression * System.Reflection.MemberInfo * Type * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Query&gt; -&gt; Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" Usage="relationalMemberTranslatorProvider.Translate (instance, member, returnType, logger)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Query.IMemberTranslatorProvider.Translate(Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression,System.Reflection.MemberInfo,System.Type,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Query})</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="instance" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" Index="0" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="member" Type="System.Reflection.MemberInfo" Index="1" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="returnType" Type="System.Type" Index="2" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Query&gt;" Index="3" FrameworkAlternate="efcore-5.0" />
+      </Parameters>
+      <Docs>
+        <param name="instance">To be added.</param>
+        <param name="member">To be added.</param>
+        <param name="returnType">To be added.</param>
+        <param name="logger">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
   </Members>
