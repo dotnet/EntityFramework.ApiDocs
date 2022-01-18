@@ -8,11 +8,16 @@
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit CosmosDiscriminatorConvention extends Microsoft.EntityFrameworkCore.Metadata.Conventions.DiscriminatorConvention implements class Microsoft.EntityFrameworkCore.Metadata.Conventions.IConvention, class Microsoft.EntityFrameworkCore.Metadata.Conventions.IEntityTypeAddedConvention, class Microsoft.EntityFrameworkCore.Metadata.Conventions.IForeignKeyOwnershipChangedConvention, class Microsoft.EntityFrameworkCore.Metadata.Conventions.IForeignKeyRemovedConvention" FrameworkAlternate="efcore-3.1;efcore-5.0" />
   <TypeSignature Language="VB.NET" Value="Public Class CosmosDiscriminatorConvention&#xA;Inherits DiscriminatorConvention&#xA;Implements IEntityTypeAddedConvention, IForeignKeyOwnershipChangedConvention, IForeignKeyRemovedConvention" FrameworkAlternate="efcore-3.1;efcore-5.0" />
   <TypeSignature Language="F#" Value="type CosmosDiscriminatorConvention = class&#xA;    inherit DiscriminatorConvention&#xA;    interface IForeignKeyOwnershipChangedConvention&#xA;    interface IConvention&#xA;    interface IForeignKeyRemovedConvention&#xA;    interface IEntityTypeAddedConvention" FrameworkAlternate="efcore-3.1;efcore-5.0" />
+  <TypeSignature Language="C#" Value="public class CosmosDiscriminatorConvention : Microsoft.EntityFrameworkCore.Metadata.Conventions.DiscriminatorConvention, Microsoft.EntityFrameworkCore.Metadata.Conventions.IEntityTypeAddedConvention, Microsoft.EntityFrameworkCore.Metadata.Conventions.IEntityTypeAnnotationChangedConvention, Microsoft.EntityFrameworkCore.Metadata.Conventions.IForeignKeyOwnershipChangedConvention, Microsoft.EntityFrameworkCore.Metadata.Conventions.IForeignKeyRemovedConvention" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit CosmosDiscriminatorConvention extends Microsoft.EntityFrameworkCore.Metadata.Conventions.DiscriminatorConvention implements class Microsoft.EntityFrameworkCore.Metadata.Conventions.IConvention, class Microsoft.EntityFrameworkCore.Metadata.Conventions.IEntityTypeAddedConvention, class Microsoft.EntityFrameworkCore.Metadata.Conventions.IEntityTypeAnnotationChangedConvention, class Microsoft.EntityFrameworkCore.Metadata.Conventions.IForeignKeyOwnershipChangedConvention, class Microsoft.EntityFrameworkCore.Metadata.Conventions.IForeignKeyRemovedConvention" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="VB.NET" Value="Public Class CosmosDiscriminatorConvention&#xA;Inherits DiscriminatorConvention&#xA;Implements IEntityTypeAddedConvention, IEntityTypeAnnotationChangedConvention, IForeignKeyOwnershipChangedConvention, IForeignKeyRemovedConvention" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="F#" Value="type CosmosDiscriminatorConvention = class&#xA;    inherit DiscriminatorConvention&#xA;    interface IForeignKeyOwnershipChangedConvention&#xA;    interface IConvention&#xA;    interface IForeignKeyRemovedConvention&#xA;    interface IEntityTypeAddedConvention&#xA;    interface IEntityTypeAnnotationChangedConvention" FrameworkAlternate="efcore-6.0" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>Microsoft.EntityFrameworkCore.Metadata.Conventions.DiscriminatorConvention</BaseTypeName>
@@ -24,18 +29,24 @@
     <Interface>
       <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.Conventions.IEntityTypeAddedConvention</InterfaceName>
     </Interface>
-    <Interface FrameworkAlternate="efcore-3.1;efcore-5.0">
+    <Interface FrameworkAlternate="efcore-3.1;efcore-5.0;efcore-6.0">
       <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.Conventions.IForeignKeyOwnershipChangedConvention</InterfaceName>
     </Interface>
-    <Interface FrameworkAlternate="efcore-3.1;efcore-5.0">
+    <Interface FrameworkAlternate="efcore-3.1;efcore-5.0;efcore-6.0">
       <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.Conventions.IForeignKeyRemovedConvention</InterfaceName>
+    </Interface>
+    <Interface FrameworkAlternate="efcore-6.0">
+      <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.Conventions.IEntityTypeAnnotationChangedConvention</InterfaceName>
     </Interface>
   </Interfaces>
   <Docs>
     <summary>
                 A convention that configures the discriminator value for entity types as the entity type name.
             </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-conventions">Model building conventions</see>, and
+                <see href="https://aka.ms/efcore-docs-cosmos">Accessing Azure Cosmos DB with EF Core</see> for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -50,12 +61,13 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure.ProviderConventionSetBuilderDependencies" />
       </Parameters>
       <Docs>
-        <param name="dependencies"> Parameter object containing dependencies for this convention. </param>
+        <param name="dependencies">Parameter object containing dependencies for this convention.</param>
         <summary>
                 Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Conventions.CosmosDiscriminatorConvention" />.
             </summary>
@@ -77,6 +89,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -86,26 +99,64 @@
         <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder&gt;" />
       </Parameters>
       <Docs>
-        <param name="entityTypeBuilder"> The builder for the entity type. </param>
-        <param name="context"> Additional information associated with convention execution. </param>
+        <param name="entityTypeBuilder">The builder for the entity type.</param>
+        <param name="context">Additional information associated with convention execution.</param>
         <summary>
                 Called after an entity type is added to the model.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="ProcessEntityTypeAnnotationChanged">
+      <MemberSignature Language="C#" Value="public virtual void ProcessEntityTypeAnnotationChanged (Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder entityTypeBuilder, string name, Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation? annotation, Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation? oldAnnotation, Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation&gt; context);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void ProcessEntityTypeAnnotationChanged(class Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder entityTypeBuilder, string name, class Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation annotation, class Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation oldAnnotation, class Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext`1&lt;class Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation&gt; context) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.Conventions.CosmosDiscriminatorConvention.ProcessEntityTypeAnnotationChanged(Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder,System.String,Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation,Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation,Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext{Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation})" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Sub ProcessEntityTypeAnnotationChanged (entityTypeBuilder As IConventionEntityTypeBuilder, name As String, annotation As IConventionAnnotation, oldAnnotation As IConventionAnnotation, context As IConventionContext(Of IConventionAnnotation))" />
+      <MemberSignature Language="F#" Value="abstract member ProcessEntityTypeAnnotationChanged : Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder * string * Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation * Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation * Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation&gt; -&gt; unit&#xA;override this.ProcessEntityTypeAnnotationChanged : Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder * string * Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation * Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation * Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation&gt; -&gt; unit" Usage="cosmosDiscriminatorConvention.ProcessEntityTypeAnnotationChanged (entityTypeBuilder, name, annotation, oldAnnotation, context)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Metadata.Conventions.IEntityTypeAnnotationChangedConvention.ProcessEntityTypeAnnotationChanged(Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder,System.String,Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation,Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation,Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext{Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation})</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="entityTypeBuilder" Type="Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder" Index="0" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="annotation" Type="Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation" Index="2" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="oldAnnotation" Type="Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation" Index="3" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotation&gt;" Index="4" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="entityTypeBuilder">The builder for the entity type.</param>
+        <param name="name">The annotation name.</param>
+        <param name="annotation">The new annotation.</param>
+        <param name="oldAnnotation">The old annotation.</param>
+        <param name="context">Additional information associated with convention execution.</param>
+        <summary>
+                Called after an annotation is changed on an entity type.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="ProcessEntityTypeBaseTypeChanged">
-      <MemberSignature Language="C#" Value="public override void ProcessEntityTypeBaseTypeChanged (Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder entityTypeBuilder, Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType newBaseType, Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType oldBaseType, Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType&gt; context);" />
+      <MemberSignature Language="C#" Value="public override void ProcessEntityTypeBaseTypeChanged (Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder entityTypeBuilder, Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType newBaseType, Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType oldBaseType, Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType&gt; context);" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance void ProcessEntityTypeBaseTypeChanged(class Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder entityTypeBuilder, class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType newBaseType, class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType oldBaseType, class Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext`1&lt;class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType&gt; context) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.Conventions.CosmosDiscriminatorConvention.ProcessEntityTypeBaseTypeChanged(Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder,Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType,Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType,Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext{Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType})" />
       <MemberSignature Language="VB.NET" Value="Public Overrides Sub ProcessEntityTypeBaseTypeChanged (entityTypeBuilder As IConventionEntityTypeBuilder, newBaseType As IConventionEntityType, oldBaseType As IConventionEntityType, context As IConventionContext(Of IConventionEntityType))" />
       <MemberSignature Language="F#" Value="override this.ProcessEntityTypeBaseTypeChanged : Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder * Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType * Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType * Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType&gt; -&gt; unit" Usage="cosmosDiscriminatorConvention.ProcessEntityTypeBaseTypeChanged (entityTypeBuilder, newBaseType, oldBaseType, context)" />
+      <MemberSignature Language="C#" Value="public override void ProcessEntityTypeBaseTypeChanged (Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder entityTypeBuilder, Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType? newBaseType, Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType? oldBaseType, Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType&gt; context);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -117,10 +168,10 @@
         <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType&gt;" />
       </Parameters>
       <Docs>
-        <param name="entityTypeBuilder"> The builder for the entity type. </param>
-        <param name="newBaseType"> The new base entity type. </param>
-        <param name="oldBaseType"> The old base entity type. </param>
-        <param name="context"> Additional information associated with convention execution. </param>
+        <param name="entityTypeBuilder">The builder for the entity type.</param>
+        <param name="newBaseType">The new base entity type.</param>
+        <param name="oldBaseType">The old base entity type.</param>
+        <param name="context">Additional information associated with convention execution.</param>
         <summary>
                 Called after the base type of an entity type changes.
             </summary>
@@ -139,6 +190,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -149,9 +201,9 @@
         <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType&gt;" />
       </Parameters>
       <Docs>
-        <param name="modelBuilder"> The builder for the model. </param>
-        <param name="entityType"> The removed entity type. </param>
-        <param name="context"> Additional information associated with convention execution. </param>
+        <param name="modelBuilder">The builder for the model.</param>
+        <param name="entityType">The removed entity type.</param>
+        <param name="context">Additional information associated with convention execution.</param>
         <summary>
                 Called after an entity type is removed from the model.
             </summary>
@@ -159,7 +211,7 @@
       </Docs>
     </Member>
     <Member MemberName="ProcessForeignKeyOwnershipChanged">
-      <MemberSignature Language="C#" Value="public virtual void ProcessForeignKeyOwnershipChanged (Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionForeignKeyBuilder relationshipBuilder, Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Nullable&lt;bool&gt;&gt; context);" />
+      <MemberSignature Language="C#" Value="public virtual void ProcessForeignKeyOwnershipChanged (Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionForeignKeyBuilder relationshipBuilder, Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;bool?&gt; context);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void ProcessForeignKeyOwnershipChanged(class Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionForeignKeyBuilder relationshipBuilder, class Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext`1&lt;valuetype System.Nullable`1&lt;bool&gt;&gt; context) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.Conventions.CosmosDiscriminatorConvention.ProcessForeignKeyOwnershipChanged(Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionForeignKeyBuilder,Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext{System.Nullable{System.Boolean}})" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Sub ProcessForeignKeyOwnershipChanged (relationshipBuilder As IConventionForeignKeyBuilder, context As IConventionContext(Of Nullable(Of Boolean)))" />
@@ -171,17 +223,18 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="relationshipBuilder" Type="Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionForeignKeyBuilder" Index="0" FrameworkAlternate="efcore-5.0" />
-        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;System.Nullable&lt;System.Boolean&gt;&gt;" Index="1" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="relationshipBuilder" Type="Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionForeignKeyBuilder" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;System.Nullable&lt;System.Boolean&gt;&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
-        <param name="relationshipBuilder"> The builder for the foreign key. </param>
-        <param name="context"> Additional information associated with convention execution. </param>
+        <param name="relationshipBuilder">The builder for the foreign key.</param>
+        <param name="context">Additional information associated with convention execution.</param>
         <summary>
                 Called after the ownership value for a foreign key is changed.
             </summary>
@@ -232,19 +285,20 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="entityTypeBuilder" Type="Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder" Index="0" FrameworkAlternate="efcore-3.1;efcore-5.0" />
-        <Parameter Name="foreignKey" Type="Microsoft.EntityFrameworkCore.Metadata.IConventionForeignKey" Index="1" FrameworkAlternate="efcore-3.1;efcore-5.0" />
-        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.IConventionForeignKey&gt;" Index="2" FrameworkAlternate="efcore-3.1;efcore-5.0" />
+        <Parameter Name="entityTypeBuilder" Type="Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionEntityTypeBuilder" Index="0" FrameworkAlternate="efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="foreignKey" Type="Microsoft.EntityFrameworkCore.Metadata.IConventionForeignKey" Index="1" FrameworkAlternate="efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.IConventionContext&lt;Microsoft.EntityFrameworkCore.Metadata.IConventionForeignKey&gt;" Index="2" FrameworkAlternate="efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
-        <param name="entityTypeBuilder"> The builder for the entity type. </param>
-        <param name="foreignKey"> The removed foreign key. </param>
-        <param name="context"> Additional information associated with convention execution. </param>
+        <param name="entityTypeBuilder">The builder for the entity type.</param>
+        <param name="foreignKey">The removed foreign key.</param>
+        <param name="context">Additional information associated with convention execution.</param>
         <summary>
                 Called after a foreign key is removed.
             </summary>

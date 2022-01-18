@@ -12,17 +12,17 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Docs>
     <summary>
       <para>
-                    The core type mapping interface for EF Core, starting with version 2.1. Type mappings describe how a
-                    provider maps CLR types/values to database types/values.
+                    The core type mapping source. Type mappings describe how a provider maps CLR types/values to database types/values.
                 </para>
       <para>
                     Warning: do not implement this interface directly. Instead, derive from <see cref="T:Microsoft.EntityFrameworkCore.Storage.TypeMappingSourceBase" />
-                    for non-relational providers, or 'RelationalTypeMappingSourceBase' for relational providers.
+                    for non-relational providers, or 'RelationalTypeMappingSource' for relational providers.
                 </para>
       <para>
                     This type is typically used by database providers (and other extensions). It is generally
@@ -34,15 +34,19 @@
                     This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
                 </para>
     </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
+                for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName="FindMapping">
-      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping (Microsoft.EntityFrameworkCore.Metadata.IProperty property);" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping (Microsoft.EntityFrameworkCore.Metadata.IProperty property);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping(class Microsoft.EntityFrameworkCore.Metadata.IProperty property) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource.FindMapping(Microsoft.EntityFrameworkCore.Metadata.IProperty)" />
       <MemberSignature Language="VB.NET" Value="Public Function FindMapping (property As IProperty) As CoreTypeMapping" />
       <MemberSignature Language="F#" Value="abstract member FindMapping : Microsoft.EntityFrameworkCore.Metadata.IProperty -&gt; Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping" Usage="iTypeMappingSource.FindMapping property" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping? FindMapping (Microsoft.EntityFrameworkCore.Metadata.IProperty property);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -52,6 +56,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping</ReturnType>
@@ -60,20 +65,21 @@
         <Parameter Name="property" Type="Microsoft.EntityFrameworkCore.Metadata.IProperty" />
       </Parameters>
       <Docs>
-        <param name="property"> The property. </param>
+        <param name="property">The property.</param>
         <summary>
                 Finds the type mapping for a given <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IProperty" />.
             </summary>
-        <returns> The type mapping, or <see langword="null" /> if none was found. </returns>
+        <returns>The type mapping, or <see langword="null" /> if none was found.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="FindMapping">
-      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping (System.Reflection.MemberInfo member);" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping (System.Reflection.MemberInfo member);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping(class System.Reflection.MemberInfo member) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource.FindMapping(System.Reflection.MemberInfo)" />
       <MemberSignature Language="VB.NET" Value="Public Function FindMapping (member As MemberInfo) As CoreTypeMapping" />
       <MemberSignature Language="F#" Value="abstract member FindMapping : System.Reflection.MemberInfo -&gt; Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping" Usage="iTypeMappingSource.FindMapping member" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping? FindMapping (System.Reflection.MemberInfo member);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -83,6 +89,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping</ReturnType>
@@ -91,7 +98,7 @@
         <Parameter Name="member" Type="System.Reflection.MemberInfo" />
       </Parameters>
       <Docs>
-        <param name="member"> The field or property. </param>
+        <param name="member">The field or property.</param>
         <summary>
           <para>
                     Finds the type mapping for a given <see cref="T:System.Reflection.MemberInfo" /> representing
@@ -101,16 +108,17 @@
                     Note: Only call this method if there is no <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IProperty" /> available, otherwise
                     call <see cref="M:Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource.FindMapping(Microsoft.EntityFrameworkCore.Metadata.IProperty)" /></para>
         </summary>
-        <returns> The type mapping, or <see langword="null" /> if none was found. </returns>
+        <returns>The type mapping, or <see langword="null" /> if none was found.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="FindMapping">
-      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping (Type type);" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping (Type type);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping(class System.Type type) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource.FindMapping(System.Type)" />
       <MemberSignature Language="VB.NET" Value="Public Function FindMapping (type As Type) As CoreTypeMapping" />
       <MemberSignature Language="F#" Value="abstract member FindMapping : Type -&gt; Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping" Usage="iTypeMappingSource.FindMapping type" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping? FindMapping (Type type);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -120,6 +128,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping</ReturnType>
@@ -128,17 +137,51 @@
         <Parameter Name="type" Type="System.Type" />
       </Parameters>
       <Docs>
-        <param name="type"> The CLR type. </param>
+        <param name="type">The CLR type.</param>
         <summary>
           <para>
                     Finds the type mapping for a given <see cref="T:System.Type" />.
                 </para>
           <para>
                     Note: Only call this method if there is no <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IProperty" />
-                    or <see cref="T:System.Reflection.MemberInfo" /> available, otherwise call <see cref="M:Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource.FindMapping(Microsoft.EntityFrameworkCore.Metadata.IProperty)" />
-                    or <see cref="M:Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource.FindMapping(System.Reflection.MemberInfo)" /></para>
+                    or <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IModel" /> available, otherwise call <see cref="M:Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource.FindMapping(Microsoft.EntityFrameworkCore.Metadata.IProperty)" />
+                    or <see cref="M:Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource.FindMapping(System.Type,Microsoft.EntityFrameworkCore.Metadata.IModel)" /></para>
         </summary>
-        <returns> The type mapping, or <see langword="null" /> if none was found. </returns>
+        <returns>The type mapping, or <see langword="null" /> if none was found.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FindMapping">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping? FindMapping (Type type, Microsoft.EntityFrameworkCore.Metadata.IModel model);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping(class System.Type type, class Microsoft.EntityFrameworkCore.Metadata.IModel model) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource.FindMapping(System.Type,Microsoft.EntityFrameworkCore.Metadata.IModel)" />
+      <MemberSignature Language="VB.NET" Value="Public Function FindMapping (type As Type, model As IModel) As CoreTypeMapping" />
+      <MemberSignature Language="F#" Value="abstract member FindMapping : Type * Microsoft.EntityFrameworkCore.Metadata.IModel -&gt; Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping" Usage="iTypeMappingSource.FindMapping (type, model)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="type">The CLR type.</param>
+        <param name="model">The model.</param>
+        <summary>
+          <para>
+                    Finds the type mapping for a given <see cref="T:System.Type" />, taking pre-convention configuration into the account.
+                </para>
+          <para>
+                    Note: Only call this method if there is no <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IProperty" />,
+                    otherwise call <see cref="M:Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource.FindMapping(Microsoft.EntityFrameworkCore.Metadata.IProperty)" />.
+                </para>
+        </summary>
+        <returns>The type mapping, or <see langword="null" /> if none was found.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

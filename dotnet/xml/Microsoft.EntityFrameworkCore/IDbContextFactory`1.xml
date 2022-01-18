@@ -1,12 +1,16 @@
 <Type Name="IDbContextFactory&lt;TContext&gt;" FullName="Microsoft.EntityFrameworkCore.IDbContextFactory&lt;TContext&gt;">
-  <TypeSignature Language="C#" Value="public interface IDbContextFactory&lt;out TContext&gt; where TContext : DbContext" />
-  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDbContextFactory`1&lt;(class Microsoft.EntityFrameworkCore.DbContext) + TContext&gt;" />
+  <TypeSignature Language="C#" Value="public interface IDbContextFactory&lt;out TContext&gt; where TContext : DbContext" FrameworkAlternate="efcore-5.0" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDbContextFactory`1&lt;(class Microsoft.EntityFrameworkCore.DbContext) + TContext&gt;" FrameworkAlternate="efcore-5.0" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.IDbContextFactory`1" />
-  <TypeSignature Language="VB.NET" Value="Public Interface IDbContextFactory(Of Out TContext)" />
+  <TypeSignature Language="VB.NET" Value="Public Interface IDbContextFactory(Of Out TContext)" FrameworkAlternate="efcore-5.0" />
   <TypeSignature Language="F#" Value="type IDbContextFactory&lt;'Context (requires 'Context :&gt; DbContext)&gt; = interface" />
+  <TypeSignature Language="C#" Value="public interface IDbContextFactory&lt;TContext&gt; where TContext : DbContext" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDbContextFactory`1&lt;(class Microsoft.EntityFrameworkCore.DbContext) TContext&gt;" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="VB.NET" Value="Public Interface IDbContextFactory(Of TContext)" FrameworkAlternate="efcore-6.0" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
     <TypeParameter Name="TContext">
@@ -18,13 +22,13 @@
   </TypeParameters>
   <Interfaces />
   <Docs>
-    <typeparam name="TContext"> The <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> type to create. </typeparam>
+    <typeparam name="TContext">The <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> type to create.</typeparam>
     <summary>
                 Defines a factory for creating <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances.
-                A service of this type is registered in the dependency injection container by the
-                <see cref="M:EntityFrameworkServiceCollectionExtensions.AddDbContextPool" /> methods.
             </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext-factory">Using DbContextFactory</see> for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName="CreateDbContext">
@@ -37,6 +41,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>TContext</ReturnType>
@@ -48,11 +53,43 @@
                     Creates a new <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance.
                 </para>
           <para>
-                    The caller is responsible for disposing the context; it will not be disposed by the dependency injection container.
+                    The caller is responsible for disposing the context; it will not be disposed by any dependency injection container.
                 </para>
         </summary>
-        <returns> A new context instance. </returns>
+        <returns>A new context instance.</returns>
         <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateDbContextAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task&lt;TContext&gt; CreateDbContextAsync (System.Threading.CancellationToken cancellationToken = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;!TContext&gt; CreateDbContextAsync(valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.IDbContextFactory`1.CreateDbContextAsync(System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function CreateDbContextAsync (Optional cancellationToken As CancellationToken = Nothing) As Task(Of TContext)" />
+      <MemberSignature Language="F#" Value="abstract member CreateDbContextAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt;&#xA;override this.CreateDbContextAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt;" Usage="iDbContextFactory.CreateDbContextAsync cancellationToken" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;TContext&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+          <para>
+                    Creates a new <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance in an async context.
+                </para>
+          <para>
+                    The caller is responsible for disposing the context; it will not be disposed by any dependency injection container.
+                </para>
+        </summary>
+        <returns>A task containing the created context that represents the asynchronous operation.</returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
   </Members>

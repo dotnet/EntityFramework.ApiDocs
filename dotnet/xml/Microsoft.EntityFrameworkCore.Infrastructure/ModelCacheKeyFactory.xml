@@ -18,6 +18,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -35,16 +36,14 @@
                     assuming that all contexts of a given type have the same model.
                 </para>
       <para>
-                    This type is typically used by database providers (and other extensions). It is generally
-                    not used in application code.
-                </para>
-      <para>
                     The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
                     is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
                     This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
                 </para>
     </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-model-caching">EF Core model caching</see> for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -83,12 +82,13 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Infrastructure.ModelCacheKeyFactoryDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Infrastructure.ModelCacheKeyFactoryDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
-        <param name="dependencies"> Parameter object containing dependencies for this service. </param>
+        <param name="dependencies">Parameter object containing dependencies for this service.</param>
         <summary>
                 Initializes a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelCacheKeyFactory" /> class.
             </summary>
@@ -119,6 +119,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
@@ -133,7 +134,62 @@
         <summary>
                 Gets the model cache key for a given context.
             </summary>
-        <returns> The created key. </returns>
+        <returns>The created key.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Create">
+      <MemberSignature Language="C#" Value="public virtual object Create (Microsoft.EntityFrameworkCore.DbContext context, bool designTime);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance object Create(class Microsoft.EntityFrameworkCore.DbContext context, bool designTime) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelCacheKeyFactory.Create(Microsoft.EntityFrameworkCore.DbContext,System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function Create (context As DbContext, designTime As Boolean) As Object" />
+      <MemberSignature Language="F#" Value="abstract member Create : Microsoft.EntityFrameworkCore.DbContext * bool -&gt; obj&#xA;override this.Create : Microsoft.EntityFrameworkCore.DbContext * bool -&gt; obj" Usage="modelCacheKeyFactory.Create (context, designTime)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory.Create(Microsoft.EntityFrameworkCore.DbContext,System.Boolean)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Object</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" Index="0" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="context">
+                The context to get the model cache key for.
+            </param>
+        <param name="designTime">Whether the model should contain design-time configuration.</param>
+        <summary>
+                Gets the model cache key for a given context.
+            </summary>
+        <returns>The created key.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Dependencies">
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Infrastructure.ModelCacheKeyFactoryDependencies Dependencies { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Infrastructure.ModelCacheKeyFactoryDependencies Dependencies" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Infrastructure.ModelCacheKeyFactory.Dependencies" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable ReadOnly Property Dependencies As ModelCacheKeyFactoryDependencies" />
+      <MemberSignature Language="F#" Value="member this.Dependencies : Microsoft.EntityFrameworkCore.Infrastructure.ModelCacheKeyFactoryDependencies" Usage="Microsoft.EntityFrameworkCore.Infrastructure.ModelCacheKeyFactory.Dependencies" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.ModelCacheKeyFactoryDependencies</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Dependencies for this service.
+            </summary>
+        <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

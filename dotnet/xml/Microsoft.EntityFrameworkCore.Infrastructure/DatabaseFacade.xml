@@ -10,6 +10,10 @@
   <TypeSignature Language="F#" Value="type DatabaseFacade = class&#xA;    interface IInfrastructure&lt;IServiceProvider&gt;&#xA;    interface IDatabaseFacadeDependenciesAccessor" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
   <TypeSignature Language="C#" Value="public class DatabaseFacade : Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure&lt;IServiceProvider&gt;, Microsoft.EntityFrameworkCore.Storage.IDatabaseFacadeDependenciesAccessor" FrameworkAlternate="efcore-5.0" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DatabaseFacade extends System.Object implements class Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure`1&lt;class System.IServiceProvider&gt;, class Microsoft.EntityFrameworkCore.Storage.IDatabaseFacadeDependenciesAccessor" FrameworkAlternate="efcore-5.0" />
+  <TypeSignature Language="C#" Value="public class DatabaseFacade : Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure&lt;IServiceProvider&gt;, Microsoft.EntityFrameworkCore.Infrastructure.IResettableService, Microsoft.EntityFrameworkCore.Storage.IDatabaseFacadeDependenciesAccessor" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DatabaseFacade extends System.Object implements class Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure`1&lt;class System.IServiceProvider&gt;, class Microsoft.EntityFrameworkCore.Infrastructure.IResettableService, class Microsoft.EntityFrameworkCore.Storage.IDatabaseFacadeDependenciesAccessor" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="VB.NET" Value="Public Class DatabaseFacade&#xA;Implements IDatabaseFacadeDependenciesAccessor, IInfrastructure(Of IServiceProvider), IResettableService" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="F#" Value="type DatabaseFacade = class&#xA;    interface IInfrastructure&lt;IServiceProvider&gt;&#xA;    interface IDatabaseFacadeDependenciesAccessor&#xA;    interface IResettableService" FrameworkAlternate="efcore-6.0" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -24,6 +28,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -35,8 +40,11 @@
     <Interface FrameworkAlternate="efcore-3.0;efcore-3.1">
       <InterfaceName>Microsoft.EntityFrameworkCore.Internal.IDatabaseFacadeDependenciesAccessor</InterfaceName>
     </Interface>
-    <Interface FrameworkAlternate="efcore-5.0">
+    <Interface FrameworkAlternate="efcore-5.0;efcore-6.0">
       <InterfaceName>Microsoft.EntityFrameworkCore.Storage.IDatabaseFacadeDependenciesAccessor</InterfaceName>
+    </Interface>
+    <Interface FrameworkAlternate="efcore-6.0">
+      <InterfaceName>Microsoft.EntityFrameworkCore.Infrastructure.IResettableService</InterfaceName>
     </Interface>
   </Interfaces>
   <Docs>
@@ -69,18 +77,55 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" />
       </Parameters>
       <Docs>
-        <param name="context"> The context this database API belongs to .</param>
+        <param name="context">The context this database API belongs to.</param>
         <summary>
                 Initializes a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade" /> class. Instances of this class are typically
                 obtained from <see cref="P:Microsoft.EntityFrameworkCore.DbContext.Database" /> and it is not designed to be directly constructed
                 in your application code.
             </summary>
         <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AutoSavepointsEnabled">
+      <MemberSignature Language="C#" Value="public virtual bool AutoSavepointsEnabled { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool AutoSavepointsEnabled" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.AutoSavepointsEnabled" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Property AutoSavepointsEnabled As Boolean" />
+      <MemberSignature Language="F#" Value="member this.AutoSavepointsEnabled : bool with get, set" Usage="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.AutoSavepointsEnabled" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+          <para>
+                    Whether a transaction savepoint will be created automatically by <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> if it is called
+                    after a transaction has been manually started with <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.BeginTransaction" />.
+                </para>
+          <para>
+                    The default value is <see langword="true" />, meaning that <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> will create a
+                    transaction savepoint within a manually-started transaction. Regardless of this property, savepoints are only created
+                    if the data provider supports them; see <see cref="P:Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction.SupportsSavepoints" />.
+                </para>
+          <para>
+                    Setting this value to <see langword="false" /> should only be done with caution since the database could be left in a
+                    corrupted state if <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> fails.
+                </para>
+        </summary>
+        <value>To be added.</value>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-transactions">Transactions in EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="AutoTransactionsEnabled">
@@ -102,6 +147,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -114,19 +160,21 @@
                     'BeginTransaction' or 'UseTransaction' methods have been called.
                 </para>
           <para>
-                    Setting this value to false will also disable the <see cref="T:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy" />
+                    Setting this value to <see langword="false" /> will also disable the <see cref="T:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy" />
                     for <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /></para>
           <para>
-                    The default value is true, meaning that SaveChanges will always use a transaction
-                    when saving changes.
+                    The default value is <see langword="true" />, meaning that <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> will always use a
+                    transaction when saving changes.
                 </para>
           <para>
-                    Setting this value to false should only be done with caution since the database
-                    could be left in a corrupted state if SaveChanges fails.
+                    Setting this value to <see langword="false" /> should only be done with caution since the database
+                    could be left in a corrupted state if <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> fails.
                 </para>
         </summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-transactions">Transactions in EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="BeginTransaction">
@@ -150,6 +198,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction</ReturnType>
@@ -162,7 +211,9 @@
         <returns>
                 A <see cref="T:Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction" /> that represents the started transaction.
             </returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-transactions">Transactions in EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="BeginTransactionAsync">
@@ -186,6 +237,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction&gt;</ReturnType>
@@ -202,7 +254,19 @@
                 A task that represents the asynchronous transaction initialization. The task result contains a <see cref="T:Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction" />
                 that represents the started transaction.
             </returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <para>
+                    Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This
+                    includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+                    Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+                    in parallel. See <see href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</see>
+                    for more information.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-transactions">Transactions in EF Core</see> for more information.
+                </para>
+        </remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
     <Member MemberName="CanConnect">
@@ -218,6 +282,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -241,8 +306,10 @@
                 </para>
         </summary>
         <returns>
-          <see langword="true" /> if the database is available; <see langword="false" /> otherwise. </returns>
-        <remarks>To be added.</remarks>
+          <see langword="true" /> if the database is available; <see langword="false" /> otherwise.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-connections">Database connections in EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="CanConnectAsync">
@@ -258,12 +325,13 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Boolean&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
@@ -284,8 +352,20 @@
                 </para>
         </summary>
         <returns>
-          <see langword="true" /> if the database is available; <see langword="false" /> otherwise. </returns>
-        <remarks>To be added.</remarks>
+          <see langword="true" /> if the database is available; <see langword="false" /> otherwise.</returns>
+        <remarks>
+          <para>
+                    Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This
+                    includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+                    Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+                    in parallel. See <see href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</see>
+                    for more information.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-connections">Database connections in EF Core</see> for more information.
+                </para>
+        </remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
     <Member MemberName="CommitTransaction">
@@ -309,6 +389,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -331,20 +412,33 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
         <summary>
                 Applies the outstanding operations in the current transaction to the database.
             </summary>
-        <returns> A Task representing the asynchronous operation. </returns>
-        <remarks>To be added.</remarks>
+        <returns>A Task representing the asynchronous operation.</returns>
+        <remarks>
+          <para>
+                    Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This
+                    includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+                    Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+                    in parallel. See <see href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</see>
+                    for more information.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-transactions">Transactions in EF Core</see> for more information.
+                </para>
+        </remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
     <Member MemberName="CreateExecutionStrategy">
@@ -366,6 +460,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy</ReturnType>
@@ -376,15 +471,19 @@
                 Creates an instance of the configured <see cref="T:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy" />.
             </summary>
         <returns>An <see cref="T:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy" /> instance.</returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-connection-resiliency">Connection resiliency and database retries</see>
+                for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="CurrentTransaction">
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction CurrentTransaction { get; }" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction CurrentTransaction { get; }" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction CurrentTransaction" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.CurrentTransaction" />
       <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property CurrentTransaction As IDbContextTransaction" />
       <MemberSignature Language="F#" Value="member this.CurrentTransaction : Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction" Usage="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.CurrentTransaction" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction? CurrentTransaction { get; }" FrameworkAlternate="efcore-6.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -398,6 +497,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction</ReturnType>
@@ -409,18 +509,22 @@
                     if no transaction is in use.
                 </para>
           <para>
-                    This property will be null unless one of the 'BeginTransaction' or 'UseTransaction' methods has
-                    been called, some of which are available as extension methods installed by EF providers.
+                    This property is null unless one of <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.BeginTransaction" />,
+                    <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction" />, or
+                    <see cref="O:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.UseTransaction" />
+                    has been called.
                     No attempt is made to obtain a transaction from the current DbConnection or similar.
                 </para>
           <para>
-                    For relational databases, the underlying DbTransaction can be obtained using the
-                    'Microsoft.EntityFrameworkCore.Storage.GetDbTransaction' extension method
+                    For relational databases, the underlying <see cref="T:System.Data.Common.DbTransaction" /> can be obtained using
+                    <see cref="M:Microsoft.EntityFrameworkCore.Storage.DbContextTransactionExtensions.GetDbTransaction" />
                     on the returned <see cref="T:Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction" />.
                 </para>
         </summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-transactions">Transactions in EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="EnsureCreated">
@@ -444,6 +548,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -452,20 +557,46 @@
       <Docs>
         <summary>
           <para>
-                    Ensures that the database for the context exists. If it exists, no action is taken. If it does not
-                    exist then the database and all its schema are created. If the database exists, then no effort is made
-                    to ensure it is compatible with the model for this context.
+                    Ensures that the database for the context exists.
+                </para>
+          <list type="bullet">
+            <item>
+              <description>
+                            If the database exists and has any tables, then no action is taken. Nothing is done to ensure
+                            the database schema is compatible with the Entity Framework model.
+                        </description>
+            </item>
+            <item>
+              <description>
+                            If the database exists but does not have any tables, then the Entity Framework model is used to
+                            create the database schema.
+                        </description>
+            </item>
+            <item>
+              <description>
+                            If the database does not exist, then the database is created and the Entity Framework model is used to
+                            create the database schema.
+                        </description>
+            </item>
+          </list>
+          <para>
+                    It is common to use <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated" /> immediately following <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureDeleted" /> when
+                    testing or prototyping using Entity Framework. This ensures that the database is in a clean state before each
+                    execution of the test/prototype. Note, however, that data in the database is not preserved.
                 </para>
           <para>
-                    Note that this API does not use migrations to create the database. In addition, the database that is
+                    Note that this API does **not** use migrations to create the database. In addition, the database that is
                     created cannot be later updated using migrations. If you are targeting a relational database and using migrations,
-                    you can use the DbContext.Database.Migrate() method to ensure the database is created and all migrations
-                    are applied.
+                    then you can use <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate" />
+                    to ensure the database is created using migrations and that all migrations have been applied.
                 </para>
         </summary>
         <returns>
-          <see langword="true" /> if the database is created, false if it already existed. </returns>
-        <remarks>To be added.</remarks>
+          <see langword="true" /> if the database is created, <see langword="false" /> if it already existed.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-manage-schemas">Managing database schemas with EF Core</see>
+                and <see href="https://aka.ms/efcore-ensure-created">Database creation APIs</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="EnsureCreatedAsync">
@@ -489,6 +620,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Boolean&gt;</ReturnType>
@@ -500,22 +632,58 @@
         <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
         <summary>
           <para>
-                    Asynchronously ensures that the database for the context exists. If it exists, no action is taken. If it does not
-                    exist then the database and all its schema are created. If the database exists, then no effort is made
-                    to ensure it is compatible with the model for this context.
+                    Ensures that the database for the context exists.
+                </para>
+          <list type="bullet">
+            <item>
+              <description>
+                            If the database exists and has any tables, then no action is taken. Nothing is done to ensure
+                            the database schema is compatible with the Entity Framework model.
+                        </description>
+            </item>
+            <item>
+              <description>
+                            If the database exists but does not have any tables, then the Entity Framework model is used to
+                            create the database schema.
+                        </description>
+            </item>
+            <item>
+              <description>
+                            If the database does not exist, then the database is created and the Entity Framework model is used to
+                            create the database schema.
+                        </description>
+            </item>
+          </list>
+          <para>
+                    It is common to use <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(System.Threading.CancellationToken)" /> immediately following <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureDeletedAsync(System.Threading.CancellationToken)" /> when
+                    testing or prototyping using Entity Framework. This ensures that the database is in a clean state before each
+                    execution of the test/prototype. Note, however, that data in the database is not preserved.
                 </para>
           <para>
-                    Note that this API does not use migrations to create the database. In addition, the database that is
+                    Note that this API does **not** use migrations to create the database. In addition, the database that is
                     created cannot be later updated using migrations. If you are targeting a relational database and using migrations,
-                    you can use the DbContext.Database.Migrate() method to ensure the database is created and all migrations
-                    are applied.
+                    then you can use <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.MigrateAsync" />
+                    to ensure the database is created using migrations and that all migrations have been applied.
                 </para>
         </summary>
         <returns>
                 A task that represents the asynchronous save operation. The task result contains <see langword="true" /> if the database is created,
-                false if it already existed.
+                <see langword="false" /> if it already existed.
             </returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <para>
+                    Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This
+                    includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+                    Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+                    in parallel. See <see href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</see>
+                    for more information.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-manage-schemas">Managing database schemas with EF Core</see>
+                    and <see href="https://aka.ms/efcore-ensure-created">Database creation APIs</see> for more information.
+                </para>
+        </remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
     <Member MemberName="EnsureDeleted">
@@ -539,6 +707,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -554,10 +723,18 @@
                     Warning: The entire database is deleted, and no effort is made to remove just the database objects that are used by
                     the model for this context.
                 </para>
+          <para>
+                    It is common to use <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated" /> immediately following <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureDeleted" /> when
+                    testing or prototyping using Entity Framework. This ensures that the database is in a clean state before each
+                    execution of the test/prototype. Note, however, that data in the database is not preserved.
+                </para>
         </summary>
         <returns>
-          <see langword="true" /> if the database is deleted, false if it did not exist. </returns>
-        <remarks>To be added.</remarks>
+          <see langword="true" /> if the database is deleted, <see langword="false" /> if it did not exist.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-manage-schemas">Managing database schemas with EF Core</see>
+                and <see href="https://aka.ms/efcore-ensure-created">Database creation APIs</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="EnsureDeletedAsync">
@@ -581,6 +758,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;System.Boolean&gt;</ReturnType>
@@ -599,20 +777,39 @@
                     Warning: The entire database is deleted, and no effort is made to remove just the database objects that are used by
                     the model for this context.
                 </para>
+          <para>
+                    It is common to use <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(System.Threading.CancellationToken)" /> immediately following <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureDeletedAsync(System.Threading.CancellationToken)" /> when
+                    testing or prototyping using Entity Framework. This ensures that the database is in a clean state before each
+                    execution of the test/prototype. Note, however, that data in the database is not preserved.
+                </para>
         </summary>
         <returns>
                 A task that represents the asynchronous save operation. The task result contains <see langword="true" /> if the database is deleted,
-                false if it did not exist.
+                <see langword="false" /> if it did not exist.
             </returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <para>
+                    Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This
+                    includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+                    Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+                    in parallel. See <see href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</see>
+                    for more information.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-manage-schemas">Managing database schemas with EF Core</see>
+                    and <see href="https://aka.ms/efcore-ensure-created">Database creation APIs</see> for more information.
+                </para>
+        </remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
     <Member MemberName="Equals">
-      <MemberSignature Language="C#" Value="public override bool Equals (object obj);" />
+      <MemberSignature Language="C#" Value="public override bool Equals (object obj);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance bool Equals(object obj) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.Equals(System.Object)" />
       <MemberSignature Language="VB.NET" Value="Public Overrides Function Equals (obj As Object) As Boolean" />
       <MemberSignature Language="F#" Value="override this.Equals : obj -&gt; bool" Usage="databaseFacade.Equals obj" />
+      <MemberSignature Language="C#" Value="public override bool Equals (object? obj);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -622,9 +819,10 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">
+        <Attribute FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
           <AttributeName Language="C#">[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]</AttributeName>
           <AttributeName Language="F#">[&lt;System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)&gt;]</AttributeName>
         </Attribute>
@@ -633,15 +831,15 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="obj" Type="System.Object" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="obj" Type="System.Object" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
-        <param name="obj"> The object to compare with the current object. </param>
+        <param name="obj">The object to compare with the current object.</param>
         <summary>
                 Determines whether the specified object is equal to the current object.
             </summary>
         <returns>
-          <see langword="true" /> if the specified object is equal to the current object; otherwise, <see langword="false" />. </returns>
+          <see langword="true" /> if the specified object is equal to the current object; otherwise, <see langword="false" />.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -660,9 +858,10 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">
+        <Attribute FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
           <AttributeName Language="C#">[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]</AttributeName>
           <AttributeName Language="F#">[&lt;System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)&gt;]</AttributeName>
         </Attribute>
@@ -675,7 +874,7 @@
         <summary>
                 Serves as the default hash function.
             </summary>
-        <returns> A hash code for the current object. </returns>
+        <returns>A hash code for the current object.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -703,6 +902,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IServiceProvider</ReturnType>
@@ -718,6 +918,60 @@
                 </para>
         </summary>
         <value>To be added.</value>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
+                for more information.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetState">
+      <MemberSignature Language="C#" Value="void IResettableService.ResetState ();" />
+      <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance void Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetState() cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.Microsoft#EntityFrameworkCore#Infrastructure#IResettableService#ResetState" />
+      <MemberSignature Language="VB.NET" Value="Sub ResetState () Implements IResettableService.ResetState" />
+      <MemberSignature Language="F#" Value="abstract member Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetState : unit -&gt; unit&#xA;override this.Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetState : unit -&gt; unit" Usage="databaseFacade.Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetState " />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetState</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetStateAsync">
+      <MemberSignature Language="C#" Value="System.Threading.Tasks.Task IResettableService.ResetStateAsync (System.Threading.CancellationToken cancellationToken);" />
+      <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class System.Threading.Tasks.Task Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetStateAsync(valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.Microsoft#EntityFrameworkCore#Infrastructure#IResettableService#ResetStateAsync(System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Function ResetStateAsync (cancellationToken As CancellationToken) As Task Implements IResettableService.ResetStateAsync" />
+      <MemberSignature Language="F#" Value="abstract member Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetStateAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&#xA;override this.Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetStateAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="databaseFacade.Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetStateAsync cancellationToken" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Infrastructure.IResettableService.ResetStateAsync(System.Threading.CancellationToken)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="cancellationToken">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -736,9 +990,10 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-5.0">
+        <Attribute FrameworkAlternate="efcore-5.0;efcore-6.0">
           <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal]</AttributeName>
           <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal&gt;]</AttributeName>
         </Attribute>
@@ -772,9 +1027,10 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-5.0">
+        <Attribute FrameworkAlternate="efcore-5.0;efcore-6.0">
           <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal]</AttributeName>
           <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal&gt;]</AttributeName>
         </Attribute>
@@ -794,11 +1050,12 @@
       </Docs>
     </Member>
     <Member MemberName="ProviderName">
-      <MemberSignature Language="C#" Value="public virtual string ProviderName { get; }" />
+      <MemberSignature Language="C#" Value="public virtual string ProviderName { get; }" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".property instance string ProviderName" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.ProviderName" />
       <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property ProviderName As String" />
       <MemberSignature Language="F#" Value="member this.ProviderName : string" Usage="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.ProviderName" />
+      <MemberSignature Language="C#" Value="public virtual string? ProviderName { get; }" FrameworkAlternate="efcore-6.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -810,6 +1067,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -819,8 +1077,9 @@
           <para>
                     Returns the name of the database provider currently in use.
                     The name is typically the name of the provider assembly.
-                    It is usually easier to use a sugar method such as 'IsSqlServer()' instead of
-                    calling this method directly.
+                    It is usually easier to use a sugar method such as
+                    <see cref="M:Microsoft.EntityFrameworkCore.SqlServerDatabaseFacadeExtensions.IsSqlServer" />
+                    instead of calling this method directly.
                 </para>
           <para>
                     This method can only be used after the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> has been configured because
@@ -830,7 +1089,10 @@
                 </para>
         </summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext">DbContext lifetime, configuration, and initialization</see>
+                for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="RollbackTransaction">
@@ -854,6 +1116,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -863,7 +1126,9 @@
         <summary>
                 Discards the outstanding operations in the current transaction.
             </summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-transactions">Transactions in EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="RollbackTransactionAsync">
@@ -876,28 +1141,42 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
         <summary>
-                Applies the outstanding operations in the current transaction to the database.
+                Discards the outstanding operations in the current transaction.
             </summary>
-        <returns> A Task representing the asynchronous operation. </returns>
-        <remarks>To be added.</remarks>
+        <returns>A Task representing the asynchronous operation.</returns>
+        <remarks>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-transactions">Transactions in EF Core</see> for more information.
+                </para>
+          <para>
+                    Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This
+                    includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+                    Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+                    in parallel. See <see href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</see>
+                    for more information.
+                </para>
+        </remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
     <Member MemberName="ToString">
-      <MemberSignature Language="C#" Value="public override string ToString ();" />
+      <MemberSignature Language="C#" Value="public override string ToString ();" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance string ToString() cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.ToString" />
       <MemberSignature Language="VB.NET" Value="Public Overrides Function ToString () As String" />
       <MemberSignature Language="F#" Value="override this.ToString : unit -&gt; string" Usage="databaseFacade.ToString " />
+      <MemberSignature Language="C#" Value="public override string? ToString ();" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -907,9 +1186,10 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">
+        <Attribute FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
           <AttributeName Language="C#">[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]</AttributeName>
           <AttributeName Language="F#">[&lt;System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)&gt;]</AttributeName>
         </Attribute>
@@ -922,7 +1202,7 @@
         <summary>
                 Returns a string that represents the current object.
             </summary>
-        <returns> A string that represents the current object. </returns>
+        <returns>A string that represents the current object.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

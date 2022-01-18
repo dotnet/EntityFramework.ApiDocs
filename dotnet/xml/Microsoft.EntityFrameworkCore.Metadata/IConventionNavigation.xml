@@ -8,14 +8,19 @@
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IConventionNavigation implements class Microsoft.EntityFrameworkCore.Infrastructure.IAnnotatable, class Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotatable, class Microsoft.EntityFrameworkCore.Metadata.IConventionNavigationBase, class Microsoft.EntityFrameworkCore.Metadata.IConventionPropertyBase, class Microsoft.EntityFrameworkCore.Metadata.INavigation, class Microsoft.EntityFrameworkCore.Metadata.INavigationBase, class Microsoft.EntityFrameworkCore.Metadata.IPropertyBase" FrameworkAlternate="efcore-5.0" />
   <TypeSignature Language="VB.NET" Value="Public Interface IConventionNavigation&#xA;Implements IConventionNavigationBase, INavigation" FrameworkAlternate="efcore-5.0" />
   <TypeSignature Language="F#" Value="type IConventionNavigation = interface&#xA;    interface INavigation&#xA;    interface INavigationBase&#xA;    interface IPropertyBase&#xA;    interface IAnnotatable&#xA;    interface IConventionNavigationBase&#xA;    interface IConventionPropertyBase&#xA;    interface IConventionAnnotatable" FrameworkAlternate="efcore-5.0" />
+  <TypeSignature Language="C#" Value="public interface IConventionNavigation : Microsoft.EntityFrameworkCore.Metadata.IConventionNavigationBase, Microsoft.EntityFrameworkCore.Metadata.IReadOnlyNavigation" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IConventionNavigation implements class Microsoft.EntityFrameworkCore.Infrastructure.IReadOnlyAnnotatable, class Microsoft.EntityFrameworkCore.Metadata.IConventionAnnotatable, class Microsoft.EntityFrameworkCore.Metadata.IConventionNavigationBase, class Microsoft.EntityFrameworkCore.Metadata.IConventionPropertyBase, class Microsoft.EntityFrameworkCore.Metadata.IReadOnlyNavigation, class Microsoft.EntityFrameworkCore.Metadata.IReadOnlyNavigationBase, class Microsoft.EntityFrameworkCore.Metadata.IReadOnlyPropertyBase" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="VB.NET" Value="Public Interface IConventionNavigation&#xA;Implements IConventionNavigationBase, IReadOnlyNavigation" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="F#" Value="type IConventionNavigation = interface&#xA;    interface IReadOnlyNavigation&#xA;    interface IReadOnlyNavigationBase&#xA;    interface IReadOnlyPropertyBase&#xA;    interface IReadOnlyAnnotatable&#xA;    interface IConventionNavigationBase&#xA;    interface IConventionPropertyBase&#xA;    interface IConventionAnnotatable" FrameworkAlternate="efcore-6.0" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces>
-    <Interface>
+    <Interface FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">
       <InterfaceName>Microsoft.EntityFrameworkCore.Infrastructure.IAnnotatable</InterfaceName>
     </Interface>
     <Interface>
@@ -24,17 +29,29 @@
     <Interface>
       <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.IConventionPropertyBase</InterfaceName>
     </Interface>
-    <Interface>
+    <Interface FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">
       <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.INavigation</InterfaceName>
     </Interface>
-    <Interface>
+    <Interface FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">
       <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.IPropertyBase</InterfaceName>
     </Interface>
-    <Interface FrameworkAlternate="efcore-5.0">
+    <Interface FrameworkAlternate="efcore-5.0;efcore-6.0">
       <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.IConventionNavigationBase</InterfaceName>
     </Interface>
     <Interface FrameworkAlternate="efcore-5.0">
       <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.INavigationBase</InterfaceName>
+    </Interface>
+    <Interface FrameworkAlternate="efcore-6.0">
+      <InterfaceName>Microsoft.EntityFrameworkCore.Infrastructure.IReadOnlyAnnotatable</InterfaceName>
+    </Interface>
+    <Interface FrameworkAlternate="efcore-6.0">
+      <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.IReadOnlyNavigation</InterfaceName>
+    </Interface>
+    <Interface FrameworkAlternate="efcore-6.0">
+      <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.IReadOnlyNavigationBase</InterfaceName>
+    </Interface>
+    <Interface FrameworkAlternate="efcore-6.0">
+      <InterfaceName>Microsoft.EntityFrameworkCore.Metadata.IReadOnlyPropertyBase</InterfaceName>
     </Interface>
   </Interfaces>
   <Docs>
@@ -47,7 +64,9 @@
                     Once the model is built, <see cref="T:Microsoft.EntityFrameworkCore.Metadata.INavigation" /> represents a read-only view of the same metadata.
                 </para>
     </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-conventions">Model building conventions</see> for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName="Builder">
@@ -60,6 +79,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Builders.IConventionNavigationBuilder</ReturnType>
@@ -70,6 +90,7 @@
             </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.InvalidOperationException">If the property has been removed from the model.</exception>
       </Docs>
     </Member>
     <Member MemberName="DeclaringEntityType">
@@ -78,17 +99,18 @@
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation.DeclaringEntityType" />
       <MemberSignature Language="VB.NET" Value="Public ReadOnly Property DeclaringEntityType As IConventionEntityType" FrameworkAlternate="efcore-3.0;efcore-3.1" />
       <MemberSignature Language="F#" Value="member this.DeclaringEntityType : Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType" Usage="Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation.DeclaringEntityType" />
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType DeclaringEntityType { get; }" FrameworkAlternate="efcore-5.0" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property DeclaringEntityType As IConventionEntityType" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType DeclaringEntityType { get; }" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property DeclaringEntityType As IConventionEntityType" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-5.0">
+        <Attribute FrameworkAlternate="efcore-5.0;efcore-6.0">
           <AttributeName Language="C#">[get: System.Diagnostics.DebuggerStepThrough]</AttributeName>
           <AttributeName Language="F#">[&lt;get: System.Diagnostics.DebuggerStepThrough&gt;]</AttributeName>
         </Attribute>
@@ -110,17 +132,18 @@
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation.ForeignKey" />
       <MemberSignature Language="VB.NET" Value="Public ReadOnly Property ForeignKey As IConventionForeignKey" FrameworkAlternate="efcore-3.0;efcore-3.1" />
       <MemberSignature Language="F#" Value="member this.ForeignKey : Microsoft.EntityFrameworkCore.Metadata.IConventionForeignKey" Usage="Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation.ForeignKey" />
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.IConventionForeignKey ForeignKey { get; }" FrameworkAlternate="efcore-5.0" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property ForeignKey As IConventionForeignKey" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.IConventionForeignKey ForeignKey { get; }" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property ForeignKey As IConventionForeignKey" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-5.0">
+        <Attribute FrameworkAlternate="efcore-5.0;efcore-6.0">
           <AttributeName Language="C#">[get: System.Diagnostics.DebuggerStepThrough]</AttributeName>
           <AttributeName Language="F#">[&lt;get: System.Diagnostics.DebuggerStepThrough&gt;]</AttributeName>
         </Attribute>
@@ -146,6 +169,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Nullable&lt;Microsoft.EntityFrameworkCore.Metadata.ConfigurationSource&gt;</ReturnType>
@@ -155,23 +179,25 @@
         <summary>
                 Returns the configuration source for <see cref="P:Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation.Inverse" />.
             </summary>
-        <returns> The configuration source for <see cref="P:Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation.Inverse" />. </returns>
+        <returns>The configuration source for <see cref="P:Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation.Inverse" />.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Inverse">
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation Inverse { get; }" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation Inverse { get; }" FrameworkAlternate="efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation Inverse" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation.Inverse" />
       <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Inverse As IConventionNavigation" />
       <MemberSignature Language="F#" Value="member this.Inverse : Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation" Usage="Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation.Inverse" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation? Inverse { get; }" FrameworkAlternate="efcore-6.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-5.0">
+        <Attribute FrameworkAlternate="efcore-5.0;efcore-6.0">
           <AttributeName Language="C#">[get: System.Diagnostics.DebuggerStepThrough]</AttributeName>
           <AttributeName Language="F#">[&lt;get: System.Diagnostics.DebuggerStepThrough&gt;]</AttributeName>
         </Attribute>
@@ -200,6 +226,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.ConfigurationSource</ReturnType>
@@ -209,69 +236,73 @@
         <summary>
                 Returns the configuration source for this navigation property.
             </summary>
-        <returns> The configuration source. </returns>
+        <returns>The configuration source.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="SetInverse">
-      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation SetInverse (System.Reflection.MemberInfo inverse, bool fromDataAnnotation = false);" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation SetInverse (System.Reflection.MemberInfo inverse, bool fromDataAnnotation = false);" FrameworkAlternate="efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation SetInverse(class System.Reflection.MemberInfo inverse, bool fromDataAnnotation) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation.SetInverse(System.Reflection.MemberInfo,System.Boolean)" />
       <MemberSignature Language="VB.NET" Value="Public Function SetInverse (inverse As MemberInfo, Optional fromDataAnnotation As Boolean = false) As IConventionNavigation" />
       <MemberSignature Language="F#" Value="abstract member SetInverse : System.Reflection.MemberInfo * bool -&gt; Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation" Usage="iConventionNavigation.SetInverse (inverse, fromDataAnnotation)" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation? SetInverse (System.Reflection.MemberInfo? inverse, bool fromDataAnnotation = false);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="inverse" Type="System.Reflection.MemberInfo" Index="0" FrameworkAlternate="efcore-5.0" />
-        <Parameter Name="fromDataAnnotation" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="inverse" Type="System.Reflection.MemberInfo" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="fromDataAnnotation" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="inverse">
                 The name of the inverse navigation property. Passing <see langword="null" /> will result in there being
                 no inverse navigation property defined.
             </param>
-        <param name="fromDataAnnotation"> Indicates whether the configuration was specified using a data annotation. </param>
+        <param name="fromDataAnnotation">Indicates whether the configuration was specified using a data annotation.</param>
         <summary>
                 Sets the inverse navigation.
             </summary>
-        <returns> The new inverse navigation. </returns>
+        <returns>The new inverse navigation.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="SetInverse">
-      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation SetInverse (string inverseName, bool fromDataAnnotation = false);" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation SetInverse (string inverseName, bool fromDataAnnotation = false);" FrameworkAlternate="efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation SetInverse(string inverseName, bool fromDataAnnotation) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation.SetInverse(System.String,System.Boolean)" />
       <MemberSignature Language="VB.NET" Value="Public Function SetInverse (inverseName As String, Optional fromDataAnnotation As Boolean = false) As IConventionNavigation" />
       <MemberSignature Language="F#" Value="abstract member SetInverse : string * bool -&gt; Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation" Usage="iConventionNavigation.SetInverse (inverseName, fromDataAnnotation)" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation? SetInverse (string? inverseName, bool fromDataAnnotation = false);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IConventionNavigation</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="inverseName" Type="System.String" Index="0" FrameworkAlternate="efcore-5.0" />
-        <Parameter Name="fromDataAnnotation" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="inverseName" Type="System.String" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="fromDataAnnotation" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="inverseName">
                 The name of the inverse navigation property. Passing <see langword="null" /> will result in there being
                 no inverse navigation property defined.
             </param>
-        <param name="fromDataAnnotation"> Indicates whether the configuration was specified using a data annotation. </param>
+        <param name="fromDataAnnotation">Indicates whether the configuration was specified using a data annotation.</param>
         <summary>
                 Sets the inverse navigation.
             </summary>
-        <returns> The new inverse navigation. </returns>
+        <returns>The new inverse navigation.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -285,9 +316,10 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-5.0">
+        <Attribute FrameworkAlternate="efcore-5.0;efcore-6.0">
           <AttributeName Language="C#">[get: System.Diagnostics.DebuggerStepThrough]</AttributeName>
           <AttributeName Language="F#">[&lt;get: System.Diagnostics.DebuggerStepThrough&gt;]</AttributeName>
         </Attribute>

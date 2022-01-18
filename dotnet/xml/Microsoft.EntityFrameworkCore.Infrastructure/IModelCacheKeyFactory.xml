@@ -18,6 +18,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Docs>
@@ -27,24 +28,25 @@
                     a cached model for a given context.
                 </para>
       <para>
-                    This interface is typically used by database providers (and other extensions). It is generally
-                    not used in application code.
-                </para>
-      <para>
                     The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
                     is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
                     This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
                 </para>
     </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-model-caching">EF Core model caching</see> for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName="Create">
-      <MemberSignature Language="C#" Value="public object Create (Microsoft.EntityFrameworkCore.DbContext context);" />
+      <MemberSignature Language="C#" Value="public object Create (Microsoft.EntityFrameworkCore.DbContext context);" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance object Create(class Microsoft.EntityFrameworkCore.DbContext context) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory.Create(Microsoft.EntityFrameworkCore.DbContext)" />
-      <MemberSignature Language="VB.NET" Value="Public Function Create (context As DbContext) As Object" />
-      <MemberSignature Language="F#" Value="abstract member Create : Microsoft.EntityFrameworkCore.DbContext -&gt; obj" Usage="iModelCacheKeyFactory.Create context" />
+      <MemberSignature Language="VB.NET" Value="Public Function Create (context As DbContext) As Object" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="F#" Value="abstract member Create : Microsoft.EntityFrameworkCore.DbContext -&gt; obj" Usage="iModelCacheKeyFactory.Create context" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="C#" Value="public virtual object Create (Microsoft.EntityFrameworkCore.DbContext context);" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function Create (context As DbContext) As Object" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="F#" Value="abstract member Create : Microsoft.EntityFrameworkCore.DbContext -&gt; obj&#xA;override this.Create : Microsoft.EntityFrameworkCore.DbContext -&gt; obj" Usage="iModelCacheKeyFactory.Create context" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -60,7 +62,14 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-6.0">
+          <AttributeName Language="C#">[System.Obsolete("Use the overload with most parameters")]</AttributeName>
+          <AttributeName Language="F#">[&lt;System.Obsolete("Use the overload with most parameters")&gt;]</AttributeName>
+        </Attribute>
+      </Attributes>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
       </ReturnValue>
@@ -74,7 +83,37 @@
         <summary>
                 Gets the model cache key for a given context.
             </summary>
-        <returns> The created key. </returns>
+        <returns>The created key.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Create">
+      <MemberSignature Language="C#" Value="public virtual object Create (Microsoft.EntityFrameworkCore.DbContext context, bool designTime);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance object Create(class Microsoft.EntityFrameworkCore.DbContext context, bool designTime) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory.Create(Microsoft.EntityFrameworkCore.DbContext,System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function Create (context As DbContext, designTime As Boolean) As Object" />
+      <MemberSignature Language="F#" Value="abstract member Create : Microsoft.EntityFrameworkCore.DbContext * bool -&gt; obj&#xA;override this.Create : Microsoft.EntityFrameworkCore.DbContext * bool -&gt; obj" Usage="iModelCacheKeyFactory.Create (context, designTime)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Object</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" Index="0" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="context">
+                The context to get the model cache key for.
+            </param>
+        <param name="designTime">Whether the model should contain design-time configuration.</param>
+        <summary>
+                Gets the model cache key for a given context.
+            </summary>
+        <returns>The created key.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

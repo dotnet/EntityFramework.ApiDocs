@@ -9,6 +9,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Docs>
@@ -17,12 +18,16 @@
                     A factory for creating <see cref="T:Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor" /> instances.
                 </para>
       <para>
-                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
-                    is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
-                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
                 </para>
     </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
+                and <see href="https://aka.ms/efcore-how-queries-work">How EF Core queries work</see> for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName="Create">
@@ -37,6 +42,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor</ReturnType>
@@ -45,11 +51,11 @@
         <Parameter Name="queryCompilationContext" Type="Microsoft.EntityFrameworkCore.Query.QueryCompilationContext" />
       </Parameters>
       <Docs>
-        <param name="queryCompilationContext"> The query compilation context to use. </param>
+        <param name="queryCompilationContext">The query compilation context to use.</param>
         <summary>
                 Creates a new <see cref="T:Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor" /> for given <see cref="T:Microsoft.EntityFrameworkCore.Query.QueryCompilationContext" />.
             </summary>
-        <returns> The created visitor. </returns>
+        <returns>The created visitor.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
