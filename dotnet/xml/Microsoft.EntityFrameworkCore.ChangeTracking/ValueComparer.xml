@@ -4,10 +4,10 @@
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ValueComparer&#xA;Implements IEqualityComparer" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
   <TypeSignature Language="F#" Value="type ValueComparer = class&#xA;    interface IEqualityComparer" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1" />
-  <TypeSignature Language="C#" Value="public abstract class ValueComparer : System.Collections.Generic.IEqualityComparer&lt;object&gt;, System.Collections.IEqualityComparer" FrameworkAlternate="efcore-5.0" />
-  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ValueComparer extends System.Object implements class System.Collections.Generic.IEqualityComparer`1&lt;object&gt;, class System.Collections.IEqualityComparer" FrameworkAlternate="efcore-5.0" />
-  <TypeSignature Language="VB.NET" Value="Public MustInherit Class ValueComparer&#xA;Implements IEqualityComparer, IEqualityComparer(Of Object)" FrameworkAlternate="efcore-5.0" />
-  <TypeSignature Language="F#" Value="type ValueComparer = class&#xA;    interface IEqualityComparer&#xA;    interface IEqualityComparer&lt;obj&gt;" FrameworkAlternate="efcore-5.0" />
+  <TypeSignature Language="C#" Value="public abstract class ValueComparer : System.Collections.Generic.IEqualityComparer&lt;object&gt;, System.Collections.IEqualityComparer" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ValueComparer extends System.Object implements class System.Collections.Generic.IEqualityComparer`1&lt;object&gt;, class System.Collections.IEqualityComparer" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+  <TypeSignature Language="VB.NET" Value="Public MustInherit Class ValueComparer&#xA;Implements IEqualityComparer, IEqualityComparer(Of Object)" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+  <TypeSignature Language="F#" Value="type ValueComparer = class&#xA;    interface IEqualityComparer&#xA;    interface IEqualityComparer&lt;obj&gt;" FrameworkAlternate="efcore-5.0;efcore-6.0" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
@@ -16,6 +16,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -24,7 +25,7 @@
     <Interface>
       <InterfaceName>System.Collections.IEqualityComparer</InterfaceName>
     </Interface>
-    <Interface FrameworkAlternate="efcore-5.0">
+    <Interface FrameworkAlternate="efcore-5.0;efcore-6.0">
       <InterfaceName>System.Collections.Generic.IEqualityComparer&lt;System.Object&gt;</InterfaceName>
     </Interface>
   </Interfaces>
@@ -43,7 +44,9 @@
                     reference.
                 </para>
     </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-value-comparers">EF Core value comparers</see> for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -61,6 +64,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="equalsExpression" Type="System.Linq.Expressions.LambdaExpression" />
@@ -68,9 +72,9 @@
         <Parameter Name="snapshotExpression" Type="System.Linq.Expressions.LambdaExpression" />
       </Parameters>
       <Docs>
-        <param name="equalsExpression"> The comparison expression. </param>
-        <param name="hashCodeExpression"> The associated hash code generator. </param>
-        <param name="snapshotExpression"> The snapshot expression. </param>
+        <param name="equalsExpression">The comparison expression.</param>
+        <param name="hashCodeExpression">The associated hash code generator.</param>
+        <param name="snapshotExpression">The snapshot expression.</param>
         <summary>
                 Creates a new <see cref="T:Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer" /> with the given comparison and
                 snapshotting expressions.
@@ -88,16 +92,17 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="efcore-5.0" />
-        <Parameter Name="favorStructuralComparisons" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="favorStructuralComparisons" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
-        <param name="type"> The type. </param>
+        <param name="type">The type.</param>
         <param name="favorStructuralComparisons">
                 If <see langword="true" />, then EF will use <see cref="T:System.Collections.IStructuralEquatable" /> if the type
                 implements it. This is usually used when byte arrays act as keys.
@@ -105,20 +110,21 @@
         <summary>
                 Creates a default <see cref="T:Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer`1" /> for the given type.
             </summary>
-        <returns> The <see cref="T:Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer`1" />. </returns>
+        <returns>The <see cref="T:Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer`1" />.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Equals">
-      <MemberSignature Language="C#" Value="public abstract bool Equals (object left, object right);" />
+      <MemberSignature Language="C#" Value="public abstract bool Equals (object left, object right);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool Equals(object left, object right) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer.Equals(System.Object,System.Object)" />
       <MemberSignature Language="VB.NET" Value="Public MustOverride Function Equals (left As Object, right As Object) As Boolean" />
       <MemberSignature Language="F#" Value="override this.Equals : obj * obj -&gt; bool" Usage="valueComparer.Equals (left, right)" />
+      <MemberSignature Language="C#" Value="public abstract bool Equals (object? left, object? right);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.Collections.IEqualityComparer.Equals(System.Object,System.Object)</InterfaceMember>
-        <InterfaceMember FrameworkAlternate="efcore-5.0">M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)</InterfaceMember>
+        <InterfaceMember FrameworkAlternate="efcore-5.0;efcore-6.0">M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)</InterfaceMember>
       </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -128,6 +134,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -137,13 +144,13 @@
         <Parameter Name="right" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="left"> The first instance. </param>
-        <param name="right"> The second instance. </param>
+        <param name="left">The first instance.</param>
+        <param name="right">The second instance.</param>
         <summary>
                 Compares the two instances to determine if they are equal.
             </summary>
         <returns>
-          <see langword="true" /> if they are equal; <see langword="false" /> otherwise. </returns>
+          <see langword="true" /> if they are equal; <see langword="false" /> otherwise.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -162,6 +169,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.LambdaExpression</ReturnType>
@@ -189,6 +197,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -198,13 +207,13 @@
         <Parameter Name="rightExpression" Type="System.Linq.Expressions.Expression" />
       </Parameters>
       <Docs>
-        <param name="leftExpression"> The new left expression. </param>
-        <param name="rightExpression"> The new right expression. </param>
+        <param name="leftExpression">The new left expression.</param>
+        <param name="rightExpression">The new right expression.</param>
         <summary>
                 Takes <see cref="P:Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer.EqualsExpression" /> and replaces the two parameters with the given expressions,
                 returning the transformed body.
             </summary>
-        <returns> The body of the lambda with left and right parameters replaced.</returns>
+        <returns>The body of the lambda with left and right parameters replaced.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -223,6 +232,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -231,12 +241,12 @@
         <Parameter Name="expression" Type="System.Linq.Expressions.Expression" />
       </Parameters>
       <Docs>
-        <param name="expression"> The new expression. </param>
+        <param name="expression">The new expression.</param>
         <summary>
                 Takes the <see cref="P:Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer.HashCodeExpression" /> and replaces the parameter with the given expression,
                 returning the transformed body.
             </summary>
-        <returns> The body of the lambda with the parameter replaced.</returns>
+        <returns>The body of the lambda with the parameter replaced.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -255,6 +265,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -263,12 +274,12 @@
         <Parameter Name="expression" Type="System.Linq.Expressions.Expression" />
       </Parameters>
       <Docs>
-        <param name="expression"> The new expression. </param>
+        <param name="expression">The new expression.</param>
         <summary>
                 Takes the <see cref="P:Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer.SnapshotExpression" /> and replaces the parameter with the given expression,
                 returning the transformed body.
             </summary>
-        <returns> The body of the lambda with the parameter replaced.</returns>
+        <returns>The body of the lambda with the parameter replaced.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -281,7 +292,7 @@
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.Collections.IEqualityComparer.GetHashCode(System.Object)</InterfaceMember>
-        <InterfaceMember FrameworkAlternate="efcore-5.0">M:System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)</InterfaceMember>
+        <InterfaceMember FrameworkAlternate="efcore-5.0;efcore-6.0">M:System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)</InterfaceMember>
       </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -291,6 +302,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -299,11 +311,11 @@
         <Parameter Name="instance" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="instance"> The instance. </param>
+        <param name="instance">The instance.</param>
         <summary>
                 Returns the hash code for the given instance.
             </summary>
-        <returns> The hash code. </returns>
+        <returns>The hash code.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -322,6 +334,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.LambdaExpression</ReturnType>
@@ -335,11 +348,12 @@
       </Docs>
     </Member>
     <Member MemberName="Snapshot">
-      <MemberSignature Language="C#" Value="public abstract object Snapshot (object instance);" />
+      <MemberSignature Language="C#" Value="public abstract object Snapshot (object instance);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance object Snapshot(object instance) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer.Snapshot(System.Object)" />
       <MemberSignature Language="VB.NET" Value="Public MustOverride Function Snapshot (instance As Object) As Object" />
       <MemberSignature Language="F#" Value="abstract member Snapshot : obj -&gt; obj" Usage="valueComparer.Snapshot instance" />
+      <MemberSignature Language="C#" Value="public abstract object? Snapshot (object? instance);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -349,6 +363,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
@@ -357,7 +372,7 @@
         <Parameter Name="instance" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="instance"> The instance. </param>
+        <param name="instance">The instance.</param>
         <summary>
           <para>
                     Creates a snapshot of the given instance.
@@ -369,7 +384,7 @@
                     reference.
                 </para>
         </summary>
-        <returns> The snapshot. </returns>
+        <returns>The snapshot.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -388,6 +403,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.LambdaExpression</ReturnType>
@@ -423,6 +439,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>

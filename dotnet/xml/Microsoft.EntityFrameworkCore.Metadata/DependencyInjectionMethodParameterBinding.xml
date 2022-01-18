@@ -9,6 +9,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>Microsoft.EntityFrameworkCore.Metadata.DependencyInjectionParameterBinding</BaseTypeName>
@@ -20,7 +21,9 @@
                 also have and associated <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IServiceProperty" />, to a parameter in a constructor,
                 factory method, or similar.
             </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-constructor-binding">Entity types with constructors</see> for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -37,16 +40,52 @@
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="parameterType" Type="System.Type" />
-        <Parameter Name="serviceType" Type="System.Type" />
-        <Parameter Name="method" Type="System.Reflection.MethodInfo" />
-        <Parameter Name="serviceProperty" Type="Microsoft.EntityFrameworkCore.Metadata.IPropertyBase" />
+        <Parameter Name="parameterType" Type="System.Type" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="serviceType" Type="System.Type" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="method" Type="System.Reflection.MethodInfo" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="serviceProperty" Type="Microsoft.EntityFrameworkCore.Metadata.IPropertyBase" Index="3" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="parameterType"> The parameter CLR type. </param>
         <param name="serviceType"> The service CLR types, as resolved from dependency injection </param>
         <param name="method"> The method of the service to bind to. </param>
         <param name="serviceProperty"> The associated <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IServiceProperty" />, or null. </param>
+        <summary>
+                Creates a new <see cref="T:Microsoft.EntityFrameworkCore.Metadata.DependencyInjectionParameterBinding" /> instance for the given method
+                of the given service type.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public DependencyInjectionMethodParameterBinding (Type parameterType, Type serviceType, System.Reflection.MethodInfo method, params Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[]? serviceProperties);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class System.Type parameterType, class System.Type serviceType, class System.Reflection.MethodInfo method, class Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[] serviceProperties) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.DependencyInjectionMethodParameterBinding.#ctor(System.Type,System.Type,System.Reflection.MethodInfo,Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[])" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (parameterType As Type, serviceType As Type, method As MethodInfo, ParamArray serviceProperties As IPropertyBase())" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Metadata.DependencyInjectionMethodParameterBinding : Type * Type * System.Reflection.MethodInfo * Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[] -&gt; Microsoft.EntityFrameworkCore.Metadata.DependencyInjectionMethodParameterBinding" Usage="new Microsoft.EntityFrameworkCore.Metadata.DependencyInjectionMethodParameterBinding (parameterType, serviceType, method, serviceProperties)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="parameterType" Type="System.Type" Index="0" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="serviceType" Type="System.Type" Index="1" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="method" Type="System.Reflection.MethodInfo" Index="2" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="serviceProperties" Type="Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[]" Index="3" FrameworkAlternate="efcore-6.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[System.ParamArray]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.ParamArray&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="parameterType">The parameter CLR type.</param>
+        <param name="serviceType">The service CLR types, as resolved from dependency injection</param>
+        <param name="method">The method of the service to bind to.</param>
+        <param name="serviceProperties">The associated <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IServiceProperty" /> objects, or <see langword="null" />.</param>
         <summary>
                 Creates a new <see cref="T:Microsoft.EntityFrameworkCore.Metadata.DependencyInjectionParameterBinding" /> instance for the given method
                 of the given service type.
@@ -66,6 +105,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -75,13 +115,13 @@
         <Parameter Name="entityTypeExpression" Type="System.Linq.Expressions.Expression" />
       </Parameters>
       <Docs>
-        <param name="materializationExpression"> The expression representing the materialization context. </param>
-        <param name="entityTypeExpression"> The expression representing the <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IEntityType" /> constant. </param>
+        <param name="materializationExpression">The expression representing the materialization context.</param>
+        <param name="entityTypeExpression">The expression representing the <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IEntityType" /> constant.</param>
         <summary>
                 Creates an expression tree representing the binding of the value of a property from a
                 materialization expression to a parameter of the constructor, factory method, etc.
             </summary>
-        <returns> The expression tree. </returns>
+        <returns>The expression tree.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -97,6 +137,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MethodInfo</ReturnType>
@@ -106,6 +147,32 @@
                 The method being bound to, as defined on the dependency injection service interface.
             </summary>
         <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="With">
+      <MemberSignature Language="C#" Value="public override Microsoft.EntityFrameworkCore.Metadata.ParameterBinding With (Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[] consumedProperties);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance class Microsoft.EntityFrameworkCore.Metadata.ParameterBinding With(class Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[] consumedProperties) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.DependencyInjectionMethodParameterBinding.With(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[])" />
+      <MemberSignature Language="VB.NET" Value="Public Overrides Function With (consumedProperties As IPropertyBase()) As ParameterBinding" />
+      <MemberSignature Language="F#" Value="override this.With : Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[] -&gt; Microsoft.EntityFrameworkCore.Metadata.ParameterBinding" Usage="dependencyInjectionMethodParameterBinding.With consumedProperties" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Metadata.ParameterBinding</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="consumedProperties" Type="Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[]" Index="0" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="consumedProperties">The new consumed properties.</param>
+        <summary>
+                Creates a copy that contains the given consumed properties.
+            </summary>
+        <returns>A copy with replaced consumed properties.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

@@ -18,6 +18,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch</BaseTypeName>
@@ -33,7 +34,10 @@
                     This type is typically used by database providers; it is generally not used in application code.
                 </para>
     </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
+                for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -48,12 +52,13 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Update.ModificationCommandBatchFactoryDependencies" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Update.ModificationCommandBatchFactoryDependencies" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
-        <param name="dependencies"> Service dependencies. </param>
+        <param name="dependencies">Service dependencies.</param>
         <summary>
                 Creates a new <see cref="T:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch" /> instance.
             </summary>
@@ -99,6 +104,35 @@
       </Docs>
     </Member>
     <Member MemberName="AddCommand">
+      <MemberSignature Language="C#" Value="public override bool AddCommand (Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand modificationCommand);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance bool AddCommand(class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand modificationCommand) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.AddCommand(Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand)" />
+      <MemberSignature Language="VB.NET" Value="Public Overrides Function AddCommand (modificationCommand As IReadOnlyModificationCommand) As Boolean" />
+      <MemberSignature Language="F#" Value="override this.AddCommand : Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand -&gt; bool" Usage="readerModificationCommandBatch.AddCommand modificationCommand" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="modificationCommand" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="0" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="modificationCommand">The command to add.</param>
+        <summary>
+                Adds the given insert/update/delete <see cref="P:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ModificationCommands" /> to the batch.
+            </summary>
+        <returns>
+          <see langword="true" /> if the command was successfully added; <see langword="false" /> if there was no
+                room in the current batch to add the command and it must instead be added to a new batch.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AddCommand">
       <MemberSignature Language="C#" Value="public override bool AddCommand (Microsoft.EntityFrameworkCore.Update.ModificationCommand modificationCommand);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance bool AddCommand(class Microsoft.EntityFrameworkCore.Update.ModificationCommand modificationCommand) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.AddCommand(Microsoft.EntityFrameworkCore.Update.ModificationCommand)" />
@@ -124,7 +158,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="modificationCommand" Type="Microsoft.EntityFrameworkCore.Update.ModificationCommand" />
+        <Parameter Name="modificationCommand" Type="Microsoft.EntityFrameworkCore.Update.ModificationCommand" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="modificationCommand"> The command to add. </param>
@@ -159,6 +193,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Text.StringBuilder</ReturnType>
@@ -168,6 +203,33 @@
                 Gets or sets the cached command text for the commands in the batch.
             </summary>
         <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CanAddCommand">
+      <MemberSignature Language="C#" Value="protected abstract bool CanAddCommand (Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand modificationCommand);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance bool CanAddCommand(class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand modificationCommand) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.CanAddCommand(Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand)" />
+      <MemberSignature Language="VB.NET" Value="Protected MustOverride Function CanAddCommand (modificationCommand As IReadOnlyModificationCommand) As Boolean" />
+      <MemberSignature Language="F#" Value="abstract member CanAddCommand : Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand -&gt; bool" Usage="readerModificationCommandBatch.CanAddCommand modificationCommand" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="modificationCommand" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="0" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="modificationCommand">The command to potentially add.</param>
+        <summary>
+                Checks whether a new command can be added to the batch.
+            </summary>
+        <returns>
+          <see langword="true" /> if the command can be added; <see langword="false" /> otherwise.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -197,7 +259,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="modificationCommand" Type="Microsoft.EntityFrameworkCore.Update.ModificationCommand" />
+        <Parameter Name="modificationCommand" Type="Microsoft.EntityFrameworkCore.Update.ModificationCommand" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="modificationCommand"> The command to potentially add. </param>
@@ -230,6 +292,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IList&lt;Microsoft.EntityFrameworkCore.Update.ResultSetMapping&gt;</ReturnType>
@@ -259,15 +322,16 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="reader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="reader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
-        <param name="reader"> The data reader. </param>
+        <param name="reader">The data reader.</param>
         <summary>
                 Consumes the data reader created by <see cref="M:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(Microsoft.EntityFrameworkCore.Storage.IRelationalConnection)" />.
             </summary>
@@ -317,22 +381,24 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="reader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="reader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
-        <param name="reader"> The data reader. </param>
+        <param name="reader">The data reader.</param>
         <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
         <summary>
                 Consumes the data reader created by <see cref="M:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,System.Threading.CancellationToken)" />.
             </summary>
-        <returns> A task that represents the asynchronous operation. </returns>
+        <returns>A task that represents the asynchronous operation.</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
     <Member MemberName="ConsumeAsync">
@@ -385,6 +451,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RawSqlCommand</ReturnType>
@@ -394,7 +461,7 @@
         <summary>
                 Generates a <see cref="T:Microsoft.EntityFrameworkCore.Storage.RawSqlCommand" /> for the batch.
             </summary>
-        <returns> The command. </returns>
+        <returns>The command.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -424,7 +491,7 @@
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IRelationalValueBufferFactory</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="columnModifications" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ColumnModification&gt;" />
+        <Parameter Name="columnModifications" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ColumnModification&gt;" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="columnModifications">
@@ -439,25 +506,58 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="CreateValueBufferFactory">
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Storage.IRelationalValueBufferFactory CreateValueBufferFactory (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; columnModifications);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.IRelationalValueBufferFactory CreateValueBufferFactory(class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; columnModifications) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.CreateValueBufferFactory(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Update.IColumnModification})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function CreateValueBufferFactory (columnModifications As IReadOnlyList(Of IColumnModification)) As IRelationalValueBufferFactory" />
+      <MemberSignature Language="F#" Value="abstract member CreateValueBufferFactory : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; -&gt; Microsoft.EntityFrameworkCore.Storage.IRelationalValueBufferFactory&#xA;override this.CreateValueBufferFactory : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; -&gt; Microsoft.EntityFrameworkCore.Storage.IRelationalValueBufferFactory" Usage="readerModificationCommandBatch.CreateValueBufferFactory columnModifications" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.IRelationalValueBufferFactory</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="columnModifications" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="0" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="columnModifications">
+                The list of <see cref="T:Microsoft.EntityFrameworkCore.Update.IColumnModification" />s for all the columns
+                being modified such that a ValueBuffer with appropriate slots can be created.
+            </param>
+        <summary>
+                Creates the <see cref="T:Microsoft.EntityFrameworkCore.Storage.IRelationalValueBufferFactory" /> that will be used for creating a
+                <see cref="T:Microsoft.EntityFrameworkCore.Storage.ValueBuffer" /> to consume the data reader.
+            </summary>
+        <returns>The factory.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Dependencies">
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Update.ModificationCommandBatchFactoryDependencies Dependencies { get; }" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Update.ModificationCommandBatchFactoryDependencies Dependencies { get; }" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Update.ModificationCommandBatchFactoryDependencies Dependencies" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Dependencies" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Dependencies As ModificationCommandBatchFactoryDependencies" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Dependencies As ModificationCommandBatchFactoryDependencies" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="F#" Value="member this.Dependencies : Microsoft.EntityFrameworkCore.Update.ModificationCommandBatchFactoryDependencies" Usage="Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Dependencies" />
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Update.ModificationCommandBatchFactoryDependencies Dependencies { get; }" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable ReadOnly Property Dependencies As ModificationCommandBatchFactoryDependencies" FrameworkAlternate="efcore-6.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Update.ModificationCommandBatchFactoryDependencies</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>
-                Service dependencies.
+                Relational provider-specific dependencies for this service.
             </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
@@ -484,6 +584,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -492,7 +593,7 @@
         <Parameter Name="connection" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalConnection" />
       </Parameters>
       <Docs>
-        <param name="connection"> The connection to the database to update. </param>
+        <param name="connection">The connection to the database to update.</param>
         <summary>
                 Executes the command generated by <see cref="M:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.CreateStoreCommand" /> against a
                 database using the given connection.
@@ -521,6 +622,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
@@ -530,14 +632,15 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
-        <param name="connection"> The connection to the database to update. </param>
+        <param name="connection">The connection to the database to update.</param>
         <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
         <summary>
                 Executes the command generated by <see cref="M:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.CreateStoreCommand" /> against a
                 database using the given connection.
             </summary>
-        <returns> A task that represents the asynchronous operation. </returns>
+        <returns>A task that represents the asynchronous operation.</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
     <Member MemberName="GetCommandText">
@@ -561,6 +664,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -571,7 +675,7 @@
                 Gets the command text for all the commands in the current batch and also caches it
                 on <see cref="P:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.CachedCommandText" />.
             </summary>
-        <returns> The command text. </returns>
+        <returns>The command text.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -596,6 +700,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -605,7 +710,7 @@
         <summary>
                 Gets the total number of parameters needed for the batch.
             </summary>
-        <returns> The total parameter count. </returns>
+        <returns>The total parameter count.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -630,6 +735,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -637,10 +743,10 @@
       <Parameters />
       <Docs>
         <summary>
-                Checks whether or not the command text is valid.
+                Checks whether the command text is valid.
             </summary>
         <returns>
-          <see langword="true" /> if the command text is valid; <see langword="false" /> otherwise. </returns>
+          <see langword="true" /> if the command text is valid; <see langword="false" /> otherwise.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -665,6 +771,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -678,11 +785,15 @@
       </Docs>
     </Member>
     <Member MemberName="ModificationCommands">
-      <MemberSignature Language="C#" Value="public override System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt; ModificationCommands { get; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt; ModificationCommands" />
+      <MemberSignature Language="C#" Value="public override System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt; ModificationCommands { get; }" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt; ModificationCommands" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ModificationCommands" />
-      <MemberSignature Language="VB.NET" Value="Public Overrides ReadOnly Property ModificationCommands As IReadOnlyList(Of ModificationCommand)" />
-      <MemberSignature Language="F#" Value="member this.ModificationCommands : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt;" Usage="Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ModificationCommands" />
+      <MemberSignature Language="VB.NET" Value="Public Overrides ReadOnly Property ModificationCommands As IReadOnlyList(Of ModificationCommand)" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="F#" Value="member this.ModificationCommands : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt;" Usage="Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ModificationCommands" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="C#" Value="public override System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand&gt; ModificationCommands { get; }" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand&gt; ModificationCommands" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overrides ReadOnly Property ModificationCommands As IReadOnlyList(Of IReadOnlyModificationCommand)" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="F#" Value="member this.ModificationCommands : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand&gt;" Usage="Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ModificationCommands" FrameworkAlternate="efcore-6.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -698,9 +809,11 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt;</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt;</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-6.0">System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand&gt;</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>
@@ -731,6 +844,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -794,6 +908,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -802,7 +917,7 @@
         <Parameter Name="commandPosition" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="commandPosition"> The position of the command to generate command text for. </param>
+        <param name="commandPosition">The position of the command to generate command text for.</param>
         <summary>
                 Updates the command text for the command at the given position in the
                 <see cref="P:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ModificationCommands" /> list.
@@ -831,6 +946,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator</ReturnType>

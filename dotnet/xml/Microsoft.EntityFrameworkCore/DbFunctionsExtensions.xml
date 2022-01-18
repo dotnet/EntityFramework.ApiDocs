@@ -14,6 +14,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -24,7 +25,9 @@
                 Provides CLR methods that get translated to database functions when used in LINQ to Entities queries.
                 The methods on this class are accessed via <see cref="P:Microsoft.EntityFrameworkCore.EF.Functions" />.
             </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-database-functions">Database functions</see> for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName="Like">
@@ -44,6 +47,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -54,24 +58,25 @@
         <Parameter Name="pattern" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="_">The DbFunctions instance.</param>
+        <param name="_">The <see cref="T:Microsoft.EntityFrameworkCore.DbFunctions" /> instance.</param>
         <param name="matchExpression">The string that is to be matched.</param>
-        <param name="pattern">The pattern which may involve wildcards %,_,[,],^.</param>
+        <param name="pattern">The pattern which may involve wildcards <c>%,_,[,],^</c>.</param>
         <summary>
           <para>
-                    An implementation of the SQL LIKE operation. On relational databases this is usually directly
+                    An implementation of the SQL <c>LIKE</c> operation. On relational databases this is usually directly
                     translated to SQL.
                 </para>
           <para>
-                    Note that if this function is translated into SQL, then the semantics of the comparison will
-                    depend on the database configuration. In particular, it may be either case-sensitive or
-                    case-insensitive. If this function is evaluated on the client, then it will always use
-                    a case-insensitive comparison.
+                    Note that the semantics of the comparison will depend on the database configuration.
+                    In particular, it may be either case-sensitive or case-insensitive.
                 </para>
         </summary>
         <returns>
           <see langword="true" /> if there is a match.</returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+                This DbFunction method has no in-memory implementation and will throw if the query switches to client-evaluation.
+                This can happen if the query contains one or more expressions that could not be translated to the store.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="Like">
@@ -91,6 +96,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -102,7 +108,7 @@
         <Parameter Name="escapeCharacter" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="_">The DbFunctions instance.</param>
+        <param name="_">The <see cref="T:Microsoft.EntityFrameworkCore.DbFunctions" /> instance.</param>
         <param name="matchExpression">The string that is to be matched.</param>
         <param name="pattern">The pattern which may involve wildcards %,_,[,],^.</param>
         <param name="escapeCharacter">
@@ -115,15 +121,45 @@
                     translated to SQL.
                 </para>
           <para>
-                    Note that if this function is translated into SQL, then the semantics of the comparison will
-                    depend on the database configuration. In particular, it may be either case-sensitive or
-                    case-insensitive. If this function is evaluated on the client, then it will always use
-                    a case-insensitive comparison.
+                    Note that the semantics of the comparison will depend on the database configuration.
+                    In particular, it may be either case-sensitive or case-insensitive.
                 </para>
         </summary>
         <returns>
           <see langword="true" /> if there is a match.</returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+                This DbFunction method has no in-memory implementation and will throw if the query switches to client-evaluation.
+                This can happen if the query contains one or more expressions that could not be translated to the store.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Random">
+      <MemberSignature Language="C#" Value="public static double Random (this Microsoft.EntityFrameworkCore.DbFunctions _);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig float64 Random(class Microsoft.EntityFrameworkCore.DbFunctions _) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.DbFunctionsExtensions.Random(Microsoft.EntityFrameworkCore.DbFunctions)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function Random (_ As DbFunctions) As Double" />
+      <MemberSignature Language="F#" Value="static member Random : Microsoft.EntityFrameworkCore.DbFunctions -&gt; double" Usage="Microsoft.EntityFrameworkCore.DbFunctionsExtensions.Random _" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="_" Type="Microsoft.EntityFrameworkCore.DbFunctions" Index="0" FrameworkAlternate="efcore-6.0" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="_">The <see cref="T:Microsoft.EntityFrameworkCore.DbFunctions" /> instance.</param>
+        <summary>
+                A random double number generator which generates a number between 0 and 1, exclusive.
+            </summary>
+        <returns>A random double number between 0 and 1, exclusive.</returns>
+        <remarks>
+                This DbFunction method has no in-memory implementation and will throw if the query switches to client-evaluation.
+                This can happen if the query contains one or more expressions that could not be translated to the store.
+            </remarks>
       </Docs>
     </Member>
   </Members>

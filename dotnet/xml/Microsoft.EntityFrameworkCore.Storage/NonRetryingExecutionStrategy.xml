@@ -7,6 +7,7 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -20,7 +21,10 @@
     <summary>
                 An implementation of <see cref="T:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy" /> that does no retries.
             </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-connection-resiliency">Connection resiliency and database retries</see>
+                for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -33,12 +37,13 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies" />
       </Parameters>
       <Docs>
-        <param name="dependencies"> Dependencies for this execution strategy. </param>
+        <param name="dependencies">Dependencies for this execution strategy.</param>
         <summary>
                 Constructs a new <see cref="T:Microsoft.EntityFrameworkCore.Storage.NonRetryingExecutionStrategy" /> with the given service dependencies.
             </summary>
@@ -46,11 +51,12 @@
       </Docs>
     </Member>
     <Member MemberName="Execute&lt;TState,TResult&gt;">
-      <MemberSignature Language="C#" Value="public TResult Execute&lt;TState,TResult&gt; (TState state, Func&lt;Microsoft.EntityFrameworkCore.DbContext,TState,TResult&gt; operation, Func&lt;Microsoft.EntityFrameworkCore.DbContext,TState,Microsoft.EntityFrameworkCore.Storage.ExecutionResult&lt;TResult&gt;&gt; verifySucceeded);" />
+      <MemberSignature Language="C#" Value="public TResult Execute&lt;TState,TResult&gt; (TState state, Func&lt;Microsoft.EntityFrameworkCore.DbContext,TState,TResult&gt; operation, Func&lt;Microsoft.EntityFrameworkCore.DbContext,TState,Microsoft.EntityFrameworkCore.Storage.ExecutionResult&lt;TResult&gt;&gt; verifySucceeded);" FrameworkAlternate="efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance !!TResult Execute&lt;TState, TResult&gt;(!!TState state, class System.Func`3&lt;class Microsoft.EntityFrameworkCore.DbContext, !!TState, !!TResult&gt; operation, class System.Func`3&lt;class Microsoft.EntityFrameworkCore.DbContext, !!TState, class Microsoft.EntityFrameworkCore.Storage.ExecutionResult`1&lt;!!TResult&gt;&gt; verifySucceeded) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.NonRetryingExecutionStrategy.Execute``2(``0,System.Func{Microsoft.EntityFrameworkCore.DbContext,``0,``1},System.Func{Microsoft.EntityFrameworkCore.DbContext,``0,Microsoft.EntityFrameworkCore.Storage.ExecutionResult{``1}})" />
       <MemberSignature Language="VB.NET" Value="Public Function Execute(Of TState, TResult) (state As TState, operation As Func(Of DbContext, TState, TResult), verifySucceeded As Func(Of DbContext, TState, ExecutionResult(Of TResult))) As TResult" />
       <MemberSignature Language="F#" Value="abstract member Execute : 'State * Func&lt;Microsoft.EntityFrameworkCore.DbContext, 'State, 'Result&gt; * Func&lt;Microsoft.EntityFrameworkCore.DbContext, 'State, Microsoft.EntityFrameworkCore.Storage.ExecutionResult&lt;'Result&gt;&gt; -&gt; 'Result&#xA;override this.Execute : 'State * Func&lt;Microsoft.EntityFrameworkCore.DbContext, 'State, 'Result&gt; * Func&lt;Microsoft.EntityFrameworkCore.DbContext, 'State, Microsoft.EntityFrameworkCore.Storage.ExecutionResult&lt;'Result&gt;&gt; -&gt; 'Result" Usage="nonRetryingExecutionStrategy.Execute (state, operation, verifySucceeded)" />
+      <MemberSignature Language="C#" Value="public TResult Execute&lt;TState,TResult&gt; (TState state, Func&lt;Microsoft.EntityFrameworkCore.DbContext,TState,TResult&gt; operation, Func&lt;Microsoft.EntityFrameworkCore.DbContext,TState,Microsoft.EntityFrameworkCore.Storage.ExecutionResult&lt;TResult&gt;&gt;? verifySucceeded);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy.Execute``2(``0,System.Func{Microsoft.EntityFrameworkCore.DbContext,``0,``1},System.Func{Microsoft.EntityFrameworkCore.DbContext,``0,Microsoft.EntityFrameworkCore.Storage.ExecutionResult{``1}})</InterfaceMember>
@@ -58,6 +64,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>TResult</ReturnType>
@@ -72,29 +79,33 @@
         <Parameter Name="verifySucceeded" Type="System.Func&lt;Microsoft.EntityFrameworkCore.DbContext,TState,Microsoft.EntityFrameworkCore.Storage.ExecutionResult&lt;TResult&gt;&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="TState"> The type of the state. </typeparam>
-        <typeparam name="TResult"> The return type of <paramref name="operation" />. </typeparam>
-        <param name="state"> The state that will be passed to the operation. </param>
+        <typeparam name="TState">The type of the state.</typeparam>
+        <typeparam name="TResult">The return type of <paramref name="operation" />.</typeparam>
+        <param name="state">The state that will be passed to the operation.</param>
         <param name="operation">
                 A delegate representing an executable operation that returns the result of type <typeparamref name="TResult" />.
             </param>
-        <param name="verifySucceeded"> A delegate that tests whether the operation succeeded even though an exception was thrown. </param>
+        <param name="verifySucceeded">A delegate that tests whether the operation succeeded even though an exception was thrown.</param>
         <summary>
                 Executes the specified operation and returns the result.
             </summary>
-        <returns> The result from the operation. </returns>
-        <remarks>To be added.</remarks>
+        <returns>The result from the operation.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-connection-resiliency">Connection resiliency and database retries</see>
+                for more information.
+            </remarks>
         <exception cref="T:Microsoft.EntityFrameworkCore.Storage.RetryLimitExceededException">
                 The operation has not succeeded after the configured number of retries.
             </exception>
       </Docs>
     </Member>
     <Member MemberName="ExecuteAsync&lt;TState,TResult&gt;">
-      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;TResult&gt; ExecuteAsync&lt;TState,TResult&gt; (TState state, Func&lt;Microsoft.EntityFrameworkCore.DbContext,TState,System.Threading.CancellationToken,System.Threading.Tasks.Task&lt;TResult&gt;&gt; operation, Func&lt;Microsoft.EntityFrameworkCore.DbContext,TState,System.Threading.CancellationToken,System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.ExecutionResult&lt;TResult&gt;&gt;&gt; verifySucceeded, System.Threading.CancellationToken cancellationToken = default);" />
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;TResult&gt; ExecuteAsync&lt;TState,TResult&gt; (TState state, Func&lt;Microsoft.EntityFrameworkCore.DbContext,TState,System.Threading.CancellationToken,System.Threading.Tasks.Task&lt;TResult&gt;&gt; operation, Func&lt;Microsoft.EntityFrameworkCore.DbContext,TState,System.Threading.CancellationToken,System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.ExecutionResult&lt;TResult&gt;&gt;&gt; verifySucceeded, System.Threading.CancellationToken cancellationToken = default);" FrameworkAlternate="efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;!!TResult&gt; ExecuteAsync&lt;TState, TResult&gt;(!!TState state, class System.Func`4&lt;class Microsoft.EntityFrameworkCore.DbContext, !!TState, valuetype System.Threading.CancellationToken, class System.Threading.Tasks.Task`1&lt;!!TResult&gt;&gt; operation, class System.Func`4&lt;class Microsoft.EntityFrameworkCore.DbContext, !!TState, valuetype System.Threading.CancellationToken, class System.Threading.Tasks.Task`1&lt;class Microsoft.EntityFrameworkCore.Storage.ExecutionResult`1&lt;!!TResult&gt;&gt;&gt; verifySucceeded, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.NonRetryingExecutionStrategy.ExecuteAsync``2(``0,System.Func{Microsoft.EntityFrameworkCore.DbContext,``0,System.Threading.CancellationToken,System.Threading.Tasks.Task{``1}},System.Func{Microsoft.EntityFrameworkCore.DbContext,``0,System.Threading.CancellationToken,System.Threading.Tasks.Task{Microsoft.EntityFrameworkCore.Storage.ExecutionResult{``1}}},System.Threading.CancellationToken)" />
       <MemberSignature Language="VB.NET" Value="Public Function ExecuteAsync(Of TState, TResult) (state As TState, operation As Func(Of DbContext, TState, CancellationToken, Task(Of TResult)), verifySucceeded As Func(Of DbContext, TState, CancellationToken, Task(Of ExecutionResult(Of TResult))), Optional cancellationToken As CancellationToken = Nothing) As Task(Of TResult)" />
       <MemberSignature Language="F#" Value="abstract member ExecuteAsync : 'State * Func&lt;Microsoft.EntityFrameworkCore.DbContext, 'State, System.Threading.CancellationToken, System.Threading.Tasks.Task&lt;'Result&gt;&gt; * Func&lt;Microsoft.EntityFrameworkCore.DbContext, 'State, System.Threading.CancellationToken, System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.ExecutionResult&lt;'Result&gt;&gt;&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;'Result&gt;&#xA;override this.ExecuteAsync : 'State * Func&lt;Microsoft.EntityFrameworkCore.DbContext, 'State, System.Threading.CancellationToken, System.Threading.Tasks.Task&lt;'Result&gt;&gt; * Func&lt;Microsoft.EntityFrameworkCore.DbContext, 'State, System.Threading.CancellationToken, System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.ExecutionResult&lt;'Result&gt;&gt;&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;'Result&gt;" Usage="nonRetryingExecutionStrategy.ExecuteAsync (state, operation, verifySucceeded, cancellationToken)" />
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;TResult&gt; ExecuteAsync&lt;TState,TResult&gt; (TState state, Func&lt;Microsoft.EntityFrameworkCore.DbContext,TState,System.Threading.CancellationToken,System.Threading.Tasks.Task&lt;TResult&gt;&gt; operation, Func&lt;Microsoft.EntityFrameworkCore.DbContext,TState,System.Threading.CancellationToken,System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.Storage.ExecutionResult&lt;TResult&gt;&gt;&gt;? verifySucceeded, System.Threading.CancellationToken cancellationToken = default);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy.ExecuteAsync``2(``0,System.Func{Microsoft.EntityFrameworkCore.DbContext,``0,System.Threading.CancellationToken,System.Threading.Tasks.Task{``1}},System.Func{Microsoft.EntityFrameworkCore.DbContext,``0,System.Threading.CancellationToken,System.Threading.Tasks.Task{Microsoft.EntityFrameworkCore.Storage.ExecutionResult{``1}}},System.Threading.CancellationToken)</InterfaceMember>
@@ -102,6 +113,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task&lt;TResult&gt;</ReturnType>
@@ -117,13 +129,13 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
-        <typeparam name="TState"> The type of the state. </typeparam>
-        <typeparam name="TResult"> The result type of the <see cref="T:System.Threading.Tasks.Task`1" /> returned by <paramref name="operation" />. </typeparam>
-        <param name="state"> The state that will be passed to the operation. </param>
+        <typeparam name="TState">The type of the state.</typeparam>
+        <typeparam name="TResult">The result type of the <see cref="T:System.Threading.Tasks.Task`1" /> returned by <paramref name="operation" />.</typeparam>
+        <param name="state">The state that will be passed to the operation.</param>
         <param name="operation">
                 A function that returns a started task of type <typeparamref name="TResult" />.
             </param>
-        <param name="verifySucceeded"> A delegate that tests whether the operation succeeded even though an exception was thrown. </param>
+        <param name="verifySucceeded">A delegate that tests whether the operation succeeded even though an exception was thrown.</param>
         <param name="cancellationToken">
                 A cancellation token used to cancel the retry operation, but not operations that are already in flight
                 or that already completed successfully.
@@ -136,10 +148,14 @@
                 first time or after retrying transient failures). If the task fails with a non-transient error or
                 the retry limit is reached, the returned task will become faulted and the exception must be observed.
             </returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-connection-resiliency">Connection resiliency and database retries</see>
+                for more information.
+            </remarks>
         <exception cref="T:Microsoft.EntityFrameworkCore.Storage.RetryLimitExceededException">
                 The operation has not succeeded after the configured number of retries.
             </exception>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
     <Member MemberName="RetriesOnFailure">
@@ -155,6 +171,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -164,7 +181,10 @@
                 Always returns false, since the <see cref="T:Microsoft.EntityFrameworkCore.Storage.NonRetryingExecutionStrategy" /> does not perform retries.
             </summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-connection-resiliency">Connection resiliency and database retries</see>
+                for more information.
+            </remarks>
       </Docs>
     </Member>
   </Members>

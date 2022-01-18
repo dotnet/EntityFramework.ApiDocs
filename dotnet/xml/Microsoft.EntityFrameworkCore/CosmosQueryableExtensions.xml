@@ -7,6 +7,7 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -14,11 +15,83 @@
   <Interfaces />
   <Docs>
     <summary>
-                Cosmos DB specific extension methods for LINQ queries.
+                Cosmos-specific extension methods for LINQ queries.
             </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see>, and
+                <see href="https://aka.ms/efcore-docs-cosmos">Accessing Azure Cosmos DB with EF Core</see> for more information.
+            </remarks>
   </Docs>
   <Members>
+    <Member MemberName="FromSqlRaw&lt;TEntity&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; FromSqlRaw&lt;TEntity&gt; (this Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt; source, string sql, params object[] parameters) where TEntity : class;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; FromSqlRaw&lt;class TEntity&gt;(class Microsoft.EntityFrameworkCore.DbSet`1&lt;!!TEntity&gt; source, string sql, object[] parameters) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.FromSqlRaw``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.String,System.Object[])" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function FromSqlRaw(Of TEntity As Class) (source As DbSet(Of TEntity), sql As String, ParamArray parameters As Object()) As IQueryable(Of TEntity)" />
+      <MemberSignature Language="F#" Value="static member FromSqlRaw : Microsoft.EntityFrameworkCore.DbSet&lt;'Entity (requires 'Entity : null)&gt; * string * obj[] -&gt; System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; (requires 'Entity : null)" Usage="Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.FromSqlRaw (source, sql, parameters)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TEntity">
+          <Constraints>
+            <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt;" Index="0" FrameworkAlternate="efcore-6.0" RefType="this" />
+        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-6.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Query.NotParameterized]</AttributeName>
+              <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Query.NotParameterized&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+        <Parameter Name="parameters" Type="System.Object[]" Index="2" FrameworkAlternate="efcore-6.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[System.ParamArray]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.ParamArray&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <typeparam name="TEntity">The type of the elements of <paramref name="source" />.</typeparam>
+        <param name="source">
+                An <see cref="T:System.Linq.IQueryable`1" /> to use as the base of the raw SQL query (typically a <see cref="T:Microsoft.EntityFrameworkCore.DbSet`1" />).
+            </param>
+        <param name="sql">The raw SQL query.</param>
+        <param name="parameters">The values to be assigned to parameters.</param>
+        <summary>
+          <para>
+                    Creates a LINQ query based on a raw SQL query.
+                </para>
+          <para>
+                    You can compose on top of the raw SQL query using LINQ operators:
+                </para>
+          <code>context.Blogs.FromSqlRaw("SELECT * FROM root c).OrderBy(b =&gt; b.Name)</code>
+          <para>
+                    As with any API that accepts SQL it is important to parameterize any user input to protect against a SQL injection
+                    attack. You can include parameter place holders in the SQL query string and then supply parameter values as additional
+                    arguments. Any parameter values you supply will automatically be converted to a Cosmos parameter:
+                </para>
+          <code>context.Blogs.FromSqlRaw(""SELECT * FROM root c WHERE c["Name"] = {0})", userSuppliedSearchTerm)</code>
+        </summary>
+        <returns>An <see cref="T:System.Linq.IQueryable`1" /> representing the raw SQL query.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see>, and
+                <see href="https://aka.ms/efcore-docs-cosmos">Accessing Azure Cosmos DB with EF Core</see> for more information.
+            </remarks>
+      </Docs>
+    </Member>
     <Member MemberName="WithPartitionKey&lt;TEntity&gt;">
       <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; WithPartitionKey&lt;TEntity&gt; (this System.Linq.IQueryable&lt;TEntity&gt; source, string partitionKey) where TEntity : class;" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; WithPartitionKey&lt;class TEntity&gt;(class System.Linq.IQueryable`1&lt;!!TEntity&gt; source, string partitionKey) cil managed" />
@@ -29,6 +102,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
@@ -44,7 +118,7 @@
         <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" RefType="this" />
         <Parameter Name="partitionKey" Type="System.String">
           <Attributes>
-            <Attribute>
+            <Attribute FrameworkAlternate="efcore-5.0">
               <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Query.NotParameterized]</AttributeName>
               <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Query.NotParameterized&gt;]</AttributeName>
             </Attribute>
@@ -52,15 +126,18 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <typeparam name="TEntity"> The type of entity being queried. </typeparam>
-        <param name="source"> The source query. </param>
-        <param name="partitionKey"> The partition key. </param>
+        <typeparam name="TEntity">The type of entity being queried.</typeparam>
+        <param name="source">The source query.</param>
+        <param name="partitionKey">The partition key.</param>
         <summary>
                 Specify the partition key for partition used for the query. Required when using
                 a resource token that provides permission based on a partition key for authentication,
             </summary>
-        <returns> A new query with the set partition key. </returns>
-        <remarks>To be added.</remarks>
+        <returns>A new query with the set partition key.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see>, and
+                <see href="https://aka.ms/efcore-docs-cosmos">Accessing Azure Cosmos DB with EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
   </Members>
