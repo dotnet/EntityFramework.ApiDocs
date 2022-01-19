@@ -9,6 +9,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>Microsoft.EntityFrameworkCore.Metadata.ParameterBinding</BaseTypeName>
@@ -20,7 +21,9 @@
                 may not also have and associated <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IServiceProperty" />, to a parameter in
                 a constructor, factory method, or similar.
             </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-constructor-binding">Entity types with constructors</see> for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -37,14 +40,48 @@
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="parameterType" Type="System.Type" />
-        <Parameter Name="serviceType" Type="System.Type" />
-        <Parameter Name="serviceProperty" Type="Microsoft.EntityFrameworkCore.Metadata.IPropertyBase" />
+        <Parameter Name="parameterType" Type="System.Type" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="serviceType" Type="System.Type" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="serviceProperty" Type="Microsoft.EntityFrameworkCore.Metadata.IPropertyBase" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="parameterType"> The parameter CLR type. </param>
         <param name="serviceType"> The service or metadata CLR type. </param>
         <param name="serviceProperty"> The associated <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IServiceProperty" />, or null. </param>
+        <summary>
+                Creates a new <see cref="T:Microsoft.EntityFrameworkCore.Metadata.ServiceParameterBinding" /> instance for the given service type
+                or metadata type.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="protected ServiceParameterBinding (Type parameterType, Type serviceType, params Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[]? serviceProperties);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor(class System.Type parameterType, class System.Type serviceType, class Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[] serviceProperties) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.ServiceParameterBinding.#ctor(System.Type,System.Type,Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[])" />
+      <MemberSignature Language="VB.NET" Value="Protected Sub New (parameterType As Type, serviceType As Type, ParamArray serviceProperties As IPropertyBase())" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Metadata.ServiceParameterBinding : Type * Type * Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[] -&gt; Microsoft.EntityFrameworkCore.Metadata.ServiceParameterBinding" Usage="new Microsoft.EntityFrameworkCore.Metadata.ServiceParameterBinding (parameterType, serviceType, serviceProperties)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="parameterType" Type="System.Type" Index="0" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="serviceType" Type="System.Type" Index="1" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="serviceProperties" Type="Microsoft.EntityFrameworkCore.Metadata.IPropertyBase[]" Index="2" FrameworkAlternate="efcore-6.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[System.ParamArray]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.ParamArray&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="parameterType">The parameter CLR type.</param>
+        <param name="serviceType">The service or metadata CLR type.</param>
+        <param name="serviceProperties">The associated <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IServiceProperty" /> instances, or null.</param>
         <summary>
                 Creates a new <see cref="T:Microsoft.EntityFrameworkCore.Metadata.ServiceParameterBinding" /> instance for the given service type
                 or metadata type.
@@ -64,6 +101,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -72,12 +110,12 @@
         <Parameter Name="bindingInfo" Type="Microsoft.EntityFrameworkCore.Metadata.ParameterBindingInfo" />
       </Parameters>
       <Docs>
-        <param name="bindingInfo"> The binding information. </param>
+        <param name="bindingInfo">The binding information.</param>
         <summary>
                 Creates an expression tree representing the binding of the value of a property from a
                 materialization expression to a parameter of the constructor, factory method, etc.
             </summary>
-        <returns> The expression tree. </returns>
+        <returns>The expression tree.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -93,6 +131,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -102,13 +141,13 @@
         <Parameter Name="entityTypeExpression" Type="System.Linq.Expressions.Expression" />
       </Parameters>
       <Docs>
-        <param name="materializationExpression"> The expression representing the materialization context. </param>
-        <param name="entityTypeExpression"> The expression representing the <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IEntityType" /> constant. </param>
+        <param name="materializationExpression">The expression representing the materialization context.</param>
+        <param name="entityTypeExpression">The expression representing the <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IEntityType" /> constant.</param>
         <summary>
                 Creates an expression tree representing the binding of the value of a property from a
                 materialization expression to a parameter of the constructor, factory method, etc.
             </summary>
-        <returns> The expression tree. </returns>
+        <returns>The expression tree.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -124,6 +163,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext,Microsoft.EntityFrameworkCore.Metadata.IEntityType,System.Object,System.Object&gt;</ReturnType>
@@ -148,6 +188,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>

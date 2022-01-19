@@ -7,6 +7,7 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Docs>
@@ -15,9 +16,10 @@
                     A factory for creating <see cref="T:Microsoft.EntityFrameworkCore.Query.RelationalParameterBasedSqlProcessor" /> instances.
                 </para>
       <para>
-                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
-                    is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
-                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
                 </para>
     </summary>
     <remarks>To be added.</remarks>
@@ -33,6 +35,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.RelationalParameterBasedSqlProcessor</ReturnType>
@@ -41,11 +44,11 @@
         <Parameter Name="useRelationalNulls" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="useRelationalNulls"> A bool value indicating if relational nulls should be used. </param>
+        <param name="useRelationalNulls">A bool value indicating if relational nulls should be used.</param>
         <summary>
                 Creates a new <see cref="T:Microsoft.EntityFrameworkCore.Query.RelationalParameterBasedSqlProcessor" />.
             </summary>
-        <returns> A relational parameter based sql processor. </returns>
+        <returns>A relational parameter based sql processor.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

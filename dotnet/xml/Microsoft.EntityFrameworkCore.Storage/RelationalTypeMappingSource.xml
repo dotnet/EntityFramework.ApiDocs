@@ -12,6 +12,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>Microsoft.EntityFrameworkCore.Storage.TypeMappingSourceBase</BaseTypeName>
@@ -27,7 +28,7 @@
   <Docs>
     <summary>
       <para>
-                    The base class for relational type mapping starting with version 2.1. Relational providers
+                    The base class for relational type mapping source. Relational providers
                     should derive from this class and override <see cref="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.FindMapping(Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingInfo@)" /></para>
       <para>
                     This type is typically used by database providers (and other extensions). It is generally
@@ -39,7 +40,10 @@
                     This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
                 </para>
     </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
+                for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -57,14 +61,15 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Storage.TypeMappingSourceDependencies" />
         <Parameter Name="relationalDependencies" Type="Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSourceDependencies" />
       </Parameters>
       <Docs>
-        <param name="dependencies"> Parameter object containing dependencies for this service. </param>
-        <param name="relationalDependencies"> Parameter object containing relational-specific dependencies for this service. </param>
+        <param name="dependencies">Parameter object containing dependencies for this service.</param>
+        <param name="relationalDependencies">Parameter object containing relational-specific dependencies for this service.</param>
         <summary>
                 Initializes a new instance of the this class.
             </summary>
@@ -72,11 +77,12 @@
       </Docs>
     </Member>
     <Member MemberName="FindMapping">
-      <MemberSignature Language="C#" Value="public override Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping (Microsoft.EntityFrameworkCore.Metadata.IProperty property);" />
+      <MemberSignature Language="C#" Value="public override Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping (Microsoft.EntityFrameworkCore.Metadata.IProperty property);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance class Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping(class Microsoft.EntityFrameworkCore.Metadata.IProperty property) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.FindMapping(Microsoft.EntityFrameworkCore.Metadata.IProperty)" />
       <MemberSignature Language="VB.NET" Value="Public Overrides Function FindMapping (property As IProperty) As CoreTypeMapping" />
       <MemberSignature Language="F#" Value="override this.FindMapping : Microsoft.EntityFrameworkCore.Metadata.IProperty -&gt; Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping" Usage="relationalTypeMappingSource.FindMapping property" />
+      <MemberSignature Language="C#" Value="public override Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping? FindMapping (Microsoft.EntityFrameworkCore.Metadata.IProperty property);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource.FindMapping(Microsoft.EntityFrameworkCore.Metadata.IProperty)</InterfaceMember>
@@ -89,6 +95,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping</ReturnType>
@@ -97,7 +104,7 @@
         <Parameter Name="property" Type="Microsoft.EntityFrameworkCore.Metadata.IProperty" />
       </Parameters>
       <Docs>
-        <param name="property"> The property. </param>
+        <param name="property">The property.</param>
         <summary>
           <para>
                     Finds the type mapping for a given <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IProperty" />.
@@ -106,7 +113,7 @@
                     Note: providers should typically not need to override this method.
                 </para>
         </summary>
-        <returns> The type mapping, or <see langword="null" /> if none was found. </returns>
+        <returns>The type mapping, or <see langword="null" /> if none was found.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -117,7 +124,8 @@
       <MemberSignature Language="VB.NET" Value="Protected MustOverride Function FindMapping (mappingInfo As RelationalTypeMappingInfo) As RelationalTypeMapping" FrameworkAlternate="efcore-2.1" />
       <MemberSignature Language="F#" Value="override this.FindMapping : RelationalTypeMappingInfo -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping" Usage="relationalTypeMappingSource.FindMapping mappingInfo" />
       <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping FindMapping (Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingInfo mappingInfo);" FrameworkAlternate="efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
-      <MemberSignature Language="VB.NET" Value="Protected Overridable Function FindMapping (mappingInfo As RelationalTypeMappingInfo) As RelationalTypeMapping" FrameworkAlternate="efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function FindMapping (mappingInfo As RelationalTypeMappingInfo) As RelationalTypeMapping" FrameworkAlternate="efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping? FindMapping (Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingInfo? mappingInfo);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -127,6 +135,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping</ReturnType>
@@ -135,7 +144,7 @@
         <Parameter Name="mappingInfo" Type="Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingInfo" />
       </Parameters>
       <Docs>
-        <param name="mappingInfo"> The mapping info to use to create the mapping. </param>
+        <param name="mappingInfo">The mapping info to use to create the mapping.</param>
         <summary>
           <para>
                     Overridden by relational database providers to find a type mapping for the given info.
@@ -146,7 +155,7 @@
                     if no mapping is available.
                 </para>
         </summary>
-        <returns> The type mapping, or <see langword="null" /> if none could be found. </returns>
+        <returns>The type mapping, or <see langword="null" /> if none could be found.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -165,6 +174,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping</ReturnType>
@@ -173,20 +183,21 @@
         <Parameter Name="mappingInfo" Type="Microsoft.EntityFrameworkCore.Storage.TypeMappingInfo" />
       </Parameters>
       <Docs>
-        <param name="mappingInfo"> The mapping info to use to create the mapping. </param>
+        <param name="mappingInfo">The mapping info to use to create the mapping.</param>
         <summary>
                 Call <see cref="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.FindMapping(Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingInfo@)" /> instead
             </summary>
-        <returns> The type mapping, or <see langword="null" /> if none could be found. </returns>
+        <returns>The type mapping, or <see langword="null" /> if none could be found.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="FindMapping">
-      <MemberSignature Language="C#" Value="public override Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping (System.Reflection.MemberInfo member);" />
+      <MemberSignature Language="C#" Value="public override Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping (System.Reflection.MemberInfo member);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance class Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping(class System.Reflection.MemberInfo member) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.FindMapping(System.Reflection.MemberInfo)" />
       <MemberSignature Language="VB.NET" Value="Public Overrides Function FindMapping (member As MemberInfo) As CoreTypeMapping" />
       <MemberSignature Language="F#" Value="override this.FindMapping : System.Reflection.MemberInfo -&gt; Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping" Usage="relationalTypeMappingSource.FindMapping member" />
+      <MemberSignature Language="C#" Value="public override Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping? FindMapping (System.Reflection.MemberInfo member);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource.FindMapping(System.Reflection.MemberInfo)</InterfaceMember>
@@ -199,6 +210,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping</ReturnType>
@@ -207,7 +219,7 @@
         <Parameter Name="member" Type="System.Reflection.MemberInfo" />
       </Parameters>
       <Docs>
-        <param name="member"> The field or property. </param>
+        <param name="member">The field or property.</param>
         <summary>
           <para>
                     Finds the type mapping for a given <see cref="T:System.Reflection.MemberInfo" /> representing
@@ -220,16 +232,17 @@
                     Note: providers should typically not need to override this method.
                 </para>
         </summary>
-        <returns> The type mapping, or <see langword="null" /> if none was found. </returns>
+        <returns>The type mapping, or <see langword="null" /> if none was found.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="FindMapping">
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping FindMapping (string storeTypeName);" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping FindMapping (string storeTypeName);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping FindMapping(string storeTypeName) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.FindMapping(System.String)" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Function FindMapping (storeTypeName As String) As RelationalTypeMapping" />
       <MemberSignature Language="F#" Value="override this.FindMapping : string -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping" Usage="relationalTypeMappingSource.FindMapping storeTypeName" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping? FindMapping (string storeTypeName);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping(System.String)</InterfaceMember>
@@ -242,6 +255,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping</ReturnType>
@@ -250,7 +264,7 @@
         <Parameter Name="storeTypeName" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="storeTypeName"> The database type name. </param>
+        <param name="storeTypeName">The database type name.</param>
         <summary>
           <para>
                     Finds the type mapping for a given database type name.
@@ -262,16 +276,17 @@
                     Note: providers should typically not need to override this method.
                 </para>
         </summary>
-        <returns> The type mapping, or <see langword="null" /> if none was found. </returns>
+        <returns>The type mapping, or <see langword="null" /> if none was found.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="FindMapping">
-      <MemberSignature Language="C#" Value="public override Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping (Type type);" />
+      <MemberSignature Language="C#" Value="public override Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping (Type type);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance class Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping(class System.Type type) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.FindMapping(System.Type)" />
       <MemberSignature Language="VB.NET" Value="Public Overrides Function FindMapping (type As Type) As CoreTypeMapping" />
       <MemberSignature Language="F#" Value="override this.FindMapping : Type -&gt; Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping" Usage="relationalTypeMappingSource.FindMapping type" />
+      <MemberSignature Language="C#" Value="public override Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping? FindMapping (Type type);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource.FindMapping(System.Type)</InterfaceMember>
@@ -284,6 +299,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping</ReturnType>
@@ -292,29 +308,67 @@
         <Parameter Name="type" Type="System.Type" />
       </Parameters>
       <Docs>
-        <param name="type"> The CLR type. </param>
+        <param name="type">The CLR type.</param>
         <summary>
           <para>
                     Finds the type mapping for a given <see cref="T:System.Type" />.
                 </para>
           <para>
                     Note: Only call this method if there is no <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IProperty" />
-                    or <see cref="T:System.Reflection.MemberInfo" /> available, otherwise call <see cref="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.FindMapping(Microsoft.EntityFrameworkCore.Metadata.IProperty)" />
-                    or <see cref="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.FindMapping(System.Reflection.MemberInfo)" /></para>
+                    or <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IModel" /> available, otherwise call <see cref="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.FindMapping(Microsoft.EntityFrameworkCore.Metadata.IProperty)" />
+                    or <see cref="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.FindMapping(System.Type,Microsoft.EntityFrameworkCore.Metadata.IModel)" /></para>
           <para>
                     Note: providers should typically not need to override this method.
                 </para>
         </summary>
-        <returns> The type mapping, or <see langword="null" /> if none was found. </returns>
+        <returns>The type mapping, or <see langword="null" /> if none was found.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="FindMapping">
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping FindMapping (Type type, string storeTypeName, bool keyOrIndex = false, bool? unicode = default, int? size = default, bool? rowVersion = default, bool? fixedLength = default, int? precision = default, int? scale = default);" />
+      <MemberSignature Language="C#" Value="public override Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping? FindMapping (Type type, Microsoft.EntityFrameworkCore.Metadata.IModel model);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance class Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping FindMapping(class System.Type type, class Microsoft.EntityFrameworkCore.Metadata.IModel model) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.FindMapping(System.Type,Microsoft.EntityFrameworkCore.Metadata.IModel)" />
+      <MemberSignature Language="VB.NET" Value="Public Overrides Function FindMapping (type As Type, model As IModel) As CoreTypeMapping" />
+      <MemberSignature Language="F#" Value="override this.FindMapping : Type * Microsoft.EntityFrameworkCore.Metadata.IModel -&gt; Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping" Usage="relationalTypeMappingSource.FindMapping (type, model)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.ITypeMappingSource.FindMapping(System.Type,Microsoft.EntityFrameworkCore.Metadata.IModel)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.CoreTypeMapping</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="type">The CLR type.</param>
+        <param name="model">The model.</param>
+        <summary>
+          <para>
+                    Finds the type mapping for a given <see cref="T:System.Type" />, taking pre-convention configuration into the account.
+                </para>
+          <para>
+                    Note: Only call this method if there is no <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IProperty" />,
+                    otherwise call <see cref="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.FindMapping(Microsoft.EntityFrameworkCore.Metadata.IProperty)" />.
+                </para>
+        </summary>
+        <returns>The type mapping, or <see langword="null" /> if none was found.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FindMapping">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping FindMapping (Type type, string storeTypeName, bool keyOrIndex = false, bool? unicode = default, int? size = default, bool? rowVersion = default, bool? fixedLength = default, int? precision = default, int? scale = default);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping FindMapping(class System.Type type, string storeTypeName, bool keyOrIndex, valuetype System.Nullable`1&lt;bool&gt; unicode, valuetype System.Nullable`1&lt;int32&gt; size, valuetype System.Nullable`1&lt;bool&gt; rowVersion, valuetype System.Nullable`1&lt;bool&gt; fixedLength, valuetype System.Nullable`1&lt;int32&gt; precision, valuetype System.Nullable`1&lt;int32&gt; scale) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.FindMapping(System.Type,System.String,System.Boolean,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32})" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Function FindMapping (type As Type, storeTypeName As String, Optional keyOrIndex As Boolean = false, Optional unicode As Nullable(Of Boolean) = Nothing, Optional size As Nullable(Of Integer) = Nothing, Optional rowVersion As Nullable(Of Boolean) = Nothing, Optional fixedLength As Nullable(Of Boolean) = Nothing, Optional precision As Nullable(Of Integer) = Nothing, Optional scale As Nullable(Of Integer) = Nothing) As RelationalTypeMapping" />
       <MemberSignature Language="F#" Value="override this.FindMapping : Type * string * bool * Nullable&lt;bool&gt; * Nullable&lt;int&gt; * Nullable&lt;bool&gt; * Nullable&lt;bool&gt; * Nullable&lt;int&gt; * Nullable&lt;int&gt; -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping" Usage="relationalTypeMappingSource.FindMapping (type, storeTypeName, keyOrIndex, unicode, size, rowVersion, fixedLength, precision, scale)" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping? FindMapping (Type type, string? storeTypeName, bool keyOrIndex = false, bool? unicode = default, int? size = default, bool? rowVersion = default, bool? fixedLength = default, int? precision = default, int? scale = default);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping(System.Type,System.String,System.Boolean,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32})</InterfaceMember>
@@ -327,6 +381,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping</ReturnType>
@@ -343,15 +398,15 @@
         <Parameter Name="scale" Type="System.Nullable&lt;System.Int32&gt;" />
       </Parameters>
       <Docs>
-        <param name="type"> The CLR type. </param>
-        <param name="storeTypeName"> The database type name. </param>
-        <param name="keyOrIndex"> If <see langword="true" />, then a special mapping for a key or index may be returned. </param>
-        <param name="unicode"> Specifies Unicode or ANSI mapping, or <see langword="null" /> for default. </param>
-        <param name="size"> Specifies a size for the mapping, or <see langword="null" /> for default. </param>
-        <param name="rowVersion"> Specifies a row-version, or <see langword="null" /> for default. </param>
-        <param name="fixedLength"> Specifies a fixed length mapping, or <see langword="null" /> for default. </param>
-        <param name="precision"> Specifies a precision for the mapping, or <see langword="null" /> for default. </param>
-        <param name="scale"> Specifies a scale for the mapping, or <see langword="null" /> for default. </param>
+        <param name="type">The CLR type.</param>
+        <param name="storeTypeName">The database type name.</param>
+        <param name="keyOrIndex">If <see langword="true" />, then a special mapping for a key or index may be returned.</param>
+        <param name="unicode">Specifies Unicode or ANSI mapping, or <see langword="null" /> for default.</param>
+        <param name="size">Specifies a size for the mapping, or <see langword="null" /> for default.</param>
+        <param name="rowVersion">Specifies a row-version, or <see langword="null" /> for default.</param>
+        <param name="fixedLength">Specifies a fixed length mapping, or <see langword="null" /> for default.</param>
+        <param name="precision">Specifies a precision for the mapping, or <see langword="null" /> for default.</param>
+        <param name="scale">Specifies a scale for the mapping, or <see langword="null" /> for default.</param>
         <summary>
           <para>
                     Finds the type mapping for a given <see cref="T:System.Type" /> and additional facets.
@@ -363,7 +418,7 @@
                     Note: providers should typically not need to override this method.
                 </para>
         </summary>
-        <returns> The type mapping, or <see langword="null" /> if none was found. </returns>
+        <returns>The type mapping, or <see langword="null" /> if none was found.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -398,11 +453,12 @@
       </Docs>
     </Member>
     <Member MemberName="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping">
-      <MemberSignature Language="C#" Value="Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping IRelationalTypeMappingSource.FindMapping (Microsoft.EntityFrameworkCore.Metadata.IProperty property);" />
+      <MemberSignature Language="C#" Value="Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping IRelationalTypeMappingSource.FindMapping (Microsoft.EntityFrameworkCore.Metadata.IProperty property);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping(class Microsoft.EntityFrameworkCore.Metadata.IProperty property) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.Microsoft#EntityFrameworkCore#Storage#IRelationalTypeMappingSource#FindMapping(Microsoft.EntityFrameworkCore.Metadata.IProperty)" />
       <MemberSignature Language="VB.NET" Value="Function FindMapping (property As IProperty) As RelationalTypeMapping Implements IRelationalTypeMappingSource.FindMapping" />
       <MemberSignature Language="F#" Value="abstract member Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping : Microsoft.EntityFrameworkCore.Metadata.IProperty -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping&#xA;override this.Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping : Microsoft.EntityFrameworkCore.Metadata.IProperty -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping" Usage="relationalTypeMappingSource.Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping property" />
+      <MemberSignature Language="C#" Value="Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping? IRelationalTypeMappingSource.FindMapping (Microsoft.EntityFrameworkCore.Metadata.IProperty property);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping(Microsoft.EntityFrameworkCore.Metadata.IProperty)</InterfaceMember>
@@ -415,6 +471,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping</ReturnType>
@@ -431,11 +488,12 @@
       </Docs>
     </Member>
     <Member MemberName="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping">
-      <MemberSignature Language="C#" Value="Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping IRelationalTypeMappingSource.FindMapping (System.Reflection.MemberInfo member);" />
+      <MemberSignature Language="C#" Value="Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping IRelationalTypeMappingSource.FindMapping (System.Reflection.MemberInfo member);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping(class System.Reflection.MemberInfo member) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.Microsoft#EntityFrameworkCore#Storage#IRelationalTypeMappingSource#FindMapping(System.Reflection.MemberInfo)" />
       <MemberSignature Language="VB.NET" Value="Function FindMapping (member As MemberInfo) As RelationalTypeMapping Implements IRelationalTypeMappingSource.FindMapping" />
       <MemberSignature Language="F#" Value="abstract member Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping : System.Reflection.MemberInfo -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping&#xA;override this.Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping : System.Reflection.MemberInfo -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping" Usage="relationalTypeMappingSource.Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping member" />
+      <MemberSignature Language="C#" Value="Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping? IRelationalTypeMappingSource.FindMapping (System.Reflection.MemberInfo member);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping(System.Reflection.MemberInfo)</InterfaceMember>
@@ -448,6 +506,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping</ReturnType>
@@ -464,11 +523,12 @@
       </Docs>
     </Member>
     <Member MemberName="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping">
-      <MemberSignature Language="C#" Value="Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping IRelationalTypeMappingSource.FindMapping (Type type);" />
+      <MemberSignature Language="C#" Value="Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping IRelationalTypeMappingSource.FindMapping (Type type);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping(class System.Type type) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.Microsoft#EntityFrameworkCore#Storage#IRelationalTypeMappingSource#FindMapping(System.Type)" />
       <MemberSignature Language="VB.NET" Value="Function FindMapping (type As Type) As RelationalTypeMapping Implements IRelationalTypeMappingSource.FindMapping" />
       <MemberSignature Language="F#" Value="abstract member Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping : Type -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping&#xA;override this.Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping : Type -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping" Usage="relationalTypeMappingSource.Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping type" />
+      <MemberSignature Language="C#" Value="Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping? IRelationalTypeMappingSource.FindMapping (Type type);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping(System.Type)</InterfaceMember>
@@ -481,6 +541,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping</ReturnType>
@@ -496,35 +557,67 @@
         <inheritdoc />
       </Docs>
     </Member>
+    <Member MemberName="Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping">
+      <MemberSignature Language="C#" Value="Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping? IRelationalTypeMappingSource.FindMapping (Type type, Microsoft.EntityFrameworkCore.Metadata.IModel model);" />
+      <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping(class System.Type type, class Microsoft.EntityFrameworkCore.Metadata.IModel model) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.Microsoft#EntityFrameworkCore#Storage#IRelationalTypeMappingSource#FindMapping(System.Type,Microsoft.EntityFrameworkCore.Metadata.IModel)" />
+      <MemberSignature Language="VB.NET" Value="Function FindMapping (type As Type, model As IModel) As RelationalTypeMapping Implements IRelationalTypeMappingSource.FindMapping" />
+      <MemberSignature Language="F#" Value="abstract member Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping : Type * Microsoft.EntityFrameworkCore.Metadata.IModel -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping&#xA;override this.Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping : Type * Microsoft.EntityFrameworkCore.Metadata.IModel -&gt; Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping" Usage="relationalTypeMappingSource.Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping (type, model)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Storage.IRelationalTypeMappingSource.FindMapping(System.Type,Microsoft.EntityFrameworkCore.Metadata.IModel)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="1" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="type">To be added.</param>
+        <param name="model">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
     <Member MemberName="ParseStoreTypeName">
-      <MemberSignature Language="C#" Value="protected virtual string ParseStoreTypeName (string storeTypeName, out Nullable&lt;bool&gt; unicode, out Nullable&lt;int&gt; size, out Nullable&lt;int&gt; precision, out Nullable&lt;int&gt; scale);" />
+      <MemberSignature Language="C#" Value="protected virtual string ParseStoreTypeName (string storeTypeName, out bool? unicode, out int? size, out int? precision, out int? scale);" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance string ParseStoreTypeName(string storeTypeName, [out] valuetype System.Nullable`1&lt;bool&gt;&amp; unicode, [out] valuetype System.Nullable`1&lt;int32&gt;&amp; size, [out] valuetype System.Nullable`1&lt;int32&gt;&amp; precision, [out] valuetype System.Nullable`1&lt;int32&gt;&amp; scale) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource.ParseStoreTypeName(System.String,System.Nullable{System.Boolean}@,System.Nullable{System.Int32}@,System.Nullable{System.Int32}@,System.Nullable{System.Int32}@)" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Function ParseStoreTypeName (storeTypeName As String, ByRef unicode As Nullable(Of Boolean), ByRef size As Nullable(Of Integer), ByRef precision As Nullable(Of Integer), ByRef scale As Nullable(Of Integer)) As String" />
       <MemberSignature Language="F#" Value="abstract member ParseStoreTypeName : string * Nullable * Nullable * Nullable * Nullable -&gt; string&#xA;override this.ParseStoreTypeName : string * Nullable * Nullable * Nullable * Nullable -&gt; string" Usage="relationalTypeMappingSource.ParseStoreTypeName (storeTypeName, unicode, size, precision, scale)" />
+      <MemberSignature Language="C#" Value="protected virtual string? ParseStoreTypeName (string? storeTypeName, out bool? unicode, out int? size, out int? precision, out int? scale);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="storeTypeName" Type="System.String" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
-        <Parameter Name="unicode" Type="System.Nullable&lt;System.Boolean&gt;" RefType="out" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
-        <Parameter Name="size" Type="System.Nullable&lt;System.Int32&gt;" RefType="out" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
-        <Parameter Name="precision" Type="System.Nullable&lt;System.Int32&gt;" RefType="out" Index="3" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
-        <Parameter Name="scale" Type="System.Nullable&lt;System.Int32&gt;" RefType="out" Index="4" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="storeTypeName" Type="System.String" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="unicode" Type="System.Nullable&lt;System.Boolean&gt;" RefType="out" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="size" Type="System.Nullable&lt;System.Int32&gt;" RefType="out" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="precision" Type="System.Nullable&lt;System.Int32&gt;" RefType="out" Index="3" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="scale" Type="System.Nullable&lt;System.Int32&gt;" RefType="out" Index="4" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
-        <param name="storeTypeName"> A provider-specific relational type name, including facets. </param>
-        <param name="unicode"> The Unicode or ANSI setting parsed from the type name, or <see langword="null" /> if none was specified. </param>
-        <param name="size"> The size parsed from the type name, or <see langword="null" /> if none was specified. </param>
-        <param name="precision"> The precision parsed from the type name, or <see langword="null" /> if none was specified. </param>
-        <param name="scale"> The scale parsed from the type name, or <see langword="null" /> if none was specified. </param>
+        <param name="storeTypeName">A provider-specific relational type name, including facets.</param>
+        <param name="unicode">The Unicode or ANSI setting parsed from the type name, or <see langword="null" /> if none was specified.</param>
+        <param name="size">The size parsed from the type name, or <see langword="null" /> if none was specified.</param>
+        <param name="precision">The precision parsed from the type name, or <see langword="null" /> if none was specified.</param>
+        <param name="scale">The scale parsed from the type name, or <see langword="null" /> if none was specified.</param>
         <summary>
           <para>
                     Parses a provider-specific store type name, extracting the standard facets
@@ -536,7 +629,7 @@
                     logic.
                 </para>
         </summary>
-        <returns> The provider-specific relational type name, with any facets removed. </returns>
+        <returns>The provider-specific relational type name, with any facets removed.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -555,13 +648,15 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSourceDependencies</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>
-                Dependencies used to create this <see cref="T:Microsoft.EntityFrameworkCore.Storage.RelationalTypeMappingSource" /></summary>
+                Relational provider-specific dependencies for this service.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>

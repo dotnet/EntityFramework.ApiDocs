@@ -9,6 +9,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData</BaseTypeName>
@@ -18,22 +19,32 @@
     <summary>
                 The <see cref="T:System.Diagnostics.DiagnosticSource" /> event payload for events correlated with a <see cref="T:System.Data.Common.DbCommand" />.
             </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-diagnostics">Logging, events, and diagnostics</see> for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public CommandCorrelatedEventData (Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase eventDefinition, Func&lt;Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,Microsoft.EntityFrameworkCore.Diagnostics.EventData,string&gt; messageGenerator, System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.DbContext context, Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod executeMethod, Guid commandId, Guid connectionId, bool async, DateTimeOffset startTime);" />
+      <MemberSignature Language="C#" Value="public CommandCorrelatedEventData (Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase eventDefinition, Func&lt;Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,Microsoft.EntityFrameworkCore.Diagnostics.EventData,string&gt; messageGenerator, System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.DbContext context, Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod executeMethod, Guid commandId, Guid connectionId, bool async, DateTimeOffset startTime);" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase eventDefinition, class System.Func`3&lt;class Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase, class Microsoft.EntityFrameworkCore.Diagnostics.EventData, string&gt; messageGenerator, class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.DbContext context, valuetype Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod executeMethod, valuetype System.Guid commandId, valuetype System.Guid connectionId, bool async, valuetype System.DateTimeOffset startTime) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData.#ctor(Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,System.Func{Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,Microsoft.EntityFrameworkCore.Diagnostics.EventData,System.String},System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.DbContext,Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod,System.Guid,System.Guid,System.Boolean,System.DateTimeOffset)" />
       <MemberSignature Language="VB.NET" Value="Public Sub New (eventDefinition As EventDefinitionBase, messageGenerator As Func(Of EventDefinitionBase, EventData, String), connection As DbConnection, context As DbContext, executeMethod As DbCommandMethod, commandId As Guid, connectionId As Guid, async As Boolean, startTime As DateTimeOffset)" />
       <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData : Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase * Func&lt;Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase, Microsoft.EntityFrameworkCore.Diagnostics.EventData, string&gt; * System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.DbContext * Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod * Guid * Guid * bool * DateTimeOffset -&gt; Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData" Usage="new Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData (eventDefinition, messageGenerator, connection, context, executeMethod, commandId, connectionId, async, startTime)" />
+      <MemberSignature Language="C#" Value="public CommandCorrelatedEventData (Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase eventDefinition, Func&lt;Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,Microsoft.EntityFrameworkCore.Diagnostics.EventData,string&gt; messageGenerator, System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.DbContext? context, Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod executeMethod, Guid commandId, Guid connectionId, bool async, DateTimeOffset startTime);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-6.0">
+          <AttributeName Language="C#">[System.Obsolete("Use the overload with CommandSource")]</AttributeName>
+          <AttributeName Language="F#">[&lt;System.Obsolete("Use the overload with CommandSource")&gt;]</AttributeName>
+        </Attribute>
+      </Attributes>
       <Parameters>
         <Parameter Name="eventDefinition" Type="Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase" />
         <Parameter Name="messageGenerator" Type="System.Func&lt;Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,Microsoft.EntityFrameworkCore.Diagnostics.EventData,System.String&gt;" />
@@ -46,15 +57,55 @@
         <Parameter Name="startTime" Type="System.DateTimeOffset" />
       </Parameters>
       <Docs>
-        <param name="eventDefinition"> The event definition. </param>
-        <param name="messageGenerator"> A delegate that generates a log message for this event. </param>
-        <param name="connection"> The <see cref="T:System.Data.Common.DbConnection" /> being used. </param>
-        <param name="context"> The <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> currently being used, to null if not known. </param>
-        <param name="executeMethod"> The <see cref="T:System.Data.Common.DbCommand" /> method. </param>
-        <param name="commandId"> A correlation ID that identifies the <see cref="T:System.Data.Common.DbCommand" /> instance being used. </param>
-        <param name="connectionId"> A correlation ID that identifies the <see cref="T:System.Data.Common.DbConnection" /> instance being used. </param>
-        <param name="async"> Indicates whether or not the command was executed asynchronously. </param>
-        <param name="startTime"> The start time of this event. </param>
+        <param name="eventDefinition">The event definition.</param>
+        <param name="messageGenerator">A delegate that generates a log message for this event.</param>
+        <param name="connection">The <see cref="T:System.Data.Common.DbConnection" /> being used.</param>
+        <param name="context">The <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> currently being used, to null if not known.</param>
+        <param name="executeMethod">The <see cref="T:System.Data.Common.DbCommand" /> method.</param>
+        <param name="commandId">A correlation ID that identifies the <see cref="T:System.Data.Common.DbCommand" /> instance being used.</param>
+        <param name="connectionId">A correlation ID that identifies the <see cref="T:System.Data.Common.DbConnection" /> instance being used.</param>
+        <param name="async">Indicates whether or not the command was executed asynchronously.</param>
+        <param name="startTime">The start time of this event.</param>
+        <summary>
+                Constructs the event payload.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public CommandCorrelatedEventData (Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase eventDefinition, Func&lt;Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,Microsoft.EntityFrameworkCore.Diagnostics.EventData,string&gt; messageGenerator, System.Data.Common.DbConnection connection, Microsoft.EntityFrameworkCore.DbContext? context, Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod executeMethod, Guid commandId, Guid connectionId, bool async, DateTimeOffset startTime, Microsoft.EntityFrameworkCore.Diagnostics.CommandSource commandSource);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase eventDefinition, class System.Func`3&lt;class Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase, class Microsoft.EntityFrameworkCore.Diagnostics.EventData, string&gt; messageGenerator, class System.Data.Common.DbConnection connection, class Microsoft.EntityFrameworkCore.DbContext context, valuetype Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod executeMethod, valuetype System.Guid commandId, valuetype System.Guid connectionId, bool async, valuetype System.DateTimeOffset startTime, valuetype Microsoft.EntityFrameworkCore.Diagnostics.CommandSource commandSource) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData.#ctor(Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,System.Func{Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,Microsoft.EntityFrameworkCore.Diagnostics.EventData,System.String},System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.DbContext,Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod,System.Guid,System.Guid,System.Boolean,System.DateTimeOffset,Microsoft.EntityFrameworkCore.Diagnostics.CommandSource)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (eventDefinition As EventDefinitionBase, messageGenerator As Func(Of EventDefinitionBase, EventData, String), connection As DbConnection, context As DbContext, executeMethod As DbCommandMethod, commandId As Guid, connectionId As Guid, async As Boolean, startTime As DateTimeOffset, commandSource As CommandSource)" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData : Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase * Func&lt;Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase, Microsoft.EntityFrameworkCore.Diagnostics.EventData, string&gt; * System.Data.Common.DbConnection * Microsoft.EntityFrameworkCore.DbContext * Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod * Guid * Guid * bool * DateTimeOffset * Microsoft.EntityFrameworkCore.Diagnostics.CommandSource -&gt; Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData" Usage="new Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData (eventDefinition, messageGenerator, connection, context, executeMethod, commandId, connectionId, async, startTime, commandSource)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="eventDefinition" Type="Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase" Index="0" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="messageGenerator" Type="System.Func&lt;Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,Microsoft.EntityFrameworkCore.Diagnostics.EventData,System.String&gt;" Index="1" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="2" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" Index="3" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="executeMethod" Type="Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod" Index="4" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="commandId" Type="System.Guid" Index="5" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="connectionId" Type="System.Guid" Index="6" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="async" Type="System.Boolean" Index="7" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="startTime" Type="System.DateTimeOffset" Index="8" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="commandSource" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandSource" Index="9" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="eventDefinition">The event definition.</param>
+        <param name="messageGenerator">A delegate that generates a log message for this event.</param>
+        <param name="connection">The <see cref="T:System.Data.Common.DbConnection" /> being used.</param>
+        <param name="context">The <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> currently being used, to null if not known.</param>
+        <param name="executeMethod">The <see cref="T:System.Data.Common.DbCommand" /> method.</param>
+        <param name="commandId">A correlation ID that identifies the <see cref="T:System.Data.Common.DbCommand" /> instance being used.</param>
+        <param name="connectionId">A correlation ID that identifies the <see cref="T:System.Data.Common.DbConnection" /> instance being used.</param>
+        <param name="async">Indicates whether or not the command was executed asynchronously.</param>
+        <param name="startTime">The start time of this event.</param>
+        <param name="commandSource">Source of the command.</param>
         <summary>
                 Constructs the event payload.
             </summary>
@@ -73,6 +124,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Guid</ReturnType>
@@ -80,6 +132,28 @@
       <Docs>
         <summary>
                 A correlation ID that identifies the <see cref="T:System.Data.Common.DbCommand" /> instance being used.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CommandSource">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Diagnostics.CommandSource CommandSource { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Microsoft.EntityFrameworkCore.Diagnostics.CommandSource CommandSource" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData.CommandSource" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property CommandSource As CommandSource" />
+      <MemberSignature Language="F#" Value="member this.CommandSource : Microsoft.EntityFrameworkCore.Diagnostics.CommandSource" Usage="Microsoft.EntityFrameworkCore.Diagnostics.CommandCorrelatedEventData.CommandSource" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.CommandSource</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Source of the command.
             </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
@@ -97,6 +171,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Data.Common.DbConnection</ReturnType>
@@ -121,6 +196,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Guid</ReturnType>
@@ -145,6 +221,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod</ReturnType>
@@ -169,6 +246,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -193,6 +271,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.DateTimeOffset</ReturnType>

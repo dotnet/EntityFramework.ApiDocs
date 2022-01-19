@@ -18,6 +18,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -33,7 +34,10 @@
                     This type is typically used by database providers; it is generally not used in application code.
                 </para>
     </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
+                for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -56,10 +60,40 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
         <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AddCommand">
+      <MemberSignature Language="C#" Value="public abstract bool AddCommand (Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand modificationCommand);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool AddCommand(class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand modificationCommand) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch.AddCommand(Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand)" />
+      <MemberSignature Language="VB.NET" Value="Public MustOverride Function AddCommand (modificationCommand As IReadOnlyModificationCommand) As Boolean" />
+      <MemberSignature Language="F#" Value="abstract member AddCommand : Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand -&gt; bool" Usage="modificationCommandBatch.AddCommand modificationCommand" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="modificationCommand" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="0" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="modificationCommand">The command to add.</param>
+        <summary>
+                Adds the given insert/update/delete <see cref="P:Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch.ModificationCommands" /> to the batch.
+            </summary>
+        <returns>
+          <see langword="true" /> if the command was successfully added; <see langword="false" /> if there was no
+                room in the current batch to add the command and it must instead be added to a new batch.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -89,7 +123,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="modificationCommand" Type="Microsoft.EntityFrameworkCore.Update.ModificationCommand" />
+        <Parameter Name="modificationCommand" Type="Microsoft.EntityFrameworkCore.Update.ModificationCommand" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       </Parameters>
       <Docs>
         <param name="modificationCommand"> The command to add. </param>
@@ -124,6 +158,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -132,7 +167,7 @@
         <Parameter Name="connection" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalConnection" />
       </Parameters>
       <Docs>
-        <param name="connection"> The database connection to use. </param>
+        <param name="connection">The database connection to use.</param>
         <summary>
                 Sends insert/update/delete commands to the database.
             </summary>
@@ -160,6 +195,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
@@ -169,21 +205,26 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
-        <param name="connection"> The database connection to use. </param>
+        <param name="connection">The database connection to use.</param>
         <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
         <summary>
                 Sends insert/update/delete commands to the database.
             </summary>
-        <returns> A task that represents the asynchronous save operation. </returns>
+        <returns>A task that represents the asynchronous save operation.</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
     <Member MemberName="ModificationCommands">
-      <MemberSignature Language="C#" Value="public abstract System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt; ModificationCommands { get; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt; ModificationCommands" />
+      <MemberSignature Language="C#" Value="public abstract System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt; ModificationCommands { get; }" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt; ModificationCommands" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch.ModificationCommands" />
-      <MemberSignature Language="VB.NET" Value="Public MustOverride ReadOnly Property ModificationCommands As IReadOnlyList(Of ModificationCommand)" />
-      <MemberSignature Language="F#" Value="member this.ModificationCommands : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt;" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch.ModificationCommands" />
+      <MemberSignature Language="VB.NET" Value="Public MustOverride ReadOnly Property ModificationCommands As IReadOnlyList(Of ModificationCommand)" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="F#" Value="member this.ModificationCommands : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt;" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch.ModificationCommands" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="C#" Value="public abstract System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand&gt; ModificationCommands { get; }" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand&gt; ModificationCommands" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="VB.NET" Value="Public MustOverride ReadOnly Property ModificationCommands As IReadOnlyList(Of IReadOnlyModificationCommand)" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="F#" Value="member this.ModificationCommands : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand&gt;" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch.ModificationCommands" FrameworkAlternate="efcore-6.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -199,9 +240,11 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt;</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommand&gt;</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-6.0">System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand&gt;</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>

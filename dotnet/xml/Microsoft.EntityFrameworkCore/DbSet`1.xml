@@ -12,6 +12,10 @@
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DbSet`1&lt;class TEntity&gt; extends System.Object implements class Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure`1&lt;class System.IServiceProvider&gt;, class System.Collections.Generic.IAsyncEnumerable`1&lt;!TEntity&gt;, class System.Collections.Generic.IEnumerable`1&lt;!TEntity&gt;, class System.Collections.IEnumerable, class System.ComponentModel.IListSource, class System.Linq.IQueryable, class System.Linq.IQueryable`1&lt;!TEntity&gt;" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DbSet(Of TEntity)&#xA;Implements IAsyncEnumerable(Of TEntity), IEnumerable(Of TEntity), IInfrastructure(Of IServiceProvider), IListSource, IQueryable(Of TEntity)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
   <TypeSignature Language="F#" Value="type DbSet&lt;'Entity (requires 'Entity : null)&gt; = class&#xA;    interface IQueryable&lt;'Entity (requires 'Entity : null)&gt;&#xA;    interface seq&lt;'Entity (requires 'Entity : null)&gt;&#xA;    interface IEnumerable&#xA;    interface IQueryable&#xA;    interface IAsyncEnumerable&lt;'Entity (requires 'Entity : null)&gt;&#xA;    interface IInfrastructure&lt;IServiceProvider&gt;&#xA;    interface IListSource" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+  <TypeSignature Language="C#" Value="public abstract class DbSet&lt;TEntity&gt; : Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure&lt;IServiceProvider&gt;, System.Collections.Generic.IEnumerable&lt;TEntity&gt;, System.ComponentModel.IListSource, System.Linq.IQueryable&lt;TEntity&gt; where TEntity : class" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DbSet`1&lt;class TEntity&gt; extends System.Object implements class Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure`1&lt;class System.IServiceProvider&gt;, class System.Collections.Generic.IEnumerable`1&lt;!TEntity&gt;, class System.Collections.IEnumerable, class System.ComponentModel.IListSource, class System.Linq.IQueryable, class System.Linq.IQueryable`1&lt;!TEntity&gt;" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="VB.NET" Value="Public MustInherit Class DbSet(Of TEntity)&#xA;Implements IEnumerable(Of TEntity), IInfrastructure(Of IServiceProvider), IListSource, IQueryable(Of TEntity)" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="F#" Value="type DbSet&lt;'Entity (requires 'Entity : null)&gt; = class&#xA;    interface IQueryable&lt;'Entity (requires 'Entity : null)&gt;&#xA;    interface seq&lt;'Entity (requires 'Entity : null)&gt;&#xA;    interface IEnumerable&#xA;    interface IQueryable&#xA;    interface IInfrastructure&lt;IServiceProvider&gt;&#xA;    interface IListSource" FrameworkAlternate="efcore-6.0" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -26,6 +30,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
     <TypeParameter Name="TEntity">
@@ -59,7 +64,7 @@
     <Interface>
       <InterfaceName>System.Linq.IQueryable&lt;TEntity&gt;</InterfaceName>
     </Interface>
-    <Interface FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">
+    <Interface FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
       <InterfaceName>System.ComponentModel.IListSource</InterfaceName>
     </Interface>
     <Interface FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">
@@ -67,7 +72,7 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <typeparam name="TEntity"> The type of entity being operated on by this set. </typeparam>
+    <typeparam name="TEntity">The type of entity being operated on by this set.</typeparam>
     <summary>
       <para>
                     A <see cref="T:Microsoft.EntityFrameworkCore.DbSet`1" /> can be used to query and save instances of <typeparamref name="TEntity" />.
@@ -88,8 +93,18 @@
                     property on a derived <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> or from the <see cref="M:Microsoft.EntityFrameworkCore.DbContext.Set``1" />
                     method.
                 </para>
+      <para>
+                    Entity Framework Core does not support multiple parallel operations being run on the same <see cref="T:Microsoft.EntityFrameworkCore.DbContext" />
+                    instance. This includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+                    Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+                    in parallel. See <see href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</see> for more information.
+                </para>
     </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext">DbContext lifetime, configuration, and initialization</see>,
+                <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see>, and
+                <see href="https://aka.ms/efcore-docs-change-tracking">Changing tracking</see> for more information.
+            </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -112,6 +127,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -140,6 +156,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;TEntity&gt;</ReturnType>
@@ -148,7 +165,7 @@
         <Parameter Name="entity" Type="TEntity" />
       </Parameters>
       <Docs>
-        <param name="entity"> The entity to add. </param>
+        <param name="entity">The entity to add.</param>
         <summary>
           <para>
                     Begins tracking the given entity, and any other reachable entities that are
@@ -163,7 +180,9 @@
                 The <see cref="T:Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry`1" /> for the entity. The entry provides
                 access to change tracking information and operations for the entity.
             </returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="AddAsync">
@@ -172,10 +191,10 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.DbSet`1.AddAsync(`0,System.Threading.CancellationToken)" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Function AddAsync (entity As TEntity, Optional cancellationToken As CancellationToken = Nothing) As Task(Of EntityEntry(Of TEntity))" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="abstract member AddAsync : 'Entity * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;'Entity&gt;&gt;&#xA;override this.AddAsync : 'Entity * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;'Entity&gt;&gt;" Usage="dbSet.AddAsync (entity, cancellationToken)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
-      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;TEntity&gt;&gt; AddAsync (TEntity entity, System.Threading.CancellationToken cancellationToken = default);" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype System.Threading.Tasks.ValueTask`1&lt;class Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry`1&lt;!TEntity&gt;&gt; AddAsync(!TEntity entity, valuetype System.Threading.CancellationToken cancellationToken) cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable Function AddAsync (entity As TEntity, Optional cancellationToken As CancellationToken = Nothing) As ValueTask(Of EntityEntry(Of TEntity))" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
-      <MemberSignature Language="F#" Value="abstract member AddAsync : 'Entity * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;'Entity&gt;&gt;&#xA;override this.AddAsync : 'Entity * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;'Entity&gt;&gt;" Usage="dbSet.AddAsync (entity, cancellationToken)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;TEntity&gt;&gt; AddAsync (TEntity entity, System.Threading.CancellationToken cancellationToken = default);" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype System.Threading.Tasks.ValueTask`1&lt;class Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry`1&lt;!TEntity&gt;&gt; AddAsync(!TEntity entity, valuetype System.Threading.CancellationToken cancellationToken) cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function AddAsync (entity As TEntity, Optional cancellationToken As CancellationToken = Nothing) As ValueTask(Of EntityEntry(Of TEntity))" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="F#" Value="abstract member AddAsync : 'Entity * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;'Entity&gt;&gt;&#xA;override this.AddAsync : 'Entity * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;'Entity&gt;&gt;" Usage="dbSet.AddAsync (entity, cancellationToken)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -189,17 +208,18 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2">System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;TEntity&gt;&gt;</ReturnType>
-        <ReturnType FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;TEntity&gt;&gt;</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;TEntity&gt;&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="entity" Type="TEntity" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="entity" Type="TEntity" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
-        <param name="entity"> The entity to add. </param>
+        <param name="entity">The entity to add.</param>
         <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
         <summary>
           <para>
@@ -221,7 +241,10 @@
                 <see cref="T:Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry`1" /> for the entity. The entry provides access to change tracking
                 information and operations for the entity.
             </returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see> for more information.
+            </remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
     <Member MemberName="AddRange">
@@ -245,6 +268,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -253,13 +277,17 @@
         <Parameter Name="entities" Type="System.Collections.Generic.IEnumerable&lt;TEntity&gt;" />
       </Parameters>
       <Docs>
-        <param name="entities"> The entities to add. </param>
+        <param name="entities">The entities to add.</param>
         <summary>
                 Begins tracking the given entities, and any other reachable entities that are
                 not already being tracked, in the <see cref="F:Microsoft.EntityFrameworkCore.EntityState.Added" /> state such that they will
                 be inserted into the database when <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> is called.
             </summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see>
+                and <see href="https://aka.ms/efcore-docs-attach-range">Using AddRange, UpdateRange, AttachRange, and RemoveRange</see>
+                for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="AddRange">
@@ -283,6 +311,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -298,13 +327,17 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="entities"> The entities to add. </param>
+        <param name="entities">The entities to add.</param>
         <summary>
                 Begins tracking the given entities, and any other reachable entities that are
                 not already being tracked, in the <see cref="F:Microsoft.EntityFrameworkCore.EntityState.Added" /> state such that they will
                 be inserted into the database when <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> is called.
             </summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see>
+                and <see href="https://aka.ms/efcore-docs-attach-range">Using AddRange, UpdateRange, AttachRange, and RemoveRange</see>
+                for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="AddRangeAsync">
@@ -326,12 +359,13 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="entities" Type="TEntity[]" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">
+        <Parameter Name="entities" Type="TEntity[]" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
           <Attributes>
             <Attribute>
               <AttributeName>System.ParamArray</AttributeName>
@@ -340,7 +374,7 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="entities"> The entities to add. </param>
+        <param name="entities">The entities to add.</param>
         <summary>
           <para>
                     Begins tracking the given entities, and any other reachable entities that are
@@ -353,8 +387,12 @@
                     to access the database asynchronously. For all other cases the non async method should be used.
                 </para>
         </summary>
-        <returns> A task that represents the asynchronous operation. </returns>
-        <remarks>To be added.</remarks>
+        <returns>A task that represents the asynchronous operation.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see>
+                and <see href="https://aka.ms/efcore-docs-attach-range">Using AddRange, UpdateRange, AttachRange, and RemoveRange</see>
+                for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="AddRangeAsync">
@@ -376,16 +414,17 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="entities" Type="System.Collections.Generic.IEnumerable&lt;TEntity&gt;" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="entities" Type="System.Collections.Generic.IEnumerable&lt;TEntity&gt;" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
-        <param name="entities"> The entities to add. </param>
+        <param name="entities">The entities to add.</param>
         <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
         <summary>
           <para>
@@ -399,8 +438,13 @@
                     to access the database asynchronously. For all other cases the non async method should be used.
                 </para>
         </summary>
-        <returns> A task that represents the asynchronous operation. </returns>
-        <remarks>To be added.</remarks>
+        <returns>A task that represents the asynchronous operation.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see>
+                and <see href="https://aka.ms/efcore-docs-attach-range">Using AddRange, UpdateRange, AttachRange, and RemoveRange</see>
+                for more information.
+            </remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
     <Member MemberName="AsAsyncEnumerable">
@@ -414,6 +458,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IAsyncEnumerable&lt;TEntity&gt;</ReturnType>
@@ -421,16 +466,12 @@
       <Parameters />
       <Docs>
         <summary>
-          <para>
-                    Returns this object typed as <see cref="T:System.Collections.Generic.IAsyncEnumerable`1" />.
-                </para>
-          <para>
-                    This is a convenience method to help with disambiguation of extension methods in the same
-                    namespace that extend both interfaces.
-                </para>
-        </summary>
-        <returns> This object. </returns>
-        <remarks>To be added.</remarks>
+                Returns this object typed as <see cref="T:System.Collections.Generic.IAsyncEnumerable`1" />.
+            </summary>
+        <returns>This object.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="AsQueryable">
@@ -444,6 +485,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
@@ -459,8 +501,10 @@
                     namespace that extend both interfaces.
                 </para>
         </summary>
-        <returns> This object. </returns>
-        <remarks>To be added.</remarks>
+        <returns>This object.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="Attach">
@@ -484,6 +528,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;TEntity&gt;</ReturnType>
@@ -492,7 +537,7 @@
         <Parameter Name="entity" Type="TEntity" />
       </Parameters>
       <Docs>
-        <param name="entity"> The entity to attach. </param>
+        <param name="entity">The entity to attach.</param>
         <summary>
           <para>
                     Begins tracking the given entity and entries reachable from the given entity using
@@ -526,7 +571,9 @@
                 The <see cref="T:Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry" /> for the entity. The entry provides
                 access to change tracking information and operations for the entity.
             </returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="AttachRange">
@@ -550,6 +597,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -558,7 +606,7 @@
         <Parameter Name="entities" Type="System.Collections.Generic.IEnumerable&lt;TEntity&gt;" />
       </Parameters>
       <Docs>
-        <param name="entities"> The entities to attach. </param>
+        <param name="entities">The entities to attach.</param>
         <summary>
           <para>
                     Begins tracking the given entities and entries reachable from the given entities using
@@ -588,7 +636,11 @@
                     Use <see cref="P:Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.State" /> to set the state of only a single entity.
                 </para>
         </summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see>
+                and <see href="https://aka.ms/efcore-docs-attach-range">Using AddRange, UpdateRange, AttachRange, and RemoveRange</see>
+                for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="AttachRange">
@@ -612,6 +664,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -627,7 +680,7 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="entities"> The entities to attach. </param>
+        <param name="entities">The entities to attach.</param>
         <summary>
           <para>
                     Begins tracking the given entities and entries reachable from the given entities using
@@ -657,19 +710,26 @@
                     Use <see cref="P:Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.State" /> to set the state of only a single entity.
                 </para>
         </summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see>
+                and <see href="https://aka.ms/efcore-docs-attach-range">Using AddRange, UpdateRange, AttachRange, and RemoveRange</see>
+                for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="EntityType">
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.IEntityType EntityType { get; }" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.IEntityType EntityType { get; }" FrameworkAlternate="efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Metadata.IEntityType EntityType" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.DbSet`1.EntityType" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property EntityType As IEntityType" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property EntityType As IEntityType" FrameworkAlternate="efcore-5.0" />
       <MemberSignature Language="F#" Value="member this.EntityType : Microsoft.EntityFrameworkCore.Metadata.IEntityType" Usage="Microsoft.EntityFrameworkCore.DbSet&lt;'Entity (requires 'Entity : null)&gt;.EntityType" />
+      <MemberSignature Language="C#" Value="public abstract Microsoft.EntityFrameworkCore.Metadata.IEntityType EntityType { get; }" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="VB.NET" Value="Public MustOverride ReadOnly Property EntityType As IEntityType" FrameworkAlternate="efcore-6.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IEntityType</ReturnType>
@@ -683,11 +743,12 @@
       </Docs>
     </Member>
     <Member MemberName="Equals">
-      <MemberSignature Language="C#" Value="public override bool Equals (object obj);" />
+      <MemberSignature Language="C#" Value="public override bool Equals (object obj);" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance bool Equals(object obj) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.DbSet`1.Equals(System.Object)" />
       <MemberSignature Language="VB.NET" Value="Public Overrides Function Equals (obj As Object) As Boolean" />
       <MemberSignature Language="F#" Value="override this.Equals : obj -&gt; bool" Usage="dbSet.Equals obj" />
+      <MemberSignature Language="C#" Value="public override bool Equals (object? obj);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -697,9 +758,10 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">
+        <Attribute FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
           <AttributeName Language="C#">[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]</AttributeName>
           <AttributeName Language="F#">[&lt;System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)&gt;]</AttributeName>
         </Attribute>
@@ -708,24 +770,25 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="obj" Type="System.Object" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="obj" Type="System.Object" Index="0" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
-        <param name="obj"> The object to compare with the current object. </param>
+        <param name="obj">The object to compare with the current object.</param>
         <summary>
                 Determines whether the specified object is equal to the current object.
             </summary>
         <returns>
-          <see langword="true" /> if the specified object is equal to the current object; otherwise, <see langword="false" />. </returns>
+          <see langword="true" /> if the specified object is equal to the current object; otherwise, <see langword="false" />.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Find">
-      <MemberSignature Language="C#" Value="public virtual TEntity Find (params object[] keyValues);" />
+      <MemberSignature Language="C#" Value="public virtual TEntity Find (params object[] keyValues);" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance !TEntity Find(object[] keyValues) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.DbSet`1.Find(System.Object[])" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Function Find (ParamArray keyValues As Object()) As TEntity" />
       <MemberSignature Language="F#" Value="abstract member Find : obj[] -&gt; 'Entity&#xA;override this.Find : obj[] -&gt; 'Entity" Usage="dbSet.Find keyValues" />
+      <MemberSignature Language="C#" Value="public virtual TEntity? Find (params object?[]? keyValues);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -739,12 +802,13 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>TEntity</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="keyValues" Type="System.Object[]" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">
+        <Parameter Name="keyValues" Type="System.Object[]" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
           <Attributes>
             <Attribute>
               <AttributeName>System.ParamArray</AttributeName>
@@ -761,8 +825,10 @@
                 and this entity, if found, is attached to the context and returned. If no entity is found, then
                 null is returned.
             </summary>
-        <returns>The entity found, or null.</returns>
-        <remarks>To be added.</remarks>
+        <returns>The entity found, or <see langword="null" />.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-find">Using Find and FindAsync</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="FindAsync">
@@ -772,9 +838,10 @@
       <MemberSignature Language="VB.NET" Value="Public Overridable Function FindAsync (ParamArray keyValues As Object()) As Task(Of TEntity)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="abstract member FindAsync : obj[] -&gt; System.Threading.Tasks.Task&lt;'Entity (requires 'Entity : null)&gt;&#xA;override this.FindAsync : obj[] -&gt; System.Threading.Tasks.Task&lt;'Entity (requires 'Entity : null)&gt;" Usage="dbSet.FindAsync keyValues" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.ValueTask&lt;TEntity&gt; FindAsync (params object[] keyValues);" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype System.Threading.Tasks.ValueTask`1&lt;!TEntity&gt; FindAsync(object[] keyValues) cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable Function FindAsync (ParamArray keyValues As Object()) As ValueTask(Of TEntity)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
-      <MemberSignature Language="F#" Value="abstract member FindAsync : obj[] -&gt; System.Threading.Tasks.ValueTask&lt;'Entity (requires 'Entity : null)&gt;&#xA;override this.FindAsync : obj[] -&gt; System.Threading.Tasks.ValueTask&lt;'Entity (requires 'Entity : null)&gt;" Usage="dbSet.FindAsync keyValues" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype System.Threading.Tasks.ValueTask`1&lt;!TEntity&gt; FindAsync(object[] keyValues) cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function FindAsync (ParamArray keyValues As Object()) As ValueTask(Of TEntity)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="F#" Value="abstract member FindAsync : obj[] -&gt; System.Threading.Tasks.ValueTask&lt;'Entity (requires 'Entity : null)&gt;&#xA;override this.FindAsync : obj[] -&gt; System.Threading.Tasks.ValueTask&lt;'Entity (requires 'Entity : null)&gt;" Usage="dbSet.FindAsync keyValues" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.ValueTask&lt;TEntity?&gt; FindAsync (params object?[]? keyValues);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -788,13 +855,14 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2">System.Threading.Tasks.Task&lt;TEntity&gt;</ReturnType>
-        <ReturnType FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">System.Threading.Tasks.ValueTask&lt;TEntity&gt;</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">System.Threading.Tasks.ValueTask&lt;TEntity&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="keyValues" Type="System.Object[]" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">
+        <Parameter Name="keyValues" Type="System.Object[]" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
           <Attributes>
             <Attribute>
               <AttributeName>System.ParamArray</AttributeName>
@@ -811,8 +879,10 @@
                 and this entity, if found, is attached to the context and returned. If no entity is found, then
                 null is returned.
             </summary>
-        <returns>The entity found, or null.</returns>
-        <remarks>To be added.</remarks>
+        <returns>The entity found, or <see langword="null" />.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-find">Using Find and FindAsync</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="FindAsync">
@@ -822,9 +892,10 @@
       <MemberSignature Language="VB.NET" Value="Public Overridable Function FindAsync (keyValues As Object(), cancellationToken As CancellationToken) As Task(Of TEntity)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="abstract member FindAsync : obj[] * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;'Entity (requires 'Entity : null)&gt;&#xA;override this.FindAsync : obj[] * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;'Entity (requires 'Entity : null)&gt;" Usage="dbSet.FindAsync (keyValues, cancellationToken)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.ValueTask&lt;TEntity&gt; FindAsync (object[] keyValues, System.Threading.CancellationToken cancellationToken);" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype System.Threading.Tasks.ValueTask`1&lt;!TEntity&gt; FindAsync(object[] keyValues, valuetype System.Threading.CancellationToken cancellationToken) cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable Function FindAsync (keyValues As Object(), cancellationToken As CancellationToken) As ValueTask(Of TEntity)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
-      <MemberSignature Language="F#" Value="abstract member FindAsync : obj[] * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;'Entity (requires 'Entity : null)&gt;&#xA;override this.FindAsync : obj[] * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;'Entity (requires 'Entity : null)&gt;" Usage="dbSet.FindAsync (keyValues, cancellationToken)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype System.Threading.Tasks.ValueTask`1&lt;!TEntity&gt; FindAsync(object[] keyValues, valuetype System.Threading.CancellationToken cancellationToken) cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function FindAsync (keyValues As Object(), cancellationToken As CancellationToken) As ValueTask(Of TEntity)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="F#" Value="abstract member FindAsync : obj[] * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;'Entity (requires 'Entity : null)&gt;&#xA;override this.FindAsync : obj[] * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;'Entity (requires 'Entity : null)&gt;" Usage="dbSet.FindAsync (keyValues, cancellationToken)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.ValueTask&lt;TEntity?&gt; FindAsync (object?[]? keyValues, System.Threading.CancellationToken cancellationToken);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -838,14 +909,15 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2">System.Threading.Tasks.Task&lt;TEntity&gt;</ReturnType>
-        <ReturnType FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0">System.Threading.Tasks.ValueTask&lt;TEntity&gt;</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">System.Threading.Tasks.ValueTask&lt;TEntity&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="keyValues" Type="System.Object[]" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
+        <Parameter Name="keyValues" Type="System.Object[]" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="keyValues">The values of the primary key for the entity to be found.</param>
@@ -857,8 +929,42 @@
                 and this entity, if found, is attached to the context and returned. If no entity is found, then
                 null is returned.
             </summary>
-        <returns>The entity found, or null.</returns>
-        <remarks>To be added.</remarks>
+        <returns>The entity found, or <see langword="null" />.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-find">Using Find and FindAsync</see> for more information.
+            </remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
+      </Docs>
+    </Member>
+    <Member MemberName="GetAsyncEnumerator">
+      <MemberSignature Language="C#" Value="public virtual System.Collections.Generic.IAsyncEnumerator&lt;TEntity&gt; GetAsyncEnumerator (System.Threading.CancellationToken cancellationToken = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IAsyncEnumerator`1&lt;!TEntity&gt; GetAsyncEnumerator(valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.DbSet`1.GetAsyncEnumerator(System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function GetAsyncEnumerator (Optional cancellationToken As CancellationToken = Nothing) As IAsyncEnumerator(Of TEntity)" />
+      <MemberSignature Language="F#" Value="abstract member GetAsyncEnumerator : System.Threading.CancellationToken -&gt; System.Collections.Generic.IAsyncEnumerator&lt;'Entity (requires 'Entity : null)&gt;&#xA;override this.GetAsyncEnumerator : System.Threading.CancellationToken -&gt; System.Collections.Generic.IAsyncEnumerator&lt;'Entity (requires 'Entity : null)&gt;" Usage="dbSet.GetAsyncEnumerator cancellationToken" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IAsyncEnumerator&lt;TEntity&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="cancellationToken">
+                A <see cref="T:System.Threading.CancellationToken" /> that may be used to cancel the asynchronous iteration.
+            </param>
+        <summary>
+                Returns an <see cref="T:System.Collections.Generic.IAsyncEnumerator`1" /> which when enumerated will asynchronously execute a query against
+                the database.
+            </summary>
+        <returns>The query results.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetHashCode">
@@ -876,9 +982,10 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">
+        <Attribute FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
           <AttributeName Language="C#">[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]</AttributeName>
           <AttributeName Language="F#">[&lt;System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)&gt;]</AttributeName>
         </Attribute>
@@ -891,7 +998,7 @@
         <summary>
                 Serves as the default hash function.
             </summary>
-        <returns> A hash code for the current object. </returns>
+        <returns>A hash code for the current object.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -914,6 +1021,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.LocalView&lt;TEntity&gt;</ReturnType>
@@ -921,7 +1029,7 @@
       <Docs>
         <summary>
           <para>
-                    Gets an <see cref="T:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1" /> that represents a local view of all Added, Unchanged,
+                    Gets a <see cref="T:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1" /> that represents a local view of all Added, Unchanged,
                     and Modified entities in this set.
                 </para>
           <para>
@@ -936,9 +1044,15 @@
                     <see cref="M:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.ToObservableCollection" /> for WPF binding, or
                     <see cref="M:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.ToBindingList" /> for WinForms.
                 </para>
+          <para>
+                    Note that this method calls <see cref="M:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges" /> unless
+                    <see cref="P:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.AutoDetectChangesEnabled" /> has been set to <see langword="false" />.
+                </para>
         </summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-local-views">Local views of tracked entities in EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure&lt;System.IServiceProvider&gt;.Instance">
@@ -965,6 +1079,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IServiceProvider</ReturnType>
@@ -980,7 +1095,9 @@
                 </para>
         </summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-services">Accessing DbContext services</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="Microsoft.EntityFrameworkCore.Query.Internal.IAsyncEnumerableAccessor&lt;TEntity&gt;.AsyncEnumerable">
@@ -1038,6 +1155,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;TEntity&gt;</ReturnType>
@@ -1046,7 +1164,7 @@
         <Parameter Name="entity" Type="TEntity" />
       </Parameters>
       <Docs>
-        <param name="entity"> The entity to remove. </param>
+        <param name="entity">The entity to remove.</param>
         <summary>
                 Begins tracking the given entity in the <see cref="F:Microsoft.EntityFrameworkCore.EntityState.Deleted" /> state such that it will
                 be removed from the database when <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> is called.
@@ -1068,6 +1186,9 @@
                 </para>
           <para>
                     Use <see cref="P:Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.State" /> to set the state of only a single entity.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see> for more information.
                 </para>
         </remarks>
       </Docs>
@@ -1093,6 +1214,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1101,7 +1223,7 @@
         <Parameter Name="entities" Type="System.Collections.Generic.IEnumerable&lt;TEntity&gt;" />
       </Parameters>
       <Docs>
-        <param name="entities"> The entities to remove. </param>
+        <param name="entities">The entities to remove.</param>
         <summary>
                 Begins tracking the given entities in the <see cref="F:Microsoft.EntityFrameworkCore.EntityState.Deleted" /> state such that they will
                 be removed from the database when <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> is called.
@@ -1116,6 +1238,11 @@
                     Any other reachable entities that are not already being tracked will be tracked in the same way that
                     they would be if <see cref="M:Microsoft.EntityFrameworkCore.DbSet`1.AttachRange(System.Collections.Generic.IEnumerable{`0})" /> was called before calling this method.
                     This allows any cascading actions to be applied when <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> is called.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see>
+                    and <see href="https://aka.ms/efcore-docs-attach-range">Using AddRange, UpdateRange, AttachRange, and RemoveRange</see>
+                    for more information.
                 </para>
         </remarks>
       </Docs>
@@ -1141,6 +1268,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1156,7 +1284,7 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="entities"> The entities to remove. </param>
+        <param name="entities">The entities to remove.</param>
         <summary>
                 Begins tracking the given entities in the <see cref="F:Microsoft.EntityFrameworkCore.EntityState.Deleted" /> state such that they will
                 be removed from the database when <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> is called.
@@ -1173,6 +1301,11 @@
                     This allows any cascading actions to be applied when <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> is called.
                 </para>
         </remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see>
+                and <see href="https://aka.ms/efcore-docs-attach-range">Using AddRange, UpdateRange, AttachRange, and RemoveRange</see>
+                for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="System.Collections.Generic.IAsyncEnumerable&lt;TEntity&gt;.GetAsyncEnumerator">
@@ -1231,6 +1364,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerator&lt;TEntity&gt;</ReturnType>
@@ -1241,8 +1375,10 @@
                 Returns an <see cref="T:System.Collections.Generic.IEnumerator`1" /> which when enumerated will execute a query against the database
                 to load all entities from the database.
             </summary>
-        <returns> The query results. </returns>
-        <remarks>To be added.</remarks>
+        <returns>The query results.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="System.Collections.IEnumerable.GetEnumerator">
@@ -1269,6 +1405,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.IEnumerator</ReturnType>
@@ -1279,8 +1416,10 @@
                 Returns an <see cref="T:System.Collections.IEnumerator" /> which when enumerated will execute a query against the database
                 to load all entities from the database.
             </summary>
-        <returns> The query results. </returns>
-        <remarks>To be added.</remarks>
+        <returns>The query results.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="System.ComponentModel.IListSource.ContainsListCollection">
@@ -1303,6 +1442,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1313,7 +1453,9 @@
                 Always returns <see langword="false" />.
             </summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-local-views">Local views of tracked entities in EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="System.ComponentModel.IListSource.GetList">
@@ -1336,6 +1478,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.IList</ReturnType>
@@ -1358,9 +1501,11 @@
                     <see cref="M:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1.ToBindingList" /> for WinForms.
                 </para>
         </summary>
-        <returns> Never returns, always throws an exception. </returns>
-        <remarks>To be added.</remarks>
-        <exception cref="T:System.NotSupportedException"> Always thrown. </exception>
+        <returns>Never returns, always throws an exception.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-local-views">Local views of tracked entities in EF Core</see> for more information.
+            </remarks>
+        <exception cref="T:System.NotSupportedException">Always thrown.</exception>
       </Docs>
     </Member>
     <Member MemberName="System.Linq.IQueryable.ElementType">
@@ -1387,6 +1532,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>
@@ -1396,7 +1542,9 @@
                 Gets the IQueryable element type.
             </summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="System.Linq.IQueryable.Expression">
@@ -1423,6 +1571,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1432,7 +1581,9 @@
                 Gets the IQueryable LINQ Expression.
             </summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="System.Linq.IQueryable.Provider">
@@ -1459,6 +1610,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryProvider</ReturnType>
@@ -1468,15 +1620,18 @@
                 Gets the IQueryable provider.
             </summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="ToString">
-      <MemberSignature Language="C#" Value="public override string ToString ();" />
+      <MemberSignature Language="C#" Value="public override string ToString ();" FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance string ToString() cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.DbSet`1.ToString" />
       <MemberSignature Language="VB.NET" Value="Public Overrides Function ToString () As String" />
       <MemberSignature Language="F#" Value="override this.ToString : unit -&gt; string" Usage="dbSet.ToString " />
+      <MemberSignature Language="C#" Value="public override string? ToString ();" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -1486,9 +1641,10 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">
+        <Attribute FrameworkAlternate="efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
           <AttributeName Language="C#">[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]</AttributeName>
           <AttributeName Language="F#">[&lt;System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)&gt;]</AttributeName>
         </Attribute>
@@ -1501,7 +1657,7 @@
         <summary>
                 Returns a string that represents the current object.
             </summary>
-        <returns> A string that represents the current object. </returns>
+        <returns>A string that represents the current object.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1526,6 +1682,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;TEntity&gt;</ReturnType>
@@ -1534,7 +1691,7 @@
         <Parameter Name="entity" Type="TEntity" />
       </Parameters>
       <Docs>
-        <param name="entity"> The entity to update. </param>
+        <param name="entity">The entity to update.</param>
         <summary>
           <para>
                     Begins tracking the given entity and entries reachable from the given entity using
@@ -1568,7 +1725,9 @@
                 The <see cref="T:Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry" /> for the entity. The entry provides
                 access to change tracking information and operations for the entity.
             </returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see> for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="UpdateRange">
@@ -1592,6 +1751,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1600,7 +1760,7 @@
         <Parameter Name="entities" Type="System.Collections.Generic.IEnumerable&lt;TEntity&gt;" />
       </Parameters>
       <Docs>
-        <param name="entities"> The entities to update. </param>
+        <param name="entities">The entities to update.</param>
         <summary>
           <para>
                     Begins tracking the given entities and entries reachable from the given entities using
@@ -1630,7 +1790,11 @@
                     Use <see cref="P:Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.State" /> to set the state of only a single entity.
                 </para>
         </summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see>
+                and <see href="https://aka.ms/efcore-docs-attach-range">Using AddRange, UpdateRange, AttachRange, and RemoveRange</see>
+                for more information.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="UpdateRange">
@@ -1654,6 +1818,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1669,7 +1834,7 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="entities"> The entities to update. </param>
+        <param name="entities">The entities to update.</param>
         <summary>
           <para>
                     Begins tracking the given entities and entries reachable from the given entities using
@@ -1699,7 +1864,11 @@
                     Use <see cref="P:Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.State" /> to set the state of only a single entity.
                 </para>
         </summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see>
+                and <see href="https://aka.ms/efcore-docs-attach-range">Using AddRange, UpdateRange, AttachRange, and RemoveRange</see>
+                for more information.
+            </remarks>
       </Docs>
     </Member>
   </Members>

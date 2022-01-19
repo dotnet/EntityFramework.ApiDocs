@@ -9,6 +9,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -25,9 +26,10 @@
                     method call translators.
                 </para>
       <para>
-                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
-                    is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
-                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
                 </para>
     </summary>
     <remarks>To be added.</remarks>
@@ -45,12 +47,13 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Query.RelationalMethodCallTranslatorProviderDependencies" />
       </Parameters>
       <Docs>
-        <param name="dependencies"> Parameter object containing dependencies for this class. </param>
+        <param name="dependencies">Parameter object containing dependencies for this class.</param>
         <summary>
                 Creates a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Query.RelationalMethodCallTranslatorProvider" /> class.
             </summary>
@@ -69,6 +72,7 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -77,10 +81,32 @@
         <Parameter Name="translators" Type="System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Query.IMethodCallTranslator&gt;" />
       </Parameters>
       <Docs>
-        <param name="translators"> Translators to add. </param>
+        <param name="translators">Translators to add.</param>
         <summary>
                 Adds additional translators which will take priority over existing registered translators.
             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Dependencies">
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Query.RelationalMethodCallTranslatorProviderDependencies Dependencies { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Query.RelationalMethodCallTranslatorProviderDependencies Dependencies" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.RelationalMethodCallTranslatorProvider.Dependencies" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable ReadOnly Property Dependencies As RelationalMethodCallTranslatorProviderDependencies" />
+      <MemberSignature Language="F#" Value="member this.Dependencies : Microsoft.EntityFrameworkCore.Query.RelationalMethodCallTranslatorProviderDependencies" Usage="Microsoft.EntityFrameworkCore.Query.RelationalMethodCallTranslatorProvider.Dependencies" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Query.RelationalMethodCallTranslatorProviderDependencies</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Dependencies for this service.
+            </summary>
+        <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -119,11 +145,12 @@
       </Docs>
     </Member>
     <Member MemberName="Translate">
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression Translate (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression instance, System.Reflection.MethodInfo method, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression&gt; arguments, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Query&gt; logger);" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression Translate (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression instance, System.Reflection.MethodInfo method, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression&gt; arguments, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Query&gt; logger);" FrameworkAlternate="efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression Translate(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression instance, class System.Reflection.MethodInfo method, class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression&gt; arguments, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Query&gt; logger) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.RelationalMethodCallTranslatorProvider.Translate(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression,System.Reflection.MethodInfo,System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression},Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Query})" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Function Translate (model As IModel, instance As SqlExpression, method As MethodInfo, arguments As IReadOnlyList(Of SqlExpression), logger As IDiagnosticsLogger(Of DbLoggerCategory.Query)) As SqlExpression" />
       <MemberSignature Language="F#" Value="abstract member Translate : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression * System.Reflection.MethodInfo * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression&gt; * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Query&gt; -&gt; Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression&#xA;override this.Translate : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression * System.Reflection.MethodInfo * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression&gt; * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Query&gt; -&gt; Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" Usage="relationalMethodCallTranslatorProvider.Translate (model, instance, method, arguments, logger)" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression? Translate (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression? instance, System.Reflection.MethodInfo method, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression&gt; arguments, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Query&gt; logger);" FrameworkAlternate="efcore-6.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Query.IMethodCallTranslatorProvider.Translate(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression,System.Reflection.MethodInfo,System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression},Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Query})</InterfaceMember>
@@ -131,16 +158,17 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-5.0" />
-        <Parameter Name="instance" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" Index="1" FrameworkAlternate="efcore-5.0" />
-        <Parameter Name="method" Type="System.Reflection.MethodInfo" Index="2" FrameworkAlternate="efcore-5.0" />
-        <Parameter Name="arguments" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression&gt;" Index="3" FrameworkAlternate="efcore-5.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Query&gt;" Index="4" FrameworkAlternate="efcore-5.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="instance" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="method" Type="System.Reflection.MethodInfo" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="arguments" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression&gt;" Index="3" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Query&gt;" Index="4" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
