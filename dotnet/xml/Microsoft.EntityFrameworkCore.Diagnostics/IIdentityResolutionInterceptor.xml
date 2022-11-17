@@ -1,0 +1,76 @@
+<Type Name="IIdentityResolutionInterceptor" FullName="Microsoft.EntityFrameworkCore.Diagnostics.IIdentityResolutionInterceptor">
+  <TypeSignature Language="C#" Value="public interface IIdentityResolutionInterceptor : Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IIdentityResolutionInterceptor implements class Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor" />
+  <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Diagnostics.IIdentityResolutionInterceptor" />
+  <TypeSignature Language="VB.NET" Value="Public Interface IIdentityResolutionInterceptor&#xA;Implements IInterceptor" />
+  <TypeSignature Language="F#" Value="type IIdentityResolutionInterceptor = interface&#xA;    interface IInterceptor" />
+  <AssemblyInfo>
+    <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Docs>
+    <summary>
+                Allows interception of identity resolution conflicts when the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> starts tracking new entity
+                instances.
+            </summary>
+    <remarks>
+      <para>
+                    A <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> can only track one entity instance with any given primary key value. This means multiple instances
+                    of an entity with the same key value must be resolved to a single instance. An interceptor of this type can be used to do
+                    this. It is called with the existing tracked instance and the new instance and must apply any property values and relationship
+                    changes from the new instance into the existing instance. The new instance is then discarded.
+                </para>
+      <para>
+                    Use <see cref="M:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.AddInterceptors(Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor[])" />
+                    to register application interceptors.
+                </para>
+      <para>
+                    Extensions can also register interceptors in the internal service provider.
+                    If both injected and application interceptors are found, then the injected interceptors are run in the
+                    order that they are resolved from the service provider, and then the application interceptors are run last.
+                </para>
+      <para>
+                    See <see href="https://aka.ms/efcore-docs-interceptors">EF Core interceptors</see>
+                    and <see href="https://aka.ms/efcore-docs-change-tracking">EF Core change tracking</see> for more information and examples.
+                </para>
+    </remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="UpdateTrackedInstance">
+      <MemberSignature Language="C#" Value="public void UpdateTrackedInstance (Microsoft.EntityFrameworkCore.Diagnostics.IdentityResolutionInterceptionData interceptionData, Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry existingEntry, object newEntity);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void UpdateTrackedInstance(valuetype Microsoft.EntityFrameworkCore.Diagnostics.IdentityResolutionInterceptionData interceptionData, class Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry existingEntry, object newEntity) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IIdentityResolutionInterceptor.UpdateTrackedInstance(Microsoft.EntityFrameworkCore.Diagnostics.IdentityResolutionInterceptionData,Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry,System.Object)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub UpdateTrackedInstance (interceptionData As IdentityResolutionInterceptionData, existingEntry As EntityEntry, newEntity As Object)" />
+      <MemberSignature Language="F#" Value="abstract member UpdateTrackedInstance : Microsoft.EntityFrameworkCore.Diagnostics.IdentityResolutionInterceptionData * Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry * obj -&gt; unit" Usage="iIdentityResolutionInterceptor.UpdateTrackedInstance (interceptionData, existingEntry, newEntity)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="interceptionData" Type="Microsoft.EntityFrameworkCore.Diagnostics.IdentityResolutionInterceptionData" />
+        <Parameter Name="existingEntry" Type="Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry" />
+        <Parameter Name="newEntity" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="interceptionData">Contextual information about the identity resolution.</param>
+        <param name="existingEntry">The entry for the existing tracked entity instance.</param>
+        <param name="newEntity">The new entity instance, which will be discarded after this call.</param>
+        <summary>
+                Called when a <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> attempts to track a new instance of an entity with the same primary key value as
+                an already tracked instance. This method must apply any property values and relationship changes from the new instance
+                into the existing instance. The new instance is then discarded.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

@@ -4,10 +4,10 @@
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry`2" />
   <TypeSignature Language="VB.NET" Value="Public Class CollectionEntry(Of TEntity, TProperty)&#xA;Inherits CollectionEntry" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
   <TypeSignature Language="F#" Value="type CollectionEntry&lt;'Entity, 'Property (requires 'Entity : null and 'Property : null)&gt; = class&#xA;    inherit CollectionEntry" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
-  <TypeSignature Language="C#" Value="public class CollectionEntry&lt;TEntity,TRelatedEntity&gt; : Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry where TEntity : class where TRelatedEntity : class" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit CollectionEntry`2&lt;class TEntity, class TRelatedEntity&gt; extends Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-  <TypeSignature Language="VB.NET" Value="Public Class CollectionEntry(Of TEntity, TRelatedEntity)&#xA;Inherits CollectionEntry" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-  <TypeSignature Language="F#" Value="type CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt; = class&#xA;    inherit CollectionEntry" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+  <TypeSignature Language="C#" Value="public class CollectionEntry&lt;TEntity,TRelatedEntity&gt; : Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry where TEntity : class where TRelatedEntity : class" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit CollectionEntry`2&lt;class TEntity, class TRelatedEntity&gt; extends Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+  <TypeSignature Language="VB.NET" Value="Public Class CollectionEntry(Of TEntity, TRelatedEntity)&#xA;Inherits CollectionEntry" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+  <TypeSignature Language="F#" Value="type CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt; = class&#xA;    inherit CollectionEntry" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
@@ -21,14 +21,20 @@
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
-    <TypeParameter Name="TEntity">
+    <TypeParameter Name="TEntity" Index="0">
       <Constraints>
         <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
       </Constraints>
     </TypeParameter>
-    <TypeParameter Name="TRelatedEntity">
+    <TypeParameter Name="TProperty" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2">
+      <Constraints>
+        <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
+      </Constraints>
+    </TypeParameter>
+    <TypeParameter Name="TRelatedEntity" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0">
       <Constraints>
         <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
       </Constraints>
@@ -39,23 +45,24 @@
   </Base>
   <Interfaces />
   <Docs>
+    <typeparam name="TProperty">To be added.</typeparam>
     <typeparam name="TEntity">The type of the entity the property belongs to.</typeparam>
     <typeparam name="TRelatedEntity">The type of the property.</typeparam>
     <summary>
-      <para>
-                    Provides access to change tracking and loading information for a collection
-                    navigation property that associates this entity to a collection of another entities.
-                </para>
+                Provides access to change tracking and loading information for a collection
+                navigation property that associates this entity to a collection of another entities.
+            </summary>
+    <remarks>
       <para>
                     Instances of this class are returned from methods when using the <see cref="T:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker" /> API and it is
                     not designed to be directly constructed in your application code.
                 </para>
-    </summary>
-    <remarks>
-                See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see>,
-                <see href="https://aka.ms/efcore-docs-changing-relationships">Changing foreign keys and navigations</see>,
-                and <see href="https://aka.ms/efcore-docs-load-related-data">Loading related entities</see> for more information.
-            </remarks>
+      <para>
+                    See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see>,
+                    <see href="https://aka.ms/efcore-docs-changing-relationships">Changing foreign keys and navigations</see>,
+                    and <see href="https://aka.ms/efcore-docs-load-related-data">Loading related entities</see> for more information and examples.
+                </para>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -87,12 +94,45 @@
         </Attribute>
       </Attributes>
       <Parameters>
-        <Parameter Name="internalEntry" Type="Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry" />
-        <Parameter Name="navigation" Type="Microsoft.EntityFrameworkCore.Metadata.INavigation" />
+        <Parameter Name="internalEntry" Type="Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="navigation" Type="Microsoft.EntityFrameworkCore.Metadata.INavigation" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="internalEntry">To be added.</param>
         <param name="navigation">To be added.</param>
+        <summary>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public CollectionEntry (Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry internalEntry, Microsoft.EntityFrameworkCore.Metadata.INavigationBase navigationBase);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry internalEntry, class Microsoft.EntityFrameworkCore.Metadata.INavigationBase navigationBase) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry`2.#ctor(Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry,Microsoft.EntityFrameworkCore.Metadata.INavigationBase)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (internalEntry As InternalEntityEntry, navigationBase As INavigationBase)" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt; : Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry * Microsoft.EntityFrameworkCore.Metadata.INavigationBase -&gt; Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt;" Usage="new Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt; (internalEntry, navigationBase)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-7.0">
+          <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal]</AttributeName>
+          <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal&gt;]</AttributeName>
+        </Attribute>
+      </Attributes>
+      <Parameters>
+        <Parameter Name="internalEntry" Type="Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="navigationBase" Type="Microsoft.EntityFrameworkCore.Metadata.INavigationBase" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="internalEntry">To be added.</param>
+        <param name="navigationBase">To be added.</param>
         <summary>
                 This is an internal API that supports the Entity Framework Core infrastructure and not subject to
                 the same compatibility standards as public APIs. It may be changed or removed without notice in
@@ -108,7 +148,7 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry`2.#ctor(Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry,System.String)" />
       <MemberSignature Language="VB.NET" Value="Public Sub New (internalEntry As InternalEntityEntry, name As String)" />
       <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'Property (requires 'Entity : null and 'Property : null)&gt; : Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry * string -&gt; Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'Property (requires 'Entity : null and 'Property : null)&gt;" Usage="new Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'Property (requires 'Entity : null and 'Property : null)&gt; (internalEntry, name)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
-      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt; : Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry * string -&gt; Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt;" Usage="new Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt; (internalEntry, name)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt; : Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry * string -&gt; Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt;" Usage="new Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt; (internalEntry, name)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -123,9 +163,10 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
+        <Attribute FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0">
           <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal]</AttributeName>
           <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal&gt;]</AttributeName>
         </Attribute>
@@ -153,10 +194,10 @@
       <MemberSignature Language="VB.NET" Value="Public Overridable Property CurrentValue As IEnumerable(Of TProperty)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="member this.CurrentValue : seq&lt;'Property (requires 'Property : null)&gt; with get, set" Usage="Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'Property (requires 'Entity : null and 'Property : null)&gt;.CurrentValue" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="C#" Value="public virtual System.Collections.Generic.IEnumerable&lt;TRelatedEntity&gt; CurrentValue { get; set; }" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0" />
-      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IEnumerable`1&lt;!TRelatedEntity&gt; CurrentValue" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable Property CurrentValue As IEnumerable(Of TRelatedEntity)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-      <MemberSignature Language="F#" Value="member this.CurrentValue : seq&lt;'RelatedEntity (requires 'RelatedEntity : null)&gt; with get, set" Usage="Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt;.CurrentValue" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-      <MemberSignature Language="C#" Value="public virtual System.Collections.Generic.IEnumerable&lt;TRelatedEntity&gt;? CurrentValue { get; set; }" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IEnumerable`1&lt;!TRelatedEntity&gt; CurrentValue" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Property CurrentValue As IEnumerable(Of TRelatedEntity)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+      <MemberSignature Language="F#" Value="member this.CurrentValue : seq&lt;'RelatedEntity (requires 'RelatedEntity : null)&gt; with get, set" Usage="Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt;.CurrentValue" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+      <MemberSignature Language="C#" Value="public virtual System.Collections.Generic.IEnumerable&lt;TRelatedEntity&gt;? CurrentValue { get; set; }" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -171,10 +212,11 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2">System.Collections.Generic.IEnumerable&lt;TProperty&gt;</ReturnType>
-        <ReturnType FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">System.Collections.Generic.IEnumerable&lt;TRelatedEntity&gt;</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0">System.Collections.Generic.IEnumerable&lt;TRelatedEntity&gt;</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>
@@ -186,7 +228,7 @@
         <remarks>
                 See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see>
                 and <see href="https://aka.ms/efcore-docs-changing-relationships">Changing foreign keys and navigations</see>
-                for more information.
+                for more information and examples.
             </remarks>
       </Docs>
     </Member>
@@ -196,7 +238,7 @@
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry`2.EntityEntry" />
       <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property EntityEntry As EntityEntry(Of TEntity)" />
       <MemberSignature Language="F#" Value="member this.EntityEntry : Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;'Entity (requires 'Entity : null)&gt;" Usage="Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'Property (requires 'Entity : null and 'Property : null)&gt;.EntityEntry" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
-      <MemberSignature Language="F#" Value="member this.EntityEntry : Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;'Entity (requires 'Entity : null)&gt;" Usage="Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt;.EntityEntry" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="F#" Value="member this.EntityEntry : Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;'Entity (requires 'Entity : null)&gt;" Usage="Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'RelatedEntity (requires 'Entity : null and 'RelatedEntity : null)&gt;.EntityEntry" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -211,6 +253,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;TEntity&gt;</ReturnType>
@@ -221,7 +264,8 @@
             </summary>
         <value> An entry for the entity that owns this member. </value>
         <remarks>
-                See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see> for more information.
+                See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see> for more information and
+                examples.
             </remarks>
       </Docs>
     </Member>
@@ -231,7 +275,7 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry`2.FindEntry(System.Object)" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Function FindEntry (entity As Object) As EntityEntry(Of TRelatedEntity)" />
       <MemberSignature Language="F#" Value="override this.FindEntry : obj -&gt; Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;'RelatedEntity (requires 'RelatedEntity : null)&gt;" Usage="collectionEntry.FindEntry entity" />
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;TRelatedEntity&gt;? FindEntry (object entity);" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;TRelatedEntity&gt;? FindEntry (object entity);" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -239,12 +283,13 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry&lt;TRelatedEntity&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="entity" Type="System.Object" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="entity" Type="System.Object" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="entity">The entity to get the entry for.</param>
@@ -253,7 +298,8 @@
             </summary>
         <returns> An entry for an entity that this navigation targets. </returns>
         <remarks>
-                See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see> for more information.
+                See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see> for more information and
+                examples.
             </remarks>
       </Docs>
     </Member>
@@ -263,10 +309,10 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry`2.Query" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Function Query () As IQueryable(Of TProperty)" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
       <MemberSignature Language="F#" Value="override this.Query : unit -&gt; System.Linq.IQueryable&lt;'Property (requires 'Property : null)&gt;" Usage="collectionEntry.Query " FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2" />
-      <MemberSignature Language="C#" Value="public virtual System.Linq.IQueryable&lt;TRelatedEntity&gt; Query ();" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.IQueryable`1&lt;!TRelatedEntity&gt; Query() cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable Function Query () As IQueryable(Of TRelatedEntity)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-      <MemberSignature Language="F#" Value="override this.Query : unit -&gt; System.Linq.IQueryable&lt;'RelatedEntity (requires 'RelatedEntity : null)&gt;" Usage="collectionEntry.Query " FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual System.Linq.IQueryable&lt;TRelatedEntity&gt; Query ();" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.IQueryable`1&lt;!TRelatedEntity&gt; Query() cil managed" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function Query () As IQueryable(Of TRelatedEntity)" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+      <MemberSignature Language="F#" Value="override this.Query : unit -&gt; System.Linq.IQueryable&lt;'RelatedEntity (requires 'RelatedEntity : null)&gt;" Usage="collectionEntry.Query " FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -281,28 +327,29 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2">System.Linq.IQueryable&lt;TProperty&gt;</ReturnType>
-        <ReturnType FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">System.Linq.IQueryable&lt;TRelatedEntity&gt;</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0">System.Linq.IQueryable&lt;TRelatedEntity&gt;</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
         <summary>
-          <para>
-                    Returns the query that would be used by <see cref="M:Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry.Load" /> to load entities referenced by
-                    this navigation property.
-                </para>
+                Returns the query that would be used by <see cref="M:Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry.Load" /> to load entities referenced by
+                this navigation property.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>
           <para>
                     The query can be composed over using LINQ to perform filtering, counting, etc. without
                     actually loading all entities from the database.
                 </para>
-        </summary>
-        <returns>To be added.</returns>
-        <remarks>
-                See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see>
-                and <see href="https://aka.ms/efcore-docs-load-related-data">Loading related entities</see> for more information.
-            </remarks>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see>
+                    and <see href="https://aka.ms/efcore-docs-load-related-data">Loading related entities</see> for more information and examples.
+                </para>
+        </remarks>
       </Docs>
     </Member>
   </Members>

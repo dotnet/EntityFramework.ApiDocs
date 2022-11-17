@@ -8,6 +8,10 @@
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ModificationCommand extends System.Object implements class Microsoft.EntityFrameworkCore.Update.IModificationCommand, class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" FrameworkAlternate="efcore-6.0" />
   <TypeSignature Language="VB.NET" Value="Public Class ModificationCommand&#xA;Implements IModificationCommand" FrameworkAlternate="efcore-6.0" />
   <TypeSignature Language="F#" Value="type ModificationCommand = class&#xA;    interface IModificationCommand&#xA;    interface IReadOnlyModificationCommand" FrameworkAlternate="efcore-6.0" />
+  <TypeSignature Language="C#" Value="public class ModificationCommand : Microsoft.EntityFrameworkCore.Update.IModificationCommand, Microsoft.EntityFrameworkCore.Update.INonTrackedModificationCommand" FrameworkAlternate="efcore-7.0" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ModificationCommand extends System.Object implements class Microsoft.EntityFrameworkCore.Update.IModificationCommand, class Microsoft.EntityFrameworkCore.Update.INonTrackedModificationCommand, class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" FrameworkAlternate="efcore-7.0" />
+  <TypeSignature Language="VB.NET" Value="Public Class ModificationCommand&#xA;Implements IModificationCommand, INonTrackedModificationCommand" FrameworkAlternate="efcore-7.0" />
+  <TypeSignature Language="F#" Value="type ModificationCommand = class&#xA;    interface IModificationCommand&#xA;    interface IReadOnlyModificationCommand&#xA;    interface INonTrackedModificationCommand" FrameworkAlternate="efcore-7.0" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -23,16 +27,20 @@
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
   <Interfaces>
-    <Interface FrameworkAlternate="efcore-6.0">
+    <Interface FrameworkAlternate="efcore-6.0;efcore-7.0">
       <InterfaceName>Microsoft.EntityFrameworkCore.Update.IModificationCommand</InterfaceName>
     </Interface>
-    <Interface FrameworkAlternate="efcore-6.0">
+    <Interface FrameworkAlternate="efcore-6.0;efcore-7.0">
       <InterfaceName>Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand</InterfaceName>
+    </Interface>
+    <Interface FrameworkAlternate="efcore-7.0">
+      <InterfaceName>Microsoft.EntityFrameworkCore.Update.INonTrackedModificationCommand</InterfaceName>
     </Interface>
   </Interfaces>
   <Docs>
@@ -46,7 +54,7 @@
     </summary>
     <remarks>
                 See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
-                for more information.
+                for more information and examples.
             </remarks>
   </Docs>
   <Members>
@@ -60,9 +68,39 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="modificationCommandParameters" Type="Microsoft.EntityFrameworkCore.Update.ModificationCommandParameters" RefType="ref" Index="0" FrameworkAlternate="efcore-6.0">
+        <Parameter Name="modificationCommandParameters" Type="Microsoft.EntityFrameworkCore.Update.ModificationCommandParameters" RefType="ref" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.IsReadOnly&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="modificationCommandParameters">Creation parameters.</param>
+        <summary>
+                Initializes a new <see cref="T:Microsoft.EntityFrameworkCore.Update.ModificationCommand" /> instance.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ModificationCommand (in Microsoft.EntityFrameworkCore.Update.NonTrackedModificationCommandParameters modificationCommandParameters);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor([in]valuetype Microsoft.EntityFrameworkCore.Update.NonTrackedModificationCommandParameters&amp; modificationCommandParameters) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.ModificationCommand.#ctor(Microsoft.EntityFrameworkCore.Update.NonTrackedModificationCommandParameters@)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (ByRef modificationCommandParameters As NonTrackedModificationCommandParameters)" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Update.ModificationCommand : NonTrackedModificationCommandParameters -&gt; Microsoft.EntityFrameworkCore.Update.ModificationCommand" Usage="new Microsoft.EntityFrameworkCore.Update.ModificationCommand modificationCommandParameters" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="modificationCommandParameters" Type="Microsoft.EntityFrameworkCore.Update.NonTrackedModificationCommandParameters" RefType="ref" Index="0" FrameworkAlternate="efcore-7.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
@@ -204,24 +242,26 @@
       </Docs>
     </Member>
     <Member MemberName="AddColumnModification">
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Update.IColumnModification AddColumnModification (Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters columnModificationParameters);" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Update.IColumnModification AddColumnModification (in Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters columnModificationParameters);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Update.IColumnModification AddColumnModification([in]valuetype Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters columnModificationParameters) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.ModificationCommand.AddColumnModification(Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters@|System.Runtime.InteropServices.InAttribute)" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Function AddColumnModification (columnModificationParameters As ColumnModificationParameters) As IColumnModification" />
       <MemberSignature Language="F#" Value="abstract member AddColumnModification : ColumnModificationParameters -&gt; Microsoft.EntityFrameworkCore.Update.IColumnModification&#xA;override this.AddColumnModification : ColumnModificationParameters -&gt; Microsoft.EntityFrameworkCore.Update.IColumnModification" Usage="modificationCommand.AddColumnModification columnModificationParameters" />
       <MemberType>Method</MemberType>
       <Implements>
-        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Update.IModificationCommand.AddColumnModification(Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters@)</InterfaceMember>
+        <InterfaceMember FrameworkAlternate="efcore-6.0">M:Microsoft.EntityFrameworkCore.Update.IModificationCommand.AddColumnModification(Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters@)</InterfaceMember>
+        <InterfaceMember FrameworkAlternate="efcore-7.0">M:Microsoft.EntityFrameworkCore.Update.INonTrackedModificationCommand.AddColumnModification(Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters@)</InterfaceMember>
       </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Update.IColumnModification</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="columnModificationParameters" Type="Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters" Index="0" FrameworkAlternate="efcore-6.0">
+        <Parameter Name="columnModificationParameters" Type="Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
@@ -288,20 +328,21 @@
       <MemberSignature Language="F#" Value="abstract member AddEntry : Microsoft.EntityFrameworkCore.Update.IUpdateEntry * bool -&gt; unit&#xA;override this.AddEntry : Microsoft.EntityFrameworkCore.Update.IUpdateEntry * bool -&gt; unit" Usage="modificationCommand.AddEntry (entry, mainEntry)" />
       <MemberType>Method</MemberType>
       <Implements>
-        <InterfaceMember FrameworkAlternate="efcore-6.0">M:Microsoft.EntityFrameworkCore.Update.IModificationCommand.AddEntry(Microsoft.EntityFrameworkCore.Update.IUpdateEntry,System.Boolean)</InterfaceMember>
+        <InterfaceMember FrameworkAlternate="efcore-6.0;efcore-7.0">M:Microsoft.EntityFrameworkCore.Update.IModificationCommand.AddEntry(Microsoft.EntityFrameworkCore.Update.IUpdateEntry,System.Boolean)</InterfaceMember>
       </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="entry" Type="Microsoft.EntityFrameworkCore.Update.IUpdateEntry" Index="0" FrameworkAlternate="efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="mainEntry" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="entry" Type="Microsoft.EntityFrameworkCore.Update.IUpdateEntry" Index="0" FrameworkAlternate="efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="mainEntry" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="entry"> The entry representing the entity to add. </param>
@@ -313,6 +354,7 @@
                 doing so can result in application failures when updating to a new Entity Framework Core release.
             </summary>
         <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
     <Member MemberName="AssertColumnsNotInitialized">
@@ -326,13 +368,14 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-5.0;efcore-6.0">
+        <Attribute FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0">
           <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal]</AttributeName>
           <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal&gt;]</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="efcore-5.0;efcore-6.0">
+        <Attribute FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0">
           <AttributeName Language="C#">[System.Diagnostics.Conditional("DEBUG")]</AttributeName>
           <AttributeName Language="F#">[&lt;System.Diagnostics.Conditional("DEBUG")&gt;]</AttributeName>
         </Attribute>
@@ -357,13 +400,13 @@
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Update.ModificationCommand.ColumnModifications" />
       <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property ColumnModifications As IReadOnlyList(Of ColumnModification)" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="F#" Value="member this.ColumnModifications : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ColumnModification&gt;" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommand.ColumnModifications" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
-      <MemberSignature Language="C#" Value="public virtual System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; ColumnModifications { get; }" FrameworkAlternate="efcore-6.0" />
-      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; ColumnModifications" FrameworkAlternate="efcore-6.0" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property ColumnModifications As IReadOnlyList(Of IColumnModification)" FrameworkAlternate="efcore-6.0" />
-      <MemberSignature Language="F#" Value="member this.ColumnModifications : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommand.ColumnModifications" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; ColumnModifications { get; }" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; ColumnModifications" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property ColumnModifications As IReadOnlyList(Of IColumnModification)" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+      <MemberSignature Language="F#" Value="member this.ColumnModifications : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommand.ColumnModifications" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       <MemberType>Property</MemberType>
       <Implements>
-        <InterfaceMember FrameworkAlternate="efcore-6.0">P:Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand.ColumnModifications</InterfaceMember>
+        <InterfaceMember FrameworkAlternate="efcore-6.0;efcore-7.0">P:Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand.ColumnModifications</InterfaceMember>
       </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -380,10 +423,11 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0">System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ColumnModification&gt;</ReturnType>
-        <ReturnType FrameworkAlternate="efcore-6.0">System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-6.0;efcore-7.0">System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>
@@ -394,7 +438,7 @@
       </Docs>
     </Member>
     <Member MemberName="CreateColumnModification">
-      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Update.IColumnModification CreateColumnModification (Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters columnModificationParameters);" />
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Update.IColumnModification CreateColumnModification (in Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters columnModificationParameters);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Update.IColumnModification CreateColumnModification([in]valuetype Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters columnModificationParameters) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.ModificationCommand.CreateColumnModification(Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters@|System.Runtime.InteropServices.InAttribute)" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Function CreateColumnModification (columnModificationParameters As ColumnModificationParameters) As IColumnModification" />
@@ -403,12 +447,13 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Update.IColumnModification</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="columnModificationParameters" Type="Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters" Index="0" FrameworkAlternate="efcore-6.0">
+        <Parameter Name="columnModificationParameters" Type="Microsoft.EntityFrameworkCore.Update.ColumnModificationParameters" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
@@ -431,49 +476,15 @@
       <MemberSignature Language="ILAsm" Value=".property instance valuetype Microsoft.EntityFrameworkCore.EntityState EntityState" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Update.ModificationCommand.EntityState" />
       <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property EntityState As EntityState" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
-      <MemberSignature Language="F#" Value="member this.EntityState : Microsoft.EntityFrameworkCore.EntityState" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommand.EntityState" />
+      <MemberSignature Language="F#" Value="member this.EntityState : Microsoft.EntityFrameworkCore.EntityState" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommand.EntityState" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.EntityState EntityState { get; }" FrameworkAlternate="efcore-6.0" />
       <MemberSignature Language="VB.NET" Value="Public ReadOnly Property EntityState As EntityState" FrameworkAlternate="efcore-6.0" />
-      <MemberType>Property</MemberType>
-      <AssemblyInfo>
-        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
-        <AssemblyVersion>1.0.0.0</AssemblyVersion>
-        <AssemblyVersion>1.0.6.0</AssemblyVersion>
-        <AssemblyVersion>1.1.0.0</AssemblyVersion>
-        <AssemblyVersion>1.1.6.0</AssemblyVersion>
-        <AssemblyVersion>2.0.0.0</AssemblyVersion>
-        <AssemblyVersion>2.0.3.0</AssemblyVersion>
-        <AssemblyVersion>2.1.0.0</AssemblyVersion>
-        <AssemblyVersion>2.1.11.0</AssemblyVersion>
-        <AssemblyVersion>2.2.6.0</AssemblyVersion>
-        <AssemblyVersion>3.0.0.0</AssemblyVersion>
-        <AssemblyVersion>3.1.0.0</AssemblyVersion>
-        <AssemblyVersion>5.0.0.0</AssemblyVersion>
-        <AssemblyVersion>6.0.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>Microsoft.EntityFrameworkCore.EntityState</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>
-                The <see cref="T:Microsoft.EntityFrameworkCore.EntityState" /> that indicates whether the row will be
-                inserted (<see cref="F:Microsoft.EntityFrameworkCore.EntityState.Added" />),
-                updated (<see cref="F:Microsoft.EntityFrameworkCore.EntityState.Modified" />),
-                or deleted ((<see cref="F:Microsoft.EntityFrameworkCore.EntityState.Deleted" />).
-            </summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Entries">
-      <MemberSignature Language="C#" Value="public virtual System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt; Entries { get; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt; Entries" />
-      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Update.ModificationCommand.Entries" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Entries As IReadOnlyList(Of IUpdateEntry)" />
-      <MemberSignature Language="F#" Value="member this.Entries : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt;" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommand.Entries" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.EntityState EntityState { get; set; }" FrameworkAlternate="efcore-7.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Property EntityState As EntityState" FrameworkAlternate="efcore-7.0" />
+      <MemberSignature Language="F#" Value="member this.EntityState : Microsoft.EntityFrameworkCore.EntityState with get, set" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommand.EntityState" FrameworkAlternate="efcore-7.0" />
       <MemberType>Property</MemberType>
       <Implements>
-        <InterfaceMember FrameworkAlternate="efcore-6.0">P:Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand.Entries</InterfaceMember>
+        <InterfaceMember FrameworkAlternate="efcore-7.0">P:Microsoft.EntityFrameworkCore.Update.INonTrackedModificationCommand.EntityState</InterfaceMember>
       </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -490,6 +501,49 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.EntityState</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                The <see cref="T:Microsoft.EntityFrameworkCore.EntityState" /> that indicates whether the row will be
+                inserted (<see cref="F:Microsoft.EntityFrameworkCore.EntityState.Added" />),
+                updated (<see cref="F:Microsoft.EntityFrameworkCore.EntityState.Modified" />),
+                or deleted ((<see cref="F:Microsoft.EntityFrameworkCore.EntityState.Deleted" />).
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="Entries">
+      <MemberSignature Language="C#" Value="public virtual System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt; Entries { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt; Entries" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Update.ModificationCommand.Entries" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Entries As IReadOnlyList(Of IUpdateEntry)" />
+      <MemberSignature Language="F#" Value="member this.Entries : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt;" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommand.Entries" />
+      <MemberType>Property</MemberType>
+      <Implements>
+        <InterfaceMember FrameworkAlternate="efcore-6.0;efcore-7.0">P:Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand.Entries</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.1.6.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.0.3.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.11.0</AssemblyVersion>
+        <AssemblyVersion>2.2.6.0</AssemblyVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+        <AssemblyVersion>3.1.0.0</AssemblyVersion>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt;</ReturnType>
@@ -501,6 +555,63 @@
             </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="PropagateOutputParameters">
+      <MemberSignature Language="C#" Value="public virtual void PropagateOutputParameters (System.Data.Common.DbParameterCollection parameterCollection, int baseParameterIndex);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void PropagateOutputParameters(class System.Data.Common.DbParameterCollection parameterCollection, int32 baseParameterIndex) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.ModificationCommand.PropagateOutputParameters(System.Data.Common.DbParameterCollection,System.Int32)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Sub PropagateOutputParameters (parameterCollection As DbParameterCollection, baseParameterIndex As Integer)" />
+      <MemberSignature Language="F#" Value="abstract member PropagateOutputParameters : System.Data.Common.DbParameterCollection * int -&gt; unit&#xA;override this.PropagateOutputParameters : System.Data.Common.DbParameterCollection * int -&gt; unit" Usage="modificationCommand.PropagateOutputParameters (parameterCollection, baseParameterIndex)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand.PropagateOutputParameters(System.Data.Common.DbParameterCollection,System.Int32)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="parameterCollection" Type="System.Data.Common.DbParameterCollection" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="baseParameterIndex" Type="System.Int32" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="parameterCollection">To be added.</param>
+        <param name="baseParameterIndex">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="PropagateResults">
+      <MemberSignature Language="C#" Value="public virtual void PropagateResults (Microsoft.EntityFrameworkCore.Storage.RelationalDataReader relationalReader);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void PropagateResults(class Microsoft.EntityFrameworkCore.Storage.RelationalDataReader relationalReader) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.ModificationCommand.PropagateResults(Microsoft.EntityFrameworkCore.Storage.RelationalDataReader)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Sub PropagateResults (relationalReader As RelationalDataReader)" />
+      <MemberSignature Language="F#" Value="abstract member PropagateResults : Microsoft.EntityFrameworkCore.Storage.RelationalDataReader -&gt; unit&#xA;override this.PropagateResults : Microsoft.EntityFrameworkCore.Storage.RelationalDataReader -&gt; unit" Usage="modificationCommand.PropagateResults relationalReader" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand.PropagateResults(Microsoft.EntityFrameworkCore.Storage.RelationalDataReader)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="relationalReader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="0" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="relationalReader">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
     <Member MemberName="PropagateResults">
@@ -533,7 +644,7 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="valueBuffer" Type="Microsoft.EntityFrameworkCore.Storage.ValueBuffer" />
+        <Parameter Name="valueBuffer" Type="Microsoft.EntityFrameworkCore.Storage.ValueBuffer" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="valueBuffer">The buffer containing the values read from the database.</param>
@@ -583,16 +694,37 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="RowsAffectedColumn">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IColumnBase? RowsAffectedColumn { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Metadata.IColumnBase RowsAffectedColumn" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Update.ModificationCommand.RowsAffectedColumn" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property RowsAffectedColumn As IColumnBase" />
+      <MemberSignature Language="F#" Value="member this.RowsAffectedColumn : Microsoft.EntityFrameworkCore.Metadata.IColumnBase" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommand.RowsAffectedColumn" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IColumnBase</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
     <Member MemberName="Schema">
       <MemberSignature Language="C#" Value="public virtual string Schema { get; }" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".property instance string Schema" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Update.ModificationCommand.Schema" />
       <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Schema As String" />
       <MemberSignature Language="F#" Value="member this.Schema : string" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommand.Schema" />
-      <MemberSignature Language="C#" Value="public virtual string? Schema { get; }" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual string? Schema { get; }" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       <MemberType>Property</MemberType>
       <Implements>
-        <InterfaceMember FrameworkAlternate="efcore-6.0">P:Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand.Schema</InterfaceMember>
+        <InterfaceMember FrameworkAlternate="efcore-6.0;efcore-7.0">P:Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand.Schema</InterfaceMember>
       </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -609,6 +741,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -619,6 +752,55 @@
             </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="StoreStoredProcedure">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.IStoreStoredProcedure? StoreStoredProcedure { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Metadata.IStoreStoredProcedure StoreStoredProcedure" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Update.ModificationCommand.StoreStoredProcedure" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property StoreStoredProcedure As IStoreStoredProcedure" />
+      <MemberSignature Language="F#" Value="member this.StoreStoredProcedure : Microsoft.EntityFrameworkCore.Metadata.IStoreStoredProcedure" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommand.StoreStoredProcedure" />
+      <MemberType>Property</MemberType>
+      <Implements>
+        <InterfaceMember>P:Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand.StoreStoredProcedure</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IStoreStoredProcedure</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="Table">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Metadata.ITable? Table { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Metadata.ITable Table" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Update.ModificationCommand.Table" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property Table As ITable" />
+      <MemberSignature Language="F#" Value="member this.Table : Microsoft.EntityFrameworkCore.Metadata.ITable" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommand.Table" />
+      <MemberType>Property</MemberType>
+      <Implements>
+        <InterfaceMember>P:Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand.Table</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Metadata.ITable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
     <Member MemberName="TableName">
@@ -629,7 +811,7 @@
       <MemberSignature Language="F#" Value="member this.TableName : string" Usage="Microsoft.EntityFrameworkCore.Update.ModificationCommand.TableName" />
       <MemberType>Property</MemberType>
       <Implements>
-        <InterfaceMember FrameworkAlternate="efcore-6.0">P:Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand.TableName</InterfaceMember>
+        <InterfaceMember FrameworkAlternate="efcore-6.0;efcore-7.0">P:Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand.TableName</InterfaceMember>
       </Implements>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -646,6 +828,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -656,6 +839,7 @@
             </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
     <Member MemberName="ToString">
@@ -669,6 +853,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>

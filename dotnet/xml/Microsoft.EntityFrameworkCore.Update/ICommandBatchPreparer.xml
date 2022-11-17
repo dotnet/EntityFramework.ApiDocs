@@ -19,6 +19,7 @@
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Docs>
@@ -30,17 +31,19 @@
       <para>
                     This type is typically used by database providers; it is generally not used in application code.
                 </para>
+    </summary>
+    <remarks>
       <para>
                     The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
                     <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
                     The implementation may depend on other services registered with any lifetime.
                     The implementation does not need to be thread-safe.
                 </para>
-    </summary>
-    <remarks>
-                See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
-                for more information.
-            </remarks>
+      <para>
+                    See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
+                    for more information and examples.
+                </para>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName="BatchCommands">
@@ -91,13 +94,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="entries" Type="System.Collections.Generic.IList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt;" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="updateAdapter" Type="Microsoft.EntityFrameworkCore.Update.IUpdateAdapter" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="entries" Type="System.Collections.Generic.IList&lt;Microsoft.EntityFrameworkCore.Update.IUpdateEntry&gt;" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="updateAdapter" Type="Microsoft.EntityFrameworkCore.Update.IUpdateAdapter" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="entries">The entries that represent the entities to be modified.</param>
@@ -105,6 +109,35 @@
         <summary>
                 Creates the command batches needed to insert/update/delete the entities represented by the given
                 list of <see cref="T:Microsoft.EntityFrameworkCore.Update.IUpdateEntry" />s.
+            </summary>
+        <returns>The list of batches to execute.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateCommandBatches">
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch&gt; CreateCommandBatches (System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand&gt; commandSet, bool moreCommandSets);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IEnumerable`1&lt;class Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch&gt; CreateCommandBatches(class System.Collections.Generic.IEnumerable`1&lt;class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand&gt; commandSet, bool moreCommandSets) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.ICommandBatchPreparer.CreateCommandBatches(System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand},System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Public Function CreateCommandBatches (commandSet As IEnumerable(Of IReadOnlyModificationCommand), moreCommandSets As Boolean) As IEnumerable(Of ModificationCommandBatch)" />
+      <MemberSignature Language="F#" Value="abstract member CreateCommandBatches : seq&lt;Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand&gt; * bool -&gt; seq&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch&gt;" Usage="iCommandBatchPreparer.CreateCommandBatches (commandSet, moreCommandSets)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Update.ModificationCommandBatch&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandSet" Type="System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand&gt;" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="moreCommandSets" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandSet">The set of commands to be organized in batches.</param>
+        <param name="moreCommandSets">Whether more command sets are expected after this one within the same save operation.</param>
+        <summary>
+                Given a set of modification commands, returns one more ready-to-execute batches for those commands, taking into account e.g.
+                maximum batch sizes and other batching constraints.
             </summary>
         <returns>The list of batches to execute.</returns>
         <remarks>To be added.</remarks>

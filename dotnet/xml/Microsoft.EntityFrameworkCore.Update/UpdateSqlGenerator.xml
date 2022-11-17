@@ -1,9 +1,9 @@
 <Type Name="UpdateSqlGenerator" FullName="Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator">
   <TypeSignature Language="C#" Value="public abstract class UpdateSqlGenerator : Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator" />
-  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit UpdateSqlGenerator extends System.Object implements class Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit UpdateSqlGenerator extends System.Object implements class Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class UpdateSqlGenerator&#xA;Implements IUpdateSqlGenerator" />
-  <TypeSignature Language="F#" Value="type UpdateSqlGenerator = class&#xA;    interface IUpdateSqlGenerator" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+  <TypeSignature Language="F#" Value="type UpdateSqlGenerator = class&#xA;    interface IUpdateSqlGenerator" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit UpdateSqlGenerator extends System.Object implements class Microsoft.EntityFrameworkCore.Update.Internal.ISingletonUpdateSqlGenerator, class Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator" FrameworkAlternate="efcore-2.1;efcore-2.2" />
   <TypeSignature Language="F#" Value="type UpdateSqlGenerator = class&#xA;    interface IUpdateSqlGenerator&#xA;    interface ISingletonUpdateSqlGenerator" FrameworkAlternate="efcore-2.1;efcore-2.2" />
   <AssemblyInfo>
@@ -21,6 +21,7 @@
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -36,22 +37,24 @@
   <Docs>
     <summary>
       <para>
-                    A base class for the <see cref="T:Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator" /> service that is typically inherited from
-                    by database providers.
+                    A base class for the <see cref="T:Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator" /> service that is typically inherited from by database providers.
+                    The implementation uses a SQL RETURNING clause to retrieve any database-generated values or for concurrency checking.
                 </para>
       <para>
                     This type is typically used by database providers; it is generally not used in application code.
                 </para>
-      <para>
-                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
-                    is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
-                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
-                </para>
     </summary>
     <remarks>
-                See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
-                for more information.
-            </remarks>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance is used by many
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe. This service cannot depend on services registered
+                    as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
+                </para>
+      <para>
+                    See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see> for more
+                    information and examples.
+                </para>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -95,9 +98,10 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Update.UpdateSqlGeneratorDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Update.UpdateSqlGeneratorDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="dependencies">Parameter object containing dependencies for this service.</param>
@@ -132,6 +136,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -220,13 +225,48 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="AppendDeleteCommand">
+      <MemberSignature Language="C#" Value="protected virtual void AppendDeleteCommand (System.Text.StringBuilder commandStringBuilder, string name, string? schema, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; readOperations, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; conditionOperations, bool appendReturningOneClause = false);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void AppendDeleteCommand(class System.Text.StringBuilder commandStringBuilder, string name, string schema, class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; readOperations, class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; conditionOperations, bool appendReturningOneClause) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendDeleteCommand(System.Text.StringBuilder,System.String,System.String,System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Update.IColumnModification},System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Update.IColumnModification},System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub AppendDeleteCommand (commandStringBuilder As StringBuilder, name As String, schema As String, readOperations As IReadOnlyList(Of IColumnModification), conditionOperations As IReadOnlyList(Of IColumnModification), Optional appendReturningOneClause As Boolean = false)" />
+      <MemberSignature Language="F#" Value="abstract member AppendDeleteCommand : System.Text.StringBuilder * string * string * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; * bool -&gt; unit&#xA;override this.AppendDeleteCommand : System.Text.StringBuilder * string * string * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; * bool -&gt; unit" Usage="updateSqlGenerator.AppendDeleteCommand (commandStringBuilder, name, schema, readOperations, conditionOperations, appendReturningOneClause)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="schema" Type="System.String" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="readOperations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="3" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="conditionOperations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="4" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="appendReturningOneClause" Type="System.Boolean" Index="5" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
+        <param name="name">The name of the table.</param>
+        <param name="schema">The table schema, or <see langword="null" /> to use the default schema.</param>
+        <param name="readOperations">The operations for column values to be read back.</param>
+        <param name="conditionOperations">The operations used to generate the <c>WHERE</c> clause for the delete.</param>
+        <param name="appendReturningOneClause">Whether to append an additional constant of 1 to be read back.</param>
+        <summary>
+                Appends a SQL command for deleting a row to the commands being built.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="AppendDeleteCommandHeader">
       <MemberSignature Language="C#" Value="protected virtual void AppendDeleteCommandHeader (System.Text.StringBuilder commandStringBuilder, string name, string schema);" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void AppendDeleteCommandHeader(class System.Text.StringBuilder commandStringBuilder, string name, string schema) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendDeleteCommandHeader(System.Text.StringBuilder,System.String,System.String)" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Sub AppendDeleteCommandHeader (commandStringBuilder As StringBuilder, name As String, schema As String)" />
       <MemberSignature Language="F#" Value="abstract member AppendDeleteCommandHeader : System.Text.StringBuilder * string * string -&gt; unit&#xA;override this.AppendDeleteCommandHeader : System.Text.StringBuilder * string * string -&gt; unit" Usage="updateSqlGenerator.AppendDeleteCommandHeader (commandStringBuilder, name, schema)" />
-      <MemberSignature Language="C#" Value="protected virtual void AppendDeleteCommandHeader (System.Text.StringBuilder commandStringBuilder, string name, string? schema);" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="C#" Value="protected virtual void AppendDeleteCommandHeader (System.Text.StringBuilder commandStringBuilder, string name, string? schema);" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -243,6 +283,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -275,14 +316,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Update.ResultSetMapping</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="command" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="1" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="commandPosition" Type="System.Int32" Index="2" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="command" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="commandPosition" Type="System.Int32" Index="2" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
@@ -293,6 +335,7 @@
             </summary>
         <returns>The <see cref="T:Microsoft.EntityFrameworkCore.Update.ResultSetMapping" /> for the command.</returns>
         <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
     <Member MemberName="AppendDeleteOperation">
@@ -339,6 +382,72 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="AppendDeleteOperation">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Update.ResultSetMapping AppendDeleteOperation (System.Text.StringBuilder commandStringBuilder, Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand command, int commandPosition, out bool requiresTransaction);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Update.ResultSetMapping AppendDeleteOperation(class System.Text.StringBuilder commandStringBuilder, class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand command, int32 commandPosition, [out] bool&amp; requiresTransaction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendDeleteOperation(System.Text.StringBuilder,Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand,System.Int32,System.Boolean@)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function AppendDeleteOperation (commandStringBuilder As StringBuilder, command As IReadOnlyModificationCommand, commandPosition As Integer, ByRef requiresTransaction As Boolean) As ResultSetMapping" />
+      <MemberSignature Language="F#" Value="abstract member AppendDeleteOperation : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand * int * bool -&gt; Microsoft.EntityFrameworkCore.Update.ResultSetMapping&#xA;override this.AppendDeleteOperation : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand * int * bool -&gt; Microsoft.EntityFrameworkCore.Update.ResultSetMapping" Usage="updateSqlGenerator.AppendDeleteOperation (commandStringBuilder, command, commandPosition, requiresTransaction)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator.AppendDeleteOperation(System.Text.StringBuilder,Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand,System.Int32,System.Boolean@)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Update.ResultSetMapping</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="command" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="commandPosition" Type="System.Int32" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="requiresTransaction" Type="System.Boolean" RefType="out" Index="3" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandStringBuilder">To be added.</param>
+        <param name="command">To be added.</param>
+        <param name="commandPosition">To be added.</param>
+        <param name="requiresTransaction">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="AppendDeleteReturningOperation">
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Update.ResultSetMapping AppendDeleteReturningOperation (System.Text.StringBuilder commandStringBuilder, Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand command, int commandPosition, out bool requiresTransaction);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Update.ResultSetMapping AppendDeleteReturningOperation(class System.Text.StringBuilder commandStringBuilder, class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand command, int32 commandPosition, [out] bool&amp; requiresTransaction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendDeleteReturningOperation(System.Text.StringBuilder,Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand,System.Int32,System.Boolean@)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function AppendDeleteReturningOperation (commandStringBuilder As StringBuilder, command As IReadOnlyModificationCommand, commandPosition As Integer, ByRef requiresTransaction As Boolean) As ResultSetMapping" />
+      <MemberSignature Language="F#" Value="abstract member AppendDeleteReturningOperation : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand * int * bool -&gt; Microsoft.EntityFrameworkCore.Update.ResultSetMapping&#xA;override this.AppendDeleteReturningOperation : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand * int * bool -&gt; Microsoft.EntityFrameworkCore.Update.ResultSetMapping" Usage="updateSqlGenerator.AppendDeleteReturningOperation (commandStringBuilder, command, commandPosition, requiresTransaction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Update.ResultSetMapping</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="command" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="commandPosition" Type="System.Int32" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="requiresTransaction" Type="System.Boolean" RefType="out" Index="3" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
+        <param name="command">The command that represents the delete operation.</param>
+        <param name="commandPosition">The ordinal of this command in the batch.</param>
+        <param name="requiresTransaction">Returns whether the SQL appended must be executed in a transaction to work correctly.</param>
+        <summary>
+                Appends SQL for deleting a row to the commands being built, via a DELETE containing a RETURNING clause for concurrency checking.
+            </summary>
+        <returns>The <see cref="T:Microsoft.EntityFrameworkCore.Update.ResultSetMapping" /> for the command.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="AppendFromClause">
       <MemberSignature Language="C#" Value="protected virtual void AppendFromClause (System.Text.StringBuilder commandStringBuilder, string name, string schema);" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void AppendFromClause(class System.Text.StringBuilder commandStringBuilder, string name, string schema) cil managed" />
@@ -367,9 +476,9 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" />
-        <Parameter Name="name" Type="System.String" />
-        <Parameter Name="schema" Type="System.String" />
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="schema" Type="System.String" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
@@ -519,6 +628,39 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="AppendInsertCommand">
+      <MemberSignature Language="C#" Value="protected virtual void AppendInsertCommand (System.Text.StringBuilder commandStringBuilder, string name, string? schema, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; writeOperations, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; readOperations);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void AppendInsertCommand(class System.Text.StringBuilder commandStringBuilder, string name, string schema, class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; writeOperations, class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; readOperations) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendInsertCommand(System.Text.StringBuilder,System.String,System.String,System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Update.IColumnModification},System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Update.IColumnModification})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub AppendInsertCommand (commandStringBuilder As StringBuilder, name As String, schema As String, writeOperations As IReadOnlyList(Of IColumnModification), readOperations As IReadOnlyList(Of IColumnModification))" />
+      <MemberSignature Language="F#" Value="abstract member AppendInsertCommand : System.Text.StringBuilder * string * string * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; -&gt; unit&#xA;override this.AppendInsertCommand : System.Text.StringBuilder * string * string * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; -&gt; unit" Usage="updateSqlGenerator.AppendInsertCommand (commandStringBuilder, name, schema, writeOperations, readOperations)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="schema" Type="System.String" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="writeOperations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="3" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="readOperations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="4" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
+        <param name="name">The name of the table.</param>
+        <param name="schema">The table schema, or <see langword="null" /> to use the default schema.</param>
+        <param name="writeOperations">The operations with the values to insert for each column.</param>
+        <param name="readOperations">The operations for column values to be read back.</param>
+        <summary>
+                Appends a SQL command for inserting a row to the commands being built.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="AppendInsertCommandHeader">
       <MemberSignature Language="C#" Value="protected virtual void AppendInsertCommandHeader (System.Text.StringBuilder commandStringBuilder, string name, string schema, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ColumnModification&gt; operations);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void AppendInsertCommandHeader(class System.Text.StringBuilder commandStringBuilder, string name, string schema, class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.ColumnModification&gt; operations) cil managed" />
@@ -571,15 +713,16 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="schema" Type="System.String" Index="2" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="operations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="3" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="schema" Type="System.String" Index="2" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="operations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="3" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
@@ -605,14 +748,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Update.ResultSetMapping</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="command" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="1" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="commandPosition" Type="System.Int32" Index="2" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="command" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="commandPosition" Type="System.Int32" Index="2" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
@@ -623,6 +767,7 @@
             </summary>
         <returns>The <see cref="T:Microsoft.EntityFrameworkCore.Update.ResultSetMapping" /> for the command.</returns>
         <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
     <Member MemberName="AppendInsertOperation">
@@ -669,13 +814,80 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="AppendInsertOperation">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Update.ResultSetMapping AppendInsertOperation (System.Text.StringBuilder commandStringBuilder, Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand command, int commandPosition, out bool requiresTransaction);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Update.ResultSetMapping AppendInsertOperation(class System.Text.StringBuilder commandStringBuilder, class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand command, int32 commandPosition, [out] bool&amp; requiresTransaction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendInsertOperation(System.Text.StringBuilder,Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand,System.Int32,System.Boolean@)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function AppendInsertOperation (commandStringBuilder As StringBuilder, command As IReadOnlyModificationCommand, commandPosition As Integer, ByRef requiresTransaction As Boolean) As ResultSetMapping" />
+      <MemberSignature Language="F#" Value="abstract member AppendInsertOperation : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand * int * bool -&gt; Microsoft.EntityFrameworkCore.Update.ResultSetMapping&#xA;override this.AppendInsertOperation : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand * int * bool -&gt; Microsoft.EntityFrameworkCore.Update.ResultSetMapping" Usage="updateSqlGenerator.AppendInsertOperation (commandStringBuilder, command, commandPosition, requiresTransaction)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator.AppendInsertOperation(System.Text.StringBuilder,Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand,System.Int32,System.Boolean@)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Update.ResultSetMapping</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="command" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="commandPosition" Type="System.Int32" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="requiresTransaction" Type="System.Boolean" RefType="out" Index="3" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandStringBuilder">To be added.</param>
+        <param name="command">To be added.</param>
+        <param name="commandPosition">To be added.</param>
+        <param name="requiresTransaction">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="AppendInsertReturningOperation">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Update.ResultSetMapping AppendInsertReturningOperation (System.Text.StringBuilder commandStringBuilder, Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand command, int commandPosition, out bool requiresTransaction);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Update.ResultSetMapping AppendInsertReturningOperation(class System.Text.StringBuilder commandStringBuilder, class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand command, int32 commandPosition, [out] bool&amp; requiresTransaction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendInsertReturningOperation(System.Text.StringBuilder,Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand,System.Int32,System.Boolean@)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function AppendInsertReturningOperation (commandStringBuilder As StringBuilder, command As IReadOnlyModificationCommand, commandPosition As Integer, ByRef requiresTransaction As Boolean) As ResultSetMapping" />
+      <MemberSignature Language="F#" Value="abstract member AppendInsertReturningOperation : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand * int * bool -&gt; Microsoft.EntityFrameworkCore.Update.ResultSetMapping&#xA;override this.AppendInsertReturningOperation : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand * int * bool -&gt; Microsoft.EntityFrameworkCore.Update.ResultSetMapping" Usage="updateSqlGenerator.AppendInsertReturningOperation (commandStringBuilder, command, commandPosition, requiresTransaction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Update.ResultSetMapping</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="command" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="commandPosition" Type="System.Int32" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="requiresTransaction" Type="System.Boolean" RefType="out" Index="3" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
+        <param name="command">The command that represents the delete operation.</param>
+        <param name="commandPosition">The ordinal of this command in the batch.</param>
+        <param name="requiresTransaction">Returns whether the SQL appended must be executed in a transaction to work correctly.</param>
+        <summary>
+                Appends SQL for inserting a row to the commands being built, via an INSERT containing an optional RETURNING clause to retrieve
+                any database-generated values.
+            </summary>
+        <returns>The <see cref="T:Microsoft.EntityFrameworkCore.Update.ResultSetMapping" /> for the command.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="AppendNextSequenceValueOperation">
       <MemberSignature Language="C#" Value="public virtual void AppendNextSequenceValueOperation (System.Text.StringBuilder commandStringBuilder, string name, string schema);" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AppendNextSequenceValueOperation(class System.Text.StringBuilder commandStringBuilder, string name, string schema) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendNextSequenceValueOperation(System.Text.StringBuilder,System.String,System.String)" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Sub AppendNextSequenceValueOperation (commandStringBuilder As StringBuilder, name As String, schema As String)" />
       <MemberSignature Language="F#" Value="abstract member AppendNextSequenceValueOperation : System.Text.StringBuilder * string * string -&gt; unit&#xA;override this.AppendNextSequenceValueOperation : System.Text.StringBuilder * string * string -&gt; unit" Usage="updateSqlGenerator.AppendNextSequenceValueOperation (commandStringBuilder, name, schema)" />
-      <MemberSignature Language="C#" Value="public virtual void AppendNextSequenceValueOperation (System.Text.StringBuilder commandStringBuilder, string name, string? schema);" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual void AppendNextSequenceValueOperation (System.Text.StringBuilder commandStringBuilder, string name, string? schema);" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator.AppendNextSequenceValueOperation(System.Text.StringBuilder,System.String,System.String)</InterfaceMember>
@@ -695,6 +907,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -711,6 +924,67 @@
         <summary>
                 Generates a SQL fragment that will get the next value from the given sequence and appends it to
                 the full command being built by the given <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="AppendObtainNextSequenceValueOperation">
+      <MemberSignature Language="C#" Value="public virtual void AppendObtainNextSequenceValueOperation (System.Text.StringBuilder commandStringBuilder, string name, string? schema);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AppendObtainNextSequenceValueOperation(class System.Text.StringBuilder commandStringBuilder, string name, string schema) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendObtainNextSequenceValueOperation(System.Text.StringBuilder,System.String,System.String)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Sub AppendObtainNextSequenceValueOperation (commandStringBuilder As StringBuilder, name As String, schema As String)" />
+      <MemberSignature Language="F#" Value="abstract member AppendObtainNextSequenceValueOperation : System.Text.StringBuilder * string * string -&gt; unit&#xA;override this.AppendObtainNextSequenceValueOperation : System.Text.StringBuilder * string * string -&gt; unit" Usage="updateSqlGenerator.AppendObtainNextSequenceValueOperation (commandStringBuilder, name, schema)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator.AppendObtainNextSequenceValueOperation(System.Text.StringBuilder,System.String,System.String)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="schema" Type="System.String" Index="2" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandStringBuilder">To be added.</param>
+        <param name="name">To be added.</param>
+        <param name="schema">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="AppendReturningClause">
+      <MemberSignature Language="C#" Value="protected virtual void AppendReturningClause (System.Text.StringBuilder commandStringBuilder, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; operations, string? additionalValues = default);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void AppendReturningClause(class System.Text.StringBuilder commandStringBuilder, class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; operations, string additionalValues) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendReturningClause(System.Text.StringBuilder,System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Update.IColumnModification},System.String)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub AppendReturningClause (commandStringBuilder As StringBuilder, operations As IReadOnlyList(Of IColumnModification), Optional additionalValues As String = Nothing)" />
+      <MemberSignature Language="F#" Value="abstract member AppendReturningClause : System.Text.StringBuilder * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; * string -&gt; unit&#xA;override this.AppendReturningClause : System.Text.StringBuilder * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; * string -&gt; unit" Usage="updateSqlGenerator.AppendReturningClause (commandStringBuilder, operations, additionalValues)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="operations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="additionalValues" Type="System.String" Index="2" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
+        <param name="operations">The operations for column values to be read back.</param>
+        <param name="additionalValues">Additional values to be read back.</param>
+        <summary>
+                Appends a clause used to return generated values from an INSERT or UPDATE statement.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -742,8 +1016,8 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" />
-        <Parameter Name="expectedRowsAffected" Type="System.Int32" />
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="expectedRowsAffected" Type="System.Int32" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
@@ -865,10 +1139,10 @@
         <ReturnType>Microsoft.EntityFrameworkCore.Update.ResultSetMapping</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" />
-        <Parameter Name="name" Type="System.String" />
-        <Parameter Name="schema" Type="System.String" />
-        <Parameter Name="commandPosition" Type="System.Int32" />
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="schema" Type="System.String" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="commandPosition" Type="System.Int32" Index="3" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
@@ -943,6 +1217,105 @@
         <param name="operations">The operations representing the data to be read.</param>
         <summary>
                 Appends a SQL fragment for starting a <c>SELECT</c>.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AppendSqlLiteral">
+      <MemberSignature Language="C#" Value="protected static void AppendSqlLiteral (System.Text.StringBuilder commandStringBuilder, Microsoft.EntityFrameworkCore.Update.IColumnModification modification, string? tableName, string? schema);" />
+      <MemberSignature Language="ILAsm" Value=".method familystatic hidebysig void AppendSqlLiteral(class System.Text.StringBuilder commandStringBuilder, class Microsoft.EntityFrameworkCore.Update.IColumnModification modification, string tableName, string schema) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendSqlLiteral(System.Text.StringBuilder,Microsoft.EntityFrameworkCore.Update.IColumnModification,System.String,System.String)" />
+      <MemberSignature Language="VB.NET" Value="Protected Shared Sub AppendSqlLiteral (commandStringBuilder As StringBuilder, modification As IColumnModification, tableName As String, schema As String)" />
+      <MemberSignature Language="F#" Value="static member AppendSqlLiteral : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IColumnModification * string * string -&gt; unit" Usage="Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendSqlLiteral (commandStringBuilder, modification, tableName, schema)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="modification" Type="Microsoft.EntityFrameworkCore.Update.IColumnModification" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="tableName" Type="System.String" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="schema" Type="System.String" Index="3" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandStringBuilder">The builder to which the SQL fragment should be appended.</param>
+        <param name="modification">The column modification whose literal should get appended.</param>
+        <param name="tableName">The table name of the column, used when an exception is thrown.</param>
+        <param name="schema">The schema of the column, used when an exception is thrown.</param>
+        <summary>
+                Appends the literal value for <paramref name="modification" /> to the command being built by
+                <paramref name="commandStringBuilder" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AppendStoredProcedureCall">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Update.ResultSetMapping AppendStoredProcedureCall (System.Text.StringBuilder commandStringBuilder, Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand command, int commandPosition, out bool requiresTransaction);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Update.ResultSetMapping AppendStoredProcedureCall(class System.Text.StringBuilder commandStringBuilder, class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand command, int32 commandPosition, [out] bool&amp; requiresTransaction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendStoredProcedureCall(System.Text.StringBuilder,Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand,System.Int32,System.Boolean@)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function AppendStoredProcedureCall (commandStringBuilder As StringBuilder, command As IReadOnlyModificationCommand, commandPosition As Integer, ByRef requiresTransaction As Boolean) As ResultSetMapping" />
+      <MemberSignature Language="F#" Value="abstract member AppendStoredProcedureCall : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand * int * bool -&gt; Microsoft.EntityFrameworkCore.Update.ResultSetMapping&#xA;override this.AppendStoredProcedureCall : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand * int * bool -&gt; Microsoft.EntityFrameworkCore.Update.ResultSetMapping" Usage="updateSqlGenerator.AppendStoredProcedureCall (commandStringBuilder, command, commandPosition, requiresTransaction)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator.AppendStoredProcedureCall(System.Text.StringBuilder,Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand,System.Int32,System.Boolean@)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Update.ResultSetMapping</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="command" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="commandPosition" Type="System.Int32" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="requiresTransaction" Type="System.Boolean" RefType="out" Index="3" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandStringBuilder">To be added.</param>
+        <param name="command">To be added.</param>
+        <param name="commandPosition">To be added.</param>
+        <param name="requiresTransaction">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="AppendUpdateColumnValue">
+      <MemberSignature Language="C#" Value="protected virtual void AppendUpdateColumnValue (Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper updateSqlGeneratorHelper, Microsoft.EntityFrameworkCore.Update.IColumnModification columnModification, System.Text.StringBuilder stringBuilder, string name, string? schema);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void AppendUpdateColumnValue(class Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper updateSqlGeneratorHelper, class Microsoft.EntityFrameworkCore.Update.IColumnModification columnModification, class System.Text.StringBuilder stringBuilder, string name, string schema) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendUpdateColumnValue(Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper,Microsoft.EntityFrameworkCore.Update.IColumnModification,System.Text.StringBuilder,System.String,System.String)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub AppendUpdateColumnValue (updateSqlGeneratorHelper As ISqlGenerationHelper, columnModification As IColumnModification, stringBuilder As StringBuilder, name As String, schema As String)" />
+      <MemberSignature Language="F#" Value="abstract member AppendUpdateColumnValue : Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper * Microsoft.EntityFrameworkCore.Update.IColumnModification * System.Text.StringBuilder * string * string -&gt; unit&#xA;override this.AppendUpdateColumnValue : Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper * Microsoft.EntityFrameworkCore.Update.IColumnModification * System.Text.StringBuilder * string * string -&gt; unit" Usage="updateSqlGenerator.AppendUpdateColumnValue (updateSqlGeneratorHelper, columnModification, stringBuilder, name, schema)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="updateSqlGeneratorHelper" Type="Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="columnModification" Type="Microsoft.EntityFrameworkCore.Update.IColumnModification" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="stringBuilder" Type="System.Text.StringBuilder" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="name" Type="System.String" Index="3" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="schema" Type="System.String" Index="4" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="updateSqlGeneratorHelper">The update sql generator helper.</param>
+        <param name="columnModification">The operation representing the data to be updated.</param>
+        <param name="stringBuilder">The builder to which the SQL should be appended.</param>
+        <param name="name">The name of the table.</param>
+        <param name="schema">The table schema, or <see langword="null" /> to use the default schema.</param>
+        <summary>
+                Appends a SQL fragment representing the value that is assigned to a column which is being updated.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1024,6 +1397,43 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="AppendUpdateCommand">
+      <MemberSignature Language="C#" Value="protected virtual void AppendUpdateCommand (System.Text.StringBuilder commandStringBuilder, string name, string? schema, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; writeOperations, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; readOperations, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; conditionOperations, bool appendReturningOneClause = false);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void AppendUpdateCommand(class System.Text.StringBuilder commandStringBuilder, string name, string schema, class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; writeOperations, class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; readOperations, class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; conditionOperations, bool appendReturningOneClause) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendUpdateCommand(System.Text.StringBuilder,System.String,System.String,System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Update.IColumnModification},System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Update.IColumnModification},System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Update.IColumnModification},System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub AppendUpdateCommand (commandStringBuilder As StringBuilder, name As String, schema As String, writeOperations As IReadOnlyList(Of IColumnModification), readOperations As IReadOnlyList(Of IColumnModification), conditionOperations As IReadOnlyList(Of IColumnModification), Optional appendReturningOneClause As Boolean = false)" />
+      <MemberSignature Language="F#" Value="abstract member AppendUpdateCommand : System.Text.StringBuilder * string * string * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; * bool -&gt; unit&#xA;override this.AppendUpdateCommand : System.Text.StringBuilder * string * string * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; * System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt; * bool -&gt; unit" Usage="updateSqlGenerator.AppendUpdateCommand (commandStringBuilder, name, schema, writeOperations, readOperations, conditionOperations, appendReturningOneClause)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="schema" Type="System.String" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="writeOperations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="3" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="readOperations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="4" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="conditionOperations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="5" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="appendReturningOneClause" Type="System.Boolean" Index="6" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
+        <param name="name">The name of the table.</param>
+        <param name="schema">The table schema, or <see langword="null" /> to use the default schema.</param>
+        <param name="writeOperations">The operations for each column.</param>
+        <param name="readOperations">The operations for column values to be read back.</param>
+        <param name="conditionOperations">The operations used to generate the <c>WHERE</c> clause for the update.</param>
+        <param name="appendReturningOneClause">Whether to append an additional constant of 1 to be read back.</param>
+        <summary>
+                Appends a SQL command for updating a row to the commands being built.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="AppendUpdateCommandHeader">
       <MemberSignature Language="C#" Value="protected virtual void AppendUpdateCommandHeader (System.Text.StringBuilder commandStringBuilder, string name, string schema, System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.ColumnModification&gt; operations);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void AppendUpdateCommandHeader(class System.Text.StringBuilder commandStringBuilder, string name, string schema, class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Update.ColumnModification&gt; operations) cil managed" />
@@ -1076,15 +1486,16 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="schema" Type="System.String" Index="2" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="operations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="3" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="schema" Type="System.String" Index="2" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="operations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="3" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
@@ -1110,14 +1521,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Update.ResultSetMapping</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="command" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="1" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="commandPosition" Type="System.Int32" Index="2" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="command" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="commandPosition" Type="System.Int32" Index="2" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
@@ -1128,6 +1540,7 @@
             </summary>
         <returns>The <see cref="T:Microsoft.EntityFrameworkCore.Update.ResultSetMapping" /> for the command.</returns>
         <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
     <Member MemberName="AppendUpdateOperation">
@@ -1171,6 +1584,73 @@
                 Appends a SQL command for updating a row to the commands being built.
             </summary>
         <returns> The <see cref="T:Microsoft.EntityFrameworkCore.Update.ResultSetMapping" /> for the command. </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AppendUpdateOperation">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Update.ResultSetMapping AppendUpdateOperation (System.Text.StringBuilder commandStringBuilder, Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand command, int commandPosition, out bool requiresTransaction);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Update.ResultSetMapping AppendUpdateOperation(class System.Text.StringBuilder commandStringBuilder, class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand command, int32 commandPosition, [out] bool&amp; requiresTransaction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendUpdateOperation(System.Text.StringBuilder,Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand,System.Int32,System.Boolean@)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function AppendUpdateOperation (commandStringBuilder As StringBuilder, command As IReadOnlyModificationCommand, commandPosition As Integer, ByRef requiresTransaction As Boolean) As ResultSetMapping" />
+      <MemberSignature Language="F#" Value="abstract member AppendUpdateOperation : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand * int * bool -&gt; Microsoft.EntityFrameworkCore.Update.ResultSetMapping&#xA;override this.AppendUpdateOperation : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand * int * bool -&gt; Microsoft.EntityFrameworkCore.Update.ResultSetMapping" Usage="updateSqlGenerator.AppendUpdateOperation (commandStringBuilder, command, commandPosition, requiresTransaction)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator.AppendUpdateOperation(System.Text.StringBuilder,Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand,System.Int32,System.Boolean@)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Update.ResultSetMapping</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="command" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="commandPosition" Type="System.Int32" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="requiresTransaction" Type="System.Boolean" RefType="out" Index="3" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandStringBuilder">To be added.</param>
+        <param name="command">To be added.</param>
+        <param name="commandPosition">To be added.</param>
+        <param name="requiresTransaction">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="AppendUpdateReturningOperation">
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Update.ResultSetMapping AppendUpdateReturningOperation (System.Text.StringBuilder commandStringBuilder, Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand command, int commandPosition, out bool requiresTransaction);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Update.ResultSetMapping AppendUpdateReturningOperation(class System.Text.StringBuilder commandStringBuilder, class Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand command, int32 commandPosition, [out] bool&amp; requiresTransaction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendUpdateReturningOperation(System.Text.StringBuilder,Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand,System.Int32,System.Boolean@)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function AppendUpdateReturningOperation (commandStringBuilder As StringBuilder, command As IReadOnlyModificationCommand, commandPosition As Integer, ByRef requiresTransaction As Boolean) As ResultSetMapping" />
+      <MemberSignature Language="F#" Value="abstract member AppendUpdateReturningOperation : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand * int * bool -&gt; Microsoft.EntityFrameworkCore.Update.ResultSetMapping&#xA;override this.AppendUpdateReturningOperation : System.Text.StringBuilder * Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand * int * bool -&gt; Microsoft.EntityFrameworkCore.Update.ResultSetMapping" Usage="updateSqlGenerator.AppendUpdateReturningOperation (commandStringBuilder, command, commandPosition, requiresTransaction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Update.ResultSetMapping</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="command" Type="Microsoft.EntityFrameworkCore.Update.IReadOnlyModificationCommand" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="commandPosition" Type="System.Int32" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="requiresTransaction" Type="System.Boolean" RefType="out" Index="3" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
+        <param name="command">The command that represents the delete operation.</param>
+        <param name="commandPosition">The ordinal of this command in the batch.</param>
+        <param name="requiresTransaction">Returns whether the SQL appended must be executed in a transaction to work correctly.</param>
+        <summary>
+                Appends SQL for updating a row to the commands being built, via an UPDATE containing an RETURNING clause to retrieve any
+                database-generated values or for concurrency checking.
+            </summary>
+        <returns>The <see cref="T:Microsoft.EntityFrameworkCore.Update.ResultSetMapping" /> for the command.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1252,15 +1732,16 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="schema" Type="System.String" Index="2" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="operations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="3" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="name" Type="System.String" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="schema" Type="System.String" Index="2" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="operations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="3" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
@@ -1321,13 +1802,14 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="operations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="1" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="operations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
@@ -1451,13 +1933,14 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="operations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="1" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="operations" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Update.IColumnModification&gt;" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
@@ -1520,14 +2003,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="columnModification" Type="Microsoft.EntityFrameworkCore.Update.IColumnModification" Index="1" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="useOriginalValue" Type="System.Boolean" Index="2" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="columnModification" Type="Microsoft.EntityFrameworkCore.Update.IColumnModification" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="useOriginalValue" Type="System.Boolean" Index="2" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="commandStringBuilder">The builder to which the SQL should be appended.</param>
@@ -1559,6 +2043,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Update.UpdateSqlGeneratorDependencies</ReturnType>
@@ -1577,7 +2062,7 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.GenerateNextSequenceValueOperation(System.String,System.String)" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Function GenerateNextSequenceValueOperation (name As String, schema As String) As String" />
       <MemberSignature Language="F#" Value="abstract member GenerateNextSequenceValueOperation : string * string -&gt; string&#xA;override this.GenerateNextSequenceValueOperation : string * string -&gt; string" Usage="updateSqlGenerator.GenerateNextSequenceValueOperation (name, schema)" />
-      <MemberSignature Language="C#" Value="public virtual string GenerateNextSequenceValueOperation (string name, string? schema);" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual string GenerateNextSequenceValueOperation (string name, string? schema);" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator.GenerateNextSequenceValueOperation(System.String,System.String)</InterfaceMember>
@@ -1597,6 +2082,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -1613,6 +2099,37 @@
             </summary>
         <returns>The SQL.</returns>
         <remarks>To be added.</remarks>
+        <inheritdoc />
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateObtainNextSequenceValueOperation">
+      <MemberSignature Language="C#" Value="public virtual string GenerateObtainNextSequenceValueOperation (string name, string? schema);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance string GenerateObtainNextSequenceValueOperation(string name, string schema) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.GenerateObtainNextSequenceValueOperation(System.String,System.String)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function GenerateObtainNextSequenceValueOperation (name As String, schema As String) As String" />
+      <MemberSignature Language="F#" Value="abstract member GenerateObtainNextSequenceValueOperation : string * string -&gt; string&#xA;override this.GenerateObtainNextSequenceValueOperation : string * string -&gt; string" Usage="updateSqlGenerator.GenerateObtainNextSequenceValueOperation (name, schema)" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator.GenerateObtainNextSequenceValueOperation(System.String,System.String)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="name" Type="System.String" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="schema" Type="System.String" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="name">To be added.</param>
+        <param name="schema">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
     <Member MemberName="IsIdentityOperation">
@@ -1642,6 +2159,34 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="PrependEnsureAutocommit">
+      <MemberSignature Language="C#" Value="public virtual void PrependEnsureAutocommit (System.Text.StringBuilder commandStringBuilder);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void PrependEnsureAutocommit(class System.Text.StringBuilder commandStringBuilder) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.PrependEnsureAutocommit(System.Text.StringBuilder)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Sub PrependEnsureAutocommit (commandStringBuilder As StringBuilder)" />
+      <MemberSignature Language="F#" Value="abstract member PrependEnsureAutocommit : System.Text.StringBuilder -&gt; unit&#xA;override this.PrependEnsureAutocommit : System.Text.StringBuilder -&gt; unit" Usage="updateSqlGenerator.PrependEnsureAutocommit commandStringBuilder" />
+      <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:Microsoft.EntityFrameworkCore.Update.IUpdateSqlGenerator.PrependEnsureAutocommit(System.Text.StringBuilder)</InterfaceMember>
+      </Implements>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandStringBuilder" Type="System.Text.StringBuilder" Index="0" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandStringBuilder">The builder to which the SQL should be prepended.</param>
+        <summary>
+                Prepends a SQL command for turning on autocommit mode in the database, in case it is off.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="SqlGenerationHelper">
       <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper SqlGenerationHelper { get; }" />
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper SqlGenerationHelper" />
@@ -1664,6 +2209,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper</ReturnType>

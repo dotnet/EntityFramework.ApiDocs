@@ -19,6 +19,7 @@
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -42,6 +43,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
@@ -54,15 +56,16 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <typeparam name="TEntity">The type of entity being queried.</typeparam>
         <param name="source">The source query.</param>
         <summary>
-          <para>
-                    Returns a new query which is configured to load the collections in the query results in a single database query.
-                </para>
+                Returns a new query which is configured to load the collections in the query results in a single database query.
+            </summary>
+        <returns>A new query where collections will be loaded through single database query.</returns>
+        <remarks>
           <para>
                     This behavior generally guarantees result consistency in the face of concurrent updates
                     (but details may vary based on the database and transaction isolation level in use).
@@ -72,11 +75,10 @@
                     The default query splitting behavior for queries can be controlled by
                     <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalDbContextOptionsBuilder`2.UseQuerySplittingBehavior(Microsoft.EntityFrameworkCore.QuerySplittingBehavior)" />.
                 </para>
-        </summary>
-        <returns>A new query where collections will be loaded through single database query.</returns>
-        <remarks>
-                See <see href="https://aka.ms/efcore-docs-split-queries">EF Core split queries</see> for more information.
-            </remarks>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-split-queries">EF Core split queries</see> for more information and examples.
+                </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="AsSplitQuery&lt;TEntity&gt;">
@@ -90,6 +92,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
@@ -102,15 +105,16 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <typeparam name="TEntity">The type of entity being queried.</typeparam>
         <param name="source">The source query.</param>
         <summary>
-          <para>
-                    Returns a new query which is configured to load the collections in the query results through separate database queries.
-                </para>
+                Returns a new query which is configured to load the collections in the query results through separate database queries.
+            </summary>
+        <returns>A new query where collections will be loaded through separate database queries.</returns>
+        <remarks>
           <para>
                     This behavior can significantly improve performance when the query loads multiple collections.
                     However, since separate queries are used, this can result in inconsistent results when concurrent updates occur.
@@ -121,11 +125,10 @@
                     The default query splitting behavior for queries can be controlled by
                     <see cref="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalDbContextOptionsBuilder`2.UseQuerySplittingBehavior(Microsoft.EntityFrameworkCore.QuerySplittingBehavior)" />.
                 </para>
-        </summary>
-        <returns>A new query where collections will be loaded through separate database queries.</returns>
-        <remarks>
-                See <see href="https://aka.ms/efcore-docs-split-queries">EF Core split queries</see> for more information.
-            </remarks>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-split-queries">EF Core split queries</see> for more information and examples.
+                </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="CreateDbCommand">
@@ -139,19 +142,21 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Data.Common.DbCommand</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="source" Type="System.Linq.IQueryable" RefType="this" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="source" Type="System.Linq.IQueryable" RefType="this" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="source">The query source.</param>
         <summary>
-          <para>
-                    Creates a <see cref="T:System.Data.Common.DbCommand" /> set up to execute this query.
-                </para>
+                Creates a <see cref="T:System.Data.Common.DbCommand" /> set up to execute this query.
+            </summary>
+        <returns>The query string for debugging.</returns>
+        <remarks>
           <para>
                     This is only typically supported by queries generated by Entity Framework Core.
                 </para>
@@ -166,11 +171,241 @@
           <para>
                     This is only typically supported by queries generated by Entity Framework Core.
                 </para>
-        </summary>
-        <returns>The query string for debugging.</returns>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-diagnostics">Logging, events, and diagnostics</see> for more information and examples.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ExecuteDelete&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static int ExecuteDelete&lt;TSource&gt; (this System.Linq.IQueryable&lt;TSource&gt; source);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 ExecuteDelete&lt;TSource&gt;(class System.Linq.IQueryable`1&lt;!!TSource&gt; source) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.ExecuteDelete``1(System.Linq.IQueryable{``0})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function ExecuteDelete(Of TSource) (source As IQueryable(Of TSource)) As Integer" />
+      <MemberSignature Language="F#" Value="static member ExecuteDelete : System.Linq.IQueryable&lt;'Source&gt; -&gt; int" Usage="Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.ExecuteDelete source" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TSource&gt;" Index="0" FrameworkAlternate="efcore-7.0" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="source">The source query.</param>
+        <summary>
+                Deletes all database rows for the entity instances which match the LINQ query from the database.
+            </summary>
+        <returns>The total number of rows deleted in the database.</returns>
         <remarks>
-                See <see href="https://aka.ms/efcore-docs-diagnostics">Logging, events, and diagnostics</see> for more information.
-            </remarks>
+          <para>
+                    This operation executes immediately against the database, rather than being deferred until
+                    <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> is called. It also does not interact with the EF change tracker in any way:
+                    entity instances which happen to be tracked when this operation is invoked aren't taken into account, and aren't updated
+                    to reflect the changes.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-bulk-operations">Executing bulk operations with EF Core</see>
+                    for more information and examples.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ExecuteDeleteAsync&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Threading.Tasks.Task&lt;int&gt; ExecuteDeleteAsync&lt;TSource&gt; (this System.Linq.IQueryable&lt;TSource&gt; source, System.Threading.CancellationToken cancellationToken = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Threading.Tasks.Task`1&lt;int32&gt; ExecuteDeleteAsync&lt;TSource&gt;(class System.Linq.IQueryable`1&lt;!!TSource&gt; source, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.ExecuteDeleteAsync``1(System.Linq.IQueryable{``0},System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function ExecuteDeleteAsync(Of TSource) (source As IQueryable(Of TSource), Optional cancellationToken As CancellationToken = Nothing) As Task(Of Integer)" />
+      <MemberSignature Language="F#" Value="static member ExecuteDeleteAsync : System.Linq.IQueryable&lt;'Source&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;int&gt;" Usage="Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.ExecuteDeleteAsync (source, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TSource&gt;" Index="0" FrameworkAlternate="efcore-7.0" RefType="this" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="source">The source query.</param>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+                Asynchronously deletes database rows for the entity instances which match the LINQ query from the database.
+            </summary>
+        <returns>The total number of rows deleted in the database.</returns>
+        <remarks>
+          <para>
+                    This operation executes immediately against the database, rather than being deferred until
+                    <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> is called. It also does not interact with the EF change tracker in any way:
+                    entity instances which happen to be tracked when this operation is invoked aren't taken into account, and aren't updated
+                    to reflect the changes.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-bulk-operations">Executing bulk operations with EF Core</see>
+                    for more information and examples.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ExecuteUpdate&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static int ExecuteUpdate&lt;TSource&gt; (this System.Linq.IQueryable&lt;TSource&gt; source, System.Linq.Expressions.Expression&lt;Func&lt;Microsoft.EntityFrameworkCore.Query.SetPropertyCalls&lt;TSource&gt;,Microsoft.EntityFrameworkCore.Query.SetPropertyCalls&lt;TSource&gt;&gt;&gt; setPropertyCalls);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 ExecuteUpdate&lt;TSource&gt;(class System.Linq.IQueryable`1&lt;!!TSource&gt; source, class System.Linq.Expressions.Expression`1&lt;class System.Func`2&lt;class Microsoft.EntityFrameworkCore.Query.SetPropertyCalls`1&lt;!!TSource&gt;, class Microsoft.EntityFrameworkCore.Query.SetPropertyCalls`1&lt;!!TSource&gt;&gt;&gt; setPropertyCalls) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.ExecuteUpdate``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{Microsoft.EntityFrameworkCore.Query.SetPropertyCalls{``0},Microsoft.EntityFrameworkCore.Query.SetPropertyCalls{``0}}})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function ExecuteUpdate(Of TSource) (source As IQueryable(Of TSource), setPropertyCalls As Expression(Of Func(Of SetPropertyCalls(Of TSource), SetPropertyCalls(Of TSource)))) As Integer" />
+      <MemberSignature Language="F#" Value="static member ExecuteUpdate : System.Linq.IQueryable&lt;'Source&gt; * System.Linq.Expressions.Expression&lt;Func&lt;Microsoft.EntityFrameworkCore.Query.SetPropertyCalls&lt;'Source&gt;, Microsoft.EntityFrameworkCore.Query.SetPropertyCalls&lt;'Source&gt;&gt;&gt; -&gt; int" Usage="Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.ExecuteUpdate (source, setPropertyCalls)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TSource&gt;" Index="0" FrameworkAlternate="efcore-7.0" RefType="this" />
+        <Parameter Name="setPropertyCalls" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;Microsoft.EntityFrameworkCore.Query.SetPropertyCalls&lt;TSource&gt;,Microsoft.EntityFrameworkCore.Query.SetPropertyCalls&lt;TSource&gt;&gt;&gt;" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="source">The source query.</param>
+        <param name="setPropertyCalls">A collection of set property statements specifying properties to update.</param>
+        <summary>
+                Updates all database rows for the entity instances which match the LINQ query from the database.
+            </summary>
+        <returns>The total number of rows updated in the database.</returns>
+        <remarks>
+          <para>
+                    This operation executes immediately against the database, rather than being deferred until
+                    <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> is called. It also does not interact with the EF change tracker in any way:
+                    entity instances which happen to be tracked when this operation is invoked aren't taken into account, and aren't updated
+                    to reflect the changes.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-bulk-operations">Executing bulk operations with EF Core</see>
+                    for more information and examples.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ExecuteUpdateAsync&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Threading.Tasks.Task&lt;int&gt; ExecuteUpdateAsync&lt;TSource&gt; (this System.Linq.IQueryable&lt;TSource&gt; source, System.Linq.Expressions.Expression&lt;Func&lt;Microsoft.EntityFrameworkCore.Query.SetPropertyCalls&lt;TSource&gt;,Microsoft.EntityFrameworkCore.Query.SetPropertyCalls&lt;TSource&gt;&gt;&gt; setPropertyCalls, System.Threading.CancellationToken cancellationToken = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Threading.Tasks.Task`1&lt;int32&gt; ExecuteUpdateAsync&lt;TSource&gt;(class System.Linq.IQueryable`1&lt;!!TSource&gt; source, class System.Linq.Expressions.Expression`1&lt;class System.Func`2&lt;class Microsoft.EntityFrameworkCore.Query.SetPropertyCalls`1&lt;!!TSource&gt;, class Microsoft.EntityFrameworkCore.Query.SetPropertyCalls`1&lt;!!TSource&gt;&gt;&gt; setPropertyCalls, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.ExecuteUpdateAsync``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{Microsoft.EntityFrameworkCore.Query.SetPropertyCalls{``0},Microsoft.EntityFrameworkCore.Query.SetPropertyCalls{``0}}},System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function ExecuteUpdateAsync(Of TSource) (source As IQueryable(Of TSource), setPropertyCalls As Expression(Of Func(Of SetPropertyCalls(Of TSource), SetPropertyCalls(Of TSource))), Optional cancellationToken As CancellationToken = Nothing) As Task(Of Integer)" />
+      <MemberSignature Language="F#" Value="static member ExecuteUpdateAsync : System.Linq.IQueryable&lt;'Source&gt; * System.Linq.Expressions.Expression&lt;Func&lt;Microsoft.EntityFrameworkCore.Query.SetPropertyCalls&lt;'Source&gt;, Microsoft.EntityFrameworkCore.Query.SetPropertyCalls&lt;'Source&gt;&gt;&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;int&gt;" Usage="Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.ExecuteUpdateAsync (source, setPropertyCalls, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TSource&gt;" Index="0" FrameworkAlternate="efcore-7.0" RefType="this" />
+        <Parameter Name="setPropertyCalls" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;Microsoft.EntityFrameworkCore.Query.SetPropertyCalls&lt;TSource&gt;,Microsoft.EntityFrameworkCore.Query.SetPropertyCalls&lt;TSource&gt;&gt;&gt;" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="source">The source query.</param>
+        <param name="setPropertyCalls">A collection of set property statements specifying properties to update.</param>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+                Asynchronously updates database rows for the entity instances which match the LINQ query from the database.
+            </summary>
+        <returns>The total number of rows updated in the database.</returns>
+        <remarks>
+          <para>
+                    This operation executes immediately against the database, rather than being deferred until
+                    <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" /> is called. It also does not interact with the EF change tracker in any way:
+                    entity instances which happen to be tracked when this operation is invoked aren't taken into account, and aren't updated
+                    to reflect the changes.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-bulk-operations">Executing bulk operations with EF Core</see>
+                    for more information and examples.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FromSql&lt;TEntity&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; FromSql&lt;TEntity&gt; (this Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt; source, FormattableString sql) where TEntity : class;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; FromSql&lt;class TEntity&gt;(class Microsoft.EntityFrameworkCore.DbSet`1&lt;!!TEntity&gt; source, class System.FormattableString sql) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.FromSql``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.FormattableString)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function FromSql(Of TEntity As Class) (source As DbSet(Of TEntity), sql As FormattableString) As IQueryable(Of TEntity)" />
+      <MemberSignature Language="F#" Value="static member FromSql : Microsoft.EntityFrameworkCore.DbSet&lt;'Entity (requires 'Entity : null)&gt; * FormattableString -&gt; System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; (requires 'Entity : null)" Usage="Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.FromSql (source, sql)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TEntity">
+          <Constraints>
+            <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt;" Index="0" FrameworkAlternate="efcore-7.0" RefType="this" />
+        <Parameter Name="sql" Type="System.FormattableString" Index="1" FrameworkAlternate="efcore-7.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Query.NotParameterized]</AttributeName>
+              <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Query.NotParameterized&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <typeparam name="TEntity">The type of the elements of <paramref name="source" />.</typeparam>
+        <param name="source">
+                An <see cref="T:System.Linq.IQueryable`1" /> to use as the base of the interpolated string SQL query (typically a <see cref="T:Microsoft.EntityFrameworkCore.DbSet`1" />).
+            </param>
+        <param name="sql">The interpolated string representing a SQL query with parameters.</param>
+        <summary>
+                Creates a LINQ query based on an interpolated string representing a SQL query.
+            </summary>
+        <returns>An <see cref="T:System.Linq.IQueryable`1" /> representing the interpolated string SQL query.</returns>
+        <remarks>
+          <para>
+                    If the database provider supports composing on the supplied SQL, you can compose on top of the raw SQL query using
+                    LINQ operators.
+                </para>
+          <para>
+                    As with any API that accepts SQL it is important to parameterize any user input to protect against a SQL injection
+                    attack. You can include interpolated parameter place holders in the SQL query string. Any interpolated parameter values
+                    you supply will automatically be converted to a <see cref="T:System.Data.Common.DbParameter" />.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-raw-sql">Executing raw SQL commands with EF Core</see>
+                    for more information and examples.
+                </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="FromSql&lt;TEntity&gt;">
@@ -211,7 +446,8 @@
         <Parameter Name="sql" Type="System.FormattableString" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1">
           <Attributes>
             <Attribute>
-              <AttributeName>Microsoft.EntityFrameworkCore.Query.NotParameterized</AttributeName>
+              <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Query.NotParameterized]</AttributeName>
+              <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Query.NotParameterized&gt;]</AttributeName>
             </Attribute>
           </Attributes>
         </Parameter>
@@ -279,14 +515,16 @@
         <Parameter Name="sql" Type="Microsoft.EntityFrameworkCore.RawSqlString" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1">
           <Attributes>
             <Attribute>
-              <AttributeName>Microsoft.EntityFrameworkCore.Query.NotParameterized</AttributeName>
+              <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Query.NotParameterized]</AttributeName>
+              <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Query.NotParameterized&gt;]</AttributeName>
             </Attribute>
           </Attributes>
         </Parameter>
         <Parameter Name="parameters" Type="System.Object[]" Index="2" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1">
           <Attributes>
             <Attribute>
-              <AttributeName>System.ParamArray</AttributeName>
+              <AttributeName Language="C#">[System.ParamArray]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.ParamArray&gt;]</AttributeName>
             </Attribute>
           </Attributes>
         </Parameter>
@@ -352,7 +590,7 @@
         <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1" />
         <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1">
           <Attributes>
-            <Attribute FrameworkAlternate="efcore-1.0">
+            <Attribute>
               <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Query.NotParameterized]</AttributeName>
               <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Query.NotParameterized&gt;]</AttributeName>
             </Attribute>
@@ -360,7 +598,7 @@
         </Parameter>
         <Parameter Name="parameters" Type="System.Object[]" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1">
           <Attributes>
-            <Attribute FrameworkAlternate="efcore-1.0">
+            <Attribute>
               <AttributeName Language="C#">[System.ParamArray]</AttributeName>
               <AttributeName Language="F#">[&lt;System.ParamArray&gt;]</AttributeName>
             </Attribute>
@@ -410,6 +648,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
@@ -422,11 +661,12 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="sql" Type="System.FormattableString" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
+        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="sql" Type="System.FormattableString" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0">
           <Attributes>
-            <Attribute FrameworkAlternate="efcore-3.0">
-              <AttributeName>Microsoft.EntityFrameworkCore.Query.NotParameterized</AttributeName>
+            <Attribute>
+              <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Query.NotParameterized]</AttributeName>
+              <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Query.NotParameterized&gt;]</AttributeName>
             </Attribute>
           </Attributes>
         </Parameter>
@@ -438,26 +678,24 @@
             </param>
         <param name="sql">The interpolated string representing a SQL query with parameters.</param>
         <summary>
-          <para>
-                    Creates a LINQ query based on an interpolated string representing a SQL query.
-                </para>
+                Creates a LINQ query based on an interpolated string representing a SQL query.
+            </summary>
+        <returns>An <see cref="T:System.Linq.IQueryable`1" /> representing the interpolated string SQL query.</returns>
+        <remarks>
           <para>
                     If the database provider supports composing on the supplied SQL, you can compose on top of the raw SQL query using
-                    LINQ operators:
+                    LINQ operators.
                 </para>
-          <code>context.Blogs.FromSqlInterpolated($"SELECT * FROM Blogs").OrderBy(b =&gt; b.Name)</code>
           <para>
                     As with any API that accepts SQL it is important to parameterize any user input to protect against a SQL injection
                     attack. You can include interpolated parameter place holders in the SQL query string. Any interpolated parameter values
-                    you supply will automatically be converted to a <see cref="T:System.Data.Common.DbParameter" />:
+                    you supply will automatically be converted to a <see cref="T:System.Data.Common.DbParameter" />.
                 </para>
-          <code>context.Blogs.FromSqlInterpolated($"SELECT * FROM Blogs WHERE Name = {userSuppliedSearchTerm}")</code>
-        </summary>
-        <returns>An <see cref="T:System.Linq.IQueryable`1" /> representing the interpolated string SQL query.</returns>
-        <remarks>
-                See <see href="https://aka.ms/efcore-docs-raw-sql">Executing raw SQL commands with EF Core</see>
-                for more information.
-            </remarks>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-raw-sql">Executing raw SQL commands with EF Core</see>
+                    for more information and examples.
+                </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="FromSqlRaw&lt;TEntity&gt;">
@@ -473,6 +711,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
@@ -485,18 +724,20 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
+        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0">
           <Attributes>
-            <Attribute FrameworkAlternate="efcore-3.0">
-              <AttributeName>Microsoft.EntityFrameworkCore.Query.NotParameterized</AttributeName>
+            <Attribute>
+              <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Query.NotParameterized]</AttributeName>
+              <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Query.NotParameterized&gt;]</AttributeName>
             </Attribute>
           </Attributes>
         </Parameter>
-        <Parameter Name="parameters" Type="System.Object[]" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
+        <Parameter Name="parameters" Type="System.Object[]" Index="2" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0">
           <Attributes>
-            <Attribute FrameworkAlternate="efcore-3.0">
-              <AttributeName>System.ParamArray</AttributeName>
+            <Attribute>
+              <AttributeName Language="C#">[System.ParamArray]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.ParamArray&gt;]</AttributeName>
             </Attribute>
           </Attributes>
         </Parameter>
@@ -509,9 +750,10 @@
         <param name="sql">The raw SQL query.</param>
         <param name="parameters">The values to be assigned to parameters.</param>
         <summary>
-          <para>
-                    Creates a LINQ query based on a raw SQL query.
-                </para>
+                Creates a LINQ query based on a raw SQL query.
+            </summary>
+        <returns>An <see cref="T:System.Linq.IQueryable`1" /> representing the raw SQL query.</returns>
+        <remarks>
           <para>
                     If the database provider supports composing on the supplied SQL, you can compose on top of the raw SQL query using
                     LINQ operators: <c>context.Blogs.FromSqlRaw("SELECT * FROM Blogs").OrderBy(b =&gt; b.Name)</c>.
@@ -519,25 +761,22 @@
           <para>
                     As with any API that accepts SQL it is important to parameterize any user input to protect against a SQL injection
                     attack. You can include parameter place holders in the SQL query string and then supply parameter values as additional
-                    arguments. Any parameter values you supply will automatically be converted to a <see cref="T:System.Data.Common.DbParameter" />:
+                    arguments. Any parameter values you supply will automatically be converted to a <see cref="T:System.Data.Common.DbParameter" />.
                 </para>
-          <code>context.Blogs.FromSqlRaw("SELECT * FROM Blogs WHERE Name = {0}", userSuppliedSearchTerm)</code>
           <para>
                     However, <b>never</b> pass a concatenated or interpolated string (<c>$""</c>) with non-validated user-provided values
                     into this method. Doing so may expose your application to SQL injection attacks. To use the interpolated string syntax,
-                    consider using <see cref="M:Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.FromSqlInterpolated``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.FormattableString)" /> to create parameters.
+                    consider using <see cref="M:Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.FromSql``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.FormattableString)" /> to create parameters.
                 </para>
           <para>
                     This overload also accepts <see cref="T:System.Data.Common.DbParameter" /> instances as parameter values. In addition to using positional
-                    placeholders as above (<c>{0}</c>), you can also use named placeholders directly in the SQL query string:
+                    placeholders as above (<c>{0}</c>), you can also use named placeholders directly in the SQL query string.
                 </para>
-          <code>context.Blogs.FromSqlRaw("SELECT * FROM Blogs WHERE Name = @searchTerm", new SqlParameter("@searchTerm", userSuppliedSearchTerm))</code>
-        </summary>
-        <returns>An <see cref="T:System.Linq.IQueryable`1" /> representing the raw SQL query.</returns>
-        <remarks>
-                See <see href="https://aka.ms/efcore-docs-raw-sql">Executing raw SQL commands with EF Core</see>
-                for more information.
-            </remarks>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-raw-sql">Executing raw SQL commands with EF Core</see>
+                    for more information and examples.
+                </para>
+        </remarks>
       </Docs>
     </Member>
   </Members>
