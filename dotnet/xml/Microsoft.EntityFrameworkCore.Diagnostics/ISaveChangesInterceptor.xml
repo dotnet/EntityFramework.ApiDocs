@@ -8,6 +8,7 @@
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces>
     <Interface>
@@ -16,11 +17,11 @@
   </Interfaces>
   <Docs>
     <summary>
+                Allows interception of the <see cref="O:DbContext.SaveChanges" /> and <see cref="O:DbContext.SaveChangesAync" /> methods.
+            </summary>
+    <remarks>
       <para>
-                    Allows interception of the <see cref="O:DbContext.SaveChanges" /> and <see cref="O:DbContext.SaveChangesAync" /> methods.
-                </para>
-      <para>
-                    Command interceptors can be used to view, change, or suppress execution of the SaveChanges call and
+                    SaveChanges interceptors can be used to view, change, or suppress execution of the SaveChanges call and
                     modify the result before it is returned to EF.
                 </para>
       <para>
@@ -35,23 +36,81 @@
                     If both injected and application interceptors are found, then the injected interceptors are run in the
                     order that they are resolved from the service provider, and then the application interceptors are run last.
                 </para>
-    </summary>
-    <remarks>
-                See <see href="https://aka.ms/efcore-docs-interceptors">EF Core interceptors</see> for more information.
-            </remarks>
+      <para>
+                    See <see href="https://aka.ms/efcore-docs-interceptors">EF Core interceptors</see> for more information and examples.
+                </para>
+    </remarks>
   </Docs>
   <Members>
+    <Member MemberName="SaveChangesCanceled">
+      <MemberSignature Language="C#" Value="public virtual void SaveChangesCanceled (Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData eventData);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void SaveChangesCanceled(class Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData eventData) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SaveChangesCanceled(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Sub SaveChangesCanceled (eventData As DbContextEventData)" />
+      <MemberSignature Language="F#" Value="abstract member SaveChangesCanceled : Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData -&gt; unit&#xA;override this.SaveChangesCanceled : Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData -&gt; unit" Usage="iSaveChangesInterceptor.SaveChangesCanceled eventData" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData" Index="0" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="eventData">Contextual information about the failure.</param>
+        <summary>
+                Called when <see cref="O:DbContext.SaveChanges" /> was canceled.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SaveChangesCanceledAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task SaveChangesCanceledAsync (Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData eventData, System.Threading.CancellationToken cancellationToken = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task SaveChangesCanceledAsync(class Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData eventData, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SaveChangesCanceledAsync(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function SaveChangesCanceledAsync (eventData As DbContextEventData, Optional cancellationToken As CancellationToken = Nothing) As Task" />
+      <MemberSignature Language="F#" Value="abstract member SaveChangesCanceledAsync : Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&#xA;override this.SaveChangesCanceledAsync : Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="iSaveChangesInterceptor.SaveChangesCanceledAsync (eventData, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="eventData">Contextual information about the failure.</param>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+                Called when <see cref="O:DbContext.SaveChangesAsync" /> was canceled.
+            </summary>
+        <returns>A <see cref="T:System.Threading.Tasks.Task" /> representing the asynchronous operation.</returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
+      </Docs>
+    </Member>
     <Member MemberName="SaveChangesFailed">
-      <MemberSignature Language="C#" Value="public void SaveChangesFailed (Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData eventData);" />
+      <MemberSignature Language="C#" Value="public void SaveChangesFailed (Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData eventData);" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void SaveChangesFailed(class Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData eventData) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SaveChangesFailed(Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData)" />
-      <MemberSignature Language="VB.NET" Value="Public Sub SaveChangesFailed (eventData As DbContextErrorEventData)" />
-      <MemberSignature Language="F#" Value="abstract member SaveChangesFailed : Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData -&gt; unit" Usage="iSaveChangesInterceptor.SaveChangesFailed eventData" />
+      <MemberSignature Language="VB.NET" Value="Public Sub SaveChangesFailed (eventData As DbContextErrorEventData)" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="F#" Value="abstract member SaveChangesFailed : Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData -&gt; unit" Usage="iSaveChangesInterceptor.SaveChangesFailed eventData" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual void SaveChangesFailed (Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData eventData);" FrameworkAlternate="efcore-7.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Sub SaveChangesFailed (eventData As DbContextErrorEventData)" FrameworkAlternate="efcore-7.0" />
+      <MemberSignature Language="F#" Value="abstract member SaveChangesFailed : Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData -&gt; unit&#xA;override this.SaveChangesFailed : Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData -&gt; unit" Usage="iSaveChangesInterceptor.SaveChangesFailed eventData" FrameworkAlternate="efcore-7.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -68,16 +127,20 @@
       </Docs>
     </Member>
     <Member MemberName="SaveChangesFailedAsync">
-      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task SaveChangesFailedAsync (Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData eventData, System.Threading.CancellationToken cancellationToken = default);" />
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task SaveChangesFailedAsync (Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData eventData, System.Threading.CancellationToken cancellationToken = default);" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task SaveChangesFailedAsync(class Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData eventData, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SaveChangesFailedAsync(Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData,System.Threading.CancellationToken)" />
-      <MemberSignature Language="VB.NET" Value="Public Function SaveChangesFailedAsync (eventData As DbContextErrorEventData, Optional cancellationToken As CancellationToken = Nothing) As Task" />
-      <MemberSignature Language="F#" Value="abstract member SaveChangesFailedAsync : Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="iSaveChangesInterceptor.SaveChangesFailedAsync (eventData, cancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Public Function SaveChangesFailedAsync (eventData As DbContextErrorEventData, Optional cancellationToken As CancellationToken = Nothing) As Task" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="F#" Value="abstract member SaveChangesFailedAsync : Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="iSaveChangesInterceptor.SaveChangesFailedAsync (eventData, cancellationToken)" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task SaveChangesFailedAsync (Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData eventData, System.Threading.CancellationToken cancellationToken = default);" FrameworkAlternate="efcore-7.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function SaveChangesFailedAsync (eventData As DbContextErrorEventData, Optional cancellationToken As CancellationToken = Nothing) As Task" FrameworkAlternate="efcore-7.0" />
+      <MemberSignature Language="F#" Value="abstract member SaveChangesFailedAsync : Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&#xA;override this.SaveChangesFailedAsync : Microsoft.EntityFrameworkCore.Diagnostics.DbContextErrorEventData * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="iSaveChangesInterceptor.SaveChangesFailedAsync (eventData, cancellationToken)" FrameworkAlternate="efcore-7.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
@@ -98,16 +161,20 @@
       </Docs>
     </Member>
     <Member MemberName="SavedChanges">
-      <MemberSignature Language="C#" Value="public int SavedChanges (Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData eventData, int result);" />
+      <MemberSignature Language="C#" Value="public int SavedChanges (Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData eventData, int result);" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance int32 SavedChanges(class Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData eventData, int32 result) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavedChanges(Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData,System.Int32)" />
-      <MemberSignature Language="VB.NET" Value="Public Function SavedChanges (eventData As SaveChangesCompletedEventData, result As Integer) As Integer" />
-      <MemberSignature Language="F#" Value="abstract member SavedChanges : Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData * int -&gt; int" Usage="iSaveChangesInterceptor.SavedChanges (eventData, result)" />
+      <MemberSignature Language="VB.NET" Value="Public Function SavedChanges (eventData As SaveChangesCompletedEventData, result As Integer) As Integer" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="F#" Value="abstract member SavedChanges : Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData * int -&gt; int" Usage="iSaveChangesInterceptor.SavedChanges (eventData, result)" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual int SavedChanges (Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData eventData, int result);" FrameworkAlternate="efcore-7.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function SavedChanges (eventData As SaveChangesCompletedEventData, result As Integer) As Integer" FrameworkAlternate="efcore-7.0" />
+      <MemberSignature Language="F#" Value="abstract member SavedChanges : Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData * int -&gt; int&#xA;override this.SavedChanges : Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData * int -&gt; int" Usage="iSaveChangesInterceptor.SavedChanges (eventData, result)" FrameworkAlternate="efcore-7.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -123,33 +190,34 @@
                 This value is typically used as the return value for the implementation of this method.
             </param>
         <summary>
-          <para>
-                    Called at the end of <see cref="O:DbContext.SaveChanges" />.
-                </para>
-          <para>
-                    This method is still called if an interceptor suppressed creation of a command in <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32})" />.
-                    In this case, <paramref name="result" /> is the result returned by <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32})" />.
-                </para>
-        </summary>
+                Called at the end of <see cref="O:DbContext.SaveChanges" />.
+            </summary>
         <returns>
                 The result that EF will use.
-                A normal implementation of this method for any interceptor that is not attempting to change the result
+                An implementation of this method for any interceptor that is not attempting to change the result
                 is to return the <paramref name="result" /> value passed in.
             </returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+                This method is still called if an interceptor suppressed creation of a command in <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32})" />.
+                In this case, <paramref name="result" /> is the result returned by <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32})" />.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="SavedChangesAsync">
-      <MemberSignature Language="C#" Value="public System.Threading.Tasks.ValueTask&lt;int&gt; SavedChangesAsync (Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData eventData, int result, System.Threading.CancellationToken cancellationToken = default);" />
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.ValueTask&lt;int&gt; SavedChangesAsync (Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData eventData, int result, System.Threading.CancellationToken cancellationToken = default);" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype System.Threading.Tasks.ValueTask`1&lt;int32&gt; SavedChangesAsync(class Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData eventData, int32 result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavedChangesAsync(Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData,System.Int32,System.Threading.CancellationToken)" />
-      <MemberSignature Language="VB.NET" Value="Public Function SavedChangesAsync (eventData As SaveChangesCompletedEventData, result As Integer, Optional cancellationToken As CancellationToken = Nothing) As ValueTask(Of Integer)" />
-      <MemberSignature Language="F#" Value="abstract member SavedChangesAsync : Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData * int * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;int&gt;" Usage="iSaveChangesInterceptor.SavedChangesAsync (eventData, result, cancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Public Function SavedChangesAsync (eventData As SaveChangesCompletedEventData, result As Integer, Optional cancellationToken As CancellationToken = Nothing) As ValueTask(Of Integer)" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="F#" Value="abstract member SavedChangesAsync : Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData * int * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;int&gt;" Usage="iSaveChangesInterceptor.SavedChangesAsync (eventData, result, cancellationToken)" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.ValueTask&lt;int&gt; SavedChangesAsync (Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData eventData, int result, System.Threading.CancellationToken cancellationToken = default);" FrameworkAlternate="efcore-7.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function SavedChangesAsync (eventData As SaveChangesCompletedEventData, result As Integer, Optional cancellationToken As CancellationToken = Nothing) As ValueTask(Of Integer)" FrameworkAlternate="efcore-7.0" />
+      <MemberSignature Language="F#" Value="abstract member SavedChangesAsync : Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData * int * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;int&gt;&#xA;override this.SavedChangesAsync : Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesCompletedEventData * int * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;int&gt;" Usage="iSaveChangesInterceptor.SavedChangesAsync (eventData, result, cancellationToken)" FrameworkAlternate="efcore-7.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.ValueTask&lt;System.Int32&gt;</ReturnType>
@@ -167,34 +235,35 @@
             </param>
         <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
         <summary>
-          <para>
-                    Called at the end of <see cref="O:DbContext.SaveChangesAsync" />.
-                </para>
-          <para>
-                    This method is still called if an interceptor suppressed creation of a command in <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavingChangesAsync(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32},System.Threading.CancellationToken)" />.
-                    In this case, <paramref name="result" /> is the result returned by <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavingChangesAsync(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32},System.Threading.CancellationToken)" />.
-                </para>
-        </summary>
+                Called at the end of <see cref="O:DbContext.SaveChangesAsync" />.
+            </summary>
         <returns>
                 The result that EF will use.
-                A normal implementation of this method for any interceptor that is not attempting to change the result
+                An implementation of this method for any interceptor that is not attempting to change the result
                 is to return the <paramref name="result" /> value passed in.
             </returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+                This method is still called if an interceptor suppressed creation of a command in <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavingChangesAsync(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32},System.Threading.CancellationToken)" />.
+                In this case, <paramref name="result" /> is the result returned by <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavingChangesAsync(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32},System.Threading.CancellationToken)" />.
+            </remarks>
         <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
     <Member MemberName="SavingChanges">
-      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; SavingChanges (Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; result);" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; SavingChanges (Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; result);" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;int32&gt; SavingChanges(class Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;int32&gt; result) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32})" />
-      <MemberSignature Language="VB.NET" Value="Public Function SavingChanges (eventData As DbContextEventData, result As InterceptionResult(Of Integer)) As InterceptionResult(Of Integer)" />
-      <MemberSignature Language="F#" Value="abstract member SavingChanges : Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;" Usage="iSaveChangesInterceptor.SavingChanges (eventData, result)" />
+      <MemberSignature Language="VB.NET" Value="Public Function SavingChanges (eventData As DbContextEventData, result As InterceptionResult(Of Integer)) As InterceptionResult(Of Integer)" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="F#" Value="abstract member SavingChanges : Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;" Usage="iSaveChangesInterceptor.SavingChanges (eventData, result)" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; SavingChanges (Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; result);" FrameworkAlternate="efcore-7.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function SavingChanges (eventData As DbContextEventData, result As InterceptionResult(Of Integer)) As InterceptionResult(Of Integer)" FrameworkAlternate="efcore-7.0" />
+      <MemberSignature Language="F#" Value="abstract member SavingChanges : Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;&#xA;override this.SavingChanges : Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;" Usage="iSaveChangesInterceptor.SavingChanges (eventData, result)" FrameworkAlternate="efcore-7.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Int32&gt;</ReturnType>
@@ -218,23 +287,27 @@
                 If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is false, the EF will continue as normal.
                 If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is true, then EF will suppress the operation it
                 was about to perform and use <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.Result" /> instead.
-                A normal implementation of this method for any interceptor that is not attempting to change the result
+                An implementation of this method for any interceptor that is not attempting to change the result
                 is to return the <paramref name="result" /> value passed in.
             </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="SavingChangesAsync">
-      <MemberSignature Language="C#" Value="public System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;&gt; SavingChangesAsync (Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; result, System.Threading.CancellationToken cancellationToken = default);" />
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;&gt; SavingChangesAsync (Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; result, System.Threading.CancellationToken cancellationToken = default);" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype System.Threading.Tasks.ValueTask`1&lt;valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;int32&gt;&gt; SavingChangesAsync(class Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1&lt;int32&gt; result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavingChangesAsync(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32},System.Threading.CancellationToken)" />
-      <MemberSignature Language="VB.NET" Value="Public Function SavingChangesAsync (eventData As DbContextEventData, result As InterceptionResult(Of Integer), Optional cancellationToken As CancellationToken = Nothing) As ValueTask(Of InterceptionResult(Of Integer))" />
-      <MemberSignature Language="F#" Value="abstract member SavingChangesAsync : Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;&gt;" Usage="iSaveChangesInterceptor.SavingChangesAsync (eventData, result, cancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Public Function SavingChangesAsync (eventData As DbContextEventData, result As InterceptionResult(Of Integer), Optional cancellationToken As CancellationToken = Nothing) As ValueTask(Of InterceptionResult(Of Integer))" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="F#" Value="abstract member SavingChangesAsync : Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;&gt;" Usage="iSaveChangesInterceptor.SavingChangesAsync (eventData, result, cancellationToken)" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;&gt; SavingChangesAsync (Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; result, System.Threading.CancellationToken cancellationToken = default);" FrameworkAlternate="efcore-7.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function SavingChangesAsync (eventData As DbContextEventData, result As InterceptionResult(Of Integer), Optional cancellationToken As CancellationToken = Nothing) As ValueTask(Of InterceptionResult(Of Integer))" FrameworkAlternate="efcore-7.0" />
+      <MemberSignature Language="F#" Value="abstract member SavingChangesAsync : Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;&gt;&#xA;override this.SavingChangesAsync : Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;int&gt;&gt;" Usage="iSaveChangesInterceptor.SavingChangesAsync (eventData, result, cancellationToken)" FrameworkAlternate="efcore-7.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&lt;System.Int32&gt;&gt;</ReturnType>
@@ -260,8 +333,87 @@
                 If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is false, the EF will continue as normal.
                 If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.HasResult" /> is true, then EF will suppress the operation it
                 was about to perform and use <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult`1.Result" /> instead.
-                A normal implementation of this method for any interceptor that is not attempting to change the result
+                An implementation of this method for any interceptor that is not attempting to change the result
                 is to return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
+      </Docs>
+    </Member>
+    <Member MemberName="ThrowingConcurrencyException">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult ThrowingConcurrencyException (Microsoft.EntityFrameworkCore.Diagnostics.ConcurrencyExceptionEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult ThrowingConcurrencyException(class Microsoft.EntityFrameworkCore.Diagnostics.ConcurrencyExceptionEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.ThrowingConcurrencyException(Microsoft.EntityFrameworkCore.Diagnostics.ConcurrencyExceptionEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function ThrowingConcurrencyException (eventData As ConcurrencyExceptionEventData, result As InterceptionResult) As InterceptionResult" />
+      <MemberSignature Language="F#" Value="abstract member ThrowingConcurrencyException : Microsoft.EntityFrameworkCore.Diagnostics.ConcurrencyExceptionEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&#xA;override this.ThrowingConcurrencyException : Microsoft.EntityFrameworkCore.Diagnostics.ConcurrencyExceptionEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult -&gt; Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" Usage="iSaveChangesInterceptor.ThrowingConcurrencyException (eventData, result)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.ConcurrencyExceptionEventData" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="eventData">Contextual information about the concurrency conflict.</param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> set to <see langword="true" /> if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.Suppress" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <summary>
+                Called immediately before EF is going to throw a <see cref="T:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is <see langword="false" />, then EF will throw the exception.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is <see langword="true" />, then EF will not throw the exception.
+                An implementation of this method for any interceptor that is not attempting to suppress
+                setting property values must return the <paramref name="result" /> value passed in.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ThrowingConcurrencyExceptionAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt; ThrowingConcurrencyExceptionAsync (Microsoft.EntityFrameworkCore.Diagnostics.ConcurrencyExceptionEventData eventData, Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result, System.Threading.CancellationToken cancellationToken = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype System.Threading.Tasks.ValueTask`1&lt;valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt; ThrowingConcurrencyExceptionAsync(class Microsoft.EntityFrameworkCore.Diagnostics.ConcurrencyExceptionEventData eventData, valuetype Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult result, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.ThrowingConcurrencyExceptionAsync(Microsoft.EntityFrameworkCore.Diagnostics.ConcurrencyExceptionEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult,System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function ThrowingConcurrencyExceptionAsync (eventData As ConcurrencyExceptionEventData, result As InterceptionResult, Optional cancellationToken As CancellationToken = Nothing) As ValueTask(Of InterceptionResult)" />
+      <MemberSignature Language="F#" Value="abstract member ThrowingConcurrencyExceptionAsync : Microsoft.EntityFrameworkCore.Diagnostics.ConcurrencyExceptionEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt;&#xA;override this.ThrowingConcurrencyExceptionAsync : Microsoft.EntityFrameworkCore.Diagnostics.ConcurrencyExceptionEventData * Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult * System.Threading.CancellationToken -&gt; System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt;" Usage="iSaveChangesInterceptor.ThrowingConcurrencyExceptionAsync (eventData, result, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.ValueTask&lt;Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="eventData" Type="Microsoft.EntityFrameworkCore.Diagnostics.ConcurrencyExceptionEventData" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="result" Type="Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="eventData">Contextual information about the concurrency conflict.</param>
+        <param name="result">
+                Represents the current result if one exists.
+                This value will have <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> set to <see langword="true" /> if some previous
+                interceptor suppressed execution by calling <see cref="M:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.Suppress" />.
+                This value is typically used as the return value for the implementation of this method.
+            </param>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+                Called immediately before EF is going to throw a <see cref="T:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException" />.
+            </summary>
+        <returns>
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is <see langword="false" />, then EF will throw the exception.
+                If <see cref="P:Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult.IsSuppressed" /> is <see langword="true" />, then EF will not throw the exception.
+                An implementation of this method for any interceptor that is not attempting to suppress
+                setting property values must return the <paramref name="result" /> value passed in.
             </returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>

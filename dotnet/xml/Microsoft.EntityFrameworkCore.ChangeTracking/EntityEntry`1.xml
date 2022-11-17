@@ -19,6 +19,7 @@
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
     <TypeParameter Name="TEntity">
@@ -34,17 +35,18 @@
   <Docs>
     <typeparam name="TEntity">The type of entity being tracked by this entry.</typeparam>
     <summary>
-      <para>
-                    Provides access to change tracking information and operations for a given entity.
-                </para>
+                Provides access to change tracking information and operations for a given entity.
+            </summary>
+    <remarks>
       <para>
                     Instances of this class are returned from methods when using the <see cref="T:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker" /> API and it is
                     not designed to be directly constructed in your application code.
                 </para>
-    </summary>
-    <remarks>
-                See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see> for more information.
-            </remarks>
+      <para>
+                    See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see> for more information and
+                    examples.
+                </para>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -69,9 +71,10 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0">
+        <Attribute FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0">
           <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal]</AttributeName>
           <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternal&gt;]</AttributeName>
         </Attribute>
@@ -88,6 +91,47 @@
                 doing so can result in application failures when updating to a new Entity Framework Core release.
             </summary>
         <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Collection&lt;TProperty&gt;">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;TEntity,TProperty&gt; Collection&lt;TProperty&gt; (Microsoft.EntityFrameworkCore.Metadata.INavigationBase navigation) where TProperty : class;" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry`2&lt;!TEntity, !!TProperty&gt; Collection&lt;class TProperty&gt;(class Microsoft.EntityFrameworkCore.Metadata.INavigationBase navigation) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry`1.Collection``1(Microsoft.EntityFrameworkCore.Metadata.INavigationBase)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function Collection(Of TProperty As Class) (navigation As INavigationBase) As CollectionEntry(Of TEntity, TProperty)" />
+      <MemberSignature Language="F#" Value="override this.Collection : Microsoft.EntityFrameworkCore.Metadata.INavigationBase -&gt; Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;'Entity, 'Property (requires 'Entity : null and 'Property : null)&gt; (requires 'Property : null)" Usage="entityEntry.Collection navigation" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;TEntity,TProperty&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TProperty">
+          <Constraints>
+            <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="navigation" Type="Microsoft.EntityFrameworkCore.Metadata.INavigationBase" Index="0" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TProperty">To be added.</typeparam>
+        <param name="navigation">The collection navigation.</param>
+        <summary>
+                Provides access to change tracking and loading information for a collection
+                navigation property that associates this entity to a collection of another entities.
+            </summary>
+        <returns>
+                An object that exposes change tracking information and operations for the given navigation property.
+            </returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see>
+                and <see href="https://aka.ms/efcore-docs-changing-relationships">Changing foreign keys and navigations</see>
+                for more information and examples.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="Collection&lt;TProperty&gt;">
@@ -110,6 +154,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;TEntity,TProperty&gt;</ReturnType>
@@ -122,26 +167,24 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="propertyExpression" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TEntity,System.Collections.Generic.IEnumerable&lt;TProperty&gt;&gt;&gt;" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="propertyExpression" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TEntity,System.Collections.Generic.IEnumerable&lt;TProperty&gt;&gt;&gt;" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <typeparam name="TProperty">To be added.</typeparam>
         <param name="propertyExpression">
-                A lambda expression representing the property to access information and operations for
-                (<c>t =&gt; t.Property1</c>).
+                A lambda expression representing the collection navigation to access information and operations for.
             </param>
         <summary>
                 Provides access to change tracking and loading information for a collection
                 navigation property that associates this entity to a collection of another entities.
             </summary>
         <returns>
-                An object that exposes change tracking information and operations for the
-                given navigation property.
+                An object that exposes change tracking information and operations for the given navigation property.
             </returns>
         <remarks>
                 See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see>
                 and <see href="https://aka.ms/efcore-docs-changing-relationships">Changing foreign keys and navigations</see>
-                for more information.
+                for more information and examples.
             </remarks>
       </Docs>
     </Member>
@@ -165,6 +208,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry&lt;TEntity,TProperty&gt;</ReturnType>
@@ -177,7 +221,7 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="propertyName" Type="System.String" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="propertyName" Type="System.String" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <typeparam name="TProperty">To be added.</typeparam>
@@ -187,13 +231,12 @@
                 navigation property that associates this entity to a collection of another entities.
             </summary>
         <returns>
-                An object that exposes change tracking information and operations for the
-                given navigation property.
+                An object that exposes change tracking information and operations for the given navigation property.
             </returns>
         <remarks>
                 See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see>
                 and <see href="https://aka.ms/efcore-docs-changing-relationships">Changing foreign keys and navigations</see>
-                for more information.
+                for more information and examples.
             </remarks>
       </Docs>
     </Member>
@@ -219,6 +262,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>TEntity</ReturnType>
@@ -229,6 +273,39 @@
             </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Property&lt;TProperty&gt;">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry&lt;TEntity,TProperty&gt; Property&lt;TProperty&gt; (Microsoft.EntityFrameworkCore.Metadata.IProperty property);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry`2&lt;!TEntity, !!TProperty&gt; Property&lt;TProperty&gt;(class Microsoft.EntityFrameworkCore.Metadata.IProperty property) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry`1.Property``1(Microsoft.EntityFrameworkCore.Metadata.IProperty)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function Property(Of TProperty) (property As IProperty) As PropertyEntry(Of TEntity, TProperty)" />
+      <MemberSignature Language="F#" Value="override this.Property : Microsoft.EntityFrameworkCore.Metadata.IProperty -&gt; Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry&lt;'Entity, 'Property (requires 'Entity : null)&gt;" Usage="entityEntry.Property property" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry&lt;TEntity,TProperty&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TProperty" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="property" Type="Microsoft.EntityFrameworkCore.Metadata.IProperty" Index="0" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TProperty">The type of the property.</typeparam>
+        <param name="property">The property to access information and operations for.</param>
+        <summary>
+                Provides access to change tracking information and operations for a given property of this entity.
+            </summary>
+        <returns>An object that exposes change tracking information and operations for the given property.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see> for more information and
+                examples.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="Property&lt;TProperty&gt;">
@@ -253,6 +330,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry&lt;TEntity,TProperty&gt;</ReturnType>
@@ -266,16 +344,15 @@
       <Docs>
         <typeparam name="TProperty">To be added.</typeparam>
         <param name="propertyExpression">
-                A lambda expression representing the property to access information and operations for
-                (<c>t =&gt; t.Property1</c>).
+                A lambda expression representing the property to access information and operations for.
             </param>
         <summary>
-                Provides access to change tracking information and operations for a given
-                property of this entity.
+                Provides access to change tracking information and operations for a given property of this entity.
             </summary>
         <returns>An object that exposes change tracking information and operations for the given property.</returns>
         <remarks>
-                See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see> for more information.
+                See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see> for more information and
+                examples.
             </remarks>
       </Docs>
     </Member>
@@ -301,6 +378,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry&lt;TEntity,TProperty&gt;</ReturnType>
@@ -315,12 +393,53 @@
         <typeparam name="TProperty">The type of the property.</typeparam>
         <param name="propertyName">The property to access information and operations for.</param>
         <summary>
-                Provides access to change tracking information and operations for a given
-                property of this entity.
+                Provides access to change tracking information and operations for a given property of this entity.
             </summary>
         <returns>An object that exposes change tracking information and operations for the given property.</returns>
         <remarks>
-                See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see> for more information.
+                See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see> for more information and
+                examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Reference&lt;TProperty&gt;">
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.ChangeTracking.ReferenceEntry&lt;TEntity,TProperty&gt; Reference&lt;TProperty&gt; (Microsoft.EntityFrameworkCore.Metadata.INavigationBase navigation) where TProperty : class;" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.ChangeTracking.ReferenceEntry`2&lt;!TEntity, !!TProperty&gt; Reference&lt;class TProperty&gt;(class Microsoft.EntityFrameworkCore.Metadata.INavigationBase navigation) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry`1.Reference``1(Microsoft.EntityFrameworkCore.Metadata.INavigationBase)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function Reference(Of TProperty As Class) (navigation As INavigationBase) As ReferenceEntry(Of TEntity, TProperty)" />
+      <MemberSignature Language="F#" Value="override this.Reference : Microsoft.EntityFrameworkCore.Metadata.INavigationBase -&gt; Microsoft.EntityFrameworkCore.ChangeTracking.ReferenceEntry&lt;'Entity, 'Property (requires 'Entity : null and 'Property : null)&gt; (requires 'Property : null)" Usage="entityEntry.Reference navigation" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.ReferenceEntry&lt;TEntity,TProperty&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TProperty">
+          <Constraints>
+            <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="navigation" Type="Microsoft.EntityFrameworkCore.Metadata.INavigationBase" Index="0" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TProperty">To be added.</typeparam>
+        <param name="navigation">The reference navigation.</param>
+        <summary>
+                Provides access to change tracking and loading information for a reference (i.e. non-collection)
+                navigation that associates this entity to another entity.
+            </summary>
+        <returns>
+                An object that exposes change tracking information and operations for the given navigation property.
+            </returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see>
+                and <see href="https://aka.ms/efcore-docs-changing-relationships">Changing foreign keys and navigations</see>
+                for more information and examples.
             </remarks>
       </Docs>
     </Member>
@@ -330,7 +449,7 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry`1.Reference``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})" />
       <MemberSignature Language="VB.NET" Value="Public Overridable Function Reference(Of TProperty As Class) (propertyExpression As Expression(Of Func(Of TEntity, TProperty))) As ReferenceEntry(Of TEntity, TProperty)" />
       <MemberSignature Language="F#" Value="override this.Reference : System.Linq.Expressions.Expression&lt;Func&lt;'Entity, 'Property&gt;&gt; -&gt; Microsoft.EntityFrameworkCore.ChangeTracking.ReferenceEntry&lt;'Entity, 'Property (requires 'Entity : null and 'Property : null)&gt; (requires 'Property : null)" Usage="entityEntry.Reference propertyExpression" />
-      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.ChangeTracking.ReferenceEntry&lt;TEntity,TProperty&gt; Reference&lt;TProperty&gt; (System.Linq.Expressions.Expression&lt;Func&lt;TEntity,TProperty?&gt;&gt; propertyExpression) where TProperty : class;" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="C#" Value="public virtual Microsoft.EntityFrameworkCore.ChangeTracking.ReferenceEntry&lt;TEntity,TProperty&gt; Reference&lt;TProperty&gt; (System.Linq.Expressions.Expression&lt;Func&lt;TEntity,TProperty?&gt;&gt; propertyExpression) where TProperty : class;" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -345,6 +464,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.ReferenceEntry&lt;TEntity,TProperty&gt;</ReturnType>
@@ -357,26 +477,24 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="propertyExpression" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TEntity,TProperty&gt;&gt;" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="propertyExpression" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TEntity,TProperty&gt;&gt;" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <typeparam name="TProperty">To be added.</typeparam>
         <param name="propertyExpression">
-                A lambda expression representing the property to access information and operations for
-                (<c>t =&gt; t.Property1</c>).
+                A lambda expression representing the reference navigation to access information and operations for.
             </param>
         <summary>
                 Provides access to change tracking and loading information for a reference (i.e. non-collection)
                 navigation property that associates this entity to another entity.
             </summary>
         <returns>
-                An object that exposes change tracking information and operations for the
-                given navigation property.
+                An object that exposes change tracking information and operations for the given navigation property.
             </returns>
         <remarks>
                 See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see>
                 and <see href="https://aka.ms/efcore-docs-changing-relationships">Changing foreign keys and navigations</see>
-                for more information.
+                for more information and examples.
             </remarks>
       </Docs>
     </Member>
@@ -400,6 +518,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.ChangeTracking.ReferenceEntry&lt;TEntity,TProperty&gt;</ReturnType>
@@ -412,23 +531,22 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="propertyName" Type="System.String" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="propertyName" Type="System.String" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <typeparam name="TProperty">To be added.</typeparam>
         <param name="propertyName">The name of the navigation property.</param>
         <summary>
                 Provides access to change tracking and loading information for a reference (i.e. non-collection)
-                navigation property that associates this entity to another entity.
+                navigation that associates this entity to another entity.
             </summary>
         <returns>
-                An object that exposes change tracking information and operations for the
-                given navigation property.
+                An object that exposes change tracking information and operations for the given navigation property.
             </returns>
         <remarks>
                 See <see href="https://aka.ms/efcore-docs-entity-entries">Accessing tracked entities in EF Core</see>
                 and <see href="https://aka.ms/efcore-docs-changing-relationships">Changing foreign keys and navigations</see>
-                for more information.
+                for more information and examples.
             </remarks>
       </Docs>
     </Member>

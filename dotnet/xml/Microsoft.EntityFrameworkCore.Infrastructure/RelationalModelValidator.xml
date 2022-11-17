@@ -15,6 +15,7 @@
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator</BaseTypeName>
@@ -22,19 +23,19 @@
   <Interfaces />
   <Docs>
     <summary>
-      <para>
-                    The validator that enforces rules common for all relational providers.
-                </para>
+                The validator that enforces rules common for all relational providers.
+            </summary>
+    <remarks>
       <para>
                     The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
                     is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
                     This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
                 </para>
-    </summary>
-    <remarks>
-                See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
-                for more information.
-            </remarks>
+      <para>
+                    See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
+                    for more information and examples.
+                </para>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -55,6 +56,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies" />
@@ -70,24 +72,25 @@
       </Docs>
     </Member>
     <Member MemberName="GetDefaultColumnValue">
-      <MemberSignature Language="C#" Value="protected virtual object GetDefaultColumnValue (Microsoft.EntityFrameworkCore.Metadata.IProperty property, Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject);" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="C#" Value="protected virtual object GetDefaultColumnValue (Microsoft.EntityFrameworkCore.Metadata.IProperty property, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject);" FrameworkAlternate="efcore-5.0" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance object GetDefaultColumnValue(class Microsoft.EntityFrameworkCore.Metadata.IProperty property, [in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.GetDefaultColumnValue(Microsoft.EntityFrameworkCore.Metadata.IProperty,Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute)" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Function GetDefaultColumnValue (property As IProperty, storeObject As StoreObjectIdentifier) As Object" />
       <MemberSignature Language="F#" Value="abstract member GetDefaultColumnValue : Microsoft.EntityFrameworkCore.Metadata.IProperty * StoreObjectIdentifier -&gt; obj&#xA;override this.GetDefaultColumnValue : Microsoft.EntityFrameworkCore.Metadata.IProperty * StoreObjectIdentifier -&gt; obj" Usage="relationalModelValidator.GetDefaultColumnValue (property, storeObject)" />
-      <MemberSignature Language="C#" Value="protected virtual object? GetDefaultColumnValue (Microsoft.EntityFrameworkCore.Metadata.IProperty property, Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject);" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="C#" Value="protected virtual object? GetDefaultColumnValue (Microsoft.EntityFrameworkCore.Metadata.IProperty property, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject);" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="property" Type="Microsoft.EntityFrameworkCore.Metadata.IProperty" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0">
+        <Parameter Name="property" Type="Microsoft.EntityFrameworkCore.Metadata.IProperty" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
@@ -104,6 +107,31 @@
             </summary>
         <returns>The object that is used as the default value for the column the property is mapped to.</returns>
         <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsRedundant">
+      <MemberSignature Language="C#" Value="protected override bool IsRedundant (Microsoft.EntityFrameworkCore.Metadata.IForeignKey foreignKey);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance bool IsRedundant(class Microsoft.EntityFrameworkCore.Metadata.IForeignKey foreignKey) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.IsRedundant(Microsoft.EntityFrameworkCore.Metadata.IForeignKey)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overrides Function IsRedundant (foreignKey As IForeignKey) As Boolean" />
+      <MemberSignature Language="F#" Value="override this.IsRedundant : Microsoft.EntityFrameworkCore.Metadata.IForeignKey -&gt; bool" Usage="relationalModelValidator.IsRedundant foreignKey" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="foreignKey" Type="Microsoft.EntityFrameworkCore.Metadata.IForeignKey" Index="0" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="foreignKey">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <inheritdoc />
       </Docs>
     </Member>
     <Member MemberName="RelationalDependencies">
@@ -124,6 +152,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidatorDependencies</ReturnType>
@@ -133,6 +162,36 @@
                 Relational provider-specific dependencies for this service.
             </summary>
         <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ThrowPropertyNotMappedException">
+      <MemberSignature Language="C#" Value="protected override void ThrowPropertyNotMappedException (string propertyType, Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType entityType, Microsoft.EntityFrameworkCore.Metadata.IConventionProperty unmappedProperty);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void ThrowPropertyNotMappedException(string propertyType, class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType entityType, class Microsoft.EntityFrameworkCore.Metadata.IConventionProperty unmappedProperty) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ThrowPropertyNotMappedException(System.String,Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType,Microsoft.EntityFrameworkCore.Metadata.IConventionProperty)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overrides Sub ThrowPropertyNotMappedException (propertyType As String, entityType As IConventionEntityType, unmappedProperty As IConventionProperty)" />
+      <MemberSignature Language="F#" Value="override this.ThrowPropertyNotMappedException : string * Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType * Microsoft.EntityFrameworkCore.Metadata.IConventionProperty -&gt; unit" Usage="relationalModelValidator.ThrowPropertyNotMappedException (propertyType, entityType, unmappedProperty)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="propertyType" Type="System.String" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="unmappedProperty" Type="Microsoft.EntityFrameworkCore.Metadata.IConventionProperty" Index="2" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="propertyType">The property CLR type.</param>
+        <param name="entityType">The entity type.</param>
+        <param name="unmappedProperty">The property.</param>
+        <summary>
+                Throws an <see cref="T:System.InvalidOperationException" /> with a message containing provider-specific information, when
+                available, indicating possible reasons why the property cannot be mapped.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -210,13 +269,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -270,13 +330,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -288,7 +349,7 @@
       </Docs>
     </Member>
     <Member MemberName="ValidateCompatible">
-      <MemberSignature Language="C#" Value="protected virtual void ValidateCompatible (Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint checkConstraint, Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint duplicateCheckConstraint, string indexName, Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="C#" Value="protected virtual void ValidateCompatible (Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint checkConstraint, Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint duplicateCheckConstraint, string indexName, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateCompatible(class Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint checkConstraint, class Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint duplicateCheckConstraint, string indexName, [in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateCompatible(Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint,Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint,System.String,Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateCompatible (checkConstraint As ICheckConstraint, duplicateCheckConstraint As ICheckConstraint, indexName As String, storeObject As StoreObjectIdentifier, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
@@ -297,15 +358,16 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="checkConstraint" Type="Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint" Index="0" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="duplicateCheckConstraint" Type="Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint" Index="1" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="indexName" Type="System.String" Index="2" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="3" FrameworkAlternate="efcore-6.0">
+        <Parameter Name="checkConstraint" Type="Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="duplicateCheckConstraint" Type="Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="indexName" Type="System.String" Index="2" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="3" FrameworkAlternate="efcore-6.0;efcore-7.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
@@ -313,11 +375,11 @@
             </Attribute>
           </Attributes>
         </Parameter>
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="4" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="4" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
-        <param name="checkConstraint">An check constraints.</param>
-        <param name="duplicateCheckConstraint">Another check constraints.</param>
+        <param name="checkConstraint">A check constraint.</param>
+        <param name="duplicateCheckConstraint">Another check constraint.</param>
         <param name="indexName">The name of the check constraint.</param>
         <param name="storeObject">The identifier of the store object.</param>
         <param name="logger">The logger to use.</param>
@@ -328,7 +390,7 @@
       </Docs>
     </Member>
     <Member MemberName="ValidateCompatible">
-      <MemberSignature Language="C#" Value="protected virtual void ValidateCompatible (Microsoft.EntityFrameworkCore.Metadata.IForeignKey foreignKey, Microsoft.EntityFrameworkCore.Metadata.IForeignKey duplicateForeignKey, string foreignKeyName, Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="C#" Value="protected virtual void ValidateCompatible (Microsoft.EntityFrameworkCore.Metadata.IForeignKey foreignKey, Microsoft.EntityFrameworkCore.Metadata.IForeignKey duplicateForeignKey, string foreignKeyName, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateCompatible(class Microsoft.EntityFrameworkCore.Metadata.IForeignKey foreignKey, class Microsoft.EntityFrameworkCore.Metadata.IForeignKey duplicateForeignKey, string foreignKeyName, [in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateCompatible(Microsoft.EntityFrameworkCore.Metadata.IForeignKey,Microsoft.EntityFrameworkCore.Metadata.IForeignKey,System.String,Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateCompatible (foreignKey As IForeignKey, duplicateForeignKey As IForeignKey, foreignKeyName As String, storeObject As StoreObjectIdentifier, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
@@ -338,15 +400,16 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="foreignKey" Type="Microsoft.EntityFrameworkCore.Metadata.IForeignKey" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="duplicateForeignKey" Type="Microsoft.EntityFrameworkCore.Metadata.IForeignKey" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="foreignKeyName" Type="System.String" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="3" FrameworkAlternate="efcore-5.0;efcore-6.0">
+        <Parameter Name="foreignKey" Type="Microsoft.EntityFrameworkCore.Metadata.IForeignKey" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="duplicateForeignKey" Type="Microsoft.EntityFrameworkCore.Metadata.IForeignKey" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="foreignKeyName" Type="System.String" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="3" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
@@ -354,7 +417,7 @@
             </Attribute>
           </Attributes>
         </Parameter>
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="4" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="4" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="foreignKey">A foreign key.</param>
@@ -369,7 +432,7 @@
       </Docs>
     </Member>
     <Member MemberName="ValidateCompatible">
-      <MemberSignature Language="C#" Value="protected virtual void ValidateCompatible (Microsoft.EntityFrameworkCore.Metadata.IIndex index, Microsoft.EntityFrameworkCore.Metadata.IIndex duplicateIndex, string indexName, Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="C#" Value="protected virtual void ValidateCompatible (Microsoft.EntityFrameworkCore.Metadata.IIndex index, Microsoft.EntityFrameworkCore.Metadata.IIndex duplicateIndex, string indexName, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateCompatible(class Microsoft.EntityFrameworkCore.Metadata.IIndex index, class Microsoft.EntityFrameworkCore.Metadata.IIndex duplicateIndex, string indexName, [in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateCompatible(Microsoft.EntityFrameworkCore.Metadata.IIndex,Microsoft.EntityFrameworkCore.Metadata.IIndex,System.String,Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateCompatible (index As IIndex, duplicateIndex As IIndex, indexName As String, storeObject As StoreObjectIdentifier, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
@@ -379,15 +442,16 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="index" Type="Microsoft.EntityFrameworkCore.Metadata.IIndex" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="duplicateIndex" Type="Microsoft.EntityFrameworkCore.Metadata.IIndex" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="indexName" Type="System.String" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="3" FrameworkAlternate="efcore-5.0;efcore-6.0">
+        <Parameter Name="index" Type="Microsoft.EntityFrameworkCore.Metadata.IIndex" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="duplicateIndex" Type="Microsoft.EntityFrameworkCore.Metadata.IIndex" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="indexName" Type="System.String" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="3" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
@@ -395,7 +459,7 @@
             </Attribute>
           </Attributes>
         </Parameter>
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="4" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="4" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="index">An index.</param>
@@ -410,7 +474,7 @@
       </Docs>
     </Member>
     <Member MemberName="ValidateCompatible">
-      <MemberSignature Language="C#" Value="protected virtual void ValidateCompatible (Microsoft.EntityFrameworkCore.Metadata.IKey key, Microsoft.EntityFrameworkCore.Metadata.IKey duplicateKey, string keyName, Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="C#" Value="protected virtual void ValidateCompatible (Microsoft.EntityFrameworkCore.Metadata.IKey key, Microsoft.EntityFrameworkCore.Metadata.IKey duplicateKey, string keyName, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateCompatible(class Microsoft.EntityFrameworkCore.Metadata.IKey key, class Microsoft.EntityFrameworkCore.Metadata.IKey duplicateKey, string keyName, [in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateCompatible(Microsoft.EntityFrameworkCore.Metadata.IKey,Microsoft.EntityFrameworkCore.Metadata.IKey,System.String,Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateCompatible (key As IKey, duplicateKey As IKey, keyName As String, storeObject As StoreObjectIdentifier, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
@@ -420,15 +484,16 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="key" Type="Microsoft.EntityFrameworkCore.Metadata.IKey" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="duplicateKey" Type="Microsoft.EntityFrameworkCore.Metadata.IKey" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="keyName" Type="System.String" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="3" FrameworkAlternate="efcore-5.0;efcore-6.0">
+        <Parameter Name="key" Type="Microsoft.EntityFrameworkCore.Metadata.IKey" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="duplicateKey" Type="Microsoft.EntityFrameworkCore.Metadata.IKey" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="keyName" Type="System.String" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="3" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
@@ -436,7 +501,7 @@
             </Attribute>
           </Attributes>
         </Parameter>
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="4" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="4" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="key">A key.</param>
@@ -451,7 +516,7 @@
       </Docs>
     </Member>
     <Member MemberName="ValidateCompatible">
-      <MemberSignature Language="C#" Value="protected virtual void ValidateCompatible (Microsoft.EntityFrameworkCore.Metadata.IProperty property, Microsoft.EntityFrameworkCore.Metadata.IProperty duplicateProperty, string columnName, Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="C#" Value="protected virtual void ValidateCompatible (Microsoft.EntityFrameworkCore.Metadata.IProperty property, Microsoft.EntityFrameworkCore.Metadata.IProperty duplicateProperty, string columnName, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateCompatible(class Microsoft.EntityFrameworkCore.Metadata.IProperty property, class Microsoft.EntityFrameworkCore.Metadata.IProperty duplicateProperty, string columnName, [in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateCompatible(Microsoft.EntityFrameworkCore.Metadata.IProperty,Microsoft.EntityFrameworkCore.Metadata.IProperty,System.String,Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateCompatible (property As IProperty, duplicateProperty As IProperty, columnName As String, storeObject As StoreObjectIdentifier, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
@@ -461,15 +526,16 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="property" Type="Microsoft.EntityFrameworkCore.Metadata.IProperty" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="duplicateProperty" Type="Microsoft.EntityFrameworkCore.Metadata.IProperty" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="columnName" Type="System.String" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="3" FrameworkAlternate="efcore-5.0;efcore-6.0">
+        <Parameter Name="property" Type="Microsoft.EntityFrameworkCore.Metadata.IProperty" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="duplicateProperty" Type="Microsoft.EntityFrameworkCore.Metadata.IProperty" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="columnName" Type="System.String" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="3" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
@@ -477,7 +543,7 @@
             </Attribute>
           </Attributes>
         </Parameter>
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="4" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="4" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="property">A property.</param>
@@ -487,6 +553,46 @@
         <param name="logger">The logger to use.</param>
         <summary>
                 Validates the compatibility of two properties mapped to the same column.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateCompatible">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateCompatible (Microsoft.EntityFrameworkCore.Metadata.ITrigger trigger, Microsoft.EntityFrameworkCore.Metadata.ITrigger duplicateTrigger, string indexName, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateCompatible(class Microsoft.EntityFrameworkCore.Metadata.ITrigger trigger, class Microsoft.EntityFrameworkCore.Metadata.ITrigger duplicateTrigger, string indexName, [in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateCompatible(Microsoft.EntityFrameworkCore.Metadata.ITrigger,Microsoft.EntityFrameworkCore.Metadata.ITrigger,System.String,Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateCompatible (trigger As ITrigger, duplicateTrigger As ITrigger, indexName As String, storeObject As StoreObjectIdentifier, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateCompatible : Microsoft.EntityFrameworkCore.Metadata.ITrigger * Microsoft.EntityFrameworkCore.Metadata.ITrigger * string * StoreObjectIdentifier * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateCompatible : Microsoft.EntityFrameworkCore.Metadata.ITrigger * Microsoft.EntityFrameworkCore.Metadata.ITrigger * string * StoreObjectIdentifier * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="relationalModelValidator.ValidateCompatible (trigger, duplicateTrigger, indexName, storeObject, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="trigger" Type="Microsoft.EntityFrameworkCore.Metadata.ITrigger" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="duplicateTrigger" Type="Microsoft.EntityFrameworkCore.Metadata.ITrigger" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="indexName" Type="System.String" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="3" FrameworkAlternate="efcore-7.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.IsReadOnly&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="4" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="trigger">A trigger.</param>
+        <param name="duplicateTrigger">Another trigger.</param>
+        <param name="indexName">The name of the trigger.</param>
+        <param name="storeObject">The identifier of the store object.</param>
+        <param name="logger">The logger to use.</param>
+        <summary>
+                Validates the compatibility of two trigger with the same name.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -570,13 +676,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -630,13 +737,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -658,20 +766,20 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
         <param name="logger">The logger to use.</param>
         <summary>
-                Validates that the properties of any one index are
-                all mapped to columns on at least one common table.
+                Validates that the properties of any one index are all mapped to columns on at least one common table.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -712,10 +820,10 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateInheritanceMapping(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateInheritanceMapping (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" FrameworkAlternate="efcore-3.0;efcore-3.1" />
       <MemberSignature Language="F#" Value="abstract member ValidateInheritanceMapping : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateInheritanceMapping : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="relationalModelValidator.ValidateInheritanceMapping (model, logger)" FrameworkAlternate="efcore-3.0;efcore-3.1" />
-      <MemberSignature Language="C#" Value="protected override void ValidateInheritanceMapping (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void ValidateInheritanceMapping(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-      <MemberSignature Language="VB.NET" Value="Protected Overrides Sub ValidateInheritanceMapping (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-      <MemberSignature Language="F#" Value="override this.ValidateInheritanceMapping : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="relationalModelValidator.ValidateInheritanceMapping (model, logger)" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+      <MemberSignature Language="C#" Value="protected override void ValidateInheritanceMapping (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void ValidateInheritanceMapping(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overrides Sub ValidateInheritanceMapping (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+      <MemberSignature Language="F#" Value="override this.ValidateInheritanceMapping : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="relationalModelValidator.ValidateInheritanceMapping (model, logger)" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -723,19 +831,264 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
         <param name="logger">The logger to use.</param>
         <summary>
                 Validates the mapping/configuration of inheritance in the model.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateJsonEntities">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateJsonEntities (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateJsonEntities(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateJsonEntities(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateJsonEntities (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateJsonEntities : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateJsonEntities : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="relationalModelValidator.ValidateJsonEntities (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="model">The model to validate.</param>
+        <param name="logger">The logger to use.</param>
+        <summary>
+                Validates the JSON entities.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateJsonEntityKey">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateJsonEntityKey (in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Metadata.IEntityType jsonEntityType);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateJsonEntityKey([in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Metadata.IEntityType jsonEntityType) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateJsonEntityKey(Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Metadata.IEntityType)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateJsonEntityKey (storeObject As StoreObjectIdentifier, jsonEntityType As IEntityType)" />
+      <MemberSignature Language="F#" Value="abstract member ValidateJsonEntityKey : StoreObjectIdentifier * Microsoft.EntityFrameworkCore.Metadata.IEntityType -&gt; unit&#xA;override this.ValidateJsonEntityKey : StoreObjectIdentifier * Microsoft.EntityFrameworkCore.Metadata.IEntityType -&gt; unit" Usage="relationalModelValidator.ValidateJsonEntityKey (storeObject, jsonEntityType)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="0" FrameworkAlternate="efcore-7.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.IsReadOnly&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+        <Parameter Name="jsonEntityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="storeObject">The store object.</param>
+        <param name="jsonEntityType">The entity type containing the key to validate.</param>
+        <summary>
+                Validate the key of entity mapped to a JSON column.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateJsonEntityNavigations">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateJsonEntityNavigations (in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Metadata.IEntityType jsonEntityType);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateJsonEntityNavigations([in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Metadata.IEntityType jsonEntityType) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateJsonEntityNavigations(Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Metadata.IEntityType)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateJsonEntityNavigations (storeObject As StoreObjectIdentifier, jsonEntityType As IEntityType)" />
+      <MemberSignature Language="F#" Value="abstract member ValidateJsonEntityNavigations : StoreObjectIdentifier * Microsoft.EntityFrameworkCore.Metadata.IEntityType -&gt; unit&#xA;override this.ValidateJsonEntityNavigations : StoreObjectIdentifier * Microsoft.EntityFrameworkCore.Metadata.IEntityType -&gt; unit" Usage="relationalModelValidator.ValidateJsonEntityNavigations (storeObject, jsonEntityType)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="0" FrameworkAlternate="efcore-7.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.IsReadOnly&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+        <Parameter Name="jsonEntityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="storeObject">The store object.</param>
+        <param name="jsonEntityType">The entity type to validate.</param>
+        <summary>
+                Validates navigations of the entity mapped to a JSON column.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateJsonEntityProperties">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateJsonEntityProperties (in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Metadata.IEntityType jsonEntityType);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateJsonEntityProperties([in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Metadata.IEntityType jsonEntityType) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateJsonEntityProperties(Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Metadata.IEntityType)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateJsonEntityProperties (storeObject As StoreObjectIdentifier, jsonEntityType As IEntityType)" />
+      <MemberSignature Language="F#" Value="abstract member ValidateJsonEntityProperties : StoreObjectIdentifier * Microsoft.EntityFrameworkCore.Metadata.IEntityType -&gt; unit&#xA;override this.ValidateJsonEntityProperties : StoreObjectIdentifier * Microsoft.EntityFrameworkCore.Metadata.IEntityType -&gt; unit" Usage="relationalModelValidator.ValidateJsonEntityProperties (storeObject, jsonEntityType)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="0" FrameworkAlternate="efcore-7.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.IsReadOnly&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+        <Parameter Name="jsonEntityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="storeObject">The store object.</param>
+        <param name="jsonEntityType">The entity type containing the properties to validate.</param>
+        <summary>
+                Validate the properties of entity mapped to a JSON column.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateJsonEntityRoot">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateJsonEntityRoot (in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Metadata.IEntityType rootType);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateJsonEntityRoot([in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Metadata.IEntityType rootType) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateJsonEntityRoot(Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Metadata.IEntityType)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateJsonEntityRoot (storeObject As StoreObjectIdentifier, rootType As IEntityType)" />
+      <MemberSignature Language="F#" Value="abstract member ValidateJsonEntityRoot : StoreObjectIdentifier * Microsoft.EntityFrameworkCore.Metadata.IEntityType -&gt; unit&#xA;override this.ValidateJsonEntityRoot : StoreObjectIdentifier * Microsoft.EntityFrameworkCore.Metadata.IEntityType -&gt; unit" Usage="relationalModelValidator.ValidateJsonEntityRoot (storeObject, rootType)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="0" FrameworkAlternate="efcore-7.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.IsReadOnly&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+        <Parameter Name="rootType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="storeObject">The store object.</param>
+        <param name="rootType">The entity type to validate.</param>
+        <summary>
+                Validates the root entity mapped to a JSON column.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateMappingFragments">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateMappingFragments (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateMappingFragments(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateMappingFragments(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateMappingFragments (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateMappingFragments : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateMappingFragments : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="relationalModelValidator.ValidateMappingFragments (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="model">The model to validate.</param>
+        <param name="logger">The logger to use.</param>
+        <summary>
+                Validates the entity type mapping fragments.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateMappingStrategy">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateMappingStrategy (Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType, string? mappingStrategy);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateMappingStrategy(class Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType, string mappingStrategy) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateMappingStrategy(Microsoft.EntityFrameworkCore.Metadata.IEntityType,System.String)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateMappingStrategy (entityType As IEntityType, mappingStrategy As String)" />
+      <MemberSignature Language="F#" Value="abstract member ValidateMappingStrategy : Microsoft.EntityFrameworkCore.Metadata.IEntityType * string -&gt; unit&#xA;override this.ValidateMappingStrategy : Microsoft.EntityFrameworkCore.Metadata.IEntityType * string -&gt; unit" Usage="relationalModelValidator.ValidateMappingStrategy (entityType, mappingStrategy)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="mappingStrategy" Type="System.String" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="entityType">The entity type.</param>
+        <param name="mappingStrategy">The mapping strategy.</param>
+        <summary>
+                Validates that the given mapping strategy is supported
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateNoMutableKeys">
+      <MemberSignature Language="C#" Value="protected override void ValidateNoMutableKeys (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void ValidateNoMutableKeys(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateNoMutableKeys(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overrides Sub ValidateNoMutableKeys (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="override this.ValidateNoMutableKeys : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="relationalModelValidator.ValidateNoMutableKeys (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="model">The model to validate.</param>
+        <param name="logger">The logger to use.</param>
+        <summary>
+                Validates the mapping/configuration of mutable in the model.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -751,13 +1104,14 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -769,7 +1123,7 @@
       </Docs>
     </Member>
     <Member MemberName="ValidateSharedCheckConstraintCompatibility">
-      <MemberSignature Language="C#" Value="protected virtual void ValidateSharedCheckConstraintCompatibility (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="C#" Value="protected virtual void ValidateSharedCheckConstraintCompatibility (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateSharedCheckConstraintCompatibility(class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, [in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateSharedCheckConstraintCompatibility(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IEntityType},Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateSharedCheckConstraintCompatibility (mappedTypes As IReadOnlyList(Of IEntityType), storeObject As StoreObjectIdentifier, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
@@ -778,13 +1132,14 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="mappedTypes" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="0" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="1" FrameworkAlternate="efcore-6.0">
+        <Parameter Name="mappedTypes" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
@@ -792,14 +1147,14 @@
             </Attribute>
           </Attributes>
         </Parameter>
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="2" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="2" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="mappedTypes">The mapped entity types.</param>
         <param name="storeObject">The identifier of the store object.</param>
         <param name="logger">The logger to use.</param>
         <summary>
-                Validates the compatibility of check constraint in a given shared table.
+                Validates the compatibility of check constraints in a given shared table.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -837,7 +1192,7 @@
       </Docs>
     </Member>
     <Member MemberName="ValidateSharedColumnsCompatibility">
-      <MemberSignature Language="C#" Value="protected virtual void ValidateSharedColumnsCompatibility (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="C#" Value="protected virtual void ValidateSharedColumnsCompatibility (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateSharedColumnsCompatibility(class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, [in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateSharedColumnsCompatibility(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IEntityType},Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateSharedColumnsCompatibility (mappedTypes As IReadOnlyList(Of IEntityType), storeObject As StoreObjectIdentifier, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
@@ -847,13 +1202,14 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="mappedTypes" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0">
+        <Parameter Name="mappedTypes" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
@@ -861,7 +1217,7 @@
             </Attribute>
           </Attributes>
         </Parameter>
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="mappedTypes">The mapped entity types.</param>
@@ -936,7 +1292,7 @@
       </Docs>
     </Member>
     <Member MemberName="ValidateSharedForeignKeysCompatibility">
-      <MemberSignature Language="C#" Value="protected virtual void ValidateSharedForeignKeysCompatibility (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="C#" Value="protected virtual void ValidateSharedForeignKeysCompatibility (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateSharedForeignKeysCompatibility(class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, [in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateSharedForeignKeysCompatibility(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IEntityType},Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateSharedForeignKeysCompatibility (mappedTypes As IReadOnlyList(Of IEntityType), storeObject As StoreObjectIdentifier, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
@@ -946,13 +1302,14 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="mappedTypes" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0">
+        <Parameter Name="mappedTypes" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
@@ -960,7 +1317,7 @@
             </Attribute>
           </Attributes>
         </Parameter>
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="mappedTypes">The mapped entity types.</param>
@@ -1035,7 +1392,7 @@
       </Docs>
     </Member>
     <Member MemberName="ValidateSharedIndexesCompatibility">
-      <MemberSignature Language="C#" Value="protected virtual void ValidateSharedIndexesCompatibility (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="C#" Value="protected virtual void ValidateSharedIndexesCompatibility (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateSharedIndexesCompatibility(class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, [in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateSharedIndexesCompatibility(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IEntityType},Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateSharedIndexesCompatibility (mappedTypes As IReadOnlyList(Of IEntityType), storeObject As StoreObjectIdentifier, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
@@ -1045,13 +1402,14 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="mappedTypes" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0">
+        <Parameter Name="mappedTypes" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
@@ -1059,7 +1417,7 @@
             </Attribute>
           </Attributes>
         </Parameter>
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="mappedTypes">The mapped entity types.</param>
@@ -1134,7 +1492,7 @@
       </Docs>
     </Member>
     <Member MemberName="ValidateSharedKeysCompatibility">
-      <MemberSignature Language="C#" Value="protected virtual void ValidateSharedKeysCompatibility (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="C#" Value="protected virtual void ValidateSharedKeysCompatibility (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateSharedKeysCompatibility(class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, [in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateSharedKeysCompatibility(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IEntityType},Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateSharedKeysCompatibility (mappedTypes As IReadOnlyList(Of IEntityType), storeObject As StoreObjectIdentifier, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
@@ -1144,13 +1502,14 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="mappedTypes" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0">
+        <Parameter Name="mappedTypes" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
@@ -1158,7 +1517,7 @@
             </Attribute>
           </Attributes>
         </Parameter>
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="mappedTypes">The mapped entity types.</param>
@@ -1243,13 +1602,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -1288,6 +1648,42 @@
         <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateSharedTableCompatibility">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateSharedTableCompatibility (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateSharedTableCompatibility(class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, [in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateSharedTableCompatibility(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IEntityType},Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateSharedTableCompatibility (mappedTypes As IReadOnlyList(Of IEntityType), storeObject As StoreObjectIdentifier, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateSharedTableCompatibility : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; * StoreObjectIdentifier * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateSharedTableCompatibility : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; * StoreObjectIdentifier * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="relationalModelValidator.ValidateSharedTableCompatibility (mappedTypes, storeObject, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="mappedTypes" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="1" FrameworkAlternate="efcore-7.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.IsReadOnly&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="2" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="mappedTypes">The mapped entity types.</param>
+        <param name="storeObject">The table identifier.</param>
+        <param name="logger">The logger to use.</param>
+        <summary>
+                Validates the compatibility of entity types sharing a given table.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1355,6 +1751,42 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="ValidateSharedTriggerCompatibility">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateSharedTriggerCompatibility (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, in Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateSharedTriggerCompatibility(class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, [in]valuetype Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier storeObject, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateSharedTriggerCompatibility(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IEntityType},Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@|System.Runtime.InteropServices.InAttribute,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateSharedTriggerCompatibility (mappedTypes As IReadOnlyList(Of IEntityType), storeObject As StoreObjectIdentifier, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateSharedTriggerCompatibility : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; * StoreObjectIdentifier * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateSharedTriggerCompatibility : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; * StoreObjectIdentifier * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="relationalModelValidator.ValidateSharedTriggerCompatibility (mappedTypes, storeObject, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="mappedTypes" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="storeObject" Type="Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier" Index="1" FrameworkAlternate="efcore-7.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[System.Runtime.CompilerServices.IsReadOnly]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.IsReadOnly&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="2" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="mappedTypes">The mapped entity types.</param>
+        <param name="storeObject">The identifier of the store object.</param>
+        <param name="logger">The logger to use.</param>
+        <summary>
+                Validates the compatibility of triggers in a given shared table.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="ValidateSharedViewCompatibility">
       <MemberSignature Language="C#" Value="protected virtual void ValidateSharedViewCompatibility (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateSharedViewCompatibility(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
@@ -1366,13 +1798,14 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -1389,21 +1822,22 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateSharedViewCompatibility(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Metadata.IEntityType},System.String,System.String,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
       <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateSharedViewCompatibility (mappedTypes As IReadOnlyList(Of IEntityType), viewName As String, schema As String, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
       <MemberSignature Language="F#" Value="abstract member ValidateSharedViewCompatibility : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; * string * string * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateSharedViewCompatibility : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; * string * string * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="relationalModelValidator.ValidateSharedViewCompatibility (mappedTypes, viewName, schema, logger)" />
-      <MemberSignature Language="C#" Value="protected virtual void ValidateSharedViewCompatibility (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, string viewName, string? schema, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="C#" Value="protected virtual void ValidateSharedViewCompatibility (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt; mappedTypes, string viewName, string? schema, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="mappedTypes" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="viewName" Type="System.String" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="schema" Type="System.String" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="3" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="mappedTypes" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IEntityType&gt;" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="viewName" Type="System.String" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="schema" Type="System.String" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="3" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="mappedTypes">The mapped entity types.</param>
@@ -1427,19 +1861,103 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
         <param name="logger">The logger to use.</param>
         <summary>
                 Validates the mapping/configuration of SQL queries in the model.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateStoredProcedures">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateStoredProcedures (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateStoredProcedures(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateStoredProcedures(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateStoredProcedures (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateStoredProcedures : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateStoredProcedures : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="relationalModelValidator.ValidateStoredProcedures (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="model">The model to validate.</param>
+        <param name="logger">The logger to use.</param>
+        <summary>
+                Validates the mapping/configuration of stored procedures in the model.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateTriggers">
+      <MemberSignature Language="C#" Value="protected override void ValidateTriggers (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void ValidateTriggers(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateTriggers(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overrides Sub ValidateTriggers (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="override this.ValidateTriggers : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="relationalModelValidator.ValidateTriggers (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="model">The model to validate.</param>
+        <param name="logger">The logger to use.</param>
+        <summary>
+                Validates that the triggers are unambiguously mapped to exactly one table.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateValueGeneration">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateValueGeneration (Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType, Microsoft.EntityFrameworkCore.Metadata.IKey key, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateValueGeneration(class Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType, class Microsoft.EntityFrameworkCore.Metadata.IKey key, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.ValidateValueGeneration(Microsoft.EntityFrameworkCore.Metadata.IEntityType,Microsoft.EntityFrameworkCore.Metadata.IKey,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateValueGeneration (entityType As IEntityType, key As IKey, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateValueGeneration : Microsoft.EntityFrameworkCore.Metadata.IEntityType * Microsoft.EntityFrameworkCore.Metadata.IKey * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateValueGeneration : Microsoft.EntityFrameworkCore.Metadata.IEntityType * Microsoft.EntityFrameworkCore.Metadata.IKey * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="relationalModelValidator.ValidateValueGeneration (entityType, key, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="key" Type="Microsoft.EntityFrameworkCore.Metadata.IKey" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="2" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="entityType">The entity type.</param>
+        <param name="key">The key.</param>
+        <param name="logger">The logger to use.</param>
+        <summary>
+                Validates the key value generation is valid.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>

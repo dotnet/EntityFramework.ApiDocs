@@ -10,6 +10,7 @@
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -28,12 +29,14 @@
                     service.
                 </para>
       <para>
-                    Database providers should implement this service by inheriting from either
-                    this class (for non-relational providers) or `RelationalConventionSetBuilder` (for relational providers).
-                </para>
-      <para>
                     This type is typically used by database providers (and other extensions). It is generally
                     not used in application code.
+                </para>
+    </summary>
+    <remarks>
+      <para>
+                    Database providers should implement this service by inheriting from either
+                    this class (for non-relational providers) or `RelationalConventionSetBuilder` (for relational providers).
                 </para>
       <para>
                     The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
@@ -41,10 +44,10 @@
                     The implementation may depend on other services registered with any lifetime.
                     The implementation does not need to be thread-safe.
                 </para>
-    </summary>
-    <remarks>
-                See <see href="https://aka.ms/efcore-docs-conventions">Model building conventions</see> for more information.
-            </remarks>
+      <para>
+                    See <see href="https://aka.ms/efcore-docs-conventions">Model building conventions</see> for more information and examples.
+                </para>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -60,6 +63,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure.ProviderConventionSetBuilderDependencies" />
@@ -88,6 +92,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Conventions.ConventionSet</ReturnType>
@@ -114,6 +119,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure.ProviderConventionSetBuilderDependencies</ReturnType>
@@ -152,8 +158,46 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="conventionsList" Type="System.Collections.Generic.IList&lt;TConvention&gt;" />
-        <Parameter Name="newConvention" Type="TImplementation" />
+        <Parameter Name="conventionsList" Type="System.Collections.Generic.IList&lt;TConvention&gt;" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="newConvention" Type="TImplementation" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TConvention">The type of convention being replaced.</typeparam>
+        <typeparam name="TImplementation">The type of the old convention.</typeparam>
+        <param name="conventionsList">The list of existing convention instances to scan.</param>
+        <param name="newConvention">The new convention.</param>
+        <summary>
+                Replaces an existing convention with a derived convention.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ReplaceConvention&lt;TConvention,TImplementation&gt;">
+      <MemberSignature Language="C#" Value="protected virtual bool ReplaceConvention&lt;TConvention,TImplementation&gt; (System.Collections.Generic.List&lt;TConvention&gt; conventionsList, TImplementation newConvention) where TImplementation : TConvention;" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance bool ReplaceConvention&lt;TConvention, (!!TConvention) TImplementation&gt;(class System.Collections.Generic.List`1&lt;!!TConvention&gt; conventionsList, !!TImplementation newConvention) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure.ProviderConventionSetBuilder.ReplaceConvention``2(System.Collections.Generic.List{``0},``1)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function ReplaceConvention(Of TConvention, TImplementation) (conventionsList As List(Of TConvention), newConvention As TImplementation) As Boolean" />
+      <MemberSignature Language="F#" Value="abstract member ReplaceConvention : System.Collections.Generic.List&lt;'Convention&gt; * 'Implementation -&gt; bool&#xA;override this.ReplaceConvention : System.Collections.Generic.List&lt;'Convention&gt; * 'Implementation -&gt; bool" Usage="providerConventionSetBuilder.ReplaceConvention (conventionsList, newConvention)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TConvention" />
+        <TypeParameter Name="TImplementation">
+          <Constraints>
+            <BaseTypeName>TConvention</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="conventionsList" Type="System.Collections.Generic.List&lt;TConvention&gt;" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="newConvention" Type="TImplementation" Index="1" FrameworkAlternate="efcore-7.0" />
       </Parameters>
       <Docs>
         <typeparam name="TConvention">The type of convention being replaced.</typeparam>

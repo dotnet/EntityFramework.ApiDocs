@@ -17,6 +17,7 @@
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy</BaseTypeName>
@@ -24,15 +25,24 @@
   <Interfaces />
   <Docs>
     <summary>
-      <para>
-                    An <see cref="T:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy" /> implementation for retrying failed executions on SQL Server.
-                </para>
+                An <see cref="T:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy" /> implementation for retrying failed executions on SQL Server.
+            </summary>
+    <remarks>
       <para>
                     This strategy is specifically tailored to SQL Server (including SQL Azure). It is pre-configured with
                     error numbers for transient errors that can be retried. Additional error numbers to retry on can also be supplied.
                 </para>
-    </summary>
-    <remarks>To be added.</remarks>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
+                </para>
+      <para>
+                    See <see href="https://aka.ms/efcore-docs-connection-resiliency">Connection resiliency and database retries</see>
+                    for more information and examples.
+                </para>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -55,6 +65,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" />
@@ -62,15 +73,10 @@
       <Docs>
         <param name="context">The context on which the operations will be invoked.</param>
         <summary>
-          <para>
-                    Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
-                </para>
-          <para>
-                    Default values of 6 for the maximum retry count and 30 seconds for the maximum default delay are used.
-                </para>
-        </summary>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
+            </summary>
         <remarks>
-                The default retry limit is 6, which means that the total amount of time spent before failing is about a minute.
+                Default values of 6 for the maximum retry count and 30 seconds for the maximum default delay are used.
             </remarks>
       </Docs>
     </Member>
@@ -115,21 +121,19 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="dependencies">Parameter object containing service dependencies.</param>
         <summary>
-          <para>
-                    Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
-                </para>
-          <para>
-                    Default values of 6 for the maximum retry count and 30 seconds for the maximum default delay are used.
-                </para>
-        </summary>
-        <remarks>To be added.</remarks>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
+            </summary>
+        <remarks>
+                Default values of 6 for the maximum retry count and 30 seconds for the maximum default delay are used.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -152,6 +156,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" />
@@ -161,14 +166,11 @@
         <param name="context">The context on which the operations will be invoked.</param>
         <param name="maxRetryCount">The maximum number of retry attempts.</param>
         <summary>
-          <para>
-                    Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
-                </para>
-          <para>
-                    A default value 30 seconds for the maximum default delay is used.
-                </para>
-        </summary>
-        <remarks>To be added.</remarks>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
+            </summary>
+        <remarks>
+                A default value 30 seconds for the maximum default delay is used.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -197,6 +199,32 @@
       </Docs>
     </Member>
     <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public SqlServerRetryingExecutionStrategy (Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies dependencies, System.Collections.Generic.IEnumerable&lt;int&gt; errorNumbersToAdd);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies dependencies, class System.Collections.Generic.IEnumerable`1&lt;int32&gt; errorNumbersToAdd) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy.#ctor(Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies,System.Collections.Generic.IEnumerable{System.Int32})" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (dependencies As ExecutionStrategyDependencies, errorNumbersToAdd As IEnumerable(Of Integer))" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy : Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies * seq&lt;int&gt; -&gt; Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" Usage="new Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy (dependencies, errorNumbersToAdd)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="errorNumbersToAdd" Type="System.Collections.Generic.IEnumerable&lt;System.Int32&gt;" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="dependencies">Parameter object containing service dependencies.</param>
+        <param name="errorNumbersToAdd">Additional SQL error numbers that should be considered transient.</param>
+        <summary>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
+            </summary>
+        <remarks>
+                Default values of 6 for the maximum retry count and 30 seconds for the maximum default delay are used.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public SqlServerRetryingExecutionStrategy (Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies dependencies, int maxRetryCount);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies dependencies, int32 maxRetryCount) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy.#ctor(Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies,System.Int32)" />
@@ -214,23 +242,21 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="maxRetryCount" Type="System.Int32" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="maxRetryCount" Type="System.Int32" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="dependencies">Parameter object containing service dependencies.</param>
         <param name="maxRetryCount">The maximum number of retry attempts.</param>
         <summary>
-          <para>
-                    Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
-                </para>
-          <para>
-                    A default value 30 seconds for the maximum default delay is used.
-                </para>
-        </summary>
-        <remarks>To be added.</remarks>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
+            </summary>
+        <remarks>
+                A default value 30 seconds for the maximum default delay is used.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -256,10 +282,38 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" />
-        <Parameter Name="maxRetryCount" Type="System.Int32" />
-        <Parameter Name="maxRetryDelay" Type="System.TimeSpan" />
-        <Parameter Name="errorNumbersToAdd" Type="System.Collections.Generic.ICollection&lt;System.Int32&gt;" />
+        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" Index="0" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="maxRetryCount" Type="System.Int32" Index="1" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="maxRetryDelay" Type="System.TimeSpan" Index="2" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="errorNumbersToAdd" Type="System.Collections.Generic.ICollection&lt;System.Int32&gt;" Index="3" FrameworkAlternate="efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+      </Parameters>
+      <Docs>
+        <param name="context">The context on which the operations will be invoked.</param>
+        <param name="maxRetryCount">The maximum number of retry attempts.</param>
+        <param name="maxRetryDelay">The maximum delay between retries.</param>
+        <param name="errorNumbersToAdd">Additional SQL error numbers that should be considered transient.</param>
+        <summary>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public SqlServerRetryingExecutionStrategy (Microsoft.EntityFrameworkCore.DbContext context, int maxRetryCount, TimeSpan maxRetryDelay, System.Collections.Generic.IEnumerable&lt;int&gt;? errorNumbersToAdd);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.DbContext context, int32 maxRetryCount, valuetype System.TimeSpan maxRetryDelay, class System.Collections.Generic.IEnumerable`1&lt;int32&gt; errorNumbersToAdd) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy.#ctor(Microsoft.EntityFrameworkCore.DbContext,System.Int32,System.TimeSpan,System.Collections.Generic.IEnumerable{System.Int32})" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (context As DbContext, maxRetryCount As Integer, maxRetryDelay As TimeSpan, errorNumbersToAdd As IEnumerable(Of Integer))" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy : Microsoft.EntityFrameworkCore.DbContext * int * TimeSpan * seq&lt;int&gt; -&gt; Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" Usage="new Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy (context, maxRetryCount, maxRetryDelay, errorNumbersToAdd)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="maxRetryCount" Type="System.Int32" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="maxRetryDelay" Type="System.TimeSpan" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="errorNumbersToAdd" Type="System.Collections.Generic.IEnumerable&lt;System.Int32&gt;" Index="3" FrameworkAlternate="efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="context">The context on which the operations will be invoked.</param>
@@ -338,6 +392,34 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public SqlServerRetryingExecutionStrategy (Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies dependencies, int maxRetryCount, TimeSpan maxRetryDelay, System.Collections.Generic.IEnumerable&lt;int&gt;? errorNumbersToAdd);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies dependencies, int32 maxRetryCount, valuetype System.TimeSpan maxRetryDelay, class System.Collections.Generic.IEnumerable`1&lt;int32&gt; errorNumbersToAdd) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy.#ctor(Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies,System.Int32,System.TimeSpan,System.Collections.Generic.IEnumerable{System.Int32})" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (dependencies As ExecutionStrategyDependencies, maxRetryCount As Integer, maxRetryDelay As TimeSpan, errorNumbersToAdd As IEnumerable(Of Integer))" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy : Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies * int * TimeSpan * seq&lt;int&gt; -&gt; Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" Usage="new Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy (dependencies, maxRetryCount, maxRetryDelay, errorNumbersToAdd)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyDependencies" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="maxRetryCount" Type="System.Int32" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="maxRetryDelay" Type="System.TimeSpan" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="errorNumbersToAdd" Type="System.Collections.Generic.IEnumerable&lt;System.Int32&gt;" Index="3" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="dependencies">Parameter object containing service dependencies.</param>
+        <param name="maxRetryCount">The maximum number of retry attempts.</param>
+        <param name="maxRetryDelay">The maximum delay between retries.</param>
+        <param name="errorNumbersToAdd">Additional SQL error numbers that should be considered transient.</param>
+        <summary>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="GetNextDelay">
       <MemberSignature Language="C#" Value="protected override TimeSpan? GetNextDelay (Exception lastException);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance valuetype System.Nullable`1&lt;valuetype System.TimeSpan&gt; GetNextDelay(class System.Exception lastException) cil managed" />
@@ -358,6 +440,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Nullable&lt;System.TimeSpan&gt;</ReturnType>
@@ -397,6 +480,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>

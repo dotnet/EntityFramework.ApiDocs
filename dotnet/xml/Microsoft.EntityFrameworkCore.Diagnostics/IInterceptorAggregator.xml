@@ -10,26 +10,36 @@
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Docs>
     <summary>
       <para>
-                    A service to resolve a single <see cref="T:Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor" /> /&gt; from all those registered on
+                    A service to resolve a single <see cref="T:Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor" /> from all those registered on
                     the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> or in the internal service provider.
                 </para>
       <para>
                     This type is typically used by database providers (and other extensions). It is generally
                     not used in application code.
                 </para>
+    </summary>
+    <remarks>
       <para>
                     Instances should be registered on the internal service provider as multiple <see cref="T:Microsoft.EntityFrameworkCore.Diagnostics.IInterceptorAggregator" />
                     interfaces.
                 </para>
-    </summary>
-    <remarks>
-                See <see href="https://aka.ms/efcore-docs-interceptors">EF Core interceptors</see> for more information.
-            </remarks>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" /> and multiple registrations
+                    are allowed. This means that each <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own
+                    set of instances of this service.
+                    The implementations may depend on other services registered with any lifetime.
+                    The implementations do not need to be thread-safe.
+                </para>
+      <para>
+                    See <see href="https://aka.ms/efcore-docs-interceptors">EF Core interceptors</see> for more information and examples.
+                </para>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName="AggregateInterceptors">
@@ -38,7 +48,7 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.IInterceptorAggregator.AggregateInterceptors(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor})" />
       <MemberSignature Language="VB.NET" Value="Public Function AggregateInterceptors (interceptors As IReadOnlyList(Of IInterceptor)) As IInterceptor" />
       <MemberSignature Language="F#" Value="abstract member AggregateInterceptors : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor&gt; -&gt; Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor" Usage="iInterceptorAggregator.AggregateInterceptors interceptors" />
-      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor? AggregateInterceptors (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor&gt; interceptors);" FrameworkAlternate="efcore-6.0" />
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor? AggregateInterceptors (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor&gt; interceptors);" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -46,6 +56,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor</ReturnType>
@@ -56,11 +67,9 @@
       <Docs>
         <param name="interceptors">The interceptors to combine.</param>
         <summary>
-          <para>
-                    Resolves a single <see cref="T:Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor" /> /&gt; from all those registered on
-                    the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> or in the internal service provider.
-                </para>
-        </summary>
+                Resolves a single <see cref="T:Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor" /> from all those registered on
+                the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> or in the internal service provider.
+            </summary>
         <returns>The combined interceptor.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -78,6 +87,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>

@@ -8,6 +8,7 @@
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -16,7 +17,7 @@
   <Docs>
     <summary>
       <para>
-                    A class that processes the <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" />  after parementer values are known.
+                    A class that processes the query expression after parementer values are known.
                 </para>
       <para>
                     This type is typically used by database providers (and other extensions). It is generally
@@ -37,6 +38,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Query.RelationalParameterBasedSqlProcessorDependencies" />
@@ -46,7 +48,7 @@
         <param name="dependencies">Parameter object containing dependencies for this class.</param>
         <param name="useRelationalNulls">A bool value indicating if relational nulls should be used.</param>
         <summary>
-                Creates a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Query.QueryTranslationPostprocessor" /> class.
+                Creates a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Query.RelationalParameterBasedSqlProcessor" /> class.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -62,6 +64,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.RelationalParameterBasedSqlProcessorDependencies</ReturnType>
@@ -91,9 +94,9 @@
         <ReturnType>Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" />
-        <Parameter Name="parametersValues" Type="System.Collections.Generic.IReadOnlyDictionary&lt;System.String,System.Object&gt;" />
-        <Parameter Name="canCache" Type="System.Boolean" RefType="out" />
+        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="parametersValues" Type="System.Collections.Generic.IReadOnlyDictionary&lt;System.String,System.Object&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="canCache" Type="System.Boolean" RefType="out" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="selectExpression">A select expression to optimize.</param>
@@ -103,6 +106,36 @@
                 Expands the parameters to <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.FromSqlExpression" /> inside the <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" /> for given parameter values.
             </summary>
         <returns>A processed select expression.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ExpandFromSqlParameter">
+      <MemberSignature Language="C#" Value="protected virtual System.Linq.Expressions.Expression ExpandFromSqlParameter (System.Linq.Expressions.Expression queryExpression, System.Collections.Generic.IReadOnlyDictionary&lt;string,object?&gt; parametersValues, out bool canCache);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Linq.Expressions.Expression ExpandFromSqlParameter(class System.Linq.Expressions.Expression queryExpression, class System.Collections.Generic.IReadOnlyDictionary`2&lt;string, object&gt; parametersValues, [out] bool&amp; canCache) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.RelationalParameterBasedSqlProcessor.ExpandFromSqlParameter(System.Linq.Expressions.Expression,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object},System.Boolean@)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function ExpandFromSqlParameter (queryExpression As Expression, parametersValues As IReadOnlyDictionary(Of String, Object), ByRef canCache As Boolean) As Expression" />
+      <MemberSignature Language="F#" Value="abstract member ExpandFromSqlParameter : System.Linq.Expressions.Expression * System.Collections.Generic.IReadOnlyDictionary&lt;string, obj&gt; * bool -&gt; System.Linq.Expressions.Expression&#xA;override this.ExpandFromSqlParameter : System.Linq.Expressions.Expression * System.Collections.Generic.IReadOnlyDictionary&lt;string, obj&gt; * bool -&gt; System.Linq.Expressions.Expression" Usage="relationalParameterBasedSqlProcessor.ExpandFromSqlParameter (queryExpression, parametersValues, canCache)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="queryExpression" Type="System.Linq.Expressions.Expression" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="parametersValues" Type="System.Collections.Generic.IReadOnlyDictionary&lt;System.String,System.Object&gt;" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="canCache" Type="System.Boolean" RefType="out" Index="2" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="queryExpression">A query expression to optimize.</param>
+        <param name="parametersValues">A dictionary of parameter values to use.</param>
+        <param name="canCache">A bool value indicating if the query expression can be cached.</param>
+        <summary>
+                Expands the parameters to <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.FromSqlExpression" /> inside the query expression for given parameter values.
+            </summary>
+        <returns>A processed query expression.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -123,9 +156,9 @@
         <ReturnType>Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" />
-        <Parameter Name="parametersValues" Type="System.Collections.Generic.IReadOnlyDictionary&lt;System.String,System.Object&gt;" />
-        <Parameter Name="canCache" Type="System.Boolean" RefType="out" />
+        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="parametersValues" Type="System.Collections.Generic.IReadOnlyDictionary&lt;System.String,System.Object&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="canCache" Type="System.Boolean" RefType="out" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="selectExpression">A select expression to optimize.</param>
@@ -135,6 +168,36 @@
                 Optimizes the <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" /> for given parameter values.
             </summary>
         <returns>An optimized select expression.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Optimize">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression Optimize (System.Linq.Expressions.Expression queryExpression, System.Collections.Generic.IReadOnlyDictionary&lt;string,object?&gt; parametersValues, out bool canCache);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression Optimize(class System.Linq.Expressions.Expression queryExpression, class System.Collections.Generic.IReadOnlyDictionary`2&lt;string, object&gt; parametersValues, [out] bool&amp; canCache) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.RelationalParameterBasedSqlProcessor.Optimize(System.Linq.Expressions.Expression,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object},System.Boolean@)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function Optimize (queryExpression As Expression, parametersValues As IReadOnlyDictionary(Of String, Object), ByRef canCache As Boolean) As Expression" />
+      <MemberSignature Language="F#" Value="abstract member Optimize : System.Linq.Expressions.Expression * System.Collections.Generic.IReadOnlyDictionary&lt;string, obj&gt; * bool -&gt; System.Linq.Expressions.Expression&#xA;override this.Optimize : System.Linq.Expressions.Expression * System.Collections.Generic.IReadOnlyDictionary&lt;string, obj&gt; * bool -&gt; System.Linq.Expressions.Expression" Usage="relationalParameterBasedSqlProcessor.Optimize (queryExpression, parametersValues, canCache)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="queryExpression" Type="System.Linq.Expressions.Expression" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="parametersValues" Type="System.Collections.Generic.IReadOnlyDictionary&lt;System.String,System.Object&gt;" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="canCache" Type="System.Boolean" RefType="out" Index="2" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="queryExpression">A query expression to optimize.</param>
+        <param name="parametersValues">A dictionary of parameter values to use.</param>
+        <param name="canCache">A bool value indicating if the query expression can be cached.</param>
+        <summary>
+                Optimizes the query expression for given parameter values.
+            </summary>
+        <returns>An optimized query expression.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -155,9 +218,9 @@
         <ReturnType>Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" />
-        <Parameter Name="parametersValues" Type="System.Collections.Generic.IReadOnlyDictionary&lt;System.String,System.Object&gt;" />
-        <Parameter Name="canCache" Type="System.Boolean" RefType="out" />
+        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="parametersValues" Type="System.Collections.Generic.IReadOnlyDictionary&lt;System.String,System.Object&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="canCache" Type="System.Boolean" RefType="out" Index="2" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="selectExpression">A select expression to optimize.</param>
@@ -168,6 +231,37 @@
                 optimize it for given parameter values.
             </summary>
         <returns>A processed select expression.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ProcessSqlNullability">
+      <MemberSignature Language="C#" Value="protected virtual System.Linq.Expressions.Expression ProcessSqlNullability (System.Linq.Expressions.Expression queryExpression, System.Collections.Generic.IReadOnlyDictionary&lt;string,object?&gt; parametersValues, out bool canCache);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Linq.Expressions.Expression ProcessSqlNullability(class System.Linq.Expressions.Expression queryExpression, class System.Collections.Generic.IReadOnlyDictionary`2&lt;string, object&gt; parametersValues, [out] bool&amp; canCache) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.RelationalParameterBasedSqlProcessor.ProcessSqlNullability(System.Linq.Expressions.Expression,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object},System.Boolean@)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function ProcessSqlNullability (queryExpression As Expression, parametersValues As IReadOnlyDictionary(Of String, Object), ByRef canCache As Boolean) As Expression" />
+      <MemberSignature Language="F#" Value="abstract member ProcessSqlNullability : System.Linq.Expressions.Expression * System.Collections.Generic.IReadOnlyDictionary&lt;string, obj&gt; * bool -&gt; System.Linq.Expressions.Expression&#xA;override this.ProcessSqlNullability : System.Linq.Expressions.Expression * System.Collections.Generic.IReadOnlyDictionary&lt;string, obj&gt; * bool -&gt; System.Linq.Expressions.Expression" Usage="relationalParameterBasedSqlProcessor.ProcessSqlNullability (queryExpression, parametersValues, canCache)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="queryExpression" Type="System.Linq.Expressions.Expression" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="parametersValues" Type="System.Collections.Generic.IReadOnlyDictionary&lt;System.String,System.Object&gt;" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="canCache" Type="System.Boolean" RefType="out" Index="2" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="queryExpression">A query expression to optimize.</param>
+        <param name="parametersValues">A dictionary of parameter values to use.</param>
+        <param name="canCache">A bool value indicating if the query expression can be cached.</param>
+        <summary>
+                Processes the query expression based on nullability of nodes to apply null semantics in use and
+                optimize it for given parameter values.
+            </summary>
+        <returns>A processed query expression.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -182,6 +276,7 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>

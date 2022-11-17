@@ -15,6 +15,7 @@
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -26,19 +27,19 @@
   </Interfaces>
   <Docs>
     <summary>
-      <para>
-                    The validator that enforces core rules common for all providers.
-                </para>
+                The validator that enforces core rules common for all providers.
+            </summary>
+    <remarks>
       <para>
                     The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
                     is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
                     This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
                 </para>
-    </summary>
-    <remarks>
-                See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
-                for more information.
-            </remarks>
+      <para>
+                    See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
+                    for more information and examples.
+                </para>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -59,6 +60,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies" />
@@ -89,6 +91,7 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies</ReturnType>
@@ -111,13 +114,14 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="targetType" Type="System.Type" Index="0" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="conventionModel" Type="Microsoft.EntityFrameworkCore.Metadata.IConventionModel" Index="1" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="targetType" Type="System.Type" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="conventionModel" Type="Microsoft.EntityFrameworkCore.Metadata.IConventionModel" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="targetType">The target CLR type.</param>
@@ -127,6 +131,32 @@
             </summary>
         <returns>
           <see langword="true" /> if the given CLR type corresponds to an owned entity type.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsRedundant">
+      <MemberSignature Language="C#" Value="protected virtual bool IsRedundant (Microsoft.EntityFrameworkCore.Metadata.IForeignKey foreignKey);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance bool IsRedundant(class Microsoft.EntityFrameworkCore.Metadata.IForeignKey foreignKey) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.IsRedundant(Microsoft.EntityFrameworkCore.Metadata.IForeignKey)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function IsRedundant (foreignKey As IForeignKey) As Boolean" />
+      <MemberSignature Language="F#" Value="abstract member IsRedundant : Microsoft.EntityFrameworkCore.Metadata.IForeignKey -&gt; bool&#xA;override this.IsRedundant : Microsoft.EntityFrameworkCore.Metadata.IForeignKey -&gt; bool" Usage="modelValidator.IsRedundant foreignKey" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="foreignKey" Type="Microsoft.EntityFrameworkCore.Metadata.IForeignKey" Index="0" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="foreignKey">A foreign key.</param>
+        <summary>
+                Returns a value indicating whether the given foreign key is redundant.
+            </summary>
+        <returns>A value indicating whether the given foreign key is redundant.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -171,19 +201,50 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
         <param name="logger">The logger to use.</param>
         <summary>
                 Logs all shadow properties that were created because there was no matching CLR member.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ThrowPropertyNotMappedException">
+      <MemberSignature Language="C#" Value="protected virtual void ThrowPropertyNotMappedException (string propertyType, Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType entityType, Microsoft.EntityFrameworkCore.Metadata.IConventionProperty unmappedProperty);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ThrowPropertyNotMappedException(string propertyType, class Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType entityType, class Microsoft.EntityFrameworkCore.Metadata.IConventionProperty unmappedProperty) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ThrowPropertyNotMappedException(System.String,Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType,Microsoft.EntityFrameworkCore.Metadata.IConventionProperty)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ThrowPropertyNotMappedException (propertyType As String, entityType As IConventionEntityType, unmappedProperty As IConventionProperty)" />
+      <MemberSignature Language="F#" Value="abstract member ThrowPropertyNotMappedException : string * Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType * Microsoft.EntityFrameworkCore.Metadata.IConventionProperty -&gt; unit&#xA;override this.ThrowPropertyNotMappedException : string * Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType * Microsoft.EntityFrameworkCore.Metadata.IConventionProperty -&gt; unit" Usage="modelValidator.ThrowPropertyNotMappedException (propertyType, entityType, unmappedProperty)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="propertyType" Type="System.String" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="unmappedProperty" Type="Microsoft.EntityFrameworkCore.Metadata.IConventionProperty" Index="2" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="propertyType">The property CLR type.</param>
+        <param name="entityType">The entity type.</param>
+        <param name="unmappedProperty">The property.</param>
+        <summary>
+                Throws an <see cref="T:System.InvalidOperationException" /> with a message containing provider-specific information, when
+                available, indicating possible reasons why the property cannot be mapped.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -236,13 +297,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model"> The model to validate. </param>
@@ -297,13 +359,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -357,13 +420,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -449,13 +513,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -571,12 +636,13 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rootEntityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="rootEntityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="rootEntityType">The entity type to validate.</param>
@@ -665,13 +731,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -723,13 +790,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -753,13 +821,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model.</param>
@@ -781,13 +850,14 @@
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -867,13 +937,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -927,13 +998,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -987,13 +1059,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -1113,13 +1186,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -1173,13 +1247,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -1203,13 +1278,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model.</param>
@@ -1263,13 +1339,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
@@ -1320,19 +1397,47 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model.</param>
         <param name="logger">The logger to use.</param>
         <summary>
                 Validates relationships.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateTriggers">
+      <MemberSignature Language="C#" Value="protected virtual void ValidateTriggers (Microsoft.EntityFrameworkCore.Metadata.IModel model, Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; logger);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ValidateTriggers(class Microsoft.EntityFrameworkCore.Metadata.IModel model, class Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger`1&lt;class Microsoft.EntityFrameworkCore.DbLoggerCategory/Model/Validation&gt; logger) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateTriggers(Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger{Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ValidateTriggers (model As IModel, logger As IDiagnosticsLogger(Of DbLoggerCategory.Model.Validation))" />
+      <MemberSignature Language="F#" Value="abstract member ValidateTriggers : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit&#xA;override this.ValidateTriggers : Microsoft.EntityFrameworkCore.Metadata.IModel * Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory.Model.Validation&gt; -&gt; unit" Usage="modelValidator.ValidateTriggers (model, logger)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="model">The model to validate.</param>
+        <param name="logger">The logger to use.</param>
+        <summary>
+                Validates triggers.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1349,13 +1454,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IModel" Index="0" FrameworkAlternate="efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="logger" Type="Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger&lt;Microsoft.EntityFrameworkCore.DbLoggerCategory+Model+Validation&gt;" Index="1" FrameworkAlternate="efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="model">The model to validate.</param>
