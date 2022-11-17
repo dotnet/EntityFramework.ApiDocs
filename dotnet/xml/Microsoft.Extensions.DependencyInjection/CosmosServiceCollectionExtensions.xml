@@ -10,6 +10,7 @@
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -21,7 +22,7 @@
             </summary>
     <remarks>
                 See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
-                <see href="https://aka.ms/efcore-docs-cosmos">Accessing Azure Cosmos DB with EF Core</see> for more information.
+                <see href="https://aka.ms/efcore-docs-cosmos">Accessing Azure Cosmos DB with EF Core</see> for more information and examples.
             </remarks>
   </Docs>
   <Members>
@@ -35,6 +36,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.Extensions.DependencyInjection.IServiceCollection</ReturnType>
@@ -47,11 +49,11 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="serviceCollection" Type="Microsoft.Extensions.DependencyInjection.IServiceCollection" Index="0" FrameworkAlternate="efcore-6.0" RefType="this" />
-        <Parameter Name="connectionString" Type="System.String" Index="1" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="databaseName" Type="System.String" Index="2" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="cosmosOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.CosmosDbContextOptionsBuilder&gt;" Index="3" FrameworkAlternate="efcore-6.0" />
-        <Parameter Name="optionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&gt;" Index="4" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="serviceCollection" Type="Microsoft.Extensions.DependencyInjection.IServiceCollection" RefType="this" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="connectionString" Type="System.String" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="databaseName" Type="System.String" Index="2" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="cosmosOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.CosmosDbContextOptionsBuilder&gt;" Index="3" FrameworkAlternate="efcore-6.0;efcore-7.0" />
+        <Parameter Name="optionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&gt;" Index="4" FrameworkAlternate="efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <typeparam name="TContext">The type of context to be registered.</typeparam>
@@ -61,10 +63,11 @@
         <param name="cosmosOptionsAction">An optional action to allow additional Cosmos-specific configuration.</param>
         <param name="optionsAction">An optional action to configure the <see cref="T:Microsoft.EntityFrameworkCore.DbContextOptions" /> for the context.</param>
         <summary>
-          <para>
-                    Registers the given Entity Framework <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> as a service in the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />
-                    and configures it to connect to an Azure Cosmos database.
-                </para>
+                Registers the given Entity Framework <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> as a service in the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />
+                and configures it to connect to an Azure Cosmos database.
+            </summary>
+        <returns>The same service collection so that multiple calls can be chained.</returns>
+        <remarks>
           <para>
                     This method is a shortcut for configuring a <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> to use Cosmos. It does not support all options.
                     Use <see cref="O:EntityFrameworkServiceCollectionExtensions.AddDbContext" /> and related methods for full control of
@@ -82,14 +85,10 @@
                     an optional action to configure the <see cref="T:Microsoft.EntityFrameworkCore.DbContextOptions" /> for the context.
                 </para>
           <para>
-                    See <see href="https://aka.ms/efcore-docs-di">Using DbContext with dependency injection</see> for more information.
+                    See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                    <see href="https://aka.ms/efcore-docs-cosmos">Accessing Azure Cosmos DB with EF Core</see> for more information and examples.
                 </para>
-        </summary>
-        <returns>The same service collection so that multiple calls can be chained.</returns>
-        <remarks>
-                See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
-                <see href="https://aka.ms/efcore-docs-cosmos">Accessing Azure Cosmos DB with EF Core</see> for more information.
-            </remarks>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="AddEntityFrameworkCosmos">
@@ -105,9 +104,10 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-6.0">
+        <Attribute FrameworkAlternate="efcore-6.0;efcore-7.0">
           <AttributeName Language="C#">[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]</AttributeName>
           <AttributeName Language="F#">[&lt;System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)&gt;]</AttributeName>
         </Attribute>
@@ -129,18 +129,17 @@
                     Warning: Do not call this method accidentally. It is much more likely you need
                     to call <see cref="M:Microsoft.Extensions.DependencyInjection.CosmosServiceCollectionExtensions.AddCosmos``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.CosmosDbContextOptionsBuilder},System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder})" />.
                 </para>
-          <para>
-                    Calling this method is no longer necessary when building most applications, including those that
-                    use dependency injection in ASP.NET or elsewhere.
-                    It is only needed when building the internal service provider for use with
-                    the <see cref="M:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseInternalServiceProvider(System.IServiceProvider)" /> method.
-                    This is not recommend other than for some advanced scenarios.
-                </para>
         </summary>
         <returns>
                 The same service collection so that multiple calls can be chained.
             </returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+                Calling this method is no longer necessary when building most applications, including those that
+                use dependency injection in ASP.NET or elsewhere.
+                It is only needed when building the internal service provider for use with
+                the <see cref="M:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseInternalServiceProvider(System.IServiceProvider)" /> method.
+                This is not recommend other than for some advanced scenarios.
+            </remarks>
       </Docs>
     </Member>
   </Members>

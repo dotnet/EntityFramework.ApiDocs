@@ -19,6 +19,7 @@
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch</BaseTypeName>
@@ -27,8 +28,7 @@
   <Docs>
     <summary>
       <para>
-                    A <see cref="T:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch" /> for providers which append an SQL query to find out
-                    how many rows were affected (see <see cref="M:Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendSelectAffectedCountCommand(System.Text.StringBuilder,System.String,System.String,System.Int32)" />).
+                    A <see cref="T:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch" /> for providers which return values to find out how many rows were affected.
                 </para>
       <para>
                     This type is typically used by database providers; it is generally not used in application code.
@@ -36,7 +36,7 @@
     </summary>
     <remarks>
                 See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
-                for more information.
+                for more information and examples.
             </remarks>
   </Docs>
   <Members>
@@ -59,6 +59,30 @@
       </Parameters>
       <Docs>
         <param name="dependencies">Service dependencies.</param>
+        <summary>
+                Creates a new <see cref="T:Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch" /> instance.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="protected AffectedCountModificationCommandBatch (Microsoft.EntityFrameworkCore.Update.ModificationCommandBatchFactoryDependencies dependencies, int? maxBatchSize = default);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Update.ModificationCommandBatchFactoryDependencies dependencies, valuetype System.Nullable`1&lt;int32&gt; maxBatchSize) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.#ctor(Microsoft.EntityFrameworkCore.Update.ModificationCommandBatchFactoryDependencies,System.Nullable{System.Int32})" />
+      <MemberSignature Language="VB.NET" Value="Protected Sub New (dependencies As ModificationCommandBatchFactoryDependencies, Optional maxBatchSize As Nullable(Of Integer) = Nothing)" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch : Microsoft.EntityFrameworkCore.Update.ModificationCommandBatchFactoryDependencies * Nullable&lt;int&gt; -&gt; Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch" Usage="new Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch (dependencies, maxBatchSize)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Update.ModificationCommandBatchFactoryDependencies" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="maxBatchSize" Type="System.Nullable&lt;System.Int32&gt;" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="dependencies">Service dependencies.</param>
+        <param name="maxBatchSize">The maximum batch size. Defaults to 1000.</param>
         <summary>
                 Creates a new <see cref="T:Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch" /> instance.
             </summary>
@@ -121,12 +145,13 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="reader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="reader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="reader">The data reader.</param>
@@ -180,13 +205,14 @@
         <AssemblyVersion>3.1.0.0</AssemblyVersion>
         <AssemblyVersion>5.0.0.0</AssemblyVersion>
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="reader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="reader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="0" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       </Parameters>
       <Docs>
         <param name="reader">The data reader.</param>
@@ -226,6 +252,70 @@
         <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConsumeResultSet">
+      <MemberSignature Language="C#" Value="protected virtual int ConsumeResultSet (int startCommandIndex, Microsoft.EntityFrameworkCore.Storage.RelationalDataReader reader);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance int32 ConsumeResultSet(int32 startCommandIndex, class Microsoft.EntityFrameworkCore.Storage.RelationalDataReader reader) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(System.Int32,Microsoft.EntityFrameworkCore.Storage.RelationalDataReader)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function ConsumeResultSet (startCommandIndex As Integer, reader As RelationalDataReader) As Integer" />
+      <MemberSignature Language="F#" Value="abstract member ConsumeResultSet : int * Microsoft.EntityFrameworkCore.Storage.RelationalDataReader -&gt; int&#xA;override this.ConsumeResultSet : int * Microsoft.EntityFrameworkCore.Storage.RelationalDataReader -&gt; int" Usage="affectedCountModificationCommandBatch.ConsumeResultSet (startCommandIndex, reader)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="startCommandIndex" Type="System.Int32" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="reader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="startCommandIndex">The ordinal of the first command being consumed.</param>
+        <param name="reader">The data reader.</param>
+        <summary>
+                Consumes the data reader created by <see cref="M:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(Microsoft.EntityFrameworkCore.Storage.IRelationalConnection)" />,
+                propagating values back into the <see cref="T:Microsoft.EntityFrameworkCore.Update.ModificationCommand" />.
+            </summary>
+        <returns>The ordinal of the next result set that must be consumed.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConsumeResultSetAsync">
+      <MemberSignature Language="C#" Value="protected virtual System.Threading.Tasks.Task&lt;int&gt; ConsumeResultSetAsync (int startCommandIndex, Microsoft.EntityFrameworkCore.Storage.RelationalDataReader reader, System.Threading.CancellationToken cancellationToken);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;int32&gt; ConsumeResultSetAsync(int32 startCommandIndex, class Microsoft.EntityFrameworkCore.Storage.RelationalDataReader reader, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(System.Int32,Microsoft.EntityFrameworkCore.Storage.RelationalDataReader,System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function ConsumeResultSetAsync (startCommandIndex As Integer, reader As RelationalDataReader, cancellationToken As CancellationToken) As Task(Of Integer)" />
+      <MemberSignature Language="F#" Value="abstract member ConsumeResultSetAsync : int * Microsoft.EntityFrameworkCore.Storage.RelationalDataReader * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;int&gt;&#xA;override this.ConsumeResultSetAsync : int * Microsoft.EntityFrameworkCore.Storage.RelationalDataReader * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;int&gt;" Usage="affectedCountModificationCommandBatch.ConsumeResultSetAsync (startCommandIndex, reader, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="startCommandIndex" Type="System.Int32" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="reader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="startCommandIndex">The ordinal of the first result set being consumed.</param>
+        <param name="reader">The data reader.</param>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+                Consumes the data reader created by <see cref="M:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,System.Threading.CancellationToken)" />,
+                propagating values back into the <see cref="T:Microsoft.EntityFrameworkCore.Update.ModificationCommand" />.
+            </summary>
+        <returns>
+                A task that represents the asynchronous operation.
+                The task contains the ordinal of the next command that must be consumed.
+            </returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
     <Member MemberName="ConsumeResultSetWithoutPropagation">
@@ -508,6 +598,70 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="ConsumeResultSetWithRowsAffectedOnly">
+      <MemberSignature Language="C#" Value="protected virtual int ConsumeResultSetWithRowsAffectedOnly (int commandIndex, Microsoft.EntityFrameworkCore.Storage.RelationalDataReader reader);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance int32 ConsumeResultSetWithRowsAffectedOnly(int32 commandIndex, class Microsoft.EntityFrameworkCore.Storage.RelationalDataReader reader) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnly(System.Int32,Microsoft.EntityFrameworkCore.Storage.RelationalDataReader)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function ConsumeResultSetWithRowsAffectedOnly (commandIndex As Integer, reader As RelationalDataReader) As Integer" />
+      <MemberSignature Language="F#" Value="abstract member ConsumeResultSetWithRowsAffectedOnly : int * Microsoft.EntityFrameworkCore.Storage.RelationalDataReader -&gt; int&#xA;override this.ConsumeResultSetWithRowsAffectedOnly : int * Microsoft.EntityFrameworkCore.Storage.RelationalDataReader -&gt; int" Usage="affectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnly (commandIndex, reader)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandIndex" Type="System.Int32" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="reader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandIndex">The ordinal of the command being consumed.</param>
+        <param name="reader">The data reader.</param>
+        <summary>
+                Consumes the data reader created by <see cref="M:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(Microsoft.EntityFrameworkCore.Storage.IRelationalConnection)" />
+                without propagating values back into the <see cref="T:Microsoft.EntityFrameworkCore.Update.ModificationCommand" />.
+            </summary>
+        <returns>The ordinal of the next command that must be consumed.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConsumeResultSetWithRowsAffectedOnlyAsync">
+      <MemberSignature Language="C#" Value="protected virtual System.Threading.Tasks.Task&lt;int&gt; ConsumeResultSetWithRowsAffectedOnlyAsync (int commandIndex, Microsoft.EntityFrameworkCore.Storage.RelationalDataReader reader, System.Threading.CancellationToken cancellationToken);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;int32&gt; ConsumeResultSetWithRowsAffectedOnlyAsync(int32 commandIndex, class Microsoft.EntityFrameworkCore.Storage.RelationalDataReader reader, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnlyAsync(System.Int32,Microsoft.EntityFrameworkCore.Storage.RelationalDataReader,System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function ConsumeResultSetWithRowsAffectedOnlyAsync (commandIndex As Integer, reader As RelationalDataReader, cancellationToken As CancellationToken) As Task(Of Integer)" />
+      <MemberSignature Language="F#" Value="abstract member ConsumeResultSetWithRowsAffectedOnlyAsync : int * Microsoft.EntityFrameworkCore.Storage.RelationalDataReader * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;int&gt;&#xA;override this.ConsumeResultSetWithRowsAffectedOnlyAsync : int * Microsoft.EntityFrameworkCore.Storage.RelationalDataReader * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;int&gt;" Usage="affectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnlyAsync (commandIndex, reader, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="commandIndex" Type="System.Int32" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="reader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="commandIndex">The ordinal of the command being consumed.</param>
+        <param name="reader">The data reader.</param>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+                Consumes the data reader created by <see cref="M:Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,System.Threading.CancellationToken)" />
+                without propagating values back into the <see cref="T:Microsoft.EntityFrameworkCore.Update.ModificationCommand" />.
+            </summary>
+        <returns>
+                A task that represents the asynchronous operation.
+                The task contains the ordinal of the next command that must be consumed.
+            </returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
+      </Docs>
+    </Member>
     <Member MemberName="ThrowAggregateUpdateConcurrencyException">
       <MemberSignature Language="C#" Value="protected virtual void ThrowAggregateUpdateConcurrencyException (int commandIndex, int expectedRowsAffected, int rowsAffected);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ThrowAggregateUpdateConcurrencyException(int32 commandIndex, int32 expectedRowsAffected, int32 rowsAffected) cil managed" />
@@ -535,9 +689,9 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="commandIndex" Type="System.Int32" />
-        <Parameter Name="expectedRowsAffected" Type="System.Int32" />
-        <Parameter Name="rowsAffected" Type="System.Int32" />
+        <Parameter Name="commandIndex" Type="System.Int32" Index="0" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="expectedRowsAffected" Type="System.Int32" Index="1" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
+        <Parameter Name="rowsAffected" Type="System.Int32" Index="2" FrameworkAlternate="efcore-1.0;efcore-1.1;efcore-2.0;efcore-2.1;efcore-2.2;efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="commandIndex">The ordinal of the command.</param>
@@ -547,6 +701,72 @@
                 Throws an exception indicating the command affected an unexpected number of rows.
             </summary>
         <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ThrowAggregateUpdateConcurrencyException">
+      <MemberSignature Language="C#" Value="protected virtual void ThrowAggregateUpdateConcurrencyException (Microsoft.EntityFrameworkCore.Storage.RelationalDataReader reader, int commandIndex, int expectedRowsAffected, int rowsAffected);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ThrowAggregateUpdateConcurrencyException(class Microsoft.EntityFrameworkCore.Storage.RelationalDataReader reader, int32 commandIndex, int32 expectedRowsAffected, int32 rowsAffected) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ThrowAggregateUpdateConcurrencyException(Microsoft.EntityFrameworkCore.Storage.RelationalDataReader,System.Int32,System.Int32,System.Int32)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub ThrowAggregateUpdateConcurrencyException (reader As RelationalDataReader, commandIndex As Integer, expectedRowsAffected As Integer, rowsAffected As Integer)" />
+      <MemberSignature Language="F#" Value="abstract member ThrowAggregateUpdateConcurrencyException : Microsoft.EntityFrameworkCore.Storage.RelationalDataReader * int * int * int -&gt; unit&#xA;override this.ThrowAggregateUpdateConcurrencyException : Microsoft.EntityFrameworkCore.Storage.RelationalDataReader * int * int * int -&gt; unit" Usage="affectedCountModificationCommandBatch.ThrowAggregateUpdateConcurrencyException (reader, commandIndex, expectedRowsAffected, rowsAffected)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="reader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="commandIndex" Type="System.Int32" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="expectedRowsAffected" Type="System.Int32" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="rowsAffected" Type="System.Int32" Index="3" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="reader">The data reader.</param>
+        <param name="commandIndex">The ordinal of the command.</param>
+        <param name="expectedRowsAffected">The expected number of rows affected.</param>
+        <param name="rowsAffected">The actual number of rows affected.</param>
+        <summary>
+                Throws an exception indicating the command affected an unexpected number of rows.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ThrowAggregateUpdateConcurrencyExceptionAsync">
+      <MemberSignature Language="C#" Value="protected virtual System.Threading.Tasks.Task ThrowAggregateUpdateConcurrencyExceptionAsync (Microsoft.EntityFrameworkCore.Storage.RelationalDataReader reader, int commandIndex, int expectedRowsAffected, int rowsAffected, System.Threading.CancellationToken cancellationToken);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Threading.Tasks.Task ThrowAggregateUpdateConcurrencyExceptionAsync(class Microsoft.EntityFrameworkCore.Storage.RelationalDataReader reader, int32 commandIndex, int32 expectedRowsAffected, int32 rowsAffected, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ThrowAggregateUpdateConcurrencyExceptionAsync(Microsoft.EntityFrameworkCore.Storage.RelationalDataReader,System.Int32,System.Int32,System.Int32,System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function ThrowAggregateUpdateConcurrencyExceptionAsync (reader As RelationalDataReader, commandIndex As Integer, expectedRowsAffected As Integer, rowsAffected As Integer, cancellationToken As CancellationToken) As Task" />
+      <MemberSignature Language="F#" Value="abstract member ThrowAggregateUpdateConcurrencyExceptionAsync : Microsoft.EntityFrameworkCore.Storage.RelationalDataReader * int * int * int * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&#xA;override this.ThrowAggregateUpdateConcurrencyExceptionAsync : Microsoft.EntityFrameworkCore.Storage.RelationalDataReader * int * int * int * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="affectedCountModificationCommandBatch.ThrowAggregateUpdateConcurrencyExceptionAsync (reader, commandIndex, expectedRowsAffected, rowsAffected, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="reader" Type="Microsoft.EntityFrameworkCore.Storage.RelationalDataReader" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="commandIndex" Type="System.Int32" Index="1" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="expectedRowsAffected" Type="System.Int32" Index="2" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="rowsAffected" Type="System.Int32" Index="3" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="4" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="reader">The data reader.</param>
+        <param name="commandIndex">The ordinal of the command.</param>
+        <param name="expectedRowsAffected">The expected number of rows affected.</param>
+        <param name="rowsAffected">The actual number of rows affected.</param>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+                Throws an exception indicating the command affected an unexpected number of rows.
+            </summary>
+        <returns> A task that represents the asynchronous operation.</returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
       </Docs>
     </Member>
   </Members>

@@ -7,6 +7,7 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Docs>
@@ -14,11 +15,46 @@
                 Service which helps with various aspects of navigation expansion extensibility.
             </summary>
     <remarks>
-                See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
-                and <see href="https://aka.ms/efcore-docs-how-query-works">How EF Core queries work</see> for more information.
-            </remarks>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
+                    is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
+                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
+                </para>
+      <para>
+                    See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
+                    and <see href="https://aka.ms/efcore-docs-how-query-works">How EF Core queries work</see> for more information and examples.
+                </para>
+    </remarks>
   </Docs>
   <Members>
+    <Member MemberName="AreQueryRootsCompatible">
+      <MemberSignature Language="C#" Value="public bool AreQueryRootsCompatible (Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression? first, Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression? second);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool AreQueryRootsCompatible(class Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression first, class Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression second) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.INavigationExpansionExtensibilityHelper.AreQueryRootsCompatible(Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression,Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression)" />
+      <MemberSignature Language="VB.NET" Value="Public Function AreQueryRootsCompatible (first As EntityQueryRootExpression, second As EntityQueryRootExpression) As Boolean" />
+      <MemberSignature Language="F#" Value="abstract member AreQueryRootsCompatible : Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression * Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression -&gt; bool" Usage="iNavigationExpansionExtensibilityHelper.AreQueryRootsCompatible (first, second)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="first" Type="Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="second" Type="Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="first">The first query root.</param>
+        <param name="second">The second query root.</param>
+        <summary>
+                Checks whether two query roots are compatible for a set operation to combine them.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="AreQueryRootsCompatible">
       <MemberSignature Language="C#" Value="public bool AreQueryRootsCompatible (Microsoft.EntityFrameworkCore.Query.QueryRootExpression? first, Microsoft.EntityFrameworkCore.Query.QueryRootExpression? second);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool AreQueryRootsCompatible(class Microsoft.EntityFrameworkCore.Query.QueryRootExpression first, class Microsoft.EntityFrameworkCore.Query.QueryRootExpression second) cil managed" />
@@ -34,14 +70,42 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="first" Type="Microsoft.EntityFrameworkCore.Query.QueryRootExpression" />
-        <Parameter Name="second" Type="Microsoft.EntityFrameworkCore.Query.QueryRootExpression" />
+        <Parameter Name="first" Type="Microsoft.EntityFrameworkCore.Query.QueryRootExpression" Index="0" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="second" Type="Microsoft.EntityFrameworkCore.Query.QueryRootExpression" Index="1" FrameworkAlternate="efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="first">The first query root.</param>
         <param name="second">The second query root.</param>
         <summary>
                 Checks whether two query roots are compatible for a set operation to combine them.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateQueryRoot">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression CreateQueryRoot (Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType, Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression? source);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression CreateQueryRoot(class Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType, class Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression source) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.INavigationExpansionExtensibilityHelper.CreateQueryRoot(Microsoft.EntityFrameworkCore.Metadata.IEntityType,Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression)" />
+      <MemberSignature Language="VB.NET" Value="Public Function CreateQueryRoot (entityType As IEntityType, source As EntityQueryRootExpression) As EntityQueryRootExpression" />
+      <MemberSignature Language="F#" Value="abstract member CreateQueryRoot : Microsoft.EntityFrameworkCore.Metadata.IEntityType * Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression -&gt; Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression" Usage="iNavigationExpansionExtensibilityHelper.CreateQueryRoot (entityType, source)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="entityType">Entity type of the new <see cref="T:Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression" />.</param>
+        <param name="source">Source expression.</param>
+        <summary>
+                Creates a new <see cref="T:Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression" />.
             </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
@@ -62,8 +126,8 @@
         <ReturnType>Microsoft.EntityFrameworkCore.Query.QueryRootExpression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" />
-        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.Query.QueryRootExpression" />
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="0" FrameworkAlternate="efcore-6.0" />
+        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.Query.QueryRootExpression" Index="1" FrameworkAlternate="efcore-6.0" />
       </Parameters>
       <Docs>
         <param name="entityType">Entity type of the new <see cref="T:Microsoft.EntityFrameworkCore.Query.QueryRootExpression" />.</param>
@@ -72,6 +136,33 @@
                 Creates a new <see cref="T:Microsoft.EntityFrameworkCore.Query.QueryRootExpression" />.
             </summary>
         <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidateQueryRootCreation">
+      <MemberSignature Language="C#" Value="public void ValidateQueryRootCreation (Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType, Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression? source);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void ValidateQueryRootCreation(class Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType, class Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression source) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.INavigationExpansionExtensibilityHelper.ValidateQueryRootCreation(Microsoft.EntityFrameworkCore.Metadata.IEntityType,Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub ValidateQueryRootCreation (entityType As IEntityType, source As EntityQueryRootExpression)" />
+      <MemberSignature Language="F#" Value="abstract member ValidateQueryRootCreation : Microsoft.EntityFrameworkCore.Metadata.IEntityType * Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression -&gt; unit" Usage="iNavigationExpansionExtensibilityHelper.ValidateQueryRootCreation (entityType, source)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="0" FrameworkAlternate="efcore-7.0" />
+        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression" Index="1" FrameworkAlternate="efcore-7.0" />
+      </Parameters>
+      <Docs>
+        <param name="entityType">Entity type of the new <see cref="T:Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression" />.</param>
+        <param name="source">Source expression.</param>
+        <summary>
+                Validates whether a new <see cref="T:Microsoft.EntityFrameworkCore.Query.EntityQueryRootExpression" /> can be created.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
