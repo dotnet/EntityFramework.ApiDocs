@@ -10,6 +10,7 @@
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
     <AssemblyVersion>7.0.0.0</AssemblyVersion>
     <AssemblyVersion>8.0.0.0</AssemblyVersion>
+    <AssemblyVersion>9.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -25,18 +26,16 @@
             </remarks>
   </Docs>
   <Members>
-    <Member MemberName="FromSqlRaw&lt;TEntity&gt;">
-      <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; FromSqlRaw&lt;TEntity&gt; (this Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt; source, string sql, params object[] parameters) where TEntity : class;" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; FromSqlRaw&lt;class TEntity&gt;(class Microsoft.EntityFrameworkCore.DbSet`1&lt;!!TEntity&gt; source, string sql, object[] parameters) cil managed" />
-      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.FromSqlRaw``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.String,System.Object[])" />
-      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function FromSqlRaw(Of TEntity As Class) (source As DbSet(Of TEntity), sql As String, ParamArray parameters As Object()) As IQueryable(Of TEntity)" />
-      <MemberSignature Language="F#" Value="static member FromSqlRaw : Microsoft.EntityFrameworkCore.DbSet&lt;'Entity (requires 'Entity : null)&gt; * string * obj[] -&gt; System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; (requires 'Entity : null)" Usage="Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.FromSqlRaw (source, sql, parameters)" />
+    <Member MemberName="FromSql&lt;TEntity&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; FromSql&lt;TEntity&gt; (this Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt; source, FormattableString sql) where TEntity : class;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; FromSql&lt;class TEntity&gt;(class Microsoft.EntityFrameworkCore.DbSet`1&lt;!!TEntity&gt; source, class System.FormattableString sql) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.FromSql``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.FormattableString)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function FromSql(Of TEntity As Class) (source As DbSet(Of TEntity), sql As FormattableString) As IQueryable(Of TEntity)" />
+      <MemberSignature Language="F#" Value="static member FromSql : Microsoft.EntityFrameworkCore.DbSet&lt;'Entity (requires 'Entity : null)&gt; * FormattableString -&gt; System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; (requires 'Entity : null)" Usage="Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.FromSql (source, sql)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
-        <AssemblyVersion>6.0.0.0</AssemblyVersion>
-        <AssemblyVersion>7.0.0.0</AssemblyVersion>
-        <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
@@ -49,8 +48,8 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0" />
-        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0">
+        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt;" Index="0" FrameworkAlternate="efcore-9.0" RefType="this" />
+        <Parameter Name="sql" Type="System.FormattableString" Index="1" FrameworkAlternate="efcore-9.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Query.NotParameterized]</AttributeName>
@@ -58,7 +57,70 @@
             </Attribute>
           </Attributes>
         </Parameter>
-        <Parameter Name="parameters" Type="System.Object[]" Index="2" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0">
+      </Parameters>
+      <Docs>
+        <typeparam name="TEntity">The type of the elements of <paramref name="source" />.</typeparam>
+        <param name="source">
+                An <see cref="T:System.Linq.IQueryable`1" /> to use as the base of the interpolated string SQL query (typically a <see cref="T:Microsoft.EntityFrameworkCore.DbSet`1" />).
+            </param>
+        <param name="sql">The interpolated string representing a SQL query with parameters.</param>
+        <summary>
+                Creates a LINQ query based on an interpolated string representing a SQL query.
+            </summary>
+        <returns>An <see cref="T:System.Linq.IQueryable`1" /> representing the interpolated string SQL query.</returns>
+        <remarks>
+          <para>
+                    If the database provider supports composing on the supplied SQL, you can compose on top of the raw SQL query using
+                    LINQ operators.
+                </para>
+          <para>
+                    As with any API that accepts SQL it is important to parameterize any user input to protect against a SQL injection
+                    attack. You can include interpolated parameter place holders in the SQL query string. Any interpolated parameter values
+                    you supply will automatically be converted to a Cosmos parameter.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-raw-sql">Executing raw SQL commands with EF Core</see>
+                    for more information and examples.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FromSqlRaw&lt;TEntity&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; FromSqlRaw&lt;TEntity&gt; (this Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt; source, string sql, params object[] parameters) where TEntity : class;" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; FromSqlRaw&lt;class TEntity&gt;(class Microsoft.EntityFrameworkCore.DbSet`1&lt;!!TEntity&gt; source, string sql, object[] parameters) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.FromSqlRaw``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.String,System.Object[])" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function FromSqlRaw(Of TEntity As Class) (source As DbSet(Of TEntity), sql As String, ParamArray parameters As Object()) As IQueryable(Of TEntity)" />
+      <MemberSignature Language="F#" Value="static member FromSqlRaw : Microsoft.EntityFrameworkCore.DbSet&lt;'Entity (requires 'Entity : null)&gt; * string * obj[] -&gt; System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; (requires 'Entity : null)" Usage="Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.FromSqlRaw (source, sql, parameters)" />
+      <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; FromSqlRaw&lt;TEntity&gt; (this Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt; source, string sql, params object?[] parameters) where TEntity : class;" FrameworkAlternate="efcore-9.0" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+        <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TEntity">
+          <Constraints>
+            <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="Microsoft.EntityFrameworkCore.DbSet&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="sql" Type="System.String" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Query.NotParameterized]</AttributeName>
+              <AttributeName Language="F#">[&lt;Microsoft.EntityFrameworkCore.Query.NotParameterized&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+        <Parameter Name="parameters" Type="System.Object[]" Index="2" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[System.ParamArray]</AttributeName>
@@ -95,6 +157,97 @@
         </remarks>
       </Docs>
     </Member>
+    <Member MemberName="ToPageAsync&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.CosmosPage&lt;TSource&gt;&gt; ToPageAsync&lt;TSource&gt; (this System.Linq.IQueryable&lt;TSource&gt; source, int pageSize, string? continuationToken, int? responseContinuationTokenLimitInKb = default, System.Threading.CancellationToken cancellationToken = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Threading.Tasks.Task`1&lt;valuetype Microsoft.EntityFrameworkCore.CosmosPage`1&lt;!!TSource&gt;&gt; ToPageAsync&lt;TSource&gt;(class System.Linq.IQueryable`1&lt;!!TSource&gt; source, int32 pageSize, string continuationToken, valuetype System.Nullable`1&lt;int32&gt; responseContinuationTokenLimitInKb, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.ToPageAsync``1(System.Linq.IQueryable{``0},System.Int32,System.String,System.Nullable{System.Int32},System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function ToPageAsync(Of TSource) (source As IQueryable(Of TSource), pageSize As Integer, continuationToken As String, Optional responseContinuationTokenLimitInKb As Nullable(Of Integer) = Nothing, Optional cancellationToken As CancellationToken = Nothing) As Task(Of CosmosPage(Of TSource))" />
+      <MemberSignature Language="F#" Value="static member ToPageAsync : System.Linq.IQueryable&lt;'Source&gt; * int * string * Nullable&lt;int&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.CosmosPage&lt;'Source&gt;&gt;" Usage="Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.ToPageAsync (source, pageSize, continuationToken, responseContinuationTokenLimitInKb, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-9.0">
+          <AttributeName Language="C#">[System.Diagnostics.CodeAnalysis.Experimental("EF9102")]</AttributeName>
+          <AttributeName Language="F#">[&lt;System.Diagnostics.CodeAnalysis.Experimental("EF9102")&gt;]</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;Microsoft.EntityFrameworkCore.CosmosPage&lt;TSource&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TSource&gt;" Index="0" FrameworkAlternate="efcore-9.0" RefType="this" />
+        <Parameter Name="pageSize" Type="System.Int32" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="continuationToken" Type="System.String" Index="2" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="responseContinuationTokenLimitInKb" Type="System.Nullable&lt;System.Int32&gt;" Index="3" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="4" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="source">The source query.</param>
+        <param name="continuationToken">
+                An optional continuation token returned from a previous execution of this query via
+                <see cref="P:Microsoft.EntityFrameworkCore.CosmosPage`1.ContinuationToken" />. If <see langword="null" />, retrieves query results from the start.
+            </param>
+        <param name="pageSize">
+                The maximum number of results in the returned <see cref="T:Microsoft.EntityFrameworkCore.CosmosPage`1" />. The page may contain fewer results if the database
+                did not contain enough matching results.
+            </param>
+        <param name="responseContinuationTokenLimitInKb">Limits the length of continuation token in the query response.</param>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+                Allows paginating through query results by repeatedly executing the same query, passing continuation tokens to retrieve
+                successive pages of the result set, and specifying the maximum number of results per page.
+            </summary>
+        <returns>A <see cref="T:Microsoft.EntityFrameworkCore.CosmosPage`1" /> containing at most <paramref name="pageSize" /> results.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="WithPartitionKey&lt;TEntity&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; WithPartitionKey&lt;TEntity&gt; (this System.Linq.IQueryable&lt;TEntity&gt; source, object partitionKeyValue) where TEntity : class;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; WithPartitionKey&lt;class TEntity&gt;(class System.Linq.IQueryable`1&lt;!!TEntity&gt; source, object partitionKeyValue) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.WithPartitionKey``1(System.Linq.IQueryable{``0},System.Object)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function WithPartitionKey(Of TEntity As Class) (source As IQueryable(Of TEntity), partitionKeyValue As Object) As IQueryable(Of TEntity)" />
+      <MemberSignature Language="F#" Value="static member WithPartitionKey : System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; * obj -&gt; System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; (requires 'Entity : null)" Usage="Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.WithPartitionKey (source, partitionKeyValue)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TEntity">
+          <Constraints>
+            <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" Index="0" FrameworkAlternate="efcore-9.0" RefType="this" />
+        <Parameter Name="partitionKeyValue" Type="System.Object" Index="1" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TEntity">The type of entity being queried.</typeparam>
+        <param name="source">The source query.</param>
+        <param name="partitionKeyValue">The partition key value.</param>
+        <summary>
+                Specify the partition key for partition used for the query.
+                Required when using a resource token that provides permission based on a partition key for authentication,
+            </summary>
+        <returns>A new query with the set partition key.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see>, and
+                <see href="https://aka.ms/efcore-docs-cosmos">Accessing Azure Cosmos DB with EF Core</see> for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
     <Member MemberName="WithPartitionKey&lt;TEntity&gt;">
       <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; WithPartitionKey&lt;TEntity&gt; (this System.Linq.IQueryable&lt;TEntity&gt; source, string partitionKey) where TEntity : class;" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; WithPartitionKey&lt;class TEntity&gt;(class System.Linq.IQueryable`1&lt;!!TEntity&gt; source, string partitionKey) cil managed" />
@@ -120,8 +273,8 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" RefType="this" />
-        <Parameter Name="partitionKey" Type="System.String">
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0" />
+        <Parameter Name="partitionKey" Type="System.String" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0">
           <Attributes>
             <Attribute>
               <AttributeName Language="C#">[Microsoft.EntityFrameworkCore.Query.NotParameterized]</AttributeName>
@@ -137,6 +290,92 @@
         <summary>
                 Specify the partition key for partition used for the query. Required when using
                 a resource token that provides permission based on a partition key for authentication,
+            </summary>
+        <returns>A new query with the set partition key.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see>, and
+                <see href="https://aka.ms/efcore-docs-cosmos">Accessing Azure Cosmos DB with EF Core</see> for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="WithPartitionKey&lt;TEntity&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; WithPartitionKey&lt;TEntity&gt; (this System.Linq.IQueryable&lt;TEntity&gt; source, object partitionKeyValue1, object partitionKeyValue2) where TEntity : class;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; WithPartitionKey&lt;class TEntity&gt;(class System.Linq.IQueryable`1&lt;!!TEntity&gt; source, object partitionKeyValue1, object partitionKeyValue2) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.WithPartitionKey``1(System.Linq.IQueryable{``0},System.Object,System.Object)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function WithPartitionKey(Of TEntity As Class) (source As IQueryable(Of TEntity), partitionKeyValue1 As Object, partitionKeyValue2 As Object) As IQueryable(Of TEntity)" />
+      <MemberSignature Language="F#" Value="static member WithPartitionKey : System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; * obj * obj -&gt; System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; (requires 'Entity : null)" Usage="Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.WithPartitionKey (source, partitionKeyValue1, partitionKeyValue2)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TEntity">
+          <Constraints>
+            <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" Index="0" FrameworkAlternate="efcore-9.0" RefType="this" />
+        <Parameter Name="partitionKeyValue1" Type="System.Object" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="partitionKeyValue2" Type="System.Object" Index="2" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TEntity">The type of entity being queried.</typeparam>
+        <param name="source">The source query.</param>
+        <param name="partitionKeyValue1">The first value in a hierarchical partition key.</param>
+        <param name="partitionKeyValue2">The second value in a hierarchical partition key.</param>
+        <summary>
+                Specify the partition key for partition used for the query.
+                Required when using a resource token that provides permission based on a partition key for authentication,
+            </summary>
+        <returns>A new query with the set partition key.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-query">Querying data with EF Core</see>, and
+                <see href="https://aka.ms/efcore-docs-cosmos">Accessing Azure Cosmos DB with EF Core</see> for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="WithPartitionKey&lt;TEntity&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.IQueryable&lt;TEntity&gt; WithPartitionKey&lt;TEntity&gt; (this System.Linq.IQueryable&lt;TEntity&gt; source, object partitionKeyValue1, object partitionKeyValue2, object partitionKeyValue3) where TEntity : class;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Linq.IQueryable`1&lt;!!TEntity&gt; WithPartitionKey&lt;class TEntity&gt;(class System.Linq.IQueryable`1&lt;!!TEntity&gt; source, object partitionKeyValue1, object partitionKeyValue2, object partitionKeyValue3) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.WithPartitionKey``1(System.Linq.IQueryable{``0},System.Object,System.Object,System.Object)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function WithPartitionKey(Of TEntity As Class) (source As IQueryable(Of TEntity), partitionKeyValue1 As Object, partitionKeyValue2 As Object, partitionKeyValue3 As Object) As IQueryable(Of TEntity)" />
+      <MemberSignature Language="F#" Value="static member WithPartitionKey : System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; * obj * obj * obj -&gt; System.Linq.IQueryable&lt;'Entity (requires 'Entity : null)&gt; (requires 'Entity : null)" Usage="Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.WithPartitionKey (source, partitionKeyValue1, partitionKeyValue2, partitionKeyValue3)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.IQueryable&lt;TEntity&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TEntity">
+          <Constraints>
+            <ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="System.Linq.IQueryable&lt;TEntity&gt;" Index="0" FrameworkAlternate="efcore-9.0" RefType="this" />
+        <Parameter Name="partitionKeyValue1" Type="System.Object" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="partitionKeyValue2" Type="System.Object" Index="2" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="partitionKeyValue3" Type="System.Object" Index="3" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TEntity">The type of entity being queried.</typeparam>
+        <param name="source">The source query.</param>
+        <param name="partitionKeyValue1">The first value in a hierarchical partition key.</param>
+        <param name="partitionKeyValue2">The second value in a hierarchical partition key.</param>
+        <param name="partitionKeyValue3">The third value in a hierarchical partition key.</param>
+        <summary>
+                Specify the partition key for partition used for the query.
+                Required when using a resource token that provides permission based on a partition key for authentication,
             </summary>
         <returns>A new query with the set partition key.</returns>
         <remarks>
