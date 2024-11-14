@@ -21,6 +21,7 @@
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
     <AssemblyVersion>7.0.0.0</AssemblyVersion>
     <AssemblyVersion>8.0.0.0</AssemblyVersion>
+    <AssemblyVersion>9.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -32,38 +33,34 @@
             </summary>
     <remarks>
                 See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
-                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server and Azure SQL databases with EF Core</see>
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
                 for more information and examples.
             </remarks>
   </Docs>
   <Members>
-    <Member MemberName="UseSqlServer">
-      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseSqlServer (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt; sqlServerOptionsAction = default);" FrameworkAlternate="efcore-5.0" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseSqlServer(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt; sqlServerOptionsAction) cil managed" />
-      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder})" />
-      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseSqlServer (optionsBuilder As DbContextOptionsBuilder, Optional sqlServerOptionsAction As Action(Of SqlServerDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder" />
-      <MemberSignature Language="F#" Value="static member UseSqlServer : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer (optionsBuilder, sqlServerOptionsAction)" />
-      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseSqlServer (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;? sqlServerOptionsAction = default);" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0" />
+    <Member MemberName="ConfigureSqlEngine">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder ConfigureSqlEngine (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlEngineDbContextOptionsBuilder&gt;? sqlEngineOptionsAction = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder ConfigureSqlEngine(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.SqlEngineDbContextOptionsBuilder&gt; sqlEngineOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.ConfigureSqlEngine(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.SqlEngineDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function ConfigureSqlEngine (optionsBuilder As DbContextOptionsBuilder, Optional sqlEngineOptionsAction As Action(Of SqlEngineDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder" />
+      <MemberSignature Language="F#" Value="static member ConfigureSqlEngine : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlEngineDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.ConfigureSqlEngine (optionsBuilder, sqlEngineOptionsAction)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
-        <AssemblyVersion>5.0.0.0</AssemblyVersion>
-        <AssemblyVersion>6.0.0.0</AssemblyVersion>
-        <AssemblyVersion>7.0.0.0</AssemblyVersion>
-        <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" RefType="this" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0" />
-        <Parameter Name="sqlServerOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0" />
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="sqlEngineOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlEngineDbContextOptionsBuilder&gt;" Index="1" FrameworkAlternate="efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="optionsBuilder">The builder being used to configure the context.</param>
-        <param name="sqlServerOptionsAction">An optional action to allow additional SQL Server specific configuration.</param>
+        <param name="sqlEngineOptionsAction">An optional action to allow additional SQL Server, Azure SQL, Azure Synapse configuration.</param>
         <summary>
-                Configures the context to connect to a Microsoft SQL Server database, but without initially setting any
+                Configures the context to connect to any of SQL Server, Azure SQL, Azure Synapse databases, but without initially setting any
                 <see cref="T:System.Data.Common.DbConnection" /> or connection string.
             </summary>
         <returns>The options builder so that further configuration can be chained.</returns>
@@ -75,7 +72,792 @@
                 </para>
           <para>
                     See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
-                    <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server and Azure SQL databases with EF Core</see>
+                    <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                    for more information and examples.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConfigureSqlEngine&lt;TContext&gt;">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; ConfigureSqlEngine&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlEngineDbContextOptionsBuilder&gt;? sqlEngineOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; ConfigureSqlEngine&lt;(class Microsoft.EntityFrameworkCore.DbContext) TContext&gt;(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; optionsBuilder, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.SqlEngineDbContextOptionsBuilder&gt; sqlEngineOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.ConfigureSqlEngine``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0},System.Action{Microsoft.EntityFrameworkCore.Infrastructure.SqlEngineDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function ConfigureSqlEngine(Of TContext As DbContext) (optionsBuilder As DbContextOptionsBuilder(Of TContext), Optional sqlEngineOptionsAction As Action(Of SqlEngineDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder(Of TContext)" />
+      <MemberSignature Language="F#" Value="static member ConfigureSqlEngine : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlEngineDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.ConfigureSqlEngine (optionsBuilder, sqlEngineOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TContext">
+          <Constraints>
+            <BaseTypeName>Microsoft.EntityFrameworkCore.DbContext</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="sqlEngineOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlEngineDbContextOptionsBuilder&gt;" Index="1" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TContext">To be added.</typeparam>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="sqlEngineOptionsAction">An optional action to allow additional SQL Server, Azure SQL, Azure Synapse configuration.</param>
+        <summary>
+                Configures the context to connect to any of SQL Server, Azure SQL, Azure Synapse databases, but without initially setting any
+                <see cref="T:System.Data.Common.DbConnection" /> or connection string.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+          <para>
+                    The connection or connection string must be set before the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> is used to connect
+                    to a database. Set a connection using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetDbConnection(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbConnection,System.Boolean)" />.
+                    Set a connection string using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetConnectionString(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)" />.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                    <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                    for more information and examples.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSql">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSql (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;? azureSqlOptionsAction = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSql(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; azureSqlOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSql (optionsBuilder As DbContextOptionsBuilder, Optional azureSqlOptionsAction As Action(Of AzureSqlDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder" />
+      <MemberSignature Language="F#" Value="static member UseAzureSql : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql (optionsBuilder, azureSqlOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSqlOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;" Index="1" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="azureSqlOptionsAction">An optional action to allow additional Azure SQL specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure SQL database, but without initially setting any
+                <see cref="T:System.Data.Common.DbConnection" /> or connection string.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+          <para>
+                    The connection or connection string must be set before the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> is used to connect
+                    to a database. Set a connection using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetDbConnection(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbConnection,System.Boolean)" />.
+                    Set a connection string using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetConnectionString(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)" />.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                    <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                    for more information and examples.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSql">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSql (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, System.Data.Common.DbConnection connection, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;? azureSqlOptionsAction = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSql(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, class System.Data.Common.DbConnection connection, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; azureSqlOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.Data.Common.DbConnection,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSql (optionsBuilder As DbContextOptionsBuilder, connection As DbConnection, Optional azureSqlOptionsAction As Action(Of AzureSqlDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder" />
+      <MemberSignature Language="F#" Value="static member UseAzureSql : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder * System.Data.Common.DbConnection * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql (optionsBuilder, connection, azureSqlOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSqlOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;" Index="2" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="connection">
+                An existing <see cref="T:System.Data.Common.DbConnection" /> to be used to connect to the database. If the connection is
+                in the open state then EF will not open or close the connection. If the connection is in the closed
+                state then EF will open and close the connection as needed. The caller owns the connection and is
+                responsible for its disposal.
+            </param>
+        <param name="azureSqlOptionsAction">An optional action to allow additional Azure SQL specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure SQL database.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSql">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSql (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, string? connectionString, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;? azureSqlOptionsAction = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSql(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, string connectionString, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; azureSqlOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.String,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSql (optionsBuilder As DbContextOptionsBuilder, connectionString As String, Optional azureSqlOptionsAction As Action(Of AzureSqlDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder" />
+      <MemberSignature Language="F#" Value="static member UseAzureSql : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder * string * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql (optionsBuilder, connectionString, azureSqlOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="connectionString" Type="System.String" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSqlOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;" Index="2" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="connectionString">The connection string of the database to connect to.</param>
+        <param name="azureSqlOptionsAction">An optional action to allow additional Azure SQL specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure SQL database.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSql">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSql (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, System.Data.Common.DbConnection connection, bool contextOwnsConnection, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;? azureSqlOptionsAction = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSql(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, class System.Data.Common.DbConnection connection, bool contextOwnsConnection, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; azureSqlOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.Data.Common.DbConnection,System.Boolean,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSql (optionsBuilder As DbContextOptionsBuilder, connection As DbConnection, contextOwnsConnection As Boolean, Optional azureSqlOptionsAction As Action(Of AzureSqlDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder" />
+      <MemberSignature Language="F#" Value="static member UseAzureSql : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder * System.Data.Common.DbConnection * bool * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql (optionsBuilder, connection, contextOwnsConnection, azureSqlOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="contextOwnsConnection" Type="System.Boolean" Index="2" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSqlOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;" Index="3" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="connection">
+                An existing <see cref="T:System.Data.Common.DbConnection" /> to be used to connect to the database. If the connection is
+                in the open state then EF will not open or close the connection. If the connection is in the closed
+                state then EF will open and close the connection as needed.
+            </param>
+        <param name="contextOwnsConnection">
+                If <see langword="true" />, then EF will take ownership of the connection and will
+                dispose it in the same way it would dispose a connection created by EF. If <see langword="false" />, then the caller still
+                owns the connection and is responsible for its disposal.
+            </param>
+        <param name="azureSqlOptionsAction">An optional action to allow additional Azure SQL specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure SQL database.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSql&lt;TContext&gt;">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseAzureSql&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;? azureSqlOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; UseAzureSql&lt;(class Microsoft.EntityFrameworkCore.DbContext) TContext&gt;(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; optionsBuilder, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; azureSqlOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0},System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSql(Of TContext As DbContext) (optionsBuilder As DbContextOptionsBuilder(Of TContext), Optional azureSqlOptionsAction As Action(Of AzureSqlDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder(Of TContext)" />
+      <MemberSignature Language="F#" Value="static member UseAzureSql : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql (optionsBuilder, azureSqlOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TContext">
+          <Constraints>
+            <BaseTypeName>Microsoft.EntityFrameworkCore.DbContext</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSqlOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;" Index="1" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TContext">To be added.</typeparam>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="azureSqlOptionsAction">An optional action to allow additional Azure SQL specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure SQL database, but without initially setting any
+                <see cref="T:System.Data.Common.DbConnection" /> or connection string.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+          <para>
+                    The connection or connection string must be set before the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> is used to connect
+                    to a database. Set a connection using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetDbConnection(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbConnection,System.Boolean)" />.
+                    Set a connection string using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetConnectionString(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)" />.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                    <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                    for more information and examples.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSql&lt;TContext&gt;">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseAzureSql&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, System.Data.Common.DbConnection connection, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;? azureSqlOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; UseAzureSql&lt;(class Microsoft.EntityFrameworkCore.DbContext) TContext&gt;(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; optionsBuilder, class System.Data.Common.DbConnection connection, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; azureSqlOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0},System.Data.Common.DbConnection,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSql(Of TContext As DbContext) (optionsBuilder As DbContextOptionsBuilder(Of TContext), connection As DbConnection, Optional azureSqlOptionsAction As Action(Of AzureSqlDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder(Of TContext)" />
+      <MemberSignature Language="F#" Value="static member UseAzureSql : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; * System.Data.Common.DbConnection * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql (optionsBuilder, connection, azureSqlOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TContext">
+          <Constraints>
+            <BaseTypeName>Microsoft.EntityFrameworkCore.DbContext</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSqlOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;" Index="2" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TContext">The type of context to be configured.</typeparam>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="connection">
+                An existing <see cref="T:System.Data.Common.DbConnection" /> to be used to connect to the database. If the connection is
+                in the open state then EF will not open or close the connection. If the connection is in the closed
+                state then EF will open and close the connection as needed. The caller owns the connection and is
+                responsible for its disposal.
+            </param>
+        <param name="azureSqlOptionsAction">An optional action to allow additional Azure SQL specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure SQL database.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSql&lt;TContext&gt;">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseAzureSql&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, string? connectionString, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;? azureSqlOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; UseAzureSql&lt;(class Microsoft.EntityFrameworkCore.DbContext) TContext&gt;(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; optionsBuilder, string connectionString, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; azureSqlOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0},System.String,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSql(Of TContext As DbContext) (optionsBuilder As DbContextOptionsBuilder(Of TContext), connectionString As String, Optional azureSqlOptionsAction As Action(Of AzureSqlDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder(Of TContext)" />
+      <MemberSignature Language="F#" Value="static member UseAzureSql : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; * string * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql (optionsBuilder, connectionString, azureSqlOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TContext">
+          <Constraints>
+            <BaseTypeName>Microsoft.EntityFrameworkCore.DbContext</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="connectionString" Type="System.String" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSqlOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;" Index="2" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TContext">The type of context to be configured.</typeparam>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="connectionString">The connection string of the database to connect to.</param>
+        <param name="azureSqlOptionsAction">An optional action to allow additional Azure SQL specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure SQL database.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSql&lt;TContext&gt;">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseAzureSql&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, System.Data.Common.DbConnection connection, bool contextOwnsConnection, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;? azureSqlOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; UseAzureSql&lt;(class Microsoft.EntityFrameworkCore.DbContext) TContext&gt;(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; optionsBuilder, class System.Data.Common.DbConnection connection, bool contextOwnsConnection, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; azureSqlOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0},System.Data.Common.DbConnection,System.Boolean,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSql(Of TContext As DbContext) (optionsBuilder As DbContextOptionsBuilder(Of TContext), connection As DbConnection, contextOwnsConnection As Boolean, Optional azureSqlOptionsAction As Action(Of AzureSqlDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder(Of TContext)" />
+      <MemberSignature Language="F#" Value="static member UseAzureSql : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; * System.Data.Common.DbConnection * bool * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSql (optionsBuilder, connection, contextOwnsConnection, azureSqlOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TContext">
+          <Constraints>
+            <BaseTypeName>Microsoft.EntityFrameworkCore.DbContext</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="contextOwnsConnection" Type="System.Boolean" Index="2" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSqlOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSqlDbContextOptionsBuilder&gt;" Index="3" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TContext">The type of context to be configured.</typeparam>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="connection">
+                An existing <see cref="T:System.Data.Common.DbConnection" /> to be used to connect to the database. If the connection is
+                in the open state then EF will not open or close the connection. If the connection is in the closed
+                state then EF will open and close the connection as needed.
+            </param>
+        <param name="contextOwnsConnection">
+                If <see langword="true" />, then EF will take ownership of the connection and will
+                dispose it in the same way it would dispose a connection created by EF. If <see langword="false" />, then the caller still
+                owns the connection and is responsible for its disposal.
+            </param>
+        <param name="azureSqlOptionsAction">An optional action to allow additional Azure SQL specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure SQL database.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSynapse">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSynapse (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;? azureSynapseOptionsAction = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSynapse(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; azureSynapseOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSynapse (optionsBuilder As DbContextOptionsBuilder, Optional azureSynapseOptionsAction As Action(Of AzureSynapseDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder" />
+      <MemberSignature Language="F#" Value="static member UseAzureSynapse : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse (optionsBuilder, azureSynapseOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSynapseOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;" Index="1" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="azureSynapseOptionsAction">An optional action to allow additional Azure Synapse specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure Synapse database, but without initially setting any
+                <see cref="T:System.Data.Common.DbConnection" /> or connection string.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+          <para>
+                    The connection or connection string must be set before the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> is used to connect
+                    to a database. Set a connection using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetDbConnection(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbConnection,System.Boolean)" />.
+                    Set a connection string using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetConnectionString(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)" />.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                    <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                    for more information and examples.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSynapse">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSynapse (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, System.Data.Common.DbConnection connection, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;? azureSynapseOptionsAction = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSynapse(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, class System.Data.Common.DbConnection connection, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; azureSynapseOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.Data.Common.DbConnection,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSynapse (optionsBuilder As DbContextOptionsBuilder, connection As DbConnection, Optional azureSynapseOptionsAction As Action(Of AzureSynapseDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder" />
+      <MemberSignature Language="F#" Value="static member UseAzureSynapse : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder * System.Data.Common.DbConnection * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse (optionsBuilder, connection, azureSynapseOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSynapseOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;" Index="2" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="connection">
+                An existing <see cref="T:System.Data.Common.DbConnection" /> to be used to connect to the database. If the connection is
+                in the open state then EF will not open or close the connection. If the connection is in the closed
+                state then EF will open and close the connection as needed. The caller owns the connection and is
+                responsible for its disposal.
+            </param>
+        <param name="azureSynapseOptionsAction">An optional action to allow additional Azure Synapse specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure Synapse database.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSynapse">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSynapse (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, string? connectionString, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;? azureSynapseOptionsAction = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSynapse(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, string connectionString, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; azureSynapseOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.String,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSynapse (optionsBuilder As DbContextOptionsBuilder, connectionString As String, Optional azureSynapseOptionsAction As Action(Of AzureSynapseDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder" />
+      <MemberSignature Language="F#" Value="static member UseAzureSynapse : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder * string * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse (optionsBuilder, connectionString, azureSynapseOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="connectionString" Type="System.String" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSynapseOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;" Index="2" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="connectionString">The connection string of the database to connect to.</param>
+        <param name="azureSynapseOptionsAction">An optional action to allow additional Azure Synapse specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure Synapse database.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSynapse">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSynapse (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, System.Data.Common.DbConnection connection, bool contextOwnsConnection, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;? azureSynapseOptionsAction = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseAzureSynapse(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, class System.Data.Common.DbConnection connection, bool contextOwnsConnection, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; azureSynapseOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.Data.Common.DbConnection,System.Boolean,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSynapse (optionsBuilder As DbContextOptionsBuilder, connection As DbConnection, contextOwnsConnection As Boolean, Optional azureSynapseOptionsAction As Action(Of AzureSynapseDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder" />
+      <MemberSignature Language="F#" Value="static member UseAzureSynapse : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder * System.Data.Common.DbConnection * bool * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse (optionsBuilder, connection, contextOwnsConnection, azureSynapseOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="contextOwnsConnection" Type="System.Boolean" Index="2" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSynapseOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;" Index="3" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="connection">
+                An existing <see cref="T:System.Data.Common.DbConnection" /> to be used to connect to the database. If the connection is
+                in the open state then EF will not open or close the connection. If the connection is in the closed
+                state then EF will open and close the connection as needed.
+            </param>
+        <param name="contextOwnsConnection">
+                If <see langword="true" />, then EF will take ownership of the connection and will
+                dispose it in the same way it would dispose a connection created by EF. If <see langword="false" />, then the caller still
+                owns the connection and is responsible for its disposal.
+            </param>
+        <param name="azureSynapseOptionsAction">An optional action to allow additional Azure Synapse specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure Synapse database.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSynapse&lt;TContext&gt;">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseAzureSynapse&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;? azureSynapseOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; UseAzureSynapse&lt;(class Microsoft.EntityFrameworkCore.DbContext) TContext&gt;(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; optionsBuilder, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; azureSynapseOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0},System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSynapse(Of TContext As DbContext) (optionsBuilder As DbContextOptionsBuilder(Of TContext), Optional azureSynapseOptionsAction As Action(Of AzureSynapseDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder(Of TContext)" />
+      <MemberSignature Language="F#" Value="static member UseAzureSynapse : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse (optionsBuilder, azureSynapseOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TContext">
+          <Constraints>
+            <BaseTypeName>Microsoft.EntityFrameworkCore.DbContext</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSynapseOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;" Index="1" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TContext">To be added.</typeparam>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="azureSynapseOptionsAction">An optional action to allow additional Azure Synapse specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure Synapse database, but without initially setting any
+                <see cref="T:System.Data.Common.DbConnection" /> or connection string.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+          <para>
+                    The connection or connection string must be set before the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> is used to connect
+                    to a database. Set a connection using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetDbConnection(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbConnection,System.Boolean)" />.
+                    Set a connection string using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetConnectionString(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)" />.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                    <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                    for more information and examples.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSynapse&lt;TContext&gt;">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseAzureSynapse&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, System.Data.Common.DbConnection connection, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;? azureSynapseOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; UseAzureSynapse&lt;(class Microsoft.EntityFrameworkCore.DbContext) TContext&gt;(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; optionsBuilder, class System.Data.Common.DbConnection connection, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; azureSynapseOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0},System.Data.Common.DbConnection,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSynapse(Of TContext As DbContext) (optionsBuilder As DbContextOptionsBuilder(Of TContext), connection As DbConnection, Optional azureSynapseOptionsAction As Action(Of AzureSynapseDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder(Of TContext)" />
+      <MemberSignature Language="F#" Value="static member UseAzureSynapse : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; * System.Data.Common.DbConnection * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse (optionsBuilder, connection, azureSynapseOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TContext">
+          <Constraints>
+            <BaseTypeName>Microsoft.EntityFrameworkCore.DbContext</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSynapseOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;" Index="2" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TContext">The type of context to be configured.</typeparam>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="connection">
+                An existing <see cref="T:System.Data.Common.DbConnection" /> to be used to connect to the database. If the connection is
+                in the open state then EF will not open or close the connection. If the connection is in the closed
+                state then EF will open and close the connection as needed. The caller owns the connection and is
+                responsible for its disposal.
+            </param>
+        <param name="azureSynapseOptionsAction">An optional action to allow additional Azure Synapse specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure Synapse database.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSynapse&lt;TContext&gt;">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseAzureSynapse&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, string? connectionString, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;? azureSynapseOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; UseAzureSynapse&lt;(class Microsoft.EntityFrameworkCore.DbContext) TContext&gt;(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; optionsBuilder, string connectionString, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; azureSynapseOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0},System.String,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSynapse(Of TContext As DbContext) (optionsBuilder As DbContextOptionsBuilder(Of TContext), connectionString As String, Optional azureSynapseOptionsAction As Action(Of AzureSynapseDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder(Of TContext)" />
+      <MemberSignature Language="F#" Value="static member UseAzureSynapse : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; * string * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse (optionsBuilder, connectionString, azureSynapseOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TContext">
+          <Constraints>
+            <BaseTypeName>Microsoft.EntityFrameworkCore.DbContext</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="connectionString" Type="System.String" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSynapseOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;" Index="2" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TContext">The type of context to be configured.</typeparam>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="connectionString">The connection string of the database to connect to.</param>
+        <param name="azureSynapseOptionsAction">An optional action to allow additional Azure Synapse specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure Synapse database.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseAzureSynapse&lt;TContext&gt;">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseAzureSynapse&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, System.Data.Common.DbConnection connection, bool contextOwnsConnection, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;? azureSynapseOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; UseAzureSynapse&lt;(class Microsoft.EntityFrameworkCore.DbContext) TContext&gt;(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder`1&lt;!!TContext&gt; optionsBuilder, class System.Data.Common.DbConnection connection, bool contextOwnsConnection, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; azureSynapseOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0},System.Data.Common.DbConnection,System.Boolean,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseAzureSynapse(Of TContext As DbContext) (optionsBuilder As DbContextOptionsBuilder(Of TContext), connection As DbConnection, contextOwnsConnection As Boolean, Optional azureSynapseOptionsAction As Action(Of AzureSynapseDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder(Of TContext)" />
+      <MemberSignature Language="F#" Value="static member UseAzureSynapse : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; * System.Data.Common.DbConnection * bool * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseAzureSynapse (optionsBuilder, connection, contextOwnsConnection, azureSynapseOptionsAction)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TContext">
+          <Constraints>
+            <BaseTypeName>Microsoft.EntityFrameworkCore.DbContext</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="contextOwnsConnection" Type="System.Boolean" Index="2" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="azureSynapseOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.AzureSynapseDbContextOptionsBuilder&gt;" Index="3" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TContext">The type of context to be configured.</typeparam>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="connection">
+                An existing <see cref="T:System.Data.Common.DbConnection" /> to be used to connect to the database. If the connection is
+                in the open state then EF will not open or close the connection. If the connection is in the closed
+                state then EF will open and close the connection as needed.
+            </param>
+        <param name="contextOwnsConnection">
+                If <see langword="true" />, then EF will take ownership of the connection and will
+                dispose it in the same way it would dispose a connection created by EF. If <see langword="false" />, then the caller still
+                owns the connection and is responsible for its disposal.
+            </param>
+        <param name="azureSynapseOptionsAction">An optional action to allow additional Azure Synapse specific configuration.</param>
+        <summary>
+                Configures the context to connect to a Azure Synapse database.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+                See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
+                for more information and examples.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UseSqlServer">
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseSqlServer (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt; sqlServerOptionsAction = default);" FrameworkAlternate="efcore-5.0" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseSqlServer(class Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, class System.Action`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt; sqlServerOptionsAction) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseSqlServer (optionsBuilder As DbContextOptionsBuilder, Optional sqlServerOptionsAction As Action(Of SqlServerDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder" />
+      <MemberSignature Language="F#" Value="static member UseSqlServer : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer (optionsBuilder, sqlServerOptionsAction)" />
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseSqlServer (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;? sqlServerOptionsAction = default);" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <AssemblyVersion>6.0.0.0</AssemblyVersion>
+        <AssemblyVersion>7.0.0.0</AssemblyVersion>
+        <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" RefType="this" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="sqlServerOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <param name="optionsBuilder">The builder being used to configure the context.</param>
+        <param name="sqlServerOptionsAction">An optional action to allow additional SQL Server specific configuration.</param>
+        <summary>
+                Configures the context to connect to a SQL Server database, but without initially setting any
+                <see cref="T:System.Data.Common.DbConnection" /> or connection string.
+            </summary>
+        <returns>The options builder so that further configuration can be chained.</returns>
+        <remarks>
+          <para>
+                    The connection or connection string must be set before the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> is used to connect
+                    to a database. Set a connection using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetDbConnection(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.Common.DbConnection,System.Boolean)" />.
+                    Set a connection string using <see cref="M:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SetConnectionString(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)" />.
+                </para>
+          <para>
+                    See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
+                    <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
                     for more information and examples.
                 </para>
         </remarks>
@@ -87,7 +869,7 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.Data.Common.DbConnection,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder})" />
       <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseSqlServer (optionsBuilder As DbContextOptionsBuilder, connection As DbConnection, Optional sqlServerOptionsAction As Action(Of SqlServerDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder" />
       <MemberSignature Language="F#" Value="static member UseSqlServer : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder * System.Data.Common.DbConnection * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer (optionsBuilder, connection, sqlServerOptionsAction)" />
-      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseSqlServer (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, System.Data.Common.DbConnection connection, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;? sqlServerOptionsAction = default);" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0" />
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseSqlServer (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, System.Data.Common.DbConnection connection, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;? sqlServerOptionsAction = default);" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
@@ -102,6 +884,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder</ReturnType>
@@ -121,12 +904,12 @@
             </param>
         <param name="sqlServerOptionsAction">An optional action to allow additional SQL Server specific configuration.</param>
         <summary>
-                Configures the context to connect to a Microsoft SQL Server database.
+                Configures the context to connect to a SQL Server database.
             </summary>
         <returns>The options builder so that further configuration can be chained.</returns>
         <remarks>
                 See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
-                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server and Azure SQL databases with EF Core</see>
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
                 for more information and examples.
             </remarks>
       </Docs>
@@ -138,7 +921,7 @@
       <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseSqlServer (optionsBuilder As DbContextOptionsBuilder, connectionString As String, Optional sqlServerOptionsAction As Action(Of SqlServerDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder" />
       <MemberSignature Language="F#" Value="static member UseSqlServer : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder * string * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer (optionsBuilder, connectionString, sqlServerOptionsAction)" />
       <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseSqlServer (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, string connectionString, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;? sqlServerOptionsAction = default);" FrameworkAlternate="efcore-6.0" />
-      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseSqlServer (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, string? connectionString, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;? sqlServerOptionsAction = default);" FrameworkAlternate="efcore-7.0;efcore-8.0" />
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder UseSqlServer (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder, string? connectionString, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;? sqlServerOptionsAction = default);" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
@@ -153,6 +936,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder</ReturnType>
@@ -167,12 +951,12 @@
         <param name="connectionString">The connection string of the database to connect to.</param>
         <param name="sqlServerOptionsAction">An optional action to allow additional SQL Server specific configuration.</param>
         <summary>
-                Configures the context to connect to a Microsoft SQL Server database.
+                Configures the context to connect to a SQL Server database.
             </summary>
         <returns>The options builder so that further configuration can be chained.</returns>
         <remarks>
                 See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
-                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server and Azure SQL databases with EF Core</see>
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
                 for more information and examples.
             </remarks>
       </Docs>
@@ -187,15 +971,16 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" Index="0" FrameworkAlternate="efcore-8.0" RefType="this" />
-        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="1" FrameworkAlternate="efcore-8.0" />
-        <Parameter Name="contextOwnsConnection" Type="System.Boolean" Index="2" FrameworkAlternate="efcore-8.0" />
-        <Parameter Name="sqlServerOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;" Index="3" FrameworkAlternate="efcore-8.0" />
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" RefType="this" Index="0" FrameworkAlternate="efcore-8.0;efcore-9.0" />
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="1" FrameworkAlternate="efcore-8.0;efcore-9.0" />
+        <Parameter Name="contextOwnsConnection" Type="System.Boolean" Index="2" FrameworkAlternate="efcore-8.0;efcore-9.0" />
+        <Parameter Name="sqlServerOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;" Index="3" FrameworkAlternate="efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="optionsBuilder">The builder being used to configure the context.</param>
@@ -211,12 +996,12 @@
             </param>
         <param name="sqlServerOptionsAction">An optional action to allow additional SQL Server specific configuration.</param>
         <summary>
-                Configures the context to connect to a Microsoft SQL Server database.
+                Configures the context to connect to a SQL Server database.
             </summary>
         <returns>The options builder so that further configuration can be chained.</returns>
         <remarks>
                 See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
-                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server and Azure SQL databases with EF Core</see>
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
                 for more information and examples.
             </remarks>
       </Docs>
@@ -227,7 +1012,7 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0},System.Action{Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder})" />
       <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseSqlServer(Of TContext As DbContext) (optionsBuilder As DbContextOptionsBuilder(Of TContext), Optional sqlServerOptionsAction As Action(Of SqlServerDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder(Of TContext)" />
       <MemberSignature Language="F#" Value="static member UseSqlServer : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer (optionsBuilder, sqlServerOptionsAction)" />
-      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseSqlServer&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;? sqlServerOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0" />
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseSqlServer&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;? sqlServerOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
@@ -235,6 +1020,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;</ReturnType>
@@ -247,15 +1033,15 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0" />
-        <Parameter Name="sqlServerOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0" />
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="sqlServerOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;" Index="1" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <typeparam name="TContext">To be added.</typeparam>
         <param name="optionsBuilder">The builder being used to configure the context.</param>
         <param name="sqlServerOptionsAction">An optional action to allow additional SQL Server specific configuration.</param>
         <summary>
-                Configures the context to connect to a Microsoft SQL Server database, but without initially setting any
+                Configures the context to connect to a SQL Server database, but without initially setting any
                 <see cref="T:System.Data.Common.DbConnection" /> or connection string.
             </summary>
         <returns>The options builder so that further configuration can be chained.</returns>
@@ -267,7 +1053,7 @@
                 </para>
           <para>
                     See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
-                    <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server and Azure SQL databases with EF Core</see>
+                    <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
                     for more information and examples.
                 </para>
         </remarks>
@@ -279,7 +1065,7 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0},System.Data.Common.DbConnection,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder})" />
       <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseSqlServer(Of TContext As DbContext) (optionsBuilder As DbContextOptionsBuilder(Of TContext), connection As DbConnection, Optional sqlServerOptionsAction As Action(Of SqlServerDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder(Of TContext)" />
       <MemberSignature Language="F#" Value="static member UseSqlServer : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; * System.Data.Common.DbConnection * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer (optionsBuilder, connection, sqlServerOptionsAction)" />
-      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseSqlServer&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, System.Data.Common.DbConnection connection, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;? sqlServerOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0" />
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseSqlServer&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, System.Data.Common.DbConnection connection, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;? sqlServerOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
@@ -294,6 +1080,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;</ReturnType>
@@ -319,14 +1106,14 @@
                 state then EF will open and close the connection as needed. The caller owns the connection and is
                 responsible for its disposal.
             </param>
-        <param name="sqlServerOptionsAction">An optional action to allow additional SQL Server specific configuration.</param>
+        <param name="sqlServerOptionsAction">An optional action to allow additional SQL Server Synapse specific configuration.</param>
         <summary>
-                Configures the context to connect to a Microsoft SQL Server database.
+                Configures the context to connect to a SQL Server database.
             </summary>
         <returns>The options builder so that further configuration can be chained.</returns>
         <remarks>
                 See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
-                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server and Azure SQL databases with EF Core</see>
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
                 for more information and examples.
             </remarks>
       </Docs>
@@ -338,7 +1125,7 @@
       <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function UseSqlServer(Of TContext As DbContext) (optionsBuilder As DbContextOptionsBuilder(Of TContext), connectionString As String, Optional sqlServerOptionsAction As Action(Of SqlServerDbContextOptionsBuilder) = Nothing) As DbContextOptionsBuilder(Of TContext)" />
       <MemberSignature Language="F#" Value="static member UseSqlServer : Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; * string * Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt; -&gt; Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;'Context (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)&gt; (requires 'Context :&gt; Microsoft.EntityFrameworkCore.DbContext)" Usage="Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer (optionsBuilder, connectionString, sqlServerOptionsAction)" />
       <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseSqlServer&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, string connectionString, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;? sqlServerOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" FrameworkAlternate="efcore-6.0" />
-      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseSqlServer&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, string? connectionString, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;? sqlServerOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" FrameworkAlternate="efcore-7.0;efcore-8.0" />
+      <MemberSignature Language="C#" Value="public static Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; UseSqlServer&lt;TContext&gt; (this Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt; optionsBuilder, string? connectionString, Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;? sqlServerOptionsAction = default) where TContext : Microsoft.EntityFrameworkCore.DbContext;" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
@@ -353,6 +1140,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;</ReturnType>
@@ -375,12 +1163,12 @@
         <param name="connectionString">The connection string of the database to connect to.</param>
         <param name="sqlServerOptionsAction">An optional action to allow additional SQL Server specific configuration.</param>
         <summary>
-                Configures the context to connect to a Microsoft SQL Server database.
+                Configures the context to connect to a SQL Server database.
             </summary>
         <returns>The options builder so that further configuration can be chained.</returns>
         <remarks>
                 See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
-                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server and Azure SQL databases with EF Core</see>
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
                 for more information and examples.
             </remarks>
       </Docs>
@@ -395,6 +1183,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.SqlServer</AssemblyName>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;</ReturnType>
@@ -407,10 +1196,10 @@
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;" Index="0" FrameworkAlternate="efcore-8.0" RefType="this" />
-        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="1" FrameworkAlternate="efcore-8.0" />
-        <Parameter Name="contextOwnsConnection" Type="System.Boolean" Index="2" FrameworkAlternate="efcore-8.0" />
-        <Parameter Name="sqlServerOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;" Index="3" FrameworkAlternate="efcore-8.0" />
+        <Parameter Name="optionsBuilder" Type="Microsoft.EntityFrameworkCore.DbContextOptionsBuilder&lt;TContext&gt;" RefType="this" Index="0" FrameworkAlternate="efcore-8.0;efcore-9.0" />
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="1" FrameworkAlternate="efcore-8.0;efcore-9.0" />
+        <Parameter Name="contextOwnsConnection" Type="System.Boolean" Index="2" FrameworkAlternate="efcore-8.0;efcore-9.0" />
+        <Parameter Name="sqlServerOptionsAction" Type="System.Action&lt;Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder&gt;" Index="3" FrameworkAlternate="efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <typeparam name="TContext">The type of context to be configured.</typeparam>
@@ -425,14 +1214,14 @@
                 dispose it in the same way it would dispose a connection created by EF. If <see langword="false" />, then the caller still
                 owns the connection and is responsible for its disposal.
             </param>
-        <param name="sqlServerOptionsAction">An optional action to allow additional SQL Server specific configuration.</param>
+        <param name="sqlServerOptionsAction">An optional action to allow additional SQL Server Synapse specific configuration.</param>
         <summary>
-                Configures the context to connect to a Microsoft SQL Server database.
+                Configures the context to connect to a SQL Server database.
             </summary>
         <returns>The options builder so that further configuration can be chained.</returns>
         <remarks>
                 See <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see>, and
-                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server and Azure SQL databases with EF Core</see>
+                <see href="https://aka.ms/efcore-docs-sqlserver">Accessing SQL Server, Azure SQL, Azure Synapse databases with EF Core</see>
                 for more information and examples.
             </remarks>
       </Docs>
