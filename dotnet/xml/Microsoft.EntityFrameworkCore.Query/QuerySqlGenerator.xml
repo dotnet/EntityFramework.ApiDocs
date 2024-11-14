@@ -12,6 +12,7 @@
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
     <AssemblyVersion>7.0.0.0</AssemblyVersion>
     <AssemblyVersion>8.0.0.0</AssemblyVersion>
+    <AssemblyVersion>9.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>Microsoft.EntityFrameworkCore.Query.SqlExpressionVisitor</BaseTypeName>
@@ -45,6 +46,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Query.QuerySqlGeneratorDependencies" />
@@ -72,6 +74,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -97,12 +100,13 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="sql" Type="System.String" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0" />
+        <Parameter Name="sql" Type="System.String" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="sql">An SQL string to be checked for composability.</param>
@@ -125,12 +129,13 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="sql" Type="System.ReadOnlySpan&lt;System.Char&gt;" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0" />
+        <Parameter Name="sql" Type="System.ReadOnlySpan&lt;System.Char&gt;" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="sql">An trimmed SQL string to be checked for composability.</param>
@@ -157,6 +162,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Query.QuerySqlGeneratorDependencies</ReturnType>
@@ -179,17 +185,19 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" Index="0" FrameworkAlternate="efcore-8.0" />
+        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" Index="0" FrameworkAlternate="efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="selectExpression">SelectExpression for which the empty projection will be generated.</param>
         <summary>
-                Generates empty projection for a SelectExpression.
+                Generates SQL for an empty projection for a SELECT expression. This is typically a single <c>1</c> literal, but can be
+                overridden for providers which require a different format.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -204,19 +212,45 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="existsExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.ExistsExpression" Index="0" FrameworkAlternate="efcore-8.0" />
-        <Parameter Name="negated" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-8.0" />
+        <Parameter Name="existsExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.ExistsExpression" Index="0" FrameworkAlternate="efcore-8.0;efcore-9.0" />
+        <Parameter Name="negated" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
-        <param name="existsExpression">The expression to visit.</param>
+        <param name="existsExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.ExistsExpression" /> for which to generate SQL.</param>
         <param name="negated">Whether the given <paramref name="existsExpression" /> is negated.</param>
         <summary>
-                Generates SQL for the EXISTS expression.
+                Generates SQL for an EXISTS expression.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateFrom">
+      <MemberSignature Language="C#" Value="protected virtual void GenerateFrom (Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression selectExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void GenerateFrom(class Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression selectExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.GenerateFrom(Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub GenerateFrom (selectExpression As SelectExpression)" />
+      <MemberSignature Language="F#" Value="abstract member GenerateFrom : Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression -&gt; unit&#xA;override this.GenerateFrom : Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression -&gt; unit" Usage="querySqlGenerator.GenerateFrom selectExpression" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" Index="0" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <param name="selectExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" /> for whose FROM clause to generate SQL.</param>
+        <summary>
+                Generates SQL for the FROM clause of the given SELECT expression.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -231,19 +265,20 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="inExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.InExpression" Index="0" FrameworkAlternate="efcore-8.0" />
-        <Parameter Name="negated" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-8.0" />
+        <Parameter Name="inExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.InExpression" Index="0" FrameworkAlternate="efcore-8.0;efcore-9.0" />
+        <Parameter Name="negated" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
-        <param name="inExpression">The expression to visit.</param>
+        <param name="inExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.InExpression" /> for which to generate SQL.</param>
         <param name="negated">Whether the given <paramref name="inExpression" /> is negated.</param>
         <summary>
-                Generates SQL for the IN expression.
+                Generates SQL for an IN expression.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -258,16 +293,17 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="likeExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.LikeExpression" Index="0" FrameworkAlternate="efcore-8.0" />
-        <Parameter Name="negated" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-8.0" />
+        <Parameter Name="likeExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.LikeExpression" Index="0" FrameworkAlternate="efcore-8.0;efcore-9.0" />
+        <Parameter Name="negated" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
-        <param name="likeExpression">The expression to visit.</param>
+        <param name="likeExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.LikeExpression" /> for which to generate SQL.</param>
         <param name="negated">Whether the given <paramref name="likeExpression" /> is negated.</param>
         <summary>
                 Generates SQL for the LIKE expression.
@@ -290,6 +326,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -298,9 +335,9 @@
         <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" />
       </Parameters>
       <Docs>
-        <param name="selectExpression">A select expression to use.</param>
+        <param name="selectExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" /> for whose LIMIT/OFFSET clauses to generate SQL.</param>
         <summary>
-                Generates a LIMIT...OFFSET... construct in the relational command
+                Generates SQL for the LIMIT/OFFSET clauses of the given SELECT expression.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -355,6 +392,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -363,9 +401,34 @@
         <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" />
       </Parameters>
       <Docs>
-        <param name="selectExpression">A select expression to use.</param>
+        <param name="selectExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" /> for whose ORDER BY clause to generate SQL.</param>
         <summary>
-                Generates an ORDER BY clause in the relational command
+                Generates SQL for the ORDER BY clause of the given SELECT expression.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateProjection">
+      <MemberSignature Language="C#" Value="protected virtual void GenerateProjection (Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression selectExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void GenerateProjection(class Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression selectExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.GenerateProjection(Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub GenerateProjection (selectExpression As SelectExpression)" />
+      <MemberSignature Language="F#" Value="abstract member GenerateProjection : Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression -&gt; unit&#xA;override this.GenerateProjection : Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression -&gt; unit" Usage="querySqlGenerator.GenerateProjection selectExpression" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" Index="0" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <param name="selectExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" /> for whose projection to generate SQL.</param>
+        <summary>
+                Generates SQL for the projection clause of the given SELECT expression.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -383,6 +446,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -390,7 +454,7 @@
       <Parameters />
       <Docs>
         <summary>
-                Generates a pseudo FROM clause. Required by some providers when a query has no actual FROM clause.
+                Generates SQL for a pseudo FROM clause. This is required by some providers when a query has no actual FROM clause.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -406,12 +470,13 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="queryExpression" Type="System.Linq.Expressions.Expression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0" />
+        <Parameter Name="queryExpression" Type="System.Linq.Expressions.Expression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="queryExpression">A query expression to print in command.</param>
@@ -437,6 +502,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -445,9 +511,9 @@
         <Parameter Name="setOperation" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SetOperationBase" />
       </Parameters>
       <Docs>
-        <param name="setOperation">A set operation to print.</param>
+        <param name="setOperation">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SetOperationBase" /> for which to generate SQL.</param>
         <summary>
-                Generates a set operation in the relational command.
+                Generates SQL for a set operation.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -467,6 +533,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -476,10 +543,10 @@
         <Parameter Name="operand" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" />
       </Parameters>
       <Docs>
-        <param name="setOperation">A set operation to use.</param>
-        <param name="operand">A set operation operand to print.</param>
+        <param name="setOperation">The set operation containing the operand to be generated.</param>
+        <param name="operand">The operand for which to generate SQL.</param>
         <summary>
-                Generates an operand for a given set operation in the relational command.
+                Generates SQL for an operand within a set operation.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -499,9 +566,10 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-7.0;efcore-8.0">
+        <Attribute FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0">
           <AttributeName Language="C#">[System.Obsolete("Use the method which takes tags instead.")]</AttributeName>
           <AttributeName Language="F#">[&lt;System.Obsolete("Use the method which takes tags instead.")&gt;]</AttributeName>
         </Attribute>
@@ -531,12 +599,13 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="tags" Type="System.Collections.Generic.ISet&lt;System.String&gt;" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0" />
+        <Parameter Name="tags" Type="System.Collections.Generic.ISet&lt;System.String&gt;" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="tags">A set of tags to print as comment.</param>
@@ -561,6 +630,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -569,9 +639,9 @@
         <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" />
       </Parameters>
       <Docs>
-        <param name="selectExpression">A select expression to use.</param>
+        <param name="selectExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" /> for whose TOP clause to generate SQL.</param>
         <summary>
-                Generates a TOP construct in the relational command
+                Generates SQL for the TOP clause of the given SELECT expression.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -586,17 +656,18 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="valuesExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.ValuesExpression" Index="0" FrameworkAlternate="efcore-8.0" />
+        <Parameter Name="valuesExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.ValuesExpression" Index="0" FrameworkAlternate="efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
-        <param name="valuesExpression">To be added.</param>
+        <param name="valuesExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.ValuesExpression" /> for which to generate SQL.</param>
         <summary>
-                Generates a VALUES expression.
+                Generates SQL for a VALUES expression.
             </summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -641,12 +712,13 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IRelationalCommand</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="queryExpression" Type="System.Linq.Expressions.Expression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0" />
+        <Parameter Name="queryExpression" Type="System.Linq.Expressions.Expression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="queryExpression">A query expression to print in command text.</param>
@@ -670,17 +742,18 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="binaryExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlBinaryExpression" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0" />
+        <Parameter Name="binaryExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlBinaryExpression" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="binaryExpression">A SQL binary operation.</param>
         <summary>
-                Gets a SQL operator for a SQL binary operation.
+                Gets the SQL operator for a SQL binary operation.
             </summary>
         <returns>A string representation of the binary operator.</returns>
         <remarks>To be added.</remarks>
@@ -697,13 +770,14 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="outerExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0" />
-        <Parameter Name="innerExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" Index="1" FrameworkAlternate="efcore-7.0;efcore-8.0" />
+        <Parameter Name="outerExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="innerExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" Index="1" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="outerExpression">The outer expression which provides context in which SQL is being generated.</param>
@@ -731,6 +805,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilder</ReturnType>
@@ -753,12 +828,13 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" Index="0" FrameworkAlternate="efcore-8.0" />
+        <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" Index="0" FrameworkAlternate="efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="selectExpression">To be added.</param>
@@ -781,14 +857,15 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="expression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" Index="0" FrameworkAlternate="efcore-8.0" />
-        <Parameter Name="precedence" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="efcore-8.0" />
-        <Parameter Name="isAssociative" Type="System.Boolean" RefType="out" Index="2" FrameworkAlternate="efcore-8.0" />
+        <Parameter Name="expression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlExpression" Index="0" FrameworkAlternate="efcore-8.0;efcore-9.0" />
+        <Parameter Name="precedence" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="efcore-8.0;efcore-9.0" />
+        <Parameter Name="isAssociative" Type="System.Boolean" RefType="out" Index="2" FrameworkAlternate="efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="expression">The expression for which to get the precedence and associativity.</param>
@@ -825,16 +902,19 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="atTimeZoneExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.AtTimeZoneExpression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0" />
+        <Parameter Name="atTimeZoneExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.AtTimeZoneExpression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
-        <param name="atTimeZoneExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="atTimeZoneExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.AtTimeZoneExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for an AT TIME ZONE expression.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -855,6 +935,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -863,8 +944,10 @@
         <Parameter Name="caseExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.CaseExpression" />
       </Parameters>
       <Docs>
-        <param name="caseExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="caseExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.CaseExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a CASE clause CASE/WHEN construct.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -876,10 +959,10 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.VisitCollate(Microsoft.EntityFrameworkCore.Query.SqlExpressions.CollateExpression)" />
       <MemberSignature Language="VB.NET" Value="Protected Overrides Function VisitCollate (collateExpresion As CollateExpression) As Expression" FrameworkAlternate="efcore-5.0;efcore-6.0" />
       <MemberSignature Language="F#" Value="override this.VisitCollate : Microsoft.EntityFrameworkCore.Query.SqlExpressions.CollateExpression -&gt; System.Linq.Expressions.Expression" Usage="querySqlGenerator.VisitCollate collateExpresion" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-      <MemberSignature Language="C#" Value="protected override System.Linq.Expressions.Expression VisitCollate (Microsoft.EntityFrameworkCore.Query.SqlExpressions.CollateExpression collateExpression);" FrameworkAlternate="efcore-7.0;efcore-8.0" />
-      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance class System.Linq.Expressions.Expression VisitCollate(class Microsoft.EntityFrameworkCore.Query.SqlExpressions.CollateExpression collateExpression) cil managed" FrameworkAlternate="efcore-7.0;efcore-8.0" />
-      <MemberSignature Language="VB.NET" Value="Protected Overrides Function VisitCollate (collateExpression As CollateExpression) As Expression" FrameworkAlternate="efcore-7.0;efcore-8.0" />
-      <MemberSignature Language="F#" Value="override this.VisitCollate : Microsoft.EntityFrameworkCore.Query.SqlExpressions.CollateExpression -&gt; System.Linq.Expressions.Expression" Usage="querySqlGenerator.VisitCollate collateExpression" FrameworkAlternate="efcore-7.0;efcore-8.0" />
+      <MemberSignature Language="C#" Value="protected override System.Linq.Expressions.Expression VisitCollate (Microsoft.EntityFrameworkCore.Query.SqlExpressions.CollateExpression collateExpression);" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance class System.Linq.Expressions.Expression VisitCollate(class Microsoft.EntityFrameworkCore.Query.SqlExpressions.CollateExpression collateExpression) cil managed" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overrides Function VisitCollate (collateExpression As CollateExpression) As Expression" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
+      <MemberSignature Language="F#" Value="override this.VisitCollate : Microsoft.EntityFrameworkCore.Query.SqlExpressions.CollateExpression -&gt; System.Linq.Expressions.Expression" Usage="querySqlGenerator.VisitCollate collateExpression" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -887,18 +970,21 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="collateExpresion" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.CollateExpression" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0" />
-        <Parameter Name="collateExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.CollateExpression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0" />
+        <Parameter Name="collateExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.CollateExpression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="collateExpresion">To be added.</param>
-        <param name="collateExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="collateExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.CollateExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a COLLATE expression.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -919,6 +1005,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -927,8 +1014,10 @@
         <Parameter Name="columnExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.ColumnExpression" />
       </Parameters>
       <Docs>
-        <param name="columnExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="columnExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.ColumnExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a column.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -949,6 +1038,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -957,8 +1047,10 @@
         <Parameter Name="crossApplyExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.CrossApplyExpression" />
       </Parameters>
       <Docs>
-        <param name="crossApplyExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="crossApplyExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.CrossApplyExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a cross apply.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -979,6 +1071,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -987,8 +1080,10 @@
         <Parameter Name="crossJoinExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.CrossJoinExpression" />
       </Parameters>
       <Docs>
-        <param name="crossJoinExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="crossJoinExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.CrossJoinExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a cross join.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1005,16 +1100,19 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="deleteExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.DeleteExpression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0" />
+        <Parameter Name="deleteExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.DeleteExpression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
-        <param name="deleteExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="deleteExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.DeleteExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a DELETE expression
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1033,16 +1131,19 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="distinctExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.DistinctExpression" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0" />
+        <Parameter Name="distinctExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.DistinctExpression" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
-        <param name="distinctExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="distinctExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.DistinctExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a DISTINCT () clause in an aggregate function invocation.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1063,6 +1164,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1071,8 +1173,10 @@
         <Parameter Name="exceptExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.ExceptExpression" />
       </Parameters>
       <Docs>
-        <param name="exceptExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="exceptExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.ExceptExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for an EXCEPT set operation.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1084,8 +1188,8 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.VisitExists(Microsoft.EntityFrameworkCore.Query.SqlExpressions.ExistsExpression)" />
       <MemberSignature Language="VB.NET" Value="Protected Overrides Function VisitExists (existsExpression As ExistsExpression) As Expression" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       <MemberSignature Language="F#" Value="override this.VisitExists : Microsoft.EntityFrameworkCore.Query.SqlExpressions.ExistsExpression -&gt; System.Linq.Expressions.Expression" Usage="querySqlGenerator.VisitExists existsExpression" />
-      <MemberSignature Language="C#" Value="protected override sealed System.Linq.Expressions.Expression VisitExists (Microsoft.EntityFrameworkCore.Query.SqlExpressions.ExistsExpression existsExpression);" FrameworkAlternate="efcore-8.0" />
-      <MemberSignature Language="VB.NET" Value="Protected Overrides NotOverridable Function VisitExists (existsExpression As ExistsExpression) As Expression" FrameworkAlternate="efcore-8.0" />
+      <MemberSignature Language="C#" Value="protected override sealed System.Linq.Expressions.Expression VisitExists (Microsoft.EntityFrameworkCore.Query.SqlExpressions.ExistsExpression existsExpression);" FrameworkAlternate="efcore-8.0;efcore-9.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overrides NotOverridable Function VisitExists (existsExpression As ExistsExpression) As Expression" FrameworkAlternate="efcore-8.0;efcore-9.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -1095,6 +1199,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1103,8 +1208,10 @@
         <Parameter Name="existsExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.ExistsExpression" />
       </Parameters>
       <Docs>
-        <param name="existsExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="existsExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.ExistsExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for an EXISTS expression.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1125,6 +1232,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1133,8 +1241,10 @@
         <Parameter Name="fromSqlExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.FromSqlExpression" />
       </Parameters>
       <Docs>
-        <param name="fromSqlExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="fromSqlExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.FromSqlExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a user-provided SQL query.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1146,8 +1256,8 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.VisitIn(Microsoft.EntityFrameworkCore.Query.SqlExpressions.InExpression)" />
       <MemberSignature Language="VB.NET" Value="Protected Overrides Function VisitIn (inExpression As InExpression) As Expression" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       <MemberSignature Language="F#" Value="override this.VisitIn : Microsoft.EntityFrameworkCore.Query.SqlExpressions.InExpression -&gt; System.Linq.Expressions.Expression" Usage="querySqlGenerator.VisitIn inExpression" />
-      <MemberSignature Language="C#" Value="protected override sealed System.Linq.Expressions.Expression VisitIn (Microsoft.EntityFrameworkCore.Query.SqlExpressions.InExpression inExpression);" FrameworkAlternate="efcore-8.0" />
-      <MemberSignature Language="VB.NET" Value="Protected Overrides NotOverridable Function VisitIn (inExpression As InExpression) As Expression" FrameworkAlternate="efcore-8.0" />
+      <MemberSignature Language="C#" Value="protected override sealed System.Linq.Expressions.Expression VisitIn (Microsoft.EntityFrameworkCore.Query.SqlExpressions.InExpression inExpression);" FrameworkAlternate="efcore-8.0;efcore-9.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overrides NotOverridable Function VisitIn (inExpression As InExpression) As Expression" FrameworkAlternate="efcore-8.0;efcore-9.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -1157,6 +1267,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1165,8 +1276,10 @@
         <Parameter Name="inExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.InExpression" />
       </Parameters>
       <Docs>
-        <param name="inExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="inExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.InExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for an IN expression.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1187,6 +1300,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1195,8 +1309,10 @@
         <Parameter Name="innerJoinExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.InnerJoinExpression" />
       </Parameters>
       <Docs>
-        <param name="innerJoinExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="innerJoinExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.InnerJoinExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for an inner join.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1217,6 +1333,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1225,8 +1342,10 @@
         <Parameter Name="intersectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.IntersectExpression" />
       </Parameters>
       <Docs>
-        <param name="intersectExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="intersectExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.IntersectExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for an INTERSECT set operation.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1243,16 +1362,19 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="jsonScalarExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.JsonScalarExpression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0" />
+        <Parameter Name="jsonScalarExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.JsonScalarExpression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
-        <param name="jsonScalarExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="jsonScalarExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.JsonScalarExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a JSON scalar lookup expression.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1273,6 +1395,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1281,8 +1404,10 @@
         <Parameter Name="leftJoinExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.LeftJoinExpression" />
       </Parameters>
       <Docs>
-        <param name="leftJoinExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="leftJoinExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.LeftJoinExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a left join.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1294,8 +1419,8 @@
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.QuerySqlGenerator.VisitLike(Microsoft.EntityFrameworkCore.Query.SqlExpressions.LikeExpression)" />
       <MemberSignature Language="VB.NET" Value="Protected Overrides Function VisitLike (likeExpression As LikeExpression) As Expression" FrameworkAlternate="efcore-3.0;efcore-3.1;efcore-5.0;efcore-6.0;efcore-7.0" />
       <MemberSignature Language="F#" Value="override this.VisitLike : Microsoft.EntityFrameworkCore.Query.SqlExpressions.LikeExpression -&gt; System.Linq.Expressions.Expression" Usage="querySqlGenerator.VisitLike likeExpression" />
-      <MemberSignature Language="C#" Value="protected override sealed System.Linq.Expressions.Expression VisitLike (Microsoft.EntityFrameworkCore.Query.SqlExpressions.LikeExpression likeExpression);" FrameworkAlternate="efcore-8.0" />
-      <MemberSignature Language="VB.NET" Value="Protected Overrides NotOverridable Function VisitLike (likeExpression As LikeExpression) As Expression" FrameworkAlternate="efcore-8.0" />
+      <MemberSignature Language="C#" Value="protected override sealed System.Linq.Expressions.Expression VisitLike (Microsoft.EntityFrameworkCore.Query.SqlExpressions.LikeExpression likeExpression);" FrameworkAlternate="efcore-8.0;efcore-9.0" />
+      <MemberSignature Language="VB.NET" Value="Protected Overrides NotOverridable Function VisitLike (likeExpression As LikeExpression) As Expression" FrameworkAlternate="efcore-8.0;efcore-9.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
@@ -1305,6 +1430,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1313,8 +1439,10 @@
         <Parameter Name="likeExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.LikeExpression" />
       </Parameters>
       <Docs>
-        <param name="likeExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="likeExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.LikeExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a LIKE expression.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1335,6 +1463,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1343,8 +1472,10 @@
         <Parameter Name="orderingExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.OrderingExpression" />
       </Parameters>
       <Docs>
-        <param name="orderingExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="orderingExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.OrderingExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a single ordering in a SELECT ORDER BY clause.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1365,6 +1496,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1373,8 +1505,10 @@
         <Parameter Name="outerApplyExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.OuterApplyExpression" />
       </Parameters>
       <Docs>
-        <param name="outerApplyExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="outerApplyExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.OuterApplyExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for an outer apply.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1395,6 +1529,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1403,8 +1538,10 @@
         <Parameter Name="projectionExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.ProjectionExpression" />
       </Parameters>
       <Docs>
-        <param name="projectionExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="projectionExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.ProjectionExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a single projection in a SELECT expression.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1425,6 +1562,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1433,8 +1571,10 @@
         <Parameter Name="rowNumberExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.RowNumberExpression" />
       </Parameters>
       <Docs>
-        <param name="rowNumberExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="rowNumberExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.RowNumberExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a row number expression.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1450,16 +1590,19 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rowValueExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.RowValueExpression" Index="0" FrameworkAlternate="efcore-8.0" />
+        <Parameter Name="rowValueExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.RowValueExpression" Index="0" FrameworkAlternate="efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
-        <param name="rowValueExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="rowValueExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.RowValueExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a row value expression.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1478,16 +1621,19 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="scalarSubqueryExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.ScalarSubqueryExpression" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0" />
+        <Parameter Name="scalarSubqueryExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.ScalarSubqueryExpression" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
-        <param name="scalarSubqueryExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="scalarSubqueryExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.ScalarSubqueryExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a scalar subquery.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1508,6 +1654,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1516,8 +1663,10 @@
         <Parameter Name="selectExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" />
       </Parameters>
       <Docs>
-        <param name="selectExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="selectExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a SELECT expression.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1538,6 +1687,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1546,8 +1696,10 @@
         <Parameter Name="sqlBinaryExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlBinaryExpression" />
       </Parameters>
       <Docs>
-        <param name="sqlBinaryExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="sqlBinaryExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlBinaryExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a binary expression.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1568,6 +1720,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1576,8 +1729,10 @@
         <Parameter Name="sqlConstantExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlConstantExpression" />
       </Parameters>
       <Docs>
-        <param name="sqlConstantExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="sqlConstantExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlConstantExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a constant.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1598,6 +1753,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1606,8 +1762,10 @@
         <Parameter Name="sqlFragmentExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlFragmentExpression" />
       </Parameters>
       <Docs>
-        <param name="sqlFragmentExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="sqlFragmentExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlFragmentExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for an arbitrary fragment.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1628,6 +1786,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1636,8 +1795,10 @@
         <Parameter Name="sqlFunctionExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlFunctionExpression" />
       </Parameters>
       <Docs>
-        <param name="sqlFunctionExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="sqlFunctionExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlFunctionExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a function invocation.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1658,6 +1819,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1666,8 +1828,10 @@
         <Parameter Name="sqlParameterExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlParameterExpression" />
       </Parameters>
       <Docs>
-        <param name="sqlParameterExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="sqlParameterExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlParameterExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a parameter.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1688,6 +1852,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1696,8 +1861,10 @@
         <Parameter Name="sqlUnaryExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlUnaryExpression" />
       </Parameters>
       <Docs>
-        <param name="sqlUnaryExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="sqlUnaryExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.SqlUnaryExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a unary expression.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1743,6 +1910,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1751,8 +1919,10 @@
         <Parameter Name="tableExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.TableExpression" />
       </Parameters>
       <Docs>
-        <param name="tableExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="tableExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.TableExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a column.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1771,16 +1941,19 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="tableValuedFunctionExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.TableValuedFunctionExpression" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0" />
+        <Parameter Name="tableValuedFunctionExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.TableValuedFunctionExpression" Index="0" FrameworkAlternate="efcore-5.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
-        <param name="tableValuedFunctionExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="tableValuedFunctionExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.TableValuedFunctionExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a table-valued function invocation.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1801,6 +1974,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
@@ -1809,8 +1983,10 @@
         <Parameter Name="unionExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.UnionExpression" />
       </Parameters>
       <Docs>
-        <param name="unionExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="unionExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.UnionExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a UNION set operation.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1827,16 +2003,19 @@
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="updateExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.UpdateExpression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0" />
+        <Parameter Name="updateExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.UpdateExpression" Index="0" FrameworkAlternate="efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
-        <param name="updateExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="updateExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.UpdateExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for an UPDATE expression.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />
@@ -1852,16 +2031,19 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Linq.Expressions.Expression</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="valuesExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.ValuesExpression" Index="0" FrameworkAlternate="efcore-8.0" />
+        <Parameter Name="valuesExpression" Type="Microsoft.EntityFrameworkCore.Query.SqlExpressions.ValuesExpression" Index="0" FrameworkAlternate="efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
-        <param name="valuesExpression">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="valuesExpression">The <see cref="T:Microsoft.EntityFrameworkCore.Query.SqlExpressions.ValuesExpression" /> for which to generate SQL.</param>
+        <summary>
+                Generates SQL for a VALUES expression.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <inheritdoc />

@@ -4,7 +4,7 @@
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor" />
   <TypeSignature Language="VB.NET" Value="Public Interface IMigrationCommandExecutor" />
   <TypeSignature Language="F#" Value="type IMigrationCommandExecutor = interface" />
-  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract beforefieldinit IMigrationCommandExecutor" FrameworkAlternate="efcore-8.0" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract beforefieldinit IMigrationCommandExecutor" FrameworkAlternate="efcore-8.0;efcore-9.0" />
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -22,6 +22,7 @@
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
     <AssemblyVersion>7.0.0.0</AssemblyVersion>
     <AssemblyVersion>8.0.0.0</AssemblyVersion>
+    <AssemblyVersion>9.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Docs>
@@ -30,9 +31,10 @@
             </summary>
     <remarks>
       <para>
-                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
-                    is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
-                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
                 </para>
       <para>
                     See <see href="https://aka.ms/efcore-docs-migrations">Database migrations</see> for more information and examples.
@@ -60,6 +62,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -74,6 +77,43 @@
         <summary>
                 Executes the given commands using the given database connection.
             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ExecuteNonQuery">
+      <MemberSignature Language="C#" Value="public int ExecuteNonQuery (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Migrations.MigrationCommand&gt; migrationCommands, Microsoft.EntityFrameworkCore.Storage.IRelationalConnection connection, Microsoft.EntityFrameworkCore.Migrations.MigrationExecutionState executionState, bool commitTransaction, System.Data.IsolationLevel? isolationLevel = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance int32 ExecuteNonQuery(class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Migrations.MigrationCommand&gt; migrationCommands, class Microsoft.EntityFrameworkCore.Storage.IRelationalConnection connection, class Microsoft.EntityFrameworkCore.Migrations.MigrationExecutionState executionState, bool commitTransaction, valuetype System.Nullable`1&lt;valuetype System.Data.IsolationLevel&gt; isolationLevel) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor.ExecuteNonQuery(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Migrations.MigrationCommand},Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,Microsoft.EntityFrameworkCore.Migrations.MigrationExecutionState,System.Boolean,System.Nullable{System.Data.IsolationLevel})" />
+      <MemberSignature Language="VB.NET" Value="Public Function ExecuteNonQuery (migrationCommands As IReadOnlyList(Of MigrationCommand), connection As IRelationalConnection, executionState As MigrationExecutionState, commitTransaction As Boolean, Optional isolationLevel As Nullable(Of IsolationLevel) = Nothing) As Integer" />
+      <MemberSignature Language="F#" Value="abstract member ExecuteNonQuery : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Migrations.MigrationCommand&gt; * Microsoft.EntityFrameworkCore.Storage.IRelationalConnection * Microsoft.EntityFrameworkCore.Migrations.MigrationExecutionState * bool * Nullable&lt;System.Data.IsolationLevel&gt; -&gt; int" Usage="iMigrationCommandExecutor.ExecuteNonQuery (migrationCommands, connection, executionState, commitTransaction, isolationLevel)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="migrationCommands" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Migrations.MigrationCommand&gt;" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="connection" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalConnection" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="executionState" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationExecutionState" Index="2" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="commitTransaction" Type="System.Boolean" Index="3" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="isolationLevel" Type="System.Nullable&lt;System.Data.IsolationLevel&gt;" Index="4" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <param name="migrationCommands">The commands to execute.</param>
+        <param name="connection">The connection to use.</param>
+        <param name="executionState">The state of the current migration execution.</param>
+        <param name="commitTransaction">
+                Indicates whether the transaction started by this call should be commited.
+                If <see langword="false" />, the transaction will be made available in <paramref name="executionState" />.
+            </param>
+        <param name="isolationLevel">The isolation level for the transaction.</param>
+        <summary>
+                Executes the given commands using the given database connection.
+            </summary>
+        <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -97,6 +137,7 @@
         <AssemblyVersion>6.0.0.0</AssemblyVersion>
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
@@ -109,6 +150,46 @@
       <Docs>
         <param name="migrationCommands">The commands to execute.</param>
         <param name="connection">The connection to use.</param>
+        <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
+        <summary>
+                Executes the given commands using the given database connection.
+            </summary>
+        <returns>A task that represents the asynchronous operation.</returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.OperationCanceledException">If the <see cref="T:System.Threading.CancellationToken" /> is canceled.</exception>
+      </Docs>
+    </Member>
+    <Member MemberName="ExecuteNonQueryAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;int&gt; ExecuteNonQueryAsync (System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Migrations.MigrationCommand&gt; migrationCommands, Microsoft.EntityFrameworkCore.Storage.IRelationalConnection connection, Microsoft.EntityFrameworkCore.Migrations.MigrationExecutionState executionState, bool commitTransaction, System.Data.IsolationLevel? isolationLevel = default, System.Threading.CancellationToken cancellationToken = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;int32&gt; ExecuteNonQueryAsync(class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Migrations.MigrationCommand&gt; migrationCommands, class Microsoft.EntityFrameworkCore.Storage.IRelationalConnection connection, class Microsoft.EntityFrameworkCore.Migrations.MigrationExecutionState executionState, bool commitTransaction, valuetype System.Nullable`1&lt;valuetype System.Data.IsolationLevel&gt; isolationLevel, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor.ExecuteNonQueryAsync(System.Collections.Generic.IReadOnlyList{Microsoft.EntityFrameworkCore.Migrations.MigrationCommand},Microsoft.EntityFrameworkCore.Storage.IRelationalConnection,Microsoft.EntityFrameworkCore.Migrations.MigrationExecutionState,System.Boolean,System.Nullable{System.Data.IsolationLevel},System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Public Function ExecuteNonQueryAsync (migrationCommands As IReadOnlyList(Of MigrationCommand), connection As IRelationalConnection, executionState As MigrationExecutionState, commitTransaction As Boolean, Optional isolationLevel As Nullable(Of IsolationLevel) = Nothing, Optional cancellationToken As CancellationToken = Nothing) As Task(Of Integer)" />
+      <MemberSignature Language="F#" Value="abstract member ExecuteNonQueryAsync : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Migrations.MigrationCommand&gt; * Microsoft.EntityFrameworkCore.Storage.IRelationalConnection * Microsoft.EntityFrameworkCore.Migrations.MigrationExecutionState * bool * Nullable&lt;System.Data.IsolationLevel&gt; * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;int&gt;" Usage="iMigrationCommandExecutor.ExecuteNonQueryAsync (migrationCommands, connection, executionState, commitTransaction, isolationLevel, cancellationToken)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="migrationCommands" Type="System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Migrations.MigrationCommand&gt;" Index="0" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="connection" Type="Microsoft.EntityFrameworkCore.Storage.IRelationalConnection" Index="1" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="executionState" Type="Microsoft.EntityFrameworkCore.Migrations.MigrationExecutionState" Index="2" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="commitTransaction" Type="System.Boolean" Index="3" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="isolationLevel" Type="System.Nullable&lt;System.Data.IsolationLevel&gt;" Index="4" FrameworkAlternate="efcore-9.0" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="5" FrameworkAlternate="efcore-9.0" />
+      </Parameters>
+      <Docs>
+        <param name="migrationCommands">The commands to execute.</param>
+        <param name="connection">The connection to use.</param>
+        <param name="executionState">The state of the current migration execution.</param>
+        <param name="commitTransaction">
+                Indicates whether the transaction started by this call should be commited.
+                If <see langword="false" />, the transaction will be made available in <paramref name="executionState" />.
+            </param>
+        <param name="isolationLevel">The isolation level for the transaction.</param>
         <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> to observe while waiting for the task to complete.</param>
         <summary>
                 Executes the given commands using the given database connection.

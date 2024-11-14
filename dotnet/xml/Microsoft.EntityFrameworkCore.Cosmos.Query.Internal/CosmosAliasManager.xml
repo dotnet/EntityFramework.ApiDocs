@@ -1,0 +1,182 @@
+<Type Name="CosmosAliasManager" FullName="Microsoft.EntityFrameworkCore.Cosmos.Query.Internal.CosmosAliasManager">
+  <TypeSignature Language="C#" Value="public class CosmosAliasManager" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit CosmosAliasManager extends System.Object" />
+  <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Cosmos.Query.Internal.CosmosAliasManager" />
+  <TypeSignature Language="VB.NET" Value="Public Class CosmosAliasManager" />
+  <TypeSignature Language="F#" Value="type CosmosAliasManager = class" />
+  <AssemblyInfo>
+    <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
+    <AssemblyVersion>9.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+                A stateful manager for SQL aliases, capable of generating uniquified source aliases and rewriting them in post-processing.
+                An instance of <see cref="T:Microsoft.EntityFrameworkCore.Cosmos.Query.Internal.CosmosAliasManager" /> is valid for a single query compilation, and is owned by
+                <see cref="T:Microsoft.EntityFrameworkCore.Cosmos.Query.Internal.CosmosQueryCompilationContext" />.
+            </summary>
+    <remarks>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public CosmosAliasManager ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Cosmos.Query.Internal.CosmosAliasManager.#ctor" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New ()" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateSourceAlias">
+      <MemberSignature Language="C#" Value="public virtual string GenerateSourceAlias (string name);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance string GenerateSourceAlias(string name) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Cosmos.Query.Internal.CosmosAliasManager.GenerateSourceAlias(System.String)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function GenerateSourceAlias (name As String) As String" />
+      <MemberSignature Language="F#" Value="abstract member GenerateSourceAlias : string -&gt; string&#xA;override this.GenerateSourceAlias : string -&gt; string" Usage="cosmosAliasManager.GenerateSourceAlias name" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="name" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="name">
+                A name (e.g. of a container) to use as the starting point for the alias; a number postfix will be appended to it as necessary.
+            </param>
+        <summary>
+                Generates an alias based on the given <paramref name="name" />.
+                All aliases produced by a given instance of <see cref="T:Microsoft.EntityFrameworkCore.Cosmos.Query.Internal.CosmosAliasManager" /> are unique.
+            </summary>
+        <returns>A fully unique alias within the context of this translation process.</returns>
+        <remarks>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GenerateSourceAlias">
+      <MemberSignature Language="C#" Value="public virtual string GenerateSourceAlias (System.Linq.Expressions.Expression expression, string? fallback = default);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance string GenerateSourceAlias(class System.Linq.Expressions.Expression expression, string fallback) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Cosmos.Query.Internal.CosmosAliasManager.GenerateSourceAlias(System.Linq.Expressions.Expression,System.String)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function GenerateSourceAlias (expression As Expression, Optional fallback As String = Nothing) As String" />
+      <MemberSignature Language="F#" Value="abstract member GenerateSourceAlias : System.Linq.Expressions.Expression * string -&gt; string&#xA;override this.GenerateSourceAlias : System.Linq.Expressions.Expression * string -&gt; string" Usage="cosmosAliasManager.GenerateSourceAlias (expression, fallback)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="System.Linq.Expressions.Expression" />
+        <Parameter Name="fallback" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expression">
+                An expression to use as the starting point for the alias; this method knows a number of well-known expression types and can
+                generate appropriate aliases for them. A number postfix will be appended to it as necessary.
+            </param>
+        <param name="fallback">
+                If <paramref name="expression" /> isn't a well-known expression type, this fallback string will be used.
+            </param>
+        <summary>
+                Generates an alias based on the given <paramref name="expression" />.
+                All aliases produced by a given instance of <see cref="T:Microsoft.EntityFrameworkCore.Cosmos.Query.Internal.CosmosAliasManager" /> are unique.
+            </summary>
+        <returns>A fully unique alias within the context of this translation process.</returns>
+        <remarks>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="PostprocessAliases">
+      <MemberSignature Language="C#" Value="public virtual System.Linq.Expressions.Expression PostprocessAliases (System.Linq.Expressions.Expression expression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression PostprocessAliases(class System.Linq.Expressions.Expression expression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Cosmos.Query.Internal.CosmosAliasManager.PostprocessAliases(System.Linq.Expressions.Expression)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function PostprocessAliases (expression As Expression) As Expression" />
+      <MemberSignature Language="F#" Value="abstract member PostprocessAliases : System.Linq.Expressions.Expression -&gt; System.Linq.Expressions.Expression&#xA;override this.PostprocessAliases : System.Linq.Expressions.Expression -&gt; System.Linq.Expressions.Expression" Usage="cosmosAliasManager.PostprocessAliases expression" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="System.Linq.Expressions.Expression" />
+      </Parameters>
+      <Docs>
+        <param name="expression">The SQL tree to post-process.</param>
+        <summary>
+                Performs a post-processing pass over aliases in the provided SQL tree, closing any gaps.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RemapSourceAliases">
+      <MemberSignature Language="C#" Value="protected virtual System.Collections.Generic.Dictionary&lt;string,string&gt;? RemapSourceAliases (System.Collections.Generic.IReadOnlySet&lt;string&gt; usedAliases);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Collections.Generic.Dictionary`2&lt;string, string&gt; RemapSourceAliases(class System.Collections.Generic.IReadOnlySet`1&lt;string&gt; usedAliases) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Cosmos.Query.Internal.CosmosAliasManager.RemapSourceAliases(System.Collections.Generic.IReadOnlySet{System.String})" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function RemapSourceAliases (usedAliases As IReadOnlySet(Of String)) As Dictionary(Of String, String)" />
+      <MemberSignature Language="F#" Value="abstract member RemapSourceAliases : System.Collections.Generic.IReadOnlySet&lt;string&gt; -&gt; System.Collections.Generic.Dictionary&lt;string, string&gt;&#xA;override this.RemapSourceAliases : System.Collections.Generic.IReadOnlySet&lt;string&gt; -&gt; System.Collections.Generic.Dictionary&lt;string, string&gt;" Usage="cosmosAliasManager.RemapSourceAliases usedAliases" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Cosmos</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.Dictionary&lt;System.String,System.String&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="usedAliases" Type="System.Collections.Generic.IReadOnlySet&lt;System.String&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="usedAliases">To be added.</param>
+        <summary>
+                Given the list of source aliases currently in use in the SQL tree, produces a remapping for aliases within that list.
+                Can be used to e.g. close gaps for sources which have been pruned, etc.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

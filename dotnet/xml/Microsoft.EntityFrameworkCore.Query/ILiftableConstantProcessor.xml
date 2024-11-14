@@ -1,0 +1,130 @@
+<Type Name="ILiftableConstantProcessor" FullName="Microsoft.EntityFrameworkCore.Query.ILiftableConstantProcessor">
+  <TypeSignature Language="C#" Value="public interface ILiftableConstantProcessor" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract beforefieldinit ILiftableConstantProcessor" />
+  <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Query.ILiftableConstantProcessor" />
+  <TypeSignature Language="VB.NET" Value="Public Interface ILiftableConstantProcessor" />
+  <TypeSignature Language="F#" Value="type ILiftableConstantProcessor = interface" />
+  <AssemblyInfo>
+    <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+    <AssemblyVersion>9.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Attributes>
+    <Attribute>
+      <AttributeName Language="C#">[System.Diagnostics.CodeAnalysis.Experimental("EF9100")]</AttributeName>
+      <AttributeName Language="F#">[&lt;System.Diagnostics.CodeAnalysis.Experimental("EF9100")&gt;]</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>
+                This is an experimental API used by the Entity Framework Core feature and it is not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="InlineConstants">
+      <MemberSignature Language="C#" Value="public System.Linq.Expressions.Expression InlineConstants (System.Linq.Expressions.Expression expression, bool supportsPrecompiledQuery);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression InlineConstants(class System.Linq.Expressions.Expression expression, bool supportsPrecompiledQuery) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.ILiftableConstantProcessor.InlineConstants(System.Linq.Expressions.Expression,System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Public Function InlineConstants (expression As Expression, supportsPrecompiledQuery As Boolean) As Expression" />
+      <MemberSignature Language="F#" Value="abstract member InlineConstants : System.Linq.Expressions.Expression * bool -&gt; System.Linq.Expressions.Expression" Usage="iLiftableConstantProcessor.InlineConstants (expression, supportsPrecompiledQuery)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="System.Linq.Expressions.Expression" />
+        <Parameter Name="supportsPrecompiledQuery" Type="System.Boolean" />
+      </Parameters>
+      <Docs>
+        <param name="expression">An expression containing <see cref="T:Microsoft.EntityFrameworkCore.Query.LiftableConstantExpression" /> nodes.</param>
+        <param name="supportsPrecompiledQuery">A value indicating whether precompiled queries are supported by the provider.</param>
+        <summary>
+                Inlines all liftable constants as simple <see cref="T:System.Linq.Expressions.ConstantExpression" /> nodes in the tree, containing the result of
+                evaluating the liftable constants' resolvers.
+            </summary>
+        <returns>
+                An expression tree containing <see cref="T:System.Linq.Expressions.ConstantExpression" /> nodes instead of <see cref="T:Microsoft.EntityFrameworkCore.Query.LiftableConstantExpression" /> nodes.
+            </returns>
+        <remarks>
+                Liftable constant inlining is performed in the regular, non-precompiled query pipeline flow.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LiftConstants">
+      <MemberSignature Language="C#" Value="public System.Linq.Expressions.Expression LiftConstants (System.Linq.Expressions.Expression expression, System.Linq.Expressions.ParameterExpression contextParameter, System.Collections.Generic.HashSet&lt;string&gt; variableNames);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression LiftConstants(class System.Linq.Expressions.Expression expression, class System.Linq.Expressions.ParameterExpression contextParameter, class System.Collections.Generic.HashSet`1&lt;string&gt; variableNames) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.ILiftableConstantProcessor.LiftConstants(System.Linq.Expressions.Expression,System.Linq.Expressions.ParameterExpression,System.Collections.Generic.HashSet{System.String})" />
+      <MemberSignature Language="VB.NET" Value="Public Function LiftConstants (expression As Expression, contextParameter As ParameterExpression, variableNames As HashSet(Of String)) As Expression" />
+      <MemberSignature Language="F#" Value="abstract member LiftConstants : System.Linq.Expressions.Expression * System.Linq.Expressions.ParameterExpression * System.Collections.Generic.HashSet&lt;string&gt; -&gt; System.Linq.Expressions.Expression" Usage="iLiftableConstantProcessor.LiftConstants (expression, contextParameter, variableNames)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="System.Linq.Expressions.Expression" />
+        <Parameter Name="contextParameter" Type="System.Linq.Expressions.ParameterExpression" />
+        <Parameter Name="variableNames" Type="System.Collections.Generic.HashSet&lt;System.String&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="expression">An expression containing <see cref="T:Microsoft.EntityFrameworkCore.Query.LiftableConstantExpression" /> nodes.</param>
+        <param name="contextParameter">
+                The <see cref="T:System.Linq.Expressions.ParameterExpression" /> to be embedded in the liftable constant nodes' resolvers, instead of their lambda
+                parameter.
+            </param>
+        <param name="variableNames">
+                A set of variables already in use, for uniquification. Any generates variables will be added to this set.
+            </param>
+        <summary>
+                Lifts all <see cref="T:Microsoft.EntityFrameworkCore.Query.LiftableConstantExpression" /> nodes, embedding <see cref="T:System.Linq.Expressions.ParameterExpression" /> in their place and
+                exposing the parameter and resolver via <see cref="P:Microsoft.EntityFrameworkCore.Query.ILiftableConstantProcessor.LiftedConstants" />.
+            </summary>
+        <returns>
+                An expression tree containing <see cref="T:System.Linq.Expressions.ParameterExpression" /> nodes instead of <see cref="T:Microsoft.EntityFrameworkCore.Query.LiftableConstantExpression" /> nodes.
+            </returns>
+        <remarks>
+                Constant lifting is performed in the precompiled query pipeline flow.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LiftedConstants">
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IReadOnlyList&lt;(System.Linq.Expressions.ParameterExpression Parameter, System.Linq.Expressions.Expression Expression)&gt; LiftedConstants { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;valuetype System.ValueTuple`2&lt;class System.Linq.Expressions.ParameterExpression, class System.Linq.Expressions.Expression&gt;&gt; LiftedConstants" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.ILiftableConstantProcessor.LiftedConstants" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property LiftedConstants As IReadOnlyList(Of ValueTuple(Of ParameterExpression, Expression))" />
+      <MemberSignature Language="F#" Value="member this.LiftedConstants : System.Collections.Generic.IReadOnlyList&lt;ValueTuple&lt;System.Linq.Expressions.ParameterExpression, System.Linq.Expressions.Expression&gt;&gt;" Usage="Microsoft.EntityFrameworkCore.Query.ILiftableConstantProcessor.LiftedConstants" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>9.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName Language="C#">[System.Runtime.CompilerServices.TupleElementNames(new System.String[] { "Parameter", "Expression" })]</AttributeName>
+          <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.TupleElementNames(new System.String[] { "Parameter", "Expression" })&gt;]</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IReadOnlyList&lt;System.ValueTuple&lt;System.Linq.Expressions.ParameterExpression,System.Linq.Expressions.Expression&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Exposes all constants that have been lifted during the last invocation of <see cref="P:Microsoft.EntityFrameworkCore.Query.ILiftableConstantProcessor.LiftedConstants" />.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
