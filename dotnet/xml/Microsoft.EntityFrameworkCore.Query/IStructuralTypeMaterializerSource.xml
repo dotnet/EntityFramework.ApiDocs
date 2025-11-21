@@ -1,0 +1,199 @@
+<Type Name="IStructuralTypeMaterializerSource" FullName="Microsoft.EntityFrameworkCore.Query.IStructuralTypeMaterializerSource">
+  <TypeSignature Language="C#" Value="public interface IStructuralTypeMaterializerSource" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract beforefieldinit IStructuralTypeMaterializerSource" />
+  <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Query.IStructuralTypeMaterializerSource" />
+  <TypeSignature Language="VB.NET" Value="Public Interface IStructuralTypeMaterializerSource" />
+  <TypeSignature Language="F#" Value="type IStructuralTypeMaterializerSource = interface" />
+  <AssemblyInfo>
+    <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+    <AssemblyVersion>10.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Docs>
+    <summary>
+      <para>
+                    Defines a source for generating <see cref="T:System.Linq.Expressions.Expression" /> trees that read values from
+                    a <see cref="T:Microsoft.EntityFrameworkCore.Storage.ValueBuffer" /> or creates structural type instances.
+                </para>
+      <para>
+                    This type is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+    </summary>
+    <remarks>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton" />. This means a single instance
+                    is used by many <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instances. The implementation must be thread-safe.
+                    This service cannot depend on services registered as <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />.
+                </para>
+      <para>
+                    See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
+                    and <see href="https://aka.ms/efcore-docs-how-query-works">How EF Core queries work</see> for more information and examples.
+                </para>
+    </remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="CreateMaterializeExpression">
+      <MemberSignature Language="C#" Value="public System.Linq.Expressions.Expression CreateMaterializeExpression (Microsoft.EntityFrameworkCore.Query.StructuralTypeMaterializerSourceParameters parameters, System.Linq.Expressions.Expression materializationExpression);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Linq.Expressions.Expression CreateMaterializeExpression(valuetype Microsoft.EntityFrameworkCore.Query.StructuralTypeMaterializerSourceParameters parameters, class System.Linq.Expressions.Expression materializationExpression) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.IStructuralTypeMaterializerSource.CreateMaterializeExpression(Microsoft.EntityFrameworkCore.Query.StructuralTypeMaterializerSourceParameters,System.Linq.Expressions.Expression)" />
+      <MemberSignature Language="VB.NET" Value="Public Function CreateMaterializeExpression (parameters As StructuralTypeMaterializerSourceParameters, materializationExpression As Expression) As Expression" />
+      <MemberSignature Language="F#" Value="abstract member CreateMaterializeExpression : Microsoft.EntityFrameworkCore.Query.StructuralTypeMaterializerSourceParameters * System.Linq.Expressions.Expression -&gt; System.Linq.Expressions.Expression" Usage="iStructuralTypeMaterializerSource.CreateMaterializeExpression (parameters, materializationExpression)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>10.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="parameters" Type="Microsoft.EntityFrameworkCore.Query.StructuralTypeMaterializerSourceParameters" />
+        <Parameter Name="materializationExpression" Type="System.Linq.Expressions.Expression" />
+      </Parameters>
+      <Docs>
+        <param name="parameters">Parameters for the entity being materialized.</param>
+        <param name="materializationExpression">The materialization expression to build on.</param>
+        <summary>
+          <para>
+                    Creates an <see cref="T:System.Linq.Expressions.Expression" /> tree representing creating an entity instance.
+                </para>
+          <para>
+                    This method is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+        </summary>
+        <returns>An expression to read the value.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetEmptyMaterializer">
+      <MemberSignature Language="C#" Value="public Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext,object&gt; GetEmptyMaterializer (Microsoft.EntityFrameworkCore.Metadata.IComplexType complexType);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Func`2&lt;valuetype Microsoft.EntityFrameworkCore.Storage.MaterializationContext, object&gt; GetEmptyMaterializer(class Microsoft.EntityFrameworkCore.Metadata.IComplexType complexType) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.IStructuralTypeMaterializerSource.GetEmptyMaterializer(Microsoft.EntityFrameworkCore.Metadata.IComplexType)" />
+      <MemberSignature Language="VB.NET" Value="Public Function GetEmptyMaterializer (complexType As IComplexType) As Func(Of MaterializationContext, Object)" />
+      <MemberSignature Language="F#" Value="abstract member GetEmptyMaterializer : Microsoft.EntityFrameworkCore.Metadata.IComplexType -&gt; Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext, obj&gt;" Usage="iStructuralTypeMaterializerSource.GetEmptyMaterializer complexType" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>10.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext,System.Object&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="complexType" Type="Microsoft.EntityFrameworkCore.Metadata.IComplexType" />
+      </Parameters>
+      <Docs>
+        <param name="complexType">The entity type being materialized.</param>
+        <summary>
+          <para>
+                    Returns a delegate that creates an empty instance of the given complex type.
+                </para>
+          <para>
+                    This method is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+        </summary>
+        <returns>A delegate to create instances.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetEmptyMaterializer">
+      <MemberSignature Language="C#" Value="public Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext,object&gt; GetEmptyMaterializer (Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Func`2&lt;valuetype Microsoft.EntityFrameworkCore.Storage.MaterializationContext, object&gt; GetEmptyMaterializer(class Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.IStructuralTypeMaterializerSource.GetEmptyMaterializer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)" />
+      <MemberSignature Language="VB.NET" Value="Public Function GetEmptyMaterializer (entityType As IEntityType) As Func(Of MaterializationContext, Object)" />
+      <MemberSignature Language="F#" Value="abstract member GetEmptyMaterializer : Microsoft.EntityFrameworkCore.Metadata.IEntityType -&gt; Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext, obj&gt;" Usage="iStructuralTypeMaterializerSource.GetEmptyMaterializer entityType" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>10.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext,System.Object&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" />
+      </Parameters>
+      <Docs>
+        <param name="entityType">The entity type being materialized.</param>
+        <summary>
+          <para>
+                    Returns a delegate that creates an empty instance of the given entity type.
+                </para>
+          <para>
+                    This method is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+        </summary>
+        <returns>A delegate to create instances.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetMaterializer">
+      <MemberSignature Language="C#" Value="public Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext,object&gt; GetMaterializer (Microsoft.EntityFrameworkCore.Metadata.IComplexType complexType);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Func`2&lt;valuetype Microsoft.EntityFrameworkCore.Storage.MaterializationContext, object&gt; GetMaterializer(class Microsoft.EntityFrameworkCore.Metadata.IComplexType complexType) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.IStructuralTypeMaterializerSource.GetMaterializer(Microsoft.EntityFrameworkCore.Metadata.IComplexType)" />
+      <MemberSignature Language="VB.NET" Value="Public Function GetMaterializer (complexType As IComplexType) As Func(Of MaterializationContext, Object)" />
+      <MemberSignature Language="F#" Value="abstract member GetMaterializer : Microsoft.EntityFrameworkCore.Metadata.IComplexType -&gt; Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext, obj&gt;" Usage="iStructuralTypeMaterializerSource.GetMaterializer complexType" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>10.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext,System.Object&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="complexType" Type="Microsoft.EntityFrameworkCore.Metadata.IComplexType" />
+      </Parameters>
+      <Docs>
+        <param name="complexType">The entity type being materialized.</param>
+        <summary>
+          <para>
+                    Returns a delegate that creates an instance of the given complex type.
+                </para>
+          <para>
+                    This method is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+        </summary>
+        <returns>A delegate to create instances.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetMaterializer">
+      <MemberSignature Language="C#" Value="public Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext,object&gt; GetMaterializer (Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Func`2&lt;valuetype Microsoft.EntityFrameworkCore.Storage.MaterializationContext, object&gt; GetMaterializer(class Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.IStructuralTypeMaterializerSource.GetMaterializer(Microsoft.EntityFrameworkCore.Metadata.IEntityType)" />
+      <MemberSignature Language="VB.NET" Value="Public Function GetMaterializer (entityType As IEntityType) As Func(Of MaterializationContext, Object)" />
+      <MemberSignature Language="F#" Value="abstract member GetMaterializer : Microsoft.EntityFrameworkCore.Metadata.IEntityType -&gt; Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext, obj&gt;" Usage="iStructuralTypeMaterializerSource.GetMaterializer entityType" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>10.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Func&lt;Microsoft.EntityFrameworkCore.Storage.MaterializationContext,System.Object&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" />
+      </Parameters>
+      <Docs>
+        <param name="entityType">The entity type being materialized.</param>
+        <summary>
+          <para>
+                    Returns a delegate that creates an instance of the given entity type.
+                </para>
+          <para>
+                    This method is typically used by database providers (and other extensions). It is generally
+                    not used in application code.
+                </para>
+        </summary>
+        <returns>A delegate to create instances.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

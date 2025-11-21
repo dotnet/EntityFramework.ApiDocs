@@ -18,6 +18,7 @@
     <AssemblyVersion>7.0.0.0</AssemblyVersion>
     <AssemblyVersion>8.0.0.0</AssemblyVersion>
     <AssemblyVersion>9.0.0.0</AssemblyVersion>
+    <AssemblyVersion>10.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>Microsoft.EntityFrameworkCore.Diagnostics.CommandEventData</BaseTypeName>
@@ -164,7 +165,14 @@
         <Parameter Name="messageGenerator" Type="System.Func&lt;Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,Microsoft.EntityFrameworkCore.Diagnostics.EventData,System.String&gt;" Index="1" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
         <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="2" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
         <Parameter Name="command" Type="System.Data.Common.DbCommand" Index="3" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" Index="4" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" Index="4" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0">
+          <Attributes>
+            <Attribute FrameworkAlternate="efcore-8.0;efcore-9.0">
+              <AttributeName Language="C#">[System.Runtime.CompilerServices.Nullable(2)]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.Nullable(2)&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
         <Parameter Name="executeMethod" Type="Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod" Index="5" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
         <Parameter Name="commandId" Type="System.Guid" Index="6" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
         <Parameter Name="connectionId" Type="System.Guid" Index="7" FrameworkAlternate="efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
@@ -179,6 +187,61 @@
         <param name="messageGenerator">A delegate that generates a log message for this event.</param>
         <param name="connection">The <see cref="T:System.Data.Common.DbConnection" /> being used.</param>
         <param name="command">The <see cref="T:System.Data.Common.DbCommand" />.</param>
+        <param name="context">The <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> currently being used, to null if not known.</param>
+        <param name="executeMethod">The <see cref="T:System.Data.Common.DbCommand" /> method.</param>
+        <param name="commandId">A correlation ID that identifies the <see cref="T:System.Data.Common.DbCommand" /> instance being used.</param>
+        <param name="connectionId">A correlation ID that identifies the <see cref="T:System.Data.Common.DbConnection" /> instance being used.</param>
+        <param name="async">Indicates whether or not the command was executed asynchronously.</param>
+        <param name="logParameterValues">Indicates whether or not the application allows logging of parameter values.</param>
+        <param name="startTime">The start time of this event.</param>
+        <param name="duration">The duration this event.</param>
+        <param name="commandSource">Source of the command.</param>
+        <summary>
+                Constructs the event payload.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public CommandEndEventData (Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase eventDefinition, Func&lt;Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,Microsoft.EntityFrameworkCore.Diagnostics.EventData,string&gt; messageGenerator, System.Data.Common.DbConnection connection, System.Data.Common.DbCommand command, string logCommandText, Microsoft.EntityFrameworkCore.DbContext? context, Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod executeMethod, Guid commandId, Guid connectionId, bool async, bool logParameterValues, DateTimeOffset startTime, TimeSpan duration, Microsoft.EntityFrameworkCore.Diagnostics.CommandSource commandSource);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase eventDefinition, class System.Func`3&lt;class Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase, class Microsoft.EntityFrameworkCore.Diagnostics.EventData, string&gt; messageGenerator, class System.Data.Common.DbConnection connection, class System.Data.Common.DbCommand command, string logCommandText, class Microsoft.EntityFrameworkCore.DbContext context, valuetype Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod executeMethod, valuetype System.Guid commandId, valuetype System.Guid connectionId, bool async, bool logParameterValues, valuetype System.DateTimeOffset startTime, valuetype System.TimeSpan duration, valuetype Microsoft.EntityFrameworkCore.Diagnostics.CommandSource commandSource) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Diagnostics.CommandEndEventData.#ctor(Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,System.Func{Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,Microsoft.EntityFrameworkCore.Diagnostics.EventData,System.String},System.Data.Common.DbConnection,System.Data.Common.DbCommand,System.String,Microsoft.EntityFrameworkCore.DbContext,Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod,System.Guid,System.Guid,System.Boolean,System.Boolean,System.DateTimeOffset,System.TimeSpan,Microsoft.EntityFrameworkCore.Diagnostics.CommandSource)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (eventDefinition As EventDefinitionBase, messageGenerator As Func(Of EventDefinitionBase, EventData, String), connection As DbConnection, command As DbCommand, logCommandText As String, context As DbContext, executeMethod As DbCommandMethod, commandId As Guid, connectionId As Guid, async As Boolean, logParameterValues As Boolean, startTime As DateTimeOffset, duration As TimeSpan, commandSource As CommandSource)" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Diagnostics.CommandEndEventData : Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase * Func&lt;Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase, Microsoft.EntityFrameworkCore.Diagnostics.EventData, string&gt; * System.Data.Common.DbConnection * System.Data.Common.DbCommand * string * Microsoft.EntityFrameworkCore.DbContext * Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod * Guid * Guid * bool * bool * DateTimeOffset * TimeSpan * Microsoft.EntityFrameworkCore.Diagnostics.CommandSource -&gt; Microsoft.EntityFrameworkCore.Diagnostics.CommandEndEventData" Usage="new Microsoft.EntityFrameworkCore.Diagnostics.CommandEndEventData (eventDefinition, messageGenerator, connection, command, logCommandText, context, executeMethod, commandId, connectionId, async, logParameterValues, startTime, duration, commandSource)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>10.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="eventDefinition" Type="Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase" Index="0" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="messageGenerator" Type="System.Func&lt;Microsoft.EntityFrameworkCore.Diagnostics.EventDefinitionBase,Microsoft.EntityFrameworkCore.Diagnostics.EventData,System.String&gt;" Index="1" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="connection" Type="System.Data.Common.DbConnection" Index="2" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="command" Type="System.Data.Common.DbCommand" Index="3" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="logCommandText" Type="System.String" Index="4" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="context" Type="Microsoft.EntityFrameworkCore.DbContext" Index="5" FrameworkAlternate="efcore-10.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[System.Runtime.CompilerServices.Nullable(2)]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.Nullable(2)&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+        <Parameter Name="executeMethod" Type="Microsoft.EntityFrameworkCore.Diagnostics.DbCommandMethod" Index="6" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="commandId" Type="System.Guid" Index="7" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="connectionId" Type="System.Guid" Index="8" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="async" Type="System.Boolean" Index="9" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="logParameterValues" Type="System.Boolean" Index="10" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="startTime" Type="System.DateTimeOffset" Index="11" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="duration" Type="System.TimeSpan" Index="12" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="commandSource" Type="Microsoft.EntityFrameworkCore.Diagnostics.CommandSource" Index="13" FrameworkAlternate="efcore-10.0" />
+      </Parameters>
+      <Docs>
+        <param name="eventDefinition">The event definition.</param>
+        <param name="messageGenerator">A delegate that generates a log message for this event.</param>
+        <param name="connection">The <see cref="T:System.Data.Common.DbConnection" /> being used.</param>
+        <param name="command">The <see cref="T:System.Data.Common.DbCommand" />.</param>
+        <param name="logCommandText">The command text that can be logged.</param>
         <param name="context">The <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> currently being used, to null if not known.</param>
         <param name="executeMethod">The <see cref="T:System.Data.Common.DbCommand" /> method.</param>
         <param name="commandId">A correlation ID that identifies the <see cref="T:System.Data.Common.DbCommand" /> instance being used.</param>
@@ -213,6 +276,7 @@
         <AssemblyVersion>7.0.0.0</AssemblyVersion>
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
+        <AssemblyVersion>10.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.TimeSpan</ReturnType>
