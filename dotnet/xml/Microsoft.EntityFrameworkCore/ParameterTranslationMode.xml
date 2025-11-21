@@ -1,0 +1,116 @@
+<Type Name="ParameterTranslationMode" FullName="Microsoft.EntityFrameworkCore.ParameterTranslationMode">
+  <TypeSignature Language="C#" Value="public enum ParameterTranslationMode" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed ParameterTranslationMode extends System.Enum" />
+  <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.ParameterTranslationMode" />
+  <TypeSignature Language="VB.NET" Value="Public Enum ParameterTranslationMode" />
+  <TypeSignature Language="F#" Value="type ParameterTranslationMode = " />
+  <AssemblyInfo>
+    <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+    <AssemblyVersion>10.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Docs>
+    <summary>
+                Indicates how parameterized collections are translated into SQL.
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Constant">
+      <MemberSignature Language="C#" Value="Constant" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Microsoft.EntityFrameworkCore.ParameterTranslationMode Constant = int32(1)" />
+      <MemberSignature Language="DocId" Value="F:Microsoft.EntityFrameworkCore.ParameterTranslationMode.Constant" />
+      <MemberSignature Language="VB.NET" Value="Constant" />
+      <MemberSignature Language="F#" Value="Constant = 1" Usage="Microsoft.EntityFrameworkCore.ParameterTranslationMode.Constant" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>10.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.ParameterTranslationMode</ReturnType>
+      </ReturnValue>
+      <MemberValue>1</MemberValue>
+      <Docs>
+        <summary>
+                Instructs EF to translate the collection to a set of constants:
+                <c>WHERE [x].[Id] IN (1, 2, 3)</c>.
+            </summary>
+        <remarks>
+          <para>
+                    This can produce better query plans for certain query types, but can also lead to query
+                    plan bloat.
+                </para>
+          <para>
+                    Note that it's possible to cause EF to translate a specific collection in a specific query to constants by wrapping the
+                    parameterized collection in <see cref="M:Microsoft.EntityFrameworkCore.EF.Constant``1(``0)" />: <c>Where(x =&gt; EF.Constant(ids).Contains(x.Id)</c>. This overrides
+                    the default.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MultipleParameters">
+      <MemberSignature Language="C#" Value="MultipleParameters" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Microsoft.EntityFrameworkCore.ParameterTranslationMode MultipleParameters = int32(0)" />
+      <MemberSignature Language="DocId" Value="F:Microsoft.EntityFrameworkCore.ParameterTranslationMode.MultipleParameters" />
+      <MemberSignature Language="VB.NET" Value="MultipleParameters" />
+      <MemberSignature Language="F#" Value="MultipleParameters = 0" Usage="Microsoft.EntityFrameworkCore.ParameterTranslationMode.MultipleParameters" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>10.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.ParameterTranslationMode</ReturnType>
+      </ReturnValue>
+      <MemberValue>0</MemberValue>
+      <Docs>
+        <summary>
+                Instructs EF to translate the collection to a set of parameters:
+                <c>WHERE [x].[Id] IN (@ids1, @ids2, @ids3)</c>.
+            </summary>
+        <remarks>
+          <para>
+                    Note that it's possible to cause EF to translate a specific collection in a specific query to parameter by wrapping the
+                    parameterized collection in EF.MultipleParameters: <c>Where(x =&gt; EF.MultipleParameters(ids).Contains(x.Id)</c>. This overrides
+                    the default.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Parameter">
+      <MemberSignature Language="C#" Value="Parameter" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Microsoft.EntityFrameworkCore.ParameterTranslationMode Parameter = int32(2)" />
+      <MemberSignature Language="DocId" Value="F:Microsoft.EntityFrameworkCore.ParameterTranslationMode.Parameter" />
+      <MemberSignature Language="VB.NET" Value="Parameter" />
+      <MemberSignature Language="F#" Value="Parameter = 2" Usage="Microsoft.EntityFrameworkCore.ParameterTranslationMode.Parameter" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>10.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.ParameterTranslationMode</ReturnType>
+      </ReturnValue>
+      <MemberValue>2</MemberValue>
+      <Docs>
+        <summary>
+                Instructs EF to translate the collection to a single array-like parameter:
+                <c>WHERE [x].[Id] IN (SELECT [i].[value] FROM OPENJSON(@ids) ...)</c>.
+            </summary>
+        <remarks>
+          <para>
+                    This can produce suboptimal query plans for certain query types.
+                </para>
+          <para>
+                    Note that it's possible to cause EF to translate a specific collection in a specific query to parameter by wrapping the
+                    parameterized collection in <see cref="M:Microsoft.EntityFrameworkCore.EF.Parameter``1(``0)" />: <c>Where(x =&gt; EF.Parameter(ids).Contains(x.Id)</c>. This overrides
+                    the default.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
