@@ -1,6 +1,6 @@
 <Type Name="IReadOnlyIndex" FullName="Microsoft.EntityFrameworkCore.Metadata.IReadOnlyIndex">
   <TypeSignature Language="C#" Value="public interface IReadOnlyIndex : Microsoft.EntityFrameworkCore.Infrastructure.IReadOnlyAnnotatable" />
-  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract beforefieldinit IReadOnlyIndex implements class Microsoft.EntityFrameworkCore.Infrastructure.IReadOnlyAnnotatable" FrameworkAlternate="efcore-10.0;efcore-8.0;efcore-9.0" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract beforefieldinit IReadOnlyIndex implements class Microsoft.EntityFrameworkCore.Infrastructure.IReadOnlyAnnotatable" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-8.0;efcore-9.0" />
   <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Metadata.IReadOnlyIndex" />
   <TypeSignature Language="VB.NET" Value="Public Interface IReadOnlyIndex&#xA;Implements IReadOnlyAnnotatable" />
   <TypeSignature Language="F#" Value="type IReadOnlyIndex = interface&#xA;    interface IReadOnlyAnnotatable" />
@@ -12,6 +12,7 @@
     <AssemblyVersion>8.0.0.0</AssemblyVersion>
     <AssemblyVersion>9.0.0.0</AssemblyVersion>
     <AssemblyVersion>10.0.0.0</AssemblyVersion>
+    <AssemblyVersion>11.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces>
     <Interface>
@@ -27,6 +28,60 @@
             </remarks>
   </Docs>
   <Members>
+    <Member MemberName="CollectionIndices">
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IReadOnlyList&lt;System.Collections.Generic.IReadOnlyList&lt;int?&gt;?&gt;? CollectionIndices { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class System.Collections.Generic.IReadOnlyList`1&lt;valuetype System.Nullable`1&lt;int32&gt;&gt;&gt; CollectionIndices" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Metadata.IReadOnlyIndex.CollectionIndices" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property CollectionIndices As IReadOnlyList(Of IReadOnlyList(Of Nullable(Of Integer)))" />
+      <MemberSignature Language="F#" Value="member this.CollectionIndices : System.Collections.Generic.IReadOnlyList&lt;System.Collections.Generic.IReadOnlyList&lt;Nullable&lt;int&gt;&gt;&gt;" Usage="Microsoft.EntityFrameworkCore.Metadata.IReadOnlyIndex.CollectionIndices" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-11.0">
+          <AttributeName Language="C#">[System.Runtime.CompilerServices.Nullable(2)]</AttributeName>
+          <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.Nullable(2)&gt;]</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IReadOnlyList&lt;System.Collections.Generic.IReadOnlyList&lt;System.Nullable&lt;System.Int32&gt;&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Gets the complex-collection indices traversed to reach each indexed property.
+            </summary>
+        <value>To be added.</value>
+        <remarks>
+          <para>
+                    When non-<see langword="null" />, this list has the same length as <see cref="P:Microsoft.EntityFrameworkCore.Metadata.IReadOnlyIndex.Properties" />.
+                    Each entry corresponds to the property at the same position and is either:
+                </para>
+          <para>
+            <list type="bullet">
+              <item>
+                <description>
+                  <see langword="null" />, indicating the property is not reached through any complex collection.
+                            </description>
+              </item>
+              <item>
+                <description>
+                                A list with one entry per complex-collection segment between the entity root and the property,
+                                ordered outermost-first (the entry at index 0 resolves the complex collection closest to the
+                                entity root). A <see langword="null" /> entry means the index applies to all elements of that
+                                collection (e.g. <c>Posts.Select(p =&gt; p.Title)</c>); a non-<see langword="null" /> entry means
+                                the index applies only to the element at that fixed position (e.g. <c>Posts[0].Title</c>).
+                            </description>
+              </item>
+            </list>
+          </para>
+          <para>
+                    A <see langword="null" /> top-level value means no property in this index traverses any complex collection.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
     <Member MemberName="DeclaringEntityType">
       <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IReadOnlyEntityType DeclaringEntityType { get; }" />
       <MemberSignature Language="ILAsm" Value=".property instance class Microsoft.EntityFrameworkCore.Metadata.IReadOnlyEntityType DeclaringEntityType" />
@@ -41,6 +96,7 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IReadOnlyEntityType</ReturnType>
@@ -68,9 +124,10 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-10.0;efcore-7.0;efcore-8.0;efcore-9.0">
+        <Attribute FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-7.0;efcore-8.0;efcore-9.0">
           <AttributeName Language="C#">[System.Diagnostics.DebuggerStepThrough]</AttributeName>
           <AttributeName Language="F#">[&lt;System.Diagnostics.DebuggerStepThrough&gt;]</AttributeName>
         </Attribute>
@@ -101,9 +158,10 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-10.0;efcore-8.0;efcore-9.0">
+        <Attribute FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-8.0;efcore-9.0">
           <AttributeName Language="C#">[System.Runtime.CompilerServices.Nullable(2)]</AttributeName>
           <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.Nullable(2)&gt;]</AttributeName>
         </Attribute>
@@ -133,6 +191,7 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -159,9 +218,10 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="efcore-10.0;efcore-8.0;efcore-9.0">
+        <Attribute FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-8.0;efcore-9.0">
           <AttributeName Language="C#">[System.Runtime.CompilerServices.Nullable(2)]</AttributeName>
           <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.Nullable(2)&gt;]</AttributeName>
         </Attribute>
@@ -178,11 +238,15 @@
       </Docs>
     </Member>
     <Member MemberName="Properties">
-      <MemberSignature Language="C#" Value="public System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IReadOnlyProperty&gt; Properties { get; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Metadata.IReadOnlyProperty&gt; Properties" />
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IReadOnlyProperty&gt; Properties { get; }" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Metadata.IReadOnlyProperty&gt; Properties" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Metadata.IReadOnlyIndex.Properties" />
-      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property Properties As IReadOnlyList(Of IReadOnlyProperty)" />
-      <MemberSignature Language="F#" Value="member this.Properties : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IReadOnlyProperty&gt;" Usage="Microsoft.EntityFrameworkCore.Metadata.IReadOnlyIndex.Properties" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property Properties As IReadOnlyList(Of IReadOnlyProperty)" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+      <MemberSignature Language="F#" Value="member this.Properties : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IReadOnlyProperty&gt;" Usage="Microsoft.EntityFrameworkCore.Metadata.IReadOnlyIndex.Properties" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IReadOnlyPropertyBase&gt; Properties { get; }" FrameworkAlternate="efcore-11.0" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Collections.Generic.IReadOnlyList`1&lt;class Microsoft.EntityFrameworkCore.Metadata.IReadOnlyPropertyBase&gt; Properties" FrameworkAlternate="efcore-11.0" />
+      <MemberSignature Language="VB.NET" Value="Public ReadOnly Property Properties As IReadOnlyList(Of IReadOnlyPropertyBase)" FrameworkAlternate="efcore-11.0" />
+      <MemberSignature Language="F#" Value="member this.Properties : System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IReadOnlyPropertyBase&gt;" Usage="Microsoft.EntityFrameworkCore.Metadata.IReadOnlyIndex.Properties" FrameworkAlternate="efcore-11.0" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
@@ -191,9 +255,11 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IReadOnlyProperty&gt;</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0">System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IReadOnlyProperty&gt;</ReturnType>
+        <ReturnType FrameworkAlternate="efcore-11.0">System.Collections.Generic.IReadOnlyList&lt;Microsoft.EntityFrameworkCore.Metadata.IReadOnlyPropertyBase&gt;</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>
@@ -217,6 +283,7 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>

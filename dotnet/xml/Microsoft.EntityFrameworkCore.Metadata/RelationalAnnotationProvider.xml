@@ -12,6 +12,7 @@
     <AssemblyVersion>8.0.0.0</AssemblyVersion>
     <AssemblyVersion>9.0.0.0</AssemblyVersion>
     <AssemblyVersion>10.0.0.0</AssemblyVersion>
+    <AssemblyVersion>11.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -22,7 +23,7 @@
     </Interface>
   </Interfaces>
   <Attributes>
-    <Attribute FrameworkAlternate="efcore-10.0;efcore-8.0;efcore-9.0">
+    <Attribute FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-8.0;efcore-9.0">
       <AttributeName Language="C#">[System.Runtime.CompilerServices.Nullable(0)]</AttributeName>
       <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.Nullable(0)&gt;]</AttributeName>
     </Attribute>
@@ -60,6 +61,7 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="dependencies" Type="Microsoft.EntityFrameworkCore.Metadata.RelationalAnnotationProviderDependencies" />
@@ -70,6 +72,40 @@
                 Initializes a new instance of this class.
             </summary>
         <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateJsonIndex">
+      <MemberSignature Language="C#" Value="protected virtual Microsoft.EntityFrameworkCore.Metadata.RelationalJsonIndex CreateJsonIndex (Microsoft.EntityFrameworkCore.Metadata.IIndex modelIndex, Microsoft.EntityFrameworkCore.Metadata.ITableIndex tableIndex);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Metadata.RelationalJsonIndex CreateJsonIndex(class Microsoft.EntityFrameworkCore.Metadata.IIndex modelIndex, class Microsoft.EntityFrameworkCore.Metadata.ITableIndex tableIndex) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.RelationalAnnotationProvider.CreateJsonIndex(Microsoft.EntityFrameworkCore.Metadata.IIndex,Microsoft.EntityFrameworkCore.Metadata.ITableIndex)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function CreateJsonIndex (modelIndex As IIndex, tableIndex As ITableIndex) As RelationalJsonIndex" />
+      <MemberSignature Language="F#" Value="abstract member CreateJsonIndex : Microsoft.EntityFrameworkCore.Metadata.IIndex * Microsoft.EntityFrameworkCore.Metadata.ITableIndex -&gt; Microsoft.EntityFrameworkCore.Metadata.RelationalJsonIndex&#xA;override this.CreateJsonIndex : Microsoft.EntityFrameworkCore.Metadata.IIndex * Microsoft.EntityFrameworkCore.Metadata.ITableIndex -&gt; Microsoft.EntityFrameworkCore.Metadata.RelationalJsonIndex" Usage="relationalAnnotationProvider.CreateJsonIndex (modelIndex, tableIndex)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Metadata.RelationalJsonIndex</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="modelIndex" Type="Microsoft.EntityFrameworkCore.Metadata.IIndex" Index="0" FrameworkAlternate="efcore-11.0" />
+        <Parameter Name="tableIndex" Type="Microsoft.EntityFrameworkCore.Metadata.ITableIndex" Index="1" FrameworkAlternate="efcore-11.0" />
+      </Parameters>
+      <Docs>
+        <param name="modelIndex">The mapped JSON index.</param>
+        <param name="tableIndex">The mapped table index being annotated.</param>
+        <summary>
+                Builds a <see cref="T:Microsoft.EntityFrameworkCore.Metadata.RelationalJsonIndex" /> for the given mapped JSON index.
+            </summary>
+        <returns>The <see cref="T:Microsoft.EntityFrameworkCore.Metadata.RelationalJsonIndex" /> describing the JSON paths.</returns>
+        <remarks>
+                Providers can override this to customize JSON index element resolution. The base
+                implementation handles indexes whose leaves are either scalar properties inside JSON-mapped
+                complex types, or non-collection complex properties whose type is itself JSON-mapped. When
+                overriding, use <see cref="M:Microsoft.EntityFrameworkCore.Metadata.RelationalAnnotationProvider.FindJsonElement(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase,Microsoft.EntityFrameworkCore.Metadata.ITable)" /> to resolve the JSON element for an individual
+                property on the index's table.
+            </remarks>
       </Docs>
     </Member>
     <Member MemberName="Dependencies">
@@ -86,6 +122,7 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.RelationalAnnotationProviderDependencies</ReturnType>
@@ -95,6 +132,36 @@
                 Relational provider-specific dependencies for this service.
             </summary>
         <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FindJsonElement">
+      <MemberSignature Language="C#" Value="protected static Microsoft.EntityFrameworkCore.Metadata.IRelationalJsonElement FindJsonElement (Microsoft.EntityFrameworkCore.Metadata.IPropertyBase property, Microsoft.EntityFrameworkCore.Metadata.ITable table);" />
+      <MemberSignature Language="ILAsm" Value=".method familystatic hidebysig class Microsoft.EntityFrameworkCore.Metadata.IRelationalJsonElement FindJsonElement(class Microsoft.EntityFrameworkCore.Metadata.IPropertyBase property, class Microsoft.EntityFrameworkCore.Metadata.ITable table) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.RelationalAnnotationProvider.FindJsonElement(Microsoft.EntityFrameworkCore.Metadata.IPropertyBase,Microsoft.EntityFrameworkCore.Metadata.ITable)" />
+      <MemberSignature Language="VB.NET" Value="Protected Shared Function FindJsonElement (property As IPropertyBase, table As ITable) As IRelationalJsonElement" />
+      <MemberSignature Language="F#" Value="static member FindJsonElement : Microsoft.EntityFrameworkCore.Metadata.IPropertyBase * Microsoft.EntityFrameworkCore.Metadata.ITable -&gt; Microsoft.EntityFrameworkCore.Metadata.IRelationalJsonElement" Usage="Microsoft.EntityFrameworkCore.Metadata.RelationalAnnotationProvider.FindJsonElement (property, table)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IRelationalJsonElement</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="property" Type="Microsoft.EntityFrameworkCore.Metadata.IPropertyBase" Index="0" FrameworkAlternate="efcore-11.0" />
+        <Parameter Name="table" Type="Microsoft.EntityFrameworkCore.Metadata.ITable" Index="1" FrameworkAlternate="efcore-11.0" />
+      </Parameters>
+      <Docs>
+        <param name="property">The property (scalar or complex) participating in the index.</param>
+        <param name="table">The table containing the index.</param>
+        <summary>
+                Resolves the <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IRelationalJsonElement" /> for the given property on the given table.
+                All JSON element mappings are populated before table-index annotations are gathered, so a
+                mapping is expected to exist for any property reaching this code path.
+            </summary>
+        <returns>The JSON element on the given table.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -507,13 +574,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="checkConstraint" Type="Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint" Index="0" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="checkConstraint" Type="Microsoft.EntityFrameworkCore.Metadata.ICheckConstraint" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="checkConstraint">To be added.</param>
@@ -541,13 +609,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="column" Type="Microsoft.EntityFrameworkCore.Metadata.IColumn" Index="0" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="column" Type="Microsoft.EntityFrameworkCore.Metadata.IColumn" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="column">To be added.</param>
@@ -575,13 +644,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="foreignKey" Type="Microsoft.EntityFrameworkCore.Metadata.IForeignKeyConstraint" Index="0" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="foreignKey" Type="Microsoft.EntityFrameworkCore.Metadata.IForeignKeyConstraint" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="foreignKey">To be added.</param>
@@ -609,13 +679,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="column" Type="Microsoft.EntityFrameworkCore.Metadata.IFunctionColumn" Index="0" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="column" Type="Microsoft.EntityFrameworkCore.Metadata.IFunctionColumn" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="column">To be added.</param>
@@ -643,13 +714,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IRelationalModel" Index="0" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IRelationalModel" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="model">To be added.</param>
@@ -677,13 +749,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="sequence" Type="Microsoft.EntityFrameworkCore.Metadata.ISequence" Index="0" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="sequence" Type="Microsoft.EntityFrameworkCore.Metadata.ISequence" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="sequence">To be added.</param>
@@ -711,13 +784,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="sqlQuery" Type="Microsoft.EntityFrameworkCore.Metadata.ISqlQuery" Index="0" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="sqlQuery" Type="Microsoft.EntityFrameworkCore.Metadata.ISqlQuery" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="sqlQuery">To be added.</param>
@@ -745,13 +819,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="column" Type="Microsoft.EntityFrameworkCore.Metadata.ISqlQueryColumn" Index="0" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="column" Type="Microsoft.EntityFrameworkCore.Metadata.ISqlQueryColumn" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="column">To be added.</param>
@@ -779,13 +854,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="function" Type="Microsoft.EntityFrameworkCore.Metadata.IStoreFunction" Index="0" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="function" Type="Microsoft.EntityFrameworkCore.Metadata.IStoreFunction" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="function">To be added.</param>
@@ -811,13 +887,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="parameter" Type="Microsoft.EntityFrameworkCore.Metadata.IStoreFunctionParameter" Index="0" FrameworkAlternate="efcore-10.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="parameter" Type="Microsoft.EntityFrameworkCore.Metadata.IStoreFunctionParameter" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="parameter">To be added.</param>
@@ -844,13 +921,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="storedProcedure" Type="Microsoft.EntityFrameworkCore.Metadata.IStoreStoredProcedure" Index="0" FrameworkAlternate="efcore-10.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="storedProcedure" Type="Microsoft.EntityFrameworkCore.Metadata.IStoreStoredProcedure" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="storedProcedure">To be added.</param>
@@ -877,13 +955,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="parameter" Type="Microsoft.EntityFrameworkCore.Metadata.IStoreStoredProcedureParameter" Index="0" FrameworkAlternate="efcore-10.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="parameter" Type="Microsoft.EntityFrameworkCore.Metadata.IStoreStoredProcedureParameter" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="parameter">To be added.</param>
@@ -910,13 +989,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="column" Type="Microsoft.EntityFrameworkCore.Metadata.IStoreStoredProcedureResultColumn" Index="0" FrameworkAlternate="efcore-10.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="column" Type="Microsoft.EntityFrameworkCore.Metadata.IStoreStoredProcedureResultColumn" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="column">To be added.</param>
@@ -944,13 +1024,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="table" Type="Microsoft.EntityFrameworkCore.Metadata.ITable" Index="0" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="table" Type="Microsoft.EntityFrameworkCore.Metadata.ITable" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="table">To be added.</param>
@@ -965,8 +1046,9 @@
       <MemberSignature Language="C#" Value="public virtual System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt; For (Microsoft.EntityFrameworkCore.Metadata.ITableIndex index, bool designTime);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IEnumerable`1&lt;class Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt; For(class Microsoft.EntityFrameworkCore.Metadata.ITableIndex index, bool designTime) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.RelationalAnnotationProvider.For(Microsoft.EntityFrameworkCore.Metadata.ITableIndex,System.Boolean)" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable Function For (index As ITableIndex, designTime As Boolean) As IEnumerable(Of IAnnotation)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function For (index As ITableIndex, designTime As Boolean) As IEnumerable(Of IAnnotation)" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       <MemberSignature Language="F#" Value="abstract member For : Microsoft.EntityFrameworkCore.Metadata.ITableIndex * bool -&gt; seq&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;&#xA;override this.For : Microsoft.EntityFrameworkCore.Metadata.ITableIndex * bool -&gt; seq&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;" Usage="relationalAnnotationProvider.For (index, designTime)" />
+      <MemberSignature Language="VB.NET" Value="Public Iterator Overridable Function For (index As ITableIndex, designTime As Boolean) As IEnumerable(Of IAnnotation)" FrameworkAlternate="efcore-11.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:Microsoft.EntityFrameworkCore.Metadata.IRelationalAnnotationProvider.For(Microsoft.EntityFrameworkCore.Metadata.ITableIndex,System.Boolean)</InterfaceMember>
@@ -978,13 +1060,20 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="efcore-11.0">
+          <AttributeName Language="C#">[System.Runtime.CompilerServices.IteratorStateMachine(typeof(Microsoft.EntityFrameworkCore.Metadata.RelationalAnnotationProvider+&lt;For&gt;d__18))]</AttributeName>
+          <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.IteratorStateMachine(typeof(Microsoft.EntityFrameworkCore.Metadata.RelationalAnnotationProvider+&lt;For&gt;d__18))&gt;]</AttributeName>
+        </Attribute>
+      </Attributes>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="index" Type="Microsoft.EntityFrameworkCore.Metadata.ITableIndex" Index="0" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="index" Type="Microsoft.EntityFrameworkCore.Metadata.ITableIndex" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="index">To be added.</param>
@@ -1011,13 +1100,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="trigger" Type="Microsoft.EntityFrameworkCore.Metadata.ITrigger" Index="0" FrameworkAlternate="efcore-10.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="trigger" Type="Microsoft.EntityFrameworkCore.Metadata.ITrigger" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="trigger">To be added.</param>
@@ -1045,13 +1135,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="constraint" Type="Microsoft.EntityFrameworkCore.Metadata.IUniqueConstraint" Index="0" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="constraint" Type="Microsoft.EntityFrameworkCore.Metadata.IUniqueConstraint" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="constraint">To be added.</param>
@@ -1079,13 +1170,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="view" Type="Microsoft.EntityFrameworkCore.Metadata.IView" Index="0" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="view" Type="Microsoft.EntityFrameworkCore.Metadata.IView" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="view">To be added.</param>
@@ -1113,13 +1205,14 @@
         <AssemblyVersion>8.0.0.0</AssemblyVersion>
         <AssemblyVersion>9.0.0.0</AssemblyVersion>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="column" Type="Microsoft.EntityFrameworkCore.Metadata.IViewColumn" Index="0" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
-        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="column" Type="Microsoft.EntityFrameworkCore.Metadata.IViewColumn" Index="0" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
+        <Parameter Name="designTime" Type="System.Boolean" Index="1" FrameworkAlternate="efcore-10.0;efcore-11.0;efcore-6.0;efcore-7.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="column">To be added.</param>

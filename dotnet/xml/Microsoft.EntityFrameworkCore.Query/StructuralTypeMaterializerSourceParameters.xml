@@ -7,6 +7,7 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
     <AssemblyVersion>10.0.0.0</AssemblyVersion>
+    <AssemblyVersion>11.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.ValueType</BaseTypeName>
@@ -29,7 +30,15 @@
   <Docs>
     <param name="StructuralType">The entity or complex type being materialized.</param>
     <param name="InstanceName">The name of the instance being materialized.</param>
-    <param name="ClrType">CLR type of the result.</param>
+    <param name="ClrType">
+                CLR type of the result.
+                Note that this differs from <see cref="P:Microsoft.EntityFrameworkCore.Metadata.IReadOnlyTypeBase.ClrType" /> on <paramref name="StructuralType" />
+                when a nullable value type is being projected out.
+            </param>
+    <param name="IsNullable">
+                Whether the type being materialized is nullable.
+                A complex type may be non-nullable even if its CLR type is nullable (i.e. a class), based on model configuration.
+            </param>
     <param name="QueryTrackingBehavior">
                 The query tracking behavior, or <see langword="null" /> if this materialization is not from a query.
             </param>
@@ -51,15 +60,54 @@
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="StructuralType" Type="Microsoft.EntityFrameworkCore.Metadata.ITypeBase" />
-        <Parameter Name="InstanceName" Type="System.String" />
-        <Parameter Name="ClrType" Type="System.Type" />
-        <Parameter Name="QueryTrackingBehavior" Type="System.Nullable&lt;Microsoft.EntityFrameworkCore.QueryTrackingBehavior&gt;" />
+        <Parameter Name="StructuralType" Type="Microsoft.EntityFrameworkCore.Metadata.ITypeBase" Index="0" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="InstanceName" Type="System.String" Index="1" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="ClrType" Type="System.Type" Index="2" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="QueryTrackingBehavior" Type="System.Nullable&lt;Microsoft.EntityFrameworkCore.QueryTrackingBehavior&gt;" Index="3" FrameworkAlternate="efcore-10.0" />
       </Parameters>
       <Docs>
         <param name="StructuralType">The entity or complex type being materialized.</param>
         <param name="InstanceName">The name of the instance being materialized.</param>
         <param name="ClrType">CLR type of the result.</param>
+        <param name="QueryTrackingBehavior">
+                The query tracking behavior, or <see langword="null" /> if this materialization is not from a query.
+            </param>
+        <summary>
+                Parameter object for <see cref="T:Microsoft.EntityFrameworkCore.Query.IStructuralTypeMaterializerSource" />.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public StructuralTypeMaterializerSourceParameters (Microsoft.EntityFrameworkCore.Metadata.ITypeBase StructuralType, string InstanceName, Type ClrType, bool IsNullable, Microsoft.EntityFrameworkCore.QueryTrackingBehavior? QueryTrackingBehavior);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Microsoft.EntityFrameworkCore.Metadata.ITypeBase StructuralType, string InstanceName, class System.Type ClrType, bool IsNullable, valuetype System.Nullable`1&lt;valuetype Microsoft.EntityFrameworkCore.QueryTrackingBehavior&gt; QueryTrackingBehavior) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.StructuralTypeMaterializerSourceParameters.#ctor(Microsoft.EntityFrameworkCore.Metadata.ITypeBase,System.String,System.Type,System.Boolean,System.Nullable{Microsoft.EntityFrameworkCore.QueryTrackingBehavior})" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (StructuralType As ITypeBase, InstanceName As String, ClrType As Type, IsNullable As Boolean, QueryTrackingBehavior As Nullable(Of QueryTrackingBehavior))" />
+      <MemberSignature Language="F#" Value="new Microsoft.EntityFrameworkCore.Query.StructuralTypeMaterializerSourceParameters : Microsoft.EntityFrameworkCore.Metadata.ITypeBase * string * Type * bool * Nullable&lt;Microsoft.EntityFrameworkCore.QueryTrackingBehavior&gt; -&gt; Microsoft.EntityFrameworkCore.Query.StructuralTypeMaterializerSourceParameters" Usage="new Microsoft.EntityFrameworkCore.Query.StructuralTypeMaterializerSourceParameters (StructuralType, InstanceName, ClrType, IsNullable, QueryTrackingBehavior)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="StructuralType" Type="Microsoft.EntityFrameworkCore.Metadata.ITypeBase" Index="0" FrameworkAlternate="efcore-11.0" />
+        <Parameter Name="InstanceName" Type="System.String" Index="1" FrameworkAlternate="efcore-11.0" />
+        <Parameter Name="ClrType" Type="System.Type" Index="2" FrameworkAlternate="efcore-11.0" />
+        <Parameter Name="IsNullable" Type="System.Boolean" Index="3" FrameworkAlternate="efcore-11.0" />
+        <Parameter Name="QueryTrackingBehavior" Type="System.Nullable&lt;Microsoft.EntityFrameworkCore.QueryTrackingBehavior&gt;" Index="4" FrameworkAlternate="efcore-11.0" />
+      </Parameters>
+      <Docs>
+        <param name="StructuralType">The entity or complex type being materialized.</param>
+        <param name="InstanceName">The name of the instance being materialized.</param>
+        <param name="ClrType">
+                CLR type of the result.
+                Note that this differs from <see cref="P:Microsoft.EntityFrameworkCore.Metadata.IReadOnlyTypeBase.ClrType" /> on <paramref name="StructuralType" />
+                when a nullable value type is being projected out.
+            </param>
+        <param name="IsNullable">
+                Whether the type being materialized is nullable.
+                A complex type may be non-nullable even if its CLR type is nullable (i.e. a class), based on model configuration.
+            </param>
         <param name="QueryTrackingBehavior">
                 The query tracking behavior, or <see langword="null" /> if this materialization is not from a query.
             </param>
@@ -79,12 +127,17 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>CLR type of the result.</summary>
+        <summary>
+                CLR type of the result.
+                Note that this differs from <see cref="P:Microsoft.EntityFrameworkCore.Metadata.IReadOnlyTypeBase.ClrType" /> on <paramref name="StructuralType" />
+                when a nullable value type is being projected out.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -103,15 +156,45 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="StructuralType" Type="Microsoft.EntityFrameworkCore.Metadata.ITypeBase" RefType="out" />
-        <Parameter Name="InstanceName" Type="System.String" RefType="out" />
-        <Parameter Name="ClrType" Type="System.Type" RefType="out" />
-        <Parameter Name="QueryTrackingBehavior" Type="System.Nullable&lt;Microsoft.EntityFrameworkCore.QueryTrackingBehavior&gt;" RefType="out" />
+        <Parameter Name="StructuralType" Type="Microsoft.EntityFrameworkCore.Metadata.ITypeBase" RefType="out" Index="0" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="InstanceName" Type="System.String" RefType="out" Index="1" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="ClrType" Type="System.Type" RefType="out" Index="2" FrameworkAlternate="efcore-10.0" />
+        <Parameter Name="QueryTrackingBehavior" Type="System.Nullable&lt;Microsoft.EntityFrameworkCore.QueryTrackingBehavior&gt;" RefType="out" Index="3" FrameworkAlternate="efcore-10.0" />
       </Parameters>
       <Docs>
         <param name="StructuralType">To be added.</param>
         <param name="InstanceName">To be added.</param>
         <param name="ClrType">To be added.</param>
+        <param name="QueryTrackingBehavior">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Deconstruct">
+      <MemberSignature Language="C#" Value="public void Deconstruct (out Microsoft.EntityFrameworkCore.Metadata.ITypeBase StructuralType, out string InstanceName, out Type ClrType, out bool IsNullable, out Microsoft.EntityFrameworkCore.QueryTrackingBehavior? QueryTrackingBehavior);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void Deconstruct([out] class Microsoft.EntityFrameworkCore.Metadata.ITypeBase&amp; StructuralType, [out] string&amp; InstanceName, [out] class System.Type&amp; ClrType, [out] bool&amp; IsNullable, [out] valuetype System.Nullable`1&lt;valuetype Microsoft.EntityFrameworkCore.QueryTrackingBehavior&gt;&amp; QueryTrackingBehavior) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Query.StructuralTypeMaterializerSourceParameters.Deconstruct(Microsoft.EntityFrameworkCore.Metadata.ITypeBase@,System.String@,System.Type@,System.Boolean@,System.Nullable{Microsoft.EntityFrameworkCore.QueryTrackingBehavior}@)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub Deconstruct (ByRef StructuralType As ITypeBase, ByRef InstanceName As String, ByRef ClrType As Type, ByRef IsNullable As Boolean, ByRef QueryTrackingBehavior As Nullable(Of QueryTrackingBehavior))" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="StructuralType" Type="Microsoft.EntityFrameworkCore.Metadata.ITypeBase" RefType="out" Index="0" FrameworkAlternate="efcore-11.0" />
+        <Parameter Name="InstanceName" Type="System.String" RefType="out" Index="1" FrameworkAlternate="efcore-11.0" />
+        <Parameter Name="ClrType" Type="System.Type" RefType="out" Index="2" FrameworkAlternate="efcore-11.0" />
+        <Parameter Name="IsNullable" Type="System.Boolean" RefType="out" Index="3" FrameworkAlternate="efcore-11.0" />
+        <Parameter Name="QueryTrackingBehavior" Type="System.Nullable&lt;Microsoft.EntityFrameworkCore.QueryTrackingBehavior&gt;" RefType="out" Index="4" FrameworkAlternate="efcore-11.0" />
+      </Parameters>
+      <Docs>
+        <param name="StructuralType">To be added.</param>
+        <param name="InstanceName">To be added.</param>
+        <param name="ClrType">To be added.</param>
+        <param name="IsNullable">To be added.</param>
         <param name="QueryTrackingBehavior">To be added.</param>
         <summary>To be added.</summary>
         <remarks>To be added.</remarks>
@@ -129,6 +212,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -152,6 +236,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -175,6 +260,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -196,12 +282,36 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>The name of the instance being materialized.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsNullable">
+      <MemberSignature Language="C#" Value="public bool IsNullable { get; init; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool IsNullable" />
+      <MemberSignature Language="DocId" Value="P:Microsoft.EntityFrameworkCore.Query.StructuralTypeMaterializerSourceParameters.IsNullable" />
+      <MemberSignature Language="VB.NET" Value="Public Property IsNullable As Boolean" />
+      <MemberSignature Language="F#" Value="member this.IsNullable : bool with get, set" Usage="Microsoft.EntityFrameworkCore.Query.StructuralTypeMaterializerSourceParameters.IsNullable" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+                Whether the type being materialized is nullable.
+                A complex type may be non-nullable even if its CLR type is nullable (i.e. a class), based on model configuration.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -215,6 +325,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -240,6 +351,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -266,6 +378,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Nullable&lt;Microsoft.EntityFrameworkCore.QueryTrackingBehavior&gt;</ReturnType>
@@ -288,6 +401,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.EntityFrameworkCore.Metadata.ITypeBase</ReturnType>
@@ -307,6 +421,7 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.EntityFrameworkCore</AssemblyName>
         <AssemblyVersion>10.0.0.0</AssemblyVersion>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>

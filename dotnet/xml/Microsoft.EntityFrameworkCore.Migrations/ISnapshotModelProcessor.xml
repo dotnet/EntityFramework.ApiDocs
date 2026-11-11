@@ -1,0 +1,69 @@
+<Type Name="ISnapshotModelProcessor" FullName="Microsoft.EntityFrameworkCore.Migrations.ISnapshotModelProcessor">
+  <TypeSignature Language="C#" Value="public interface ISnapshotModelProcessor" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract beforefieldinit ISnapshotModelProcessor" />
+  <TypeSignature Language="DocId" Value="T:Microsoft.EntityFrameworkCore.Migrations.ISnapshotModelProcessor" />
+  <TypeSignature Language="VB.NET" Value="Public Interface ISnapshotModelProcessor" />
+  <TypeSignature Language="F#" Value="type ISnapshotModelProcessor = interface" />
+  <AssemblyInfo>
+    <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+    <AssemblyVersion>11.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Docs>
+    <summary>
+                A service used to process a model loaded from a Migrations snapshot, applying fix-ups for the version of EF Core
+                that created the snapshot. Database providers can register a replacement implementation to apply additional
+                provider-specific fix-ups.
+            </summary>
+    <remarks>
+      <para>
+                    The service lifetime is <see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped" />. This means that each
+                    <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> instance will use its own instance of this service.
+                    The implementation may depend on other services registered with any lifetime.
+                    The implementation does not need to be thread-safe.
+                </para>
+      <para>
+                    See <see href="https://aka.ms/efcore-docs-migrations">Database migrations</see> for more information and examples.
+                </para>
+    </remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Process">
+      <MemberSignature Language="C#" Value="public Microsoft.EntityFrameworkCore.Metadata.IModel? Process (Microsoft.EntityFrameworkCore.Metadata.IReadOnlyModel? model, bool resetVersion = false);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Microsoft.EntityFrameworkCore.Metadata.IModel Process(class Microsoft.EntityFrameworkCore.Metadata.IReadOnlyModel model, bool resetVersion) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Migrations.ISnapshotModelProcessor.Process(Microsoft.EntityFrameworkCore.Metadata.IReadOnlyModel,System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Public Function Process (model As IReadOnlyModel, Optional resetVersion As Boolean = false) As IModel" />
+      <MemberSignature Language="F#" Value="abstract member Process : Microsoft.EntityFrameworkCore.Metadata.IReadOnlyModel * bool -&gt; Microsoft.EntityFrameworkCore.Metadata.IModel" Usage="iSnapshotModelProcessor.Process (model, resetVersion)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Microsoft.EntityFrameworkCore.Metadata.IModel</ReturnType>
+        <Attributes>
+          <Attribute>
+            <AttributeName Language="C#">[System.Diagnostics.CodeAnalysis.NotNullIfNotNull("model")]</AttributeName>
+            <AttributeName Language="F#">[&lt;System.Diagnostics.CodeAnalysis.NotNullIfNotNull("model")&gt;]</AttributeName>
+          </Attribute>
+        </Attributes>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="model" Type="Microsoft.EntityFrameworkCore.Metadata.IReadOnlyModel" />
+        <Parameter Name="resetVersion" Type="System.Boolean" />
+      </Parameters>
+      <Docs>
+        <param name="model">The model read from the snapshot.</param>
+        <param name="resetVersion">
+                If <see langword="true" />, the product version annotation on the returned model is reset to the current
+                EF Core version. Use this when the processed model will be persisted back to a snapshot.
+            </param>
+        <summary>
+                Processes the model, applying any fix-ups needed for the version of EF Core that created the snapshot.
+            </summary>
+        <returns>The processed model, or <see langword="null" /> if <paramref name="model" /> is <see langword="null" />.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
