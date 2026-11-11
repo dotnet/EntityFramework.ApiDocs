@@ -9,11 +9,18 @@
     <AssemblyVersion>8.0.0.0</AssemblyVersion>
     <AssemblyVersion>9.0.0.0</AssemblyVersion>
     <AssemblyVersion>10.0.0.0</AssemblyVersion>
+    <AssemblyVersion>11.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
   <Interfaces />
+  <Attributes>
+    <Attribute FrameworkAlternate="efcore-11.0">
+      <AttributeName Language="C#">[System.Runtime.CompilerServices.Nullable(0)]</AttributeName>
+      <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.Nullable(0)&gt;]</AttributeName>
+    </Attribute>
+  </Attributes>
   <Docs>
     <summary>
                 This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -24,6 +31,96 @@
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
+    <Member MemberName="GetProjectedQueryMappings">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.List&lt;Microsoft.EntityFrameworkCore.Metadata.ITableMappingBase&gt; GetProjectedQueryMappings (this Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType, System.Collections.Generic.IReadOnlyDictionary&lt;Microsoft.EntityFrameworkCore.Metadata.ITableBase,string&gt;? tableMap);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Collections.Generic.List`1&lt;class Microsoft.EntityFrameworkCore.Metadata.ITableMappingBase&gt; GetProjectedQueryMappings(class Microsoft.EntityFrameworkCore.Metadata.IEntityType entityType, class System.Collections.Generic.IReadOnlyDictionary`2&lt;class Microsoft.EntityFrameworkCore.Metadata.ITableBase, string&gt; tableMap) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.Internal.RelationalTypeBaseExtensions.GetProjectedQueryMappings(Microsoft.EntityFrameworkCore.Metadata.IEntityType,System.Collections.Generic.IReadOnlyDictionary{Microsoft.EntityFrameworkCore.Metadata.ITableBase,System.String})" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function GetProjectedQueryMappings (entityType As IEntityType, tableMap As IReadOnlyDictionary(Of ITableBase, String)) As List(Of ITableMappingBase)" />
+      <MemberSignature Language="F#" Value="static member GetProjectedQueryMappings : Microsoft.EntityFrameworkCore.Metadata.IEntityType * System.Collections.Generic.IReadOnlyDictionary&lt;Microsoft.EntityFrameworkCore.Metadata.ITableBase, string&gt; -&gt; System.Collections.Generic.List&lt;Microsoft.EntityFrameworkCore.Metadata.ITableMappingBase&gt;" Usage="Microsoft.EntityFrameworkCore.Metadata.Internal.RelationalTypeBaseExtensions.GetProjectedQueryMappings (entityType, tableMap)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.List&lt;Microsoft.EntityFrameworkCore.Metadata.ITableMappingBase&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="entityType" Type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" Index="0" FrameworkAlternate="efcore-11.0" RefType="this" />
+        <Parameter Name="tableMap" Type="System.Collections.Generic.IReadOnlyDictionary&lt;Microsoft.EntityFrameworkCore.Metadata.ITableBase,System.String&gt;" Index="1" FrameworkAlternate="efcore-11.0">
+          <Attributes>
+            <Attribute>
+              <AttributeName Language="C#">[System.Runtime.CompilerServices.Nullable(new System.Byte[] { 2, 1, 1 })]</AttributeName>
+              <AttributeName Language="F#">[&lt;System.Runtime.CompilerServices.Nullable(new System.Byte[] { 2, 1, 1 })&gt;]</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="entityType">The entity type.</param>
+        <param name="tableMap">The tables being projected from in the containing query, or <see langword="null" /> when unknown.</param>
+        <summary>
+                Returns the entity type's mappings to the tables actually being projected (as given by <paramref name="tableMap" />).
+                Used by query translation sites that need to pick the principal split-entity table for an entity reference.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>
+          <para>
+                    The mappings are read straight off the projected tables, so this naturally returns the entity's default
+                    mapping for FromSql / table-valued-function queries (whose <paramref name="tableMap" /> contains the
+                    default table) and its real table/view mapping for ordinary queries, without re-applying the
+                    storage-priority logic used by <see cref="M:Microsoft.EntityFrameworkCore.Metadata.Internal.RelationalTypeBaseExtensions.GetQueryMappings(Microsoft.EntityFrameworkCore.Metadata.ITypeBase)" />. When <paramref name="tableMap" /> is
+                    <see langword="null" /> (the projection is unknown) it falls back to all of the entity's query mappings.
+                </para>
+          <para>
+                    This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                    the same compatibility standards as public APIs. It may be changed or removed without notice in
+                    any release. You should only use it directly in your code with extreme caution and knowing that
+                    doing so can result in application failures when updating to a new Entity Framework Core release.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetQueryMappings">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Metadata.ITableMappingBase&gt; GetQueryMappings (this Microsoft.EntityFrameworkCore.Metadata.ITypeBase typeBase);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Collections.Generic.IEnumerable`1&lt;class Microsoft.EntityFrameworkCore.Metadata.ITableMappingBase&gt; GetQueryMappings(class Microsoft.EntityFrameworkCore.Metadata.ITypeBase typeBase) cil managed" />
+      <MemberSignature Language="DocId" Value="M:Microsoft.EntityFrameworkCore.Metadata.Internal.RelationalTypeBaseExtensions.GetQueryMappings(Microsoft.EntityFrameworkCore.Metadata.ITypeBase)" />
+      <MemberSignature Language="VB.NET" Value="&lt;Extension()&gt;&#xA;Public Function GetQueryMappings (typeBase As ITypeBase) As IEnumerable(Of ITableMappingBase)" />
+      <MemberSignature Language="F#" Value="static member GetQueryMappings : Microsoft.EntityFrameworkCore.Metadata.ITypeBase -&gt; seq&lt;Microsoft.EntityFrameworkCore.Metadata.ITableMappingBase&gt;" Usage="Microsoft.EntityFrameworkCore.Metadata.Internal.RelationalTypeBaseExtensions.GetQueryMappings typeBase" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.EntityFrameworkCore.Relational</AssemblyName>
+        <AssemblyVersion>11.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Metadata.ITableMappingBase&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="typeBase" Type="Microsoft.EntityFrameworkCore.Metadata.ITypeBase" Index="0" FrameworkAlternate="efcore-11.0" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="typeBase">To be added.</param>
+        <summary>
+                Returns the storage mappings the type queries against, in priority order: default SQL query, default function,
+                view, then table. The first non-empty set wins; an empty enumerable means the type has no
+                real (non-default) storage and queries should fall back to default mappings.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>
+          <para>
+                    Only the "default" function/SQL query mappings (those configured via <c>ToFunction</c>/<c>ToSqlQuery</c>
+                    on the entity) participate in the priority; additional <c>HasDbFunction</c>-style mappings remain
+                    invocation-only and never shadow the entity's view/table mapping for <c>Set&lt;T&gt;()</c> queries.
+                </para>
+          <para>
+                    This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                    the same compatibility standards as public APIs. It may be changed or removed without notice in
+                    any release. You should only use it directly in your code with extreme caution and knowing that
+                    doing so can result in application failures when updating to a new Entity Framework Core release.
+                </para>
+        </remarks>
+      </Docs>
+    </Member>
     <Member MemberName="GetViewOrTableMappings">
       <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Metadata.ITableMappingBase&gt; GetViewOrTableMappings (this Microsoft.EntityFrameworkCore.Metadata.ITypeBase typeBase);" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Collections.Generic.IEnumerable`1&lt;class Microsoft.EntityFrameworkCore.Metadata.ITableMappingBase&gt; GetViewOrTableMappings(class Microsoft.EntityFrameworkCore.Metadata.ITypeBase typeBase) cil managed" />
@@ -41,7 +138,7 @@
         <ReturnType>System.Collections.Generic.IEnumerable&lt;Microsoft.EntityFrameworkCore.Metadata.ITableMappingBase&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="typeBase" Type="Microsoft.EntityFrameworkCore.Metadata.ITypeBase" RefType="this" />
+        <Parameter Name="typeBase" Type="Microsoft.EntityFrameworkCore.Metadata.ITypeBase" RefType="this" Index="0" FrameworkAlternate="efcore-10.0;efcore-8.0;efcore-9.0" />
       </Parameters>
       <Docs>
         <param name="typeBase">To be added.</param>
